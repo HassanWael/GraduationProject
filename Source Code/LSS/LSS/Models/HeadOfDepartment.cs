@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 
 namespace LSS.Models
 {
-    public class HeadOfDepartment
+    public class HeadOfDepartment : FacultyMember
     {
+        public List<Course> DepartmentCourses { get; set; }
+        public  Deparment Deparment { get; set; }
     }
 }

@@ -7,5 +7,8 @@ namespace LSS.Models
 {
     public class Department
     {
+        public String Name { get; set; }
+        public Faculty Faculty { get; set; }
+
     }
 }

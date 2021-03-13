@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace LSS.Models
 {
-    public class Lecturer
+    public class Lecturer :FacultyMember
     {
-        public String Name { get; set; }
-        public String Password { get; set; }
+        public Deparment Deparment { get; set; }
     }
 }

@@ -7,5 +7,7 @@ namespace LSS.Models
 {
     public class Course
     {
+        public String Name { get; set; }
+
     }
 }
