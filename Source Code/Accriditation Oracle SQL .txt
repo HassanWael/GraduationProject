@@ -1,0 +1,65 @@
+CREATE TABLE "SO" (
+  "ID" Varchar,
+  "desc" varchar,
+  PRIMARY KEY ("ID")
+);
+
+
+CREATE TABLE "Course" (
+  "ID" varchar,
+  "name" varchar,
+  "faculty" varchar,
+  PRIMARY KEY ("ID")
+);
+
+CREATE TABLE "CourseSO" (
+  "SO" varchar  FOREIGN KEY REFERENCES SO(ID),
+  "courseID" varchar  FOREIGN KEY REFERENCES Course(ID),
+  PRIMARY KEY ("SO", "courseID")
+);
+
+CREATE TABLE "Qustions" (
+  "ID" int,
+  "Qustion" varchar,
+  PRIMARY KEY ("ID")
+);
+
+CREATE TABLE "QustionsSO" (
+  "SOID" varchar FOREIGN KEY REFERENCES SO(ID),
+  "QID" int FOREIGN KEY REFERENCES Qustions(ID) ,
+  PRIMARY KEY ("SOID", "QID")
+);
+
+
+
+
+
+CREATE TABLE "Exam" (
+  "ID" int,
+  "CourseID" varchar,
+  "Wight" Type,
+  "Date" Date,
+  PRIMARY KEY ("ID")
+);
+
+CREATE TABLE "ExamQustions" (
+  "ID" int,
+  "QID" intFOREIGN KEY REFERENCES Qustions(ID),
+  "ExamID" int FOREIGN KEY REFERENCES Exam(ID),
+  "wight" int,
+  PRIMARY KEY ("ID")
+);
+
+CREATE INDEX "Key" ON  "ExamQustions" ("QID", "ExamID");
+
+CREATE TABLE "Answers" (
+  "EQID" int FOREIGN KEY REFERENCES  ExamQustionsID(ID) ,
+  "StudentID" int FOREIGN KEY REFERENCES Students(ID),
+  "Answer" Varchar,
+  "mark" number,
+  PRIMARY KEY ("EQID", "StudentID")
+);
+
+
+
+
