@@ -5,10 +5,7 @@ using System.Threading.Tasks;
 
 namespace LSS.Models
 {
-    public class Deparment
+    public class Student
     {
-        public String Name { get; set; }
-        public int DepartmentNumber { get; set; }
-
     }
 }
