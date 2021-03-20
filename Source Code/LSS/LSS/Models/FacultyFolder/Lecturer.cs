@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LSS.Models
+namespace LSS.Models.FacultyFolder
 {
     public class Lecturer :FacultyMember
     {
-        public Deparment Deparment { get; set; }
+        public Department Department { get; set; }
     }
 }

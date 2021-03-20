@@ -35,3 +35,4 @@ C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\obj\Debug\netcorea
 C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\obj\Debug\netcoreapp3.1\LSS.pdb
 C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\obj\Debug\netcoreapp3.1\LSS.genruntimeconfig.cache
 C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\obj\Debug\netcoreapp3.1\LSS.csproj.CopyComplete
+C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\obj\Debug\netcoreapp3.1\Razor\Views\Login\Index.cshtml.g.cs

@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LSS.Models.CourseFlolder;
 
-namespace LSS.Models
+namespace LSS.Models.FacultyFolder
 {
-    public class Department
+    public class Dean:FacultyMember
     {
-        public String Name { get; set; }
+        public List<Course> FacultyCourses { get; set; }
         public Faculty Faculty { get; set; }
-
     }
 }
