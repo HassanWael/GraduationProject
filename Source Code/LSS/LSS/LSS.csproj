@@ -121,9 +121,23 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LogedInController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CourseFlolder\Accriditation\CLO.cs" />
+    <Compile Include="Models\CourseFlolder\Accriditation\SLO.cs" />
+    <Compile Include="Models\CourseFlolder\Course.cs" />
+    <Compile Include="Models\CourseFlolder\Exam.cs" />
+    <Compile Include="Models\CourseFlolder\Question.cs" />
+    <Compile Include="Models\FacultyFolder\Dean.cs" />
+    <Compile Include="Models\FacultyFolder\Department.cs" />
+    <Compile Include="Models\FacultyFolder\Faculty.cs" />
+    <Compile Include="Models\FacultyFolder\FacultyMember.cs" />
+    <Compile Include="Models\FacultyFolder\HeadOfDepartment.cs" />
+    <Compile Include="Models\FacultyFolder\Lecturer.cs" />
+    <Compile Include="Models\FacultyFolder\ViceDean.cs" />
+    <Compile Include="Models\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -162,10 +176,11 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Views\LogedIn\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
