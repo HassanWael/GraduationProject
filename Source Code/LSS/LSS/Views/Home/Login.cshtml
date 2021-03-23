@@ -1,8 +1,22 @@
-﻿
-@{
-    ViewBag.Title = "Login";
+﻿    ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link rel="stylesheet" type="text/css" href="~/Content/LoginCSS.css" />
 
 <h2>Login</h2>
+<div class="loginForm">
+    <form action="" method="post" class="form">
+        <div class="form-groupe">
 
+            <input type="text" id="ID_loginForm" placeholder="ID Number" class="form-control" tabindex="1" required />
+            <label class="form-lable">ID Number</label>
+        </div>
+
+        <div class="form-groupe">
+            <input type="text" id="Password_loginForm" placeholder="Password" class="form-control" tabindex="2" required />
+            <label class="form-lable"> Password</label>
+        </div>
+
+        <button id="loginButtton_loginForm"> Login</button>
+    </form>
+</div>
