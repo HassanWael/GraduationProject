@@ -9,6 +9,6 @@ namespace LSS.Models.FacultyFolder
     {
         public String Name { get; set; }
         public Faculty Faculty { get; set; }
-
+        public HeadOfDepartment HeadOfDepartment { get; set; }
     }
 }

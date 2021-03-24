@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Web;
 
 namespace LSS.Models.CourseFlolder
 {
-    public class Exam:AssessmentMethod
+    public class Assignment : AssessmentMethod
     {
     }
 }
