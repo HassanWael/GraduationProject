@@ -10,7 +10,10 @@ namespace LSS.Models.FacultyFolder
     {
         public String Name { get; set; }
         public String Password { get; set; }
-        public String ImgURL { get; set; }
         public List<Course> Courses { get; set; }
+        public String Phone { get; set; }
+        public String Email { get; set;}
+        public String OfficeNum { get; set; }
+
     }
 }
