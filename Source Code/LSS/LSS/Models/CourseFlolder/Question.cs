@@ -8,8 +8,8 @@ namespace LSS.Models.CourseFlolder
 {
     public class Question
     {
-        public String QuestionStr{ get; set; }
 
+        public String QuestionStr{ get; set; }
         public String Answer { get; set; }
         public List<SLO> SlOs { get; set; }
     }

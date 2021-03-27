@@ -132,6 +132,7 @@
     <Compile Include="Models\CourseFlolder\Exam.cs" />
     <Compile Include="Models\CourseFlolder\Project.cs" />
     <Compile Include="Models\CourseFlolder\Question.cs" />
+    <Compile Include="Models\CourseFlolder\StudentQsutionAnswers.cs" />
     <Compile Include="Models\CourseFlolder\TextBook.cs" />
     <Compile Include="Models\FacultyFolder\Dean.cs" />
     <Compile Include="Models\FacultyFolder\Department.cs" />
@@ -142,6 +143,8 @@
     <Compile Include="Models\FacultyFolder\ViceDean.cs" />
     <Compile Include="Models\Forms\CourseAssessmentSurvey.cs" />
     <Compile Include="Models\Forms\CourseSyllabusForm.cs" />
+    <Compile Include="Models\Forms\ExamEvaluationForm.cs" />
+    <Compile Include="Models\Forms\ExamModerationChecklistForm.cs" />
     <Compile Include="Models\Forms\WeekTopic.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
