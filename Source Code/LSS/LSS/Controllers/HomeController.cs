@@ -31,5 +31,10 @@ namespace LSS.Controllers
 
             return View();
         }
+        public ActionResult CouresPage() {
+
+            ViewBag.Message = " Coures view Page";
+            return View();
+        }
     }
 }
