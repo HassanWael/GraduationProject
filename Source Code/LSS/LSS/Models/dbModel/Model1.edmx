@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AssessedCourses">
           <Key>
             <PropertyRef Name="CourseID" />
@@ -203,6 +203,18 @@
           <Property Name="Observations" Type="nvarchar" MaxLength="32" />
           <Property Name="Analysis &amp; Justification" Type="nvarchar" MaxLength="32" />
           <Property Name="Recommendation" Type="nvarchar" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="schedule">
+          <Key>
+            <PropertyRef Name="CoordintaroID" />
+            <PropertyRef Name="Week" />
+          </Key>
+          <Property Name="CoordintaroID" Type="int" Nullable="false" />
+          <Property Name="Week" Type="int" Nullable="false" />
+          <Property Name="Topics" Type="nvarchar" MaxLength="32" />
+          <Property Name="Assigments" Type="nvarchar" MaxLength="32" />
+          <Property Name="Referance" Type="nvarchar" MaxLength="32" />
+          <Property Name="CLO" Type="int" />
         </EntityType>
         <EntityType Name="SLO">
           <Key>
@@ -557,6 +569,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_schedule_ToCLO">
+          <End Role="CLO" Type="Self.CLO" Multiplicity="0..1" />
+          <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="schedule">
+              <PropertyRef Name="CLO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_schedule_ToCourseCoordinator">
+          <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+          <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CourseCoordinator">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="schedule">
+              <PropertyRef Name="CoordintaroID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Student_departement">
           <End Role="Departmetn" Type="Self.Departmetn" Multiplicity="0..1" />
           <End Role="Student" Type="Self.Student" Multiplicity="*" />
@@ -617,7 +653,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ModelStoreContainer">
+        <EntityContainer Name="DBModelStoreContainer">
           <EntitySet Name="AssessedCourses" EntityType="Self.AssessedCourses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AssessmentPlanforTheStudentLearningOutcomeTechnique" EntityType="Self.AssessmentPlanforTheStudentLearningOutcomeTechnique" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="byCompletingThisCourseStudentsAreAbleTo" EntityType="Self.byCompletingThisCourseStudentsAreAbleTo" Schema="dbo" store:Type="Tables" />
@@ -639,6 +675,7 @@
           <EntitySet Name="PEO" EntityType="Self.PEO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PI" EntityType="Self.PI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ResultofCourseDirectAssessment" EntityType="Self.ResultofCourseDirectAssessment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="schedule" EntityType="Self.schedule" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SLO" EntityType="Self.SLO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SLO-PEO" EntityType="Self.SLO-PEO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
@@ -745,6 +782,14 @@
             <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
             <End Role="ResultofCourseDirectAssessment" EntitySet="ResultofCourseDirectAssessment" />
           </AssociationSet>
+          <AssociationSet Name="FK_schedule_ToCLO" Association="Self.FK_schedule_ToCLO">
+            <End Role="CLO" EntitySet="CLO" />
+            <End Role="schedule" EntitySet="schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_schedule_ToCourseCoordinator" Association="Self.FK_schedule_ToCourseCoordinator">
+            <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+            <End Role="schedule" EntitySet="schedule" />
+          </AssociationSet>
           <AssociationSet Name="FK_Student_departement" Association="Self.FK_Student_departement">
             <End Role="Departmetn" EntitySet="Departmetn" />
             <End Role="Student" EntitySet="Student" />
@@ -770,7 +815,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="AssessedCours">
           <Key>
             <PropertyRef Name="CourseID" />
@@ -808,6 +853,7 @@
           <Property Name="Course" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Course1" Relationship="Self.FK_CLO_ToCourse" FromRole="CLO" ToRole="Course" />
+          <NavigationProperty Name="schedules" Relationship="Self.FK_schedule_ToCLO" FromRole="CLO" ToRole="schedule" />
           <NavigationProperty Name="PIs" Relationship="Self.CLO_PI" FromRole="CLO" ToRole="PI" />
         </EntityType>
         <EntityType Name="Course">
@@ -880,6 +926,7 @@
           <NavigationProperty Name="ineffectiveTeachingStrategi" Relationship="Self.FK_ineffectiveTeachingStrategis_CoordinatorID" FromRole="CourseCoordinator" ToRole="ineffectiveTeachingStrategis" />
           <NavigationProperty Name="ModerationChecklists" Relationship="Self.FK_ModerationChecklist_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="ModerationChecklist" />
           <NavigationProperty Name="ResultofCourseDirectAssessment" Relationship="Self.FK_ResultofCourseDirectAssessment_ToCourseCoordinatorID" FromRole="CourseCoordinator" ToRole="ResultofCourseDirectAssessment" />
+          <NavigationProperty Name="schedules" Relationship="Self.FK_schedule_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="schedule" />
           <NavigationProperty Name="Student_PI_Outcome" Relationship="Self.FK_Student_PI_Outcome_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="Student_PI_Outcome" />
           <NavigationProperty Name="AssessmentPlanforTheStudentLearningOutcomeTechniques" Relationship="Self.CourseAssessmentPlan" FromRole="CourseCoordinator" ToRole="AssessmentPlanforTheStudentLearningOutcomeTechnique" />
         </EntityType>
@@ -998,6 +1045,20 @@
           <Property Name="Recommendation" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CourseCoordinator" Relationship="Self.FK_ResultofCourseDirectAssessment_ToCourseCoordinatorID" FromRole="ResultofCourseDirectAssessment" ToRole="CourseCoordinator" />
         </EntityType>
+        <EntityType Name="schedule">
+          <Key>
+            <PropertyRef Name="CoordintaroID" />
+            <PropertyRef Name="Week" />
+          </Key>
+          <Property Name="CoordintaroID" Type="Int32" Nullable="false" />
+          <Property Name="Week" Type="Int32" Nullable="false" />
+          <Property Name="Topics" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="Assigments" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="Referance" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="CLO" Type="Int32" />
+          <NavigationProperty Name="CLO1" Relationship="Self.FK_schedule_ToCLO" FromRole="schedule" ToRole="CLO" />
+          <NavigationProperty Name="CourseCoordinator" Relationship="Self.FK_schedule_ToCourseCoordinator" FromRole="schedule" ToRole="CourseCoordinator" />
+        </EntityType>
         <EntityType Name="SLO">
           <Key>
             <PropertyRef Name="SLOID_" />
@@ -1086,6 +1147,18 @@
             </Principal>
             <Dependent Role="CLO">
               <PropertyRef Name="Course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_schedule_ToCLO">
+          <End Role="CLO" Type="Self.CLO" Multiplicity="0..1" />
+          <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="schedule">
+              <PropertyRef Name="CLO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1245,6 +1318,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_schedule_ToCourseCoordinator">
+          <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+          <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CourseCoordinator">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="schedule">
+              <PropertyRef Name="CoordintaroID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Student_PI_Outcome_ToCourseCoordinator">
           <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
           <End Role="Student_PI_Outcome" Type="Self.Student_PI_Outcome" Multiplicity="*" />
@@ -1353,7 +1438,7 @@
           <End Role="PEO" Type="Self.PEO" Multiplicity="*" />
           <End Role="SLO" Type="Self.SLO" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="LSS_databaseEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="LSS_databaseEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AssessedCourses" EntityType="Self.AssessedCours" />
           <EntitySet Name="AssessmentPlanforTheStudentLearningOutcomeTechniques" EntityType="Self.AssessmentPlanforTheStudentLearningOutcomeTechnique" />
           <EntitySet Name="byCompletingThisCourseStudentsAreAbleToes" EntityType="Self.byCompletingThisCourseStudentsAreAbleTo" />
@@ -1373,6 +1458,7 @@
           <EntitySet Name="PEOs" EntityType="Self.PEO" />
           <EntitySet Name="PIs" EntityType="Self.PI" />
           <EntitySet Name="ResultofCourseDirectAssessments" EntityType="Self.ResultofCourseDirectAssessment" />
+          <EntitySet Name="schedules" EntityType="Self.schedule" />
           <EntitySet Name="SLOes" EntityType="Self.SLO" />
           <EntitySet Name="Students" EntityType="Self.Student" />
           <EntitySet Name="Student_Course_Grade" EntityType="Self.Student_Course_Grade" />
@@ -1389,6 +1475,10 @@
           <AssociationSet Name="FK_CLO_ToCourse" Association="Self.FK_CLO_ToCourse">
             <End Role="Course" EntitySet="Courses" />
             <End Role="CLO" EntitySet="CLOes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_schedule_ToCLO" Association="Self.FK_schedule_ToCLO">
+            <End Role="CLO" EntitySet="CLOes" />
+            <End Role="schedule" EntitySet="schedules" />
           </AssociationSet>
           <AssociationSet Name="FK_Course_co" Association="Self.FK_Course_co">
             <End Role="Course" EntitySet="Courses" />
@@ -1442,6 +1532,10 @@
             <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
             <End Role="ResultofCourseDirectAssessment" EntitySet="ResultofCourseDirectAssessments" />
           </AssociationSet>
+          <AssociationSet Name="FK_schedule_ToCourseCoordinator" Association="Self.FK_schedule_ToCourseCoordinator">
+            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+            <End Role="schedule" EntitySet="schedules" />
+          </AssociationSet>
           <AssociationSet Name="FK_Student_PI_Outcome_ToCourseCoordinator" Association="Self.FK_Student_PI_Outcome_ToCourseCoordinator">
             <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
             <End Role="Student_PI_Outcome" EntitySet="Student_PI_Outcome" />
@@ -1492,9 +1586,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="LSS_databaseEntities1">
+        <EntityContainerMapping StorageEntityContainer="DBModelStoreContainer" CdmEntityContainer="LSS_databaseEntities2">
           <EntitySetMapping Name="AssessedCourses">
-            <EntityTypeMapping TypeName="Model.AssessedCours">
+            <EntityTypeMapping TypeName="DBModel.AssessedCours">
               <MappingFragment StoreEntitySet="AssessedCourses">
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
@@ -1503,7 +1597,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AssessmentPlanforTheStudentLearningOutcomeTechniques">
-            <EntityTypeMapping TypeName="Model.AssessmentPlanforTheStudentLearningOutcomeTechnique">
+            <EntityTypeMapping TypeName="DBModel.AssessmentPlanforTheStudentLearningOutcomeTechnique">
               <MappingFragment StoreEntitySet="AssessmentPlanforTheStudentLearningOutcomeTechnique">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
@@ -1512,7 +1606,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="byCompletingThisCourseStudentsAreAbleToes">
-            <EntityTypeMapping TypeName="Model.byCompletingThisCourseStudentsAreAbleTo">
+            <EntityTypeMapping TypeName="DBModel.byCompletingThisCourseStudentsAreAbleTo">
               <MappingFragment StoreEntitySet="byCompletingThisCourseStudentsAreAbleTo">
                 <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
                 <ScalarProperty Name="SLO" ColumnName="SLO" />
@@ -1521,7 +1615,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CLOes">
-            <EntityTypeMapping TypeName="Model.CLO">
+            <EntityTypeMapping TypeName="DBModel.CLO">
               <MappingFragment StoreEntitySet="CLO">
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Course" ColumnName="Course" />
@@ -1530,7 +1624,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Courses">
-            <EntityTypeMapping TypeName="Model.Course">
+            <EntityTypeMapping TypeName="DBModel.Course">
               <MappingFragment StoreEntitySet="Course">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -1547,7 +1641,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CourseAssessmentMappings">
-            <EntityTypeMapping TypeName="Model.CourseAssessmentMapping">
+            <EntityTypeMapping TypeName="DBModel.CourseAssessmentMapping">
               <MappingFragment StoreEntitySet="CourseAssessmentMapping">
                 <ScalarProperty Name="CourseCoordinatorID" ColumnName="CourseCoordinatorID" />
                 <ScalarProperty Name="AssessmentID" ColumnName="AssessmentID" />
@@ -1557,7 +1651,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CourseAssessmentSurvays">
-            <EntityTypeMapping TypeName="Model.CourseAssessmentSurvay">
+            <EntityTypeMapping TypeName="DBModel.CourseAssessmentSurvay">
               <MappingFragment StoreEntitySet="CourseAssessmentSurvay">
                 <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
                 <ScalarProperty Name="Qustion" ColumnName="Qustion" />
@@ -1565,7 +1659,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CourseCoordinators">
-            <EntityTypeMapping TypeName="Model.CourseCoordinator">
+            <EntityTypeMapping TypeName="DBModel.CourseCoordinator">
               <MappingFragment StoreEntitySet="CourseCoordinator">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
@@ -1580,7 +1674,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CourseTeachingStrategies">
-            <EntityTypeMapping TypeName="Model.CourseTeachingStrategy">
+            <EntityTypeMapping TypeName="DBModel.CourseTeachingStrategy">
               <MappingFragment StoreEntitySet="CourseTeachingStrategies">
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
                 <ScalarProperty Name="StrategyID" ColumnName="StrategyID" />
@@ -1590,7 +1684,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CourseTestBooks">
-            <EntityTypeMapping TypeName="Model.CourseTestBook">
+            <EntityTypeMapping TypeName="DBModel.CourseTestBook">
               <MappingFragment StoreEntitySet="CourseTestBook">
                 <ScalarProperty Name="Course" ColumnName="Course" />
                 <ScalarProperty Name="Book_Title" ColumnName="Book Title" />
@@ -1602,7 +1696,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Departmetns">
-            <EntityTypeMapping TypeName="Model.Departmetn">
+            <EntityTypeMapping TypeName="DBModel.Departmetn">
               <MappingFragment StoreEntitySet="Departmetn">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1611,7 +1705,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Faculty_">
-            <EntityTypeMapping TypeName="Model.Faculty_">
+            <EntityTypeMapping TypeName="DBModel.Faculty_">
               <MappingFragment StoreEntitySet="Faculty ">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1619,7 +1713,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ineffectiveAssessmentStrategis">
-            <EntityTypeMapping TypeName="Model.ineffectiveAssessmentStrategi">
+            <EntityTypeMapping TypeName="DBModel.ineffectiveAssessmentStrategi">
               <MappingFragment StoreEntitySet="ineffectiveAssessmentStrategis">
                 <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
                 <ScalarProperty Name="Reason" ColumnName="Reason" />
@@ -1627,7 +1721,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ineffectiveTeachingStrategis">
-            <EntityTypeMapping TypeName="Model.ineffectiveTeachingStrategi">
+            <EntityTypeMapping TypeName="DBModel.ineffectiveTeachingStrategi">
               <MappingFragment StoreEntitySet="ineffectiveTeachingStrategis">
                 <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
                 <ScalarProperty Name="Reason" ColumnName="Reason" />
@@ -1635,7 +1729,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Lecturers">
-            <EntityTypeMapping TypeName="Model.Lecturer">
+            <EntityTypeMapping TypeName="DBModel.Lecturer">
               <MappingFragment StoreEntitySet="Lecturers">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1647,7 +1741,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ModerationChecklists">
-            <EntityTypeMapping TypeName="Model.ModerationChecklist">
+            <EntityTypeMapping TypeName="DBModel.ModerationChecklist">
               <MappingFragment StoreEntitySet="ModerationChecklist">
                 <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
                 <ScalarProperty Name="Qustion" ColumnName="Qustion" />
@@ -1657,7 +1751,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PEOs">
-            <EntityTypeMapping TypeName="Model.PEO">
+            <EntityTypeMapping TypeName="DBModel.PEO">
               <MappingFragment StoreEntitySet="PEO">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Desc" ColumnName="Desc" />
@@ -1666,7 +1760,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PIs">
-            <EntityTypeMapping TypeName="Model.PI">
+            <EntityTypeMapping TypeName="DBModel.PI">
               <MappingFragment StoreEntitySet="PI">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Desc" ColumnName="Desc" />
@@ -1675,7 +1769,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ResultofCourseDirectAssessments">
-            <EntityTypeMapping TypeName="Model.ResultofCourseDirectAssessment">
+            <EntityTypeMapping TypeName="DBModel.ResultofCourseDirectAssessment">
               <MappingFragment StoreEntitySet="ResultofCourseDirectAssessment">
                 <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
                 <ScalarProperty Name="Observations" ColumnName="Observations" />
@@ -1684,8 +1778,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="schedules">
+            <EntityTypeMapping TypeName="DBModel.schedule">
+              <MappingFragment StoreEntitySet="schedule">
+                <ScalarProperty Name="CoordintaroID" ColumnName="CoordintaroID" />
+                <ScalarProperty Name="Week" ColumnName="Week" />
+                <ScalarProperty Name="Topics" ColumnName="Topics" />
+                <ScalarProperty Name="Assigments" ColumnName="Assigments" />
+                <ScalarProperty Name="Referance" ColumnName="Referance" />
+                <ScalarProperty Name="CLO" ColumnName="CLO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="SLOes">
-            <EntityTypeMapping TypeName="Model.SLO">
+            <EntityTypeMapping TypeName="DBModel.SLO">
               <MappingFragment StoreEntitySet="SLO">
                 <ScalarProperty Name="SLOID_" ColumnName="SLOID " />
                 <ScalarProperty Name="Desc" ColumnName="Desc" />
@@ -1693,7 +1799,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Students">
-            <EntityTypeMapping TypeName="Model.Student">
+            <EntityTypeMapping TypeName="DBModel.Student">
               <MappingFragment StoreEntitySet="Student">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1702,7 +1808,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Student_Course_Grade">
-            <EntityTypeMapping TypeName="Model.Student_Course_Grade">
+            <EntityTypeMapping TypeName="DBModel.Student_Course_Grade">
               <MappingFragment StoreEntitySet="Student-Course-Grade">
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
@@ -1713,7 +1819,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Student_PI_Outcome">
-            <EntityTypeMapping TypeName="Model.Student_PI_Outcome">
+            <EntityTypeMapping TypeName="DBModel.Student_PI_Outcome">
               <MappingFragment StoreEntitySet="Student-PI-Outcome">
                 <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
                 <ScalarProperty Name="StudentID" ColumnName="StudentID" />
@@ -1723,14 +1829,14 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TeachingAndLearningStrategiesTechniques">
-            <EntityTypeMapping TypeName="Model.TeachingAndLearningStrategiesTechnique">
+            <EntityTypeMapping TypeName="DBModel.TeachingAndLearningStrategiesTechnique">
               <MappingFragment StoreEntitySet="TeachingAndLearningStrategiesTechnique">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="strategy" ColumnName="strategy" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="CLO_PI" TypeName="Model.CLO_PI" StoreEntitySet="CLO-PI">
+          <AssociationSetMapping Name="CLO_PI" TypeName="DBModel.CLO_PI" StoreEntitySet="CLO-PI">
             <EndProperty Name="CLO">
               <ScalarProperty Name="ID" ColumnName="CLOID" />
             </EndProperty>
@@ -1738,7 +1844,7 @@
               <ScalarProperty Name="ID" ColumnName="PI-ID" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="CourseAssessmentPlan" TypeName="Model.CourseAssessmentPlan" StoreEntitySet="CourseAssessmentPlan">
+          <AssociationSetMapping Name="CourseAssessmentPlan" TypeName="DBModel.CourseAssessmentPlan" StoreEntitySet="CourseAssessmentPlan">
             <EndProperty Name="AssessmentPlanforTheStudentLearningOutcomeTechnique">
               <ScalarProperty Name="ID" ColumnName="AssessmetnID" />
             </EndProperty>
@@ -1746,7 +1852,7 @@
               <ScalarProperty Name="ID" ColumnName="CoordinatorID" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="SLO_PEO" TypeName="Model.SLO_PEO" StoreEntitySet="SLO-PEO">
+          <AssociationSetMapping Name="SLO_PEO" TypeName="DBModel.SLO_PEO" StoreEntitySet="SLO-PEO">
             <EndProperty Name="PEO">
               <ScalarProperty Name="ID" ColumnName="PEOID" />
             </EndProperty>

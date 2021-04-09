@@ -13,10 +13,10 @@ namespace LSS.Models.dbModel
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class LSS_databaseEntities1 : DbContext
+    public partial class LSS_databaseEntities2 : DbContext
     {
-        public LSS_databaseEntities1()
-            : base("name=LSS_databaseEntities1")
+        public LSS_databaseEntities2()
+            : base("name=LSS_databaseEntities2")
         {
         }
     
@@ -44,6 +44,7 @@ namespace LSS.Models.dbModel
         public virtual DbSet<PEO> PEOs { get; set; }
         public virtual DbSet<PI> PIs { get; set; }
         public virtual DbSet<ResultofCourseDirectAssessment> ResultofCourseDirectAssessments { get; set; }
+        public virtual DbSet<schedule> schedules { get; set; }
         public virtual DbSet<SLO> SLOes { get; set; }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Student_Course_Grade> Student_Course_Grade { get; set; }

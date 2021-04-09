@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7aa9ba4f28a944938617d6a70087a2dd" Name="Diagram1">
+        <EntityTypeShape EntityType="DBModel.AssessedCours" Width="1.5" PointX="7.5" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.AssessmentPlanforTheStudentLearningOutcomeTechnique" Width="1.5" PointX="10.25" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.byCompletingThisCourseStudentsAreAbleTo" Width="1.5" PointX="14.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.CLO" Width="1.5" PointX="7.5" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Course" Width="1.5" PointX="5.25" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.CourseAssessmentMapping" Width="1.5" PointX="14.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.CourseAssessmentSurvay" Width="1.5" PointX="14.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.CourseCoordinator" Width="1.5" PointX="12.5" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.CourseTeachingStrategy" Width="1.5" PointX="7.5" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.CourseTestBook" Width="1.5" PointX="7.5" PointY="40.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Departmetn" Width="1.5" PointX="3" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Faculty_" Width="1.5" PointX="0.75" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.ineffectiveAssessmentStrategi" Width="1.5" PointX="14.75" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.ineffectiveTeachingStrategi" Width="1.5" PointX="14.75" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Lecturer" Width="1.5" PointX="10.25" PointY="25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.ModerationChecklist" Width="1.5" PointX="14.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.PEO" Width="1.5" PointX="5.25" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.PI" Width="1.5" PointX="9.75" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.ResultofCourseDirectAssessment" Width="1.5" PointX="14.75" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.schedule" Width="1.5" PointX="9.75" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.SLO" Width="1.5" PointX="7.5" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Student" Width="1.5" PointX="5.25" PointY="28.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Student_Course_Grade" Width="1.5" PointX="7.5" PointY="28.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Student_PI_Outcome" Width="1.5" PointX="17.75" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.TeachingAndLearningStrategiesTechnique" Width="1.5" PointX="15.5" PointY="29.25" IsExpanded="true" />
+        <AssociationConnector Association="DBModel.FK_AssessedCourses_ToCourse" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_byCompletingThisCourseStudentsAreAbleTo_CourseCoordinator" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_CLO_ToCourse" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_schedule_ToCLO" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Course_co" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Course_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Course_pre" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_CourseCoordinator_Coruse" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_CourseTeachingStrategies_ToCourse" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_CourseTestBook_course" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_CourseAssessmentMapping_ToCourseCoordintator" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_CourseAssessmentSurvay_ToCourseCoordinator" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_CourseCoordinator_Lecturer" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_ineffectiveAssessmentStrategis_ToCourseCoordinator" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_ineffectiveTeachingStrategis_CoordinatorID" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_ModerationChecklist_ToCourseCoordinator" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_ResultofCourseDirectAssessment_ToCourseCoordinatorID" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_schedule_ToCourseCoordinator" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Student_PI_Outcome_ToCourseCoordinator" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK__PEO__DeptID__2739D489" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Department_Faculty" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Student_departement" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK__PI__SLOID__2B0A656D" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Student_Course_Grade_ToStudents" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Student_PI_Outcome_ToStudents" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.FK_Student_PI_Outcome_ToTeachingAndLearningStrategiesTechnique" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.CLO_PI" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.CourseAssessmentPlan" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.SLO_PEO" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

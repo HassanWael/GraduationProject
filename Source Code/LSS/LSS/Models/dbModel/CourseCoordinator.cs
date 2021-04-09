@@ -20,6 +20,7 @@ namespace LSS.Models.dbModel
             this.CourseAssessmentMappings = new HashSet<CourseAssessmentMapping>();
             this.CourseAssessmentSurvays = new HashSet<CourseAssessmentSurvay>();
             this.ModerationChecklists = new HashSet<ModerationChecklist>();
+            this.schedules = new HashSet<schedule>();
             this.Student_PI_Outcome = new HashSet<Student_PI_Outcome>();
             this.AssessmentPlanforTheStudentLearningOutcomeTechniques = new HashSet<AssessmentPlanforTheStudentLearningOutcomeTechnique>();
         }
@@ -46,6 +47,8 @@ namespace LSS.Models.dbModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ModerationChecklist> ModerationChecklists { get; set; }
         public virtual ResultofCourseDirectAssessment ResultofCourseDirectAssessment { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<schedule> schedules { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student_PI_Outcome> Student_PI_Outcome { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
