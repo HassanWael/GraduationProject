@@ -1,4 +1,6 @@
-﻿@{    ViewBag.Title = "Login";
+﻿@model LSS.Models.LSS_DB_Model.LSS_Model.edmx
+
+@{    ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link rel="stylesheet" type="text/css" href="~/Content/LoginCSS.css" />
@@ -7,9 +9,10 @@
 <div class="loginForm">
     <form action="" method="post" class="form">
         <div class="form-groupe">
-
-            <input type="text" id="ID_loginForm" placeholder="ID Number" class="form-control" tabindex="1" required />
-            <label class="form-lable">ID Number</label>
+              @Html.TextBoxFor(m=>m.ID,"",new {@class = "form-control", @placeholder="ID Number",@tabindex ="1" ,@id="ID_LoginForm" })
+               
+            @*<input type="text" id="ID_loginForm" placeholder="ID Number" class="form-control" tabindex="1" required />
+            <label class="form-lable">ID Number</label>*@
         </div>
 
         <div class="form-groupe">
