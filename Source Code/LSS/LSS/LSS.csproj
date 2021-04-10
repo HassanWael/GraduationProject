@@ -45,10 +45,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -125,28 +133,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CourseFlolder\Accriditation\SLO.cs" />
-    <Compile Include="Models\CourseFlolder\AssessmentMethod.cs" />
-    <Compile Include="Models\CourseFlolder\Assignment.cs" />
-    <Compile Include="Models\CourseFlolder\Course.cs" />
-    <Compile Include="Models\CourseFlolder\Exam.cs" />
-    <Compile Include="Models\CourseFlolder\Project.cs" />
-    <Compile Include="Models\CourseFlolder\Question.cs" />
-    <Compile Include="Models\CourseFlolder\StudentQsutionAnswers.cs" />
-    <Compile Include="Models\CourseFlolder\TextBook.cs" />
-    <Compile Include="Models\FacultyFolder\Dean.cs" />
-    <Compile Include="Models\FacultyFolder\Department.cs" />
-    <Compile Include="Models\FacultyFolder\Faculty.cs" />
-    <Compile Include="Models\FacultyFolder\FacultyMember.cs" />
-    <Compile Include="Models\FacultyFolder\HeadOfDepartment.cs" />
-    <Compile Include="Models\FacultyFolder\Lecturer.cs" />
-    <Compile Include="Models\FacultyFolder\ViceDean.cs" />
-    <Compile Include="Models\Forms\CourseAssessmentSurvey.cs" />
-    <Compile Include="Models\Forms\CourseSyllabusForm.cs" />
-    <Compile Include="Models\Forms\ExamEvaluationForm.cs" />
-    <Compile Include="Models\Forms\ExamModerationChecklistForm.cs" />
-    <Compile Include="Models\Forms\WeekTopic.cs" />
-    <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\LSS_DB_Model\LSS_Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LSS_Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LSS_DB_Model\LSS_Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LSS_Model.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -164,8 +160,19 @@
     <Content Include="Images\analysis.png" />
     <Content Include="Images\notebook.png" />
     <Content Include="Images\studying.png" />
+    <Content Include="Models\LSS_DB_Model\LSS_Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LSS_Model.Context.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\LSS_DB_Model\LSS_Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LSS_Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\LSS_DB_Model\LSS_Model.edmx.diagram">
+      <DependentUpon>LSS_Model.edmx</DependentUpon>
+    </None>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -210,6 +217,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
