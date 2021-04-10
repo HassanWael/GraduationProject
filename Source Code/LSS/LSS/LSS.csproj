@@ -45,10 +45,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -134,96 +142,16 @@
     <Compile Include="Models\CourseFlolder\Question.cs" />
     <Compile Include="Models\CourseFlolder\StudentQsutionAnswers.cs" />
     <Compile Include="Models\CourseFlolder\TextBook.cs" />
-<<<<<<< HEAD
-    <Compile Include="Models\dbModel\AssessedCours.cs">
-      <DependentUpon>DBModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbModel\AssessmentPlanforTheStudentLearningOutcomeTechnique.cs">
-      <DependentUpon>DBModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbModel\byCompletingThisCourseStudentsAreAbleTo.cs">
-      <DependentUpon>DBModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbModel\CLO.cs">
-      <DependentUpon>DBModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbModel\Course.cs">
-      <DependentUpon>DBModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbModel\CourseAssessmentMapping.cs">
-      <DependentUpon>DBModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbModel\CourseAssessmentSurvay.cs">
-      <DependentUpon>DBModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbModel\CourseCoordinator.cs">
-      <DependentUpon>DBModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbModel\CourseTeachingStrategy.cs">
-      <DependentUpon>DBModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbModel\CourseTestBook.cs">
-      <DependentUpon>DBModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbModel\DBModels.Context.cs">
+    <Compile Include="Models\DBModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DBModels.Context.tt</DependentUpon>
+      <DependentUpon>DBModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\dbModel\DBModels.cs">
+    <Compile Include="Models\DBModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DBModels.tt</DependentUpon>
+      <DependentUpon>DBModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\dbModel\DBModels.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBModels.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbModel\Departmetn.cs">
-      <DependentUpon>DBModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbModel\Faculty_.cs">
-      <DependentUpon>DBModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbModel\ineffectiveAssessmentStrategi.cs">
-      <DependentUpon>DBModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbModel\ineffectiveTeachingStrategi.cs">
-      <DependentUpon>DBModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbModel\Lecturer.cs">
-      <DependentUpon>DBModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbModel\ModerationChecklist.cs">
-      <DependentUpon>DBModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbModel\PEO.cs">
-      <DependentUpon>DBModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbModel\PI.cs">
-      <DependentUpon>DBModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbModel\ResultofCourseDirectAssessment.cs">
-      <DependentUpon>DBModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbModel\SLO.cs">
-      <DependentUpon>DBModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbModel\Student.cs">
-      <DependentUpon>DBModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbModel\Student_Course_Grade.cs">
-      <DependentUpon>DBModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbModel\Student_PI_Outcome.cs">
-      <DependentUpon>DBModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbModel\TeachingAndLearningStrategiesTechnique.cs">
-      <DependentUpon>DBModels.tt</DependentUpon>
-    </Compile>
-=======
->>>>>>> parent of 1638216 (Created DB models in C#)
     <Compile Include="Models\FacultyFolder\Dean.cs" />
     <Compile Include="Models\FacultyFolder\Department.cs" />
     <Compile Include="Models\FacultyFolder\Faculty.cs" />
@@ -254,30 +182,19 @@
     <Content Include="Images\analysis.png" />
     <Content Include="Images\notebook.png" />
     <Content Include="Images\studying.png" />
-<<<<<<< HEAD
-    <Content Include="Models\dbModel\DBModels.Context.tt">
+    <Content Include="Models\DBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBModels.edmx</DependentUpon>
-      <LastGenOutput>DBModels.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\dbModel\DBModels.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBModels.edmx</DependentUpon>
-      <LastGenOutput>DBModels.cs</LastGenOutput>
+      <LastGenOutput>DBModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\dbModel\DBModels.edmx">
+    <EntityDeploy Include="Models\DBModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DBModels.Designer.cs</LastGenOutput>
+      <LastGenOutput>DBModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\dbModel\DBModels.edmx.diagram">
-      <DependentUpon>DBModels.edmx</DependentUpon>
-    </Content>
-=======
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
->>>>>>> parent of 1638216 (Created DB models in C#)
+    <None Include="Models\DBModel.edmx.diagram">
+      <DependentUpon>DBModel.edmx</DependentUpon>
+    </None>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -322,6 +239,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
