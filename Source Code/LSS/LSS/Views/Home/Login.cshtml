@@ -1,25 +1,28 @@
-﻿@model LSS.Models.LSS_DB_Model.LSS_Model.edmx
+﻿@model LSS.Models.LSS_DB_Model.Lecturer
 
 @{    ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link rel="stylesheet" type="text/css" href="~/Content/LoginCSS.css" />
 
 <h2>Login</h2>
 <div class="loginForm">
-    <form action="" method="post" class="form">
+
+    @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
         <div class="form-groupe">
-              @Html.TextBoxFor(m=>m.ID,"",new {@class = "form-control", @placeholder="ID Number",@tabindex ="1" ,@id="ID_LoginForm" })
-               
-            @*<input type="text" id="ID_loginForm" placeholder="ID Number" class="form-control" tabindex="1" required />
-            <label class="form-lable">ID Number</label>*@
+            @Html.TextBoxFor(m => m.ID, "", new { @class = "form-control", @placeholder = "ID Number", @tabindex = "1", @id = "ID_LoginForm" })
+            @Html.LabelFor(m => m.ID, new { @class = "form-lable" })
         </div>
 
         <div class="form-groupe">
-            <input type="text" id="Password_loginForm" placeholder="Password" class="form-control" tabindex="2" required />
-            <label class="form-lable"> Password</label>
+            @Html.LabelFor(m => m.Password, new { @class = "form-lable" })
+            @Html.TextBoxFor(m => m.Password, "", new { @class = "form-control", @placeholder = "ID Number", @tabindex = "1", @id = "ID_LoginForm" })
+
         </div>
 
-        <button id="loginButtton_loginForm"> Login</button>
-    </form>
+        <input type="submit" name="submit" class="btn btn-primary" value="Login" />
+    }
+
+
 </div>
