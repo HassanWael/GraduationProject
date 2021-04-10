@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LSS_ModelsStoreContainer" CdmEntityContainer="LSS_databaseEntities">
+    <EntitySetMapping Name="ActionsForImprovingTheCourses">
+      <EntityTypeMapping TypeName="LSS_Models.ActionsForImprovingTheCourse">
+        <MappingFragment StoreEntitySet="ActionsForImprovingTheCourse">
+          <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
+          <ScalarProperty Name="ActionsTaken" ColumnName="ActionsTaken" />
+          <ScalarProperty Name="ActionsResults" ColumnName="ActionsResults" />
+          <ScalarProperty Name="RecomandedActions" ColumnName="RecomandedActions" />
+          <ScalarProperty Name="PersonResponsible" ColumnName="PersonResponsible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AssessedCourses">
+      <EntityTypeMapping TypeName="LSS_Models.AssessedCours">
+        <MappingFragment StoreEntitySet="AssessedCourses">
+          <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AssessmentPlanforTheStudentLearningOutcomeTechniques">
+      <EntityTypeMapping TypeName="LSS_Models.AssessmentPlanforTheStudentLearningOutcomeTechnique">
+        <MappingFragment StoreEntitySet="AssessmentPlanforTheStudentLearningOutcomeTechnique">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="strategy" ColumnName="strategy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="byCompletingThisCourseStudentsAreAbleToes">
+      <EntityTypeMapping TypeName="LSS_Models.byCompletingThisCourseStudentsAreAbleTo">
+        <MappingFragment StoreEntitySet="byCompletingThisCourseStudentsAreAbleTo">
+          <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
+          <ScalarProperty Name="SLO" ColumnName="SLO" />
+          <ScalarProperty Name="AggrementLVL" ColumnName="AggrementLVL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CLOes">
+      <EntityTypeMapping TypeName="LSS_Models.CLO">
+        <MappingFragment StoreEntitySet="CLO">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Course" ColumnName="Course" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Courses">
+      <EntityTypeMapping TypeName="LSS_Models.Course">
+        <MappingFragment StoreEntitySet="Course">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="DptID" ColumnName="DptID" />
+          <ScalarProperty Name="Pre_requisite" ColumnName="Pre-requisite" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="Co_requisite" ColumnName="Co-requisite" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="VclassURL" ColumnName="VclassURL" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Other_Online_resources" ColumnName="Other Online resources" />
+          <ScalarProperty Name="Other_Required_Material" ColumnName="Other Required Material" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CourseAssessmentMappings">
+      <EntityTypeMapping TypeName="LSS_Models.CourseAssessmentMapping">
+        <MappingFragment StoreEntitySet="CourseAssessmentMapping">
+          <ScalarProperty Name="CourseCoordinatorID" ColumnName="CourseCoordinatorID" />
+          <ScalarProperty Name="AssessmentID" ColumnName="AssessmentID" />
+          <ScalarProperty Name="CLO" ColumnName="CLO" />
+          <ScalarProperty Name="SLO" ColumnName="SLO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CourseAssessmentSurvays">
+      <EntityTypeMapping TypeName="LSS_Models.CourseAssessmentSurvay">
+        <MappingFragment StoreEntitySet="CourseAssessmentSurvay">
+          <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
+          <ScalarProperty Name="Qustion" ColumnName="Qustion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CourseCoordinators">
+      <EntityTypeMapping TypeName="LSS_Models.CourseCoordinator">
+        <MappingFragment StoreEntitySet="CourseCoordinator">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+          <ScalarProperty Name="Cordenator" ColumnName="Cordenator" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+          <ScalarProperty Name="NoOFStudents" ColumnName="NoOFStudents" />
+          <ScalarProperty Name="ClassRoom" ColumnName="ClassRoom" />
+          <ScalarProperty Name="courseNotAssessedReason_" ColumnName="courseNotAssessedReason " />
+          <ScalarProperty Name="DayTime" ColumnName="DayTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CourseTeachingStrategies">
+      <EntityTypeMapping TypeName="LSS_Models.CourseTeachingStrategy">
+        <MappingFragment StoreEntitySet="CourseTeachingStrategies">
+          <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+          <ScalarProperty Name="StrategyID" ColumnName="StrategyID" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CourseTextBooks">
+      <EntityTypeMapping TypeName="LSS_Models.CourseTextBook">
+        <MappingFragment StoreEntitySet="CourseTextBook">
+          <ScalarProperty Name="Course" ColumnName="Course" />
+          <ScalarProperty Name="Book_Title" ColumnName="Book Title" />
+          <ScalarProperty Name="Author" ColumnName="Author" />
+          <ScalarProperty Name="YearOfpublish" ColumnName="YearOfpublish" />
+          <ScalarProperty Name="City_State" ColumnName="City/State" />
+          <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="LSS_Models.Department">
+        <MappingFragment StoreEntitySet="Department">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Faculties">
+      <EntityTypeMapping TypeName="LSS_Models.Faculty">
+        <MappingFragment StoreEntitySet="Faculty">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ineffectiveAssessmentStrategis">
+      <EntityTypeMapping TypeName="LSS_Models.ineffectiveAssessmentStrategi">
+        <MappingFragment StoreEntitySet="ineffectiveAssessmentStrategis">
+          <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ineffectiveTeachingStrategis">
+      <EntityTypeMapping TypeName="LSS_Models.ineffectiveTeachingStrategi">
+        <MappingFragment StoreEntitySet="ineffectiveTeachingStrategis">
+          <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lecturers">
+      <EntityTypeMapping TypeName="LSS_Models.Lecturer">
+        <MappingFragment StoreEntitySet="Lecturers">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="OfficeNo" ColumnName="OfficeNo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="DptID" ColumnName="DptID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ModerationChecklists">
+      <EntityTypeMapping TypeName="LSS_Models.ModerationChecklist">
+        <MappingFragment StoreEntitySet="ModerationChecklist">
+          <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
+          <ScalarProperty Name="Qustion" ColumnName="Qustion" />
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+          <ScalarProperty Name="commetns" ColumnName="commetns" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OtherLecturers">
+      <EntityTypeMapping TypeName="LSS_Models.OtherLecturer">
+        <MappingFragment StoreEntitySet="OtherLecturers">
+          <ScalarProperty Name="LecturerID" ColumnName="LecturerID" />
+          <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
+          <ScalarProperty Name="DayTime" ColumnName="DayTime" />
+          <ScalarProperty Name="ClassRoom" ColumnName="ClassRoom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PEOs">
+      <EntityTypeMapping TypeName="LSS_Models.PEO">
+        <MappingFragment StoreEntitySet="PEO">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Desc" ColumnName="Desc" />
+          <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PIs">
+      <EntityTypeMapping TypeName="LSS_Models.PI">
+        <MappingFragment StoreEntitySet="PI">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Desc" ColumnName="Desc" />
+          <ScalarProperty Name="SLOID" ColumnName="SLOID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ResultOfCourseDirectAssessments">
+      <EntityTypeMapping TypeName="LSS_Models.ResultOfCourseDirectAssessment">
+        <MappingFragment StoreEntitySet="ResultOfCourseDirectAssessment">
+          <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
+          <ScalarProperty Name="ActionsTaken" ColumnName="ActionsTaken" />
+          <ScalarProperty Name="Observation" ColumnName="Observation" />
+          <ScalarProperty Name="AnalysisAndJustification" ColumnName="AnalysisAndJustification" />
+          <ScalarProperty Name="Recommendation" ColumnName="Recommendation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="schedules">
+      <EntityTypeMapping TypeName="LSS_Models.schedule">
+        <MappingFragment StoreEntitySet="schedule">
+          <ScalarProperty Name="CoordintaroID" ColumnName="CoordintaroID" />
+          <ScalarProperty Name="Week" ColumnName="Week" />
+          <ScalarProperty Name="Topics" ColumnName="Topics" />
+          <ScalarProperty Name="Assigments" ColumnName="Assigments" />
+          <ScalarProperty Name="Referance" ColumnName="Referance" />
+          <ScalarProperty Name="CLO" ColumnName="CLO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SLOes">
+      <EntityTypeMapping TypeName="LSS_Models.SLO">
+        <MappingFragment StoreEntitySet="SLO">
+          <ScalarProperty Name="SLOID_" ColumnName="SLOID " />
+          <ScalarProperty Name="Desc" ColumnName="Desc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="LSS_Models.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DptID" ColumnName="DptID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Student_Course_Grade">
+      <EntityTypeMapping TypeName="LSS_Models.Student_Course_Grade">
+        <MappingFragment StoreEntitySet="Student-Course-Grade">
+          <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
+          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+          <ScalarProperty Name="Mark" ColumnName="Mark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Student_PI_Outcome">
+      <EntityTypeMapping TypeName="LSS_Models.Student_PI_Outcome">
+        <MappingFragment StoreEntitySet="Student-PI-Outcome">
+          <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
+          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+          <ScalarProperty Name="AssessmentMethod" ColumnName="AssessmentMethod" />
+          <ScalarProperty Name="Mark" ColumnName="Mark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeachingAndLearningStrategiesTechniques">
+      <EntityTypeMapping TypeName="LSS_Models.TeachingAndLearningStrategiesTechnique">
+        <MappingFragment StoreEntitySet="TeachingAndLearningStrategiesTechnique">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="strategy" ColumnName="strategy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="database_firewall_rules">
+      <EntityTypeMapping TypeName="LSS_Models.database_firewall_rules">
+        <MappingFragment StoreEntitySet="database_firewall_rules">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
+          <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CLO_PI" TypeName="LSS_Models.CLO_PI" StoreEntitySet="CLO-PI">
+      <EndProperty Name="CLO">
+        <ScalarProperty Name="ID" ColumnName="CLOID" />
+      </EndProperty>
+      <EndProperty Name="PI">
+        <ScalarProperty Name="ID" ColumnName="PI-ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CourseAssessmentPlan" TypeName="LSS_Models.CourseAssessmentPlan" StoreEntitySet="CourseAssessmentPlan">
+      <EndProperty Name="AssessmentPlanforTheStudentLearningOutcomeTechnique">
+        <ScalarProperty Name="ID" ColumnName="AssessmetnID" />
+      </EndProperty>
+      <EndProperty Name="CourseCoordinator">
+        <ScalarProperty Name="ID" ColumnName="CoordinatorID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SLO_PEO" TypeName="LSS_Models.SLO_PEO" StoreEntitySet="SLO-PEO">
+      <EndProperty Name="PEO">
+        <ScalarProperty Name="ID" ColumnName="PEO" />
+      </EndProperty>
+      <EndProperty Name="SLO">
+        <ScalarProperty Name="SLOID_" ColumnName="SLO" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

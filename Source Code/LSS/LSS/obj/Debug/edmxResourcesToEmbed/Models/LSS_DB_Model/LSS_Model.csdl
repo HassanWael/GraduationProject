@@ -1,0 +1,881 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LSS_Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ActionsForImprovingTheCourse">
+    <Key>
+      <PropertyRef Name="CoordinatorID" />
+    </Key>
+    <Property Name="CoordinatorID" Type="Int32" Nullable="false" />
+    <Property Name="ActionsTaken" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ActionsResults" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RecomandedActions" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PersonResponsible" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="CourseCoordinator" Relationship="Self.FK_AFIC_ToCourseCoordinator" FromRole="ActionsForImprovingTheCourse" ToRole="CourseCoordinator" />
+  </EntityType>
+  <EntityType Name="AssessedCours">
+    <Key>
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Semester" />
+    </Key>
+    <Property Name="CourseID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Semester" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Course" Relationship="Self.FK_AssessedCourses_ToCourse" FromRole="AssessedCourses" ToRole="Course" />
+  </EntityType>
+  <EntityType Name="AssessmentPlanforTheStudentLearningOutcomeTechnique">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="strategy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CourseCoordinators" Relationship="Self.CourseAssessmentPlan" FromRole="AssessmentPlanforTheStudentLearningOutcomeTechnique" ToRole="CourseCoordinator" />
+  </EntityType>
+  <EntityType Name="byCompletingThisCourseStudentsAreAbleTo">
+    <Key>
+      <PropertyRef Name="CoordinatorID" />
+    </Key>
+    <Property Name="CoordinatorID" Type="Int32" Nullable="false" />
+    <Property Name="SLO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="AggrementLVL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CourseCoordinator" Relationship="Self.FK_byCompletingThisCourseStudentsAreAbleTo_CourseCoordinator" FromRole="byCompletingThisCourseStudentsAreAbleTo" ToRole="CourseCoordinator" />
+  </EntityType>
+  <EntityType Name="CLO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Course" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Course1" Relationship="Self.FK_CLO_ToCourse" FromRole="CLO" ToRole="Course" />
+    <NavigationProperty Name="schedules" Relationship="Self.FK_schedule_ToCLO" FromRole="CLO" ToRole="schedule" />
+    <NavigationProperty Name="PIs" Relationship="Self.CLO_PI" FromRole="CLO" ToRole="PI" />
+  </EntityType>
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DptID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Pre_requisite" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Hours" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Co_requisite" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Designation" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="VclassURL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Other_Online_resources" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Other_Required_Material" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AssessedCourses" Relationship="Self.FK_AssessedCourses_ToCourse" FromRole="Course" ToRole="AssessedCourses" />
+    <NavigationProperty Name="CLOes" Relationship="Self.FK_CLO_ToCourse" FromRole="Course" ToRole="CLO" />
+    <NavigationProperty Name="Course1" Relationship="Self.FK_Course_co" FromRole="Course" ToRole="Course1" />
+    <NavigationProperty Name="Course2" Relationship="Self.FK_Course_co" FromRole="Course1" ToRole="Course" />
+    <NavigationProperty Name="Department" Relationship="Self.FK_Course_Department" FromRole="Course" ToRole="Department" />
+    <NavigationProperty Name="Course11" Relationship="Self.FK_Course_pre" FromRole="Course" ToRole="Course1" />
+    <NavigationProperty Name="Course3" Relationship="Self.FK_Course_pre" FromRole="Course1" ToRole="Course" />
+    <NavigationProperty Name="CourseCoordinators" Relationship="Self.FK_CourseCoordinator_Coruse" FromRole="Course" ToRole="CourseCoordinator" />
+    <NavigationProperty Name="CourseTeachingStrategies" Relationship="Self.FK_CourseTeachingStrategies_ToCourse" FromRole="Course" ToRole="CourseTeachingStrategies" />
+    <NavigationProperty Name="CourseTextBooks" Relationship="Self.FK_CourseTestBook_course" FromRole="Course" ToRole="CourseTextBook" />
+  </EntityType>
+  <EntityType Name="CourseAssessmentMapping">
+    <Key>
+      <PropertyRef Name="CourseCoordinatorID" />
+      <PropertyRef Name="AssessmentID" />
+      <PropertyRef Name="CLO" />
+      <PropertyRef Name="SLO" />
+    </Key>
+    <Property Name="CourseCoordinatorID" Type="Int32" Nullable="false" />
+    <Property Name="AssessmentID" Type="Int32" Nullable="false" />
+    <Property Name="CLO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SLO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="CourseCoordinator" Relationship="Self.FK_CourseAssessmentMapping_ToCourseCoordintator" FromRole="CourseAssessmentMapping" ToRole="CourseCoordinator" />
+  </EntityType>
+  <EntityType Name="CourseAssessmentSurvay">
+    <Key>
+      <PropertyRef Name="CoordinatorID" />
+      <PropertyRef Name="Qustion" />
+    </Key>
+    <Property Name="CoordinatorID" Type="Int32" Nullable="false" />
+    <Property Name="Qustion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="CourseCoordinator" Relationship="Self.FK_CourseAssessmentSurvay_ToCourseCoordinator" FromRole="CourseAssessmentSurvay" ToRole="CourseCoordinator" />
+  </EntityType>
+  <EntityType Name="CourseCoordinator">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="CourseID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Cordenator" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Semseter" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NoOFStudents" Type="Int32" Nullable="false" />
+    <Property Name="ClassRoom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="courseNotAssessedReason_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DayTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ActionsForImprovingTheCourse" Relationship="Self.FK_AFIC_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="ActionsForImprovingTheCourse" />
+    <NavigationProperty Name="byCompletingThisCourseStudentsAreAbleTo" Relationship="Self.FK_byCompletingThisCourseStudentsAreAbleTo_CourseCoordinator" FromRole="CourseCoordinator" ToRole="byCompletingThisCourseStudentsAreAbleTo" />
+    <NavigationProperty Name="Course" Relationship="Self.FK_CourseCoordinator_Coruse" FromRole="CourseCoordinator" ToRole="Course" />
+    <NavigationProperty Name="CourseAssessmentMappings" Relationship="Self.FK_CourseAssessmentMapping_ToCourseCoordintator" FromRole="CourseCoordinator" ToRole="CourseAssessmentMapping" />
+    <NavigationProperty Name="CourseAssessmentSurvays" Relationship="Self.FK_CourseAssessmentSurvay_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="CourseAssessmentSurvay" />
+    <NavigationProperty Name="Lecturer" Relationship="Self.FK_CourseCoordinator_Lecturer" FromRole="CourseCoordinator" ToRole="Lecturers" />
+    <NavigationProperty Name="ineffectiveAssessmentStrategi" Relationship="Self.FK_ineffectiveAssessmentStrategis_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="ineffectiveAssessmentStrategis" />
+    <NavigationProperty Name="ineffectiveTeachingStrategi" Relationship="Self.FK_ineffectiveTeachingStrategis_CoordinatorID" FromRole="CourseCoordinator" ToRole="ineffectiveTeachingStrategis" />
+    <NavigationProperty Name="ModerationChecklists" Relationship="Self.FK_ModerationChecklist_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="ModerationChecklist" />
+    <NavigationProperty Name="OtherLecturers" Relationship="Self.FK_OtherLecturers_CourseCoordinator" FromRole="CourseCoordinator" ToRole="OtherLecturers" />
+    <NavigationProperty Name="ResultOfCourseDirectAssessment" Relationship="Self.FK_RCDA_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="ResultOfCourseDirectAssessment" />
+    <NavigationProperty Name="schedules" Relationship="Self.FK_schedule_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="schedule" />
+    <NavigationProperty Name="Student_PI_Outcome" Relationship="Self.FK_Student_PI_Outcome_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="Student_PI_Outcome" />
+    <NavigationProperty Name="AssessmentPlanforTheStudentLearningOutcomeTechniques" Relationship="Self.CourseAssessmentPlan" FromRole="CourseCoordinator" ToRole="AssessmentPlanforTheStudentLearningOutcomeTechnique" />
+  </EntityType>
+  <EntityType Name="CourseTeachingStrategy">
+    <Key>
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="StrategyID" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Semester" />
+    </Key>
+    <Property Name="CourseID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StrategyID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Semester" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Course" Relationship="Self.FK_CourseTeachingStrategies_ToCourse" FromRole="CourseTeachingStrategies" ToRole="Course" />
+  </EntityType>
+  <EntityType Name="CourseTextBook">
+    <Key>
+      <PropertyRef Name="Course" />
+      <PropertyRef Name="Book_Title" />
+    </Key>
+    <Property Name="Course" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Book_Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Author" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="YearOfpublish" Type="DateTime" Precision="0" />
+    <Property Name="City_State" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Publisher" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Course1" Relationship="Self.FK_CourseTestBook_course" FromRole="CourseTextBook" ToRole="Course" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="FacultyID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Courses" Relationship="Self.FK_Course_Department" FromRole="Department" ToRole="Course" />
+    <NavigationProperty Name="PEOs" Relationship="Self.FK__PEO__DeptID__40C49C62" FromRole="Department" ToRole="PEO" />
+    <NavigationProperty Name="Faculty" Relationship="Self.FK_Department_Faculty" FromRole="Department" ToRole="Faculty" />
+    <NavigationProperty Name="Lecturers" Relationship="Self.FK_Lecturers_ToDpt" FromRole="Department" ToRole="Lecturers" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_Student_departement" FromRole="Department" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Faculty">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Departments" Relationship="Self.FK_Department_Faculty" FromRole="Faculty" ToRole="Department" />
+  </EntityType>
+  <EntityType Name="ineffectiveAssessmentStrategi">
+    <Key>
+      <PropertyRef Name="CoordinatorID" />
+    </Key>
+    <Property Name="CoordinatorID" Type="Int32" Nullable="false" />
+    <Property Name="Reason" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CourseCoordinator" Relationship="Self.FK_ineffectiveAssessmentStrategis_ToCourseCoordinator" FromRole="ineffectiveAssessmentStrategis" ToRole="CourseCoordinator" />
+  </EntityType>
+  <EntityType Name="ineffectiveTeachingStrategi">
+    <Key>
+      <PropertyRef Name="CoordinatorID" />
+    </Key>
+    <Property Name="CoordinatorID" Type="Int32" Nullable="false" />
+    <Property Name="Reason" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CourseCoordinator" Relationship="Self.FK_ineffectiveTeachingStrategis_CoordinatorID" FromRole="ineffectiveTeachingStrategis" ToRole="CourseCoordinator" />
+  </EntityType>
+  <EntityType Name="Lecturer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Role" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OfficeNo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DptID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="CourseCoordinators" Relationship="Self.FK_CourseCoordinator_Lecturer" FromRole="Lecturers" ToRole="CourseCoordinator" />
+    <NavigationProperty Name="Department" Relationship="Self.FK_Lecturers_ToDpt" FromRole="Lecturers" ToRole="Department" />
+    <NavigationProperty Name="OtherLecturers" Relationship="Self.FK_OtherLecturers_ToLecturer" FromRole="Lecturers" ToRole="OtherLecturers" />
+  </EntityType>
+  <EntityType Name="ModerationChecklist">
+    <Key>
+      <PropertyRef Name="CoordinatorID" />
+      <PropertyRef Name="Qustion" />
+    </Key>
+    <Property Name="CoordinatorID" Type="Int32" Nullable="false" />
+    <Property Name="Qustion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Answer" Type="Boolean" Nullable="false" />
+    <Property Name="commetns" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CourseCoordinator" Relationship="Self.FK_ModerationChecklist_ToCourseCoordinator" FromRole="ModerationChecklist" ToRole="CourseCoordinator" />
+  </EntityType>
+  <EntityType Name="OtherLecturer">
+    <Key>
+      <PropertyRef Name="LecturerID" />
+      <PropertyRef Name="CoordinatorID" />
+    </Key>
+    <Property Name="LecturerID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CoordinatorID" Type="Int32" Nullable="false" />
+    <Property Name="DayTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClassRoom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="CourseCoordinator" Relationship="Self.FK_OtherLecturers_CourseCoordinator" FromRole="OtherLecturers" ToRole="CourseCoordinator" />
+    <NavigationProperty Name="Lecturer" Relationship="Self.FK_OtherLecturers_ToLecturer" FromRole="OtherLecturers" ToRole="Lecturers" />
+  </EntityType>
+  <EntityType Name="PEO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Desc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DeptID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Department" Relationship="Self.FK__PEO__DeptID__40C49C62" FromRole="PEO" ToRole="Department" />
+    <NavigationProperty Name="SLOes" Relationship="Self.SLO_PEO" FromRole="PEO" ToRole="SLO" />
+  </EntityType>
+  <EntityType Name="PI">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Desc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SLOID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SLO" Relationship="Self.FK__PI__SLOID__32767D0B" FromRole="PI" ToRole="SLO" />
+    <NavigationProperty Name="CLOes" Relationship="Self.CLO_PI" FromRole="PI" ToRole="CLO" />
+  </EntityType>
+  <EntityType Name="ResultOfCourseDirectAssessment">
+    <Key>
+      <PropertyRef Name="CoordinatorID" />
+    </Key>
+    <Property Name="CoordinatorID" Type="Int32" Nullable="false" />
+    <Property Name="ActionsTaken" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Observation" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AnalysisAndJustification" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Recommendation" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="CourseCoordinator" Relationship="Self.FK_RCDA_ToCourseCoordinator" FromRole="ResultOfCourseDirectAssessment" ToRole="CourseCoordinator" />
+  </EntityType>
+  <EntityType Name="schedule">
+    <Key>
+      <PropertyRef Name="CoordintaroID" />
+      <PropertyRef Name="Week" />
+    </Key>
+    <Property Name="CoordintaroID" Type="Int32" Nullable="false" />
+    <Property Name="Week" Type="Int32" Nullable="false" />
+    <Property Name="Topics" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Assigments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Referance" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CLO" Type="Int32" />
+    <NavigationProperty Name="CLO1" Relationship="Self.FK_schedule_ToCLO" FromRole="schedule" ToRole="CLO" />
+    <NavigationProperty Name="CourseCoordinator" Relationship="Self.FK_schedule_ToCourseCoordinator" FromRole="schedule" ToRole="CourseCoordinator" />
+  </EntityType>
+  <EntityType Name="SLO">
+    <Key>
+      <PropertyRef Name="SLOID_" />
+    </Key>
+    <Property Name="SLOID_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Desc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="PIs" Relationship="Self.FK__PI__SLOID__32767D0B" FromRole="SLO" ToRole="PI" />
+    <NavigationProperty Name="PEOs" Relationship="Self.SLO_PEO" FromRole="SLO" ToRole="PEO" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DptID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Department" Relationship="Self.FK_Student_departement" FromRole="Student" ToRole="Department" />
+    <NavigationProperty Name="Student_Course_Grade" Relationship="Self.FK_Student_Course_Grade_ToStudents" FromRole="Student" ToRole="Student_Course_Grade" />
+    <NavigationProperty Name="Student_PI_Outcome" Relationship="Self.FK_Student_PI_Outcome_ToStudents" FromRole="Student" ToRole="Student_PI_Outcome" />
+  </EntityType>
+  <EntityType Name="Student_Course_Grade">
+    <Key>
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Semester" />
+      <PropertyRef Name="StudentID" />
+    </Key>
+    <Property Name="CourseID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Semester" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StudentID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Mark" Type="Int32" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_Student_Course_Grade_ToStudents" FromRole="Student_Course_Grade" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Student_PI_Outcome">
+    <Key>
+      <PropertyRef Name="CoordinatorID" />
+      <PropertyRef Name="StudentID" />
+    </Key>
+    <Property Name="CoordinatorID" Type="Int32" Nullable="false" />
+    <Property Name="StudentID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AssessmentMethod" Type="Int32" Nullable="false" />
+    <Property Name="Mark" Type="Int32" />
+    <NavigationProperty Name="CourseCoordinator" Relationship="Self.FK_Student_PI_Outcome_ToCourseCoordinator" FromRole="Student_PI_Outcome" ToRole="CourseCoordinator" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_Student_PI_Outcome_ToStudents" FromRole="Student_PI_Outcome" ToRole="Student" />
+    <NavigationProperty Name="TeachingAndLearningStrategiesTechnique" Relationship="Self.FK_Student_PI_Outcome_ToTeachingAndLearningStrategiesTechnique" FromRole="Student_PI_Outcome" ToRole="TeachingAndLearningStrategiesTechnique" />
+  </EntityType>
+  <EntityType Name="TeachingAndLearningStrategiesTechnique">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="strategy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Student_PI_Outcome" Relationship="Self.FK_Student_PI_Outcome_ToTeachingAndLearningStrategiesTechnique" FromRole="TeachingAndLearningStrategiesTechnique" ToRole="Student_PI_Outcome" />
+  </EntityType>
+  <EntityType Name="database_firewall_rules">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="start_ip_address" />
+      <PropertyRef Name="end_ip_address" />
+      <PropertyRef Name="create_date" />
+      <PropertyRef Name="modify_date" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="start_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="end_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <Association Name="FK_AFIC_ToCourseCoordinator">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="ActionsForImprovingTheCourse" Type="Self.ActionsForImprovingTheCourse" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ActionsForImprovingTheCourse">
+        <PropertyRef Name="CoordinatorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AssessedCourses_ToCourse">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="AssessedCourses" Type="Self.AssessedCours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AssessedCourses">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_byCompletingThisCourseStudentsAreAbleTo_CourseCoordinator">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="byCompletingThisCourseStudentsAreAbleTo" Type="Self.byCompletingThisCourseStudentsAreAbleTo" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="byCompletingThisCourseStudentsAreAbleTo">
+        <PropertyRef Name="CoordinatorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CLO_ToCourse">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="CLO" Type="Self.CLO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CLO">
+        <PropertyRef Name="Course" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_schedule_ToCLO">
+    <End Role="CLO" Type="Self.CLO" Multiplicity="0..1" />
+    <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="schedule">
+        <PropertyRef Name="CLO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Course_co">
+    <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+    <End Role="Course1" Type="Self.Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Course1">
+        <PropertyRef Name="Co_requisite" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Course_Department">
+    <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+    <End Role="Course" Type="Self.Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Course">
+        <PropertyRef Name="DptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Course_pre">
+    <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+    <End Role="Course1" Type="Self.Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Course1">
+        <PropertyRef Name="Pre_requisite" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseCoordinator_Coruse">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CourseCoordinator">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseTeachingStrategies_ToCourse">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="CourseTeachingStrategies" Type="Self.CourseTeachingStrategy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CourseTeachingStrategies">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseTestBook_course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="CourseTextBook" Type="Self.CourseTextBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CourseTextBook">
+        <PropertyRef Name="Course" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseAssessmentMapping_ToCourseCoordintator">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseAssessmentMapping" Type="Self.CourseAssessmentMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CourseAssessmentMapping">
+        <PropertyRef Name="CourseCoordinatorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseAssessmentSurvay_ToCourseCoordinator">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseAssessmentSurvay" Type="Self.CourseAssessmentSurvay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CourseAssessmentSurvay">
+        <PropertyRef Name="CoordinatorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseCoordinator_Lecturer">
+    <End Role="Lecturers" Type="Self.Lecturer" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lecturers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CourseCoordinator">
+        <PropertyRef Name="Cordenator" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ineffectiveAssessmentStrategis_ToCourseCoordinator">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="ineffectiveAssessmentStrategis" Type="Self.ineffectiveAssessmentStrategi" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ineffectiveAssessmentStrategis">
+        <PropertyRef Name="CoordinatorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ineffectiveTeachingStrategis_CoordinatorID">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="ineffectiveTeachingStrategis" Type="Self.ineffectiveTeachingStrategi" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ineffectiveTeachingStrategis">
+        <PropertyRef Name="CoordinatorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ModerationChecklist_ToCourseCoordinator">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="ModerationChecklist" Type="Self.ModerationChecklist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ModerationChecklist">
+        <PropertyRef Name="CoordinatorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OtherLecturers_CourseCoordinator">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="OtherLecturers" Type="Self.OtherLecturer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OtherLecturers">
+        <PropertyRef Name="CoordinatorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RCDA_ToCourseCoordinator">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="ResultOfCourseDirectAssessment" Type="Self.ResultOfCourseDirectAssessment" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ResultOfCourseDirectAssessment">
+        <PropertyRef Name="CoordinatorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_schedule_ToCourseCoordinator">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="schedule">
+        <PropertyRef Name="CoordintaroID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_PI_Outcome_ToCourseCoordinator">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="Student_PI_Outcome" Type="Self.Student_PI_Outcome" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Student_PI_Outcome">
+        <PropertyRef Name="CoordinatorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PEO__DeptID__40C49C62">
+    <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+    <End Role="PEO" Type="Self.PEO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PEO">
+        <PropertyRef Name="DeptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Department_Faculty">
+    <End Role="Faculty" Type="Self.Faculty" Multiplicity="0..1" />
+    <End Role="Department" Type="Self.Department" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Department">
+        <PropertyRef Name="FacultyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Lecturers_ToDpt">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="Lecturers" Type="Self.Lecturer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Lecturers">
+        <PropertyRef Name="DptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_departement">
+    <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="DptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OtherLecturers_ToLecturer">
+    <End Role="Lecturers" Type="Self.Lecturer" Multiplicity="1" />
+    <End Role="OtherLecturers" Type="Self.OtherLecturer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lecturers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OtherLecturers">
+        <PropertyRef Name="LecturerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PI__SLOID__32767D0B">
+    <End Role="SLO" Type="Self.SLO" Multiplicity="0..1" />
+    <End Role="PI" Type="Self.PI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SLO">
+        <PropertyRef Name="SLOID_" />
+      </Principal>
+      <Dependent Role="PI">
+        <PropertyRef Name="SLOID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Course_Grade_ToStudents">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Student_Course_Grade" Type="Self.Student_Course_Grade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Student_Course_Grade">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_PI_Outcome_ToStudents">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Student_PI_Outcome" Type="Self.Student_PI_Outcome" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Student_PI_Outcome">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_PI_Outcome_ToTeachingAndLearningStrategiesTechnique">
+    <End Role="TeachingAndLearningStrategiesTechnique" Type="Self.TeachingAndLearningStrategiesTechnique" Multiplicity="1" />
+    <End Role="Student_PI_Outcome" Type="Self.Student_PI_Outcome" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TeachingAndLearningStrategiesTechnique">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Student_PI_Outcome">
+        <PropertyRef Name="AssessmentMethod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CLO_PI">
+    <End Role="CLO" Type="Self.CLO" Multiplicity="*" />
+    <End Role="PI" Type="Self.PI" Multiplicity="*" />
+  </Association>
+  <Association Name="CourseAssessmentPlan">
+    <End Role="AssessmentPlanforTheStudentLearningOutcomeTechnique" Type="Self.AssessmentPlanforTheStudentLearningOutcomeTechnique" Multiplicity="*" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="*" />
+  </Association>
+  <Association Name="SLO_PEO">
+    <End Role="PEO" Type="Self.PEO" Multiplicity="*" />
+    <End Role="SLO" Type="Self.SLO" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="LSS_databaseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ActionsForImprovingTheCourses" EntityType="Self.ActionsForImprovingTheCourse" />
+    <EntitySet Name="AssessedCourses" EntityType="Self.AssessedCours" />
+    <EntitySet Name="AssessmentPlanforTheStudentLearningOutcomeTechniques" EntityType="Self.AssessmentPlanforTheStudentLearningOutcomeTechnique" />
+    <EntitySet Name="byCompletingThisCourseStudentsAreAbleToes" EntityType="Self.byCompletingThisCourseStudentsAreAbleTo" />
+    <EntitySet Name="CLOes" EntityType="Self.CLO" />
+    <EntitySet Name="Courses" EntityType="Self.Course" />
+    <EntitySet Name="CourseAssessmentMappings" EntityType="Self.CourseAssessmentMapping" />
+    <EntitySet Name="CourseAssessmentSurvays" EntityType="Self.CourseAssessmentSurvay" />
+    <EntitySet Name="CourseCoordinators" EntityType="Self.CourseCoordinator" />
+    <EntitySet Name="CourseTeachingStrategies" EntityType="Self.CourseTeachingStrategy" />
+    <EntitySet Name="CourseTextBooks" EntityType="Self.CourseTextBook" />
+    <EntitySet Name="Departments" EntityType="Self.Department" />
+    <EntitySet Name="Faculties" EntityType="Self.Faculty" />
+    <EntitySet Name="ineffectiveAssessmentStrategis" EntityType="Self.ineffectiveAssessmentStrategi" />
+    <EntitySet Name="ineffectiveTeachingStrategis" EntityType="Self.ineffectiveTeachingStrategi" />
+    <EntitySet Name="Lecturers" EntityType="Self.Lecturer" />
+    <EntitySet Name="ModerationChecklists" EntityType="Self.ModerationChecklist" />
+    <EntitySet Name="OtherLecturers" EntityType="Self.OtherLecturer" />
+    <EntitySet Name="PEOs" EntityType="Self.PEO" />
+    <EntitySet Name="PIs" EntityType="Self.PI" />
+    <EntitySet Name="ResultOfCourseDirectAssessments" EntityType="Self.ResultOfCourseDirectAssessment" />
+    <EntitySet Name="schedules" EntityType="Self.schedule" />
+    <EntitySet Name="SLOes" EntityType="Self.SLO" />
+    <EntitySet Name="Students" EntityType="Self.Student" />
+    <EntitySet Name="Student_Course_Grade" EntityType="Self.Student_Course_Grade" />
+    <EntitySet Name="Student_PI_Outcome" EntityType="Self.Student_PI_Outcome" />
+    <EntitySet Name="TeachingAndLearningStrategiesTechniques" EntityType="Self.TeachingAndLearningStrategiesTechnique" />
+    <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" />
+    <AssociationSet Name="FK_AFIC_ToCourseCoordinator" Association="Self.FK_AFIC_ToCourseCoordinator">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+      <End Role="ActionsForImprovingTheCourse" EntitySet="ActionsForImprovingTheCourses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AssessedCourses_ToCourse" Association="Self.FK_AssessedCourses_ToCourse">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="AssessedCourses" EntitySet="AssessedCourses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_byCompletingThisCourseStudentsAreAbleTo_CourseCoordinator" Association="Self.FK_byCompletingThisCourseStudentsAreAbleTo_CourseCoordinator">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+      <End Role="byCompletingThisCourseStudentsAreAbleTo" EntitySet="byCompletingThisCourseStudentsAreAbleToes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CLO_ToCourse" Association="Self.FK_CLO_ToCourse">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="CLO" EntitySet="CLOes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_schedule_ToCLO" Association="Self.FK_schedule_ToCLO">
+      <End Role="CLO" EntitySet="CLOes" />
+      <End Role="schedule" EntitySet="schedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Course_co" Association="Self.FK_Course_co">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="Course1" EntitySet="Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Course_Department" Association="Self.FK_Course_Department">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Course" EntitySet="Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Course_pre" Association="Self.FK_Course_pre">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="Course1" EntitySet="Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseCoordinator_Coruse" Association="Self.FK_CourseCoordinator_Coruse">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseTeachingStrategies_ToCourse" Association="Self.FK_CourseTeachingStrategies_ToCourse">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="CourseTeachingStrategies" EntitySet="CourseTeachingStrategies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseTestBook_course" Association="Self.FK_CourseTestBook_course">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="CourseTextBook" EntitySet="CourseTextBooks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseAssessmentMapping_ToCourseCoordintator" Association="Self.FK_CourseAssessmentMapping_ToCourseCoordintator">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+      <End Role="CourseAssessmentMapping" EntitySet="CourseAssessmentMappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseAssessmentSurvay_ToCourseCoordinator" Association="Self.FK_CourseAssessmentSurvay_ToCourseCoordinator">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+      <End Role="CourseAssessmentSurvay" EntitySet="CourseAssessmentSurvays" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseCoordinator_Lecturer" Association="Self.FK_CourseCoordinator_Lecturer">
+      <End Role="Lecturers" EntitySet="Lecturers" />
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ineffectiveAssessmentStrategis_ToCourseCoordinator" Association="Self.FK_ineffectiveAssessmentStrategis_ToCourseCoordinator">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+      <End Role="ineffectiveAssessmentStrategis" EntitySet="ineffectiveAssessmentStrategis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ineffectiveTeachingStrategis_CoordinatorID" Association="Self.FK_ineffectiveTeachingStrategis_CoordinatorID">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+      <End Role="ineffectiveTeachingStrategis" EntitySet="ineffectiveTeachingStrategis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ModerationChecklist_ToCourseCoordinator" Association="Self.FK_ModerationChecklist_ToCourseCoordinator">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+      <End Role="ModerationChecklist" EntitySet="ModerationChecklists" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OtherLecturers_CourseCoordinator" Association="Self.FK_OtherLecturers_CourseCoordinator">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+      <End Role="OtherLecturers" EntitySet="OtherLecturers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RCDA_ToCourseCoordinator" Association="Self.FK_RCDA_ToCourseCoordinator">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+      <End Role="ResultOfCourseDirectAssessment" EntitySet="ResultOfCourseDirectAssessments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_schedule_ToCourseCoordinator" Association="Self.FK_schedule_ToCourseCoordinator">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+      <End Role="schedule" EntitySet="schedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_PI_Outcome_ToCourseCoordinator" Association="Self.FK_Student_PI_Outcome_ToCourseCoordinator">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+      <End Role="Student_PI_Outcome" EntitySet="Student_PI_Outcome" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PEO__DeptID__40C49C62" Association="Self.FK__PEO__DeptID__40C49C62">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="PEO" EntitySet="PEOs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Department_Faculty" Association="Self.FK_Department_Faculty">
+      <End Role="Faculty" EntitySet="Faculties" />
+      <End Role="Department" EntitySet="Departments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Lecturers_ToDpt" Association="Self.FK_Lecturers_ToDpt">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Lecturers" EntitySet="Lecturers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_departement" Association="Self.FK_Student_departement">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OtherLecturers_ToLecturer" Association="Self.FK_OtherLecturers_ToLecturer">
+      <End Role="Lecturers" EntitySet="Lecturers" />
+      <End Role="OtherLecturers" EntitySet="OtherLecturers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PI__SLOID__32767D0B" Association="Self.FK__PI__SLOID__32767D0B">
+      <End Role="SLO" EntitySet="SLOes" />
+      <End Role="PI" EntitySet="PIs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Course_Grade_ToStudents" Association="Self.FK_Student_Course_Grade_ToStudents">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="Student_Course_Grade" EntitySet="Student_Course_Grade" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_PI_Outcome_ToStudents" Association="Self.FK_Student_PI_Outcome_ToStudents">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="Student_PI_Outcome" EntitySet="Student_PI_Outcome" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_PI_Outcome_ToTeachingAndLearningStrategiesTechnique" Association="Self.FK_Student_PI_Outcome_ToTeachingAndLearningStrategiesTechnique">
+      <End Role="TeachingAndLearningStrategiesTechnique" EntitySet="TeachingAndLearningStrategiesTechniques" />
+      <End Role="Student_PI_Outcome" EntitySet="Student_PI_Outcome" />
+    </AssociationSet>
+    <AssociationSet Name="CLO_PI" Association="Self.CLO_PI">
+      <End Role="CLO" EntitySet="CLOes" />
+      <End Role="PI" EntitySet="PIs" />
+    </AssociationSet>
+    <AssociationSet Name="CourseAssessmentPlan" Association="Self.CourseAssessmentPlan">
+      <End Role="AssessmentPlanforTheStudentLearningOutcomeTechnique" EntitySet="AssessmentPlanforTheStudentLearningOutcomeTechniques" />
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+    </AssociationSet>
+    <AssociationSet Name="SLO_PEO" Association="Self.SLO_PEO">
+      <End Role="PEO" EntitySet="PEOs" />
+      <End Role="SLO" EntitySet="SLOes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

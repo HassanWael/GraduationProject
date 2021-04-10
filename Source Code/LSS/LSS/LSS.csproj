@@ -133,15 +133,104 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\LSS_DB_Model\ActionsForImprovingTheCourse.cs">
+      <DependentUpon>LSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LSS_DB_Model\AssessedCours.cs">
+      <DependentUpon>LSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LSS_DB_Model\AssessmentPlanforTheStudentLearningOutcomeTechnique.cs">
+      <DependentUpon>LSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LSS_DB_Model\byCompletingThisCourseStudentsAreAbleTo.cs">
+      <DependentUpon>LSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LSS_DB_Model\CLO.cs">
+      <DependentUpon>LSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LSS_DB_Model\Course.cs">
+      <DependentUpon>LSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LSS_DB_Model\CourseAssessmentMapping.cs">
+      <DependentUpon>LSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LSS_DB_Model\CourseAssessmentSurvay.cs">
+      <DependentUpon>LSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LSS_DB_Model\CourseCoordinator.cs">
+      <DependentUpon>LSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LSS_DB_Model\CourseTeachingStrategy.cs">
+      <DependentUpon>LSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LSS_DB_Model\CourseTextBook.cs">
+      <DependentUpon>LSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LSS_DB_Model\database_firewall_rules.cs">
+      <DependentUpon>LSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LSS_DB_Model\Department.cs">
+      <DependentUpon>LSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LSS_DB_Model\Faculty.cs">
+      <DependentUpon>LSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LSS_DB_Model\ineffectiveAssessmentStrategi.cs">
+      <DependentUpon>LSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LSS_DB_Model\ineffectiveTeachingStrategi.cs">
+      <DependentUpon>LSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LSS_DB_Model\Lecturer.cs">
+      <DependentUpon>LSS_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\LSS_DB_Model\LSS_Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LSS_Model.Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LSS_DB_Model\LSS_Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LSS_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\LSS_DB_Model\LSS_Model.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LSS_Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LSS_DB_Model\ModerationChecklist.cs">
+      <DependentUpon>LSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LSS_DB_Model\OtherLecturer.cs">
+      <DependentUpon>LSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LSS_DB_Model\PEO.cs">
+      <DependentUpon>LSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LSS_DB_Model\PI.cs">
+      <DependentUpon>LSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LSS_DB_Model\ResultOfCourseDirectAssessment.cs">
+      <DependentUpon>LSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LSS_DB_Model\schedule.cs">
+      <DependentUpon>LSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LSS_DB_Model\SLO.cs">
+      <DependentUpon>LSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LSS_DB_Model\Student.cs">
+      <DependentUpon>LSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LSS_DB_Model\Student_Course_Grade.cs">
+      <DependentUpon>LSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LSS_DB_Model\Student_PI_Outcome.cs">
+      <DependentUpon>LSS_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LSS_DB_Model\TeachingAndLearningStrategiesTechnique.cs">
+      <DependentUpon>LSS_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -163,6 +252,12 @@
     <Content Include="Models\LSS_DB_Model\LSS_Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>LSS_Model.Context.cs</LastGenOutput>
+      <DependentUpon>LSS_Model.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\LSS_DB_Model\LSS_Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LSS_Model.edmx</DependentUpon>
+      <LastGenOutput>LSS_Model.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -170,9 +265,9 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>LSS_Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Models\LSS_DB_Model\LSS_Model.edmx.diagram">
+    <Content Include="Models\LSS_DB_Model\LSS_Model.edmx.diagram">
       <DependentUpon>LSS_Model.edmx</DependentUpon>
-    </None>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -195,9 +290,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\CouresPage.cshtml" />
   </ItemGroup>
