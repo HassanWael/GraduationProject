@@ -45,18 +45,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -142,6 +134,7 @@
     <Compile Include="Models\CourseFlolder\Question.cs" />
     <Compile Include="Models\CourseFlolder\StudentQsutionAnswers.cs" />
     <Compile Include="Models\CourseFlolder\TextBook.cs" />
+<<<<<<< HEAD
     <Compile Include="Models\dbModel\AssessedCours.cs">
       <DependentUpon>DBModels.tt</DependentUpon>
     </Compile>
@@ -229,6 +222,8 @@
     <Compile Include="Models\dbModel\TeachingAndLearningStrategiesTechnique.cs">
       <DependentUpon>DBModels.tt</DependentUpon>
     </Compile>
+=======
+>>>>>>> parent of 1638216 (Created DB models in C#)
     <Compile Include="Models\FacultyFolder\Dean.cs" />
     <Compile Include="Models\FacultyFolder\Department.cs" />
     <Compile Include="Models\FacultyFolder\Faculty.cs" />
@@ -259,6 +254,7 @@
     <Content Include="Images\analysis.png" />
     <Content Include="Images\notebook.png" />
     <Content Include="Images\studying.png" />
+<<<<<<< HEAD
     <Content Include="Models\dbModel\DBModels.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DBModels.edmx</DependentUpon>
@@ -278,6 +274,10 @@
     <Content Include="Models\dbModel\DBModels.edmx.diagram">
       <DependentUpon>DBModels.edmx</DependentUpon>
     </Content>
+=======
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+>>>>>>> parent of 1638216 (Created DB models in C#)
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -322,9 +322,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
