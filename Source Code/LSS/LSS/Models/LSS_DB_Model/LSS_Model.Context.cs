@@ -44,7 +44,6 @@ namespace LSS.Models.LSS_DB_Model
         public virtual DbSet<ModerationChecklist> ModerationChecklists { get; set; }
         public virtual DbSet<OtherLecturer> OtherLecturers { get; set; }
         public virtual DbSet<PEO> PEOs { get; set; }
-        public virtual DbSet<PI> PIs { get; set; }
         public virtual DbSet<ResultOfCourseDirectAssessment> ResultOfCourseDirectAssessments { get; set; }
         public virtual DbSet<SLO> SLOes { get; set; }
         public virtual DbSet<Student> Students { get; set; }
@@ -53,5 +52,6 @@ namespace LSS.Models.LSS_DB_Model
         public virtual DbSet<TeachingAndLearningStrategiesTechnique> TeachingAndLearningStrategiesTechniques { get; set; }
         public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
         public virtual DbSet<schedule> schedules { get; set; }
+        public virtual DbSet<PI> PIs { get; set; }
     }
 }

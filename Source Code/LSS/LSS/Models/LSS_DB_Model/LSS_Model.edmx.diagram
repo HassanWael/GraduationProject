@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="78b9a77f71eb413aa9eb982bb21b7331" Name="Diagram1" ZoomLevel="39">
+      <Diagram DiagramId="78b9a77f71eb413aa9eb982bb21b7331" Name="Diagram1" ZoomLevel="187">
         <EntityTypeShape EntityType="LSS_Models.ActionsForImprovingTheCourse" Width="1.5" PointX="9.75" PointY="16.625" IsExpanded="true" />
         <EntityTypeShape EntityType="LSS_Models.AssessedCours" Width="1.5" PointX="7.5" PointY="18.125" IsExpanded="true" />
         <EntityTypeShape EntityType="LSS_Models.AssessmentPlanforTheStudentLearningOutcomeTechnique" Width="1.5" PointX="5.25" PointY="26.75" IsExpanded="true" />
@@ -24,14 +24,13 @@
         <EntityTypeShape EntityType="LSS_Models.ModerationChecklist" Width="1.5" PointX="9.75" PointY="40.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LSS_Models.OtherLecturer" Width="1.5" PointX="12.75" PointY="28.5" IsExpanded="true" />
         <EntityTypeShape EntityType="LSS_Models.PEO" Width="1.5" PointX="5.25" PointY="33" IsExpanded="true" />
-        <EntityTypeShape EntityType="LSS_Models.PI" Width="1.5" PointX="9.75" PointY="26.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LSS_Models.ResultOfCourseDirectAssessment" Width="1.5" PointX="9.75" PointY="44.375" IsExpanded="true" />
         <EntityTypeShape EntityType="LSS_Models.SLO" Width="1.5" PointX="7.5" PointY="33.125" IsExpanded="true" />
         <EntityTypeShape EntityType="LSS_Models.Student" Width="1.5" PointX="5.25" PointY="35.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LSS_Models.Student_Course_Grade" Width="1.5" PointX="7.5" PointY="35.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LSS_Models.Student_PI_Outcome" Width="1.5" PointX="12.75" PointY="32.25" IsExpanded="true" />
         <EntityTypeShape EntityType="LSS_Models.TeachingAndLearningStrategiesTechnique" Width="1.5" PointX="10.5" PointY="47.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="LSS_Models.database_firewall_rules" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LSS_Models.database_firewall_rules" PointX="0.75" PointY="0.75" Width="1.5" IsExpanded="true" />
         <AssociationConnector Association="LSS_Models.FK_AFIC_ToCourseCoordinator" ManuallyRouted="false" />
         <AssociationConnector Association="LSS_Models.FK_AssessedCourses_ToCourse" ManuallyRouted="false" />
         <AssociationConnector Association="LSS_Models.FK_byCompletingThisCourseStudentsAreAbleTo_CourseCoordinator" ManuallyRouted="false" />
@@ -56,17 +55,17 @@
         <AssociationConnector Association="LSS_Models.FK_Lecturers_ToDpt" ManuallyRouted="false" />
         <AssociationConnector Association="LSS_Models.FK_Student_departement" ManuallyRouted="false" />
         <AssociationConnector Association="LSS_Models.FK_OtherLecturers_ToLecturer" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.FK__PI__SLOID__32767D0B" ManuallyRouted="false" />
         <AssociationConnector Association="LSS_Models.FK_Student_Course_Grade_ToStudents" ManuallyRouted="false" />
         <AssociationConnector Association="LSS_Models.FK_Student_PI_Outcome_ToStudents" ManuallyRouted="false" />
         <AssociationConnector Association="LSS_Models.FK_Student_PI_Outcome_ToTeachingAndLearningStrategiesTechnique" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.CLO_PI" ManuallyRouted="false" />
         <AssociationConnector Association="LSS_Models.CourseAssessmentPlan" ManuallyRouted="false" />
         <AssociationConnector Association="LSS_Models.SLO_PEO" ManuallyRouted="false" />
         <AssociationConnector Association="LSS_Models.Schedule_CLO" />
         <EntityTypeShape EntityType="LSS_Models.schedule" Width="1.5" PointX="12.75" PointY="25.25" />
         <AssociationConnector Association="LSS_Models.FK_schedule_ToCourseCoordinator" />
-        <AssociationConnector Association="LSS_Models.Schedule_CLO" />
+        <EntityTypeShape EntityType="LSS_Models.PI" Width="1.5" PointX="9.75" PointY="21" />
+        <AssociationConnector Association="LSS_Models.CLO_PI" />
+        <AssociationConnector Association="LSS_Models.PI_SLO" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -15,7 +15,14 @@ namespace LSS.Controllers
 
         public ActionResult Login()
         {
-            return View();
+            if (Session["ID"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "LogedInController");
+            }
         }
 
         [HttpPost]
@@ -29,7 +36,7 @@ namespace LSS.Controllers
                 {
                     Session["Name"] = data.FirstOrDefault().Name;
                     Session["ID"] = data.FirstOrDefault().ID;
-                    return RedirectToAction("CoursePagee");
+                    return RedirectToAction("Index", "LogedInController");
                 }
                 else
                 {
@@ -40,20 +47,6 @@ namespace LSS.Controllers
 
 
             return View();
-        }
-  
-
-
-        public ActionResult CouresPage() {
-
-            if (Session["ID"] == null)
-            {
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Login");
-            }        
         }
     }
 }

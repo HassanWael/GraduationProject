@@ -17,8 +17,8 @@ namespace LSS.Models.LSS_DB_Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CLO()
         {
-            this.PIs = new HashSet<PI>();
             this.schedules = new HashSet<schedule>();
+            this.PIs = new HashSet<PI>();
         }
     
         public string Description { get; set; }
@@ -27,8 +27,8 @@ namespace LSS.Models.LSS_DB_Model
     
         public virtual Course Course1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PI> PIs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<schedule> schedules { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PI> PIs { get; set; }
     }
 }

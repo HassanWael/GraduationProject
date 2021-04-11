@@ -213,8 +213,15 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="Desc" Type="nvarchar" MaxLength="255" />
-          <Property Name="SLOID" Type="nvarchar" MaxLength="255" />
+          <Property Name="Desc" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PI_SLO">
+          <Key>
+            <PropertyRef Name="PI_ID" />
+            <PropertyRef Name="SLOID" />
+          </Key>
+          <Property Name="PI_ID" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="SLOID" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="ResultOfCourseDirectAssessment">
           <Key>
@@ -325,18 +332,6 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             </Principal>
             <Dependent Role="PEO">
               <PropertyRef Name="DeptID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__PI__SLOID__32767D0B">
-          <End Role="SLO" Type="Self.SLO" Multiplicity="0..1" />
-          <End Role="PI" Type="Self.PI" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SLO">
-              <PropertyRef Name="SLOID " />
-            </Principal>
-            <Dependent Role="PI">
-              <PropertyRef Name="SLOID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -628,6 +623,30 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PI_SLO_ToPI">
+          <End Role="PI" Type="Self.PI" Multiplicity="1" />
+          <End Role="PI_SLO" Type="Self.PI_SLO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PI_SLO">
+              <PropertyRef Name="PI_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PI_SLO_ToSLO">
+          <End Role="SLO" Type="Self.SLO" Multiplicity="1" />
+          <End Role="PI_SLO" Type="Self.PI_SLO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SLO">
+              <PropertyRef Name="SLOID " />
+            </Principal>
+            <Dependent Role="PI_SLO">
+              <PropertyRef Name="SLOID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_RCDA_ToCourseCoordinator">
           <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
           <End Role="ResultOfCourseDirectAssessment" Type="Self.ResultOfCourseDirectAssessment" Multiplicity="0..1" />
@@ -783,6 +802,7 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <EntitySet Name="OtherLecturers" EntityType="Self.OtherLecturers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PEO" EntityType="Self.PEO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PI" EntityType="Self.PI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PI_SLO" EntityType="Self.PI_SLO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ResultOfCourseDirectAssessment" EntityType="Self.ResultOfCourseDirectAssessment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="schedule" EntityType="Self.schedule" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Schedule_CLO" EntityType="Self.Schedule_CLO" Schema="dbo" store:Type="Tables" />
@@ -805,10 +825,6 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <AssociationSet Name="FK__PEO__DeptID__40C49C62" Association="Self.FK__PEO__DeptID__40C49C62">
             <End Role="Department" EntitySet="Department" />
             <End Role="PEO" EntitySet="PEO" />
-          </AssociationSet>
-          <AssociationSet Name="FK__PI__SLOID__32767D0B" Association="Self.FK__PI__SLOID__32767D0B">
-            <End Role="SLO" EntitySet="SLO" />
-            <End Role="PI" EntitySet="PI" />
           </AssociationSet>
           <AssociationSet Name="FK_AFIC_ToCourseCoordinator" Association="Self.FK_AFIC_ToCourseCoordinator">
             <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
@@ -905,6 +921,14 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <AssociationSet Name="FK_OtherLecturers_ToLecturer" Association="Self.FK_OtherLecturers_ToLecturer">
             <End Role="Lecturers" EntitySet="Lecturers" />
             <End Role="OtherLecturers" EntitySet="OtherLecturers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PI_SLO_ToPI" Association="Self.FK_PI_SLO_ToPI">
+            <End Role="PI" EntitySet="PI" />
+            <End Role="PI_SLO" EntitySet="PI_SLO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PI_SLO_ToSLO" Association="Self.FK_PI_SLO_ToSLO">
+            <End Role="SLO" EntitySet="SLO" />
+            <End Role="PI_SLO" EntitySet="PI_SLO" />
           </AssociationSet>
           <AssociationSet Name="FK_RCDA_ToCourseCoordinator" Association="Self.FK_RCDA_ToCourseCoordinator">
             <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
@@ -1003,8 +1027,8 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <Property Name="Course" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Course1" Relationship="Self.FK_CLO_ToCourse" FromRole="CLO" ToRole="Course" />
-          <NavigationProperty Name="PIs" Relationship="Self.CLO_PI" FromRole="CLO" ToRole="PI" />
           <NavigationProperty Name="schedules" Relationship="LSS_Models.Schedule_CLO" FromRole="CLO" ToRole="schedule" />
+          <NavigationProperty Name="PIs" Relationship="LSS_Models.CLO_PI" FromRole="CLO" ToRole="PI" />
         </EntityType>
         <EntityType Name="Course">
           <Key>
@@ -1193,16 +1217,6 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <NavigationProperty Name="Department" Relationship="Self.FK__PEO__DeptID__40C49C62" FromRole="PEO" ToRole="Department" />
           <NavigationProperty Name="SLOes" Relationship="Self.SLO_PEO" FromRole="PEO" ToRole="SLO" />
         </EntityType>
-        <EntityType Name="PI">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Desc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="SLOID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="SLO" Relationship="Self.FK__PI__SLOID__32767D0B" FromRole="PI" ToRole="SLO" />
-          <NavigationProperty Name="CLOes" Relationship="Self.CLO_PI" FromRole="PI" ToRole="CLO" />
-        </EntityType>
         <EntityType Name="ResultOfCourseDirectAssessment">
           <Key>
             <PropertyRef Name="CoordinatorID" />
@@ -1220,8 +1234,8 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           </Key>
           <Property Name="SLOID_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Desc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="PIs" Relationship="Self.FK__PI__SLOID__32767D0B" FromRole="SLO" ToRole="PI" />
           <NavigationProperty Name="PEOs" Relationship="Self.SLO_PEO" FromRole="SLO" ToRole="PEO" />
+          <NavigationProperty Name="PIs" Relationship="LSS_Models.PI_SLO" FromRole="SLO" ToRole="PI" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
@@ -1278,12 +1292,12 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             <PropertyRef Name="create_date" />
             <PropertyRef Name="modify_date" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="start_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="end_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="start_ip_address" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="end_ip_address" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="create_date" Nullable="false" Precision="3" Type="DateTime" />
+          <Property Name="modify_date" Nullable="false" Precision="3" Type="DateTime" />
         </EntityType>
         <Association Name="FK_AFIC_ToCourseCoordinator">
           <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
@@ -1573,18 +1587,6 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PI__SLOID__32767D0B">
-          <End Role="SLO" Type="Self.SLO" Multiplicity="0..1" />
-          <End Role="PI" Type="Self.PI" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SLO">
-              <PropertyRef Name="SLOID_" />
-            </Principal>
-            <Dependent Role="PI">
-              <PropertyRef Name="SLOID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Student_Course_Grade_ToStudents">
           <End Role="Student" Type="Self.Student" Multiplicity="1" />
           <End Role="Student_Course_Grade" Type="Self.Student_Course_Grade" Multiplicity="*" />
@@ -1621,10 +1623,6 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="CLO_PI">
-          <End Role="CLO" Type="Self.CLO" Multiplicity="*" />
-          <End Role="PI" Type="Self.PI" Multiplicity="*" />
-        </Association>
         <Association Name="CourseAssessmentPlan">
           <End Role="AssessmentPlanforTheStudentLearningOutcomeTechnique" Type="Self.AssessmentPlanforTheStudentLearningOutcomeTechnique" Multiplicity="*" />
           <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="*" />
@@ -1653,7 +1651,6 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <EntitySet Name="ModerationChecklists" EntityType="Self.ModerationChecklist" />
           <EntitySet Name="OtherLecturers" EntityType="Self.OtherLecturer" />
           <EntitySet Name="PEOs" EntityType="Self.PEO" />
-          <EntitySet Name="PIs" EntityType="Self.PI" />
           <EntitySet Name="ResultOfCourseDirectAssessments" EntityType="Self.ResultOfCourseDirectAssessment" />
           <EntitySet Name="SLOes" EntityType="Self.SLO" />
           <EntitySet Name="Students" EntityType="Self.Student" />
@@ -1757,10 +1754,6 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             <End Role="Lecturers" EntitySet="Lecturers" />
             <End Role="OtherLecturers" EntitySet="OtherLecturers" />
           </AssociationSet>
-          <AssociationSet Name="FK__PI__SLOID__32767D0B" Association="Self.FK__PI__SLOID__32767D0B">
-            <End Role="SLO" EntitySet="SLOes" />
-            <End Role="PI" EntitySet="PIs" />
-          </AssociationSet>
           <AssociationSet Name="FK_Student_Course_Grade_ToStudents" Association="Self.FK_Student_Course_Grade_ToStudents">
             <End Role="Student" EntitySet="Students" />
             <End Role="Student_Course_Grade" EntitySet="Student_Course_Grade" />
@@ -1772,10 +1765,6 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <AssociationSet Name="FK_Student_PI_Outcome_ToTeachingAndLearningStrategiesTechnique" Association="Self.FK_Student_PI_Outcome_ToTeachingAndLearningStrategiesTechnique">
             <End Role="TeachingAndLearningStrategiesTechnique" EntitySet="TeachingAndLearningStrategiesTechniques" />
             <End Role="Student_PI_Outcome" EntitySet="Student_PI_Outcome" />
-          </AssociationSet>
-          <AssociationSet Name="CLO_PI" Association="Self.CLO_PI">
-            <End Role="CLO" EntitySet="CLOes" />
-            <End Role="PI" EntitySet="PIs" />
           </AssociationSet>
           <AssociationSet Name="CourseAssessmentPlan" Association="Self.CourseAssessmentPlan">
             <End Role="AssessmentPlanforTheStudentLearningOutcomeTechnique" EntitySet="AssessmentPlanforTheStudentLearningOutcomeTechniques" />
@@ -1793,6 +1782,15 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <AssociationSet Name="Schedule_CLO" Association="LSS_Models.Schedule_CLO">
             <End Role="CLO" EntitySet="CLOes" />
             <End Role="schedule" EntitySet="schedules" />
+          </AssociationSet>
+          <EntitySet Name="PIs" EntityType="LSS_Models.PI" />
+          <AssociationSet Name="CLO_PI" Association="LSS_Models.CLO_PI">
+            <End Role="CLO" EntitySet="CLOes" />
+            <End Role="PI" EntitySet="PIs" />
+          </AssociationSet>
+          <AssociationSet Name="PI_SLO" Association="LSS_Models.PI_SLO">
+            <End Role="PI" EntitySet="PIs" />
+            <End Role="SLO" EntitySet="SLOes" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="schedule">
@@ -1823,6 +1821,23 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
         <Association Name="Schedule_CLO">
           <End Type="LSS_Models.CLO" Role="CLO" Multiplicity="*" />
           <End Type="LSS_Models.schedule" Role="schedule" Multiplicity="*" />
+        </Association>
+        <EntityType Name="PI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Desc" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CLOes" Relationship="LSS_Models.CLO_PI" FromRole="PI" ToRole="CLO" />
+          <NavigationProperty Name="SLOes" Relationship="LSS_Models.PI_SLO" FromRole="PI" ToRole="SLO" />
+        </EntityType>
+        <Association Name="CLO_PI">
+          <End Type="LSS_Models.CLO" Role="CLO" Multiplicity="*" />
+          <End Type="LSS_Models.PI" Role="PI" Multiplicity="*" />
+        </Association>
+        <Association Name="PI_SLO">
+          <End Type="LSS_Models.PI" Role="PI" Multiplicity="*" />
+          <End Type="LSS_Models.SLO" Role="SLO" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -2024,15 +2039,6 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PIs">
-            <EntityTypeMapping TypeName="LSS_Models.PI">
-              <MappingFragment StoreEntitySet="PI">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Desc" ColumnName="Desc" />
-                <ScalarProperty Name="SLOID" ColumnName="SLOID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ResultOfCourseDirectAssessments">
             <EntityTypeMapping TypeName="LSS_Models.ResultOfCourseDirectAssessment">
               <MappingFragment StoreEntitySet="ResultOfCourseDirectAssessment">
@@ -2102,14 +2108,6 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="CLO_PI" TypeName="LSS_Models.CLO_PI" StoreEntitySet="CLO-PI">
-            <EndProperty Name="CLO">
-              <ScalarProperty Name="ID" ColumnName="CLOID" />
-            </EndProperty>
-            <EndProperty Name="PI">
-              <ScalarProperty Name="ID" ColumnName="PI-ID" />
-            </EndProperty>
-          </AssociationSetMapping>
           <AssociationSetMapping Name="CourseAssessmentPlan" TypeName="LSS_Models.CourseAssessmentPlan" StoreEntitySet="CourseAssessmentPlan">
             <EndProperty Name="AssessmentPlanforTheStudentLearningOutcomeTechnique">
               <ScalarProperty Name="ID" ColumnName="AssessmetnID" />
@@ -2144,6 +2142,30 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             </EndProperty>
             <EndProperty Name="CLO">
               <ScalarProperty Name="ID" ColumnName="CLO" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="PIs">
+            <EntityTypeMapping TypeName="LSS_Models.PI">
+              <MappingFragment StoreEntitySet="PI">
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="CLO_PI" TypeName="LSS_Models.CLO_PI" StoreEntitySet="CLO-PI">
+            <EndProperty Name="PI">
+              <ScalarProperty Name="ID" ColumnName="PI-ID" />
+            </EndProperty>
+            <EndProperty Name="CLO">
+              <ScalarProperty Name="ID" ColumnName="CLOID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="PI_SLO" TypeName="LSS_Models.PI_SLO" StoreEntitySet="PI_SLO">
+            <EndProperty Name="SLO">
+              <ScalarProperty Name="SLOID_" ColumnName="SLOID" />
+            </EndProperty>
+            <EndProperty Name="PI">
+              <ScalarProperty Name="ID" ColumnName="PI_ID" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>
