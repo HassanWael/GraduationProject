@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LSS_Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LSS_Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ActionsForImprovingTheCourse">
           <Key>
             <PropertyRef Name="CoordinatorID" />
@@ -228,15 +228,22 @@
         </EntityType>
         <EntityType Name="schedule">
           <Key>
-            <PropertyRef Name="CoordintaroID" />
-            <PropertyRef Name="Week" />
+            <PropertyRef Name="ID" />
           </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="CoordintaroID" Type="int" Nullable="false" />
           <Property Name="Week" Type="int" Nullable="false" />
           <Property Name="Topics" Type="nvarchar" MaxLength="255" />
           <Property Name="Assigments" Type="nvarchar" MaxLength="255" />
           <Property Name="Referance" Type="nvarchar" MaxLength="255" />
-          <Property Name="CLO" Type="int" />
+        </EntityType>
+        <EntityType Name="Schedule_CLO">
+          <Key>
+            <PropertyRef Name="ScheduleID" />
+            <PropertyRef Name="CLO" />
+          </Key>
+          <Property Name="ScheduleID" Type="int" Nullable="false" />
+          <Property Name="CLO" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="SLO">
           <Key>
@@ -633,15 +640,27 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_schedule_ToCLO">
-          <End Role="CLO" Type="Self.CLO" Multiplicity="0..1" />
-          <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
+        <Association Name="FK_Schedule_CLO_ToCLO">
+          <End Role="CLO" Type="Self.CLO" Multiplicity="1" />
+          <End Role="Schedule_CLO" Type="Self.Schedule_CLO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CLO">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="schedule">
+            <Dependent Role="Schedule_CLO">
               <PropertyRef Name="CLO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedule_CLO_ToSchedule">
+          <End Role="schedule" Type="Self.schedule" Multiplicity="1" />
+          <End Role="Schedule_CLO" Type="Self.Schedule_CLO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="schedule">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Schedule_CLO">
+              <PropertyRef Name="ScheduleID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -766,6 +785,7 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <EntitySet Name="PI" EntityType="Self.PI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ResultOfCourseDirectAssessment" EntityType="Self.ResultOfCourseDirectAssessment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="schedule" EntityType="Self.schedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Schedule_CLO" EntityType="Self.Schedule_CLO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SLO" EntityType="Self.SLO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SLO-PEO" EntityType="Self.SLO-PEO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
@@ -890,9 +910,13 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
             <End Role="ResultOfCourseDirectAssessment" EntitySet="ResultOfCourseDirectAssessment" />
           </AssociationSet>
-          <AssociationSet Name="FK_schedule_ToCLO" Association="Self.FK_schedule_ToCLO">
+          <AssociationSet Name="FK_Schedule_CLO_ToCLO" Association="Self.FK_Schedule_CLO_ToCLO">
             <End Role="CLO" EntitySet="CLO" />
+            <End Role="Schedule_CLO" EntitySet="Schedule_CLO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedule_CLO_ToSchedule" Association="Self.FK_Schedule_CLO_ToSchedule">
             <End Role="schedule" EntitySet="schedule" />
+            <End Role="Schedule_CLO" EntitySet="Schedule_CLO" />
           </AssociationSet>
           <AssociationSet Name="FK_schedule_ToCourseCoordinator" Association="Self.FK_schedule_ToCourseCoordinator">
             <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
@@ -927,8 +951,7 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             <End Role="Student-PI-Outcome" EntitySet="Student-PI-Outcome" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LSS_Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -980,8 +1003,8 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <Property Name="Course" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Course1" Relationship="Self.FK_CLO_ToCourse" FromRole="CLO" ToRole="Course" />
-          <NavigationProperty Name="schedules" Relationship="Self.FK_schedule_ToCLO" FromRole="CLO" ToRole="schedule" />
           <NavigationProperty Name="PIs" Relationship="Self.CLO_PI" FromRole="CLO" ToRole="PI" />
+          <NavigationProperty Name="schedules" Relationship="LSS_Models.Schedule_CLO" FromRole="CLO" ToRole="schedule" />
         </EntityType>
         <EntityType Name="Course">
           <Key>
@@ -1055,9 +1078,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <NavigationProperty Name="ModerationChecklists" Relationship="Self.FK_ModerationChecklist_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="ModerationChecklist" />
           <NavigationProperty Name="OtherLecturers" Relationship="Self.FK_OtherLecturers_CourseCoordinator" FromRole="CourseCoordinator" ToRole="OtherLecturers" />
           <NavigationProperty Name="ResultOfCourseDirectAssessment" Relationship="Self.FK_RCDA_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="ResultOfCourseDirectAssessment" />
-          <NavigationProperty Name="schedules" Relationship="Self.FK_schedule_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="schedule" />
           <NavigationProperty Name="Student_PI_Outcome" Relationship="Self.FK_Student_PI_Outcome_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="Student_PI_Outcome" />
           <NavigationProperty Name="AssessmentPlanforTheStudentLearningOutcomeTechniques" Relationship="Self.CourseAssessmentPlan" FromRole="CourseCoordinator" ToRole="AssessmentPlanforTheStudentLearningOutcomeTechnique" />
+          <NavigationProperty Name="schedules" Relationship="LSS_Models.FK_schedule_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="schedule" />
         </EntityType>
         <EntityType Name="CourseTeachingStrategy">
           <Key>
@@ -1191,20 +1214,6 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <Property Name="Recommendation" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="CourseCoordinator" Relationship="Self.FK_RCDA_ToCourseCoordinator" FromRole="ResultOfCourseDirectAssessment" ToRole="CourseCoordinator" />
         </EntityType>
-        <EntityType Name="schedule">
-          <Key>
-            <PropertyRef Name="CoordintaroID" />
-            <PropertyRef Name="Week" />
-          </Key>
-          <Property Name="CoordintaroID" Type="Int32" Nullable="false" />
-          <Property Name="Week" Type="Int32" Nullable="false" />
-          <Property Name="Topics" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Assigments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Referance" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="CLO" Type="Int32" />
-          <NavigationProperty Name="CLO1" Relationship="Self.FK_schedule_ToCLO" FromRole="schedule" ToRole="CLO" />
-          <NavigationProperty Name="CourseCoordinator" Relationship="Self.FK_schedule_ToCourseCoordinator" FromRole="schedule" ToRole="CourseCoordinator" />
-        </EntityType>
         <EntityType Name="SLO">
           <Key>
             <PropertyRef Name="SLOID_" />
@@ -1321,18 +1330,6 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             </Principal>
             <Dependent Role="CLO">
               <PropertyRef Name="Course" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_schedule_ToCLO">
-          <End Role="CLO" Type="Self.CLO" Multiplicity="0..1" />
-          <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CLO">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="schedule">
-              <PropertyRef Name="CLO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1504,18 +1501,6 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_schedule_ToCourseCoordinator">
-          <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
-          <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CourseCoordinator">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="schedule">
-              <PropertyRef Name="CoordintaroID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Student_PI_Outcome_ToCourseCoordinator">
           <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
           <End Role="Student_PI_Outcome" Type="Self.Student_PI_Outcome" Multiplicity="*" />
@@ -1670,7 +1655,6 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <EntitySet Name="PEOs" EntityType="Self.PEO" />
           <EntitySet Name="PIs" EntityType="Self.PI" />
           <EntitySet Name="ResultOfCourseDirectAssessments" EntityType="Self.ResultOfCourseDirectAssessment" />
-          <EntitySet Name="schedules" EntityType="Self.schedule" />
           <EntitySet Name="SLOes" EntityType="Self.SLO" />
           <EntitySet Name="Students" EntityType="Self.Student" />
           <EntitySet Name="Student_Course_Grade" EntityType="Self.Student_Course_Grade" />
@@ -1692,10 +1676,6 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <AssociationSet Name="FK_CLO_ToCourse" Association="Self.FK_CLO_ToCourse">
             <End Role="Course" EntitySet="Courses" />
             <End Role="CLO" EntitySet="CLOes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_schedule_ToCLO" Association="Self.FK_schedule_ToCLO">
-            <End Role="CLO" EntitySet="CLOes" />
-            <End Role="schedule" EntitySet="schedules" />
           </AssociationSet>
           <AssociationSet Name="FK_Course_co" Association="Self.FK_Course_co">
             <End Role="Course" EntitySet="Courses" />
@@ -1753,10 +1733,6 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
             <End Role="ResultOfCourseDirectAssessment" EntitySet="ResultOfCourseDirectAssessments" />
           </AssociationSet>
-          <AssociationSet Name="FK_schedule_ToCourseCoordinator" Association="Self.FK_schedule_ToCourseCoordinator">
-            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
-            <End Role="schedule" EntitySet="schedules" />
-          </AssociationSet>
           <AssociationSet Name="FK_Student_PI_Outcome_ToCourseCoordinator" Association="Self.FK_Student_PI_Outcome_ToCourseCoordinator">
             <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
             <End Role="Student_PI_Outcome" EntitySet="Student_PI_Outcome" />
@@ -1809,7 +1785,45 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             <End Role="PEO" EntitySet="PEOs" />
             <End Role="SLO" EntitySet="SLOes" />
           </AssociationSet>
+          <EntitySet Name="schedules" EntityType="LSS_Models.schedule" />
+          <AssociationSet Name="FK_schedule_ToCourseCoordinator" Association="LSS_Models.FK_schedule_ToCourseCoordinator">
+            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+            <End Role="schedule" EntitySet="schedules" />
+          </AssociationSet>
+          <AssociationSet Name="Schedule_CLO" Association="LSS_Models.Schedule_CLO">
+            <End Role="CLO" EntitySet="CLOes" />
+            <End Role="schedule" EntitySet="schedules" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="schedule">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="CoordintaroID" Type="Int32" Nullable="false" />
+          <Property Name="Week" Type="Int32" Nullable="false" />
+          <Property Name="Topics" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Assigments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Referance" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CourseCoordinator" Relationship="LSS_Models.FK_schedule_ToCourseCoordinator" FromRole="schedule" ToRole="CourseCoordinator" />
+          <NavigationProperty Name="CLOes" Relationship="LSS_Models.Schedule_CLO" FromRole="schedule" ToRole="CLO" />
+        </EntityType>
+        <Association Name="FK_schedule_ToCourseCoordinator">
+          <End Type="LSS_Models.CourseCoordinator" Role="CourseCoordinator" Multiplicity="1" />
+          <End Type="LSS_Models.schedule" Role="schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CourseCoordinator">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="schedule">
+              <PropertyRef Name="CoordintaroID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Schedule_CLO">
+          <End Type="LSS_Models.CLO" Role="CLO" Multiplicity="*" />
+          <End Type="LSS_Models.schedule" Role="schedule" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2030,18 +2044,6 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="schedules">
-            <EntityTypeMapping TypeName="LSS_Models.schedule">
-              <MappingFragment StoreEntitySet="schedule">
-                <ScalarProperty Name="CoordintaroID" ColumnName="CoordintaroID" />
-                <ScalarProperty Name="Week" ColumnName="Week" />
-                <ScalarProperty Name="Topics" ColumnName="Topics" />
-                <ScalarProperty Name="Assigments" ColumnName="Assigments" />
-                <ScalarProperty Name="Referance" ColumnName="Referance" />
-                <ScalarProperty Name="CLO" ColumnName="CLO" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SLOes">
             <EntityTypeMapping TypeName="LSS_Models.SLO">
               <MappingFragment StoreEntitySet="SLO">
@@ -2122,6 +2124,26 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             </EndProperty>
             <EndProperty Name="SLO">
               <ScalarProperty Name="SLOID_" ColumnName="SLO" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="schedules">
+            <EntityTypeMapping TypeName="LSS_Models.schedule">
+              <MappingFragment StoreEntitySet="schedule">
+                <ScalarProperty Name="Referance" ColumnName="Referance" />
+                <ScalarProperty Name="Assigments" ColumnName="Assigments" />
+                <ScalarProperty Name="Topics" ColumnName="Topics" />
+                <ScalarProperty Name="Week" ColumnName="Week" />
+                <ScalarProperty Name="CoordintaroID" ColumnName="CoordintaroID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Schedule_CLO" TypeName="LSS_Models.Schedule_CLO" StoreEntitySet="Schedule_CLO">
+            <EndProperty Name="schedule">
+              <ScalarProperty Name="ID" ColumnName="ScheduleID" />
+            </EndProperty>
+            <EndProperty Name="CLO">
+              <ScalarProperty Name="ID" ColumnName="CLO" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

@@ -14,14 +14,21 @@ namespace LSS.Models.LSS_DB_Model
     
     public partial class schedule
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public schedule()
+        {
+            this.CLOes = new HashSet<CLO>();
+        }
+    
+        public int ID { get; set; }
         public int CoordintaroID { get; set; }
         public int Week { get; set; }
         public string Topics { get; set; }
         public string Assigments { get; set; }
         public string Referance { get; set; }
-        public Nullable<int> CLO { get; set; }
     
-        public virtual CLO CLO1 { get; set; }
         public virtual CourseCoordinator CourseCoordinator { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CLO> CLOes { get; set; }
     }
 }

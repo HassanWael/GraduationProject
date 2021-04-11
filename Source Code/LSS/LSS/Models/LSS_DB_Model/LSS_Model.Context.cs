@@ -46,12 +46,12 @@ namespace LSS.Models.LSS_DB_Model
         public virtual DbSet<PEO> PEOs { get; set; }
         public virtual DbSet<PI> PIs { get; set; }
         public virtual DbSet<ResultOfCourseDirectAssessment> ResultOfCourseDirectAssessments { get; set; }
-        public virtual DbSet<schedule> schedules { get; set; }
         public virtual DbSet<SLO> SLOes { get; set; }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Student_Course_Grade> Student_Course_Grade { get; set; }
         public virtual DbSet<Student_PI_Outcome> Student_PI_Outcome { get; set; }
         public virtual DbSet<TeachingAndLearningStrategiesTechnique> TeachingAndLearningStrategiesTechniques { get; set; }
         public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
+        public virtual DbSet<schedule> schedules { get; set; }
     }
 }

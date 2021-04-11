@@ -215,18 +215,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="schedules">
-      <EntityTypeMapping TypeName="LSS_Models.schedule">
-        <MappingFragment StoreEntitySet="schedule">
-          <ScalarProperty Name="CoordintaroID" ColumnName="CoordintaroID" />
-          <ScalarProperty Name="Week" ColumnName="Week" />
-          <ScalarProperty Name="Topics" ColumnName="Topics" />
-          <ScalarProperty Name="Assigments" ColumnName="Assigments" />
-          <ScalarProperty Name="Referance" ColumnName="Referance" />
-          <ScalarProperty Name="CLO" ColumnName="CLO" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="SLOes">
       <EntityTypeMapping TypeName="LSS_Models.SLO">
         <MappingFragment StoreEntitySet="SLO">
@@ -307,6 +295,26 @@
       </EndProperty>
       <EndProperty Name="SLO">
         <ScalarProperty Name="SLOID_" ColumnName="SLO" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="schedules">
+      <EntityTypeMapping TypeName="LSS_Models.schedule">
+        <MappingFragment StoreEntitySet="schedule">
+          <ScalarProperty Name="Referance" ColumnName="Referance" />
+          <ScalarProperty Name="Assigments" ColumnName="Assigments" />
+          <ScalarProperty Name="Topics" ColumnName="Topics" />
+          <ScalarProperty Name="Week" ColumnName="Week" />
+          <ScalarProperty Name="CoordintaroID" ColumnName="CoordintaroID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Schedule_CLO" TypeName="LSS_Models.Schedule_CLO" StoreEntitySet="Schedule_CLO">
+      <EndProperty Name="schedule">
+        <ScalarProperty Name="ID" ColumnName="ScheduleID" />
+      </EndProperty>
+      <EndProperty Name="CLO">
+        <ScalarProperty Name="ID" ColumnName="CLO" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

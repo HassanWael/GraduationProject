@@ -21,9 +21,9 @@ namespace LSS.Models.LSS_DB_Model
             this.CourseAssessmentSurvays = new HashSet<CourseAssessmentSurvay>();
             this.ModerationChecklists = new HashSet<ModerationChecklist>();
             this.OtherLecturers = new HashSet<OtherLecturer>();
-            this.schedules = new HashSet<schedule>();
             this.Student_PI_Outcome = new HashSet<Student_PI_Outcome>();
             this.AssessmentPlanforTheStudentLearningOutcomeTechniques = new HashSet<AssessmentPlanforTheStudentLearningOutcomeTechnique>();
+            this.schedules = new HashSet<schedule>();
         }
     
         public int ID { get; set; }
@@ -52,10 +52,10 @@ namespace LSS.Models.LSS_DB_Model
         public virtual ICollection<OtherLecturer> OtherLecturers { get; set; }
         public virtual ResultOfCourseDirectAssessment ResultOfCourseDirectAssessment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<schedule> schedules { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student_PI_Outcome> Student_PI_Outcome { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AssessmentPlanforTheStudentLearningOutcomeTechnique> AssessmentPlanforTheStudentLearningOutcomeTechniques { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<schedule> schedules { get; set; }
     }
 }
