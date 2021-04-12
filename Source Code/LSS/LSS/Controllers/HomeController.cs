@@ -34,9 +34,10 @@ namespace LSS.Controllers
                 var data = _dbEntities.Lecturers.Where(s => s.ID.Equals(ID) && s.Password.Equals(password)).ToList();
                 if (data.Count > 0)
                 {
+                    
                     Session["Name"] = data.FirstOrDefault().Name;
                     Session["ID"] = data.FirstOrDefault().ID;
-                    return RedirectToAction("Index", "LogedInController");
+                    return RedirectToAction("Index", "LogedIn");
                 }
                 else
                 {
