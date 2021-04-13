@@ -15,7 +15,9 @@ namespace LSS.Models.LSS_DB_Model
     public partial class OtherLecturer
     {
         public string LecturerID { get; set; }
-        public int CoordinatorID { get; set; }
+        public string CourseID { get; set; }
+        public System.DateTime Year { get; set; }
+        public string Semseter { get; set; }
         public string DayTime { get; set; }
         public string ClassRoom { get; set; }
     

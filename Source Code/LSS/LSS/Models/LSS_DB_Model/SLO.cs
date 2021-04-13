@@ -17,16 +17,19 @@ namespace LSS.Models.LSS_DB_Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SLO()
         {
-            this.PEOs = new HashSet<PEO>();
+            this.CourseAssessmentMappings = new HashSet<CourseAssessmentMapping>();
             this.PIs = new HashSet<PI>();
+            this.PEOs = new HashSet<PEO>();
         }
     
         public string SLOID_ { get; set; }
         public string Desc { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PEO> PEOs { get; set; }
+        public virtual ICollection<CourseAssessmentMapping> CourseAssessmentMappings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PI> PIs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PEO> PEOs { get; set; }
     }
 }

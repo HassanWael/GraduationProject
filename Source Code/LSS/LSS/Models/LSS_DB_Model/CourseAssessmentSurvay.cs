@@ -16,7 +16,5 @@ namespace LSS.Models.LSS_DB_Model
     {
         public int CoordinatorID { get; set; }
         public string Qustion { get; set; }
-    
-        public virtual CourseCoordinator CourseCoordinator { get; set; }
     }
 }

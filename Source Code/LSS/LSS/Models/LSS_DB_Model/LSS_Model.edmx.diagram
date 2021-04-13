@@ -4,68 +4,68 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="78b9a77f71eb413aa9eb982bb21b7331" Name="Diagram1" ZoomLevel="187">
-        <EntityTypeShape EntityType="LSS_Models.ActionsForImprovingTheCourse" Width="1.5" PointX="9.75" PointY="16.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="LSS_Models.AssessedCours" Width="1.5" PointX="7.5" PointY="18.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="LSS_Models.AssessmentPlanforTheStudentLearningOutcomeTechnique" Width="1.5" PointX="5.25" PointY="26.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LSS_Models.byCompletingThisCourseStudentsAreAbleTo" Width="1.5" PointX="9.75" PointY="30.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="LSS_Models.CLO" Width="1.5" PointX="7.5" PointY="20.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LSS_Models.Course" Width="1.5" PointX="5.25" PointY="20.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="LSS_Models.CourseAssessmentMapping" Width="1.5" PointX="9.75" PointY="24" IsExpanded="true" />
-        <EntityTypeShape EntityType="LSS_Models.CourseAssessmentSurvay" Width="1.5" PointX="9.75" PointY="33.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LSS_Models.CourseCoordinator" Width="1.5" PointX="7.5" PointY="26.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="LSS_Models.CourseTeachingStrategy" Width="1.5" PointX="7.5" PointY="23.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="LSS_Models.CourseTextBook" Width="1.5" PointX="6.5" PointY="39.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="LSS_Models.Department" Width="1.5" PointX="3" PointY="26.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LSS_Models.Faculty" Width="1.5" PointX="0.75" PointY="27.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="LSS_Models.ineffectiveAssessmentStrategi" Width="1.5" PointX="9.75" PointY="36.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="LSS_Models.ineffectiveTeachingStrategi" Width="1.5" PointX="9.75" PointY="38.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="LSS_Models.Lecturer" Width="1.5" PointX="5.25" PointY="29.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="LSS_Models.ModerationChecklist" Width="1.5" PointX="9.75" PointY="40.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LSS_Models.OtherLecturer" Width="1.5" PointX="12.75" PointY="28.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="LSS_Models.PEO" Width="1.5" PointX="5.25" PointY="33" IsExpanded="true" />
-        <EntityTypeShape EntityType="LSS_Models.ResultOfCourseDirectAssessment" Width="1.5" PointX="9.75" PointY="44.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="LSS_Models.SLO" Width="1.5" PointX="7.5" PointY="33.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="LSS_Models.Student" Width="1.5" PointX="5.25" PointY="35.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LSS_Models.Student_Course_Grade" Width="1.5" PointX="7.5" PointY="35.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LSS_Models.Student_PI_Outcome" Width="1.5" PointX="12.75" PointY="32.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="LSS_Models.TeachingAndLearningStrategiesTechnique" Width="1.5" PointX="10.5" PointY="47.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="LSS_Models.database_firewall_rules" PointX="0.75" PointY="0.75" Width="1.5" IsExpanded="true" />
-        <AssociationConnector Association="LSS_Models.FK_AFIC_ToCourseCoordinator" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.FK_AssessedCourses_ToCourse" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.FK_byCompletingThisCourseStudentsAreAbleTo_CourseCoordinator" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.FK_CLO_ToCourse" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.FK_Course_co" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.FK_Course_Department" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.FK_Course_pre" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.FK_CourseCoordinator_Coruse" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.FK_CourseTeachingStrategies_ToCourse" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.FK_CourseTestBook_course" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.FK_CourseAssessmentMapping_ToCourseCoordintator" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.FK_CourseAssessmentSurvay_ToCourseCoordinator" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.FK_CourseCoordinator_Lecturer" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.FK_ineffectiveAssessmentStrategis_ToCourseCoordinator" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.FK_ineffectiveTeachingStrategis_CoordinatorID" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.FK_ModerationChecklist_ToCourseCoordinator" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.FK_OtherLecturers_CourseCoordinator" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.FK_RCDA_ToCourseCoordinator" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.FK_Student_PI_Outcome_ToCourseCoordinator" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.FK__PEO__DeptID__40C49C62" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.FK_Department_Faculty" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.FK_Lecturers_ToDpt" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.FK_Student_departement" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.FK_OtherLecturers_ToLecturer" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.FK_Student_Course_Grade_ToStudents" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.FK_Student_PI_Outcome_ToStudents" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.FK_Student_PI_Outcome_ToTeachingAndLearningStrategiesTechnique" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.CourseAssessmentPlan" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.SLO_PEO" ManuallyRouted="false" />
-        <AssociationConnector Association="LSS_Models.Schedule_CLO" />
-        <EntityTypeShape EntityType="LSS_Models.schedule" Width="1.5" PointX="12.75" PointY="25.25" />
+      <Diagram DiagramId="78b9a77f71eb413aa9eb982bb21b7331" Name="Diagram1" ZoomLevel="23">
+        <EntityTypeShape EntityType="LSS_Models.ActionsForImprovingTheCourse" Width="1.5" PointX="9.75" PointY="38.75" />
+        <EntityTypeShape EntityType="LSS_Models.AssessedCours" Width="1.5" PointX="7.5" PointY="20.25" />
+        <EntityTypeShape EntityType="LSS_Models.AssessmentPlanforTheStudentLearningOutcomeTechnique" Width="1.5" PointX="5.25" PointY="18.25" />
+        <EntityTypeShape EntityType="LSS_Models.byCompletingThisCourseStudentsAreAbleTo" Width="1.5" PointX="9.75" PointY="35.75" />
+        <EntityTypeShape EntityType="LSS_Models.CLO" Width="1.5" PointX="7.5" PointY="22.75" />
+        <EntityTypeShape EntityType="LSS_Models.Course" Width="1.5" PointX="5.25" PointY="21.75" />
+        <EntityTypeShape EntityType="LSS_Models.CourseAssessmentMapping" Width="1.5" PointX="14.25" PointY="26.375" />
+        <EntityTypeShape EntityType="LSS_Models.CourseAssessmentSurvay" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="LSS_Models.CourseCoordinator" Width="1.5" PointX="7.5" PointY="26.75" />
+        <EntityTypeShape EntityType="LSS_Models.CourseTeachingStrategy" Width="1.5" PointX="12.75" PointY="22.625" />
+        <EntityTypeShape EntityType="LSS_Models.CourseTextBook" Width="1.5" PointX="7.5" PointY="43.75" />
+        <EntityTypeShape EntityType="LSS_Models.Department" Width="1.5" PointX="3" PointY="27.5" />
+        <EntityTypeShape EntityType="LSS_Models.Faculty" Width="1.5" PointX="0.75" PointY="27.875" />
+        <EntityTypeShape EntityType="LSS_Models.ineffectiveAssessmentStrategi" Width="1.5" PointX="9.75" PointY="33" />
+        <EntityTypeShape EntityType="LSS_Models.ineffectiveTeachingStrategi" Width="1.5" PointX="9.75" PointY="45.125" />
+        <EntityTypeShape EntityType="LSS_Models.Lecturer" Width="1.5" PointX="5.25" PointY="28.875" />
+        <EntityTypeShape EntityType="LSS_Models.ModerationChecklist" Width="1.5" PointX="9.75" PointY="42" />
+        <EntityTypeShape EntityType="LSS_Models.OtherLecturer" Width="1.5" PointX="14.75" PointY="29.875" />
+        <EntityTypeShape EntityType="LSS_Models.PEO" Width="1.5" PointX="5.25" PointY="35.25" />
+        <EntityTypeShape EntityType="LSS_Models.PI" Width="1.5" PointX="9.75" PointY="26.5" />
+        <EntityTypeShape EntityType="LSS_Models.ResultOfCourseDirectAssessment" Width="1.5" PointX="9.75" PointY="29.75" />
+        <EntityTypeShape EntityType="LSS_Models.schedule" Width="1.5" PointX="9.75" PointY="22.5" />
+        <EntityTypeShape EntityType="LSS_Models.SLO" Width="1.5" PointX="12" PointY="30.875" />
+        <EntityTypeShape EntityType="LSS_Models.Student" Width="1.5" PointX="5.25" PointY="32.375" />
+        <EntityTypeShape EntityType="LSS_Models.Student_Course_Grade" Width="1.5" PointX="12.75" PointY="34.5" />
+        <EntityTypeShape EntityType="LSS_Models.Student_PI_Outcome" Width="1.5" PointX="7.5" PointY="33.375" />
+        <EntityTypeShape EntityType="LSS_Models.TeachingAndLearningStrategiesTechnique" Width="1.5" PointX="5.25" PointY="38.625" />
+        <AssociationConnector Association="LSS_Models.FK_ActionsForImprovingTheCourse_ToCourseCoordinator" />
+        <AssociationConnector Association="LSS_Models.FK_AssessedCourses_ToCourse" />
+        <AssociationConnector Association="LSS_Models.FK_byCompletingThisCourseStudentsAreAbleTo_ToCourseCoordinator" />
+        <AssociationConnector Association="LSS_Models.FK_CLO_ToCourse" />
+        <AssociationConnector Association="LSS_Models.FK_CourseAssessmentMapping_ToCLO" />
+        <AssociationConnector Association="LSS_Models.FK_Course_co" />
+        <AssociationConnector Association="LSS_Models.FK_Course_Department" />
+        <AssociationConnector Association="LSS_Models.FK_Course_pre" />
+        <AssociationConnector Association="LSS_Models.FK_CourseCoordinator_Coruse" />
+        <AssociationConnector Association="LSS_Models.FK_CourseTeachingStrategies_ToCourse" />
+        <AssociationConnector Association="LSS_Models.FK_CourseTestBook_course" />
+        <AssociationConnector Association="LSS_Models.FK_CourseAssessmentMapping_ToCourseCoordinator" />
+        <AssociationConnector Association="LSS_Models.FK_CourseAssessmentMapping_ToSLO" />
+        <AssociationConnector Association="LSS_Models.FK_CourseTeachingStrategies_ToCourseCoordinator" />
+        <AssociationConnector Association="LSS_Models.FK_ineffectiveAssessmentStrategis_ToCourseCoordinator" />
+        <AssociationConnector Association="LSS_Models.FK_ineffectiveTeachingStrategis_ToCourseCoordinator" />
+        <AssociationConnector Association="LSS_Models.FK_ModerationChecklist_ToCourseCoordinator" />
+        <AssociationConnector Association="LSS_Models.FK_OtherLecturers_ToCourseCoordinator" />
+        <AssociationConnector Association="LSS_Models.FK_ResultOfCourseDirectAssessment_ToCourseCoordinator" />
         <AssociationConnector Association="LSS_Models.FK_schedule_ToCourseCoordinator" />
-        <EntityTypeShape EntityType="LSS_Models.PI" Width="1.5" PointX="9.75" PointY="21" />
+        <AssociationConnector Association="LSS_Models.FK_Student_Course_Grade_ToCourseCoordinator" />
+        <AssociationConnector Association="LSS_Models.FK__PEO__DeptID__40C49C62" />
+        <AssociationConnector Association="LSS_Models.FK_Department_Faculty" />
+        <AssociationConnector Association="LSS_Models.FK_Lecturers_ToDpt" />
+        <AssociationConnector Association="LSS_Models.FK_Student_departement" />
+        <AssociationConnector Association="LSS_Models.FK_OtherLecturers_ToLecturer" />
+        <AssociationConnector Association="LSS_Models.FK_Student_Course_Grade_ToStudents" />
+        <AssociationConnector Association="LSS_Models.FK_Student_PI_Outcome_ToStudents" />
+        <AssociationConnector Association="LSS_Models.FK_Student_PI_Outcome_ToTeachingAndLearningStrategiesTechnique" />
         <AssociationConnector Association="LSS_Models.CLO_PI" />
+        <AssociationConnector Association="LSS_Models.CourseAssessmentPlan" />
         <AssociationConnector Association="LSS_Models.PI_SLO" />
+        <AssociationConnector Association="LSS_Models.Schedule_CLO" />
+        <AssociationConnector Association="LSS_Models.SLO_PEO" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

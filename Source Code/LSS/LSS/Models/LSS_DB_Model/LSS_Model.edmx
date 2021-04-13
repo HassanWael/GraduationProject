@@ -7,9 +7,13 @@
     <Schema Namespace="LSS_Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ActionsForImprovingTheCourse">
           <Key>
-            <PropertyRef Name="CoordinatorID" />
+            <PropertyRef Name="CourseID" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Semseter" />
           </Key>
-          <Property Name="CoordinatorID" Type="int" Nullable="false" />
+          <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Year" Type="date" Nullable="false" />
+          <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ActionsTaken" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="ActionsResults" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="RecomandedActions" Type="nvarchar" MaxLength="255" Nullable="false" />
@@ -35,9 +39,13 @@
         </EntityType>
         <EntityType Name="byCompletingThisCourseStudentsAreAbleTo">
           <Key>
-            <PropertyRef Name="CoordinatorID" />
+            <PropertyRef Name="CourseID" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Semseter" />
           </Key>
-          <Property Name="CoordinatorID" Type="int" Nullable="false" />
+          <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Year" Type="date" Nullable="false" />
+          <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="SLO" Type="nvarchar" MaxLength="255" />
           <Property Name="AggrementLVL" Type="nvarchar" MaxLength="255" />
         </EntityType>
@@ -75,22 +83,30 @@
         </EntityType>
         <EntityType Name="CourseAssessmentMapping">
           <Key>
-            <PropertyRef Name="CourseCoordinatorID" />
+            <PropertyRef Name="CourseID" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Semseter" />
             <PropertyRef Name="AssessmentID" />
             <PropertyRef Name="CLO" />
             <PropertyRef Name="SLO" />
           </Key>
-          <Property Name="CourseCoordinatorID" Type="int" Nullable="false" />
+          <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Year" Type="date" Nullable="false" />
+          <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="AssessmentID" Type="int" Nullable="false" />
-          <Property Name="CLO" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="CLO" Type="int" Nullable="false" />
           <Property Name="SLO" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="CourseAssessmentPlan">
           <Key>
-            <PropertyRef Name="CoordinatorID" />
+            <PropertyRef Name="CourseID" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Semseter" />
             <PropertyRef Name="AssessmetnID" />
           </Key>
-          <Property Name="CoordinatorID" Type="int" Nullable="false" />
+          <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Year" Type="date" Nullable="false" />
+          <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="AssessmetnID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="CourseAssessmentSurvay">
@@ -103,29 +119,30 @@
         </EntityType>
         <EntityType Name="CourseCoordinator">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="CourseID" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Semseter" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="Cordenator" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Year" Type="date" Nullable="false" />
           <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cordenator" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="NoOFStudents" Type="int" Nullable="false" />
           <Property Name="ClassRoom" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="courseNotAssessedReason " Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="DayTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="DayTime" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="CourseTeachingStrategies">
           <Key>
-            <PropertyRef Name="CourseID" />
             <PropertyRef Name="StrategyID" />
+            <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="Semester" />
+            <PropertyRef Name="Semseter" />
           </Key>
-          <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="StrategyID" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Year" Type="date" Nullable="false" />
-          <Property Name="Semester" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="CourseTextBook">
           <Key>
@@ -156,17 +173,25 @@
         </EntityType>
         <EntityType Name="ineffectiveAssessmentStrategis">
           <Key>
-            <PropertyRef Name="CoordinatorID" />
+            <PropertyRef Name="CourseID" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Semseter" />
           </Key>
-          <Property Name="CoordinatorID" Type="int" Nullable="false" />
-          <Property Name="Reason" Type="nvarchar" MaxLength="255" />
+          <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Year" Type="date" Nullable="false" />
+          <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="ineffectiveTeachingStrategis">
           <Key>
-            <PropertyRef Name="CoordinatorID" />
+            <PropertyRef Name="CourseID" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Semseter" />
           </Key>
-          <Property Name="CoordinatorID" Type="int" Nullable="false" />
-          <Property Name="Reason" Type="nvarchar" MaxLength="255" />
+          <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Year" Type="date" Nullable="false" />
+          <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="Lecturers">
           <Key>
@@ -182,10 +207,14 @@
         </EntityType>
         <EntityType Name="ModerationChecklist">
           <Key>
-            <PropertyRef Name="CoordinatorID" />
+            <PropertyRef Name="CourseID" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Semseter" />
             <PropertyRef Name="Qustion" />
           </Key>
-          <Property Name="CoordinatorID" Type="int" Nullable="false" />
+          <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Year" Type="date" Nullable="false" />
+          <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Qustion" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Answer" Type="bit" Nullable="false" />
           <Property Name="commetns" Type="nvarchar" MaxLength="255" />
@@ -193,10 +222,14 @@
         <EntityType Name="OtherLecturers">
           <Key>
             <PropertyRef Name="LecturerID" />
-            <PropertyRef Name="CoordinatorID" />
+            <PropertyRef Name="CourseID" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Semseter" />
           </Key>
           <Property Name="LecturerID" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="CoordinatorID" Type="int" Nullable="false" />
+          <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Year" Type="date" Nullable="false" />
+          <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="DayTime" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ClassRoom" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -225,9 +258,13 @@
         </EntityType>
         <EntityType Name="ResultOfCourseDirectAssessment">
           <Key>
-            <PropertyRef Name="CoordinatorID" />
+            <PropertyRef Name="CourseID" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Semseter" />
           </Key>
-          <Property Name="CoordinatorID" Type="int" Nullable="false" />
+          <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Year" Type="date" Nullable="false" />
+          <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ActionsTaken" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Observation" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="AnalysisAndJustification" Type="nvarchar" MaxLength="255" Nullable="false" />
@@ -235,10 +272,14 @@
         </EntityType>
         <EntityType Name="schedule">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="CourseID" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Semseter" />
+            <PropertyRef Name="Week" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="CoordintaroID" Type="int" Nullable="false" />
+          <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Year" Type="date" Nullable="false" />
+          <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Week" Type="int" Nullable="false" />
           <Property Name="Topics" Type="nvarchar" MaxLength="255" />
           <Property Name="Assigments" Type="nvarchar" MaxLength="255" />
@@ -246,10 +287,16 @@
         </EntityType>
         <EntityType Name="Schedule_CLO">
           <Key>
-            <PropertyRef Name="ScheduleID" />
+            <PropertyRef Name="CourseID" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Semseter" />
+            <PropertyRef Name="Week" />
             <PropertyRef Name="CLO" />
           </Key>
-          <Property Name="ScheduleID" Type="int" Nullable="false" />
+          <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Year" Type="date" Nullable="false" />
+          <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Week" Type="int" Nullable="false" />
           <Property Name="CLO" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="SLO">
@@ -279,12 +326,12 @@
           <Key>
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="Semester" />
+            <PropertyRef Name="Semseter" />
             <PropertyRef Name="StudentID" />
           </Key>
           <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Year" Type="date" Nullable="false" />
-          <Property Name="Semester" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="StudentID" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Mark" Type="int" />
         </EntityType>
@@ -305,24 +352,6 @@
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="strategy" Type="nvarchar" MaxLength="255" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="database_firewall_rules">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="name" />
-            <PropertyRef Name="start_ip_address" />
-            <PropertyRef Name="end_ip_address" />
-            <PropertyRef Name="create_date" />
-            <PropertyRef Name="modify_date" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="start_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="end_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="create_date" Type="datetime" Nullable="false" />
-          <Property Name="modify_date" Type="datetime" Nullable="false" />
-        </EntityType>
         <Association Name="FK__PEO__DeptID__40C49C62">
           <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
           <End Role="PEO" Type="Self.PEO" Multiplicity="*" />
@@ -335,15 +364,19 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_AFIC_ToCourseCoordinator">
+        <Association Name="FK_ActionsForImprovingTheCourse_ToCourseCoordinator">
           <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
           <End Role="ActionsForImprovingTheCourse" Type="Self.ActionsForImprovingTheCourse" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="CourseCoordinator">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Principal>
             <Dependent Role="ActionsForImprovingTheCourse">
-              <PropertyRef Name="CoordinatorID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -359,15 +392,19 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_byCompletingThisCourseStudentsAreAbleTo_CourseCoordinator">
+        <Association Name="FK_byCompletingThisCourseStudentsAreAbleTo_ToCourseCoordinator">
           <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
           <End Role="byCompletingThisCourseStudentsAreAbleTo" Type="Self.byCompletingThisCourseStudentsAreAbleTo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="CourseCoordinator">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Principal>
             <Dependent Role="byCompletingThisCourseStudentsAreAbleTo">
-              <PropertyRef Name="CoordinatorID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -443,15 +480,43 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CourseAssessmentMapping_ToCourseCoordintator">
+        <Association Name="FK_CourseAssessmentMapping_ToCLO">
+          <End Role="CLO" Type="Self.CLO" Multiplicity="1" />
+          <End Role="CourseAssessmentMapping" Type="Self.CourseAssessmentMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CourseAssessmentMapping">
+              <PropertyRef Name="CLO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseAssessmentMapping_ToCourseCoordinator">
           <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
           <End Role="CourseAssessmentMapping" Type="Self.CourseAssessmentMapping" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourseCoordinator">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Principal>
             <Dependent Role="CourseAssessmentMapping">
-              <PropertyRef Name="CourseCoordinatorID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseAssessmentMapping_ToSLO">
+          <End Role="SLO" Type="Self.SLO" Multiplicity="1" />
+          <End Role="CourseAssessmentMapping" Type="Self.CourseAssessmentMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SLO">
+              <PropertyRef Name="SLOID " />
+            </Principal>
+            <Dependent Role="CourseAssessmentMapping">
+              <PropertyRef Name="SLO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -472,22 +537,14 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <End Role="CourseAssessmentPlan" Type="Self.CourseAssessmentPlan" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourseCoordinator">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Principal>
             <Dependent Role="CourseAssessmentPlan">
-              <PropertyRef Name="CoordinatorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CourseAssessmentSurvay_ToCourseCoordinator">
-          <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
-          <End Role="CourseAssessmentSurvay" Type="Self.CourseAssessmentSurvay" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CourseCoordinator">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="CourseAssessmentSurvay">
-              <PropertyRef Name="CoordinatorID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -503,18 +560,6 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CourseCoordinator_Lecturer">
-          <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="1" />
-          <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Lecturers">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="CourseCoordinator">
-              <PropertyRef Name="Cordenator" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CourseTeachingStrategies_ToCourse">
           <End Role="Course" Type="Self.Course" Multiplicity="1" />
           <End Role="CourseTeachingStrategies" Type="Self.CourseTeachingStrategies" Multiplicity="*" />
@@ -524,6 +569,22 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             </Principal>
             <Dependent Role="CourseTeachingStrategies">
               <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseTeachingStrategies_ToCourseCoordinator">
+          <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+          <End Role="CourseTeachingStrategies" Type="Self.CourseTeachingStrategies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CourseCoordinator">
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
+            </Principal>
+            <Dependent Role="CourseTeachingStrategies">
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -556,22 +617,30 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <End Role="ineffectiveAssessmentStrategis" Type="Self.ineffectiveAssessmentStrategis" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="CourseCoordinator">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Principal>
             <Dependent Role="ineffectiveAssessmentStrategis">
-              <PropertyRef Name="CoordinatorID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ineffectiveTeachingStrategis_CoordinatorID">
+        <Association Name="FK_ineffectiveTeachingStrategis_ToCourseCoordinator">
           <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
           <End Role="ineffectiveTeachingStrategis" Type="Self.ineffectiveTeachingStrategis" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="CourseCoordinator">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Principal>
             <Dependent Role="ineffectiveTeachingStrategis">
-              <PropertyRef Name="CoordinatorID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -592,22 +661,30 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <End Role="ModerationChecklist" Type="Self.ModerationChecklist" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourseCoordinator">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Principal>
             <Dependent Role="ModerationChecklist">
-              <PropertyRef Name="CoordinatorID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_OtherLecturers_CourseCoordinator">
+        <Association Name="FK_OtherLecturers_ToCourseCoordinator">
           <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
           <End Role="OtherLecturers" Type="Self.OtherLecturers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourseCoordinator">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Principal>
             <Dependent Role="OtherLecturers">
-              <PropertyRef Name="CoordinatorID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -647,15 +724,19 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RCDA_ToCourseCoordinator">
+        <Association Name="FK_ResultOfCourseDirectAssessment_ToCourseCoordinator">
           <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
           <End Role="ResultOfCourseDirectAssessment" Type="Self.ResultOfCourseDirectAssessment" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="CourseCoordinator">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Principal>
             <Dependent Role="ResultOfCourseDirectAssessment">
-              <PropertyRef Name="CoordinatorID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -676,10 +757,16 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <End Role="Schedule_CLO" Type="Self.Schedule_CLO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="schedule">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
+              <PropertyRef Name="Week" />
             </Principal>
             <Dependent Role="Schedule_CLO">
-              <PropertyRef Name="ScheduleID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
+              <PropertyRef Name="Week" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -688,10 +775,14 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourseCoordinator">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Principal>
             <Dependent Role="schedule">
-              <PropertyRef Name="CoordintaroID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -731,6 +822,22 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Student-Course-Grade_ToCourseCoordinator">
+          <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+          <End Role="Student-Course-Grade" Type="Self.Student-Course-Grade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CourseCoordinator">
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
+            </Principal>
+            <Dependent Role="Student-Course-Grade">
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Student-Course-Grade_ToStudents">
           <End Role="Student" Type="Self.Student" Multiplicity="1" />
           <End Role="Student-Course-Grade" Type="Self.Student-Course-Grade" Multiplicity="*" />
@@ -740,18 +847,6 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             </Principal>
             <Dependent Role="Student-Course-Grade">
               <PropertyRef Name="StudentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Student-PI-Outcome_ToCourseCoordinator">
-          <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
-          <End Role="Student-PI-Outcome" Type="Self.Student-PI-Outcome" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CourseCoordinator">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Student-PI-Outcome">
-              <PropertyRef Name="CoordinatorID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -812,21 +907,11 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <EntitySet Name="Student-Course-Grade" EntityType="Self.Student-Course-Grade" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student-PI-Outcome" EntityType="Self.Student-PI-Outcome" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TeachingAndLearningStrategiesTechnique" EntityType="Self.TeachingAndLearningStrategiesTechnique" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
-            <DefiningQuery>SELECT 
-    [database_firewall_rules].[id] AS [id], 
-    [database_firewall_rules].[name] AS [name], 
-    [database_firewall_rules].[start_ip_address] AS [start_ip_address], 
-    [database_firewall_rules].[end_ip_address] AS [end_ip_address], 
-    [database_firewall_rules].[create_date] AS [create_date], 
-    [database_firewall_rules].[modify_date] AS [modify_date]
-    FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK__PEO__DeptID__40C49C62" Association="Self.FK__PEO__DeptID__40C49C62">
             <End Role="Department" EntitySet="Department" />
             <End Role="PEO" EntitySet="PEO" />
           </AssociationSet>
-          <AssociationSet Name="FK_AFIC_ToCourseCoordinator" Association="Self.FK_AFIC_ToCourseCoordinator">
+          <AssociationSet Name="FK_ActionsForImprovingTheCourse_ToCourseCoordinator" Association="Self.FK_ActionsForImprovingTheCourse_ToCourseCoordinator">
             <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
             <End Role="ActionsForImprovingTheCourse" EntitySet="ActionsForImprovingTheCourse" />
           </AssociationSet>
@@ -834,7 +919,7 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             <End Role="Course" EntitySet="Course" />
             <End Role="AssessedCourses" EntitySet="AssessedCourses" />
           </AssociationSet>
-          <AssociationSet Name="FK_byCompletingThisCourseStudentsAreAbleTo_CourseCoordinator" Association="Self.FK_byCompletingThisCourseStudentsAreAbleTo_CourseCoordinator">
+          <AssociationSet Name="FK_byCompletingThisCourseStudentsAreAbleTo_ToCourseCoordinator" Association="Self.FK_byCompletingThisCourseStudentsAreAbleTo_ToCourseCoordinator">
             <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
             <End Role="byCompletingThisCourseStudentsAreAbleTo" EntitySet="byCompletingThisCourseStudentsAreAbleTo" />
           </AssociationSet>
@@ -862,8 +947,16 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             <End Role="Course" EntitySet="Course" />
             <End Role="Course1" EntitySet="Course" />
           </AssociationSet>
-          <AssociationSet Name="FK_CourseAssessmentMapping_ToCourseCoordintator" Association="Self.FK_CourseAssessmentMapping_ToCourseCoordintator">
+          <AssociationSet Name="FK_CourseAssessmentMapping_ToCLO" Association="Self.FK_CourseAssessmentMapping_ToCLO">
+            <End Role="CLO" EntitySet="CLO" />
+            <End Role="CourseAssessmentMapping" EntitySet="CourseAssessmentMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseAssessmentMapping_ToCourseCoordinator" Association="Self.FK_CourseAssessmentMapping_ToCourseCoordinator">
             <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+            <End Role="CourseAssessmentMapping" EntitySet="CourseAssessmentMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseAssessmentMapping_ToSLO" Association="Self.FK_CourseAssessmentMapping_ToSLO">
+            <End Role="SLO" EntitySet="SLO" />
             <End Role="CourseAssessmentMapping" EntitySet="CourseAssessmentMapping" />
           </AssociationSet>
           <AssociationSet Name="FK_CourseAssessmentPlan_ToAssessment" Association="Self.FK_CourseAssessmentPlan_ToAssessment">
@@ -874,20 +967,16 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
             <End Role="CourseAssessmentPlan" EntitySet="CourseAssessmentPlan" />
           </AssociationSet>
-          <AssociationSet Name="FK_CourseAssessmentSurvay_ToCourseCoordinator" Association="Self.FK_CourseAssessmentSurvay_ToCourseCoordinator">
-            <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
-            <End Role="CourseAssessmentSurvay" EntitySet="CourseAssessmentSurvay" />
-          </AssociationSet>
           <AssociationSet Name="FK_CourseCoordinator_Coruse" Association="Self.FK_CourseCoordinator_Coruse">
             <End Role="Course" EntitySet="Course" />
             <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
           </AssociationSet>
-          <AssociationSet Name="FK_CourseCoordinator_Lecturer" Association="Self.FK_CourseCoordinator_Lecturer">
-            <End Role="Lecturers" EntitySet="Lecturers" />
-            <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
-          </AssociationSet>
           <AssociationSet Name="FK_CourseTeachingStrategies_ToCourse" Association="Self.FK_CourseTeachingStrategies_ToCourse">
             <End Role="Course" EntitySet="Course" />
+            <End Role="CourseTeachingStrategies" EntitySet="CourseTeachingStrategies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseTeachingStrategies_ToCourseCoordinator" Association="Self.FK_CourseTeachingStrategies_ToCourseCoordinator">
+            <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
             <End Role="CourseTeachingStrategies" EntitySet="CourseTeachingStrategies" />
           </AssociationSet>
           <AssociationSet Name="FK_CourseTestBook_course" Association="Self.FK_CourseTestBook_course">
@@ -902,7 +991,7 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
             <End Role="ineffectiveAssessmentStrategis" EntitySet="ineffectiveAssessmentStrategis" />
           </AssociationSet>
-          <AssociationSet Name="FK_ineffectiveTeachingStrategis_CoordinatorID" Association="Self.FK_ineffectiveTeachingStrategis_CoordinatorID">
+          <AssociationSet Name="FK_ineffectiveTeachingStrategis_ToCourseCoordinator" Association="Self.FK_ineffectiveTeachingStrategis_ToCourseCoordinator">
             <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
             <End Role="ineffectiveTeachingStrategis" EntitySet="ineffectiveTeachingStrategis" />
           </AssociationSet>
@@ -914,7 +1003,7 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
             <End Role="ModerationChecklist" EntitySet="ModerationChecklist" />
           </AssociationSet>
-          <AssociationSet Name="FK_OtherLecturers_CourseCoordinator" Association="Self.FK_OtherLecturers_CourseCoordinator">
+          <AssociationSet Name="FK_OtherLecturers_ToCourseCoordinator" Association="Self.FK_OtherLecturers_ToCourseCoordinator">
             <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
             <End Role="OtherLecturers" EntitySet="OtherLecturers" />
           </AssociationSet>
@@ -930,7 +1019,7 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             <End Role="SLO" EntitySet="SLO" />
             <End Role="PI_SLO" EntitySet="PI_SLO" />
           </AssociationSet>
-          <AssociationSet Name="FK_RCDA_ToCourseCoordinator" Association="Self.FK_RCDA_ToCourseCoordinator">
+          <AssociationSet Name="FK_ResultOfCourseDirectAssessment_ToCourseCoordinator" Association="Self.FK_ResultOfCourseDirectAssessment_ToCourseCoordinator">
             <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
             <End Role="ResultOfCourseDirectAssessment" EntitySet="ResultOfCourseDirectAssessment" />
           </AssociationSet>
@@ -958,13 +1047,13 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             <End Role="Department" EntitySet="Department" />
             <End Role="Student" EntitySet="Student" />
           </AssociationSet>
+          <AssociationSet Name="FK_Student-Course-Grade_ToCourseCoordinator" Association="Self.FK_Student-Course-Grade_ToCourseCoordinator">
+            <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+            <End Role="Student-Course-Grade" EntitySet="Student-Course-Grade" />
+          </AssociationSet>
           <AssociationSet Name="FK_Student-Course-Grade_ToStudents" Association="Self.FK_Student-Course-Grade_ToStudents">
             <End Role="Student" EntitySet="Student" />
             <End Role="Student-Course-Grade" EntitySet="Student-Course-Grade" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Student-PI-Outcome_ToCourseCoordinator" Association="Self.FK_Student-PI-Outcome_ToCourseCoordinator">
-            <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
-            <End Role="Student-PI-Outcome" EntitySet="Student-PI-Outcome" />
           </AssociationSet>
           <AssociationSet Name="FK_Student-PI-Outcome_ToStudents" Association="Self.FK_Student-PI-Outcome_ToStudents">
             <End Role="Student" EntitySet="Student" />
@@ -979,16 +1068,185 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LSS_Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="LSS_databaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ActionsForImprovingTheCourses" EntityType="LSS_Models.ActionsForImprovingTheCourse" />
+          <EntitySet Name="AssessedCourses" EntityType="LSS_Models.AssessedCours" />
+          <EntitySet Name="AssessmentPlanforTheStudentLearningOutcomeTechniques" EntityType="LSS_Models.AssessmentPlanforTheStudentLearningOutcomeTechnique" />
+          <EntitySet Name="byCompletingThisCourseStudentsAreAbleToes" EntityType="LSS_Models.byCompletingThisCourseStudentsAreAbleTo" />
+          <EntitySet Name="CLOes" EntityType="LSS_Models.CLO" />
+          <EntitySet Name="Courses" EntityType="LSS_Models.Course" />
+          <EntitySet Name="CourseAssessmentMappings" EntityType="LSS_Models.CourseAssessmentMapping" />
+          <EntitySet Name="CourseAssessmentSurvays" EntityType="LSS_Models.CourseAssessmentSurvay" />
+          <EntitySet Name="CourseCoordinators" EntityType="LSS_Models.CourseCoordinator" />
+          <EntitySet Name="CourseTeachingStrategies" EntityType="LSS_Models.CourseTeachingStrategy" />
+          <EntitySet Name="CourseTextBooks" EntityType="LSS_Models.CourseTextBook" />
+          <EntitySet Name="Departments" EntityType="LSS_Models.Department" />
+          <EntitySet Name="Faculties" EntityType="LSS_Models.Faculty" />
+          <EntitySet Name="ineffectiveAssessmentStrategis" EntityType="LSS_Models.ineffectiveAssessmentStrategi" />
+          <EntitySet Name="ineffectiveTeachingStrategis" EntityType="LSS_Models.ineffectiveTeachingStrategi" />
+          <EntitySet Name="Lecturers" EntityType="LSS_Models.Lecturer" />
+          <EntitySet Name="ModerationChecklists" EntityType="LSS_Models.ModerationChecklist" />
+          <EntitySet Name="OtherLecturers" EntityType="LSS_Models.OtherLecturer" />
+          <EntitySet Name="PEOs" EntityType="LSS_Models.PEO" />
+          <EntitySet Name="PIs" EntityType="LSS_Models.PI" />
+          <EntitySet Name="ResultOfCourseDirectAssessments" EntityType="LSS_Models.ResultOfCourseDirectAssessment" />
+          <EntitySet Name="schedules" EntityType="LSS_Models.schedule" />
+          <EntitySet Name="SLOes" EntityType="LSS_Models.SLO" />
+          <EntitySet Name="Students" EntityType="LSS_Models.Student" />
+          <EntitySet Name="Student_Course_Grade" EntityType="LSS_Models.Student_Course_Grade" />
+          <EntitySet Name="Student_PI_Outcome" EntityType="LSS_Models.Student_PI_Outcome" />
+          <EntitySet Name="TeachingAndLearningStrategiesTechniques" EntityType="LSS_Models.TeachingAndLearningStrategiesTechnique" />
+          <AssociationSet Name="FK_ActionsForImprovingTheCourse_ToCourseCoordinator" Association="LSS_Models.FK_ActionsForImprovingTheCourse_ToCourseCoordinator">
+            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+            <End Role="ActionsForImprovingTheCourse" EntitySet="ActionsForImprovingTheCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssessedCourses_ToCourse" Association="LSS_Models.FK_AssessedCourses_ToCourse">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="AssessedCours" EntitySet="AssessedCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_byCompletingThisCourseStudentsAreAbleTo_ToCourseCoordinator" Association="LSS_Models.FK_byCompletingThisCourseStudentsAreAbleTo_ToCourseCoordinator">
+            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+            <End Role="byCompletingThisCourseStudentsAreAbleTo" EntitySet="byCompletingThisCourseStudentsAreAbleToes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLO_ToCourse" Association="LSS_Models.FK_CLO_ToCourse">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="CLO" EntitySet="CLOes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseAssessmentMapping_ToCLO" Association="LSS_Models.FK_CourseAssessmentMapping_ToCLO">
+            <End Role="CLO" EntitySet="CLOes" />
+            <End Role="CourseAssessmentMapping" EntitySet="CourseAssessmentMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Course_co" Association="LSS_Models.FK_Course_co">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="Course1" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Course_Department" Association="LSS_Models.FK_Course_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Course" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Course_pre" Association="LSS_Models.FK_Course_pre">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="Course1" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseCoordinator_Coruse" Association="LSS_Models.FK_CourseCoordinator_Coruse">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseTeachingStrategies_ToCourse" Association="LSS_Models.FK_CourseTeachingStrategies_ToCourse">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="CourseTeachingStrategy" EntitySet="CourseTeachingStrategies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseTestBook_course" Association="LSS_Models.FK_CourseTestBook_course">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="CourseTextBook" EntitySet="CourseTextBooks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseAssessmentMapping_ToCourseCoordinator" Association="LSS_Models.FK_CourseAssessmentMapping_ToCourseCoordinator">
+            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+            <End Role="CourseAssessmentMapping" EntitySet="CourseAssessmentMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseAssessmentMapping_ToSLO" Association="LSS_Models.FK_CourseAssessmentMapping_ToSLO">
+            <End Role="SLO" EntitySet="SLOes" />
+            <End Role="CourseAssessmentMapping" EntitySet="CourseAssessmentMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseTeachingStrategies_ToCourseCoordinator" Association="LSS_Models.FK_CourseTeachingStrategies_ToCourseCoordinator">
+            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+            <End Role="CourseTeachingStrategy" EntitySet="CourseTeachingStrategies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ineffectiveAssessmentStrategis_ToCourseCoordinator" Association="LSS_Models.FK_ineffectiveAssessmentStrategis_ToCourseCoordinator">
+            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+            <End Role="ineffectiveAssessmentStrategi" EntitySet="ineffectiveAssessmentStrategis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ineffectiveTeachingStrategis_ToCourseCoordinator" Association="LSS_Models.FK_ineffectiveTeachingStrategis_ToCourseCoordinator">
+            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+            <End Role="ineffectiveTeachingStrategi" EntitySet="ineffectiveTeachingStrategis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModerationChecklist_ToCourseCoordinator" Association="LSS_Models.FK_ModerationChecklist_ToCourseCoordinator">
+            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+            <End Role="ModerationChecklist" EntitySet="ModerationChecklists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OtherLecturers_ToCourseCoordinator" Association="LSS_Models.FK_OtherLecturers_ToCourseCoordinator">
+            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+            <End Role="OtherLecturer" EntitySet="OtherLecturers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ResultOfCourseDirectAssessment_ToCourseCoordinator" Association="LSS_Models.FK_ResultOfCourseDirectAssessment_ToCourseCoordinator">
+            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+            <End Role="ResultOfCourseDirectAssessment" EntitySet="ResultOfCourseDirectAssessments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_schedule_ToCourseCoordinator" Association="LSS_Models.FK_schedule_ToCourseCoordinator">
+            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+            <End Role="schedule" EntitySet="schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Course_Grade_ToCourseCoordinator" Association="LSS_Models.FK_Student_Course_Grade_ToCourseCoordinator">
+            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+            <End Role="Student_Course_Grade" EntitySet="Student_Course_Grade" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PEO__DeptID__40C49C62" Association="LSS_Models.FK__PEO__DeptID__40C49C62">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="PEO" EntitySet="PEOs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Department_Faculty" Association="LSS_Models.FK_Department_Faculty">
+            <End Role="Faculty" EntitySet="Faculties" />
+            <End Role="Department" EntitySet="Departments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lecturers_ToDpt" Association="LSS_Models.FK_Lecturers_ToDpt">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Lecturer" EntitySet="Lecturers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_departement" Association="LSS_Models.FK_Student_departement">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OtherLecturers_ToLecturer" Association="LSS_Models.FK_OtherLecturers_ToLecturer">
+            <End Role="Lecturer" EntitySet="Lecturers" />
+            <End Role="OtherLecturer" EntitySet="OtherLecturers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Course_Grade_ToStudents" Association="LSS_Models.FK_Student_Course_Grade_ToStudents">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Student_Course_Grade" EntitySet="Student_Course_Grade" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_PI_Outcome_ToStudents" Association="LSS_Models.FK_Student_PI_Outcome_ToStudents">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Student_PI_Outcome" EntitySet="Student_PI_Outcome" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_PI_Outcome_ToTeachingAndLearningStrategiesTechnique" Association="LSS_Models.FK_Student_PI_Outcome_ToTeachingAndLearningStrategiesTechnique">
+            <End Role="TeachingAndLearningStrategiesTechnique" EntitySet="TeachingAndLearningStrategiesTechniques" />
+            <End Role="Student_PI_Outcome" EntitySet="Student_PI_Outcome" />
+          </AssociationSet>
+          <AssociationSet Name="CLO_PI" Association="LSS_Models.CLO_PI">
+            <End Role="CLO" EntitySet="CLOes" />
+            <End Role="PI" EntitySet="PIs" />
+          </AssociationSet>
+          <AssociationSet Name="CourseAssessmentPlan" Association="LSS_Models.CourseAssessmentPlan">
+            <End Role="AssessmentPlanforTheStudentLearningOutcomeTechnique" EntitySet="AssessmentPlanforTheStudentLearningOutcomeTechniques" />
+            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+          </AssociationSet>
+          <AssociationSet Name="PI_SLO" Association="LSS_Models.PI_SLO">
+            <End Role="PI" EntitySet="PIs" />
+            <End Role="SLO" EntitySet="SLOes" />
+          </AssociationSet>
+          <AssociationSet Name="Schedule_CLO" Association="LSS_Models.Schedule_CLO">
+            <End Role="CLO" EntitySet="CLOes" />
+            <End Role="schedule" EntitySet="schedules" />
+          </AssociationSet>
+          <AssociationSet Name="SLO_PEO" Association="LSS_Models.SLO_PEO">
+            <End Role="PEO" EntitySet="PEOs" />
+            <End Role="SLO" EntitySet="SLOes" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="ActionsForImprovingTheCourse">
           <Key>
-            <PropertyRef Name="CoordinatorID" />
+            <PropertyRef Name="CourseID" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Semseter" />
           </Key>
-          <Property Name="CoordinatorID" Type="Int32" Nullable="false" />
-          <Property Name="ActionsTaken" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ActionsResults" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="RecomandedActions" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PersonResponsible" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="CourseCoordinator" Relationship="Self.FK_AFIC_ToCourseCoordinator" FromRole="ActionsForImprovingTheCourse" ToRole="CourseCoordinator" />
+          <Property Name="CourseID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Semseter" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ActionsTaken" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ActionsResults" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="RecomandedActions" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PersonResponsible" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CourseCoordinator" Relationship="LSS_Models.FK_ActionsForImprovingTheCourse_ToCourseCoordinator" FromRole="ActionsForImprovingTheCourse" ToRole="CourseCoordinator" />
         </EntityType>
         <EntityType Name="AssessedCours">
           <Key>
@@ -996,10 +1254,10 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             <PropertyRef Name="Year" />
             <PropertyRef Name="Semester" />
           </Key>
-          <Property Name="CourseID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CourseID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Semester" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Course" Relationship="Self.FK_AssessedCourses_ToCourse" FromRole="AssessedCourses" ToRole="Course" />
+          <Property Name="Semester" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Course" Relationship="LSS_Models.FK_AssessedCourses_ToCourse" FromRole="AssessedCours" ToRole="Course" />
         </EntityType>
         <EntityType Name="AssessmentPlanforTheStudentLearningOutcomeTechnique">
           <Key>
@@ -1008,33 +1266,38 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="Type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="strategy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CourseCoordinators" Relationship="Self.CourseAssessmentPlan" FromRole="AssessmentPlanforTheStudentLearningOutcomeTechnique" ToRole="CourseCoordinator" />
+          <NavigationProperty Name="CourseCoordinators" Relationship="LSS_Models.CourseAssessmentPlan" FromRole="AssessmentPlanforTheStudentLearningOutcomeTechnique" ToRole="CourseCoordinator" />
         </EntityType>
         <EntityType Name="byCompletingThisCourseStudentsAreAbleTo">
           <Key>
-            <PropertyRef Name="CoordinatorID" />
+            <PropertyRef Name="CourseID" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Semseter" />
           </Key>
-          <Property Name="CoordinatorID" Type="Int32" Nullable="false" />
+          <Property Name="CourseID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Semseter" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SLO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="AggrementLVL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CourseCoordinator" Relationship="Self.FK_byCompletingThisCourseStudentsAreAbleTo_CourseCoordinator" FromRole="byCompletingThisCourseStudentsAreAbleTo" ToRole="CourseCoordinator" />
+          <NavigationProperty Name="CourseCoordinator" Relationship="LSS_Models.FK_byCompletingThisCourseStudentsAreAbleTo_ToCourseCoordinator" FromRole="byCompletingThisCourseStudentsAreAbleTo" ToRole="CourseCoordinator" />
         </EntityType>
         <EntityType Name="CLO">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Course" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Course" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Course1" Relationship="Self.FK_CLO_ToCourse" FromRole="CLO" ToRole="Course" />
-          <NavigationProperty Name="schedules" Relationship="LSS_Models.Schedule_CLO" FromRole="CLO" ToRole="schedule" />
+          <NavigationProperty Name="Course1" Relationship="LSS_Models.FK_CLO_ToCourse" FromRole="CLO" ToRole="Course" />
+          <NavigationProperty Name="CourseAssessmentMappings" Relationship="LSS_Models.FK_CourseAssessmentMapping_ToCLO" FromRole="CLO" ToRole="CourseAssessmentMapping" />
           <NavigationProperty Name="PIs" Relationship="LSS_Models.CLO_PI" FromRole="CLO" ToRole="PI" />
+          <NavigationProperty Name="schedules" Relationship="LSS_Models.Schedule_CLO" FromRole="CLO" ToRole="schedule" />
         </EntityType>
         <EntityType Name="Course">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="DptID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Pre_requisite" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -1045,29 +1308,35 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Other_Online_resources" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Other_Required_Material" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AssessedCourses" Relationship="Self.FK_AssessedCourses_ToCourse" FromRole="Course" ToRole="AssessedCourses" />
-          <NavigationProperty Name="CLOes" Relationship="Self.FK_CLO_ToCourse" FromRole="Course" ToRole="CLO" />
-          <NavigationProperty Name="Course1" Relationship="Self.FK_Course_co" FromRole="Course" ToRole="Course1" />
-          <NavigationProperty Name="Course2" Relationship="Self.FK_Course_co" FromRole="Course1" ToRole="Course" />
-          <NavigationProperty Name="Department" Relationship="Self.FK_Course_Department" FromRole="Course" ToRole="Department" />
-          <NavigationProperty Name="Course11" Relationship="Self.FK_Course_pre" FromRole="Course" ToRole="Course1" />
-          <NavigationProperty Name="Course3" Relationship="Self.FK_Course_pre" FromRole="Course1" ToRole="Course" />
-          <NavigationProperty Name="CourseCoordinators" Relationship="Self.FK_CourseCoordinator_Coruse" FromRole="Course" ToRole="CourseCoordinator" />
-          <NavigationProperty Name="CourseTeachingStrategies" Relationship="Self.FK_CourseTeachingStrategies_ToCourse" FromRole="Course" ToRole="CourseTeachingStrategies" />
-          <NavigationProperty Name="CourseTextBooks" Relationship="Self.FK_CourseTestBook_course" FromRole="Course" ToRole="CourseTextBook" />
+          <NavigationProperty Name="AssessedCourses" Relationship="LSS_Models.FK_AssessedCourses_ToCourse" FromRole="Course" ToRole="AssessedCours" />
+          <NavigationProperty Name="CLOes" Relationship="LSS_Models.FK_CLO_ToCourse" FromRole="Course" ToRole="CLO" />
+          <NavigationProperty Name="Course1" Relationship="LSS_Models.FK_Course_co" FromRole="Course" ToRole="Course1" />
+          <NavigationProperty Name="Course2" Relationship="LSS_Models.FK_Course_co" FromRole="Course1" ToRole="Course" />
+          <NavigationProperty Name="Department" Relationship="LSS_Models.FK_Course_Department" FromRole="Course" ToRole="Department" />
+          <NavigationProperty Name="Course11" Relationship="LSS_Models.FK_Course_pre" FromRole="Course" ToRole="Course1" />
+          <NavigationProperty Name="Course3" Relationship="LSS_Models.FK_Course_pre" FromRole="Course1" ToRole="Course" />
+          <NavigationProperty Name="CourseCoordinators" Relationship="LSS_Models.FK_CourseCoordinator_Coruse" FromRole="Course" ToRole="CourseCoordinator" />
+          <NavigationProperty Name="CourseTeachingStrategies" Relationship="LSS_Models.FK_CourseTeachingStrategies_ToCourse" FromRole="Course" ToRole="CourseTeachingStrategy" />
+          <NavigationProperty Name="CourseTextBooks" Relationship="LSS_Models.FK_CourseTestBook_course" FromRole="Course" ToRole="CourseTextBook" />
         </EntityType>
         <EntityType Name="CourseAssessmentMapping">
           <Key>
-            <PropertyRef Name="CourseCoordinatorID" />
+            <PropertyRef Name="CourseID" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Semseter" />
             <PropertyRef Name="AssessmentID" />
             <PropertyRef Name="CLO" />
             <PropertyRef Name="SLO" />
           </Key>
-          <Property Name="CourseCoordinatorID" Type="Int32" Nullable="false" />
+          <Property Name="CourseID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Semseter" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="AssessmentID" Type="Int32" Nullable="false" />
-          <Property Name="CLO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="SLO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="CourseCoordinator" Relationship="Self.FK_CourseAssessmentMapping_ToCourseCoordintator" FromRole="CourseAssessmentMapping" ToRole="CourseCoordinator" />
+          <Property Name="CLO" Type="Int32" Nullable="false" />
+          <Property Name="SLO" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CLO1" Relationship="LSS_Models.FK_CourseAssessmentMapping_ToCLO" FromRole="CourseAssessmentMapping" ToRole="CLO" />
+          <NavigationProperty Name="CourseCoordinator" Relationship="LSS_Models.FK_CourseAssessmentMapping_ToCourseCoordinator" FromRole="CourseAssessmentMapping" ToRole="CourseCoordinator" />
+          <NavigationProperty Name="SLO1" Relationship="LSS_Models.FK_CourseAssessmentMapping_ToSLO" FromRole="CourseAssessmentMapping" ToRole="SLO" />
         </EntityType>
         <EntityType Name="CourseAssessmentSurvay">
           <Key>
@@ -1075,192 +1344,239 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             <PropertyRef Name="Qustion" />
           </Key>
           <Property Name="CoordinatorID" Type="Int32" Nullable="false" />
-          <Property Name="Qustion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="CourseCoordinator" Relationship="Self.FK_CourseAssessmentSurvay_ToCourseCoordinator" FromRole="CourseAssessmentSurvay" ToRole="CourseCoordinator" />
+          <Property Name="Qustion" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="CourseCoordinator">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="CourseID" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Semseter" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="CourseID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Cordenator" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CourseID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Semseter" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Semseter" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Cordenator" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="NoOFStudents" Type="Int32" Nullable="false" />
-          <Property Name="ClassRoom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="courseNotAssessedReason_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DayTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ActionsForImprovingTheCourse" Relationship="Self.FK_AFIC_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="ActionsForImprovingTheCourse" />
-          <NavigationProperty Name="byCompletingThisCourseStudentsAreAbleTo" Relationship="Self.FK_byCompletingThisCourseStudentsAreAbleTo_CourseCoordinator" FromRole="CourseCoordinator" ToRole="byCompletingThisCourseStudentsAreAbleTo" />
-          <NavigationProperty Name="Course" Relationship="Self.FK_CourseCoordinator_Coruse" FromRole="CourseCoordinator" ToRole="Course" />
-          <NavigationProperty Name="CourseAssessmentMappings" Relationship="Self.FK_CourseAssessmentMapping_ToCourseCoordintator" FromRole="CourseCoordinator" ToRole="CourseAssessmentMapping" />
-          <NavigationProperty Name="CourseAssessmentSurvays" Relationship="Self.FK_CourseAssessmentSurvay_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="CourseAssessmentSurvay" />
-          <NavigationProperty Name="Lecturer" Relationship="Self.FK_CourseCoordinator_Lecturer" FromRole="CourseCoordinator" ToRole="Lecturers" />
-          <NavigationProperty Name="ineffectiveAssessmentStrategi" Relationship="Self.FK_ineffectiveAssessmentStrategis_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="ineffectiveAssessmentStrategis" />
-          <NavigationProperty Name="ineffectiveTeachingStrategi" Relationship="Self.FK_ineffectiveTeachingStrategis_CoordinatorID" FromRole="CourseCoordinator" ToRole="ineffectiveTeachingStrategis" />
-          <NavigationProperty Name="ModerationChecklists" Relationship="Self.FK_ModerationChecklist_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="ModerationChecklist" />
-          <NavigationProperty Name="OtherLecturers" Relationship="Self.FK_OtherLecturers_CourseCoordinator" FromRole="CourseCoordinator" ToRole="OtherLecturers" />
-          <NavigationProperty Name="ResultOfCourseDirectAssessment" Relationship="Self.FK_RCDA_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="ResultOfCourseDirectAssessment" />
-          <NavigationProperty Name="Student_PI_Outcome" Relationship="Self.FK_Student_PI_Outcome_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="Student_PI_Outcome" />
-          <NavigationProperty Name="AssessmentPlanforTheStudentLearningOutcomeTechniques" Relationship="Self.CourseAssessmentPlan" FromRole="CourseCoordinator" ToRole="AssessmentPlanforTheStudentLearningOutcomeTechnique" />
+          <Property Name="ClassRoom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="courseNotAssessedReason_" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DayTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ActionsForImprovingTheCourse" Relationship="LSS_Models.FK_ActionsForImprovingTheCourse_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="ActionsForImprovingTheCourse" />
+          <NavigationProperty Name="byCompletingThisCourseStudentsAreAbleTo" Relationship="LSS_Models.FK_byCompletingThisCourseStudentsAreAbleTo_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="byCompletingThisCourseStudentsAreAbleTo" />
+          <NavigationProperty Name="Course" Relationship="LSS_Models.FK_CourseCoordinator_Coruse" FromRole="CourseCoordinator" ToRole="Course" />
+          <NavigationProperty Name="CourseAssessmentMappings" Relationship="LSS_Models.FK_CourseAssessmentMapping_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="CourseAssessmentMapping" />
+          <NavigationProperty Name="CourseTeachingStrategies" Relationship="LSS_Models.FK_CourseTeachingStrategies_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="CourseTeachingStrategy" />
+          <NavigationProperty Name="ineffectiveAssessmentStrategi" Relationship="LSS_Models.FK_ineffectiveAssessmentStrategis_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="ineffectiveAssessmentStrategi" />
+          <NavigationProperty Name="ineffectiveTeachingStrategi" Relationship="LSS_Models.FK_ineffectiveTeachingStrategis_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="ineffectiveTeachingStrategi" />
+          <NavigationProperty Name="ModerationChecklists" Relationship="LSS_Models.FK_ModerationChecklist_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="ModerationChecklist" />
+          <NavigationProperty Name="OtherLecturers" Relationship="LSS_Models.FK_OtherLecturers_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="OtherLecturer" />
+          <NavigationProperty Name="ResultOfCourseDirectAssessment" Relationship="LSS_Models.FK_ResultOfCourseDirectAssessment_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="ResultOfCourseDirectAssessment" />
           <NavigationProperty Name="schedules" Relationship="LSS_Models.FK_schedule_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="schedule" />
+          <NavigationProperty Name="Student_Course_Grade" Relationship="LSS_Models.FK_Student_Course_Grade_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="Student_Course_Grade" />
+          <NavigationProperty Name="AssessmentPlanforTheStudentLearningOutcomeTechniques" Relationship="LSS_Models.CourseAssessmentPlan" FromRole="CourseCoordinator" ToRole="AssessmentPlanforTheStudentLearningOutcomeTechnique" />
         </EntityType>
         <EntityType Name="CourseTeachingStrategy">
           <Key>
-            <PropertyRef Name="CourseID" />
             <PropertyRef Name="StrategyID" />
+            <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="Semester" />
+            <PropertyRef Name="Semseter" />
           </Key>
-          <Property Name="CourseID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="StrategyID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StrategyID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CourseID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Semester" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Course" Relationship="Self.FK_CourseTeachingStrategies_ToCourse" FromRole="CourseTeachingStrategies" ToRole="Course" />
+          <Property Name="Semseter" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Course" Relationship="LSS_Models.FK_CourseTeachingStrategies_ToCourse" FromRole="CourseTeachingStrategy" ToRole="Course" />
+          <NavigationProperty Name="CourseCoordinator" Relationship="LSS_Models.FK_CourseTeachingStrategies_ToCourseCoordinator" FromRole="CourseTeachingStrategy" ToRole="CourseCoordinator" />
         </EntityType>
         <EntityType Name="CourseTextBook">
           <Key>
             <PropertyRef Name="Course" />
             <PropertyRef Name="Book_Title" />
           </Key>
-          <Property Name="Course" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Book_Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Course" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Book_Title" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Author" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="YearOfpublish" Type="DateTime" Precision="0" />
           <Property Name="City_State" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Publisher" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Course1" Relationship="Self.FK_CourseTestBook_course" FromRole="CourseTextBook" ToRole="Course" />
+          <NavigationProperty Name="Course1" Relationship="LSS_Models.FK_CourseTestBook_course" FromRole="CourseTextBook" ToRole="Course" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="FacultyID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Courses" Relationship="Self.FK_Course_Department" FromRole="Department" ToRole="Course" />
-          <NavigationProperty Name="PEOs" Relationship="Self.FK__PEO__DeptID__40C49C62" FromRole="Department" ToRole="PEO" />
-          <NavigationProperty Name="Faculty" Relationship="Self.FK_Department_Faculty" FromRole="Department" ToRole="Faculty" />
-          <NavigationProperty Name="Lecturers" Relationship="Self.FK_Lecturers_ToDpt" FromRole="Department" ToRole="Lecturers" />
-          <NavigationProperty Name="Students" Relationship="Self.FK_Student_departement" FromRole="Department" ToRole="Student" />
+          <NavigationProperty Name="Courses" Relationship="LSS_Models.FK_Course_Department" FromRole="Department" ToRole="Course" />
+          <NavigationProperty Name="PEOs" Relationship="LSS_Models.FK__PEO__DeptID__40C49C62" FromRole="Department" ToRole="PEO" />
+          <NavigationProperty Name="Faculty" Relationship="LSS_Models.FK_Department_Faculty" FromRole="Department" ToRole="Faculty" />
+          <NavigationProperty Name="Lecturers" Relationship="LSS_Models.FK_Lecturers_ToDpt" FromRole="Department" ToRole="Lecturer" />
+          <NavigationProperty Name="Students" Relationship="LSS_Models.FK_Student_departement" FromRole="Department" ToRole="Student" />
         </EntityType>
         <EntityType Name="Faculty">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Departments" Relationship="Self.FK_Department_Faculty" FromRole="Faculty" ToRole="Department" />
+          <NavigationProperty Name="Departments" Relationship="LSS_Models.FK_Department_Faculty" FromRole="Faculty" ToRole="Department" />
         </EntityType>
         <EntityType Name="ineffectiveAssessmentStrategi">
           <Key>
-            <PropertyRef Name="CoordinatorID" />
+            <PropertyRef Name="CourseID" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Semseter" />
           </Key>
-          <Property Name="CoordinatorID" Type="Int32" Nullable="false" />
-          <Property Name="Reason" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CourseCoordinator" Relationship="Self.FK_ineffectiveAssessmentStrategis_ToCourseCoordinator" FromRole="ineffectiveAssessmentStrategis" ToRole="CourseCoordinator" />
+          <Property Name="CourseID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Semseter" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Reason" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CourseCoordinator" Relationship="LSS_Models.FK_ineffectiveAssessmentStrategis_ToCourseCoordinator" FromRole="ineffectiveAssessmentStrategi" ToRole="CourseCoordinator" />
         </EntityType>
         <EntityType Name="ineffectiveTeachingStrategi">
           <Key>
-            <PropertyRef Name="CoordinatorID" />
+            <PropertyRef Name="CourseID" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Semseter" />
           </Key>
-          <Property Name="CoordinatorID" Type="Int32" Nullable="false" />
-          <Property Name="Reason" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CourseCoordinator" Relationship="Self.FK_ineffectiveTeachingStrategis_CoordinatorID" FromRole="ineffectiveTeachingStrategis" ToRole="CourseCoordinator" />
+          <Property Name="CourseID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Semseter" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Reason" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CourseCoordinator" Relationship="LSS_Models.FK_ineffectiveTeachingStrategis_ToCourseCoordinator" FromRole="ineffectiveTeachingStrategi" ToRole="CourseCoordinator" />
         </EntityType>
         <EntityType Name="Lecturer">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Role" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="OfficeNo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DptID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="CourseCoordinators" Relationship="Self.FK_CourseCoordinator_Lecturer" FromRole="Lecturers" ToRole="CourseCoordinator" />
-          <NavigationProperty Name="Department" Relationship="Self.FK_Lecturers_ToDpt" FromRole="Lecturers" ToRole="Department" />
-          <NavigationProperty Name="OtherLecturers" Relationship="Self.FK_OtherLecturers_ToLecturer" FromRole="Lecturers" ToRole="OtherLecturers" />
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="OfficeNo" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DptID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Department" Relationship="LSS_Models.FK_Lecturers_ToDpt" FromRole="Lecturer" ToRole="Department" />
+          <NavigationProperty Name="OtherLecturers" Relationship="LSS_Models.FK_OtherLecturers_ToLecturer" FromRole="Lecturer" ToRole="OtherLecturer" />
         </EntityType>
         <EntityType Name="ModerationChecklist">
           <Key>
-            <PropertyRef Name="CoordinatorID" />
+            <PropertyRef Name="CourseID" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Semseter" />
             <PropertyRef Name="Qustion" />
           </Key>
-          <Property Name="CoordinatorID" Type="Int32" Nullable="false" />
-          <Property Name="Qustion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CourseID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Semseter" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Qustion" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Answer" Type="Boolean" Nullable="false" />
           <Property Name="commetns" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CourseCoordinator" Relationship="Self.FK_ModerationChecklist_ToCourseCoordinator" FromRole="ModerationChecklist" ToRole="CourseCoordinator" />
+          <NavigationProperty Name="CourseCoordinator" Relationship="LSS_Models.FK_ModerationChecklist_ToCourseCoordinator" FromRole="ModerationChecklist" ToRole="CourseCoordinator" />
         </EntityType>
         <EntityType Name="OtherLecturer">
           <Key>
             <PropertyRef Name="LecturerID" />
-            <PropertyRef Name="CoordinatorID" />
+            <PropertyRef Name="CourseID" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Semseter" />
           </Key>
-          <Property Name="LecturerID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CoordinatorID" Type="Int32" Nullable="false" />
-          <Property Name="DayTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ClassRoom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="CourseCoordinator" Relationship="Self.FK_OtherLecturers_CourseCoordinator" FromRole="OtherLecturers" ToRole="CourseCoordinator" />
-          <NavigationProperty Name="Lecturer" Relationship="Self.FK_OtherLecturers_ToLecturer" FromRole="OtherLecturers" ToRole="Lecturers" />
+          <Property Name="LecturerID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CourseID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Semseter" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DayTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClassRoom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CourseCoordinator" Relationship="LSS_Models.FK_OtherLecturers_ToCourseCoordinator" FromRole="OtherLecturer" ToRole="CourseCoordinator" />
+          <NavigationProperty Name="Lecturer" Relationship="LSS_Models.FK_OtherLecturers_ToLecturer" FromRole="OtherLecturer" ToRole="Lecturer" />
         </EntityType>
         <EntityType Name="PEO">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Desc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="DeptID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Department" Relationship="Self.FK__PEO__DeptID__40C49C62" FromRole="PEO" ToRole="Department" />
-          <NavigationProperty Name="SLOes" Relationship="Self.SLO_PEO" FromRole="PEO" ToRole="SLO" />
+          <NavigationProperty Name="Department" Relationship="LSS_Models.FK__PEO__DeptID__40C49C62" FromRole="PEO" ToRole="Department" />
+          <NavigationProperty Name="SLOes" Relationship="LSS_Models.SLO_PEO" FromRole="PEO" ToRole="SLO" />
+        </EntityType>
+        <EntityType Name="PI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Desc" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CLOes" Relationship="LSS_Models.CLO_PI" FromRole="PI" ToRole="CLO" />
+          <NavigationProperty Name="SLOes" Relationship="LSS_Models.PI_SLO" FromRole="PI" ToRole="SLO" />
         </EntityType>
         <EntityType Name="ResultOfCourseDirectAssessment">
           <Key>
-            <PropertyRef Name="CoordinatorID" />
+            <PropertyRef Name="CourseID" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Semseter" />
           </Key>
-          <Property Name="CoordinatorID" Type="Int32" Nullable="false" />
-          <Property Name="ActionsTaken" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Observation" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="AnalysisAndJustification" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Recommendation" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="CourseCoordinator" Relationship="Self.FK_RCDA_ToCourseCoordinator" FromRole="ResultOfCourseDirectAssessment" ToRole="CourseCoordinator" />
+          <Property Name="CourseID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Semseter" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ActionsTaken" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Observation" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AnalysisAndJustification" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Recommendation" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CourseCoordinator" Relationship="LSS_Models.FK_ResultOfCourseDirectAssessment_ToCourseCoordinator" FromRole="ResultOfCourseDirectAssessment" ToRole="CourseCoordinator" />
+        </EntityType>
+        <EntityType Name="schedule">
+          <Key>
+            <PropertyRef Name="CourseID" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Semseter" />
+            <PropertyRef Name="Week" />
+          </Key>
+          <Property Name="CourseID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Semseter" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Week" Type="Int32" Nullable="false" />
+          <Property Name="Topics" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Assigments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Referance" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CourseCoordinator" Relationship="LSS_Models.FK_schedule_ToCourseCoordinator" FromRole="schedule" ToRole="CourseCoordinator" />
+          <NavigationProperty Name="CLOes" Relationship="LSS_Models.Schedule_CLO" FromRole="schedule" ToRole="CLO" />
         </EntityType>
         <EntityType Name="SLO">
           <Key>
             <PropertyRef Name="SLOID_" />
           </Key>
-          <Property Name="SLOID_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Desc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="PEOs" Relationship="Self.SLO_PEO" FromRole="SLO" ToRole="PEO" />
+          <Property Name="SLOID_" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Desc" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CourseAssessmentMappings" Relationship="LSS_Models.FK_CourseAssessmentMapping_ToSLO" FromRole="SLO" ToRole="CourseAssessmentMapping" />
           <NavigationProperty Name="PIs" Relationship="LSS_Models.PI_SLO" FromRole="SLO" ToRole="PI" />
+          <NavigationProperty Name="PEOs" Relationship="LSS_Models.SLO_PEO" FromRole="SLO" ToRole="PEO" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="DptID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Department" Relationship="Self.FK_Student_departement" FromRole="Student" ToRole="Department" />
-          <NavigationProperty Name="Student_Course_Grade" Relationship="Self.FK_Student_Course_Grade_ToStudents" FromRole="Student" ToRole="Student_Course_Grade" />
-          <NavigationProperty Name="Student_PI_Outcome" Relationship="Self.FK_Student_PI_Outcome_ToStudents" FromRole="Student" ToRole="Student_PI_Outcome" />
+          <NavigationProperty Name="Department" Relationship="LSS_Models.FK_Student_departement" FromRole="Student" ToRole="Department" />
+          <NavigationProperty Name="Student_Course_Grade" Relationship="LSS_Models.FK_Student_Course_Grade_ToStudents" FromRole="Student" ToRole="Student_Course_Grade" />
+          <NavigationProperty Name="Student_PI_Outcome" Relationship="LSS_Models.FK_Student_PI_Outcome_ToStudents" FromRole="Student" ToRole="Student_PI_Outcome" />
         </EntityType>
         <EntityType Name="Student_Course_Grade">
           <Key>
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="Semester" />
+            <PropertyRef Name="Semseter" />
             <PropertyRef Name="StudentID" />
           </Key>
-          <Property Name="CourseID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CourseID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Semester" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="StudentID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Semseter" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StudentID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Mark" Type="Int32" />
-          <NavigationProperty Name="Student" Relationship="Self.FK_Student_Course_Grade_ToStudents" FromRole="Student_Course_Grade" ToRole="Student" />
+          <NavigationProperty Name="CourseCoordinator" Relationship="LSS_Models.FK_Student_Course_Grade_ToCourseCoordinator" FromRole="Student_Course_Grade" ToRole="CourseCoordinator" />
+          <NavigationProperty Name="Student" Relationship="LSS_Models.FK_Student_Course_Grade_ToStudents" FromRole="Student_Course_Grade" ToRole="Student" />
         </EntityType>
         <EntityType Name="Student_PI_Outcome">
           <Key>
@@ -1268,12 +1584,11 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             <PropertyRef Name="StudentID" />
           </Key>
           <Property Name="CoordinatorID" Type="Int32" Nullable="false" />
-          <Property Name="StudentID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StudentID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="AssessmentMethod" Type="Int32" Nullable="false" />
           <Property Name="Mark" Type="Int32" />
-          <NavigationProperty Name="CourseCoordinator" Relationship="Self.FK_Student_PI_Outcome_ToCourseCoordinator" FromRole="Student_PI_Outcome" ToRole="CourseCoordinator" />
-          <NavigationProperty Name="Student" Relationship="Self.FK_Student_PI_Outcome_ToStudents" FromRole="Student_PI_Outcome" ToRole="Student" />
-          <NavigationProperty Name="TeachingAndLearningStrategiesTechnique" Relationship="Self.FK_Student_PI_Outcome_ToTeachingAndLearningStrategiesTechnique" FromRole="Student_PI_Outcome" ToRole="TeachingAndLearningStrategiesTechnique" />
+          <NavigationProperty Name="Student" Relationship="LSS_Models.FK_Student_PI_Outcome_ToStudents" FromRole="Student_PI_Outcome" ToRole="Student" />
+          <NavigationProperty Name="TeachingAndLearningStrategiesTechnique" Relationship="LSS_Models.FK_Student_PI_Outcome_ToTeachingAndLearningStrategiesTechnique" FromRole="Student_PI_Outcome" ToRole="TeachingAndLearningStrategiesTechnique" />
         </EntityType>
         <EntityType Name="TeachingAndLearningStrategiesTechnique">
           <Key>
@@ -1281,63 +1596,55 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="strategy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Student_PI_Outcome" Relationship="Self.FK_Student_PI_Outcome_ToTeachingAndLearningStrategiesTechnique" FromRole="TeachingAndLearningStrategiesTechnique" ToRole="Student_PI_Outcome" />
+          <NavigationProperty Name="Student_PI_Outcome" Relationship="LSS_Models.FK_Student_PI_Outcome_ToTeachingAndLearningStrategiesTechnique" FromRole="TeachingAndLearningStrategiesTechnique" ToRole="Student_PI_Outcome" />
         </EntityType>
-        <EntityType Name="database_firewall_rules">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="name" />
-            <PropertyRef Name="start_ip_address" />
-            <PropertyRef Name="end_ip_address" />
-            <PropertyRef Name="create_date" />
-            <PropertyRef Name="modify_date" />
-          </Key>
-          <Property Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
-          <Property Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="start_ip_address" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" Type="String" />
-          <Property Name="end_ip_address" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" Type="String" />
-          <Property Name="create_date" Nullable="false" Precision="3" Type="DateTime" />
-          <Property Name="modify_date" Nullable="false" Precision="3" Type="DateTime" />
-        </EntityType>
-        <Association Name="FK_AFIC_ToCourseCoordinator">
-          <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
-          <End Role="ActionsForImprovingTheCourse" Type="Self.ActionsForImprovingTheCourse" Multiplicity="0..1" />
+        <Association Name="FK_ActionsForImprovingTheCourse_ToCourseCoordinator">
+          <End Type="LSS_Models.CourseCoordinator" Role="CourseCoordinator" Multiplicity="1" />
+          <End Type="LSS_Models.ActionsForImprovingTheCourse" Role="ActionsForImprovingTheCourse" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="CourseCoordinator">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Principal>
             <Dependent Role="ActionsForImprovingTheCourse">
-              <PropertyRef Name="CoordinatorID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AssessedCourses_ToCourse">
-          <End Role="Course" Type="Self.Course" Multiplicity="1" />
-          <End Role="AssessedCourses" Type="Self.AssessedCours" Multiplicity="*" />
+          <End Type="LSS_Models.Course" Role="Course" Multiplicity="1" />
+          <End Type="LSS_Models.AssessedCours" Role="AssessedCours" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Course">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="AssessedCourses">
+            <Dependent Role="AssessedCours">
               <PropertyRef Name="CourseID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_byCompletingThisCourseStudentsAreAbleTo_CourseCoordinator">
-          <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
-          <End Role="byCompletingThisCourseStudentsAreAbleTo" Type="Self.byCompletingThisCourseStudentsAreAbleTo" Multiplicity="0..1" />
+        <Association Name="FK_byCompletingThisCourseStudentsAreAbleTo_ToCourseCoordinator">
+          <End Type="LSS_Models.CourseCoordinator" Role="CourseCoordinator" Multiplicity="1" />
+          <End Type="LSS_Models.byCompletingThisCourseStudentsAreAbleTo" Role="byCompletingThisCourseStudentsAreAbleTo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="CourseCoordinator">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Principal>
             <Dependent Role="byCompletingThisCourseStudentsAreAbleTo">
-              <PropertyRef Name="CoordinatorID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CLO_ToCourse">
-          <End Role="Course" Type="Self.Course" Multiplicity="1" />
-          <End Role="CLO" Type="Self.CLO" Multiplicity="*" />
+          <End Type="LSS_Models.Course" Role="Course" Multiplicity="1" />
+          <End Type="LSS_Models.CLO" Role="CLO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Course">
               <PropertyRef Name="ID" />
@@ -1347,9 +1654,21 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CourseAssessmentMapping_ToCLO">
+          <End Type="LSS_Models.CLO" Role="CLO" Multiplicity="1" />
+          <End Type="LSS_Models.CourseAssessmentMapping" Role="CourseAssessmentMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CourseAssessmentMapping">
+              <PropertyRef Name="CLO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Course_co">
-          <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
-          <End Role="Course1" Type="Self.Course" Multiplicity="*" />
+          <End Type="LSS_Models.Course" Role="Course" Multiplicity="0..1" />
+          <End Type="LSS_Models.Course" Role="Course1" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Course">
               <PropertyRef Name="ID" />
@@ -1360,8 +1679,8 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Course_Department">
-          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
-          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+          <End Type="LSS_Models.Department" Role="Department" Multiplicity="0..1" />
+          <End Type="LSS_Models.Course" Role="Course" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Department">
               <PropertyRef Name="ID" />
@@ -1372,8 +1691,8 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Course_pre">
-          <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
-          <End Role="Course1" Type="Self.Course" Multiplicity="*" />
+          <End Type="LSS_Models.Course" Role="Course" Multiplicity="0..1" />
+          <End Type="LSS_Models.Course" Role="Course1" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Course">
               <PropertyRef Name="ID" />
@@ -1384,8 +1703,8 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CourseCoordinator_Coruse">
-          <End Role="Course" Type="Self.Course" Multiplicity="1" />
-          <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="*" />
+          <End Type="LSS_Models.Course" Role="Course" Multiplicity="1" />
+          <End Type="LSS_Models.CourseCoordinator" Role="CourseCoordinator" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Course">
               <PropertyRef Name="ID" />
@@ -1396,20 +1715,20 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CourseTeachingStrategies_ToCourse">
-          <End Role="Course" Type="Self.Course" Multiplicity="1" />
-          <End Role="CourseTeachingStrategies" Type="Self.CourseTeachingStrategy" Multiplicity="*" />
+          <End Type="LSS_Models.Course" Role="Course" Multiplicity="1" />
+          <End Type="LSS_Models.CourseTeachingStrategy" Role="CourseTeachingStrategy" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Course">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="CourseTeachingStrategies">
+            <Dependent Role="CourseTeachingStrategy">
               <PropertyRef Name="CourseID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CourseTestBook_course">
-          <End Role="Course" Type="Self.Course" Multiplicity="1" />
-          <End Role="CourseTextBook" Type="Self.CourseTextBook" Multiplicity="*" />
+          <End Type="LSS_Models.Course" Role="Course" Multiplicity="1" />
+          <End Type="LSS_Models.CourseTextBook" Role="CourseTextBook" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Course">
               <PropertyRef Name="ID" />
@@ -1419,117 +1738,165 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CourseAssessmentMapping_ToCourseCoordintator">
-          <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
-          <End Role="CourseAssessmentMapping" Type="Self.CourseAssessmentMapping" Multiplicity="*" />
+        <Association Name="FK_CourseAssessmentMapping_ToCourseCoordinator">
+          <End Type="LSS_Models.CourseCoordinator" Role="CourseCoordinator" Multiplicity="1" />
+          <End Type="LSS_Models.CourseAssessmentMapping" Role="CourseAssessmentMapping" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourseCoordinator">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Principal>
             <Dependent Role="CourseAssessmentMapping">
-              <PropertyRef Name="CourseCoordinatorID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CourseAssessmentSurvay_ToCourseCoordinator">
-          <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
-          <End Role="CourseAssessmentSurvay" Type="Self.CourseAssessmentSurvay" Multiplicity="*" />
+        <Association Name="FK_CourseAssessmentMapping_ToSLO">
+          <End Type="LSS_Models.SLO" Role="SLO" Multiplicity="1" />
+          <End Type="LSS_Models.CourseAssessmentMapping" Role="CourseAssessmentMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SLO">
+              <PropertyRef Name="SLOID_" />
+            </Principal>
+            <Dependent Role="CourseAssessmentMapping">
+              <PropertyRef Name="SLO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseTeachingStrategies_ToCourseCoordinator">
+          <End Type="LSS_Models.CourseCoordinator" Role="CourseCoordinator" Multiplicity="1" />
+          <End Type="LSS_Models.CourseTeachingStrategy" Role="CourseTeachingStrategy" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourseCoordinator">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Principal>
-            <Dependent Role="CourseAssessmentSurvay">
-              <PropertyRef Name="CoordinatorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CourseCoordinator_Lecturer">
-          <End Role="Lecturers" Type="Self.Lecturer" Multiplicity="1" />
-          <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Lecturers">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="CourseCoordinator">
-              <PropertyRef Name="Cordenator" />
+            <Dependent Role="CourseTeachingStrategy">
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ineffectiveAssessmentStrategis_ToCourseCoordinator">
-          <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
-          <End Role="ineffectiveAssessmentStrategis" Type="Self.ineffectiveAssessmentStrategi" Multiplicity="0..1" />
+          <End Type="LSS_Models.CourseCoordinator" Role="CourseCoordinator" Multiplicity="1" />
+          <End Type="LSS_Models.ineffectiveAssessmentStrategi" Role="ineffectiveAssessmentStrategi" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="CourseCoordinator">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Principal>
-            <Dependent Role="ineffectiveAssessmentStrategis">
-              <PropertyRef Name="CoordinatorID" />
+            <Dependent Role="ineffectiveAssessmentStrategi">
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ineffectiveTeachingStrategis_CoordinatorID">
-          <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
-          <End Role="ineffectiveTeachingStrategis" Type="Self.ineffectiveTeachingStrategi" Multiplicity="0..1" />
+        <Association Name="FK_ineffectiveTeachingStrategis_ToCourseCoordinator">
+          <End Type="LSS_Models.CourseCoordinator" Role="CourseCoordinator" Multiplicity="1" />
+          <End Type="LSS_Models.ineffectiveTeachingStrategi" Role="ineffectiveTeachingStrategi" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="CourseCoordinator">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Principal>
-            <Dependent Role="ineffectiveTeachingStrategis">
-              <PropertyRef Name="CoordinatorID" />
+            <Dependent Role="ineffectiveTeachingStrategi">
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ModerationChecklist_ToCourseCoordinator">
-          <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
-          <End Role="ModerationChecklist" Type="Self.ModerationChecklist" Multiplicity="*" />
+          <End Type="LSS_Models.CourseCoordinator" Role="CourseCoordinator" Multiplicity="1" />
+          <End Type="LSS_Models.ModerationChecklist" Role="ModerationChecklist" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourseCoordinator">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Principal>
             <Dependent Role="ModerationChecklist">
-              <PropertyRef Name="CoordinatorID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_OtherLecturers_CourseCoordinator">
-          <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
-          <End Role="OtherLecturers" Type="Self.OtherLecturer" Multiplicity="*" />
+        <Association Name="FK_OtherLecturers_ToCourseCoordinator">
+          <End Type="LSS_Models.CourseCoordinator" Role="CourseCoordinator" Multiplicity="1" />
+          <End Type="LSS_Models.OtherLecturer" Role="OtherLecturer" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourseCoordinator">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Principal>
-            <Dependent Role="OtherLecturers">
-              <PropertyRef Name="CoordinatorID" />
+            <Dependent Role="OtherLecturer">
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RCDA_ToCourseCoordinator">
-          <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
-          <End Role="ResultOfCourseDirectAssessment" Type="Self.ResultOfCourseDirectAssessment" Multiplicity="0..1" />
+        <Association Name="FK_ResultOfCourseDirectAssessment_ToCourseCoordinator">
+          <End Type="LSS_Models.CourseCoordinator" Role="CourseCoordinator" Multiplicity="1" />
+          <End Type="LSS_Models.ResultOfCourseDirectAssessment" Role="ResultOfCourseDirectAssessment" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="CourseCoordinator">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Principal>
             <Dependent Role="ResultOfCourseDirectAssessment">
-              <PropertyRef Name="CoordinatorID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Student_PI_Outcome_ToCourseCoordinator">
-          <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
-          <End Role="Student_PI_Outcome" Type="Self.Student_PI_Outcome" Multiplicity="*" />
+        <Association Name="FK_schedule_ToCourseCoordinator">
+          <End Type="LSS_Models.CourseCoordinator" Role="CourseCoordinator" Multiplicity="1" />
+          <End Type="LSS_Models.schedule" Role="schedule" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourseCoordinator">
-              <PropertyRef Name="ID" />
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Principal>
-            <Dependent Role="Student_PI_Outcome">
-              <PropertyRef Name="CoordinatorID" />
+            <Dependent Role="schedule">
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Course_Grade_ToCourseCoordinator">
+          <End Type="LSS_Models.CourseCoordinator" Role="CourseCoordinator" Multiplicity="1" />
+          <End Type="LSS_Models.Student_Course_Grade" Role="Student_Course_Grade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CourseCoordinator">
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
+            </Principal>
+            <Dependent Role="Student_Course_Grade">
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__PEO__DeptID__40C49C62">
-          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
-          <End Role="PEO" Type="Self.PEO" Multiplicity="*" />
+          <End Type="LSS_Models.Department" Role="Department" Multiplicity="0..1" />
+          <End Type="LSS_Models.PEO" Role="PEO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Department">
               <PropertyRef Name="ID" />
@@ -1540,8 +1907,8 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Department_Faculty">
-          <End Role="Faculty" Type="Self.Faculty" Multiplicity="0..1" />
-          <End Role="Department" Type="Self.Department" Multiplicity="*" />
+          <End Type="LSS_Models.Faculty" Role="Faculty" Multiplicity="0..1" />
+          <End Type="LSS_Models.Department" Role="Department" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Faculty">
               <PropertyRef Name="ID" />
@@ -1552,20 +1919,20 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Lecturers_ToDpt">
-          <End Role="Department" Type="Self.Department" Multiplicity="1" />
-          <End Role="Lecturers" Type="Self.Lecturer" Multiplicity="*" />
+          <End Type="LSS_Models.Department" Role="Department" Multiplicity="1" />
+          <End Type="LSS_Models.Lecturer" Role="Lecturer" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Department">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Lecturers">
+            <Dependent Role="Lecturer">
               <PropertyRef Name="DptID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Student_departement">
-          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
-          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <End Type="LSS_Models.Department" Role="Department" Multiplicity="0..1" />
+          <End Type="LSS_Models.Student" Role="Student" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Department">
               <PropertyRef Name="ID" />
@@ -1576,20 +1943,20 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OtherLecturers_ToLecturer">
-          <End Role="Lecturers" Type="Self.Lecturer" Multiplicity="1" />
-          <End Role="OtherLecturers" Type="Self.OtherLecturer" Multiplicity="*" />
+          <End Type="LSS_Models.Lecturer" Role="Lecturer" Multiplicity="1" />
+          <End Type="LSS_Models.OtherLecturer" Role="OtherLecturer" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Lecturers">
+            <Principal Role="Lecturer">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="OtherLecturers">
+            <Dependent Role="OtherLecturer">
               <PropertyRef Name="LecturerID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Student_Course_Grade_ToStudents">
-          <End Role="Student" Type="Self.Student" Multiplicity="1" />
-          <End Role="Student_Course_Grade" Type="Self.Student_Course_Grade" Multiplicity="*" />
+          <End Type="LSS_Models.Student" Role="Student" Multiplicity="1" />
+          <End Type="LSS_Models.Student_Course_Grade" Role="Student_Course_Grade" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Student">
               <PropertyRef Name="ID" />
@@ -1600,8 +1967,8 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Student_PI_Outcome_ToStudents">
-          <End Role="Student" Type="Self.Student" Multiplicity="1" />
-          <End Role="Student_PI_Outcome" Type="Self.Student_PI_Outcome" Multiplicity="*" />
+          <End Type="LSS_Models.Student" Role="Student" Multiplicity="1" />
+          <End Type="LSS_Models.Student_PI_Outcome" Role="Student_PI_Outcome" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Student">
               <PropertyRef Name="ID" />
@@ -1612,8 +1979,8 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Student_PI_Outcome_ToTeachingAndLearningStrategiesTechnique">
-          <End Role="TeachingAndLearningStrategiesTechnique" Type="Self.TeachingAndLearningStrategiesTechnique" Multiplicity="1" />
-          <End Role="Student_PI_Outcome" Type="Self.Student_PI_Outcome" Multiplicity="*" />
+          <End Type="LSS_Models.TeachingAndLearningStrategiesTechnique" Role="TeachingAndLearningStrategiesTechnique" Multiplicity="1" />
+          <End Type="LSS_Models.Student_PI_Outcome" Role="Student_PI_Outcome" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TeachingAndLearningStrategiesTechnique">
               <PropertyRef Name="ID" />
@@ -1623,223 +1990,27 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="CourseAssessmentPlan">
-          <End Role="AssessmentPlanforTheStudentLearningOutcomeTechnique" Type="Self.AssessmentPlanforTheStudentLearningOutcomeTechnique" Multiplicity="*" />
-          <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="*" />
-        </Association>
-        <Association Name="SLO_PEO">
-          <End Role="PEO" Type="Self.PEO" Multiplicity="*" />
-          <End Role="SLO" Type="Self.SLO" Multiplicity="*" />
-        </Association>
-        <EntityContainer Name="LSS_databaseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="ActionsForImprovingTheCourses" EntityType="Self.ActionsForImprovingTheCourse" />
-          <EntitySet Name="AssessedCourses" EntityType="Self.AssessedCours" />
-          <EntitySet Name="AssessmentPlanforTheStudentLearningOutcomeTechniques" EntityType="Self.AssessmentPlanforTheStudentLearningOutcomeTechnique" />
-          <EntitySet Name="byCompletingThisCourseStudentsAreAbleToes" EntityType="Self.byCompletingThisCourseStudentsAreAbleTo" />
-          <EntitySet Name="CLOes" EntityType="Self.CLO" />
-          <EntitySet Name="Courses" EntityType="Self.Course" />
-          <EntitySet Name="CourseAssessmentMappings" EntityType="Self.CourseAssessmentMapping" />
-          <EntitySet Name="CourseAssessmentSurvays" EntityType="Self.CourseAssessmentSurvay" />
-          <EntitySet Name="CourseCoordinators" EntityType="Self.CourseCoordinator" />
-          <EntitySet Name="CourseTeachingStrategies" EntityType="Self.CourseTeachingStrategy" />
-          <EntitySet Name="CourseTextBooks" EntityType="Self.CourseTextBook" />
-          <EntitySet Name="Departments" EntityType="Self.Department" />
-          <EntitySet Name="Faculties" EntityType="Self.Faculty" />
-          <EntitySet Name="ineffectiveAssessmentStrategis" EntityType="Self.ineffectiveAssessmentStrategi" />
-          <EntitySet Name="ineffectiveTeachingStrategis" EntityType="Self.ineffectiveTeachingStrategi" />
-          <EntitySet Name="Lecturers" EntityType="Self.Lecturer" />
-          <EntitySet Name="ModerationChecklists" EntityType="Self.ModerationChecklist" />
-          <EntitySet Name="OtherLecturers" EntityType="Self.OtherLecturer" />
-          <EntitySet Name="PEOs" EntityType="Self.PEO" />
-          <EntitySet Name="ResultOfCourseDirectAssessments" EntityType="Self.ResultOfCourseDirectAssessment" />
-          <EntitySet Name="SLOes" EntityType="Self.SLO" />
-          <EntitySet Name="Students" EntityType="Self.Student" />
-          <EntitySet Name="Student_Course_Grade" EntityType="Self.Student_Course_Grade" />
-          <EntitySet Name="Student_PI_Outcome" EntityType="Self.Student_PI_Outcome" />
-          <EntitySet Name="TeachingAndLearningStrategiesTechniques" EntityType="Self.TeachingAndLearningStrategiesTechnique" />
-          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" />
-          <AssociationSet Name="FK_AFIC_ToCourseCoordinator" Association="Self.FK_AFIC_ToCourseCoordinator">
-            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
-            <End Role="ActionsForImprovingTheCourse" EntitySet="ActionsForImprovingTheCourses" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AssessedCourses_ToCourse" Association="Self.FK_AssessedCourses_ToCourse">
-            <End Role="Course" EntitySet="Courses" />
-            <End Role="AssessedCourses" EntitySet="AssessedCourses" />
-          </AssociationSet>
-          <AssociationSet Name="FK_byCompletingThisCourseStudentsAreAbleTo_CourseCoordinator" Association="Self.FK_byCompletingThisCourseStudentsAreAbleTo_CourseCoordinator">
-            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
-            <End Role="byCompletingThisCourseStudentsAreAbleTo" EntitySet="byCompletingThisCourseStudentsAreAbleToes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CLO_ToCourse" Association="Self.FK_CLO_ToCourse">
-            <End Role="Course" EntitySet="Courses" />
-            <End Role="CLO" EntitySet="CLOes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Course_co" Association="Self.FK_Course_co">
-            <End Role="Course" EntitySet="Courses" />
-            <End Role="Course1" EntitySet="Courses" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Course_Department" Association="Self.FK_Course_Department">
-            <End Role="Department" EntitySet="Departments" />
-            <End Role="Course" EntitySet="Courses" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Course_pre" Association="Self.FK_Course_pre">
-            <End Role="Course" EntitySet="Courses" />
-            <End Role="Course1" EntitySet="Courses" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CourseCoordinator_Coruse" Association="Self.FK_CourseCoordinator_Coruse">
-            <End Role="Course" EntitySet="Courses" />
-            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CourseTeachingStrategies_ToCourse" Association="Self.FK_CourseTeachingStrategies_ToCourse">
-            <End Role="Course" EntitySet="Courses" />
-            <End Role="CourseTeachingStrategies" EntitySet="CourseTeachingStrategies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CourseTestBook_course" Association="Self.FK_CourseTestBook_course">
-            <End Role="Course" EntitySet="Courses" />
-            <End Role="CourseTextBook" EntitySet="CourseTextBooks" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CourseAssessmentMapping_ToCourseCoordintator" Association="Self.FK_CourseAssessmentMapping_ToCourseCoordintator">
-            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
-            <End Role="CourseAssessmentMapping" EntitySet="CourseAssessmentMappings" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CourseAssessmentSurvay_ToCourseCoordinator" Association="Self.FK_CourseAssessmentSurvay_ToCourseCoordinator">
-            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
-            <End Role="CourseAssessmentSurvay" EntitySet="CourseAssessmentSurvays" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CourseCoordinator_Lecturer" Association="Self.FK_CourseCoordinator_Lecturer">
-            <End Role="Lecturers" EntitySet="Lecturers" />
-            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ineffectiveAssessmentStrategis_ToCourseCoordinator" Association="Self.FK_ineffectiveAssessmentStrategis_ToCourseCoordinator">
-            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
-            <End Role="ineffectiveAssessmentStrategis" EntitySet="ineffectiveAssessmentStrategis" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ineffectiveTeachingStrategis_CoordinatorID" Association="Self.FK_ineffectiveTeachingStrategis_CoordinatorID">
-            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
-            <End Role="ineffectiveTeachingStrategis" EntitySet="ineffectiveTeachingStrategis" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ModerationChecklist_ToCourseCoordinator" Association="Self.FK_ModerationChecklist_ToCourseCoordinator">
-            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
-            <End Role="ModerationChecklist" EntitySet="ModerationChecklists" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OtherLecturers_CourseCoordinator" Association="Self.FK_OtherLecturers_CourseCoordinator">
-            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
-            <End Role="OtherLecturers" EntitySet="OtherLecturers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RCDA_ToCourseCoordinator" Association="Self.FK_RCDA_ToCourseCoordinator">
-            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
-            <End Role="ResultOfCourseDirectAssessment" EntitySet="ResultOfCourseDirectAssessments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Student_PI_Outcome_ToCourseCoordinator" Association="Self.FK_Student_PI_Outcome_ToCourseCoordinator">
-            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
-            <End Role="Student_PI_Outcome" EntitySet="Student_PI_Outcome" />
-          </AssociationSet>
-          <AssociationSet Name="FK__PEO__DeptID__40C49C62" Association="Self.FK__PEO__DeptID__40C49C62">
-            <End Role="Department" EntitySet="Departments" />
-            <End Role="PEO" EntitySet="PEOs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Department_Faculty" Association="Self.FK_Department_Faculty">
-            <End Role="Faculty" EntitySet="Faculties" />
-            <End Role="Department" EntitySet="Departments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Lecturers_ToDpt" Association="Self.FK_Lecturers_ToDpt">
-            <End Role="Department" EntitySet="Departments" />
-            <End Role="Lecturers" EntitySet="Lecturers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Student_departement" Association="Self.FK_Student_departement">
-            <End Role="Department" EntitySet="Departments" />
-            <End Role="Student" EntitySet="Students" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OtherLecturers_ToLecturer" Association="Self.FK_OtherLecturers_ToLecturer">
-            <End Role="Lecturers" EntitySet="Lecturers" />
-            <End Role="OtherLecturers" EntitySet="OtherLecturers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Student_Course_Grade_ToStudents" Association="Self.FK_Student_Course_Grade_ToStudents">
-            <End Role="Student" EntitySet="Students" />
-            <End Role="Student_Course_Grade" EntitySet="Student_Course_Grade" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Student_PI_Outcome_ToStudents" Association="Self.FK_Student_PI_Outcome_ToStudents">
-            <End Role="Student" EntitySet="Students" />
-            <End Role="Student_PI_Outcome" EntitySet="Student_PI_Outcome" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Student_PI_Outcome_ToTeachingAndLearningStrategiesTechnique" Association="Self.FK_Student_PI_Outcome_ToTeachingAndLearningStrategiesTechnique">
-            <End Role="TeachingAndLearningStrategiesTechnique" EntitySet="TeachingAndLearningStrategiesTechniques" />
-            <End Role="Student_PI_Outcome" EntitySet="Student_PI_Outcome" />
-          </AssociationSet>
-          <AssociationSet Name="CourseAssessmentPlan" Association="Self.CourseAssessmentPlan">
-            <End Role="AssessmentPlanforTheStudentLearningOutcomeTechnique" EntitySet="AssessmentPlanforTheStudentLearningOutcomeTechniques" />
-            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
-          </AssociationSet>
-          <AssociationSet Name="SLO_PEO" Association="Self.SLO_PEO">
-            <End Role="PEO" EntitySet="PEOs" />
-            <End Role="SLO" EntitySet="SLOes" />
-          </AssociationSet>
-          <EntitySet Name="schedules" EntityType="LSS_Models.schedule" />
-          <AssociationSet Name="FK_schedule_ToCourseCoordinator" Association="LSS_Models.FK_schedule_ToCourseCoordinator">
-            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
-            <End Role="schedule" EntitySet="schedules" />
-          </AssociationSet>
-          <AssociationSet Name="Schedule_CLO" Association="LSS_Models.Schedule_CLO">
-            <End Role="CLO" EntitySet="CLOes" />
-            <End Role="schedule" EntitySet="schedules" />
-          </AssociationSet>
-          <EntitySet Name="PIs" EntityType="LSS_Models.PI" />
-          <AssociationSet Name="CLO_PI" Association="LSS_Models.CLO_PI">
-            <End Role="CLO" EntitySet="CLOes" />
-            <End Role="PI" EntitySet="PIs" />
-          </AssociationSet>
-          <AssociationSet Name="PI_SLO" Association="LSS_Models.PI_SLO">
-            <End Role="PI" EntitySet="PIs" />
-            <End Role="SLO" EntitySet="SLOes" />
-          </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="schedule">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="CoordintaroID" Type="Int32" Nullable="false" />
-          <Property Name="Week" Type="Int32" Nullable="false" />
-          <Property Name="Topics" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Assigments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Referance" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CourseCoordinator" Relationship="LSS_Models.FK_schedule_ToCourseCoordinator" FromRole="schedule" ToRole="CourseCoordinator" />
-          <NavigationProperty Name="CLOes" Relationship="LSS_Models.Schedule_CLO" FromRole="schedule" ToRole="CLO" />
-        </EntityType>
-        <Association Name="FK_schedule_ToCourseCoordinator">
-          <End Type="LSS_Models.CourseCoordinator" Role="CourseCoordinator" Multiplicity="1" />
-          <End Type="LSS_Models.schedule" Role="schedule" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CourseCoordinator">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="schedule">
-              <PropertyRef Name="CoordintaroID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Schedule_CLO">
-          <End Type="LSS_Models.CLO" Role="CLO" Multiplicity="*" />
-          <End Type="LSS_Models.schedule" Role="schedule" Multiplicity="*" />
-        </Association>
-        <EntityType Name="PI">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Desc" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CLOes" Relationship="LSS_Models.CLO_PI" FromRole="PI" ToRole="CLO" />
-          <NavigationProperty Name="SLOes" Relationship="LSS_Models.PI_SLO" FromRole="PI" ToRole="SLO" />
-        </EntityType>
         <Association Name="CLO_PI">
           <End Type="LSS_Models.CLO" Role="CLO" Multiplicity="*" />
           <End Type="LSS_Models.PI" Role="PI" Multiplicity="*" />
+        </Association>
+        <Association Name="CourseAssessmentPlan">
+          <End Type="LSS_Models.AssessmentPlanforTheStudentLearningOutcomeTechnique" Role="AssessmentPlanforTheStudentLearningOutcomeTechnique" Multiplicity="*" />
+          <End Type="LSS_Models.CourseCoordinator" Role="CourseCoordinator" Multiplicity="*" />
         </Association>
         <Association Name="PI_SLO">
           <End Type="LSS_Models.PI" Role="PI" Multiplicity="*" />
           <End Type="LSS_Models.SLO" Role="SLO" Multiplicity="*" />
         </Association>
-      </Schema>
+        <Association Name="Schedule_CLO">
+          <End Type="LSS_Models.CLO" Role="CLO" Multiplicity="*" />
+          <End Type="LSS_Models.schedule" Role="schedule" Multiplicity="*" />
+        </Association>
+        <Association Name="SLO_PEO">
+          <End Type="LSS_Models.PEO" Role="PEO" Multiplicity="*" />
+          <End Type="LSS_Models.SLO" Role="SLO" Multiplicity="*" />
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1848,282 +2019,231 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <EntitySetMapping Name="ActionsForImprovingTheCourses">
             <EntityTypeMapping TypeName="LSS_Models.ActionsForImprovingTheCourse">
               <MappingFragment StoreEntitySet="ActionsForImprovingTheCourse">
-                <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
-                <ScalarProperty Name="ActionsTaken" ColumnName="ActionsTaken" />
-                <ScalarProperty Name="ActionsResults" ColumnName="ActionsResults" />
-                <ScalarProperty Name="RecomandedActions" ColumnName="RecomandedActions" />
                 <ScalarProperty Name="PersonResponsible" ColumnName="PersonResponsible" />
+                <ScalarProperty Name="RecomandedActions" ColumnName="RecomandedActions" />
+                <ScalarProperty Name="ActionsResults" ColumnName="ActionsResults" />
+                <ScalarProperty Name="ActionsTaken" ColumnName="ActionsTaken" />
+                <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AssessedCourses">
             <EntityTypeMapping TypeName="LSS_Models.AssessedCours">
               <MappingFragment StoreEntitySet="AssessedCourses">
-                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
-                <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="Semester" ColumnName="Semester" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AssessmentPlanforTheStudentLearningOutcomeTechniques">
             <EntityTypeMapping TypeName="LSS_Models.AssessmentPlanforTheStudentLearningOutcomeTechnique">
               <MappingFragment StoreEntitySet="AssessmentPlanforTheStudentLearningOutcomeTechnique">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="strategy" ColumnName="strategy" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="byCompletingThisCourseStudentsAreAbleToes">
             <EntityTypeMapping TypeName="LSS_Models.byCompletingThisCourseStudentsAreAbleTo">
               <MappingFragment StoreEntitySet="byCompletingThisCourseStudentsAreAbleTo">
-                <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
-                <ScalarProperty Name="SLO" ColumnName="SLO" />
                 <ScalarProperty Name="AggrementLVL" ColumnName="AggrementLVL" />
+                <ScalarProperty Name="SLO" ColumnName="SLO" />
+                <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CLOes">
             <EntityTypeMapping TypeName="LSS_Models.CLO">
               <MappingFragment StoreEntitySet="CLO">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Course" ColumnName="Course" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Course" ColumnName="Course" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Courses">
             <EntityTypeMapping TypeName="LSS_Models.Course">
               <MappingFragment StoreEntitySet="Course">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="DptID" ColumnName="DptID" />
-                <ScalarProperty Name="Pre_requisite" ColumnName="Pre-requisite" />
-                <ScalarProperty Name="Hours" ColumnName="Hours" />
-                <ScalarProperty Name="Co_requisite" ColumnName="Co-requisite" />
-                <ScalarProperty Name="Designation" ColumnName="Designation" />
-                <ScalarProperty Name="VclassURL" ColumnName="VclassURL" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Other_Online_resources" ColumnName="Other Online resources" />
                 <ScalarProperty Name="Other_Required_Material" ColumnName="Other Required Material" />
+                <ScalarProperty Name="Other_Online_resources" ColumnName="Other Online resources" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="VclassURL" ColumnName="VclassURL" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="Co_requisite" ColumnName="Co-requisite" />
+                <ScalarProperty Name="Hours" ColumnName="Hours" />
+                <ScalarProperty Name="Pre_requisite" ColumnName="Pre-requisite" />
+                <ScalarProperty Name="DptID" ColumnName="DptID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CourseAssessmentMappings">
             <EntityTypeMapping TypeName="LSS_Models.CourseAssessmentMapping">
               <MappingFragment StoreEntitySet="CourseAssessmentMapping">
-                <ScalarProperty Name="CourseCoordinatorID" ColumnName="CourseCoordinatorID" />
-                <ScalarProperty Name="AssessmentID" ColumnName="AssessmentID" />
-                <ScalarProperty Name="CLO" ColumnName="CLO" />
                 <ScalarProperty Name="SLO" ColumnName="SLO" />
+                <ScalarProperty Name="CLO" ColumnName="CLO" />
+                <ScalarProperty Name="AssessmentID" ColumnName="AssessmentID" />
+                <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CourseAssessmentSurvays">
             <EntityTypeMapping TypeName="LSS_Models.CourseAssessmentSurvay">
               <MappingFragment StoreEntitySet="CourseAssessmentSurvay">
-                <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
                 <ScalarProperty Name="Qustion" ColumnName="Qustion" />
+                <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CourseCoordinators">
             <EntityTypeMapping TypeName="LSS_Models.CourseCoordinator">
               <MappingFragment StoreEntitySet="CourseCoordinator">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
-                <ScalarProperty Name="Cordenator" ColumnName="Cordenator" />
-                <ScalarProperty Name="Year" ColumnName="Year" />
-                <ScalarProperty Name="Semseter" ColumnName="Semseter" />
-                <ScalarProperty Name="NoOFStudents" ColumnName="NoOFStudents" />
-                <ScalarProperty Name="ClassRoom" ColumnName="ClassRoom" />
-                <ScalarProperty Name="courseNotAssessedReason_" ColumnName="courseNotAssessedReason " />
                 <ScalarProperty Name="DayTime" ColumnName="DayTime" />
+                <ScalarProperty Name="courseNotAssessedReason_" ColumnName="courseNotAssessedReason " />
+                <ScalarProperty Name="ClassRoom" ColumnName="ClassRoom" />
+                <ScalarProperty Name="NoOFStudents" ColumnName="NoOFStudents" />
+                <ScalarProperty Name="Cordenator" ColumnName="Cordenator" />
+                <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CourseTeachingStrategies">
             <EntityTypeMapping TypeName="LSS_Models.CourseTeachingStrategy">
               <MappingFragment StoreEntitySet="CourseTeachingStrategies">
+                <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
                 <ScalarProperty Name="StrategyID" ColumnName="StrategyID" />
-                <ScalarProperty Name="Year" ColumnName="Year" />
-                <ScalarProperty Name="Semester" ColumnName="Semester" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CourseTextBooks">
             <EntityTypeMapping TypeName="LSS_Models.CourseTextBook">
               <MappingFragment StoreEntitySet="CourseTextBook">
-                <ScalarProperty Name="Course" ColumnName="Course" />
-                <ScalarProperty Name="Book_Title" ColumnName="Book Title" />
-                <ScalarProperty Name="Author" ColumnName="Author" />
-                <ScalarProperty Name="YearOfpublish" ColumnName="YearOfpublish" />
-                <ScalarProperty Name="City_State" ColumnName="City/State" />
                 <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+                <ScalarProperty Name="City_State" ColumnName="City/State" />
+                <ScalarProperty Name="YearOfpublish" ColumnName="YearOfpublish" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Book_Title" ColumnName="Book Title" />
+                <ScalarProperty Name="Course" ColumnName="Course" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Departments">
             <EntityTypeMapping TypeName="LSS_Models.Department">
               <MappingFragment StoreEntitySet="Department">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Faculties">
             <EntityTypeMapping TypeName="LSS_Models.Faculty">
               <MappingFragment StoreEntitySet="Faculty">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ineffectiveAssessmentStrategis">
             <EntityTypeMapping TypeName="LSS_Models.ineffectiveAssessmentStrategi">
               <MappingFragment StoreEntitySet="ineffectiveAssessmentStrategis">
-                <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
                 <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ineffectiveTeachingStrategis">
             <EntityTypeMapping TypeName="LSS_Models.ineffectiveTeachingStrategi">
               <MappingFragment StoreEntitySet="ineffectiveTeachingStrategis">
-                <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
                 <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Lecturers">
             <EntityTypeMapping TypeName="LSS_Models.Lecturer">
               <MappingFragment StoreEntitySet="Lecturers">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Role" ColumnName="Role" />
-                <ScalarProperty Name="OfficeNo" ColumnName="OfficeNo" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="DptID" ColumnName="DptID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="OfficeNo" ColumnName="OfficeNo" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ModerationChecklists">
             <EntityTypeMapping TypeName="LSS_Models.ModerationChecklist">
               <MappingFragment StoreEntitySet="ModerationChecklist">
-                <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
-                <ScalarProperty Name="Qustion" ColumnName="Qustion" />
-                <ScalarProperty Name="Answer" ColumnName="Answer" />
                 <ScalarProperty Name="commetns" ColumnName="commetns" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="Qustion" ColumnName="Qustion" />
+                <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OtherLecturers">
             <EntityTypeMapping TypeName="LSS_Models.OtherLecturer">
               <MappingFragment StoreEntitySet="OtherLecturers">
-                <ScalarProperty Name="LecturerID" ColumnName="LecturerID" />
-                <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
-                <ScalarProperty Name="DayTime" ColumnName="DayTime" />
                 <ScalarProperty Name="ClassRoom" ColumnName="ClassRoom" />
+                <ScalarProperty Name="DayTime" ColumnName="DayTime" />
+                <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="LecturerID" ColumnName="LecturerID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PEOs">
             <EntityTypeMapping TypeName="LSS_Models.PEO">
               <MappingFragment StoreEntitySet="PEO">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Desc" ColumnName="Desc" />
                 <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PIs">
+            <EntityTypeMapping TypeName="LSS_Models.PI">
+              <MappingFragment StoreEntitySet="PI">
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ResultOfCourseDirectAssessments">
             <EntityTypeMapping TypeName="LSS_Models.ResultOfCourseDirectAssessment">
               <MappingFragment StoreEntitySet="ResultOfCourseDirectAssessment">
-                <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
-                <ScalarProperty Name="ActionsTaken" ColumnName="ActionsTaken" />
-                <ScalarProperty Name="Observation" ColumnName="Observation" />
-                <ScalarProperty Name="AnalysisAndJustification" ColumnName="AnalysisAndJustification" />
                 <ScalarProperty Name="Recommendation" ColumnName="Recommendation" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SLOes">
-            <EntityTypeMapping TypeName="LSS_Models.SLO">
-              <MappingFragment StoreEntitySet="SLO">
-                <ScalarProperty Name="SLOID_" ColumnName="SLOID " />
-                <ScalarProperty Name="Desc" ColumnName="Desc" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Students">
-            <EntityTypeMapping TypeName="LSS_Models.Student">
-              <MappingFragment StoreEntitySet="Student">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="DptID" ColumnName="DptID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Student_Course_Grade">
-            <EntityTypeMapping TypeName="LSS_Models.Student_Course_Grade">
-              <MappingFragment StoreEntitySet="Student-Course-Grade">
-                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="AnalysisAndJustification" ColumnName="AnalysisAndJustification" />
+                <ScalarProperty Name="Observation" ColumnName="Observation" />
+                <ScalarProperty Name="ActionsTaken" ColumnName="ActionsTaken" />
+                <ScalarProperty Name="Semseter" ColumnName="Semseter" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
-                <ScalarProperty Name="Semester" ColumnName="Semester" />
-                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
-                <ScalarProperty Name="Mark" ColumnName="Mark" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Student_PI_Outcome">
-            <EntityTypeMapping TypeName="LSS_Models.Student_PI_Outcome">
-              <MappingFragment StoreEntitySet="Student-PI-Outcome">
-                <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
-                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
-                <ScalarProperty Name="AssessmentMethod" ColumnName="AssessmentMethod" />
-                <ScalarProperty Name="Mark" ColumnName="Mark" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TeachingAndLearningStrategiesTechniques">
-            <EntityTypeMapping TypeName="LSS_Models.TeachingAndLearningStrategiesTechnique">
-              <MappingFragment StoreEntitySet="TeachingAndLearningStrategiesTechnique">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="strategy" ColumnName="strategy" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="database_firewall_rules">
-            <EntityTypeMapping TypeName="LSS_Models.database_firewall_rules">
-              <MappingFragment StoreEntitySet="database_firewall_rules">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
-                <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
-                <ScalarProperty Name="create_date" ColumnName="create_date" />
-                <ScalarProperty Name="modify_date" ColumnName="modify_date" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="CourseAssessmentPlan" TypeName="LSS_Models.CourseAssessmentPlan" StoreEntitySet="CourseAssessmentPlan">
-            <EndProperty Name="AssessmentPlanforTheStudentLearningOutcomeTechnique">
-              <ScalarProperty Name="ID" ColumnName="AssessmetnID" />
-            </EndProperty>
-            <EndProperty Name="CourseCoordinator">
-              <ScalarProperty Name="ID" ColumnName="CoordinatorID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="SLO_PEO" TypeName="LSS_Models.SLO_PEO" StoreEntitySet="SLO-PEO">
-            <EndProperty Name="PEO">
-              <ScalarProperty Name="ID" ColumnName="PEO" />
-            </EndProperty>
-            <EndProperty Name="SLO">
-              <ScalarProperty Name="SLOID_" ColumnName="SLO" />
-            </EndProperty>
-          </AssociationSetMapping>
           <EntitySetMapping Name="schedules">
             <EntityTypeMapping TypeName="LSS_Models.schedule">
               <MappingFragment StoreEntitySet="schedule">
@@ -2131,23 +2251,54 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
                 <ScalarProperty Name="Assigments" ColumnName="Assigments" />
                 <ScalarProperty Name="Topics" ColumnName="Topics" />
                 <ScalarProperty Name="Week" ColumnName="Week" />
-                <ScalarProperty Name="CoordintaroID" ColumnName="CoordintaroID" />
+                <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SLOes">
+            <EntityTypeMapping TypeName="LSS_Models.SLO">
+              <MappingFragment StoreEntitySet="SLO">
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="SLOID_" ColumnName="SLOID " />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="LSS_Models.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="DptID" ColumnName="DptID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="Schedule_CLO" TypeName="LSS_Models.Schedule_CLO" StoreEntitySet="Schedule_CLO">
-            <EndProperty Name="schedule">
-              <ScalarProperty Name="ID" ColumnName="ScheduleID" />
-            </EndProperty>
-            <EndProperty Name="CLO">
-              <ScalarProperty Name="ID" ColumnName="CLO" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <EntitySetMapping Name="PIs">
-            <EntityTypeMapping TypeName="LSS_Models.PI">
-              <MappingFragment StoreEntitySet="PI">
-                <ScalarProperty Name="Desc" ColumnName="Desc" />
+          <EntitySetMapping Name="Student_Course_Grade">
+            <EntityTypeMapping TypeName="LSS_Models.Student_Course_Grade">
+              <MappingFragment StoreEntitySet="Student-Course-Grade">
+                <ScalarProperty Name="Mark" ColumnName="Mark" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student_PI_Outcome">
+            <EntityTypeMapping TypeName="LSS_Models.Student_PI_Outcome">
+              <MappingFragment StoreEntitySet="Student-PI-Outcome">
+                <ScalarProperty Name="Mark" ColumnName="Mark" />
+                <ScalarProperty Name="AssessmentMethod" ColumnName="AssessmentMethod" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeachingAndLearningStrategiesTechniques">
+            <EntityTypeMapping TypeName="LSS_Models.TeachingAndLearningStrategiesTechnique">
+              <MappingFragment StoreEntitySet="TeachingAndLearningStrategiesTechnique">
+                <ScalarProperty Name="strategy" ColumnName="strategy" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2160,12 +2311,41 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
               <ScalarProperty Name="ID" ColumnName="CLOID" />
             </EndProperty>
           </AssociationSetMapping>
+          <AssociationSetMapping Name="CourseAssessmentPlan" TypeName="LSS_Models.CourseAssessmentPlan" StoreEntitySet="CourseAssessmentPlan">
+            <EndProperty Name="CourseCoordinator">
+              <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+              <ScalarProperty Name="Year" ColumnName="Year" />
+              <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+            </EndProperty>
+            <EndProperty Name="AssessmentPlanforTheStudentLearningOutcomeTechnique">
+              <ScalarProperty Name="ID" ColumnName="AssessmetnID" />
+            </EndProperty>
+          </AssociationSetMapping>
           <AssociationSetMapping Name="PI_SLO" TypeName="LSS_Models.PI_SLO" StoreEntitySet="PI_SLO">
             <EndProperty Name="SLO">
               <ScalarProperty Name="SLOID_" ColumnName="SLOID" />
             </EndProperty>
             <EndProperty Name="PI">
               <ScalarProperty Name="ID" ColumnName="PI_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Schedule_CLO" TypeName="LSS_Models.Schedule_CLO" StoreEntitySet="Schedule_CLO">
+            <EndProperty Name="schedule">
+              <ScalarProperty Name="Week" ColumnName="Week" />
+              <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+              <ScalarProperty Name="Year" ColumnName="Year" />
+              <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+            </EndProperty>
+            <EndProperty Name="CLO">
+              <ScalarProperty Name="ID" ColumnName="CLO" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="SLO_PEO" TypeName="LSS_Models.SLO_PEO" StoreEntitySet="SLO-PEO">
+            <EndProperty Name="SLO">
+              <ScalarProperty Name="SLOID_" ColumnName="SLO" />
+            </EndProperty>
+            <EndProperty Name="PEO">
+              <ScalarProperty Name="ID" ColumnName="PEO" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

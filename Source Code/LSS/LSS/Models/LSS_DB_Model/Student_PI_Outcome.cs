@@ -19,7 +19,6 @@ namespace LSS.Models.LSS_DB_Model
         public int AssessmentMethod { get; set; }
         public Nullable<int> Mark { get; set; }
     
-        public virtual CourseCoordinator CourseCoordinator { get; set; }
         public virtual Student Student { get; set; }
         public virtual TeachingAndLearningStrategiesTechnique TeachingAndLearningStrategiesTechnique { get; set; }
     }

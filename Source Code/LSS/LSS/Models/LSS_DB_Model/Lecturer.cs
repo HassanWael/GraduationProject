@@ -17,7 +17,6 @@ namespace LSS.Models.LSS_DB_Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Lecturer()
         {
-            this.CourseCoordinators = new HashSet<CourseCoordinator>();
             this.OtherLecturers = new HashSet<OtherLecturer>();
         }
     
@@ -29,8 +28,6 @@ namespace LSS.Models.LSS_DB_Model
         public string Password { get; set; }
         public string DptID { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CourseCoordinator> CourseCoordinators { get; set; }
         public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OtherLecturer> OtherLecturers { get; set; }

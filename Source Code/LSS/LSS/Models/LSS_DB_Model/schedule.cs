@@ -20,8 +20,9 @@ namespace LSS.Models.LSS_DB_Model
             this.CLOes = new HashSet<CLO>();
         }
     
-        public int ID { get; set; }
-        public int CoordintaroID { get; set; }
+        public string CourseID { get; set; }
+        public System.DateTime Year { get; set; }
+        public string Semseter { get; set; }
         public int Week { get; set; }
         public string Topics { get; set; }
         public string Assigments { get; set; }

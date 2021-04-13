@@ -14,11 +14,15 @@ namespace LSS.Models.LSS_DB_Model
     
     public partial class CourseAssessmentMapping
     {
-        public int CourseCoordinatorID { get; set; }
+        public string CourseID { get; set; }
+        public System.DateTime Year { get; set; }
+        public string Semseter { get; set; }
         public int AssessmentID { get; set; }
-        public string CLO { get; set; }
+        public int CLO { get; set; }
         public string SLO { get; set; }
     
+        public virtual CLO CLO1 { get; set; }
         public virtual CourseCoordinator CourseCoordinator { get; set; }
+        public virtual SLO SLO1 { get; set; }
     }
 }

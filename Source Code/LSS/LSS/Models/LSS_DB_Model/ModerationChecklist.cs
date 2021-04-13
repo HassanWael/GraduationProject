@@ -14,7 +14,9 @@ namespace LSS.Models.LSS_DB_Model
     
     public partial class ModerationChecklist
     {
-        public int CoordinatorID { get; set; }
+        public string CourseID { get; set; }
+        public System.DateTime Year { get; set; }
+        public string Semseter { get; set; }
         public string Qustion { get; set; }
         public bool Answer { get; set; }
         public string commetns { get; set; }
