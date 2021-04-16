@@ -37,6 +37,10 @@ namespace LSS.Controllers
                     
                     Session["Name"] = data.FirstOrDefault().Name;
                     Session["ID"] = data.FirstOrDefault().ID;
+                    Session["Role"]=data.FirstOrDefault().Role;
+                    Session["Dpt"] = data.FirstOrDefault().DptID;
+
+
                     return RedirectToAction("Index", "LogedIn");
                 }
                 else
