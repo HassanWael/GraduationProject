@@ -1,8 +1,7 @@
-﻿@*@model List <LSS.Models.LSS_DB_Model.Course>*@
-@using LSS;
+﻿@using LSS;
 @model dynamic
 
-    @{
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -18,3 +17,29 @@
     </ul>
 
 </div>
+
+@if (Model.DptCourses != null)
+{
+    <div class="Lecturer_Courses">
+        <ul class="Course_ul">
+            @foreach (var course in Model.DptCourses)
+            {
+                <li> @course.Title</li>
+            }
+        </ul>
+
+    </div>
+}
+
+@if (Model.FacultyCourses != null)
+{
+    <div class="Lecturer_Courses">
+        <ul class="Course_ul">
+            @foreach (var course in Model.FacultyCourses)
+            {
+                <li> @course.Title</li>
+            }
+        </ul>
+
+    </div>
+}
