@@ -6,13 +6,11 @@ using System.Web.Mvc;
 
 namespace LSS.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class AdminController : Controller
     {
         // GET: Admin
-        /// <summary>
-        /// Create all the Views
-        /// </summary>
-        /// <returns></returns>
+        //ToDO :Create Views For the Action Results
        public ActionResult CreateCourse()
         {
             return View();

@@ -18,15 +18,6 @@ namespace LSS.Controllers
             ViewBag.Message = " Coures view Page";
             return View();
         }
-
-
-
-       // [Authorize]
-        public ActionResult CreatUser()
-        {
-            return View();
-        }
-
         /// <summary>
         /// Once the User login this is the home page where he will use to navigate 
         /// </summary>
