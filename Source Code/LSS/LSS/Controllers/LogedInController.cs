@@ -10,7 +10,7 @@ namespace LSS.Controllers
 {
     public class LogedInController : Controller
     {
-       private LSS_databaseEntities _databaseEntities = new LSS_databaseEntities();
+       private readonly LSS_databaseEntities _databaseEntities = new LSS_databaseEntities();
         
         public ActionResult CouresPage()
         {
