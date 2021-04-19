@@ -8,6 +8,7 @@ namespace LSS.Models
 {
     public class SiteRole : RoleProvider
     {
+
         public override string ApplicationName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public override void AddUsersToRoles(string[] usernames, string[] roleNames)
@@ -35,12 +36,15 @@ namespace LSS.Models
             throw new NotImplementedException();
         }
 
-        public override string[] GetRolesForUser(string username)
-        {
-            throw new NotImplementedException();
+        public override string[] GetRolesForUser(string ID)
+        {   
+            LSS_databaseEntities _databaseEntities = new LSS_databaseEntities();
+            String role = _databaseEntities.Lecturers.FirstOrDefault(l => l.ID.Equals(ID)).Role;
+            String[] result = { role };
+            return result;
         }
 
-        public override string[] GetUsersInRole(string roleName)
+    public override string[] GetUsersInRole(string roleName)
         {
             throw new NotImplementedException();
         }
