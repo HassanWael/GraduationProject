@@ -167,15 +167,6 @@
     <Compile Include="Models\CourseCoordinator.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CourseFlolder\Accriditation\SLO.cs" />
-    <Compile Include="Models\CourseFlolder\AssessmentMethod.cs" />
-    <Compile Include="Models\CourseFlolder\Assignment.cs" />
-    <Compile Include="Models\CourseFlolder\Course.cs" />
-    <Compile Include="Models\CourseFlolder\Exam.cs" />
-    <Compile Include="Models\CourseFlolder\Project.cs" />
-    <Compile Include="Models\CourseFlolder\Question.cs" />
-    <Compile Include="Models\CourseFlolder\StudentQsutionAnswers.cs" />
-    <Compile Include="Models\CourseFlolder\TextBook.cs" />
     <Compile Include="Models\CourseTeachingStrategy.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -188,18 +179,6 @@
     <Compile Include="Models\Faculty.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\FacultyFolder\Dean.cs" />
-    <Compile Include="Models\FacultyFolder\Department.cs" />
-    <Compile Include="Models\FacultyFolder\Faculty.cs" />
-    <Compile Include="Models\FacultyFolder\FacultyMember.cs" />
-    <Compile Include="Models\FacultyFolder\HeadOfDepartment.cs" />
-    <Compile Include="Models\FacultyFolder\Lecturer.cs" />
-    <Compile Include="Models\FacultyFolder\ViceDean.cs" />
-    <Compile Include="Models\Forms\CourseAssessmentSurvey.cs" />
-    <Compile Include="Models\Forms\CourseSyllabusForm.cs" />
-    <Compile Include="Models\Forms\ExamEvaluationForm.cs" />
-    <Compile Include="Models\Forms\ExamModerationChecklistForm.cs" />
-    <Compile Include="Models\Forms\WeekTopic.cs" />
     <Compile Include="Models\ineffectiveAssessmentStrategi.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -323,11 +302,16 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\LogedIn\CouresPage.cshtml" />
     <Content Include="Views\LogedIn\Index.cshtml" />
-    <Content Include="Views\LogedIn\CreatUser.cshtml" />
+    <Content Include="Views\Admin\CreatUser.cshtml" />
+    <Content Include="Views\Admin\CreateCourse.cshtml" />
+    <Content Include="Views\Admin\CreatDpt.cshtml" />
+    <Content Include="Views\Admin\CreatFaculty.cshtml" />
+    <Content Include="Views\Admin\EditDpt.cshtml" />
+    <Content Include="Views\Admin\EditFaculty.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Admin\" />
+    <Folder Include="Models\CourseFlolder\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
