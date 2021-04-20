@@ -1,7 +1,4 @@
-﻿﻿body {
-}
-
-.loginForm {
+﻿.loginForm {
     width: 50%;
     margin-top: 10%;
     margin-left: auto;
@@ -46,7 +43,7 @@
     width: 100%;
 }
 
-    .form-control::placeholder {
+    .form-control:placeholder {
         color: transparent;
     }
 
