@@ -65,10 +65,10 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="255" />
-    <Property Name="DptID" Type="nvarchar" MaxLength="255" />
+    <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="DptID" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Pre-requisite" Type="nvarchar" MaxLength="255" />
-    <Property Name="Hours" Type="nvarchar" MaxLength="255" />
+    <Property Name="Hours" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Co-requisite" Type="nvarchar" MaxLength="255" />
     <Property Name="Designation" Type="nvarchar" MaxLength="255" />
     <Property Name="VclassURL" Type="nvarchar" MaxLength="255" />
@@ -162,6 +162,7 @@
     <Property Name="ID" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="255" />
     <Property Name="FacultyID" Type="nvarchar" MaxLength="255" />
+    <Property Name="HeadOFDepartment" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="Faculty">
     <Key>
@@ -169,6 +170,8 @@
     </Key>
     <Property Name="ID" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="255" />
+    <Property Name="Dean" Type="nvarchar" MaxLength="255" />
+    <Property Name="ViceDean" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="ineffectiveAssessmentStrategis">
     <Key>
@@ -468,7 +471,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Course_Department">
-    <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
     <End Role="Course" Type="Self.Course" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Department">
@@ -636,6 +639,42 @@
       </Principal>
       <Dependent Role="Department">
         <PropertyRef Name="FacultyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DPT_ToLecturer">
+    <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="0..1" />
+    <End Role="Department" Type="Self.Department" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lecturers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Department">
+        <PropertyRef Name="HeadOFDepartment" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Fac_Dean_ToLecturer">
+    <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="0..1" />
+    <End Role="Faculty" Type="Self.Faculty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lecturers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Faculty">
+        <PropertyRef Name="Dean" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Fac_ViceDean_ToLecturer">
+    <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="0..1" />
+    <End Role="Faculty" Type="Self.Faculty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lecturers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Faculty">
+        <PropertyRef Name="Dean" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1021,6 +1060,18 @@
     <AssociationSet Name="FK_Department_Faculty" Association="Self.FK_Department_Faculty">
       <End Role="Faculty" EntitySet="Faculty" />
       <End Role="Department" EntitySet="Department" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DPT_ToLecturer" Association="Self.FK_DPT_ToLecturer">
+      <End Role="Lecturers" EntitySet="Lecturers" />
+      <End Role="Department" EntitySet="Department" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Fac_Dean_ToLecturer" Association="Self.FK_Fac_Dean_ToLecturer">
+      <End Role="Lecturers" EntitySet="Lecturers" />
+      <End Role="Faculty" EntitySet="Faculty" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Fac_ViceDean_ToLecturer" Association="Self.FK_Fac_ViceDean_ToLecturer">
+      <End Role="Lecturers" EntitySet="Lecturers" />
+      <End Role="Faculty" EntitySet="Faculty" />
     </AssociationSet>
     <AssociationSet Name="FK_ineffectiveAssessmentStrategis_ToCourseCoordinator" Association="Self.FK_ineffectiveAssessmentStrategis_ToCourseCoordinator">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />

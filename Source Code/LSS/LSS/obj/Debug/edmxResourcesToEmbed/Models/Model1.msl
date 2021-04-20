@@ -130,6 +130,7 @@
     <EntitySetMapping Name="Departments">
       <EntityTypeMapping TypeName="Model.Department">
         <MappingFragment StoreEntitySet="Department">
+          <ScalarProperty Name="HeadOFDepartment" ColumnName="HeadOFDepartment" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
@@ -139,6 +140,8 @@
     <EntitySetMapping Name="Faculties">
       <EntityTypeMapping TypeName="Model.Faculty">
         <MappingFragment StoreEntitySet="Faculty">
+          <ScalarProperty Name="ViceDean" ColumnName="ViceDean" />
+          <ScalarProperty Name="Dean" ColumnName="Dean" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>

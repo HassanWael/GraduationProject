@@ -22,8 +22,12 @@ namespace LSS.Models
     
         public string ID { get; set; }
         public string Name { get; set; }
+        public string Dean { get; set; }
+        public string ViceDean { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Department> Departments { get; set; }
+        public virtual Lecturer Lecturer { get; set; }
+        public virtual Lecturer Lecturer1 { get; set; }
     }
 }

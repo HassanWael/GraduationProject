@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="776c583f8a6742ae941ed19b6e4976f7" Name="Diagram1" ZoomLevel="93">
+      <Diagram DiagramId="776c583f8a6742ae941ed19b6e4976f7" Name="Diagram1" ZoomLevel="67">
         <EntityTypeShape EntityType="Model.ActionsForImprovingTheCourse" Width="1.5" PointX="9.75" PointY="20.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.AssessedCours" Width="1.5" PointX="7.5" PointY="21.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.AssessmentPlanforTheStudentLearningOutcomeTechnique" Width="1.5" PointX="5.25" PointY="20.625" IsExpanded="true" />
@@ -15,7 +15,7 @@
         <EntityTypeShape EntityType="Model.CourseAssessmentSurvay" Width="1.5" PointX="9.75" PointY="31.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.CourseCoordinator" Width="1.5" PointX="7.5" PointY="27.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.CourseTeachingStrategy" Width="1.5" PointX="12.75" PointY="28.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.CourseTextBook" Width="1.5" PointX="7.5" PointY="48.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CourseTextBook" Width="1.5" PointX="6.625" PointY="43.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Department" Width="1.5" PointX="3" PointY="29.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Faculty" Width="1.5" PointX="0.75" PointY="29.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.ineffectiveAssessmentStrategi" Width="1.5" PointX="9.75" PointY="35.375" IsExpanded="true" />
@@ -38,7 +38,6 @@
         <AssociationConnector Association="Model.FK_CLO_ToCourse" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_CourseAssessmentMapping_ToCLO" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Course_co" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_Course_Department" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Course_pre" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_CourseCoordinator_Coruse" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_CourseTeachingStrategies_ToCourse" ManuallyRouted="false" />
@@ -68,6 +67,10 @@
         <AssociationConnector Association="Model.PI_SLO" ManuallyRouted="false" />
         <AssociationConnector Association="Model.Schedule_CLO" ManuallyRouted="false" />
         <AssociationConnector Association="Model.SLO_PEO" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_DPT_ToLecturer" />
+        <AssociationConnector Association="Model.FK_Fac_Dean_ToLecturer" />
+        <AssociationConnector Association="Model.FK_Fac_ViceDean_ToLecturer" />
+        <AssociationConnector Association="Model.FK_Course_Department" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

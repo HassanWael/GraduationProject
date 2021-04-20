@@ -65,10 +65,10 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="DptID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DptID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Pre_requisite" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="Hours" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Hours" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Co_requisite" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="Designation" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="VclassURL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -79,12 +79,12 @@
     <NavigationProperty Name="CLOes" Relationship="Self.FK_CLO_ToCourse" FromRole="Course" ToRole="CLO" />
     <NavigationProperty Name="Course1" Relationship="Self.FK_Course_co" FromRole="Course" ToRole="Course1" />
     <NavigationProperty Name="Course2" Relationship="Self.FK_Course_co" FromRole="Course1" ToRole="Course" />
-    <NavigationProperty Name="Department" Relationship="Self.FK_Course_Department" FromRole="Course" ToRole="Department" />
     <NavigationProperty Name="Course11" Relationship="Self.FK_Course_pre" FromRole="Course" ToRole="Course1" />
     <NavigationProperty Name="Course3" Relationship="Self.FK_Course_pre" FromRole="Course1" ToRole="Course" />
     <NavigationProperty Name="CourseCoordinators" Relationship="Self.FK_CourseCoordinator_Coruse" FromRole="Course" ToRole="CourseCoordinator" />
     <NavigationProperty Name="CourseTeachingStrategies" Relationship="Self.FK_CourseTeachingStrategies_ToCourse" FromRole="Course" ToRole="CourseTeachingStrategies" />
     <NavigationProperty Name="CourseTextBooks" Relationship="Self.FK_CourseTestBook_course" FromRole="Course" ToRole="CourseTextBook" />
+    <NavigationProperty Name="Department" Relationship="Model.FK_Course_Department" FromRole="Course" ToRole="Department" />
   </EntityType>
   <EntityType Name="CourseAssessmentMapping">
     <Key>
@@ -182,11 +182,13 @@
     <Property Name="ID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="FacultyID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Courses" Relationship="Self.FK_Course_Department" FromRole="Department" ToRole="Course" />
     <NavigationProperty Name="PEOs" Relationship="Self.FK__PEO__DeptID__40C49C62" FromRole="Department" ToRole="PEO" />
     <NavigationProperty Name="Faculty" Relationship="Self.FK_Department_Faculty" FromRole="Department" ToRole="Faculty" />
     <NavigationProperty Name="Lecturers" Relationship="Self.FK_Lecturers_ToDpt" FromRole="Department" ToRole="Lecturers" />
     <NavigationProperty Name="Students" Relationship="Self.FK_Student_departement" FromRole="Department" ToRole="Student" />
+    <Property Name="HeadOFDepartment" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Lecturer" Relationship="Model.FK_DPT_ToLecturer" FromRole="Department" ToRole="Lecturer" />
+    <NavigationProperty Name="Courses" Relationship="Model.FK_Course_Department" FromRole="Department" ToRole="Course" />
   </EntityType>
   <EntityType Name="Faculty">
     <Key>
@@ -195,6 +197,10 @@
     <Property Name="ID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Departments" Relationship="Self.FK_Department_Faculty" FromRole="Faculty" ToRole="Department" />
+    <Property Name="Dean" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ViceDean" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Lecturer" Relationship="Model.FK_Fac_Dean_ToLecturer" FromRole="Faculty" ToRole="Lecturer" />
+    <NavigationProperty Name="Lecturer1" Relationship="Model.FK_Fac_ViceDean_ToLecturer" FromRole="Faculty" ToRole="Lecturer" />
   </EntityType>
   <EntityType Name="ineffectiveAssessmentStrategi">
     <Key>
@@ -234,6 +240,9 @@
     <NavigationProperty Name="CourseCoordinators" Relationship="Self.FK__CourseCoo__Corde__75F77EB0" FromRole="Lecturers" ToRole="CourseCoordinator" />
     <NavigationProperty Name="Department" Relationship="Self.FK_Lecturers_ToDpt" FromRole="Lecturers" ToRole="Department" />
     <NavigationProperty Name="OtherLecturers" Relationship="Self.FK_OtherLecturers_ToLecturer" FromRole="Lecturers" ToRole="OtherLecturers" />
+    <NavigationProperty Name="Departments" Relationship="Model.FK_DPT_ToLecturer" FromRole="Lecturer" ToRole="Department" />
+    <NavigationProperty Name="Faculties" Relationship="Model.FK_Fac_Dean_ToLecturer" FromRole="Lecturer" ToRole="Faculty" />
+    <NavigationProperty Name="Faculties1" Relationship="Model.FK_Fac_ViceDean_ToLecturer" FromRole="Lecturer" ToRole="Faculty" />
   </EntityType>
   <EntityType Name="ModerationChecklist">
     <Key>
@@ -450,18 +459,6 @@
       </Principal>
       <Dependent Role="Course1">
         <PropertyRef Name="Co_requisite" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Course_Department">
-    <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
-    <End Role="Course" Type="Self.Course" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Department">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Course">
-        <PropertyRef Name="DptID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -865,10 +862,6 @@
       <End Role="Course" EntitySet="Courses" />
       <End Role="Course1" EntitySet="Courses" />
     </AssociationSet>
-    <AssociationSet Name="FK_Course_Department" Association="Self.FK_Course_Department">
-      <End Role="Department" EntitySet="Departments" />
-      <End Role="Course" EntitySet="Courses" />
-    </AssociationSet>
     <AssociationSet Name="FK_Course_pre" Association="Self.FK_Course_pre">
       <End Role="Course" EntitySet="Courses" />
       <End Role="Course1" EntitySet="Courses" />
@@ -985,5 +978,69 @@
       <End Role="PEO" EntitySet="PEOs" />
       <End Role="SLO" EntitySet="SLOes" />
     </AssociationSet>
+    <AssociationSet Name="FK_DPT_ToLecturer" Association="Model.FK_DPT_ToLecturer">
+      <End Role="Lecturer" EntitySet="Lecturers" />
+      <End Role="Department" EntitySet="Departments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Fac_Dean_ToLecturer" Association="Model.FK_Fac_Dean_ToLecturer">
+      <End Role="Lecturer" EntitySet="Lecturers" />
+      <End Role="Faculty" EntitySet="Faculties" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Fac_ViceDean_ToLecturer" Association="Model.FK_Fac_ViceDean_ToLecturer">
+      <End Role="Lecturer" EntitySet="Lecturers" />
+      <End Role="Faculty" EntitySet="Faculties" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Course_Department" Association="Model.FK_Course_Department">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Course" EntitySet="Courses" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="FK_DPT_ToLecturer">
+    <End Type="Model.Lecturer" Role="Lecturer" Multiplicity="0..1" />
+    <End Type="Model.Department" Role="Department" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lecturer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Department">
+        <PropertyRef Name="HeadOFDepartment" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Fac_Dean_ToLecturer">
+    <End Type="Model.Lecturer" Role="Lecturer" Multiplicity="0..1" />
+    <End Type="Model.Faculty" Role="Faculty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lecturer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Faculty">
+        <PropertyRef Name="Dean" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Fac_ViceDean_ToLecturer">
+    <End Type="Model.Lecturer" Role="Lecturer" Multiplicity="0..1" />
+    <End Type="Model.Faculty" Role="Faculty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lecturer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Faculty">
+        <PropertyRef Name="Dean" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Course_Department">
+    <End Type="Model.Department" Role="Department" Multiplicity="1" />
+    <End Type="Model.Course" Role="Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Course">
+        <PropertyRef Name="DptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
