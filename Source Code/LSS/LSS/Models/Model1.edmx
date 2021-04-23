@@ -359,6 +359,14 @@
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="strategy" Type="nvarchar" MaxLength="255" />
         </EntityType>
+        <EntityType Name="YearAndSemester">
+          <Key>
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Semester" />
+          </Key>
+          <Property Name="Year" Type="date" Nullable="false" />
+          <Property Name="Semester" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <Association Name="FK__CourseCoo__Corde__75F77EB0">
           <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="1" />
           <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="*" />
@@ -978,6 +986,7 @@
           <EntitySet Name="Student-Course-Grade" EntityType="Self.Student-Course-Grade" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student-PI-Outcome" EntityType="Self.Student-PI-Outcome" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TeachingAndLearningStrategiesTechnique" EntityType="Self.TeachingAndLearningStrategiesTechnique" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YearAndSemester" EntityType="Self.YearAndSemester" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__CourseCoo__Corde__75F77EB0" Association="Self.FK__CourseCoo__Corde__75F77EB0">
             <End Role="Lecturers" EntitySet="Lecturers" />
             <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
@@ -2153,6 +2162,7 @@
             <End Role="Department" EntitySet="Departments" />
             <End Role="Course" EntitySet="Courses" />
           </AssociationSet>
+          <EntitySet Name="YearAndSemesters" EntityType="Model.YearAndSemester" />
         </EntityContainer>
         <Association Name="FK_DPT_ToLecturer">
           <End Type="Model.Lecturer" Role="Lecturer" Multiplicity="0..1" />
@@ -2202,6 +2212,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="YearAndSemester">
+          <Key>
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Semester" />
+          </Key>
+          <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Semester" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2545,6 +2563,14 @@
               <ScalarProperty Name="SLOID_" ColumnName="SLO" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="YearAndSemesters">
+            <EntityTypeMapping TypeName="Model.YearAndSemester">
+              <MappingFragment StoreEntitySet="YearAndSemester">
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

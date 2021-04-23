@@ -7,12 +7,14 @@ using System.Web.Mvc;
 using LSS.Models;
 namespace LSS.Controllers
 {
-    [Authorize(Roles ="Admin")]
+   // [Authorize(Roles ="Admin")]
     public class AdminController : Controller
     {
         LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
         // GET: Admin
-        //ToDO :Create Views For the Action Results
+        //ToDO :Create Index View for Admin.
+
+
         public ActionResult Index()
         {
             return View();
@@ -20,7 +22,7 @@ namespace LSS.Controllers
         public ActionResult CreateCourse()
         {
             return View();
-        }
+        } 
         [HttpPost]
         public ActionResult CreateCourse(Course course )
         {
@@ -70,22 +72,31 @@ namespace LSS.Controllers
         }
         public ActionResult EditDpt(String id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(404);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(404);
+                }
+                Department d = _DatabaseEntities.Departments.Find(id);
+                if (d == null)
+                {
+                    return new HttpStatusCodeResult(404);
+                }
+                else
+                {
+                    return View(d);
+                }
             }
-            Department d = _DatabaseEntities.Departments.Find(id);
-            if (d == null)
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 return new HttpStatusCodeResult(404);
-            }
-            else
-            {
-                return View(d);
+
             }
 
         }
-
+        [HttpPost]
         public ActionResult EditDpt(Department department)
         {
             _DatabaseEntities.Entry(department).State = EntityState.Modified;
@@ -109,6 +120,7 @@ namespace LSS.Controllers
                 return View(faculty);
             }
         }
+        [HttpPost]
         public ActionResult EditFaculty(Faculty faculty)
         {
             _DatabaseEntities.Entry(faculty).State = EntityState.Modified;

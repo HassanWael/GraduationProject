@@ -52,5 +52,6 @@ namespace LSS.Models
         public virtual DbSet<Student_Course_Grade> Student_Course_Grade { get; set; }
         public virtual DbSet<Student_PI_Outcome> Student_PI_Outcome { get; set; }
         public virtual DbSet<TeachingAndLearningStrategiesTechnique> TeachingAndLearningStrategiesTechniques { get; set; }
+        public virtual DbSet<YearAndSemester> YearAndSemesters { get; set; }
     }
 }
