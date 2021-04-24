@@ -106,9 +106,7 @@ C:\Users\hassa\OneDrive\Documents\GitHub\GgraduationProject\Source Code\LSS\LSS\
 C:\Users\hassa\OneDrive\Documents\GitHub\GgraduationProject\Source Code\LSS\LSS\bin\roslyn\VBCSCompiler.exe
 C:\Users\hassa\OneDrive\Documents\GitHub\GgraduationProject\Source Code\LSS\LSS\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\hassa\OneDrive\Documents\GitHub\GgraduationProject\Source Code\LSS\LSS\bin\Antlr3.Runtime.dll
-C:\Users\hassa\OneDrive\Documents\GitHub\GgraduationProject\Source Code\LSS\LSS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\hassa\OneDrive\Documents\GitHub\GgraduationProject\Source Code\LSS\LSS\bin\Microsoft.Web.Infrastructure.dll
-C:\Users\hassa\OneDrive\Documents\GitHub\GgraduationProject\Source Code\LSS\LSS\bin\Newtonsoft.Json.dll
 C:\Users\hassa\OneDrive\Documents\GitHub\GgraduationProject\Source Code\LSS\LSS\bin\System.Web.Helpers.dll
 C:\Users\hassa\OneDrive\Documents\GitHub\GgraduationProject\Source Code\LSS\LSS\bin\System.Web.Mvc.dll
 C:\Users\hassa\OneDrive\Documents\GitHub\GgraduationProject\Source Code\LSS\LSS\bin\System.Web.Optimization.dll
