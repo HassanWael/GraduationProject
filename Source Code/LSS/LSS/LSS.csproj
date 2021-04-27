@@ -2,6 +2,13 @@
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <PropertyGroup>
+    <SSDTUnitTestPath Condition="'$(SSDTUnitTestPath)' == ''">$(VsInstallRoot)\Common7\IDE\Extensions\Microsoft\SQLDB</SSDTUnitTestPath>
+    <TypeScriptToolsVersion>4.1</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SSDTPath Condition="'$(SSDTPath)' == ''">$(VsInstallRoot)\Common7\IDE\Extensions\Microsoft\SQLDB\DAC\130</SSDTPath>
+  </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -26,7 +33,6 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <TypeScriptToolsVersion>4.1</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -128,109 +134,111 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogedInController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\LSS_DB_Model\ActionsForImprovingTheCourse.cs">
-      <DependentUpon>LSS_Model.tt</DependentUpon>
+    <Compile Include="Models\ActionsForImprovingTheCourse.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LSS_DB_Model\AssessedCours.cs">
-      <DependentUpon>LSS_Model.tt</DependentUpon>
+    <Compile Include="Models\AssessedCours.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LSS_DB_Model\AssessmentPlanforTheStudentLearningOutcomeTechnique.cs">
-      <DependentUpon>LSS_Model.tt</DependentUpon>
+    <Compile Include="Models\AssessmentPlanforTheStudentLearningOutcomeTechnique.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LSS_DB_Model\byCompletingThisCourseStudentsAreAbleTo.cs">
-      <DependentUpon>LSS_Model.tt</DependentUpon>
+    <Compile Include="Models\byCompletingThisCourseStudentsAreAbleTo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LSS_DB_Model\CLO.cs">
-      <DependentUpon>LSS_Model.tt</DependentUpon>
+    <Compile Include="Models\CLO.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LSS_DB_Model\Course.cs">
-      <DependentUpon>LSS_Model.tt</DependentUpon>
+    <Compile Include="Models\Course.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LSS_DB_Model\CourseAssessmentMapping.cs">
-      <DependentUpon>LSS_Model.tt</DependentUpon>
+    <Compile Include="Models\CourseAssessmentMapping.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LSS_DB_Model\CourseAssessmentSurvay.cs">
-      <DependentUpon>LSS_Model.tt</DependentUpon>
+    <Compile Include="Models\CourseAssessmentSurvay.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LSS_DB_Model\CourseCoordinator.cs">
-      <DependentUpon>LSS_Model.tt</DependentUpon>
+    <Compile Include="Models\CourseCoordinator.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LSS_DB_Model\CourseTeachingStrategy.cs">
-      <DependentUpon>LSS_Model.tt</DependentUpon>
+    <Compile Include="Models\CourseTeachingStrategy.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LSS_DB_Model\CourseTextBook.cs">
-      <DependentUpon>LSS_Model.tt</DependentUpon>
+    <Compile Include="Models\CourseTextBook.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LSS_DB_Model\database_firewall_rules.cs">
-      <DependentUpon>LSS_Model.tt</DependentUpon>
+    <Compile Include="Models\Department.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LSS_DB_Model\Department.cs">
-      <DependentUpon>LSS_Model.tt</DependentUpon>
+    <Compile Include="Models\Faculty.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LSS_DB_Model\Faculty.cs">
-      <DependentUpon>LSS_Model.tt</DependentUpon>
+    <Compile Include="Models\ineffectiveAssessmentStrategi.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LSS_DB_Model\ineffectiveAssessmentStrategi.cs">
-      <DependentUpon>LSS_Model.tt</DependentUpon>
+    <Compile Include="Models\ineffectiveTeachingStrategi.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LSS_DB_Model\ineffectiveTeachingStrategi.cs">
-      <DependentUpon>LSS_Model.tt</DependentUpon>
+    <Compile Include="Models\Lecturer.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LSS_DB_Model\Lecturer.cs">
-      <DependentUpon>LSS_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LSS_DB_Model\LSS_Model.Context.cs">
+    <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LSS_Model.Context.tt</DependentUpon>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LSS_DB_Model\LSS_Model.cs">
+    <Compile Include="Models\Model1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LSS_Model.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LSS_DB_Model\LSS_Model.Designer.cs">
+    <Compile Include="Models\Model1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LSS_Model.edmx</DependentUpon>
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\LSS_DB_Model\ModerationChecklist.cs">
-      <DependentUpon>LSS_Model.tt</DependentUpon>
+    <Compile Include="Models\ModerationChecklist.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LSS_DB_Model\OtherLecturer.cs">
-      <DependentUpon>LSS_Model.tt</DependentUpon>
+    <Compile Include="Models\OtherLecturer.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LSS_DB_Model\PEO.cs">
-      <DependentUpon>LSS_Model.tt</DependentUpon>
+    <Compile Include="Models\PEO.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LSS_DB_Model\PI.cs">
-      <DependentUpon>LSS_Model.tt</DependentUpon>
+    <Compile Include="Models\PI.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LSS_DB_Model\ResultOfCourseDirectAssessment.cs">
-      <DependentUpon>LSS_Model.tt</DependentUpon>
+    <Compile Include="Models\ResultOfCourseDirectAssessment.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LSS_DB_Model\schedule.cs">
-      <DependentUpon>LSS_Model.tt</DependentUpon>
+    <Compile Include="Models\schedule.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LSS_DB_Model\SLO.cs">
-      <DependentUpon>LSS_Model.tt</DependentUpon>
+    <Compile Include="Models\SiteRole.cs" />
+    <Compile Include="Models\SLO.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LSS_DB_Model\Student.cs">
-      <DependentUpon>LSS_Model.tt</DependentUpon>
+    <Compile Include="Models\Student.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LSS_DB_Model\Student_Course_Grade.cs">
-      <DependentUpon>LSS_Model.tt</DependentUpon>
+    <Compile Include="Models\Student_Course_Grade.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LSS_DB_Model\Student_PI_Outcome.cs">
-      <DependentUpon>LSS_Model.tt</DependentUpon>
+    <Compile Include="Models\Student_PI_Outcome.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LSS_DB_Model\TeachingAndLearningStrategiesTechnique.cs">
-      <DependentUpon>LSS_Model.tt</DependentUpon>
+    <Compile Include="Models\TeachingAndLearningStrategiesTechnique.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YearAndSemester.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -243,6 +251,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\coursepage.css" />
     <Content Include="Content\HomePage.css" />
+    <Content Include="Content\LoginCSS.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -250,22 +259,22 @@
     <Content Include="Images\analysis.png" />
     <Content Include="Images\notebook.png" />
     <Content Include="Images\studying.png" />
-    <Content Include="Models\LSS_DB_Model\LSS_Model.Context.tt">
+    <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>LSS_Model.Context.cs</LastGenOutput>
-      <DependentUpon>LSS_Model.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\LSS_DB_Model\LSS_Model.tt">
+    <Content Include="Models\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LSS_Model.edmx</DependentUpon>
-      <LastGenOutput>LSS_Model.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-    <EntityDeploy Include="Models\LSS_DB_Model\LSS_Model.edmx">
+    <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>LSS_Model.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\LSS_DB_Model\LSS_Model.edmx.diagram">
-      <DependentUpon>LSS_Model.edmx</DependentUpon>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -383,7 +392,19 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\LogedIn\CouresPage.cshtml" />
+    <Content Include="Views\LogedIn\Index.cshtml" />
+    <Content Include="Views\Admin\CreatUser.cshtml" />
+    <Content Include="Views\Admin\CreateCourse.cshtml" />
+    <Content Include="Views\Admin\CreatDpt.cshtml" />
+    <Content Include="Views\Admin\CreatFaculty.cshtml" />
+    <Content Include="Views\Admin\EditDpt.cshtml" />
+    <Content Include="Views\Admin\EditFaculty.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.js.flow" />
@@ -394,10 +415,10 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\LogedIn\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\CourseFlolder\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -407,6 +428,20 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup Condition="$(VisualStudioVersion) == '16.0'">
+    <Reference Include="Microsoft.Data.Tools.Schema.Sql, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>$(SSDTPath)\Microsoft.Data.Tools.Schema.Sql.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.Tools.Schema.Sql.UnitTesting, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>$(SSDTUnitTestPath)\Microsoft.Data.Tools.Schema.Sql.UnitTesting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.Tools.Schema.Sql.UnitTestingAdapter, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>$(SSDTUnitTestPath)\Microsoft.Data.Tools.Schema.Sql.UnitTestingAdapter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
@@ -440,6 +475,11 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <PropertyGroup>
+    <SsdtUnitTestVersion>3.1</SsdtUnitTestVersion>
+  </PropertyGroup>
+  <Import Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="$(VisualStudioVersion) != '15.0' And '$(SQLDBExtensionsRefPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="$(VisualStudioVersion) != '15.0' And '$(SQLDBExtensionsRefPath)' == ''" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>

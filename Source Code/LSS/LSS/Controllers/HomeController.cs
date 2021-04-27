@@ -1,55 +1,70 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Web;
 using System.Web.Mvc;
-using LSS.Models.LSS_DB_Model;
+using System.Web.Security;
+using LSS.Models;
 
 namespace LSS.Controllers
 {
     public class HomeController : Controller
     {
-        public LSS_databaseEntities _dbEntities = new LSS_databaseEntities(); 
+        private readonly LSS_databaseEntities _databaseEntities = new LSS_databaseEntities();
+        public ActionResult Index()
+        {
+            return View();
+        }
 
         public ActionResult Login()
         {
-            if (Session["ID"] == null)
-            {
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Index", "LogedInController");
-            }
+            return View();
         }
-
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Login(String ID , String password)
+        public ActionResult Login(Lecturer user, String ReturnUrl)
         {
             if (ModelState.IsValid)
             {
-                var data = _dbEntities.Lecturers.Where(s => s.ID.Equals(ID) && s.Password.Equals(password)).ToList();
-                if (data.Count > 0)
+                Lecturer ValidUser = _databaseEntities.Lecturers.SingleOrDefault(lecturer => lecturer.ID.Equals(user.ID) && lecturer.Password.Equals(user.Password));
+                if (ValidUser != null)
                 {
-                    
-                    Session["Name"] = data.FirstOrDefault().Name;
-                    Session["ID"] = data.FirstOrDefault().ID;
-                    Session["Role"]=data.FirstOrDefault().Role;
-                    Session["Dpt"] = data.FirstOrDefault().DptID;
-                    return RedirectToAction("Index", "LogedIn");
+                    FormsAuthentication.SetAuthCookie(ValidUser.ID, false);
+                    if (Url.IsLocalUrl(ReturnUrl))
+                    {
+                        return Redirect(ReturnUrl);
+
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "LogedIn");
+                    }
                 }
                 else
                 {
-                    ViewBag.error = "Login Failed";
-                    return RedirectToAction("Login");
+                    ModelState.AddModelError("", "Invalid ID or Password, try Again ");
+                    return View();
                 }
             }
+            else
+            {
+                return View();
+            }
 
+        }
+
+        public ActionResult About()
+        {
+            ViewBag.Message = "Your application description page.";
 
             return View();
         }
+
+        public ActionResult Contact()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
     }
 }
