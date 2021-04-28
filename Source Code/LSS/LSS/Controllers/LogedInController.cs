@@ -24,7 +24,7 @@ namespace LSS.Controllers
         /// <returns>
         /// the View Index with the Dynamic model that contain all the coureses that user should have access to 
         /// </returns>
-        [Authorize]
+       // [Authorize]
         // GET: LogedIn
         public ActionResult Index()
         {

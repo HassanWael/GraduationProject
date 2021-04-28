@@ -20,6 +20,7 @@ namespace LSS.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult Login(Lecturer user, String ReturnUrl)
         {
@@ -31,11 +32,17 @@ namespace LSS.Controllers
                     FormsAuthentication.SetAuthCookie(ValidUser.ID, false);
                     if (Url.IsLocalUrl(ReturnUrl))
                     {
+                        Session["ID"] = ValidUser.ID;
+                        Session["Role"] = ValidUser.Role;
+                        Session["Dpt"] = ValidUser.Department;
                         return Redirect(ReturnUrl);
 
                     }
                     else
                     {
+                        Session["ID"] = ValidUser.ID;
+                        Session["Role"] = ValidUser.Role;
+                        Session["Dpt"] = ValidUser.Department;
                         return RedirectToAction("Index", "LogedIn");
                     }
                 }

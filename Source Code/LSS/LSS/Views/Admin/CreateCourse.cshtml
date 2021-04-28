@@ -1,4 +1,6 @@
 ﻿@model LSS.Models.Course
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
 
 @{
     ViewBag.Title = "CreateCourse";
@@ -7,10 +9,10 @@
 
 <h2>CreateCourse</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Course</h4>
         <hr />

@@ -1,5 +1,8 @@
-﻿@model LSS.Models.Department
+﻿
 
+@model LSS.Models.Department
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
 @{
     ViewBag.Title = "CreatDpt";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,10 +10,10 @@
 
 <h2>CreatDpt</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Department</h4>
         <hr />

@@ -1,5 +1,7 @@
 ﻿@using LSS.Models ;
 @model dynamic
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
 
 @{
     ViewBag.Title = "Index";
@@ -17,11 +19,11 @@
             <li>@Model.Title</li>
             }
         </ul>
-            }
-            else
-            {
-                <h2> no courses has been added yet</h2>
-            }
+    }
+    else
+    {
+        <h2> no courses has been added yet</h2>
+    }
 
 </div>
 

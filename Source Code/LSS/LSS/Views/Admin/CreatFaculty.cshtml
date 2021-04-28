@@ -1,5 +1,6 @@
 ﻿@model LSS.Models.Faculty
-
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
 @{
     ViewBag.Title = "CreatFaculty";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,10 +8,10 @@
 
 <h2>CreatFaculty</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Faculty</h4>
         <hr />
