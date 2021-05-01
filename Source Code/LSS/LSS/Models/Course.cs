@@ -45,6 +45,7 @@ namespace LSS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Course> Course1 { get; set; }
         public virtual Course Course2 { get; set; }
+        public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Course> Course11 { get; set; }
         public virtual Course Course3 { get; set; }
@@ -54,6 +55,5 @@ namespace LSS.Models
         public virtual ICollection<CourseTeachingStrategy> CourseTeachingStrategies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseTextBook> CourseTextBooks { get; set; }
-        public virtual Department Department { get; set; }
     }
 }

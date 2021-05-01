@@ -20,6 +20,7 @@ namespace LSS.Models
         public int AssessmentID { get; set; }
         public int CLO { get; set; }
         public string SLO { get; set; }
+        public string DeptID { get; set; }
     
         public virtual CLO CLO1 { get; set; }
         public virtual CourseCoordinator CourseCoordinator { get; set; }

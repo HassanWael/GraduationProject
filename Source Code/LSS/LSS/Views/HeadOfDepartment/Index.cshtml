@@ -38,8 +38,47 @@
 
         </dl>
     </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
+
+    <div>
+        <h2>
+            Program Educational Opjectives (PEO)
+        </h2>
+
+
+
+    </div>
+    @*@Html.ActionLink("View Program Educational Objectives (PEO)", "ViewPEO", new { id = Model.ID }) |*@
+    <div id="addPEO" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                @{
+                    Html.RenderPartial("AddPEO");
+
+                }
+            </div>
+        </div>
+    </div>
+    <button id='open' data-toggle="modal" data-target="#addPEO">open modal</button>
+
+    <div >
+        <h2>Student Learning Outcome (SLO)</h2>
+    </div>
+
+    <div id="addSLO" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                @{
+                    Html.RenderPartial("AddSLO");
+
+                }
+            </div>
+        </div>
+    </div>
+    <button id='open' data-toggle="modal" data-target="#addSLO">open modal</button>
+
+    <div>
+        <<h2>PEO-SLO</h2>
+        @{ Html.RenderPartial("ViewName", Model.ID); }
+
+    </div>
 </body>

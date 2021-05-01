@@ -28,7 +28,6 @@ namespace LSS.Controllers
         {
             _DatabaseEntities.Courses.Add(course);
             _DatabaseEntities.SaveChanges();
-
             return RedirectToAction("Index");
         }
 

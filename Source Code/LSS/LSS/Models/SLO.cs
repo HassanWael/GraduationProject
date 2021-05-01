@@ -18,18 +18,19 @@ namespace LSS.Models
         public SLO()
         {
             this.CourseAssessmentMappings = new HashSet<CourseAssessmentMapping>();
+            this.SLO_PEO = new HashSet<SLO_PEO>();
             this.PIs = new HashSet<PI>();
-            this.PEOs = new HashSet<PEO>();
         }
     
-        public string SLOID_ { get; set; }
+        public string SLOID { get; set; }
         public string Desc { get; set; }
+        public string DeptID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseAssessmentMapping> CourseAssessmentMappings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PI> PIs { get; set; }
+        public virtual ICollection<SLO_PEO> SLO_PEO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PEO> PEOs { get; set; }
+        public virtual ICollection<PI> PIs { get; set; }
     }
 }

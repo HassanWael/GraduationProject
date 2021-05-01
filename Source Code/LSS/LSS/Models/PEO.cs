@@ -17,7 +17,7 @@ namespace LSS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PEO()
         {
-            this.SLOes = new HashSet<SLO>();
+            this.SLO_PEO = new HashSet<SLO_PEO>();
         }
     
         public string ID { get; set; }
@@ -26,6 +26,6 @@ namespace LSS.Models
     
         public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SLO> SLOes { get; set; }
+        public virtual ICollection<SLO_PEO> SLO_PEO { get; set; }
     }
 }

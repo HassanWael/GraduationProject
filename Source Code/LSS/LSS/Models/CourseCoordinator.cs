@@ -44,6 +44,10 @@ namespace LSS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseAssessmentSurvay> CourseAssessmentSurvays { get; set; }
         public virtual Lecturer Lecturer { get; set; }
+        public virtual CourseFileCheckList CourseFileCheckList { get; set; }
+        public virtual CourseInformationForm CourseInformationForm { get; set; }
+        public virtual CourseReport CourseReport { get; set; }
+        public virtual CourseSyllabu CourseSyllabu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseTeachingStrategy> CourseTeachingStrategies { get; set; }
         public virtual ineffectiveAssessmentStrategi ineffectiveAssessmentStrategi { get; set; }
