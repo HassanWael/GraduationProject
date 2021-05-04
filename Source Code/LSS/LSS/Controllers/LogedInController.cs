@@ -15,7 +15,7 @@ namespace LSS.Controllers
         public ActionResult CouresPage()
         {
 
-            ViewBag.Message = " Coures view Page";
+            ViewBag.Message = "Coures view Page";
             return View();
         }
         /// <summary>
@@ -31,6 +31,7 @@ namespace LSS.Controllers
             String userID = Session["ID"].ToString();
             String role = Session["Role"].ToString();
             String dpt = Session["Dpt"].ToString();
+
             //dynamic model (Workaround the fact that I cant pass more than one Model or list)
             dynamic myModel = new ExpandoObject();
             // after initializing the dynamic object we create a lists 
