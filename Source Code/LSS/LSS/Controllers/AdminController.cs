@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using LSS.Models;
 namespace LSS.Controllers
 {
-   [Authorize(Roles ="Admin")]
+   // [Authorize(Roles ="Admin")]
     public class AdminController : Controller
     {
         LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
@@ -23,7 +23,6 @@ namespace LSS.Controllers
         {
             return View();
         } 
-
         [HttpPost]
         public ActionResult CreateCourse(Course course )
         {
@@ -70,7 +69,6 @@ namespace LSS.Controllers
             _DatabaseEntities.SaveChanges();
             return View();
         }
-
         public ActionResult EditDpt(String id)
         {
             try
@@ -93,7 +91,9 @@ namespace LSS.Controllers
             {
                 Console.WriteLine(e.Message);
                 return new HttpStatusCodeResult(404);
+
             }
+
         }
         [HttpPost]
         public ActionResult EditDpt(Department department)

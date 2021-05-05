@@ -317,7 +317,6 @@
           <Key>
             <PropertyRef Name="PI_ID" />
             <PropertyRef Name="SLOID" />
-            <PropertyRef Name="DeptID" />
           </Key>
           <Property Name="PI_ID" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="SLOID" Type="nvarchar" MaxLength="255" Nullable="false" />
