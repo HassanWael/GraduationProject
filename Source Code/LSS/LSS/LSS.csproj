@@ -120,6 +120,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\FormsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogedInController.cs" />
     <Compile Include="Global.asax.cs">
@@ -160,9 +161,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\AAU_logo.PNG" />
     <Content Include="Images\Al-Ahliya_Amman_University_Logo.png" />
     <Content Include="Images\analysis.png" />
+    <Content Include="Images\Certified.PNG" />
     <Content Include="Images\notebook.png" />
+    <Content Include="Images\Quality.PNG" />
+    <Content Include="Images\R.PNG" />
+    <Content Include="Images\Risk.PNG" />
     <Content Include="Images\studying.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -193,6 +199,14 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\CouresPage.cshtml" />
+    <Content Include="Views\Forms\CourseAssessmentSurvey.cshtml" />
+    <Content Include="Views\Forms\CourseFileChecklist.cshtml" />
+    <Content Include="Views\Forms\CourseInformationForm.cshtml" />
+    <Content Include="Views\Forms\CourseReport.cshtml" />
+    <Content Include="Views\Forms\CourseSyllabus.cshtml" />
+    <Content Include="Views\Forms\ExamEvaluation.cshtml" />
+    <Content Include="Views\Forms\ExamModerationChecklist.cshtml" />
+    <Content Include="Views\Forms\QuestionsAnswersSheet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
