@@ -1,0 +1,53 @@
+﻿@using LSS.Models 
+@model dynamic
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div id="Coordinated_Courses" class="Course_ShowCase">
+
+    @if (Model.DptCourses != null)
+    {<ul>
+            foreach (Course c in Model.coordinator)
+            {
+            <li>@Model.Title</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <h2> no courses has been added yet</h2>
+    }
+
+</div>
+
+
+@if (Model.DptCourses != null)
+{
+    <div id="dptCdourses" class="Course_ShowCase">
+        <ul>
+            @foreach (Course c in Model.DptCourses)
+            {
+                <li>@Model.Title</li>
+            }
+        </ul>
+    </div>
+}
+
+@if (Model.FacultyCourses != null)
+{
+    <div id="dptCdourses" class="Course_ShowCase">
+        <ul>
+            @foreach (Course c in Model.FacultyCourses)
+            {
+                <li>@Model.Title</li>
+            }
+        </ul>
+    </div>
+}
