@@ -135,6 +135,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\FormsController.cs" />
     <Compile Include="Controllers\HeadOfDepartmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogedInController.cs" />
@@ -438,6 +439,14 @@
     <Content Include="Views\HeadOfDepartment\AddSLO.cshtml" />
     <Content Include="Views\HeadOfDepartment\_PEO_SLO_Mapping.cshtml" />
     <Content Include="Views\HeadOfDepartment\_ViewUnmappedPEO.cshtml" />
+    <Content Include="Views\Forms\CourseAssessmentSurvey.cshtml" />
+    <Content Include="Views\Forms\CourseFileChecklist.cshtml" />
+    <Content Include="Views\Forms\CourseInformationForm.cshtml" />
+    <Content Include="Views\Forms\CourseReport.cshtml" />
+    <Content Include="Views\Forms\CourseSyllabus.cshtml" />
+    <Content Include="Views\Forms\ExamEvaluation.cshtml" />
+    <Content Include="Views\Forms\ExamModerationChecklist.cshtml" />
+    <Content Include="Views\Forms\QuestionsAnswersSheet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
