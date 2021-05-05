@@ -23,7 +23,7 @@ namespace LSS.Controllers
         {
             return View();
         }
-       
+
         public ActionResult CourseInformationForm()
         {
             return View();
@@ -48,7 +48,7 @@ namespace LSS.Controllers
         {
             return View();
         }
-        
+
              public ActionResult QuestionsAnswersSheet()
         {
             return View();
