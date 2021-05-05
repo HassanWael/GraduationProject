@@ -135,6 +135,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\FormsController.cs" />
     <Compile Include="Controllers\HeadOfDepartmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -269,6 +270,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\coursepage.css" />
+    <Content Include="Content\FormsStyle.css" />
     <Content Include="Content\HomePage.css" />
     <Content Include="Content\LoginCSS.css" />
     <Content Include="favicon.ico" />
@@ -451,6 +453,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\CourseFlolder\" />
+    <Folder Include="Views\Courses\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
