@@ -63,5 +63,6 @@ namespace LSS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AssessmentPlanforTheStudentLearningOutcomeTechnique> AssessmentPlanforTheStudentLearningOutcomeTechniques { get; set; }
         public virtual Course Course { get; set; }
+        public virtual YearAndSemester YearAndSemester { get; set; }
     }
 }
