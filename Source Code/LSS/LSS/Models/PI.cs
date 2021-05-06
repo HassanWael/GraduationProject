@@ -19,6 +19,7 @@ namespace LSS.Models
         {
             this.CLOes = new HashSet<CLO>();
             this.SLOes = new HashSet<SLO>();
+            this.Courses = new HashSet<Course>();
         }
     
         public string ID { get; set; }
@@ -28,5 +29,7 @@ namespace LSS.Models
         public virtual ICollection<CLO> CLOes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SLO> SLOes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Course> Courses { get; set; }
     }
 }

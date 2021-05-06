@@ -17,6 +17,8 @@
     <EntitySetMapping Name="AssessedCourses">
       <EntityTypeMapping TypeName="Model.AssessedCours">
         <MappingFragment StoreEntitySet="AssessedCourses">
+          <ScalarProperty Name="WhyNot" ColumnName="WhyNot" />
+          <ScalarProperty Name="IsAssessed" ColumnName="IsAssessed" />
           <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
@@ -49,23 +51,6 @@
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Course" ColumnName="Course" />
           <ScalarProperty Name="Description" ColumnName="Description" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Courses">
-      <EntityTypeMapping TypeName="Model.Course">
-        <MappingFragment StoreEntitySet="Course">
-          <ScalarProperty Name="Other_Required_Material" ColumnName="Other Required Material" />
-          <ScalarProperty Name="Other_Online_resources" ColumnName="Other Online resources" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="VclassURL" ColumnName="VclassURL" />
-          <ScalarProperty Name="Designation" ColumnName="Designation" />
-          <ScalarProperty Name="Co_requisite" ColumnName="Co-requisite" />
-          <ScalarProperty Name="Hours" ColumnName="Hours" />
-          <ScalarProperty Name="Pre_requisite" ColumnName="Pre-requisite" />
-          <ScalarProperty Name="DptID" ColumnName="DptID" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -399,6 +384,40 @@
       </EndProperty>
       <EndProperty Name="CLO">
         <ScalarProperty Name="ID" ColumnName="CLO" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="Courses">
+      <EntityTypeMapping TypeName="Model.Course">
+        <MappingFragment StoreEntitySet="Course">
+          <ScalarProperty Name="Other_Required_Material" ColumnName="Other Required Material" />
+          <ScalarProperty Name="Other_Online_resources" ColumnName="Other Online resources" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="VclassURL" ColumnName="VclassURL" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="Co_requisite" ColumnName="Co-requisite" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="Pre_requisite" ColumnName="Pre-requisite" />
+          <ScalarProperty Name="DptID" ColumnName="DptID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Course_PI" TypeName="Model.Course_PI" StoreEntitySet="Course-PI">
+      <EndProperty Name="PI">
+        <ScalarProperty Name="ID" ColumnName="PI" />
+      </EndProperty>
+      <EndProperty Name="Course">
+        <ScalarProperty Name="ID" ColumnName="CourseID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Course_SLO" TypeName="Model.Course_SLO" StoreEntitySet="Course-SLO">
+      <EndProperty Name="SLO">
+        <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+        <ScalarProperty Name="SLOID" ColumnName="SLOID" />
+      </EndProperty>
+      <EndProperty Name="Course">
+        <ScalarProperty Name="ID" ColumnName="CourseID" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

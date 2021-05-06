@@ -30,7 +30,6 @@ namespace LSS.Models
         public virtual DbSet<AssessmentPlanforTheStudentLearningOutcomeTechnique> AssessmentPlanforTheStudentLearningOutcomeTechniques { get; set; }
         public virtual DbSet<byCompletingThisCourseStudentsAreAbleTo> byCompletingThisCourseStudentsAreAbleToes { get; set; }
         public virtual DbSet<CLO> CLOes { get; set; }
-        public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<CourseAssessmentMapping> CourseAssessmentMappings { get; set; }
         public virtual DbSet<CourseAssessmentSurvay> CourseAssessmentSurvays { get; set; }
         public virtual DbSet<CourseCoordinator> CourseCoordinators { get; set; }
@@ -58,5 +57,6 @@ namespace LSS.Models
         public virtual DbSet<Student_PI_Outcome> Student_PI_Outcome { get; set; }
         public virtual DbSet<TeachingAndLearningStrategiesTechnique> TeachingAndLearningStrategiesTechniques { get; set; }
         public virtual DbSet<YearAndSemester> YearAndSemesters { get; set; }
+        public virtual DbSet<Course> Courses { get; set; }
     }
 }

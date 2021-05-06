@@ -135,6 +135,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CoursesController.cs" />
+    <Compile Include="Controllers\FormsController.cs" />
     <Compile Include="Controllers\HeadOfDepartmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogedInController.cs" />
@@ -177,6 +179,7 @@
     <Compile Include="Models\CourseReport.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CoursesModelView\CIFModelView.cs" />
     <Compile Include="Models\CourseSyllabu.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -268,6 +271,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\coursepage.css" />
+    <Content Include="Content\FormsStyle.css" />
     <Content Include="Content\HomePage.css" />
     <Content Include="Content\LoginCSS.css" />
     <Content Include="favicon.ico" />
@@ -414,7 +418,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\LogedIn\CouresPage.cshtml" />
+    <Content Include="Views\Courses\CouresPage.cshtml" />
     <Content Include="Views\LogedIn\Index.cshtml" />
     <Content Include="Views\Admin\CreatUser.cshtml" />
     <Content Include="Views\Admin\CreateCourse.cshtml" />
@@ -438,6 +442,14 @@
     <Content Include="Views\HeadOfDepartment\AddSLO.cshtml" />
     <Content Include="Views\HeadOfDepartment\_PEO_SLO_Mapping.cshtml" />
     <Content Include="Views\HeadOfDepartment\_ViewUnmappedPEO.cshtml" />
+    <Content Include="Views\Forms\CourseAssessmentSurvey.cshtml" />
+    <Content Include="Views\Forms\CourseFileChecklist.cshtml" />
+    <Content Include="Views\Forms\CourseInformationForm.cshtml" />
+    <Content Include="Views\Forms\CourseReport.cshtml" />
+    <Content Include="Views\Forms\CourseSyllabus.cshtml" />
+    <Content Include="Views\Forms\ExamEvaluation.cshtml" />
+    <Content Include="Views\Forms\ExamModerationChecklist.cshtml" />
+    <Content Include="Views\Forms\QuestionsAnswersSheet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

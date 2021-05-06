@@ -11,13 +11,7 @@ namespace LSS.Controllers
     public class LogedInController : Controller
     {
        private readonly LSS_databaseEntities _databaseEntities = new LSS_databaseEntities();
-        
-        public ActionResult CouresPage()
-        {
 
-            ViewBag.Message = " Coures view Page";
-            return View();
-        }
         /// <summary>
         /// Once the User login this is the home page where he will use to navigate 
         /// </summary>
@@ -31,6 +25,7 @@ namespace LSS.Controllers
             String userID = Session["ID"].ToString();
             String role = Session["Role"].ToString();
             String dpt = Session["Dpt"].ToString();
+
             //dynamic model (Workaround the fact that I cant pass more than one Model or list)
             dynamic myModel = new ExpandoObject();
             // after initializing the dynamic object we create a lists 

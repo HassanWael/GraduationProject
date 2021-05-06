@@ -24,6 +24,8 @@ namespace LSS.Models
             this.CourseCoordinators = new HashSet<CourseCoordinator>();
             this.CourseTeachingStrategies = new HashSet<CourseTeachingStrategy>();
             this.CourseTextBooks = new HashSet<CourseTextBook>();
+            this.PIs = new HashSet<PI>();
+            this.SLOes = new HashSet<SLO>();
         }
     
         public string ID { get; set; }
@@ -55,5 +57,9 @@ namespace LSS.Models
         public virtual ICollection<CourseTeachingStrategy> CourseTeachingStrategies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseTextBook> CourseTextBooks { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PI> PIs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SLO> SLOes { get; set; }
     }
 }
