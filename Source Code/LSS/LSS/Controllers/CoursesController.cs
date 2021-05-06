@@ -9,9 +9,18 @@ namespace LSS.Controllers
     public class CoursesController : Controller
     {
         // GET: Courses
-        public ActionResult Index()
+        public ActionResult CouresPage()
+        {
+
+            ViewBag.Message = "Coures view Page";
+            return View();
+        }
+
+
+        public ActionResult CreateCourseInformationForm()
         {
             return View();
         }
+
     }
 }

@@ -179,6 +179,7 @@
     <Compile Include="Models\CourseReport.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CoursesModelView\CIFModelView.cs" />
     <Compile Include="Models\CourseSyllabu.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -417,7 +418,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\LogedIn\CouresPage.cshtml" />
+    <Content Include="Views\Courses\CouresPage.cshtml" />
     <Content Include="Views\LogedIn\Index.cshtml" />
     <Content Include="Views\Admin\CreatUser.cshtml" />
     <Content Include="Views\Admin\CreateCourse.cshtml" />
@@ -453,7 +454,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\CourseFlolder\" />
-    <Folder Include="Views\Courses\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

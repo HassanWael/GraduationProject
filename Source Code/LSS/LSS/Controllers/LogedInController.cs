@@ -11,13 +11,7 @@ namespace LSS.Controllers
     public class LogedInController : Controller
     {
        private readonly LSS_databaseEntities _databaseEntities = new LSS_databaseEntities();
-        
-        public ActionResult CouresPage()
-        {
 
-            ViewBag.Message = "Coures view Page";
-            return View();
-        }
         /// <summary>
         /// Once the User login this is the home page where he will use to navigate 
         /// </summary>
