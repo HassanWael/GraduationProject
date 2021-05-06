@@ -112,6 +112,7 @@
           <Property Name="Year" Type="date" Nullable="false" />
           <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="AssessmetnID" Type="int" Nullable="false" />
+          <Property Name="identify" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="CourseAssessmentSurvay">
           <Key>
@@ -449,7 +450,7 @@
             <PropertyRef Name="Semester" />
           </Key>
           <Property Name="Year" Type="date" Nullable="false" />
-          <Property Name="Semester" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Semester" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK__CourseCoo__Corde__75F77EB0">
           <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="1" />
@@ -686,6 +687,20 @@
             </Principal>
             <Dependent Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseCoordinator_YearAndSemester">
+          <End Role="YearAndSemester" Type="Self.YearAndSemester" Multiplicity="1" />
+          <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="YearAndSemester">
+              <PropertyRef Name="Semester" />
+              <PropertyRef Name="Year" />
+            </Principal>
+            <Dependent Role="CourseCoordinator">
+              <PropertyRef Name="Semseter" />
+              <PropertyRef Name="Year" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1271,6 +1286,10 @@
             <End Role="Course" EntitySet="Course" />
             <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
           </AssociationSet>
+          <AssociationSet Name="FK_CourseCoordinator_YearAndSemester" Association="Self.FK_CourseCoordinator_YearAndSemester">
+            <End Role="YearAndSemester" EntitySet="YearAndSemester" />
+            <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+          </AssociationSet>
           <AssociationSet Name="FK_CourseFileCheckList_ToCourseCoordinator" Association="Self.FK_CourseFileCheckList_ToCourseCoordinator">
             <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
             <End Role="CourseFileCheckList" EntitySet="CourseFileCheckList" />
@@ -1630,6 +1649,10 @@
             <End Role="Course" EntitySet="Courses" />
             <End Role="SLO" EntitySet="SLOes" />
           </AssociationSet>
+          <AssociationSet Name="FK_CourseCoordinator_YearAndSemester" Association="Model.FK_CourseCoordinator_YearAndSemester">
+            <End Role="YearAndSemester" EntitySet="YearAndSemesters" />
+            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ActionsForImprovingTheCourse">
           <Key>
@@ -1760,6 +1783,7 @@
           <NavigationProperty Name="Student_Course_Grade" Relationship="Model.FK_Student_Course_Grade_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="Student_Course_Grade" />
           <NavigationProperty Name="AssessmentPlanforTheStudentLearningOutcomeTechniques" Relationship="Model.CourseAssessmentPlan" FromRole="CourseCoordinator" ToRole="AssessmentPlanforTheStudentLearningOutcomeTechnique" />
           <NavigationProperty Name="Course" Relationship="Model.FK_CourseCoordinator_Coruse" FromRole="CourseCoordinator" ToRole="Course" />
+          <NavigationProperty Name="YearAndSemester" Relationship="Model.FK_CourseCoordinator_YearAndSemester" FromRole="CourseCoordinator" ToRole="YearAndSemester" />
         </EntityType>
         <EntityType Name="CourseFileCheckList">
           <Key>
@@ -2077,7 +2101,8 @@
             <PropertyRef Name="Semester" />
           </Key>
           <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Semester" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Semester" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CourseCoordinators" Relationship="Model.FK_CourseCoordinator_YearAndSemester" FromRole="YearAndSemester" ToRole="CourseCoordinator" />
         </EntityType>
         <Association Name="FK_ActionsForImprovingTheCourse_ToCourseCoordinator">
           <End Type="Model.CourseCoordinator" Role="CourseCoordinator" Multiplicity="1" />
@@ -2680,6 +2705,20 @@
         <Association Name="Course_SLO">
           <End Type="Model.Course" Role="Course" Multiplicity="*" />
           <End Type="Model.SLO" Role="SLO" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_CourseCoordinator_YearAndSemester">
+          <End Type="Model.YearAndSemester" Role="YearAndSemester" Multiplicity="1" />
+          <End Type="Model.CourseCoordinator" Role="CourseCoordinator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="YearAndSemester">
+              <PropertyRef Name="Semester" />
+              <PropertyRef Name="Year" />
+            </Principal>
+            <Dependent Role="CourseCoordinator">
+              <PropertyRef Name="Semseter" />
+              <PropertyRef Name="Year" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         </Schema>
     </edmx:ConceptualModels>
