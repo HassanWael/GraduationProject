@@ -4,92 +4,85 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="776c583f8a6742ae941ed19b6e4976f7" Name="Diagram1" ZoomLevel="94">
-        <EntityTypeShape EntityType="Model.ActionsForImprovingTheCourse" Width="1.5" PointX="5.25" PointY="40.75" />
-        <EntityTypeShape EntityType="Model.AssessedCours" Width="1.5" PointX="3" PointY="38.75" />
-        <EntityTypeShape EntityType="Model.AssessmentPlanforTheStudentLearningOutcomeTechnique" Width="2.125" PointX="0.5" PointY="27.25" />
-        <EntityTypeShape EntityType="Model.byCompletingThisCourseStudentsAreAbleTo" Width="1.5" PointX="5.25" PointY="18.25" />
-        <EntityTypeShape EntityType="Model.CLO" Width="1.5" PointX="6" PointY="36" />
-        <EntityTypeShape EntityType="Model.CourseAssessmentMapping" Width="1.5" PointX="8.25" PointY="26.625" />
-        <EntityTypeShape EntityType="Model.CourseAssessmentSurvay" Width="1.5" PointX="5.25" PointY="49.5" />
-        <EntityTypeShape EntityType="Model.CourseCoordinator" Width="1.5" PointX="3" PointY="25" />
-        <EntityTypeShape EntityType="Model.CourseFileCheckList" Width="1.5" PointX="5.25" PointY="14.875" />
-        <EntityTypeShape EntityType="Model.CourseInformationForm" Width="1.5" PointX="5.25" PointY="58.625" />
-        <EntityTypeShape EntityType="Model.CourseReport" Width="1.5" PointX="5.25" PointY="11.625" />
-        <EntityTypeShape EntityType="Model.CourseSyllabu" Width="1.5" PointX="5.25" PointY="55.625" />
-        <EntityTypeShape EntityType="Model.CourseTeachingStrategy" Width="1.5" PointX="8.25" PointY="31" />
-        <EntityTypeShape EntityType="Model.CourseTextBook" Width="1.5" PointX="3" PointY="35.75" />
-        <EntityTypeShape EntityType="Model.Department" Width="1.5" PointX="1.5" PointY="15.625" />
-        <EntityTypeShape EntityType="Model.Faculty" Width="1.5" PointX="1.5" PointY="12" />
-        <EntityTypeShape EntityType="Model.ineffectiveAssessmentStrategi" Width="1.5" PointX="5.25" PointY="46.75" />
-        <EntityTypeShape EntityType="Model.ineffectiveTeachingStrategi" Width="1.5" PointX="5.25" PointY="44.125" />
-        <EntityTypeShape EntityType="Model.Lecturer" Width="1.5" PointX="1.5" PointY="7.375" />
-        <EntityTypeShape EntityType="Model.ModerationChecklist" Width="1.5" PointX="5.25" PointY="24.375" />
-        <EntityTypeShape EntityType="Model.OtherLecturer" Width="1.5" PointX="5.25" PointY="27.875" />
-        <EntityTypeShape EntityType="Model.PEO" Width="1.5" PointX="3.75" PointY="21.375" />
-        <EntityTypeShape EntityType="Model.PI" Width="1.5" PointX="3.75" PointY="8.25" />
-        <EntityTypeShape EntityType="Model.ResultOfCourseDirectAssessment" Width="1.5" PointX="5.25" PointY="52.25" />
-        <EntityTypeShape EntityType="Model.schedule" Width="1.5" PointX="8.25" PointY="22.75" />
-        <EntityTypeShape EntityType="Model.SLO" Width="1.5" PointX="6" PointY="8" />
-        <EntityTypeShape EntityType="Model.SLO_PEO" Width="1.5" PointX="8.25" PointY="13.75" />
-        <EntityTypeShape EntityType="Model.Student" Width="1.5" PointX="3" PointY="32" />
-        <EntityTypeShape EntityType="Model.Student_Course_Grade" Width="1.5" PointX="5.25" PointY="32" />
-        <EntityTypeShape EntityType="Model.Student_PI_Outcome" Width="1.5" PointX="8.25" PointY="16.625" />
-        <EntityTypeShape EntityType="Model.TeachingAndLearningStrategiesTechnique" Width="1.5" PointX="0.75" PointY="1.25" />
-        <EntityTypeShape EntityType="Model.YearAndSemester" Width="1.5" PointX="2.75" PointY="0.75" />
-        <AssociationConnector Association="Model.FK_ActionsForImprovingTheCourse_ToCourseCoordinator" />
-        <AssociationConnector Association="Model.FK_byCompletingThisCourseStudentsAreAbleTo_ToCourseCoordinator" />
-        <AssociationConnector Association="Model.FK_CourseAssessmentMapping_ToCLO" />
-        <AssociationConnector Association="Model.FK_CourseAssessmentMapping_ToCourseCoordinator" />
-        <AssociationConnector Association="Model.FK_CourseAssessmentMapping_ToSLO" />
-        <AssociationConnector Association="Model.FK_CourseAssessmentSurvay_ToCourseCoordinator" />
-        <AssociationConnector Association="Model.FK__CourseCoo__Corde__75F77EB0" />
-        <AssociationConnector Association="Model.FK_CourseFileCheckList_ToCourseCoordinator" />
-        <AssociationConnector Association="Model.FK_CourseInformationForm_ToCourseCoordinator" />
-        <AssociationConnector Association="Model.FK_CourseReport_ToCourseCoordinator" />
-        <AssociationConnector Association="Model.FK_CourseSyllabus_ToCourseCoordinator" />
-        <AssociationConnector Association="Model.FK_CourseTeachingStrategies_ToCourseCoordinator" />
-        <AssociationConnector Association="Model.FK_ineffectiveAssessmentStrategis_ToCourseCoordinator" />
-        <AssociationConnector Association="Model.FK_ineffectiveTeachingStrategis_ToCourseCoordinator" />
-        <AssociationConnector Association="Model.FK_ModerationChecklist_ToCourseCoordinator" />
-        <AssociationConnector Association="Model.FK_OtherLecturers_ToCourseCoordinator" />
-        <AssociationConnector Association="Model.FK_ResultOfCourseDirectAssessment_ToCourseCoordinator" />
-        <AssociationConnector Association="Model.FK_schedule_ToCourseCoordinator" />
-        <AssociationConnector Association="Model.FK_Student_Course_Grade_ToCourseCoordinator" />
-        <AssociationConnector Association="Model.FK__PEO__DeptID__1293BD5E" />
-        <AssociationConnector Association="Model.FK_Department_Faculty" />
-        <AssociationConnector Association="Model.FK_DPT_ToLecturer" />
-        <AssociationConnector Association="Model.FK_Lecturers_ToDpt" />
-        <AssociationConnector Association="Model.FK_Student_departement" />
-        <AssociationConnector Association="Model.FK_Fac_Dean_ToLecturer" />
-        <AssociationConnector Association="Model.FK_Fac_ViceDean_ToLecturer" />
-        <AssociationConnector Association="Model.FK_OtherLecturers_ToLecturer" />
-        <AssociationConnector Association="Model.FK_SLO_PEO_ToPEO" />
-        <AssociationConnector Association="Model.FK_SLO_PEO_ToSLO" />
-        <AssociationConnector Association="Model.FK_Student_Course_Grade_ToStudents" />
-        <AssociationConnector Association="Model.FK_Student_PI_Outcome_ToStudents" />
-        <AssociationConnector Association="Model.FK_Student_PI_Outcome_ToTeachingAndLearningStrategiesTechnique" />
-        <AssociationConnector Association="Model.CLO_PI" />
-        <AssociationConnector Association="Model.CourseAssessmentPlan" />
-        <AssociationConnector Association="Model.PI_SLO" />
-        <AssociationConnector Association="Model.Schedule_CLO" />
-        <EntityTypeShape EntityType="Model.Course" Width="1.5" PointX="3.75" PointY="62.375" />
-        <AssociationConnector Association="Model.FK_AssessedCourses_ToCourse" />
-        <AssociationConnector Association="Model.FK_CLO_ToCourse" />
-        <AssociationConnector Association="Model.FK_Course_co" />
-        <AssociationConnector Association="Model.FK_Course_Department" />
-        <AssociationConnector Association="Model.FK_Course_pre" ManuallyRouted="true" >
-          <ConnectorPoint PointX="5.25" PointY="65.095856119791662" />
-          <ConnectorPoint PointX="6.12535286288025" PointY="65.095856119791662" />
-          <ConnectorPoint PointX="6.12535286288025" PointY="66.398431440347281" />
-          <ConnectorPoint PointX="5.25" PointY="66.398431440347281" />
-        </AssociationConnector>
-        <AssociationConnector Association="Model.FK_CourseCoordinator_Coruse" />
-        <AssociationConnector Association="Model.FK_CourseTeachingStrategies_ToCourse" />
-        <AssociationConnector Association="Model.FK_CourseTestBook_course" />
-        <AssociationConnector Association="Model.Course_PI" />
-        <AssociationConnector Association="Model.Course_SLO" />
-        <AssociationConnector Association="Model.FK_CourseCoordinator_YearAndSemester" />
+      <Diagram DiagramId="498d4698a78849b6801d4014bef85524" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.ActionsForImprovingTheCourse" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AssessedCours" Width="1.5" PointX="3" PointY="32.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AssessmentPlanforTheStudentLearningOutcomeTechnique" Width="1.5" PointX="0.75" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.byCompletingThisCourseStudentsAreAbleTo" Width="1.5" PointX="5.25" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CLO" Width="1.5" PointX="6" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Course" Width="1.5" PointX="0.75" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CourseAssessmentMapping" Width="1.5" PointX="8.25" PointY="26.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CourseAssessmentSurvay" Width="1.5" PointX="5.25" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CourseCoordinator" Width="1.5" PointX="3" PointY="25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CourseFileCheckList" Width="1.5" PointX="5.25" PointY="23" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CourseInformationForm" Width="1.5" PointX="5.25" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CourseReport" Width="1.5" PointX="5.25" PointY="29.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CourseSyllabu" Width="1.5" PointX="5.25" PointY="33" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CourseTeachingStrategy" Width="1.5" PointX="5.25" PointY="36.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CourseTextBook" Width="1.5" PointX="3" PointY="35.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Department" Width="1.5" PointX="1.5" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Faculty" Width="1.5" PointX="1.5" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ineffectiveAssessmentStrategi" Width="1.5" PointX="5.25" PointY="38.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ineffectiveTeachingStrategi" Width="1.5" PointX="5.25" PointY="41.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Lecturer" Width="1.5" PointX="1.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ModerationChecklist" Width="1.5" PointX="5.25" PointY="44.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.OtherLecturer" Width="1.5" PointX="8.25" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PEO" Width="1.5" PointX="3.75" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PI" Width="1.5" PointX="6" PointY="47.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ResultOfCourseDirectAssessment" Width="1.5" PointX="5.25" PointY="50.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.schedule" Width="1.5" PointX="8.25" PointY="30.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SLO" Width="1.5" PointX="3.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SLO_PEO" Width="1.5" PointX="8" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Student" Width="1.5" PointX="9" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Student_Course_Grade" Width="1.5" PointX="11.25" PointY="27" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Student_PI_Outcome" Width="1.5" PointX="11.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TeachingAndLearningStrategiesTechnique" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.YearAndSemester" Width="1.5" PointX="0.75" PointY="30.25" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_ActionsForImprovingTheCourse_ToCourseCoordinator" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_AssessedCourses_ToCourse" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_byCompletingThisCourseStudentsAreAbleTo_ToCourseCoordinator" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_CLO_ToCourse" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_CourseAssessmentMapping_ToCLO" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Course_co" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Course_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Course_pre" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_CourseCoordinator_Coruse" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_CourseTestBook_course" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_CourseAssessmentMapping_ToCourseCoordinator" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_CourseAssessmentMapping_ToDep" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_CourseAssessmentMapping_ToSLO" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_CourseAssessmentSurvay_ToCourseCoordinator" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Coordinator" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_CourseCoordinator_YearAndSemester" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_CourseFileCheckList_ToCourseCoordinator" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_CourseInformationForm_ToCourseCoordinator" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_CourseReport_ToCourseCoordinator" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_CourseSyllabus_ToCourseCoordinator" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_CourseTeachingStrategies_ToCourseCoordinator" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_ineffectiveAssessmentStrategis_ToCourseCoordinator" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_ineffectiveTeachingStrategis_ToCourseCoordinator" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_ModerationChecklist_ToCourseCoordinator" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_OtherLecturers_ToCourseCoordinator" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_ResultOfCourseDirectAssessment_ToCourseCoordinator" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_schedule_ToCourseCoordinator" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Student_Course_Grade_ToCourseCoordinator" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Department_Faculty" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_DPT_ToLecturer" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Lecturers_ToDpt" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_PEO_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_SLO_Dept" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Student_departement" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Fac_ViceDean_ToLecturer" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_OtherLecturers_ToLecturer" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_SLO_PEO_ToPEO" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_SLO_PEO_ToSLO" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Student_Course_Grade_ToStudents" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Student_PI_Outcome_ToStudents" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Student_PI_Outcome_ToTeachingAndLearningStrategiesTechnique" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.CLO_PI" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.CourseAssessmentPlan" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Course_PI" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Schedule_CLO" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

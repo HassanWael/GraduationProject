@@ -23,15 +23,15 @@ namespace LSS.Models
         }
     
         public string Description { get; set; }
-        public string Course { get; set; }
         public int ID { get; set; }
+        public string courseId { get; set; }
     
+        public virtual Course Course { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseAssessmentMapping> CourseAssessmentMappings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PI> PIs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<schedule> schedules { get; set; }
-        public virtual Course Course1 { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace LSS.Models.DepartmentViewModel
         public Boolean[,] Mapping { get; set; }
         int[] sum { get; }
         public PEO [] unmappedPEO { get; set; }
-       public MappedPEO_SLO(String dptID)
+       public MappedPEO_SLO(int dptID)
         {
             PEOs = _databaseEntities.PEOs.Where(peo => peo.DeptID.Equals(dptID)).ToList();
             SLOes = _databaseEntities.SLOes.Where(slo => slo.DeptID.Equals(dptID)).ToList();

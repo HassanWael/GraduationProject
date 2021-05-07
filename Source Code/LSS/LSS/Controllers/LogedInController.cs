@@ -24,7 +24,7 @@ namespace LSS.Controllers
         {
             String userID = Session["ID"].ToString();
             String role = Session["Role"].ToString();
-            String dpt = Session["Dpt"].ToString();
+            int dpt = int.Parse(Session["Dpt"].ToString());
 
             //dynamic model (Workaround the fact that I cant pass more than one Model or list)
             dynamic myModel = new ExpandoObject();
@@ -42,20 +42,20 @@ namespace LSS.Controllers
             myModel.coordinator = courses.ToList();
             if (role == "HeadOfDepartment")
             {
-                var courses1 = _databaseEntities.Courses.Where(course => course.DptID.Equals(dpt));
+                var courses1 = _databaseEntities.Courses.Where(course => course.dptid.Equals(dpt));
                 myModel.DptCourses = courses1.ToList();
             }
             else if(role.Equals("Dean") || role.Equals("Vice Dean"))
             {
                 var courses2 = _databaseEntities.Courses.Join(_databaseEntities.Departments,
-                    course => course.DptID,
+                    course => course.dptid,
                     department => department.ID,
                     (course, department) => new
                     {
                         Course = course,
                         Department = department
-                    }).Where(o => o.Department.FacultyID.Equals(_databaseEntities.Departments.Where(
-                        s => s.ID.Equals(dpt)).Select(a => a.FacultyID).FirstOrDefault())).Select(x => x.Course).OrderBy(course => course.Title);
+                    }).Where(o => o.Department.FacultyId.Equals(_databaseEntities.Departments.Where(
+                        s => s.ID.Equals(dpt)).Select(a => a.FacultyId).FirstOrDefault())).Select(x => x.Course).OrderBy(course => course.Title);
                 myModel.FacultyCourses = courses2.ToList();
             }
             return View(myModel);

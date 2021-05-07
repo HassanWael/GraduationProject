@@ -20,6 +20,5 @@ namespace LSS.Models
         public string Semseter { get; set; }
     
         public virtual CourseCoordinator CourseCoordinator { get; set; }
-        public virtual Course Course { get; set; }
     }
 }

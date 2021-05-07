@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using LSS.Models;
 namespace LSS.Controllers
 {
-   [Authorize(Roles ="Admin")]
+   //[Authorize(Roles ="Admin")]
     public class AdminController : Controller
     {
         LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();

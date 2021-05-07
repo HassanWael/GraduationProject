@@ -30,19 +30,21 @@ namespace LSS.Models
         public string CourseID { get; set; }
         public System.DateTime Year { get; set; }
         public string Semseter { get; set; }
-        public string Coordinator { get; set; }
         public int NoOFStudents { get; set; }
         public string ClassRoom { get; set; }
         public string courseNotAssessedReason_ { get; set; }
         public string DayTime { get; set; }
+        public string Coordinator { get; set; }
     
         public virtual ActionsForImprovingTheCourse ActionsForImprovingTheCourse { get; set; }
         public virtual byCompletingThisCourseStudentsAreAbleTo byCompletingThisCourseStudentsAreAbleTo { get; set; }
+        public virtual Course Course { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseAssessmentMapping> CourseAssessmentMappings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseAssessmentSurvay> CourseAssessmentSurvays { get; set; }
         public virtual Lecturer Lecturer { get; set; }
+        public virtual YearAndSemester YearAndSemester { get; set; }
         public virtual CourseFileCheckList CourseFileCheckList { get; set; }
         public virtual CourseInformationForm CourseInformationForm { get; set; }
         public virtual CourseReport CourseReport { get; set; }
@@ -62,7 +64,5 @@ namespace LSS.Models
         public virtual ICollection<Student_Course_Grade> Student_Course_Grade { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AssessmentPlanforTheStudentLearningOutcomeTechnique> AssessmentPlanforTheStudentLearningOutcomeTechniques { get; set; }
-        public virtual Course Course { get; set; }
-        public virtual YearAndSemester YearAndSemester { get; set; }
     }
 }

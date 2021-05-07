@@ -43,25 +43,7 @@ namespace LSS.Models.CoursesModelView
             }
         }
         public IEnumerable<SLO> SLOes { get; set; }
-        private List<String>_selectedSLOes {get;set;}
-        public List<String> SelectedSLOes
-        {
-            get
-            {
-                if (_selectedSLOes == null)
-                {
-                    _selectedSLOes = Course.SLOes.Select(m => m.SLOID).ToList();
-                }
-                return _selectedSLOes;
-            }
-            set
-            {
-                _selectedSLOes = value;
-            }
-
-        }
-        public IEnumerable<PI> PIs { get; set; }
-        private List<String> _selectedPIs { get; set;}
+        private List<String>_selectedPIs {get;set;}
         public List<String> SelectedPIs
         {
             get
@@ -78,10 +60,12 @@ namespace LSS.Models.CoursesModelView
             }
 
         }
+        public IEnumerable<PI> PIs { get; set; }
+        
         public List<CLO> CLOs { get; set; }
         public IEnumerable<AssessmentPlanforTheStudentLearningOutcomeTechnique> APFSLOs { get; set; }
-        private List<int> _selectedAPFSLOs { get; set; }
-        public List<int> SelectedAPFSLOs
+        private List<String> _selectedAPFSLOs { get; set; }
+        public List<String> SelectedAPFSLOs
         {
             get
             {
