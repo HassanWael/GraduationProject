@@ -15,7 +15,7 @@ namespace LSS.Controllers
         LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
 
         // GET: Courses
-        public ActionResult CouresPage(String courseID)
+        public ActionResult CouresPage(string? courseID)
         {
             YearAndSemester y = SemesterSingelton.getCurrentYearAndSemester(); 
             String userID = Session["ID"].ToString();
@@ -33,20 +33,7 @@ namespace LSS.Controllers
 
         public ActionResult CreateCourseInformationForm(string id)
         {
-            if(id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var CIFModelView = new CIFModelView
-            {
-                Course = _DatabaseEntities.Courses.Where(i => i.ID.Equals(id)).FirstOrDefault(),
-            };
-            if (CIFModelView.Course == null)
-            {
-                return HttpNotFound();
-            }
-            
-            return View(CIFModelView);
+            return View();
         }
 
     }
