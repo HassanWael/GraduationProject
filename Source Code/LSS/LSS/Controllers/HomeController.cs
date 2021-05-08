@@ -35,9 +35,7 @@ namespace LSS.Controllers
                         Session["ID"] = ValidUser.ID;
                         Session["Role"] = ValidUser.Role;
                         Session["Dpt"] = ValidUser.dptId;
-                        Console.WriteLine(ValidUser.dptId);
                         return Redirect(ReturnUrl);
-
                     }
                     else
                     {
