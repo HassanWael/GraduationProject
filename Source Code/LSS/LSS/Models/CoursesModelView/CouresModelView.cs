@@ -68,7 +68,6 @@ namespace LSS.Models.CoursesModelView
                 if (clos == null)
                 {
                     clos = Course.CLOes.ToList();
-                    
                 }
                 return clos; 
             }
@@ -93,23 +92,29 @@ namespace LSS.Models.CoursesModelView
         public HashSet<PI> PI
         {
             get
-            {
+            { //O(n^2)
                 if (pi == null)
                 {
                     CLOs.ForEach(item => item.PIs.ToList().ForEach(x => pi.Add(x)));
                 }
                 return pi;
             }
-        }
-       private List<SLO> slo { get; set; }
-        private Dictionary<SLO, List<PI>> _SLO_PI { get; set; }
-        public Dictionary<SLO,List<PI>> map { get
+            set
             {
+                pi = value;
+            }
+        }
+        private Dictionary<SLO, HashSet<PI>> _SLO_PI { get; set; }
+        public Dictionary<SLO, HashSet<PI>> SLO_PI { get
+            {
+                //O(N)
                 if (_SLO_PI==null)
                 {
-                    foreach(PI pi in PI)
+                    foreach (PI pi in PI)
                     {
-                        //_SLO_PI.Add(pi.s)
+                        HashSet<PI> temp = _SLO_PI[pi.SLO];
+                        temp.Add(pi);
+                        _SLO_PI.Add(pi.SLO, temp);
                     }
                 }
 
