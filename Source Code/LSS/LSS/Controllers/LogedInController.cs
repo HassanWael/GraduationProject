@@ -18,12 +18,13 @@ namespace LSS.Controllers
         /// <returns>
         /// the View Index with the Dynamic model that contain all the coureses that user should have access to 
         /// </returns>
-       // [Authorize]
         // GET: LogedIn
+        [Authorize]
         public ActionResult Index()
         {
             String userID = Session["ID"].ToString();
             String role = Session["Role"].ToString();
+            String dpts = Session["Dpt"].ToString();
             int dpt = int.Parse(Session["Dpt"].ToString());
 
             //dynamic model (Workaround the fact that I cant pass more than one Model or list)

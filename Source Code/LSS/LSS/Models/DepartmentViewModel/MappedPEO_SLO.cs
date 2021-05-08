@@ -8,45 +8,120 @@ namespace LSS.Models.DepartmentViewModel
     public class MappedPEO_SLO
     {
         private readonly LSS_databaseEntities _databaseEntities = new LSS_databaseEntities();
-
-        public List<PEO> PEOs { get; set; }
-        public List<SLO> SLOes { get; set; }
-        public Boolean[,] Mapping { get; set; }
-        int[] sum { get; }
-        public PEO [] unmappedPEO { get; set; }
-       public MappedPEO_SLO(int dptID)
+        public Department Department { get; set; }
+        private List<PEO> peos
         {
-            PEOs = _databaseEntities.PEOs.Where(peo => peo.DeptID.Equals(dptID)).ToList();
-            SLOes = _databaseEntities.SLOes.Where(slo => slo.DeptID.Equals(dptID)).ToList();
-            Mapping = new Boolean[PEOs.Count(), SLOes.Count()];
-            sum = new int[PEOs.Count()];
-            for (int i = 0; i < PEOs.Count(); i++)
-            {
+            get; set;
+        }
 
-                for (int j = 0; j < SLOes.Count(); j++)
+        public List<PEO> PEOs
+        {
+            get
+            {
+                if (peos == null)
                 {
-                    var map = _databaseEntities.SLO_PEO.Where(x => x.DeptID.Equals(dptID) && x.PEO.Equals(PEOs[i].ID) && x.SLO.Equals(SLOes[j].SLOID)).FirstOrDefault();
-                    if (map != null)
+                    peos = Department.PEOs.ToList();
+                }
+                return peos;
+            }
+
+            set
+            {
+                peos = value;
+            }
+        }
+
+        private List<SLO> sloes { get; set; }
+        public List<SLO> SLOes {
+            get
+            {
+                if (sloes == null)
+                {
+                    sloes = Department.SLOes.ToList();
+                }
+                return sloes;
+            }
+            set
+            {
+                sloes = value;
+            }
+        }
+
+        private HashSet<SLO_PEO> slo_peo { get; set; }
+        public HashSet<SLO_PEO> SLO_PEO
+        {
+            get
+            {
+                if (slo_peo == null)
+                {
+                    foreach (SLO slo in SLOes)
                     {
-                        sum[i]++;
-                        Mapping[i, j] = true;
-                        map = null;
+                        slo.SLO_PEO.ToList().ForEach(x => slo_peo.Add(x));
+                    }
+                }
+
+                return slo_peo;
+            }
+            set
+            {
+                slo_peo = value;
+            }
+        }
+        private List<PEO> unmappedPEO { get; set; }
+        public List<PEO> UnmappedPEO {
+            get
+            {
+                if (unmappedPEO == null)
+                {
+                    if (SLO_PEO != null)
+                    {
+                        foreach (PEO peo in PEOs)
+                        {
+                            if (!SLO_PEO.Select(x => x.PEO).Contains(peo))
+                            {
+                                unmappedPEO.Add(peo);
+                            }
+                        }
                     }
                     else
                     {
-                        Mapping[i, j] = false;
+                        unmappedPEO = PEOs;
+                    }
+
+                }
+                return unmappedPEO;
+            }
+        }
+        private List<SLO> unmappedSLO { get; set; }
+        public List<SLO> UnmappedSLO
+        {
+            get
+            {
+                if (unmappedSLO == null)
+                {
+                    foreach (SLO slo in SLOes)
+                    {
+                        if (SLO_PEO != null)
+                        {
+                            if (!SLO_PEO.Select(x => x.SLO).Contains(slo))
+                            {
+                                unmappedSLO.Add(slo);
+                            }
+                        }
+                        else
+                        {
+                            unmappedSLO = SLOes;
+                        }
                     }
                 }
+                return unmappedSLO;
             }
+        } 
 
-            for (int i = 0; i < PEOs.Count(); i++)
-            {
-                if (sum[i] <= 0)
-                {
-                    unmappedPEO[i] = PEOs[i];
-                }
-            }
-
+       public MappedPEO_SLO(Department department)
+        {
+            Department = department;
+           
         }
     }
 }

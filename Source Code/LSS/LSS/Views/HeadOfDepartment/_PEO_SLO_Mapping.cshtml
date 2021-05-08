@@ -4,50 +4,55 @@
 <html>
 <body>
     <div>
-        <h3>there is @Model.unmappedPEO.Count()  unmapped PEO</h3>
+        <h2>unmapped SLO to PEO : </h2>
+        @Model.UnmappedSLO.Count() 
+    </div>
 
-        <div id="ViewUnMapped" class="modal fade" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    @{
-                        Html.RenderPartial("_ViewUnmappedPEO",Model);
-
-                    }
-                </div>
-            </div>
-        </div>
-        <button id='open' data-toggle="modal" data-target="#ViewUnMapped">open modal</button>
-
+    <div>
+        <h2>unmapped PEO to SLO : </h2>
+        @Model.UnmappedPEO.Count() 
     </div>
 
 
-    @if (Model != null) {
-    <table>
-        <tr>
-            <td>
-            </td>
-            @for (int i = 0; i < Model.PEOs.Count(); i++)
-            {
-                <td> @Model.PEOs[i].ID</td>
-            }
-        </tr>
-        @for (int i = 0; i < Model.SLOes.Count(); i++)
-        {
+    @if (Model != null)
+    {
+        <table>
             <tr>
                 <td>
-                    @Model.SLOes[i].SLOID
                 </td>
-                @for (int j = 0; j < Model.PEOs.Count(); j++)
+                @for (int i = 0; i < Model.PEOs.Count(); i++)
                 {
-                    <td>
-                        @Html.CheckBox("", Model.Mapping[j, i], new { disabled = "true" })
-                    </td>
+                    <td> @Model.PEOs[i].ID</td>
                 }
-
             </tr>
-        }
+            @for (int i = 0; i < Model.SLOes.Count(); i++)
+            {
+                <tr>
+                    <td>
+                        @Model.SLOes[i].SLOID
+                    </td>
+                    @for (int j = 0; j < Model.PEOs.Count(); j++)
+                    {
 
-    </table>
+
+                        if (Model.SLO_PEO != null)
+                        {
+                            <td>
+                                @Html.CheckBox("name", (Model.SLO_PEO.Select(x => x.SLO.Equals(Model.SLOes[i]) && x.PEO.Equals(Model.PEOs[j])) != null), new { disabled = "true" })
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                             @Html.CheckBox("name", false, new { disabled = true })
+                            </td>
+                        }
+                    }
+
+                </tr>
+            }
+
+        </table>
     }
 </body>
 </html>

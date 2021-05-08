@@ -442,7 +442,6 @@
     <Content Include="Views\HeadOfDepartment\AddPEO.cshtml" />
     <Content Include="Views\HeadOfDepartment\AddSLO.cshtml" />
     <Content Include="Views\HeadOfDepartment\_PEO_SLO_Mapping.cshtml" />
-    <Content Include="Views\HeadOfDepartment\_ViewUnmappedPEO.cshtml" />
     <Content Include="Views\Forms\CourseAssessmentSurvey.cshtml" />
     <Content Include="Views\Forms\CourseFileChecklist.cshtml" />
     <Content Include="Views\Forms\CourseInformationForm.cshtml" />
@@ -516,9 +515,9 @@
     <SsdtUnitTestVersion>3.1</SsdtUnitTestVersion>
   </PropertyGroup>
   <PropertyGroup>
-  <Nullable>enable</Nullable>
-  <LangVersion>8.0</LangVersion>
-</PropertyGroup>
+    <Nullable>enable</Nullable>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
   <Import Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="$(VisualStudioVersion) != '15.0' And '$(SQLDBExtensionsRefPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="$(VisualStudioVersion) != '15.0' And '$(SQLDBExtensionsRefPath)' == ''" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

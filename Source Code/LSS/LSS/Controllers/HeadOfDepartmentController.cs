@@ -14,13 +14,21 @@ namespace LSS.Controllers
         private int DptID;
         private readonly LSS_databaseEntities _databaseEntities = new LSS_databaseEntities();
         // GET: HeadOfDepartment
-        public ActionResult Index(int dptID )
+        public ActionResult Index(int? dptID )
         {
-            DptID = dptID;
-            Department d = _databaseEntities.Departments.Find(dptID);
-            return View();
+            if(dptID != null)
+            {
+                DptID = (int)dptID;
+            }
+            else
+            {
+                DptID = 2;
+            }
+            Department d = _databaseEntities.Departments.Find(2);
+            return View(d);
         }
       //  [Authorize(Roles = "HOD,Dean,ViceDean")]
+
         public ActionResult AddPEO(int dptID)
         {
             DptID = dptID;
@@ -28,8 +36,8 @@ namespace LSS.Controllers
             ViewBag.DeptID = dptID;
             return View();
         }
+
         [HttpPost]
-       // [Authorize(Roles = "HOD,Dean,ViceDean")]
         public ActionResult AddPEO(PEO peo)
         {
             _databaseEntities.PEOs.Add(peo);
@@ -52,13 +60,7 @@ namespace LSS.Controllers
             _databaseEntities.SaveChanges();
             return RedirectToAction("index", new { d = slo.DeptID });
         }
-        public ActionResult _PEO_SLO_Mapping(int dptID)
-        {
-            DptID = dptID;
-            MappedPEO_SLO mapped = new MappedPEO_SLO(dptID);
-            
-            return View(mapped);
-        }
+      
         public ActionResult addPI(String SLOID,String DptID)
         {
             return View();
