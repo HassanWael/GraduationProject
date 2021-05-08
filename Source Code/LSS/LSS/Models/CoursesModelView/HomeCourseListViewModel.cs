@@ -15,8 +15,9 @@ namespace LSS.Models.CoursesModelView
         public HomeCourseListViewModel(String LecturerID)
         {
             YearAndSemester = SemesterSingelton.getCurrentYearAndSemester();
-            CCS = _DatabaseEntities.CourseCoordinators.Where(x => x.YearAndSemester.Equals(YearAndSemester)).ToList();
             Lecturer = _DatabaseEntities.Lecturers.Find(LecturerID);
+
+            CCS = _DatabaseEntities.CourseCoordinators.Where(x => x.YearAndSemester.Year.Equals(YearAndSemester.Year)&& x.YearAndSemester.Semester.Equals(YearAndSemester.Semester)).ToList();
         }
         public  Lecturer Lecturer { get; set; }
         private Department department { get; set; }
@@ -85,7 +86,7 @@ namespace LSS.Models.CoursesModelView
             {
                 if (facultyCCS == null)
                 {
-                    facultyCCS = CCS.Where(x => x.Course.Department.FacultyId.Equals(faculty.ID)).ToList();
+                    facultyCCS = CCS.Where(x => x.Course.Department.FacultyId.Equals(Faculty.ID)).ToList();
                 }
 
                 return facultyCCS;
