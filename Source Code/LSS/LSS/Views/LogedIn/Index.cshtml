@@ -1,5 +1,5 @@
 ﻿@using LSS.Models 
-@model dynamic
+@model LSS.Models.CoursesModelView.HomeCourseListViewModel
 @Styles.Render("~/Content/css")
 @Scripts.Render("~/bundles/modernizr")
 
@@ -12,11 +12,11 @@
 
 <div id="Coordinated_Courses" class="Course_ShowCase">
 
-    @if (Model.DptCourses != null)
+    @if (Model.CoordinatedCourses != null)
     {<ul>
-            foreach (Course c in Model.coordinator)
+            @foreach (CourseCoordinator cc in Model.CoordinatedCourses)
             {
-            <li>@Model.Title</li>
+            <li>@cc.Course.Title</li>
             }
         </ul>
     }
@@ -28,25 +28,25 @@
 </div>
 
 
-@if (Model.DptCourses != null)
+@if (Model.DepartmentCCs != null)
 {
     <div id="dptCdourses" class="Course_ShowCase">
         <ul>
-            @foreach (Course c in Model.DptCourses)
+            @foreach (CourseCoordinator cc in Model.DepartmentCCs)
             {
-                <li>@Model.Title</li>
+                <li>@cc.Course.Title</li>
             }
         </ul>
     </div>
 }
 
-@if (Model.FacultyCourses != null)
+@if (Model.FacultyCCS != null)
 {
     <div id="dptCdourses" class="Course_ShowCase">
         <ul>
-            @foreach (Course c in Model.FacultyCourses)
+            @foreach (CourseCoordinator cc in Model.FacultyCCS)
             {
-                <li>@Model.Title</li>
+                <li>@cc.Course.Title</li>
             }
         </ul>
     </div>
