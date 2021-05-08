@@ -14,9 +14,7 @@ namespace LSS.Models
     
     public partial class ActionsForImprovingTheCourse
     {
-        public string CourseID { get; set; }
-        public System.DateTime Year { get; set; }
-        public string Semseter { get; set; }
+        public int CoordinatorID { get; set; }
         public string ActionsTaken { get; set; }
         public string ActionsResults { get; set; }
         public string RecomandedActions { get; set; }

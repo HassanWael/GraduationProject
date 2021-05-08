@@ -20,7 +20,7 @@ namespace LSS.Models
             this.CourseCoordinators = new HashSet<CourseCoordinator>();
         }
     
-        public string ID { get; set; }
+        public int ID { get; set; }
         public string Type { get; set; }
         public string strategy { get; set; }
     
