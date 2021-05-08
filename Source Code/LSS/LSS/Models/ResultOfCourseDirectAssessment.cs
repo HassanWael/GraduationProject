@@ -14,7 +14,9 @@ namespace LSS.Models
     
     public partial class ResultOfCourseDirectAssessment
     {
-        public int CoordinatorID { get; set; }
+        public string CourseID { get; set; }
+        public System.DateTime Year { get; set; }
+        public string Semseter { get; set; }
         public string ActionsTaken { get; set; }
         public string Observation { get; set; }
         public string AnalysisAndJustification { get; set; }

@@ -14,7 +14,9 @@ namespace LSS.Models
     
     public partial class ineffectiveTeachingStrategi
     {
-        public int CoordinatorID { get; set; }
+        public string CourseID { get; set; }
+        public System.DateTime Year { get; set; }
+        public string Semseter { get; set; }
         public string Reason { get; set; }
     
         public virtual CourseCoordinator CourseCoordinator { get; set; }

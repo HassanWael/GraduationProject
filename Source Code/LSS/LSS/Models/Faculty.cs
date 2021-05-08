@@ -20,10 +20,13 @@ namespace LSS.Models
             this.Departments = new HashSet<Department>();
         }
     
-        public string ID { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
+        public string ViceDean { get; set; }
+        public string dean { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Department> Departments { get; set; }
+        public virtual Lecturer Lecturer { get; set; }
     }
 }

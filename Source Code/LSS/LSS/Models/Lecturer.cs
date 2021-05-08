@@ -18,6 +18,8 @@ namespace LSS.Models
         public Lecturer()
         {
             this.CourseCoordinators = new HashSet<CourseCoordinator>();
+            this.Departments = new HashSet<Department>();
+            this.Faculties = new HashSet<Faculty>();
             this.OtherLecturers = new HashSet<OtherLecturer>();
         }
     
@@ -27,9 +29,15 @@ namespace LSS.Models
         public string OfficeNo { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public int dptId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseCoordinator> CourseCoordinators { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Department> Departments { get; set; }
+        public virtual Department Department { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Faculty> Faculties { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OtherLecturer> OtherLecturers { get; set; }
     }
