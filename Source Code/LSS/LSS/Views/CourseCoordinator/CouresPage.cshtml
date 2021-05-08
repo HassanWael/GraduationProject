@@ -1,7 +1,10 @@
 ﻿@Styles.Render("~/Content/css")
 @Scripts.Render("~/bundles/modernizr")
+@using LSS.Models
+@model LSS.Models.CoursesModelView.CouresModelView
+
 @{
-    ViewBag.Title = "CouresPage";
+    ViewBag.Title = Model.Course.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="~/Content/coursepage.css" rel="stylesheet" type="text/css" />
@@ -12,26 +15,31 @@
 
         <table>
             <tr>   <th colspan="2"> <p> Course Information </p>  </th></tr>
-            <tr> <td>   <h4> Coures Title </h4>  </td> <td> Software Design </td></tr>
-            <tr> <td>    <h4> Coures ID </h4>  </td> <td> A0797543343</td></tr>
-            <tr> <td>   <h4> Faculty Name   </h4> </td> <td> IT </td></tr>
-            <tr> <td>   <h4> Credit Hours   </h4> </td> <td> 3 o nos </td></tr>
+            <tr> <td>   <h4> Coures Title </h4>  </td> <td> @Model.Course.Title </td></tr>
+            <tr> <td>    <h4> Coures ID </h4>  </td> <td>  @Model.Course.ID </td></tr>
+            <tr> <td>   <h4> Faculty Name   </h4> </td> <td> @Model.Faculty.ID </td></tr>
+            <tr> <td>   <h4> Credit Hours   </h4> </td> <td> @Model.Course.Hours</td></tr>
         </table>
     </div>
 
     <div class="block-item">
-
+        <h2>Course Text Books </h2>
         <table>
-            <tr>   <th colspan="2"> <p> Text Book </p>  </th></tr>
-            <tr> <td>   <h4> Title </h4>  </td> <td> Software Design Book </td></tr>
-            <tr> <td>    <h4> Author </h4>  </td> <td> Fares el Taweel</td></tr>
-            <tr> <td>   <h4> Edition   </h4> </td> <td> 4th Edtion </td></tr>
-            <tr> <td>   <h4> Year   </h4> </td> <td> 2016 </td></tr>
-            <tr> <td>   <h4> ISBN   </h4> </td> <td> 123456678 </td></tr>
+            <tr>   <th> <h4> Title </h4></th> <th><h4> Author </h4></th> <th><h4> Year of Publish   </h4> </th> <th><h4> City/State</h4></th>  <th><h4> publisher </h4></th></tr>
+            @foreach (CourseTextBook book in Model.CourseTextBooks)
+            {
+                <tr>  <td> @book.Book_Title </td>  <td> @book.Author</td><td> @book.YearOfpublish </td> <td> @book.City_State </td> <td>@book.Publisher</td></tr>
+            }
         </table>
-
-
     </div>
+</div>
+<div class="block-item">
+    <ul >
+        @foreach(CLO clo in Model.CLOs){ 
+            <li> @clo.Description</li>
+         }
+
+    </ul>
 
 </div>
 

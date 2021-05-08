@@ -20,11 +20,12 @@ namespace LSS.Models
         public string AssessmentID { get; set; }
         public int CLO { get; set; }
         public string PI { get; set; }
+        public string SLOID { get; set; }
         public int DeptID { get; set; }
     
         public virtual CLO CLO1 { get; set; }
+        public virtual PI PI1 { get; set; }
         public virtual CourseCoordinator CourseCoordinator { get; set; }
         public virtual Department Department { get; set; }
-        public virtual PI PI1 { get; set; }
     }
 }

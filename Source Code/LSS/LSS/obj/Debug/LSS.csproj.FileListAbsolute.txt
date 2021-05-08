@@ -280,3 +280,15 @@ C:\Users\hassa\OneDrive\Documents\GitHub\GraduationProject\Source Code\LSS\LSS\o
 C:\Users\hassa\OneDrive\Documents\GitHub\GraduationProject\Source Code\LSS\LSS\obj\Debug\LSS.csproj.CopyComplete
 C:\Users\hassa\OneDrive\Documents\GitHub\GraduationProject\Source Code\LSS\LSS\obj\Debug\LSS.dll
 C:\Users\hassa\OneDrive\Documents\GitHub\GraduationProject\Source Code\LSS\LSS\obj\Debug\LSS.pdb
+C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\bin\roslyn\Antlr3.Runtime.dll
+C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\bin\roslyn\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\bin\roslyn\Microsoft.Web.Infrastructure.dll
+C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\bin\roslyn\Newtonsoft.Json.dll
+C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\bin\roslyn\System.Web.Helpers.dll
+C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\bin\roslyn\System.Web.Mvc.dll
+C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\bin\roslyn\System.Web.Optimization.dll
+C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\bin\roslyn\System.Web.Razor.dll
+C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\bin\roslyn\System.Web.WebPages.Deployment.dll
+C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\bin\roslyn\System.Web.WebPages.dll
+C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\bin\roslyn\System.Web.WebPages.Razor.dll
+C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\bin\roslyn\WebGrease.dll

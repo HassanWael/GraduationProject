@@ -58,9 +58,13 @@
     <Key>
       <PropertyRef Name="CLOID" />
       <PropertyRef Name="PI-ID" />
+      <PropertyRef Name="DeptID" />
+      <PropertyRef Name="SLOID" />
     </Key>
     <Property Name="CLOID" Type="int" Nullable="false" />
     <Property Name="PI-ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DeptID" Type="int" Nullable="false" />
+    <Property Name="SLOID" Type="nvarchar" MaxLength="20" Nullable="false" />
   </EntityType>
   <EntityType Name="Course">
     <Key>
@@ -86,6 +90,7 @@
       <PropertyRef Name="AssessmentID" />
       <PropertyRef Name="CLO" />
       <PropertyRef Name="PI" />
+      <PropertyRef Name="SLOID" />
       <PropertyRef Name="DeptID" />
     </Key>
     <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
@@ -94,6 +99,7 @@
     <Property Name="AssessmentID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="CLO" Type="int" Nullable="false" />
     <Property Name="PI" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="SLOID" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="DeptID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="CourseAssessmentPlan">
@@ -162,14 +168,6 @@
     <Property Name="HeadOFDeptSignature" Type="bit" />
     <Property Name="ViceDeanSignature" Type="bit" />
     <Property Name="ReasonOfDisaproval" Type="nvarchar" MaxLength="255" />
-  </EntityType>
-  <EntityType Name="Course-PI">
-    <Key>
-      <PropertyRef Name="CourseID" />
-      <PropertyRef Name="PI" />
-    </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
-    <Property Name="PI" Type="nvarchar" MaxLength="20" Nullable="false" />
   </EntityType>
   <EntityType Name="CourseReport">
     <Key>
@@ -314,9 +312,13 @@
   <EntityType Name="PI">
     <Key>
       <PropertyRef Name="ID" />
+      <PropertyRef Name="SLOID" />
+      <PropertyRef Name="DeptID" />
     </Key>
     <Property Name="ID" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="Desc" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="SLOID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DeptID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ResultOfCourseDirectAssessment">
     <Key>
@@ -369,6 +371,16 @@
     <Property Name="SLOID" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="Desc" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="DeptID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SLO_Course">
+    <Key>
+      <PropertyRef Name="SLOID" />
+      <PropertyRef Name="DeptID" />
+      <PropertyRef Name="CourseID" />
+    </Key>
+    <Property Name="SLOID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DeptID" Type="int" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
   </EntityType>
   <EntityType Name="SLO_PEO">
     <Key>
@@ -470,6 +482,22 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_CAM_ToPI">
+    <End Role="PI" Type="Self.PI" Multiplicity="1" />
+    <End Role="CourseAssessmentMapping" Type="Self.CourseAssessmentMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PI">
+        <PropertyRef Name="SLOID" />
+        <PropertyRef Name="ID" />
+        <PropertyRef Name="DeptID" />
+      </Principal>
+      <Dependent Role="CourseAssessmentMapping">
+        <PropertyRef Name="SLOID" />
+        <PropertyRef Name="PI" />
+        <PropertyRef Name="DeptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_CLO_ToCourse">
     <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
     <End Role="CLO" Type="Self.CLO" Multiplicity="*" />
@@ -499,10 +527,14 @@
     <End Role="CLO-PI" Type="Self.CLO-PI" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PI">
+        <PropertyRef Name="SLOID" />
         <PropertyRef Name="ID" />
+        <PropertyRef Name="DeptID" />
       </Principal>
       <Dependent Role="CLO-PI">
+        <PropertyRef Name="SLOID" />
         <PropertyRef Name="PI-ID" />
+        <PropertyRef Name="DeptID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -591,18 +623,6 @@
       </Principal>
       <Dependent Role="CourseAssessmentMapping">
         <PropertyRef Name="DeptID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_CourseAssessmentMapping_ToSLO">
-    <End Role="PI" Type="Self.PI" Multiplicity="1" />
-    <End Role="CourseAssessmentMapping" Type="Self.CourseAssessmentMapping" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="PI">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="CourseAssessmentMapping">
-        <PropertyRef Name="PI" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -705,30 +725,6 @@
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
         <PropertyRef Name="Semseter" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Course-PI_Coruse">
-    <End Role="Course" Type="Self.Course" Multiplicity="1" />
-    <End Role="Course-PI" Type="Self.Course-PI" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Course">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Course-PI">
-        <PropertyRef Name="CourseID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Course-PI_PI">
-    <End Role="PI" Type="Self.PI" Multiplicity="1" />
-    <End Role="Course-PI" Type="Self.Course-PI" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="PI">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Course-PI">
-        <PropertyRef Name="PI" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -990,6 +986,32 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_SLO_Course_ToCourse">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="SLO_Course" Type="Self.SLO_Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SLO_Course">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SLO_Course_ToSLO">
+    <End Role="SLO" Type="Self.SLO" Multiplicity="1" />
+    <End Role="SLO_Course" Type="Self.SLO_Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SLO">
+        <PropertyRef Name="DeptID" />
+        <PropertyRef Name="SLOID" />
+      </Principal>
+      <Dependent Role="SLO_Course">
+        <PropertyRef Name="DeptID" />
+        <PropertyRef Name="SLOID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_SLO_Dept">
     <End Role="Department" Type="Self.Department" Multiplicity="1" />
     <End Role="SLO" Type="Self.SLO" Multiplicity="*" />
@@ -1094,6 +1116,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="PI_ToSLO">
+    <End Role="SLO" Type="Self.SLO" Multiplicity="1" />
+    <End Role="PI" Type="Self.PI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SLO">
+        <PropertyRef Name="DeptID" />
+        <PropertyRef Name="SLOID" />
+      </Principal>
+      <Dependent Role="PI">
+        <PropertyRef Name="DeptID" />
+        <PropertyRef Name="SLOID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="ModelStoreContainer">
     <EntitySet Name="ActionsForImprovingTheCourse" EntityType="Self.ActionsForImprovingTheCourse" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AssessedCourses" EntityType="Self.AssessedCourses" Schema="dbo" store:Type="Tables" />
@@ -1108,7 +1144,6 @@
     <EntitySet Name="CourseCoordinator" EntityType="Self.CourseCoordinator" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseFileCheckList" EntityType="Self.CourseFileCheckList" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseInformationForm" EntityType="Self.CourseInformationForm" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Course-PI" EntityType="Self.Course-PI" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseReport" EntityType="Self.CourseReport" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseSyllabus" EntityType="Self.CourseSyllabus" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseTeachingStrategies" EntityType="Self.CourseTeachingStrategies" Schema="dbo" store:Type="Tables" />
@@ -1126,6 +1161,7 @@
     <EntitySet Name="schedule" EntityType="Self.schedule" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Schedule_CLO" EntityType="Self.Schedule_CLO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SLO" EntityType="Self.SLO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SLO_Course" EntityType="Self.SLO_Course" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SLO_PEO" EntityType="Self.SLO_PEO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Student-Course-Grade" EntityType="Self.Student-Course-Grade" Schema="dbo" store:Type="Tables" />
@@ -1143,6 +1179,10 @@
     <AssociationSet Name="FK_byCompletingThisCourseStudentsAreAbleTo_ToCourseCoordinator" Association="Self.FK_byCompletingThisCourseStudentsAreAbleTo_ToCourseCoordinator">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
       <End Role="byCompletingThisCourseStudentsAreAbleTo" EntitySet="byCompletingThisCourseStudentsAreAbleTo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CAM_ToPI" Association="Self.FK_CAM_ToPI">
+      <End Role="PI" EntitySet="PI" />
+      <End Role="CourseAssessmentMapping" EntitySet="CourseAssessmentMapping" />
     </AssociationSet>
     <AssociationSet Name="FK_CLO_ToCourse" Association="Self.FK_CLO_ToCourse">
       <End Role="Course" EntitySet="Course" />
@@ -1184,10 +1224,6 @@
       <End Role="Department" EntitySet="Department" />
       <End Role="CourseAssessmentMapping" EntitySet="CourseAssessmentMapping" />
     </AssociationSet>
-    <AssociationSet Name="FK_CourseAssessmentMapping_ToSLO" Association="Self.FK_CourseAssessmentMapping_ToSLO">
-      <End Role="PI" EntitySet="PI" />
-      <End Role="CourseAssessmentMapping" EntitySet="CourseAssessmentMapping" />
-    </AssociationSet>
     <AssociationSet Name="FK_CourseAssessmentPlan_ToAssessment" Association="Self.FK_CourseAssessmentPlan_ToAssessment">
       <End Role="AssessmentPlanforTheStudentLearningOutcomeTechnique" EntitySet="AssessmentPlanforTheStudentLearningOutcomeTechnique" />
       <End Role="CourseAssessmentPlan" EntitySet="CourseAssessmentPlan" />
@@ -1215,14 +1251,6 @@
     <AssociationSet Name="FK_CourseInformationForm_ToCourseCoordinator" Association="Self.FK_CourseInformationForm_ToCourseCoordinator">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
       <End Role="CourseInformationForm" EntitySet="CourseInformationForm" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Course-PI_Coruse" Association="Self.FK_Course-PI_Coruse">
-      <End Role="Course" EntitySet="Course" />
-      <End Role="Course-PI" EntitySet="Course-PI" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Course-PI_PI" Association="Self.FK_Course-PI_PI">
-      <End Role="PI" EntitySet="PI" />
-      <End Role="Course-PI" EntitySet="Course-PI" />
     </AssociationSet>
     <AssociationSet Name="FK_CourseReport_ToCourseCoordinator" Association="Self.FK_CourseReport_ToCourseCoordinator">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
@@ -1296,6 +1324,14 @@
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
       <End Role="schedule" EntitySet="schedule" />
     </AssociationSet>
+    <AssociationSet Name="FK_SLO_Course_ToCourse" Association="Self.FK_SLO_Course_ToCourse">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="SLO_Course" EntitySet="SLO_Course" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SLO_Course_ToSLO" Association="Self.FK_SLO_Course_ToSLO">
+      <End Role="SLO" EntitySet="SLO" />
+      <End Role="SLO_Course" EntitySet="SLO_Course" />
+    </AssociationSet>
     <AssociationSet Name="FK_SLO_Dept" Association="Self.FK_SLO_Dept">
       <End Role="Department" EntitySet="Department" />
       <End Role="SLO" EntitySet="SLO" />
@@ -1327,6 +1363,10 @@
     <AssociationSet Name="FK_Student-PI-Outcome_ToTeachingAndLearningStrategiesTechnique" Association="Self.FK_Student-PI-Outcome_ToTeachingAndLearningStrategiesTechnique">
       <End Role="TeachingAndLearningStrategiesTechnique" EntitySet="TeachingAndLearningStrategiesTechnique" />
       <End Role="Student-PI-Outcome" EntitySet="Student-PI-Outcome" />
+    </AssociationSet>
+    <AssociationSet Name="PI_ToSLO" Association="Self.PI_ToSLO">
+      <End Role="SLO" EntitySet="SLO" />
+      <End Role="PI" EntitySet="PI" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

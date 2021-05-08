@@ -19,17 +19,17 @@ namespace LSS.Models
         {
             this.CourseAssessmentMappings = new HashSet<CourseAssessmentMapping>();
             this.CLOes = new HashSet<CLO>();
-            this.Courses = new HashSet<Course>();
         }
     
         public string ID { get; set; }
         public string Desc { get; set; }
+        public string SLOID { get; set; }
+        public int DeptID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseAssessmentMapping> CourseAssessmentMappings { get; set; }
+        public virtual SLO SLO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CLO> CLOes { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Course> Courses { get; set; }
     }
 }

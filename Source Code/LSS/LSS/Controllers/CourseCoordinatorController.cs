@@ -13,17 +13,23 @@ namespace LSS.Controllers
     public class CourseCoordinatorController : Controller
     {
         LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
-
+        
+        private YearAndSemester yas = SemesterSingelton.getCurrentYearAndSemester();
+        
         // GET: Courses
         public ActionResult CouresPage(string? courseID)
         {
+            if (courseID == null)
+            {
+                RedirectToAction("Index", "LogedIN");
+            }
+
             YearAndSemester y = SemesterSingelton.getCurrentYearAndSemester(); 
             String userID = Session["ID"].ToString();
-            CourseCoordinator c = _DatabaseEntities.CourseCoordinators.Where(x => x.CourseID.Equals(courseID)
-                                  && x.Year.Equals(y.Year) && x.Semseter.Equals(y.Semester)).FirstOrDefault();
-
+            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(courseID, yas.Year, yas.Semester);
+            CouresModelView course = new CouresModelView(cc);
             ViewBag.Message = "Coures view Page";
-            return View();
+            return View(cc);
         }
 
         public ActionResult EditCourse()
