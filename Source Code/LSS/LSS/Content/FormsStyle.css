@@ -1,0 +1,61 @@
+﻿footer {
+    font-size: 9px;
+    color: #f00;
+    text-align: center;
+}
+#FormName {
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px double solid black;
+    vertical-align: middle;
+    align-items: center;
+    width: 80%;
+    height: 30%;
+    text-align:center;
+}
+
+@page {
+    size: A4;
+    margin: 11mm 17mm 17mm 17mm;
+}
+
+@media print {
+    footer {
+        position: fixed;
+        bottom: 0;
+    }
+    header{
+        position:fixed;
+       align-items:center;
+       vertical-align:middle;
+        top:0;
+    }
+    header,table{
+        width:100%;
+    }
+    #FormName {
+        margin-left:auto;
+        margin-right:auto;
+        border: 2px double solid black;
+        align-items: center;
+        width: 80%;
+        height: 30px;
+        text-align:center;
+
+    }
+
+    .content-block, p {
+        page-break-inside: avoid;
+    }
+    #Pagebreak {
+        padding-top: 100px;
+        margin-top: 100px;
+    }
+    html, body {
+        position: relative;
+        padding-top: 40px;
+        margin-top: 50px;
+        width: 210mm;
+        height: 297mm;
+    }
+}

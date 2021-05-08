@@ -1,0 +1,1332 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ActionsForImprovingTheCourse">
+    <Key>
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Semseter" />
+    </Key>
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Year" Type="date" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="ActionsTaken" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="ActionsResults" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="RecomandedActions" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="PersonResponsible" Type="nvarchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AssessedCourses">
+    <Key>
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Semester" />
+    </Key>
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Year" Type="date" Nullable="false" />
+    <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="IsAssessed" Type="bit" Nullable="false" />
+    <Property Name="WhyNot" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="AssessmentPlanforTheStudentLearningOutcomeTechnique">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="strategy" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="byCompletingThisCourseStudentsAreAbleTo">
+    <Key>
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Semseter" />
+    </Key>
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Year" Type="date" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="SLO" Type="nvarchar" MaxLength="20" />
+    <Property Name="AggrementLVL" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="CLO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="courseId" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="CLO-PI">
+    <Key>
+      <PropertyRef Name="CLOID" />
+      <PropertyRef Name="PI-ID" />
+    </Key>
+    <Property Name="CLOID" Type="int" Nullable="false" />
+    <Property Name="PI-ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Hours" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Designation" Type="nvarchar" MaxLength="255" />
+    <Property Name="VclassURL" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="255" />
+    <Property Name="Other Online resources" Type="nvarchar" MaxLength="255" />
+    <Property Name="Other Required Material" Type="nvarchar" MaxLength="255" />
+    <Property Name="pre-requisite" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="co-requisite" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="dptid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CourseAssessmentMapping">
+    <Key>
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Semseter" />
+      <PropertyRef Name="AssessmentID" />
+      <PropertyRef Name="CLO" />
+      <PropertyRef Name="PI" />
+      <PropertyRef Name="DeptID" />
+    </Key>
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Year" Type="date" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="AssessmentID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CLO" Type="int" Nullable="false" />
+    <Property Name="PI" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DeptID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CourseAssessmentPlan">
+    <Key>
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Semseter" />
+      <PropertyRef Name="AssessmetnID" />
+    </Key>
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Year" Type="date" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="AssessmetnID" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CourseAssessmentSurvay">
+    <Key>
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Semseter" />
+      <PropertyRef Name="Qustion" />
+    </Key>
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Year" Type="date" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Qustion" Type="nvarchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CourseCoordinator">
+    <Key>
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Semseter" />
+    </Key>
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Year" Type="date" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="NoOFStudents" Type="int" Nullable="false" />
+    <Property Name="ClassRoom" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="courseNotAssessedReason " Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="DayTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Coordinator" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CourseFileCheckList">
+    <Key>
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Semseter" />
+    </Key>
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Year" Type="date" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="CoordinatorSignature" Type="bit" />
+    <Property Name="HeadOFDeptSignature" Type="bit" />
+    <Property Name="ViceDeanSignature" Type="bit" />
+    <Property Name="ReasonOfDisaproval" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="CourseInformationForm">
+    <Key>
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Semseter" />
+    </Key>
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Year" Type="date" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="CoordinatorSignature" Type="bit" />
+    <Property Name="HeadOFDeptSignature" Type="bit" />
+    <Property Name="ViceDeanSignature" Type="bit" />
+    <Property Name="ReasonOfDisaproval" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Course-PI">
+    <Key>
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="PI" />
+    </Key>
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="PI" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CourseReport">
+    <Key>
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Semseter" />
+    </Key>
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Year" Type="date" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="CoordinatorSignature" Type="bit" />
+    <Property Name="HeadOFDeptSignature" Type="bit" />
+    <Property Name="ViceDeanSignature" Type="bit" />
+    <Property Name="ReasonOfDisaproval" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="CourseSyllabus">
+    <Key>
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Semseter" />
+    </Key>
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Year" Type="date" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="CoordinatorSignature" Type="bit" />
+    <Property Name="HeadOFDeptSignature" Type="bit" />
+    <Property Name="ReasonOfDisaproval" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="CourseTeachingStrategies">
+    <Key>
+      <PropertyRef Name="StrategyID" />
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Semseter" />
+    </Key>
+    <Property Name="StrategyID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Year" Type="date" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CourseTextBook">
+    <Key>
+      <PropertyRef Name="Course" />
+      <PropertyRef Name="Book Title" />
+    </Key>
+    <Property Name="Course" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Book Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Author" Type="nvarchar" MaxLength="50" />
+    <Property Name="YearOfpublish" Type="date" />
+    <Property Name="City/State" Type="nvarchar" MaxLength="50" />
+    <Property Name="Publisher" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="HeadOFDepartment" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="FacultyId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Faculty">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" />
+    <Property Name="ViceDean" Type="nvarchar" MaxLength="20" />
+    <Property Name="dean" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ineffectiveAssessmentStrategis">
+    <Key>
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Semseter" />
+    </Key>
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Year" Type="date" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Reason" Type="nvarchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ineffectiveTeachingStrategis">
+    <Key>
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Semseter" />
+    </Key>
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Year" Type="date" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Reason" Type="nvarchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Lecturers">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Role" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="OfficeNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="dptId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ModerationChecklist">
+    <Key>
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Semseter" />
+      <PropertyRef Name="Qustion" />
+    </Key>
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Year" Type="date" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Qustion" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Answer" Type="bit" Nullable="false" />
+    <Property Name="commetns" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="OtherLecturers">
+    <Key>
+      <PropertyRef Name="LecturerID" />
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Semseter" />
+    </Key>
+    <Property Name="LecturerID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Year" Type="date" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="DayTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ClassRoom" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PEO">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="DeptID" />
+    </Key>
+    <Property Name="ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Desc" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="DeptID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PI">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Desc" Type="nvarchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ResultOfCourseDirectAssessment">
+    <Key>
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Semseter" />
+    </Key>
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Year" Type="date" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="ActionsTaken" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Observation" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="AnalysisAndJustification" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Recommendation" Type="nvarchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="schedule">
+    <Key>
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Semseter" />
+      <PropertyRef Name="Week" />
+    </Key>
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Year" Type="date" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Week" Type="int" Nullable="false" />
+    <Property Name="Topics" Type="nvarchar" MaxLength="255" />
+    <Property Name="Assigments" Type="nvarchar" MaxLength="255" />
+    <Property Name="Referance" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Schedule_CLO">
+    <Key>
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Semseter" />
+      <PropertyRef Name="Week" />
+      <PropertyRef Name="CLO" />
+    </Key>
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Year" Type="date" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Week" Type="int" Nullable="false" />
+    <Property Name="CLO" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SLO">
+    <Key>
+      <PropertyRef Name="SLOID" />
+      <PropertyRef Name="DeptID" />
+    </Key>
+    <Property Name="SLOID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Desc" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="DeptID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SLO_PEO">
+    <Key>
+      <PropertyRef Name="SLOID" />
+      <PropertyRef Name="PEOID" />
+      <PropertyRef Name="DeptID" />
+    </Key>
+    <Property Name="SLOID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="PEOID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DeptID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="DptID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Student-Course-Grade">
+    <Key>
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Semseter" />
+      <PropertyRef Name="StudentID" />
+    </Key>
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Year" Type="date" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="StudentID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Mark" Type="int" />
+  </EntityType>
+  <EntityType Name="Student-PI-Outcome">
+    <Key>
+      <PropertyRef Name="CoordinatorID" />
+      <PropertyRef Name="StudentID" />
+    </Key>
+    <Property Name="CoordinatorID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="StudentID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="AssessmentMethod" Type="int" Nullable="false" />
+    <Property Name="Mark" Type="int" />
+  </EntityType>
+  <EntityType Name="TeachingAndLearningStrategiesTechnique">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="strategy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="YearAndSemester">
+    <Key>
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Semester" />
+    </Key>
+    <Property Name="Year" Type="date" Nullable="false" />
+    <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ActionsForImprovingTheCourse_ToCourseCoordinator">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="ActionsForImprovingTheCourse" Type="Self.ActionsForImprovingTheCourse" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Principal>
+      <Dependent Role="ActionsForImprovingTheCourse">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AssessedCourses_ToCourse">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="AssessedCourses" Type="Self.AssessedCourses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AssessedCourses">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_byCompletingThisCourseStudentsAreAbleTo_ToCourseCoordinator">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="byCompletingThisCourseStudentsAreAbleTo" Type="Self.byCompletingThisCourseStudentsAreAbleTo" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Principal>
+      <Dependent Role="byCompletingThisCourseStudentsAreAbleTo">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CLO_ToCourse">
+    <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+    <End Role="CLO" Type="Self.CLO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CLO">
+        <PropertyRef Name="courseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CLO-PI_ToCLO">
+    <End Role="CLO" Type="Self.CLO" Multiplicity="1" />
+    <End Role="CLO-PI" Type="Self.CLO-PI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CLO-PI">
+        <PropertyRef Name="CLOID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CLO-PI_ToPI">
+    <End Role="PI" Type="Self.PI" Multiplicity="1" />
+    <End Role="CLO-PI" Type="Self.CLO-PI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PI">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CLO-PI">
+        <PropertyRef Name="PI-ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Coordinator">
+    <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lecturers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CourseCoordinator">
+        <PropertyRef Name="Coordinator" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Course_co">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Course1" Type="Self.Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Course1">
+        <PropertyRef Name="co-requisite" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Course_Department">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="Course" Type="Self.Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Course">
+        <PropertyRef Name="dptid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Course_pre">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Course1" Type="Self.Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Course1">
+        <PropertyRef Name="pre-requisite" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseAssessmentMapping_ToCLO">
+    <End Role="CLO" Type="Self.CLO" Multiplicity="1" />
+    <End Role="CourseAssessmentMapping" Type="Self.CourseAssessmentMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CourseAssessmentMapping">
+        <PropertyRef Name="CLO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseAssessmentMapping_ToCourseCoordinator">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseAssessmentMapping" Type="Self.CourseAssessmentMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Principal>
+      <Dependent Role="CourseAssessmentMapping">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseAssessmentMapping_ToDep">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="CourseAssessmentMapping" Type="Self.CourseAssessmentMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CourseAssessmentMapping">
+        <PropertyRef Name="DeptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseAssessmentMapping_ToSLO">
+    <End Role="PI" Type="Self.PI" Multiplicity="1" />
+    <End Role="CourseAssessmentMapping" Type="Self.CourseAssessmentMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PI">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CourseAssessmentMapping">
+        <PropertyRef Name="PI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseAssessmentPlan_ToAssessment">
+    <End Role="AssessmentPlanforTheStudentLearningOutcomeTechnique" Type="Self.AssessmentPlanforTheStudentLearningOutcomeTechnique" Multiplicity="1" />
+    <End Role="CourseAssessmentPlan" Type="Self.CourseAssessmentPlan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AssessmentPlanforTheStudentLearningOutcomeTechnique">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CourseAssessmentPlan">
+        <PropertyRef Name="AssessmetnID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseAssessmentPlan_ToCourseCoordinator">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseAssessmentPlan" Type="Self.CourseAssessmentPlan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Principal>
+      <Dependent Role="CourseAssessmentPlan">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseAssessmentSurvay_ToCourseCoordinator">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseAssessmentSurvay" Type="Self.CourseAssessmentSurvay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Principal>
+      <Dependent Role="CourseAssessmentSurvay">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseCoordinator_Coruse">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CourseCoordinator">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseCoordinator_YearAndSemester">
+    <End Role="YearAndSemester" Type="Self.YearAndSemester" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YearAndSemester">
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semester" />
+      </Principal>
+      <Dependent Role="CourseCoordinator">
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseFileCheckList_ToCourseCoordinator">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseFileCheckList" Type="Self.CourseFileCheckList" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Principal>
+      <Dependent Role="CourseFileCheckList">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseInformationForm_ToCourseCoordinator">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseInformationForm" Type="Self.CourseInformationForm" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Principal>
+      <Dependent Role="CourseInformationForm">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Course-PI_Coruse">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Course-PI" Type="Self.Course-PI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Course-PI">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Course-PI_PI">
+    <End Role="PI" Type="Self.PI" Multiplicity="1" />
+    <End Role="Course-PI" Type="Self.Course-PI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PI">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Course-PI">
+        <PropertyRef Name="PI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseReport_ToCourseCoordinator">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseReport" Type="Self.CourseReport" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Principal>
+      <Dependent Role="CourseReport">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseSyllabus_ToCourseCoordinator">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseSyllabus" Type="Self.CourseSyllabus" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Principal>
+      <Dependent Role="CourseSyllabus">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseTeachingStrategies_ToCourseCoordinator">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseTeachingStrategies" Type="Self.CourseTeachingStrategies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Principal>
+      <Dependent Role="CourseTeachingStrategies">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseTestBook_course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="CourseTextBook" Type="Self.CourseTextBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CourseTextBook">
+        <PropertyRef Name="Course" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Department_Faculty">
+    <End Role="Faculty" Type="Self.Faculty" Multiplicity="1" />
+    <End Role="Department" Type="Self.Department" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculty">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Department">
+        <PropertyRef Name="FacultyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DPT_ToLecturer">
+    <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="1" />
+    <End Role="Department" Type="Self.Department" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lecturers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Department">
+        <PropertyRef Name="HeadOFDepartment" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Fac_ViceDean_ToLecturer">
+    <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="1" />
+    <End Role="Faculty" Type="Self.Faculty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lecturers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Faculty">
+        <PropertyRef Name="dean" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ineffectiveAssessmentStrategis_ToCourseCoordinator">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="ineffectiveAssessmentStrategis" Type="Self.ineffectiveAssessmentStrategis" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Principal>
+      <Dependent Role="ineffectiveAssessmentStrategis">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ineffectiveTeachingStrategis_ToCourseCoordinator">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="ineffectiveTeachingStrategis" Type="Self.ineffectiveTeachingStrategis" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Principal>
+      <Dependent Role="ineffectiveTeachingStrategis">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Lecturers_ToDpt">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Lecturers">
+        <PropertyRef Name="dptId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ModerationChecklist_ToCourseCoordinator">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="ModerationChecklist" Type="Self.ModerationChecklist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Principal>
+      <Dependent Role="ModerationChecklist">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OtherLecturers_ToCourseCoordinator">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="OtherLecturers" Type="Self.OtherLecturers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Principal>
+      <Dependent Role="OtherLecturers">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OtherLecturers_ToLecturer">
+    <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="1" />
+    <End Role="OtherLecturers" Type="Self.OtherLecturers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lecturers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OtherLecturers">
+        <PropertyRef Name="LecturerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PEO_Department">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="PEO" Type="Self.PEO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PEO">
+        <PropertyRef Name="DeptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ResultOfCourseDirectAssessment_ToCourseCoordinator">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="ResultOfCourseDirectAssessment" Type="Self.ResultOfCourseDirectAssessment" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Principal>
+      <Dependent Role="ResultOfCourseDirectAssessment">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Schedule_CLO_ToCLO">
+    <End Role="CLO" Type="Self.CLO" Multiplicity="1" />
+    <End Role="Schedule_CLO" Type="Self.Schedule_CLO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Schedule_CLO">
+        <PropertyRef Name="CLO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Schedule_CLO_ToSchedule">
+    <End Role="schedule" Type="Self.schedule" Multiplicity="1" />
+    <End Role="Schedule_CLO" Type="Self.Schedule_CLO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="schedule">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+        <PropertyRef Name="Week" />
+      </Principal>
+      <Dependent Role="Schedule_CLO">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+        <PropertyRef Name="Week" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_schedule_ToCourseCoordinator">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Principal>
+      <Dependent Role="schedule">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SLO_Dept">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="SLO" Type="Self.SLO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SLO">
+        <PropertyRef Name="DeptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SLO_PEO_ToPEO">
+    <End Role="PEO" Type="Self.PEO" Multiplicity="1" />
+    <End Role="SLO_PEO" Type="Self.SLO_PEO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PEO">
+        <PropertyRef Name="ID" />
+        <PropertyRef Name="DeptID" />
+      </Principal>
+      <Dependent Role="SLO_PEO">
+        <PropertyRef Name="PEOID" />
+        <PropertyRef Name="DeptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SLO_PEO_ToSLO">
+    <End Role="SLO" Type="Self.SLO" Multiplicity="1" />
+    <End Role="SLO_PEO" Type="Self.SLO_PEO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SLO">
+        <PropertyRef Name="DeptID" />
+        <PropertyRef Name="SLOID" />
+      </Principal>
+      <Dependent Role="SLO_PEO">
+        <PropertyRef Name="DeptID" />
+        <PropertyRef Name="SLOID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_departement">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="DptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student-Course-Grade_ToCourseCoordinator">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="Student-Course-Grade" Type="Self.Student-Course-Grade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Principal>
+      <Dependent Role="Student-Course-Grade">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student-Course-Grade_ToStudents">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Student-Course-Grade" Type="Self.Student-Course-Grade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Student-Course-Grade">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student-PI-Outcome_ToStudents">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Student-PI-Outcome" Type="Self.Student-PI-Outcome" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Student-PI-Outcome">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student-PI-Outcome_ToTeachingAndLearningStrategiesTechnique">
+    <End Role="TeachingAndLearningStrategiesTechnique" Type="Self.TeachingAndLearningStrategiesTechnique" Multiplicity="1" />
+    <End Role="Student-PI-Outcome" Type="Self.Student-PI-Outcome" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TeachingAndLearningStrategiesTechnique">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Student-PI-Outcome">
+        <PropertyRef Name="AssessmentMethod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="ActionsForImprovingTheCourse" EntityType="Self.ActionsForImprovingTheCourse" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AssessedCourses" EntityType="Self.AssessedCourses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AssessmentPlanforTheStudentLearningOutcomeTechnique" EntityType="Self.AssessmentPlanforTheStudentLearningOutcomeTechnique" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="byCompletingThisCourseStudentsAreAbleTo" EntityType="Self.byCompletingThisCourseStudentsAreAbleTo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CLO" EntityType="Self.CLO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CLO-PI" EntityType="Self.CLO-PI" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourseAssessmentMapping" EntityType="Self.CourseAssessmentMapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourseAssessmentPlan" EntityType="Self.CourseAssessmentPlan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourseAssessmentSurvay" EntityType="Self.CourseAssessmentSurvay" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourseCoordinator" EntityType="Self.CourseCoordinator" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourseFileCheckList" EntityType="Self.CourseFileCheckList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourseInformationForm" EntityType="Self.CourseInformationForm" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Course-PI" EntityType="Self.Course-PI" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourseReport" EntityType="Self.CourseReport" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourseSyllabus" EntityType="Self.CourseSyllabus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourseTeachingStrategies" EntityType="Self.CourseTeachingStrategies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourseTextBook" EntityType="Self.CourseTextBook" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Faculty" EntityType="Self.Faculty" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ineffectiveAssessmentStrategis" EntityType="Self.ineffectiveAssessmentStrategis" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ineffectiveTeachingStrategis" EntityType="Self.ineffectiveTeachingStrategis" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Lecturers" EntityType="Self.Lecturers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ModerationChecklist" EntityType="Self.ModerationChecklist" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OtherLecturers" EntityType="Self.OtherLecturers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PEO" EntityType="Self.PEO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PI" EntityType="Self.PI" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ResultOfCourseDirectAssessment" EntityType="Self.ResultOfCourseDirectAssessment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="schedule" EntityType="Self.schedule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Schedule_CLO" EntityType="Self.Schedule_CLO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SLO" EntityType="Self.SLO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SLO_PEO" EntityType="Self.SLO_PEO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student-Course-Grade" EntityType="Self.Student-Course-Grade" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student-PI-Outcome" EntityType="Self.Student-PI-Outcome" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TeachingAndLearningStrategiesTechnique" EntityType="Self.TeachingAndLearningStrategiesTechnique" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="YearAndSemester" EntityType="Self.YearAndSemester" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ActionsForImprovingTheCourse_ToCourseCoordinator" Association="Self.FK_ActionsForImprovingTheCourse_ToCourseCoordinator">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+      <End Role="ActionsForImprovingTheCourse" EntitySet="ActionsForImprovingTheCourse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AssessedCourses_ToCourse" Association="Self.FK_AssessedCourses_ToCourse">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="AssessedCourses" EntitySet="AssessedCourses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_byCompletingThisCourseStudentsAreAbleTo_ToCourseCoordinator" Association="Self.FK_byCompletingThisCourseStudentsAreAbleTo_ToCourseCoordinator">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+      <End Role="byCompletingThisCourseStudentsAreAbleTo" EntitySet="byCompletingThisCourseStudentsAreAbleTo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CLO_ToCourse" Association="Self.FK_CLO_ToCourse">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="CLO" EntitySet="CLO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CLO-PI_ToCLO" Association="Self.FK_CLO-PI_ToCLO">
+      <End Role="CLO" EntitySet="CLO" />
+      <End Role="CLO-PI" EntitySet="CLO-PI" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CLO-PI_ToPI" Association="Self.FK_CLO-PI_ToPI">
+      <End Role="PI" EntitySet="PI" />
+      <End Role="CLO-PI" EntitySet="CLO-PI" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Coordinator" Association="Self.FK_Coordinator">
+      <End Role="Lecturers" EntitySet="Lecturers" />
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Course_co" Association="Self.FK_Course_co">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Course1" EntitySet="Course" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Course_Department" Association="Self.FK_Course_Department">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="Course" EntitySet="Course" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Course_pre" Association="Self.FK_Course_pre">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Course1" EntitySet="Course" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseAssessmentMapping_ToCLO" Association="Self.FK_CourseAssessmentMapping_ToCLO">
+      <End Role="CLO" EntitySet="CLO" />
+      <End Role="CourseAssessmentMapping" EntitySet="CourseAssessmentMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseAssessmentMapping_ToCourseCoordinator" Association="Self.FK_CourseAssessmentMapping_ToCourseCoordinator">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+      <End Role="CourseAssessmentMapping" EntitySet="CourseAssessmentMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseAssessmentMapping_ToDep" Association="Self.FK_CourseAssessmentMapping_ToDep">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="CourseAssessmentMapping" EntitySet="CourseAssessmentMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseAssessmentMapping_ToSLO" Association="Self.FK_CourseAssessmentMapping_ToSLO">
+      <End Role="PI" EntitySet="PI" />
+      <End Role="CourseAssessmentMapping" EntitySet="CourseAssessmentMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseAssessmentPlan_ToAssessment" Association="Self.FK_CourseAssessmentPlan_ToAssessment">
+      <End Role="AssessmentPlanforTheStudentLearningOutcomeTechnique" EntitySet="AssessmentPlanforTheStudentLearningOutcomeTechnique" />
+      <End Role="CourseAssessmentPlan" EntitySet="CourseAssessmentPlan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseAssessmentPlan_ToCourseCoordinator" Association="Self.FK_CourseAssessmentPlan_ToCourseCoordinator">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+      <End Role="CourseAssessmentPlan" EntitySet="CourseAssessmentPlan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseAssessmentSurvay_ToCourseCoordinator" Association="Self.FK_CourseAssessmentSurvay_ToCourseCoordinator">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+      <End Role="CourseAssessmentSurvay" EntitySet="CourseAssessmentSurvay" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseCoordinator_Coruse" Association="Self.FK_CourseCoordinator_Coruse">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseCoordinator_YearAndSemester" Association="Self.FK_CourseCoordinator_YearAndSemester">
+      <End Role="YearAndSemester" EntitySet="YearAndSemester" />
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseFileCheckList_ToCourseCoordinator" Association="Self.FK_CourseFileCheckList_ToCourseCoordinator">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+      <End Role="CourseFileCheckList" EntitySet="CourseFileCheckList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseInformationForm_ToCourseCoordinator" Association="Self.FK_CourseInformationForm_ToCourseCoordinator">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+      <End Role="CourseInformationForm" EntitySet="CourseInformationForm" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Course-PI_Coruse" Association="Self.FK_Course-PI_Coruse">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Course-PI" EntitySet="Course-PI" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Course-PI_PI" Association="Self.FK_Course-PI_PI">
+      <End Role="PI" EntitySet="PI" />
+      <End Role="Course-PI" EntitySet="Course-PI" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseReport_ToCourseCoordinator" Association="Self.FK_CourseReport_ToCourseCoordinator">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+      <End Role="CourseReport" EntitySet="CourseReport" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseSyllabus_ToCourseCoordinator" Association="Self.FK_CourseSyllabus_ToCourseCoordinator">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+      <End Role="CourseSyllabus" EntitySet="CourseSyllabus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseTeachingStrategies_ToCourseCoordinator" Association="Self.FK_CourseTeachingStrategies_ToCourseCoordinator">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+      <End Role="CourseTeachingStrategies" EntitySet="CourseTeachingStrategies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseTestBook_course" Association="Self.FK_CourseTestBook_course">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="CourseTextBook" EntitySet="CourseTextBook" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Department_Faculty" Association="Self.FK_Department_Faculty">
+      <End Role="Faculty" EntitySet="Faculty" />
+      <End Role="Department" EntitySet="Department" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DPT_ToLecturer" Association="Self.FK_DPT_ToLecturer">
+      <End Role="Lecturers" EntitySet="Lecturers" />
+      <End Role="Department" EntitySet="Department" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Fac_ViceDean_ToLecturer" Association="Self.FK_Fac_ViceDean_ToLecturer">
+      <End Role="Lecturers" EntitySet="Lecturers" />
+      <End Role="Faculty" EntitySet="Faculty" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ineffectiveAssessmentStrategis_ToCourseCoordinator" Association="Self.FK_ineffectiveAssessmentStrategis_ToCourseCoordinator">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+      <End Role="ineffectiveAssessmentStrategis" EntitySet="ineffectiveAssessmentStrategis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ineffectiveTeachingStrategis_ToCourseCoordinator" Association="Self.FK_ineffectiveTeachingStrategis_ToCourseCoordinator">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+      <End Role="ineffectiveTeachingStrategis" EntitySet="ineffectiveTeachingStrategis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Lecturers_ToDpt" Association="Self.FK_Lecturers_ToDpt">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="Lecturers" EntitySet="Lecturers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ModerationChecklist_ToCourseCoordinator" Association="Self.FK_ModerationChecklist_ToCourseCoordinator">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+      <End Role="ModerationChecklist" EntitySet="ModerationChecklist" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OtherLecturers_ToCourseCoordinator" Association="Self.FK_OtherLecturers_ToCourseCoordinator">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+      <End Role="OtherLecturers" EntitySet="OtherLecturers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OtherLecturers_ToLecturer" Association="Self.FK_OtherLecturers_ToLecturer">
+      <End Role="Lecturers" EntitySet="Lecturers" />
+      <End Role="OtherLecturers" EntitySet="OtherLecturers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PEO_Department" Association="Self.FK_PEO_Department">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="PEO" EntitySet="PEO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ResultOfCourseDirectAssessment_ToCourseCoordinator" Association="Self.FK_ResultOfCourseDirectAssessment_ToCourseCoordinator">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+      <End Role="ResultOfCourseDirectAssessment" EntitySet="ResultOfCourseDirectAssessment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Schedule_CLO_ToCLO" Association="Self.FK_Schedule_CLO_ToCLO">
+      <End Role="CLO" EntitySet="CLO" />
+      <End Role="Schedule_CLO" EntitySet="Schedule_CLO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Schedule_CLO_ToSchedule" Association="Self.FK_Schedule_CLO_ToSchedule">
+      <End Role="schedule" EntitySet="schedule" />
+      <End Role="Schedule_CLO" EntitySet="Schedule_CLO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_schedule_ToCourseCoordinator" Association="Self.FK_schedule_ToCourseCoordinator">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+      <End Role="schedule" EntitySet="schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SLO_Dept" Association="Self.FK_SLO_Dept">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="SLO" EntitySet="SLO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SLO_PEO_ToPEO" Association="Self.FK_SLO_PEO_ToPEO">
+      <End Role="PEO" EntitySet="PEO" />
+      <End Role="SLO_PEO" EntitySet="SLO_PEO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SLO_PEO_ToSLO" Association="Self.FK_SLO_PEO_ToSLO">
+      <End Role="SLO" EntitySet="SLO" />
+      <End Role="SLO_PEO" EntitySet="SLO_PEO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_departement" Association="Self.FK_Student_departement">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student-Course-Grade_ToCourseCoordinator" Association="Self.FK_Student-Course-Grade_ToCourseCoordinator">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+      <End Role="Student-Course-Grade" EntitySet="Student-Course-Grade" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student-Course-Grade_ToStudents" Association="Self.FK_Student-Course-Grade_ToStudents">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="Student-Course-Grade" EntitySet="Student-Course-Grade" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student-PI-Outcome_ToStudents" Association="Self.FK_Student-PI-Outcome_ToStudents">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="Student-PI-Outcome" EntitySet="Student-PI-Outcome" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student-PI-Outcome_ToTeachingAndLearningStrategiesTechnique" Association="Self.FK_Student-PI-Outcome_ToTeachingAndLearningStrategiesTechnique">
+      <End Role="TeachingAndLearningStrategiesTechnique" EntitySet="TeachingAndLearningStrategiesTechnique" />
+      <End Role="Student-PI-Outcome" EntitySet="Student-PI-Outcome" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

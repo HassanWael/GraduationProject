@@ -1,0 +1,23 @@
+﻿@using LSS.Models
+@model LSS.Models.DepartmentViewModel.MappedPEO_SLO
+
+<table class="table">
+    <tr>
+        <td>
+            PEO
+        </td>
+        <td>
+            description
+        </td>
+    </tr>
+    @foreach (var item in Model.unmappedPEO) {
+        <tr>
+            <td>
+                @item.ID
+            </td>
+            <td>
+                @item.Desc
+            </td>
+        </tr>
+     }
+</table>
