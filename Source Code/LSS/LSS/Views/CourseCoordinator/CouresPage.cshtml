@@ -5,7 +5,7 @@
 
 
 @{
-    ViewBag.Title = Model.Course.Title;
+       
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="~/Content/coursepage.css" rel="stylesheet" type="text/css" />
@@ -38,12 +38,26 @@
 </div>
 <div class="block-item">
     <ul >
+        Clo :
         @foreach(CLO clo in Model.CLOs){ 
             <li> @clo.Description</li>
          }
 
     </ul>
 
+</div>
+<div class="block-item">
+    <ul>
+        <li>Course Syllabus </li>
+        <li>Course Assessment Survey </li>
+        <li>Course File Checklist  </li>
+        <li>Course Information Form </li>
+        <li>Coures Report </li>
+        <li>Exam Evaluation </li>
+        <li>Question Answer Sheet </li>
+        
+
+    </ul>
 </div>
 
 

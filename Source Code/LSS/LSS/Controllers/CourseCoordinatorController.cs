@@ -28,8 +28,10 @@ namespace LSS.Controllers
             String userID = Session["ID"].ToString();
             CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(courseID, yas.Year, yas.Semester);
             CouresModelView course = new CouresModelView(cc);
+            
             ViewBag.Message = "Coures view Page";
-            return View(cc);
+
+            return View(course);
         }
 
         public ActionResult EditCourse()

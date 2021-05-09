@@ -14,7 +14,7 @@ namespace LSS.Models.CoursesModelView
         /// <param name="courseCoordinator"></param>
         public CouresModelView(CourseCoordinator courseCoordinator)
         {
-            this.CourseCoordinator = CourseCoordinator;
+            this.CourseCoordinator = courseCoordinator;
         }
         public CourseCoordinator CourseCoordinator { get; set; }
         private Course course { get; set; }
@@ -121,6 +121,12 @@ namespace LSS.Models.CoursesModelView
                 return _SLO_PI;
             }
             set { _SLO_PI = value; } }
+
+        public string getName() {
+
+
+            return "qusai";
+        }
 
     }
 }
