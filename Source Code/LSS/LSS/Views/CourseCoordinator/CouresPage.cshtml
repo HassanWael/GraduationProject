@@ -3,6 +3,7 @@
 @using LSS.Models
 @model LSS.Models.CoursesModelView.CouresModelView
 
+
 @{
     ViewBag.Title = Model.Course.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -18,7 +19,9 @@
             <tr> <td>   <h4> Coures Title </h4>  </td> <td> @Model.Course.Title </td></tr>
             <tr> <td>    <h4> Coures ID </h4>  </td> <td>  @Model.Course.ID </td></tr>
             <tr> <td>   <h4> Faculty Name   </h4> </td> <td> @Model.Faculty.ID </td></tr>
-            <tr> <td>   <h4> Credit Hours   </h4> </td> <td> @Model.Course.Hours</td></tr>
+            <tr> <td>   <h4> Credit Hours   </h4> </td> <td> @Model.Course.Hours </td></tr>
+            <tr> <td>   <h4> Course Coordinator   </h4> </td> <td> @Model.CourseCoordinator.Coordinator </td></tr>
+            <tr> <td>   <h4> day time  </h4> </td> <td> @Model.CourseCoordinator.DayTime </td></tr>
         </table>
     </div>
 
