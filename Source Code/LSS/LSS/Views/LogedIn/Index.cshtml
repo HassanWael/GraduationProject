@@ -16,11 +16,15 @@
 
     @if (Model.CoordinatedCourses != null)
     {<ul>
-            @foreach (CourseCoordinator cc in Model.CoordinatedCourses)
-            {
-                <li>@cc.Course.Title</li>
-            }
-        </ul>
+    @foreach (CourseCoordinator cc in Model.CoordinatedCourses)
+    {
+    <li> @Html.ActionLink(cc.Course.Title, "EditPage", "CourseCoordinator", new { courseID = cc.Course.ID }) </li>
+
+    }
+
+    <li>
+
+</ul>
     }
     else
     {
@@ -36,14 +40,7 @@
         <ul>
             @foreach (CourseCoordinator cc in Model.DepartmentCCs)
             {
-                <li>
-                    <div>
-                        <h4>
-                            @cc.Course.Title
-                        </h4>
-                        @Html.ActionLink("CoursePage", "LogedIn", new CouresModelView(cc));
-                    </div>
-                </li>
+                <li> @Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator", new { courseID = cc.Course.ID }) </li>
             }
         </ul>
     </div>
@@ -55,7 +52,7 @@
         <ul>
             @foreach (CourseCoordinator cc in Model.FacultyCCS)
             {
-                <li>@cc.Course.Title</li>
+                <li> @Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator", new { courseID = cc.Course.ID }) </li>
             }
         </ul>
     </div>

@@ -5,7 +5,7 @@
 
 
 @{
-    ViewBag.Title = Model.Course.Title;
+
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="~/Content/coursepage.css" rel="stylesheet" type="text/css" />
@@ -37,14 +37,14 @@
 </div>
 <div class="block-item">
     <table>
-        @for (int i = 0; i > Model.CLOs.Count(); i++)
+        @for (int i = 1; i > Model.CLOs.Count(); i++)
         {
             <tr>
                 <td>
                     @i
                 </td>
                 <td>
-                    @Model.CLOs[i].Description
+                    @Model.CLOs[i-1].Description
                 </td>
             </tr>
 
@@ -58,8 +58,7 @@
             @{
                 // Html.RenderPartial("AddSLO", new SLO());
             }
-        </div>
-    </div>
+      
 </div>
 <button id='open' data-toggle="modal" data-target="#addSLO">ِAdd Course Learning outcome</button>
 
@@ -96,4 +95,3 @@ else
 {
     <h6> There is no Pi listed for this course yet</h6>
 }
-
