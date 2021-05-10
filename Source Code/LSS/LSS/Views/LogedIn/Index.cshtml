@@ -1,4 +1,6 @@
-﻿@using LSS.Models 
+﻿@using LSS.Models
+@using LSS.Models.CoursesModelView
+
 @model LSS.Models.CoursesModelView.HomeCourseListViewModel
 @Styles.Render("~/Content/css")
 @Scripts.Render("~/bundles/modernizr")
@@ -16,7 +18,7 @@
     {<ul>
             @foreach (CourseCoordinator cc in Model.CoordinatedCourses)
             {
-            <li>@cc.Course.Title</li>
+                <li>@cc.Course.Title</li>
             }
         </ul>
     }
@@ -34,7 +36,14 @@
         <ul>
             @foreach (CourseCoordinator cc in Model.DepartmentCCs)
             {
-                <li>@cc.Course.Title</li>
+                <li>
+                    <div>
+                        <h4>
+                            @cc.Course.Title
+                        </h4>
+                        @Html.ActionLink("CoursePage", "LogedIn", new CouresModelView(cc));
+                    </div>
+                </li>
             }
         </ul>
     </div>

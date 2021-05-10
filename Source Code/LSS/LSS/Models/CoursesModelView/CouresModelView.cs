@@ -16,6 +16,7 @@ namespace LSS.Models.CoursesModelView
         {
             this.CourseCoordinator = CourseCoordinator;
         }
+
         public CourseCoordinator CourseCoordinator { get; set; }
         private Course course { get; set; }
         public Course Course

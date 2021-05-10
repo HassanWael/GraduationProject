@@ -13,7 +13,6 @@
 <div class="block" style="margin-top:80px;">
 
     <div class="block-item" style="margin-right:30px">
-
         <table>
             <tr>   <th colspan="2"> <p> Course Information </p>  </th></tr>
             <tr> <td>   <h4> Coures Title </h4>  </td> <td> @Model.Course.Title </td></tr>
@@ -37,13 +36,64 @@
     </div>
 </div>
 <div class="block-item">
-    <ul >
-        @foreach(CLO clo in Model.CLOs){ 
-            <li> @clo.Description</li>
-         }
+    <table>
+        @for (int i = 0; i > Model.CLOs.Count(); i++)
+        {
+            <tr>
+                <td>
+                    @i
+                </td>
+                <td>
+                    @Model.CLOs[i].Description
+                </td>
+            </tr>
 
-    </ul>
-
+        }
+    </table>
 </div>
 
+<div id="addSLO" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @{
+                // Html.RenderPartial("AddSLO", new SLO());
+            }
+        </div>
+    </div>
+</div>
+<button id='open' data-toggle="modal" data-target="#addSLO">ِAdd Course Learning outcome</button>
+
+
+<h5> Course PI</h5>
+
+@if (Model.SLO_PI != null)
+{
+
+    <div class="block-item">
+        <table>
+            <tr>
+                <td>SLO</td>
+                @for (int i = 0; i < Model.SLO_PI.Count(); i++)
+                {
+                    <td colspan=" @Model.SLO_PI.ElementAt(i).Value.Count();">
+                        @Model.SLO_PI.ElementAt(i).Key
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td> PI</td>
+                @for (int i = 0; i < Model.SLO_PI.Count(); i++)
+                {
+                    <td>
+                        @Model.SLO_PI.ElementAt(i).Value
+                    </td>
+                }
+            </tr>
+        </table>
+    </div>
+}
+else
+{
+    <h6> There is no Pi listed for this course yet</h6>
+}
 

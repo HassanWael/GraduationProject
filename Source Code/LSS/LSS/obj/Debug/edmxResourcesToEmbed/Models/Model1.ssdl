@@ -78,8 +78,8 @@
     <Property Name="Description" Type="nvarchar" MaxLength="255" />
     <Property Name="Other Online resources" Type="nvarchar" MaxLength="255" />
     <Property Name="Other Required Material" Type="nvarchar" MaxLength="255" />
-    <Property Name="pre-requisite" Type="nvarchar" MaxLength="30" Nullable="false" />
-    <Property Name="co-requisite" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="pre-requisite" Type="nvarchar" MaxLength="30" />
+    <Property Name="co-requisite" Type="nvarchar" MaxLength="30" />
     <Property Name="dptid" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="CourseAssessmentMapping">
@@ -137,7 +137,7 @@
     <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
     <Property Name="NoOFStudents" Type="int" Nullable="false" />
     <Property Name="ClassRoom" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="courseNotAssessedReason " Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="courseNotAssessedReason " Type="nvarchar" MaxLength="255" />
     <Property Name="DayTime" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Coordinator" Type="nvarchar" MaxLength="30" Nullable="false" />
   </EntityType>
@@ -226,7 +226,7 @@
     </Key>
     <Property Name="ID" Type="int" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="HeadOFDepartment" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="HeadOFDepartment" Type="nvarchar" MaxLength="30" />
     <Property Name="FacultyId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Faculty">
@@ -235,8 +235,8 @@
     </Key>
     <Property Name="ID" Type="int" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="255" />
-    <Property Name="ViceDean" Type="nvarchar" MaxLength="20" />
-    <Property Name="dean" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="ViceDean" Type="nvarchar" MaxLength="30" />
+    <Property Name="dean" Type="nvarchar" MaxLength="30" />
   </EntityType>
   <EntityType Name="ineffectiveAssessmentStrategis">
     <Key>
@@ -299,6 +299,7 @@
     <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
     <Property Name="DayTime" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="ClassRoom" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="noOFStudents" Type="int" />
   </EntityType>
   <EntityType Name="PEO">
     <Key>
@@ -438,6 +439,24 @@
     <Property Name="Year" Type="date" Nullable="false" />
     <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="database_firewall_rules">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="start_ip_address" />
+      <PropertyRef Name="end_ip_address" />
+      <PropertyRef Name="create_date" />
+      <PropertyRef Name="modify_date" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="start_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="end_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="create_date" Type="datetime" Nullable="false" />
+    <Property Name="modify_date" Type="datetime" Nullable="false" />
+  </EntityType>
   <Association Name="FK_ActionsForImprovingTheCourse_ToCourseCoordinator">
     <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
     <End Role="ActionsForImprovingTheCourse" Type="Self.ActionsForImprovingTheCourse" Multiplicity="0..1" />
@@ -551,7 +570,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Course_co">
-    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
     <End Role="Course1" Type="Self.Course" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Course">
@@ -575,7 +594,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Course_pre">
-    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
     <End Role="Course1" Type="Self.Course" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Course">
@@ -801,7 +820,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_DPT_ToLecturer">
-    <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="1" />
+    <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="0..1" />
     <End Role="Department" Type="Self.Department" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Lecturers">
@@ -813,7 +832,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Fac_ViceDean_ToLecturer">
-    <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="1" />
+    <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="0..1" />
     <End Role="Faculty" Type="Self.Faculty" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Lecturers">
@@ -1168,6 +1187,16 @@
     <EntitySet Name="Student-PI-Outcome" EntityType="Self.Student-PI-Outcome" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TeachingAndLearningStrategiesTechnique" EntityType="Self.TeachingAndLearningStrategiesTechnique" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="YearAndSemester" EntityType="Self.YearAndSemester" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
+      <DefiningQuery>SELECT 
+    [database_firewall_rules].[id] AS [id], 
+    [database_firewall_rules].[name] AS [name], 
+    [database_firewall_rules].[start_ip_address] AS [start_ip_address], 
+    [database_firewall_rules].[end_ip_address] AS [end_ip_address], 
+    [database_firewall_rules].[create_date] AS [create_date], 
+    [database_firewall_rules].[modify_date] AS [modify_date]
+    FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_ActionsForImprovingTheCourse_ToCourseCoordinator" Association="Self.FK_ActionsForImprovingTheCourse_ToCourseCoordinator">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
       <End Role="ActionsForImprovingTheCourse" EntitySet="ActionsForImprovingTheCourse" />

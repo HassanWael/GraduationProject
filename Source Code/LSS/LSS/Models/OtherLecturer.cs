@@ -20,6 +20,7 @@ namespace LSS.Models
         public string Semseter { get; set; }
         public string DayTime { get; set; }
         public string ClassRoom { get; set; }
+        public Nullable<int> noOFStudents { get; set; }
     
         public virtual CourseCoordinator CourseCoordinator { get; set; }
         public virtual Lecturer Lecturer { get; set; }
