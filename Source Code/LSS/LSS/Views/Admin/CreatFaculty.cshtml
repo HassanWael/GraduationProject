@@ -8,7 +8,7 @@
 
 <h2>CreatFaculty</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("CreateFaculty","Admin",FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
