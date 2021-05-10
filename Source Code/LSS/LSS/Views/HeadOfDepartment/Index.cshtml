@@ -6,7 +6,6 @@
         ViewBag.Title = Model.Name;
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
-
     <h2>@Model.Name</h2>
 
     <div>
@@ -63,11 +62,12 @@
             <h3> There is 'nt any PEO yet </h3>
              }
     </div>
+
     <div id="addPEO" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 @{
-                    Html.RenderPartial("AddPEO", new PEO());
+                    Html.RenderPartial("AddPEO", new PEO(Model.ID));
                 }
             </div>
         </div>
@@ -104,8 +104,10 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 @{
-                 Html.RenderPartial("AddSLO",new SLO());
+                    Html.RenderPartial("AddSLO", new SLO(Model.ID));
                 }
+                <input type="submit" value="Add SLO" class="btn btn-primary" />
+
             </div>
         </div>
     </div>

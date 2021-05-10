@@ -13,9 +13,9 @@ namespace LSS.Controllers
     public class CourseCoordinatorController : Controller
     {
         LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
-        
+
         private YearAndSemester yas = SemesterSingelton.getCurrentYearAndSemester();
-        
+
         // GET: Courses
         public ActionResult CouresPage(string? courseID)
         {
@@ -24,11 +24,11 @@ namespace LSS.Controllers
                 RedirectToAction("Index", "LogedIN");
             }
 
-            YearAndSemester y = SemesterSingelton.getCurrentYearAndSemester(); 
+            YearAndSemester y = SemesterSingelton.getCurrentYearAndSemester();
             String userID = Session["ID"].ToString();
             CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(courseID, yas.Year, yas.Semester);
             CouresModelView course = new CouresModelView(cc);
-            
+
             ViewBag.Message = "Coures view Page";
 
             return View(course);

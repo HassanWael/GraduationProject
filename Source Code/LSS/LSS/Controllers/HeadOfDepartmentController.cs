@@ -28,15 +28,6 @@ namespace LSS.Controllers
             return View(d);
         }
       //  [Authorize(Roles = "HOD,Dean,ViceDean")]
-
-        public ActionResult AddPEO(int dptID)
-        {
-            DptID = dptID;
-
-            ViewBag.DeptID = dptID;
-            return View();
-        }
-
         [HttpPost]
         public ActionResult AddPEO(PEO peo)
         {
@@ -45,17 +36,10 @@ namespace LSS.Controllers
             return RedirectToAction("index", new { d = peo.DeptID });
         }
 //        [Authorize(Roles = "HOD,Dean,ViceDean")]
-        public ActionResult AddSLO(int dptID)
-        {
-            DptID = dptID;
-            ViewBag.DeptID = dptID;
-            return View();
-        }
         [HttpPost]
       //  [Authorize(Roles = "HOD,Dean,ViceDean")]
         public ActionResult AddSLO(SLO slo)
         {
-            slo.DeptID = DptID;
             _databaseEntities.SLOes.Add(slo);
             _databaseEntities.SaveChanges();
             return RedirectToAction("index", new { d = slo.DeptID });
