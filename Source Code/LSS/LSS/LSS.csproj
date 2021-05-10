@@ -452,6 +452,7 @@
     <Content Include="Views\Forms\ExamModerationChecklist.cshtml" />
     <Content Include="Views\Forms\QuestionsAnswersSheet.cshtml" />
     <Content Include="Views\CourseCoordinator\CreateCourseInformationForm.cshtml" />
+    <Content Include="Views\Forms\CouresSyllabusAddData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -5,7 +5,7 @@
 
 
 @{
-       
+
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="~/Content/coursepage.css" rel="stylesheet" type="text/css" />
@@ -37,25 +37,72 @@
     </div>
 </div>
 <div class="block-item">
-    <ul >
+    <ul>
         Clo :
-        @foreach(CLO clo in Model.CLOs){ 
+        @foreach (CLO clo in Model.CLOs)
+        {
             <li> @clo.Description</li>
-         }
+        }
 
     </ul>
 
+
 </div>
+<div id="addSLO" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @{
+                // Html.RenderPartial("AddSLO", new SLO());
+            }
+        </div>
+    </div>
+</div>
+<button id='open' data-toggle="modal" data-target="#addSLO">ِAdd Course Learning outcome</button>
+
+
+@*<h5> Course PI</h5>
+
+@if (Model.SLO_PI != null)
+{
+
+    <div class="block-item">
+        <table>
+            <tr>
+                <td>SLO</td>
+                @for (int i = 0; i < Model.SLO_PI.Count(); i++)
+                {
+                    <td colspan=" @Model.SLO_PI.ElementAt(i).Value.Count();">
+                        @Model.SLO_PI.ElementAt(i).Key
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td> PI</td>
+                @for (int i = 0; i < Model.SLO_PI.Count(); i++)
+                {
+                    <td>
+                        @Model.SLO_PI.ElementAt(i).Value
+                    </td>
+                }
+            </tr>
+        </table>
+    </div>
+}
+else
+{
+    <h6> There is no Pi listed for this course yet</h6>
+}*@
 <div class="block-item">
     <ul>
-        <li>Course Syllabus </li>
-        <li>Course Assessment Survey </li>
-        <li>Course File Checklist  </li>
-        <li>Course Information Form </li>
-        <li>Coures Report </li>
-        <li>Exam Evaluation </li>
-        <li>Question Answer Sheet </li>
+        <li>@Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms") </li>
+        <li>@Html.ActionLink("Course Assessment Survey", "CourseAssessmentSurvey", "Forms") </li>
+        <li>@Html.ActionLink("Course File Checklist", "CourseFileChecklist", "Forms") </li>
+        <li>@Html.ActionLink("Course Information Form ", "CourseInformationForm", "Forms") </li>
+        <li>@Html.ActionLink("Coures Report", "CourseReport", "Forms") </li>
+        <li>@Html.ActionLink("Exam Evaluation", "ExamEvaluation", "Forms") </li>
+        <li>@Html.ActionLink("Question Answer Sheet", "QuestionsAnswersSheet", "Forms") </li>
         
+
 
     </ul>
 </div>
