@@ -114,7 +114,11 @@
     <button id='open' data-toggle="modal" data-target="#addSLO">Add SLO</button>
 
     <div>
-        <h2>PEO-SLO</h2>
-        @{ Html.RenderPartial("_PEO_SLO_Mapping",new MappedPEO_SLO(Model)); }
+        <h2 style="text-align:left; float:left">PEO-SLO</h2>
+        <br>
+
+        <br>
+        @{ Html.RenderPartial("_PEO_SLO_Mapping", new MappedPEO_SLO(Model)); }
+        @Html.ActionLink("Mapp the Studens learning outcome to the Program", "MapSLOToPEO",new { DeptID = Model.ID})
     </div>
 </body>

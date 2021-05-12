@@ -75,7 +75,7 @@
         <AssociationConnector Association="Model.FK_Student_departement" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Fac_ViceDean_ToLecturer" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_OtherLecturers_ToLecturer" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_SLO_PEO_ToPEO" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_SLO_PEO_ToPEO" ManuallyRouted="true" />
         <AssociationConnector Association="Model.PI_ToSLO" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_SLO_PEO_ToSLO" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Student_Course_Grade_ToStudents" ManuallyRouted="false" />

@@ -1,0 +1,35 @@
+﻿@model LSS.Models.Department
+@using LSS.Models
+
+@{
+    ViewBag.Title = "MapSLOToPEO";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>MapSLOToPEO</h2>
+@using (Html.BeginForm("MapSLOToPEO", "HeadOfDepartment", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+<div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10"> 
+                <input type="text" id="DeptID" value="@Model.ID"/>
+
+            @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    SLO @Html.DropDownList("SLOID",new SelectList(Model.SLOes, "SLOID", "Desc"))
+    <ul style="list-style-type:none;">
+        @foreach (PEO peo in Model.PEOs)
+        {
+            <li> <input type="checkbox" name="PEOID" value="@peo.ID"   <em>@peo.ID : </em>  @peo.Desc</li>
+        }
+    </ul>
+
+</div>
+<input type="submit" value="Map PEO to SLO" class="btn btn-outline-primary" />
+}

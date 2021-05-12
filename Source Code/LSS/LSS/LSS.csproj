@@ -457,7 +457,7 @@
     <Content Include="Views\CourseCoordinator\CreateCourseInformationForm.cshtml" />
     <Content Include="Views\Forms\CouresSyllabusAddData.cshtml" />
     <Content Include="Views\HeadOfDepartment\_AddCLO.cshtml" />
-    
+    <Content Include="Views\HeadOfDepartment\MapSLOToPEO.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -54,6 +54,7 @@ namespace LSS.Models.DepartmentViewModel
             {
                 if (slo_peo == null)
                 {
+                    slo_peo = new HashSet<SLO_PEO>();
                     foreach (SLO slo in SLOes)
                     {
                         slo.SLO_PEO.ToList().ForEach(x => slo_peo.Add(x));
@@ -73,6 +74,8 @@ namespace LSS.Models.DepartmentViewModel
             {
                 if (unmappedPEO == null)
                 {
+                    unmappedPEO = new List<PEO>();
+
                     if (SLO_PEO != null)
                     {
                         foreach (PEO peo in PEOs)
@@ -99,11 +102,13 @@ namespace LSS.Models.DepartmentViewModel
             {
                 if (unmappedSLO == null)
                 {
+                    unmappedSLO = new List<SLO>();
+
                     foreach (SLO slo in SLOes)
                     {
                         if (SLO_PEO != null)
                         {
-                            if (!SLO_PEO.Select(x => x.SLO).Contains(slo))
+                            if (SLO_PEO.Where(x=>x.SLOID.Equals(slo.SLOID)).FirstOrDefault()==null)
                             {
                                 unmappedSLO.Add(slo);
                             }
