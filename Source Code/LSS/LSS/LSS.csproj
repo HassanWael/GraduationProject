@@ -197,6 +197,7 @@
     <Compile Include="Models\Department.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DepartmentViewModel\AddSLOMV.cs" />
     <Compile Include="Models\DepartmentViewModel\MappedPEO_SLO.cs" />
     <Compile Include="Models\Faculty.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -458,6 +459,7 @@
     <Content Include="Views\Forms\CouresSyllabusAddData.cshtml" />
     <Content Include="Views\HeadOfDepartment\_AddCLO.cshtml" />
     <Content Include="Views\HeadOfDepartment\MapSLOToPEO.cshtml" />
+    <Content Include="Views\HeadOfDepartment\EditSLO.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

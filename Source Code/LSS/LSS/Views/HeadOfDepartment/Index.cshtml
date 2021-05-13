@@ -42,9 +42,9 @@
     <div>
         <h2>
             Program Educational Opjectives (PEO)
-            </h2>
-            @if (Model.PEOs != null)
-            {
+        </h2>
+        @if (Model.PEOs != null)
+        {
             <ul>
                 @foreach (PEO peo in Model.PEOs)
                 {
@@ -53,14 +53,16 @@
                             <b> @peo.ID : </b>
                         </h5>
                         <p>
-                            @peo.Desc 
+                            @peo.Desc
                         </p>
                     </li>
                 }
             </ul>
-            } else {
+        }
+        else
+        {
             <h3> There is 'nt any PEO yet </h3>
-             }
+        }
     </div>
 
     <div id="addPEO" class="modal fade" tabindex="-1" role="dialog">
@@ -80,34 +82,45 @@
             <ul>
                 @foreach (SLO slo in Model.SLOes)
                 {
-                    <li>
-                        <div>
-                            <h5><b>@slo.SLOID : </b></h5>
-                            <p> @slo.Desc </p>
+                <li>
+                    <div>
+                        <h5 style="text-align:left;float:left"><b>@slo.SLOID  </b></h5>
+                        <a id="open" data-toggle="modal" data-target="#@slo.SLOID">Edit</a>
+                        <p> @slo.Desc </p>
+                    </div>
+
+                    <div id="@slo.SLOID" class="modal fade" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                @{
+                                    Html.RenderPartial("EditSLO", new AddSLOMV(slo));
+                                }
+                            </div>
                         </div>
-                        <ul>
-                            @foreach (PI pi in slo.PIs)
-                            {
-                                <li>
-                                    <h6><b>@pi.ID : </b></h6>
-                                    <p> @pi.Desc</p>
-                                </li>
-                            }
-                        </ul>
-                    </li>
+                    </div>
+                    <ul>
+                        @foreach (PI pi in slo.PIs)
+                        {
+                            <li>
+                                <h6><b>@pi.ID : </b></h6>
+                                <p> @pi.Desc</p>
+                            </li>
+                        }
+                    </ul>
+                </li>
                 }
             </ul>
         </div>
     </div>
 
+   
+
     <div id="addSLO" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 @{
-                    Html.RenderPartial("AddSLO", new SLO(Model.ID));
+                    Html.RenderPartial("AddSLO", new AddSLOMV(Model.ID));
                 }
-                <input type="submit" value="Add SLO" class="btn btn-primary" />
-
             </div>
         </div>
     </div>
@@ -119,6 +132,5 @@
 
         <br>
         @{ Html.RenderPartial("_PEO_SLO_Mapping", new MappedPEO_SLO(Model)); }
-        @Html.ActionLink("Mapp the Studens learning outcome to the Program", "MapSLOToPEO",new { DeptID = Model.ID})
     </div>
 </body>

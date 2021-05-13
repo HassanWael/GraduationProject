@@ -1,6 +1,6 @@
 ﻿@model LSS.Models.CLO
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("","",FormMethod.Post)) 
 {
     @Html.AntiForgeryToken()
     

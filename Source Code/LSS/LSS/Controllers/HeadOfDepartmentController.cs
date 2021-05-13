@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Dynamic;
 using System.Linq;
 using System.Web;
@@ -27,38 +28,74 @@ namespace LSS.Controllers
             Department d = _databaseEntities.Departments.Find(2);
             return View(d);
         }
-        public ActionResult MapSLOToPEO(int? DeptID)
-        {
-            //if (DeptID == null)
-            //{
-            //    return RedirectToAction("Index", "LogedIn");
-            //}
-
-            Department d = _databaseEntities.Departments.Find(2);
-
-            //if (d == null)
-            //{
-            //    return RedirectToAction("Index", "LogedIn");
-            //}
 
 
-            return View(d);
-        }
         [HttpPost]
-        public ActionResult MapSLOToPEO(int ID, string [] PEOID,string SLOID)
+        public ActionResult EditSLO(AddSLOMV md,String[] PEOID)
         {
-            
-            SLO_PEO SLO_PEO = new SLO_PEO();
-            foreach(String peo in PEOID) { 
-                SLO_PEO.SLOID = SLOID;
-                SLO_PEO.DeptID = ID;
-                SLO_PEO.PEOID = peo;
-                _databaseEntities.SLO_PEO.Add(SLO_PEO);
+            if (ModelState.IsValid)
+            {
+                List<PEO> PEOs = md.PEOs.ToList();
+                _databaseEntities.Entry(md.SLO).State = EntityState.Modified;
                 _databaseEntities.SaveChanges();
+                List<SLO_PEO> sLO_PEOs = _databaseEntities.SLO_PEO.Where(x => x.SLOID.Equals(md.SLO.SLOID) && x.DeptID.Equals(md.SLO.DeptID)).ToList();
+                foreach (PEO peo in PEOs)
+                {
+                    SLO_PEO SLO_PEO = new SLO_PEO();
+                    if (PEOID != null && PEOID.Contains(peo.ID))
+                    {
+                        if (!sLO_PEOs.Select(x => x.PEOID).Contains(peo.ID)) { 
+                            SLO_PEO.SLOID = md.SLO.SLOID;
+                            SLO_PEO.DeptID = md.SLO.DeptID;
+                            SLO_PEO.PEOID = peo.ID;
+                            _databaseEntities.SLO_PEO.Add(SLO_PEO);
+                            _databaseEntities.SaveChanges();
+                        }
+                    }
+                    else
+                    {
+                        if (sLO_PEOs.Select(x => x.PEOID).Contains(peo.ID))
+                        {
+
+                            SLO_PEO = _databaseEntities.SLO_PEO.Single(i => i.DeptID.Equals(md.SLO.DeptID)
+                                    && i.SLOID.Equals(md.SLO.SLOID)
+                                    && i.PEOID.Equals(peo.ID));
+                            _databaseEntities.SLO_PEO.Remove(SLO_PEO);
+                            _databaseEntities.SaveChanges();
+                        }
+                    }
+                }
+                return RedirectToAction("Index", md.SLO.DeptID);
             }
-            return RedirectToAction("Index", "HeadOfDepartment", ID);
+
+
+
+            return View(md);
         }
 
+        [HttpPost]
+        //  [Authorize(Roles = "HOD,Dean,ViceDean")]
+        public ActionResult AddSLO(AddSLOMV md, String[] PEOID)
+        {
+            if (ModelState.IsValid)
+            {
+                _databaseEntities.SLOes.Add(md.SLO);
+                _databaseEntities.SaveChanges();
+                SLO_PEO SLO_PEO = new SLO_PEO();
+
+                foreach (String str in PEOID)
+                {
+                    SLO_PEO.SLOID = md.SLO.SLOID;
+                    SLO_PEO.DeptID = md.SLO.DeptID;
+                    SLO_PEO.PEOID = str;
+                    _databaseEntities.SLO_PEO.Add(SLO_PEO);
+                }
+                _databaseEntities.SaveChanges();
+                return RedirectToAction("index", new { d = md.SLO.DeptID });
+            }
+
+            return View(md);
+        }
 
         //  [Authorize(Roles = "HOD,Dean,ViceDean")]
         [HttpPost]
@@ -72,20 +109,7 @@ namespace LSS.Controllers
             }
             return View();
         }
-//        [Authorize(Roles = "HOD,Dean,ViceDean")]
-        [HttpPost]
-      //  [Authorize(Roles = "HOD,Dean,ViceDean")]
-        public ActionResult AddSLO(SLO slo)
-        {
-            if (ModelState.IsValid)
-            {
-                _databaseEntities.SLOes.Add(slo);
-                _databaseEntities.SaveChanges();
-                return RedirectToAction("index", new { d = slo.DeptID });
-            }
-
-            return View(slo);
-        }
+  
       
         public ActionResult addPI(String SLOID,String DptID)
         {
