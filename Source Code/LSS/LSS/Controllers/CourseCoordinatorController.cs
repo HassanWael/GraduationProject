@@ -51,17 +51,20 @@ namespace LSS.Controllers
                 CLO clo = addCLO.CLO;
                 PI piToAdd;
                 _DatabaseEntities.CLOes.Add(clo);
-                var selected_PI = _DatabaseEntities.PIs.Where(
-                    m => PI_ID.Contains(m.ID)).ToList();
-
-                foreach (string pi in PI_ID)
+                if (PI_ID.Length > 0)
                 {
-                    piToAdd = _DatabaseEntities.PIs.Where(x => x.ID == pi && x.DeptID == addCLO.DpetID).FirstOrDefault();
-                    clo.PIs.Add(piToAdd);
+                    var selected_PI = _DatabaseEntities.PIs.Where(
+                        m => PI_ID.Contains(m.ID)).ToList();
+
+                    foreach (string pi in PI_ID)
+                    {
+                        piToAdd = _DatabaseEntities.PIs.Where(x => x.ID == pi && x.DeptID == addCLO.DpetID).FirstOrDefault();
+                        clo.PIs.Add(piToAdd);
+                    }
                 }
                 _DatabaseEntities.SaveChanges();
             }
-            return RedirectToAction("index", new { courseID = addCLO.CLO.courseId });
+            return RedirectToAction("CouresPage", new { courseID = addCLO.CLO.courseId });
         }
 
 

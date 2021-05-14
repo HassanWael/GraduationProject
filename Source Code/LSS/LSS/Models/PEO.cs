@@ -19,9 +19,9 @@ namespace LSS.Models
         {
             this.SLO_PEO = new HashSet<SLO_PEO>();
         }
-        
+
         public PEO(int dptID)
-            :this()
+          : this()
         {
             DeptID = dptID;
         }
