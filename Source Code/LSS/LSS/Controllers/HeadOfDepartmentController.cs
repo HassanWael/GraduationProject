@@ -73,6 +73,16 @@ namespace LSS.Controllers
             return View(md);
         }
 
+
+        [HttpPost]
+        public ActionResult AddPI(PI pi)
+        {
+            _databaseEntities.PIs.Add(pi);
+            _databaseEntities.SaveChanges();
+
+            return RedirectToAction("index", pi.DeptID);
+        }
+
         [HttpPost]
         //  [Authorize(Roles = "HOD,Dean,ViceDean")]
         public ActionResult AddSLO(AddSLOMV md, String[] PEOID)

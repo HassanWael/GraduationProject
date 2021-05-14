@@ -1,4 +1,32 @@
-﻿<body>
+﻿<script>
+
+    $(function () {
+        var PlaceHolderElement = $('#PlaceHolderHere');
+        $('button[data-toggle="ajax-model"]').click(function (event) {
+            var url = $this(this).data('url');
+            var decodedURL = decodeURIComponent(url);
+            $.get(url).done(function (data) {
+                PlaceHolderElement.html(data);
+                PlaceHolderElement.find('modal').modal('show');
+            })
+        })
+
+        PlaceHolderElement.on('click', '[data-save="modal"]', function (event) {
+            var form = $(this).parent('.modal').find('form');
+            var actionUrl = form.attr('action');
+            var sendData = form.serialize();
+            $.post(actionUrl, sendData).done(function (data) {
+                PlaceHolderElement.find(',modal').modal('hide');
+            })
+        }
+
+
+})
+</script>
+
+
+
+<body>
     @using LSS.Models
     @model LSS.Models.Department
     @using LSS.Models.DepartmentViewModel
@@ -7,6 +35,10 @@
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
     <h2>@Model.Name</h2>
+
+    <div class="PlaceHolderHere"></div>
+
+
 
     <div>
         <h4>Department Informatin</h4>
@@ -76,40 +108,69 @@
     </div>
     <button id='open' data-toggle="modal" data-target="#addPEO">Add PEO</button>
 
-    <div>
+    <div style="width:auto">
         <h2>Student Learning Outcome (SLO)</h2>
         <div>
             <ul>
-                @foreach (SLO slo in Model.SLOes)
-                {
-                <li>
-                    <div>
-                        <h5 style="text-align:left;float:left"><b>@slo.SLOID  </b></h5>
-                        <a id="open" data-toggle="modal" data-target="#@slo.SLOID">Edit</a>
-                        <p> @slo.Desc </p>
-                    </div>
+                <table style=" width:100%" class="table table-hover">
+                    @foreach (SLO slo in Model.SLOes)
+                    {
 
-                    <div id="@slo.SLOID" class="modal fade" tabindex="-1" role="dialog">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                @{
-                                    Html.RenderPartial("EditSLO", new AddSLOMV(slo));
-                                }
-                            </div>
-                        </div>
-                    </div>
-                    <ul>
-                        @foreach (PI pi in slo.PIs)
-                        {
-                            <li>
-                                <h6><b>@pi.ID : </b></h6>
-                                <p> @pi.Desc</p>
-                            </li>
-                        }
-                    </ul>
-                </li>
-                }
-            </ul>
+                        <tr>
+                            <td>
+                                <div>
+                                    <h5 style="text-align:left;float:left"><b>@slo.SLOID  </b></h5>
+
+                                    <p> @slo.Desc </p>
+                                </div>
+                            </td>
+
+                            <td>
+
+
+                                <a class="btn btn-primary" style="margin:4%" id="open" data-toggle="modal" data-target="#@slo.SLOID">Edit</a>
+                                <a class="btn btn-primary" style="margin:4%" id="open" data-toggle="modal" data-target="#AddPI">Add PI </a>
+
+
+
+                                <div id="AddPI" class="modal fade" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            @{
+                                                Html.RenderPartial("AddPI", new PI(slo.SLOID,Model.ID));
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div id="@slo.SLOID" class="modal fade" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            @{
+                                                Html.RenderPartial("EditSLO", new AddSLOMV(slo));
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan=" 2">
+                                <ul>
+                                    @foreach (PI pi in slo.PIs)
+                                    {
+                                        <li>
+                                            <h6><b>@pi.ID : </b></h6>
+                                            <p> @pi.Desc</p>
+                                        </li>
+                                    }
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+                </table>
+                </ul>
         </div>
     </div>
 
