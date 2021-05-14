@@ -21,6 +21,11 @@ namespace LSS.Models
             this.PIs = new HashSet<PI>();
             this.schedules = new HashSet<schedule>();
         }
+        public CLO(string courseId)
+            :this()
+        {
+            this.courseId = courseId;
+        }
     
         public string Description { get; set; }
         public int ID { get; set; }
