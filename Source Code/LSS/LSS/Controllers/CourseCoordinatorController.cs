@@ -20,7 +20,6 @@ namespace LSS.Controllers
                 RedirectToAction("Index", "LogedIN");
             }
              
-            YearAndSemester y = SemesterSingelton.getCurrentYearAndSemester();
             //String userID = Session["ID"].ToString();
             CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find("A0334501", yas.Year, yas.Semester);
             CouresModelView course = new CouresModelView(cc);

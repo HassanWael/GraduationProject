@@ -17,8 +17,10 @@ namespace LSS.Controllers
 
         public ActionResult AddCourseToSemster( string CourseID)
         {
-            CourseCoordinator cc = new CourseCoordinator();
-            cc.CourseID = CourseID;
+            CourseCoordinator cc = new CourseCoordinator
+            {
+                CourseID = CourseID
+            };
             return View(cc);
         }
 
@@ -165,6 +167,7 @@ namespace LSS.Controllers
             ViewBag.semester = new SelectList(semester, "Key", "Value");
             return View();
         }
+
         [HttpGet]
         public ActionResult ListCourses(string? Search, int? Department)
         {

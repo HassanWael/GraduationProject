@@ -122,14 +122,21 @@ namespace LSS.Models.CoursesModelView
                         HashSet<PI> temp = new HashSet<PI>();
                         try
                         {
-                            temp = _SLO_PI[pi.SLO];
                         }catch(Exception e)
                         {
                             Console.WriteLine("CourseModelView line 122 : " + e.Message);
                         }
-                        temp.Add(pi);
-
-                        _SLO_PI.Add(pi.SLO, temp);
+                        if (_SLO_PI.ContainsKey(pi.SLO))
+                        {
+                            temp = _SLO_PI[pi.SLO];
+                            temp.Add(pi);
+                            _SLO_PI[pi.SLO] = temp;
+                        }
+                        else
+                        {
+                            temp.Add(pi);
+                            _SLO_PI.Add(pi.SLO, temp);
+                        }
                     }
                 }
 
