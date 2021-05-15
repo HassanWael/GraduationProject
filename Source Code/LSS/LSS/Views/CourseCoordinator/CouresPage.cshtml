@@ -35,63 +35,69 @@
         </table>
     </div>
 </div>
+
 <div class="block-item">
-    <table>
-        @for (int i = 1; i > Model.CLOs.Count(); i++)
-        {
-            <tr>
-                <td>
-                    @i
-                </td>
-                <td>
-                    @Model.CLOs[i-1].Description
-                </td>
-            </tr>
+    <ul>
+        Clo :
 
-        }
-    </table>
+        @foreach (CLO clo in Model.CLOs)
+         {
+            <li> @clo.Description</li>
+         }
+
+    </ul>
+
+
 </div>
-
 <div id="addSLO" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            @{
-                // Html.RenderPartial("AddSLO", new SLO());
-            }
-      
-</div>
-<button id='open' data-toggle="modal" data-target="#addSLO">ِAdd Course Learning outcome</button>
-
-
-<h5> Course PI</h5>
-
-@if (Model.SLO_PI != null)
-{
-
-    <div class="block-item">
-        <table>
-            <tr>
-                <td>SLO</td>
-                @for (int i = 0; i < Model.SLO_PI.Count(); i++)
-                {
-                    <td colspan=" @Model.SLO_PI.ElementAt(i).Value.Count();">
-                        @Model.SLO_PI.ElementAt(i).Key
-                    </td>
-                }
-            </tr>
-            <tr>
-                <td> PI</td>
-                @for (int i = 0; i < Model.SLO_PI.Count(); i++)
-                {
-                    <td>
-                        @Model.SLO_PI.ElementAt(i).Value
-                    </td>
-                }
-            </tr>
-        </table>
+            @*@Html.RenderPartial("AddSLO", new SLO());*@
+        </div>
     </div>
-}
-else
-{
-    <h6> There is no Pi listed for this course yet</h6>
-}
+</div>
+
+@*<button id='open' data-toggle="modal" data-target="#addSLO">ِAdd Course Learning outcome</button>
+    <h5> Course PI</h5>*@
+
+@*@if (Model.SLO_PI != null)
+    {
+
+        <div class="block-item">
+            <table>
+                <tr>
+                    <td>SLO</td>
+                    @for (int i = 0; i < Model.SLO_PI.Count(); i++)
+                    {
+                        <td colspan=" @Model.SLO_PI.ElementAt(i).Value.Count();">
+                            @Model.SLO_PI.ElementAt(i).Key
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td> PI</td>
+                    @for (int i = 0; i < Model.SLO_PI.Count(); i++)
+                    {
+                        <td>
+                            @Model.SLO_PI.ElementAt(i).Value
+                        </td>
+                    }
+                </tr>
+            </table>
+        </div>
+    }
+    else
+    {
+        <h6> There is no Pi listed for this course yet</h6>
+    }*@
+<div class="block-item">
+    <ul>
+        <li>@Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms",new {courseId = Model.Course.ID },null) </li>
+        <li>@Html.ActionLink("Course Assessment Survey", "CourseAssessmentSurvey", "Forms", new { courseId = Model.Course.ID }, null) </li>
+        <li>@Html.ActionLink("Course File Checklist", "CourseFileChecklist", "Forms", new { courseId = Model.Course.ID }, null) </li>
+        <li>@Html.ActionLink("Course Information Form ", "CourseInformationForm", "Forms", new { courseId = Model.Course.ID }, null) </li>
+        <li>@Html.ActionLink("Coures Report", "CourseReport", "Forms", new { courseId = Model.Course.ID }, null) </li>
+        <li>@Html.ActionLink("Exam Evaluation", "ExamEvaluation", "Forms", new { courseId = Model.Course.ID }, null) </li>
+        <li>@Html.ActionLink("Question Answer Sheet", "QuestionsAnswersSheet", "Forms", new { courseId = Model.Course.ID }, null) </li>
+    </ul>
+</div>

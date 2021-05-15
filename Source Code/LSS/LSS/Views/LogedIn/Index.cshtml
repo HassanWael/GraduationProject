@@ -18,7 +18,7 @@
     {<ul>
     @foreach (CourseCoordinator cc in Model.CoordinatedCourses)
     {
-    <li> @Html.ActionLink(cc.Course.Title, "EditPage", "CourseCoordinator", new { courseID = cc.Course.ID }) </li>
+    <li> @Html.ActionLink(cc.Course.Title, "EditPage", "CourseCoordinator", new { courseID = cc.Course.ID },null) </li>
 
     }
 
@@ -40,7 +40,7 @@
         <ul>
             @foreach (CourseCoordinator cc in Model.DepartmentCCs)
             {
-                <li> @Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator", new { courseID = cc.Course.ID }) </li>
+                <li> @Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator", new { courseID = cc.Course.ID },null) </li>
             }
         </ul>
     </div>
@@ -52,7 +52,7 @@
         <ul>
             @foreach (CourseCoordinator cc in Model.FacultyCCS)
             {
-                <li> @Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator", new { courseID = cc.Course.ID }) </li>
+                <li> @Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator", new { courseID = cc.Course.ID },null) </li>
             }
         </ul>
     </div>

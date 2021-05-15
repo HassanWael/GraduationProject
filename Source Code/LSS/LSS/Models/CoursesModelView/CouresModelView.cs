@@ -106,10 +106,12 @@ namespace LSS.Models.CoursesModelView
             }
         }
         private Dictionary<SLO, HashSet<PI>> _SLO_PI { get; set; }
-        public Dictionary<SLO, HashSet<PI>> SLO_PI { get
+        public Dictionary<SLO, HashSet<PI>> SLO_PI
+        {
+            get
             {
                 //O(N)
-                if (_SLO_PI==null)
+                if (_SLO_PI == null)
                 {
                     foreach (PI pi in PI)
                     {
@@ -121,7 +123,8 @@ namespace LSS.Models.CoursesModelView
 
                 return _SLO_PI;
             }
-            set { _SLO_PI = value; } }
+            set { _SLO_PI = value; }
+        }
 
         public string getName() {
 

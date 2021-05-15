@@ -43,6 +43,9 @@ namespace LSS.Controllers
         {
             return View();
         }
+        public ActionResult CreateCLO() {
+            return View();
+        }
 
     }
 

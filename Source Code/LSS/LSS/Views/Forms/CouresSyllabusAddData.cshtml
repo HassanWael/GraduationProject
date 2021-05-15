@@ -42,7 +42,7 @@
         <tr>
             <th style=" border:1px solid black" bgcolor="grey"> Faculty</th>
             <td style=" border:1px solid black">
-                @Html.EditorFor(model => model.CourseID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.CourseID, new { htmlAttributes = new { @class = "form-control",@placeholder="das",  } })
                 @Html.ValidationMessageFor(model => model.CourseID, "", new { @class = "text-danger" })
             </td>
             <th style=" border:1px solid black" bgcolor="grey"> Department</th>
