@@ -140,6 +140,8 @@
     <Property Name="courseNotAssessedReason " Type="nvarchar" MaxLength="255" />
     <Property Name="DayTime" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Coordinator" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="isAssessed" Type="bit" />
+    <Property Name="whyNot" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="CourseFileCheckList">
     <Key>

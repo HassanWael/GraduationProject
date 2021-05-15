@@ -15,6 +15,34 @@ namespace LSS.Controllers
         //ToDO :Create Index View for Admin.
 
 
+        public ActionResult AddCourseToSemster( string CourseID)
+        {
+            CourseCoordinator cc = new CourseCoordinator();
+            cc.CourseID = CourseID;
+            return View(cc);
+        }
+
+        [HttpPost]
+        public ActionResult AddCourseToSemster(CourseCoordinator cc )
+        {
+            try { 
+            _DatabaseEntities.CourseCoordinators.Add(cc);
+            _DatabaseEntities.SaveChanges();
+            }
+            catch
+            {
+                return View();
+            }
+            return RedirectToAction("Index");
+        }
+        public ActionResult AddCourseToSemester()
+        {
+            List<Course> courses = _DatabaseEntities.Courses.ToList();
+
+            ViewBag.Courses = new SelectList(courses, "ID", "Title");
+            return View();
+        }
+       
         public ActionResult Index()
         {
             return View();
@@ -125,6 +153,51 @@ namespace LSS.Controllers
             _DatabaseEntities.Entry(faculty).State = EntityState.Modified;
             _DatabaseEntities.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult CreateNewSemster()
+        {
+            Dictionary<string, string> semester = new Dictionary<string, string>();
+            semester.Add("1", "First semester");
+            semester.Add("2", "Second semester");
+            semester.Add("3", "Third semester");
+
+            ViewBag.semester = new SelectList(semester, "Key", "Value");
+            return View();
+        }
+        [HttpGet]
+        public ActionResult ListCourses(string? Search, int? Department)
+        {
+            if ((Search == null || Search=="" )&& Department == null)
+            {
+                List<Course> Courses = _DatabaseEntities.Courses.ToList();
+                List<Department> departments = _DatabaseEntities.Departments.ToList();
+                ViewBag.Department = new SelectList(departments, "ID", "Name");
+               
+            return View(Courses);
+            }
+            else if (Search == null || Search=="")
+            {
+                List<Course> Courses = _DatabaseEntities.Courses.Where(x=>x.dptid==Department).ToList();
+                List<Department> departments = _DatabaseEntities.Departments.ToList();
+                ViewBag.Department = new SelectList(departments, "ID", "Name");
+                return View(Courses);
+             
+            }
+            else if(Department == null)
+            {
+                List<Course> Courses = _DatabaseEntities.Courses.Where(x=> x.Title.ToLower().Contains(Search.ToLower()) || x.ID.ToLower().Contains(Search.ToLower())).ToList();
+                List<Department> departments = _DatabaseEntities.Departments.ToList();
+                ViewBag.Department = new SelectList(departments, "ID", "Name");
+                return View(Courses);
+            }
+            else
+            {
+                List<Course> Courses = _DatabaseEntities.Courses.Where(x=> x.dptid.Equals(Department)&& (x.Title.ToLower().Contains(Search.ToLower())||x.ID.ToLower().Contains(Search.ToLower()))).ToList();
+                List<Department> departments = _DatabaseEntities.Departments.ToList();
+                ViewBag.Department = new SelectList(departments, "ID", "Name");
+                return View(Courses);
+            }
         }
 
     }

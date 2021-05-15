@@ -106,6 +106,8 @@ namespace LSS.Models.CoursesModelView
                 pi = value;
             }
         }
+
+
         private Dictionary<SLO, HashSet<PI>> _SLO_PI { get; set; }
         public Dictionary<SLO, HashSet<PI>> SLO_PI { get
             {

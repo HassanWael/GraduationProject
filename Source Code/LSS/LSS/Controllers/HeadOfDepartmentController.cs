@@ -119,14 +119,7 @@ namespace LSS.Controllers
             }
             return View();
         }
-  
       
-        public ActionResult addPI(String SLOID,String DptID)
-        {
-            return View();
-        }
-
-       
 
 
     }

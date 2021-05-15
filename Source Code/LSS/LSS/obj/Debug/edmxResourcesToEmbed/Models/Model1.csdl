@@ -159,6 +159,8 @@
     <NavigationProperty Name="schedules" Relationship="Self.FK_schedule_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="schedule" />
     <NavigationProperty Name="Student_Course_Grade" Relationship="Self.FK_Student_Course_Grade_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="Student_Course_Grade" />
     <NavigationProperty Name="AssessmentPlanforTheStudentLearningOutcomeTechniques" Relationship="Self.CourseAssessmentPlan" FromRole="CourseCoordinator" ToRole="AssessmentPlanforTheStudentLearningOutcomeTechnique" />
+    <Property Name="isAssessed" Type="Boolean" />
+    <Property Name="whyNot" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="CourseFileCheckList">
     <Key>

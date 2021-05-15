@@ -1,11 +1,7 @@
 ﻿using LSS.Models;
 using LSS.Models.arc;
 using LSS.Models.CoursesModelView;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
 
 namespace LSS.Controllers
@@ -19,11 +15,11 @@ namespace LSS.Controllers
         // GET: Courses
         public ActionResult CouresPage(string? courseID)
         {
-            //if (courseID == null)
-            //{
-            //    RedirectToAction("Index", "LogedIN");
-            //}
-
+            if (courseID == null)
+            {
+                RedirectToAction("Index", "LogedIN");
+            }
+             
             YearAndSemester y = SemesterSingelton.getCurrentYearAndSemester();
             //String userID = Session["ID"].ToString();
             CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find("A0334501", yas.Year, yas.Semester);
@@ -44,7 +40,7 @@ namespace LSS.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddCLO(AddCLOMV addCLO,string [] PI_ID )
+        public ActionResult AddCLO(AddCLOMV addCLO, string[] PI_ID)
         {
             if (ModelState.IsValid)
             {

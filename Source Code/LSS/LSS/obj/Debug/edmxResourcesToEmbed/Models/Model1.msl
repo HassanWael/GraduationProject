@@ -98,6 +98,8 @@
     <EntitySetMapping Name="CourseCoordinators">
       <EntityTypeMapping TypeName="Model.CourseCoordinator">
         <MappingFragment StoreEntitySet="CourseCoordinator">
+          <ScalarProperty Name="whyNot" ColumnName="whyNot" />
+          <ScalarProperty Name="isAssessed" ColumnName="isAssessed" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="Semseter" ColumnName="Semseter" />

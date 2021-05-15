@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ActionsForImprovingTheCourse">
           <Key>
             <PropertyRef Name="CourseID" />
@@ -145,6 +145,8 @@
           <Property Name="courseNotAssessedReason " Type="nvarchar" MaxLength="255" />
           <Property Name="DayTime" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Coordinator" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="isAssessed" Type="bit" />
+          <Property Name="whyNot" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="CourseFileCheckList">
           <Key>
@@ -1403,8 +1405,7 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             <End Role="PI" EntitySet="PI" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1567,6 +1568,8 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <NavigationProperty Name="schedules" Relationship="Self.FK_schedule_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="schedule" />
           <NavigationProperty Name="Student_Course_Grade" Relationship="Self.FK_Student_Course_Grade_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="Student_Course_Grade" />
           <NavigationProperty Name="AssessmentPlanforTheStudentLearningOutcomeTechniques" Relationship="Self.CourseAssessmentPlan" FromRole="CourseCoordinator" ToRole="AssessmentPlanforTheStudentLearningOutcomeTechnique" />
+          <Property Name="isAssessed" Type="Boolean" />
+          <Property Name="whyNot" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="CourseFileCheckList">
           <Key>
@@ -2826,6 +2829,8 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <EntitySetMapping Name="CourseCoordinators">
             <EntityTypeMapping TypeName="Model.CourseCoordinator">
               <MappingFragment StoreEntitySet="CourseCoordinator">
+                <ScalarProperty Name="whyNot" ColumnName="whyNot" />
+                <ScalarProperty Name="isAssessed" ColumnName="isAssessed" />
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="Semseter" ColumnName="Semseter" />
