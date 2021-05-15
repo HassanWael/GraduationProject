@@ -43,9 +43,16 @@ namespace LSS.Controllers
             return View(cmv);
         }
 
-        public ActionResult CourseReport()
+        public ActionResult CourseReport(string? CourseID)
         {
-            return View();
+            if (CourseID is null)
+            {
+                RedirectToAction("Index", "Home");
+            }
+
+            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, yearAndSemester.Year, yearAndSemester.Semester);
+            CouresReportModelView cmv = new CouresReportModelView(cc);
+            return View(cmv);
         }
 
         public ActionResult CourseSyllabus(string? id)

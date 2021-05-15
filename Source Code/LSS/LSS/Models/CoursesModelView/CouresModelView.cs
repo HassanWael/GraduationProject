@@ -7,7 +7,7 @@ namespace LSS.Models.CoursesModelView
 {
     public class CouresModelView
     {
-        private CouresModelView() { }
+        public CouresModelView() { }
         /// <summary>
         /// to find all the info needed for the course 
         /// </summary>
@@ -132,7 +132,7 @@ namespace LSS.Models.CoursesModelView
                         _SLO_PI.Add(pi.SLO, temp);
                     }
                 }
-
+                
                 return _SLO_PI;
             }
             set { _SLO_PI = value; }

@@ -27,72 +27,51 @@
         </table>
     </div>
 </div>
-
-<div class="block-item">
-    <ul>
-        Clo :
-
-        @foreach (CLO clo in Model.CLOs)
-         {
-            <li> @clo.Description</li>
-         }
-
-    </ul>
-
-
+<div style="width:auto;">
+    <h2>Course Text Books </h2> <a href="#" class="nav-link"> Add Text Book</a>
+    <table class="table-active" style="width:100%;">
+        <tr>   <th scope="row"> <h4> Title </h4></th> <th scope="row"><h4> Author </h4></th> <th scope="row"><h4> Year of Publish   </h4> </th> <th><h4> City/State</h4></th>  <th scope="row"><h4> publisher </h4></th>     <th scope="row"> </th> </tr>
+        @foreach (CourseTextBook book in Model.CourseTextBooks)
+        {
+            <tr>
+                <td> @book.Book_Title </td>
+                <td> @book.Author</td>
+                <td> @book.YearOfpublish </td>
+                <td> @book.City_State </td>
+                <td>@book.Publisher</td>
+                <td>  @Html.ActionLink("Edit", "EditBook", new { @book.Book_Title, book.Course })|@Html.ActionLink("Delete", "DeleteBook", new { @book.Book_Title, book.Course })</td>
+            </tr>
+        }
+    </table>
 </div>
-<div id="addSLO" class="modal fade" tabindex="-1" role="dialog">
+<div class="block-item">
+    <h4>Coures learning outcome</h4>
+    <ol>
+        @for (int i = 0; i < Model.CLOs.Count(); i++)
+        {
+            <li>
+                @Model.CLOs[i].Description
+            </li>
+        }
+    </ol>
+</div>
+<div id="addCLO" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            @*@Html.RenderPartial("AddSLO", new SLO());*@
+            @{
+                Html.RenderPartial("AddCLO", new AddCLOMV(Model.Course.ID));
+            }
         </div>
     </div>
 </div>
+<button id='open' class="btn btn-outline-primary" data-toggle="modal" data-target="#addCLO">Add Course Learning outcome</button>
 
-@*<button id='open' data-toggle="modal" data-target="#addSLO">ِAdd Course Learning outcome</button>
-    <h5> Course PI</h5>*@
+
+<h5> Course PI</h5>
 
 @*@if (Model.SLO_PI != null)
-    {
+{
 
-        <div class="block-item">
-            <table>
-                <tr>
-                    <td>SLO</td>
-                    @for (int i = 0; i < Model.SLO_PI.Count(); i++)
-                    {
-                        <td colspan=" @Model.SLO_PI.ElementAt(i).Value.Count();">
-                            @Model.SLO_PI.ElementAt(i).Key
-                        </td>
-                    }
-                </tr>
-                <tr>
-                    <td> PI</td>
-                    @for (int i = 0; i < Model.SLO_PI.Count(); i++)
-                    {
-                        <td>
-                            @Model.SLO_PI.ElementAt(i).Value
-                        </td>
-                    }
-                </tr>
-            </table>
-        </div>
-    }
-    else
-    {
-        <h6> There is no Pi listed for this course yet</h6>
-    }*@
-<div class="block-item">
-    <ul>
-        <li>@Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms",new {courseId = Model.Course.ID },null) </li>
-        <li>@Html.ActionLink("Course Assessment Survey", "CourseAssessmentSurvey", "Forms", new { courseId = Model.Course.ID }, null) </li>
-        <li>@Html.ActionLink("Course File Checklist", "CourseFileChecklist", "Forms", new { courseId = Model.Course.ID }, null) </li>
-        <li>@Html.ActionLink("Course Information Form ", "CourseInformationForm", "Forms", new { courseId = Model.Course.ID }, null) </li>
-        <li>@Html.ActionLink("Coures Report", "CourseReport", "Forms", new { courseId = Model.Course.ID }, null) </li>
-        <li>@Html.ActionLink("Exam Evaluation", "ExamEvaluation", "Forms", new { courseId = Model.Course.ID }, null) </li>
-        <li>@Html.ActionLink("Question Answer Sheet", "QuestionsAnswersSheet", "Forms", new { courseId = Model.Course.ID }, null) </li>
-    </ul>
-</div>
     <div class="block-item">
         <table style="border: 1px solid black;">
             <tr style="border: 1px solid black;">
@@ -128,6 +107,18 @@
 else
 {
     <h6> There is no Pi listed for this course yet</h6>
-}
+}*@
+<div class="block-item">
+    <ul>
+        <li>@Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { courseId = Model.Course.ID }, null) </li>
+        <li>@Html.ActionLink("Course Assessment Survey", "CourseAssessmentSurvey", "Forms", new { courseId = Model.Course.ID }, null) </li>
+        <li>@Html.ActionLink("Course File Checklist", "CourseFileChecklist", "Forms", new { courseId = Model.Course.ID }, null) </li>
+        <li>@Html.ActionLink("Course Information Form ", "CourseInformationForm", "Forms", new { courseId = Model.Course.ID }, null) </li>
+        <li>@Html.ActionLink("Coures Report", "CourseReport", "Forms", new { courseId = Model.Course.ID }, null) </li>
+        <li>@Html.ActionLink("Exam Evaluation", "ExamEvaluation", "Forms", new { courseId = Model.Course.ID }, null) </li>
+        <li>@Html.ActionLink("Question Answer Sheet", "QuestionsAnswersSheet", "Forms", new { courseId = Model.Course.ID }, null) </li>
+    </ul>
+</div>
+
 
 
