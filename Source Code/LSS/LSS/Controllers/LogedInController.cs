@@ -6,14 +6,15 @@ using System.Dynamic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using LSS.Models.LSS_DB_Model;
 namespace LSS.Controllers
 {
+
     public class LogedInController : Controller
     {
        private readonly LSS_databaseEntities _databaseEntities = new LSS_databaseEntities();
 
-      
+
         // GET: LogedIn
         [Authorize]
         public ActionResult Index()
