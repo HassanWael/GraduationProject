@@ -1,4 +1,32 @@
-﻿<body>
+﻿<script>
+
+    $(function () {
+        var PlaceHolderElement = $('#PlaceHolderHere');
+        $('button[data-toggle="ajax-model"]').click(function (event) {
+            var url = $this(this).data('url');
+            var decodedURL = decodeURIComponent(url);
+            $.get(url).done(function (data) {
+                PlaceHolderElement.html(data);
+                PlaceHolderElement.find('modal').modal('show');
+            })
+        })
+
+        PlaceHolderElement.on('click', '[data-save="modal"]', function (event) {
+            var form = $(this).parent('.modal').find('form');
+            var actionUrl = form.attr('action');
+            var sendData = form.serialize();
+            $.post(actionUrl, sendData).done(function (data) {
+                PlaceHolderElement.find(',modal').modal('hide');
+            })
+        }
+
+
+})
+</script>
+
+
+
+<body>
     @using LSS.Models
     @model LSS.Models.Department
     @using LSS.Models.DepartmentViewModel
@@ -6,8 +34,11 @@
         ViewBag.Title = Model.Name;
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
-
     <h2>@Model.Name</h2>
+
+    <div class="PlaceHolderHere"></div>
+
+
 
     <div>
         <h4>Department Informatin</h4>
@@ -43,9 +74,9 @@
     <div>
         <h2>
             Program Educational Opjectives (PEO)
-            </h2>
-            @if (Model.PEOs != null)
-            {
+        </h2>
+        @if (Model.PEOs != null)
+        {
             <ul>
                 @foreach (PEO peo in Model.PEOs)
                 {
@@ -54,49 +85,92 @@
                             <b> @peo.ID : </b>
                         </h5>
                         <p>
-                            @peo.Desc 
+                            @peo.Desc
                         </p>
                     </li>
                 }
             </ul>
-            } else {
+        }
+        else
+        {
             <h3> There is 'nt any PEO yet </h3>
-             }
+        }
     </div>
+
     <div id="addPEO" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 @{
-                    Html.RenderPartial("AddPEO", new PEO());
+                    Html.RenderPartial("AddPEO", new PEO(Model.ID));
                 }
             </div>
         </div>
     </div>
     <button id='open' data-toggle="modal" data-target="#addPEO">Add PEO</button>
 
-    <div>
+    <div style="width:auto">
         <h2>Student Learning Outcome (SLO)</h2>
         <div>
             <ul>
-                @foreach (SLO slo in Model.SLOes)
-                {
-                    <li>
-                        <div>
-                            <h5><b>@slo.SLOID : </b></h5>
-                            <p> @slo.Desc </p>
-                        </div>
-                        <ul>
-                            @foreach (PI pi in slo.PIs)
-                            {
-                                <li>
-                                    <h6><b>@pi.ID : </b></h6>
-                                    <p> @pi.Desc</p>
-                                </li>
-                            }
-                        </ul>
-                    </li>
-                }
-            </ul>
+                <table style=" width:100%" class="table table-hover">
+                    @foreach (SLO slo in Model.SLOes)
+                    {
+
+                        <tr>
+                            <td>
+                                <div>
+                                    <h5 style="text-align:left;float:left"><b>@slo.SLOID  </b></h5>
+
+                                    <p> @slo.Desc </p>
+                                </div>
+                            </td>
+
+                            <td>
+
+
+                                <a class="btn btn-primary" style="margin:4%" id="open" data-toggle="modal" data-target="#@slo.SLOID">Edit</a>
+                                <a class="btn btn-primary" style="margin:4%" id="open" data-toggle="modal" data-target="#AddPI">Add PI </a>
+
+
+
+                                <div id="AddPI" class="modal fade" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            @{
+                                                Html.RenderPartial("AddPI", new PI(slo.SLOID,Model.ID));
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div id="@slo.SLOID" class="modal fade" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            @{
+                                                Html.RenderPartial("EditSLO", new AddSLOMV(slo));
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan=" 2">
+                                <ul>
+                                    @foreach (PI pi in slo.PIs)
+                                    {
+                                        <li>
+                                            <h6><b>@pi.ID : </b></h6>
+                                            <p> @pi.Desc</p>
+                                        </li>
+                                    }
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+                </table>
+                </ul>
         </div>
     </div>
 
@@ -104,15 +178,20 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 @{
-                 Html.RenderPartial("AddSLO",new SLO());
+                    Html.RenderPartial("AddSLO", new AddSLOMV(Model.ID));
                 }
             </div>
         </div>
     </div>
     <button id='open' data-toggle="modal" data-target="#addSLO">Add SLO</button>
 
+    
     <div>
-        <h2>PEO-SLO</h2>
-        @{ Html.RenderPartial("_PEO_SLO_Mapping",new MappedPEO_SLO(Model)); }
+        <h2 style="text-align:left; float:left">PEO-SLO</h2>
+        <br>
+
+        <br>
+        @{ Html.RenderPartial("_PEO_SLO_Mapping", new MappedPEO_SLO(Model)); }
     </div>
+
 </body>

@@ -8,7 +8,7 @@
 
 <h2>CreatUser</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("CreatUser","Admin",FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 

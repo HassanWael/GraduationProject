@@ -1,8 +1,8 @@
-﻿
-@model LSS.Models.DepartmentViewModel.AddSLOMV
+﻿@model LSS.Models.DepartmentViewModel.AddSLOMV
 @using LSS.Models
 
-@using (Html.BeginForm("AddSLO", "HeadOfDepartment", FormMethod.Post))
+
+@using (Html.BeginForm("EditSLO", "HeadOfDepartment", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -21,7 +21,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.SLO.SLOID, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.SLO.SLOID, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.SLO.SLOID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
             @Html.ValidationMessageFor(model => model.SLO.SLOID, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -45,17 +45,16 @@
                 </li>
             }
         </ul>
-
-
     </div>
-
-
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Add SLO" class="btn btn-primary" />
+            <input type="submit" value="Edite SLO" class="btn btn-primary" />
+
             @Html.ActionLink("Cancel", "Index")
 
         </div>
     </div>
 </div>
 }
+
+

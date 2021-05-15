@@ -84,7 +84,7 @@ namespace LSS.Models.CoursesModelView
             {
                 if (courseTextBooks == null)
                 {
-                    courseTextBooks = Course.CourseTextBooks.ToList();
+                       courseTextBooks = Course.CourseTextBooks.ToList();
                 }
                 return courseTextBooks;
             }
@@ -96,6 +96,7 @@ namespace LSS.Models.CoursesModelView
             { //O(n^2)
                 if (pi == null)
                 {
+                    pi = new HashSet<PI>();
                     CLOs.ForEach(item => item.PIs.ToList().ForEach(x => pi.Add(x)));
                 }
                 return pi;
@@ -113,10 +114,19 @@ namespace LSS.Models.CoursesModelView
                 //O(N)
                 if (_SLO_PI == null)
                 {
+                    _SLO_PI = new Dictionary<SLO, HashSet<PI>>();
                     foreach (PI pi in PI)
                     {
-                        HashSet<PI> temp = _SLO_PI[pi.SLO];
+                        HashSet<PI> temp = new HashSet<PI>();
+                        try
+                        {
+                            temp = _SLO_PI[pi.SLO];
+                        }catch(Exception e)
+                        {
+                            Console.WriteLine("CourseModelView line 122 : " + e.Message);
+                        }
                         temp.Add(pi);
+
                         _SLO_PI.Add(pi.SLO, temp);
                     }
                 }

@@ -51,8 +51,8 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="ID" Type="int" Nullable="false" />
-    <Property Name="courseId" Type="nvarchar" MaxLength="30" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="courseId" Type="nvarchar" MaxLength="30" Nullable="false" />
   </EntityType>
   <EntityType Name="CLO-PI">
     <Key>
@@ -518,7 +518,7 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_CLO_ToCourse">
-    <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
     <End Role="CLO" Type="Self.CLO" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Course">

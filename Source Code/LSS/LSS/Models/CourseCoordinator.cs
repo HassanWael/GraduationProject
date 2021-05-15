@@ -35,7 +35,8 @@ namespace LSS.Models
         public string courseNotAssessedReason_ { get; set; }
         public string DayTime { get; set; }
         public string Coordinator { get; set; }
-    
+        public bool isAssessed { get; set; }
+        public string WhyNot { get; set; }
         public virtual ActionsForImprovingTheCourse ActionsForImprovingTheCourse { get; set; }
         public virtual byCompletingThisCourseStudentsAreAbleTo byCompletingThisCourseStudentsAreAbleTo { get; set; }
         public virtual Course Course { get; set; }

@@ -1,6 +1,9 @@
-﻿@Styles.Render("~/Content/css")
+@Styles.Render("~/Content/css")
 @Scripts.Render("~/bundles/modernizr")
 @using LSS.Models
+
+@using LSS.Models.CoursesModelView
+
 @model LSS.Models.CoursesModelView.CouresModelView
 
 
@@ -21,17 +24,6 @@
             <tr> <td>   <h4> Credit Hours   </h4> </td> <td> @Model.Course.Hours </td></tr>
             <tr> <td>   <h4> Course Coordinator   </h4> </td> <td> @Model.CourseCoordinator.Coordinator </td></tr>
             <tr> <td>   <h4> day time  </h4> </td> <td> @Model.CourseCoordinator.DayTime </td></tr>
-        </table>
-    </div>
-
-    <div class="block-item">
-        <h2>Course Text Books </h2>
-        <table>
-            <tr>   <th> <h4> Title </h4></th> <th><h4> Author </h4></th> <th><h4> Year of Publish   </h4> </th> <th><h4> City/State</h4></th>  <th><h4> publisher </h4></th></tr>
-            @foreach (CourseTextBook book in Model.CourseTextBooks)
-            {
-                <tr>  <td> @book.Book_Title </td>  <td> @book.Author</td><td> @book.YearOfpublish </td> <td> @book.City_State </td> <td>@book.Publisher</td></tr>
-            }
         </table>
     </div>
 </div>
@@ -101,3 +93,41 @@
         <li>@Html.ActionLink("Question Answer Sheet", "QuestionsAnswersSheet", "Forms", new { courseId = Model.Course.ID }, null) </li>
     </ul>
 </div>
+    <div class="block-item">
+        <table style="border: 1px solid black;">
+            <tr style="border: 1px solid black;">
+                <td>SLO</td>
+                @for (int i = 0; i < Model.SLO_PI.Count(); i++)
+                {
+                    <td style="border: 1px solid black;">
+                        @Model.SLO_PI.ElementAt(i).Key.SLOID
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td> PI</td>
+                @for (int i = 0; i < Model.SLO_PI.Count(); i++)
+                {
+                    <td>
+                        @foreach (PI pi in Model.SLO_PI.ElementAt(i).Value)
+                        {
+                            <table>
+                                <tr>
+                                    <td style="border: 1px solid black;">
+                                        @pi.ID
+                                    </td>
+                                </tr>
+                            </table>
+                        }
+                    </td>
+                }
+            </tr>
+        </table>
+    </div>
+}
+else
+{
+    <h6> There is no Pi listed for this course yet</h6>
+}
+
+

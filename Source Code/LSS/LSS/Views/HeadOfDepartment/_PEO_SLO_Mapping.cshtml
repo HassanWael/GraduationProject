@@ -35,11 +35,11 @@
                     {
 
 
-                        if (Model.SLO_PEO != null)
+                        if (Model.SLO_PEO.Where(x=>x.SLOID.Equals(Model.SLOes[i].SLOID) && x.PEOID.Equals(Model.PEOs[j].ID)).FirstOrDefault() != null)
                         {
-                            <td>
-                                @Html.CheckBox("name", (Model.SLO_PEO.Select(x => x.SLO.Equals(Model.SLOes[i]) && x.PEO.Equals(Model.PEOs[j])) != null), new { disabled = "true" })
-                            </td>
+                             <td>
+                                @Html.CheckBox("name", true, new { disabled = true })
+                             </td>
                         }
                         else
                         {
@@ -48,7 +48,7 @@
                             </td>
                         }
                     }
-
+                    
                 </tr>
             }
 

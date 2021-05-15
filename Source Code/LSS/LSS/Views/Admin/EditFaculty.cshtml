@@ -8,7 +8,7 @@
 
 <h2>EditFaculty</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("EditFaculty","Admin",FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
