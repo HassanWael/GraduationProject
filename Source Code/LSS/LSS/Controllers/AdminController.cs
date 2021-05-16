@@ -17,34 +17,54 @@ namespace LSS.Controllers
         //ToDO :Create Index View for Admin.
         readonly YearAndSemester YAS = SemesterSingelton.getCurrentYearAndSemester();
 
-        public ActionResult AddCourseToSemster( string CourseID)
+        public ActionResult AddCourseToSemester( string CourseID)
         {
-            CourseCoordinator cc = new CourseCoordinator
+            CourseCoordinator cc;
+            if (_DatabaseEntities.CourseCoordinators.Find(CourseID, YAS.Year, YAS.Semester) == null)
             {
-                CourseID = CourseID,
-                Year = YAS.Year
-        };
+                cc = new CourseCoordinator
+                {
+                    CourseID = CourseID,
+                    Year = YAS.Year,
+                    Semseter = YAS.Semester
+                };
+            }
+            else
+            {
+                cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, YAS.Year, YAS.Semester);
+            }
+            int deptID = _DatabaseEntities.Courses.Where(x => x.ID.Equals(CourseID)).Select(x => x.dptid).FirstOrDefault();
+            List<Lecturer> CC = _DatabaseEntities.Lecturers.Where(x => x.dptId.Equals(deptID)).ToList();
+            ViewBag.Lecturers = new SelectList(CC, "ID", "Name");
+
             return View(cc);
         }
 
         [HttpPost]
-        public ActionResult AddCourseToSemster(CourseCoordinator cc )
+        public ActionResult AddCourseToSemester(CourseCoordinator cc )
         {
-            try { 
-            _DatabaseEntities.CourseCoordinators.Add(cc);
-            _DatabaseEntities.SaveChanges();
-            }
-            catch
+            if (ModelState.IsValid)
             {
-                return View();
-            }
-            return RedirectToAction("Index");
-        }
-        public ActionResult AddCourseToSemester()
-        {
-            List<Course> courses = _DatabaseEntities.Courses.ToList();
+                try
+                {
+                    if (_DatabaseEntities.CourseCoordinators.Find(cc.CourseID, cc.Year, cc.Semseter) == null)
+                    {
+                        _DatabaseEntities.CourseCoordinators.Add(cc);
+                        _DatabaseEntities.SaveChanges();
+                    }
+                    else
+                    {
+                        _DatabaseEntities.Entry(cc).State = EntityState.Modified;
+                        _DatabaseEntities.SaveChanges();
 
-            ViewBag.Courses = new SelectList(courses, "ID", "Title");
+                    }
+                }
+                catch
+                {
+                    return View();
+                }
+                return RedirectToAction("Index");
+            }
             return View();
         }
        

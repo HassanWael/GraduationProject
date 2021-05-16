@@ -17,6 +17,7 @@ namespace LSS.Controllers
         // GET: HeadOfDepartment
         public ActionResult Index(int? dptID )
         {
+            //ToDo when u finsh CSS add the deptID to find 
             Department d = _databaseEntities.Departments.Find(2);
             return View(d);
         }
