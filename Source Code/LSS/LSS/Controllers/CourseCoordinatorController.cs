@@ -1,6 +1,7 @@
 ﻿using LSS.Models;
 using LSS.Models.arc;
 using LSS.Models.CoursesModelView;
+using System;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -68,8 +69,28 @@ namespace LSS.Controllers
             
             return View();
         }
-        public ActionResult CreateCLO() {
-            return View();
+        public ActionResult DeleteCLO(int id)
+        {
+            //try
+            //{
+            //    if (clo != null)
+            //    {
+            CLO CLO = _DatabaseEntities.CLOes.Find(id);
+                    string courseID = CLO.courseId;
+                    _DatabaseEntities.CLOes.Remove(CLO);
+                    _DatabaseEntities.SaveChanges();
+
+                    return RedirectToAction("CouresPage", courseID);
+                //}
+                //else{
+                //    return HttpNotFound();
+                //}
+        //    }
+        //    catch (Exception e )
+        //    {
+        //        Console.WriteLine("Error at line 72 of CourseCoordinator" + e);
+        //        return View();
+        //    }
         }
 
     }

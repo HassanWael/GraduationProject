@@ -59,8 +59,10 @@ namespace LSS.Controllers
 
                     }
                 }
-                catch
+                catch(Exception e )
                 {
+                    ModelState.AddModelError("An errorr Has Acoured please try again later", e );
+                    Console.WriteLine("Error at the Line 48 of AdminController : "+e.Message);
                     return View();
                 }
                 return RedirectToAction("Index");
@@ -76,14 +78,29 @@ namespace LSS.Controllers
         {
             return View();
         } 
-
         [HttpPost]
         public ActionResult CreateCourse(Course course )
         {
-            _DatabaseEntities.Courses.Add(course);
-            _DatabaseEntities.SaveChanges();
-            return RedirectToAction("Index");
+            try {
+                if (_DatabaseEntities.Courses.Find(course.ID) != null)
+                {
+                    _DatabaseEntities.Courses.Add(course);
+                    _DatabaseEntities.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else {
+                    ModelState.AddModelError("Dublicate Value", "This Course is already in the database");
+                    return View();
+                }
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("Error", "An errorr Has Acoured please try again later");
+                Console.WriteLine("Error at the Line 82 of AdminController : " + e.Message);
+                return View();
+            }
         }
+
 
         public ActionResult CreatUser()
         {
@@ -92,10 +109,29 @@ namespace LSS.Controllers
         [HttpPost]
         public ActionResult CreatUser(Lecturer lecturer)
         {
-            _DatabaseEntities.Lecturers.Add(lecturer);
-            _DatabaseEntities.SaveChanges();
+            try
+            {
+                if (_DatabaseEntities.Lecturers.Find(lecturer.ID)==null) {
+                    if (ModelState.IsValid)
+                    {
+                        _DatabaseEntities.Lecturers.Add(lecturer);
+                        _DatabaseEntities.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    return View();
+                }
+                else{
 
-            return View();
+                    ModelState.AddModelError("Dublicate Value", " lecturer ID is already in the database");
+                    return View();
+                }
+            }
+            catch(Exception e )
+            {
+                ModelState.AddModelError("Error", "An errorr Has Acoured please try again later");
+                Console.WriteLine("Error at the Line 82 of AdminController : " + e.Message);
+                return View();
+            }
         }
 
         public ActionResult CreatDpt()
@@ -107,9 +143,33 @@ namespace LSS.Controllers
 
         public ActionResult CreatDpt(Department department)
         {
-            _DatabaseEntities.Departments.Add(department);
-            _DatabaseEntities.SaveChanges();
-            return View();
+            try
+            {
+                if (_DatabaseEntities.Departments.Find(department.ID) == null)
+                {
+                    if (ModelState.IsValid)
+                    {
+                        _DatabaseEntities.Departments.Add(department);
+                        _DatabaseEntities.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    return View();
+
+                }
+                else
+                {
+                    ModelState.AddModelError("Dublicate Value", " department ID is already in the database");
+                    return View();
+                }
+
+            }
+            catch(Exception e)
+            {
+                ModelState.AddModelError("Error", "An errorr Has Acoured please try again later");
+                Console.WriteLine("Error at the Line 82 of AdminController : " + e.Message);
+                return View();
+            }
+      
         }
         public ActionResult CreatFaculty()
         {

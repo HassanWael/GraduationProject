@@ -12,22 +12,22 @@
 <h2 style="text-align:center"> Coures Page Information </h2>
 <div class="block" style="margin-top:80px;">
 
-    <div class="block-item" style="margin-right:30px">
-        <table>
-            <tr>   <th colspan="2"> <p> Course Information </p>  </th></tr>
-            <tr> <td>   <h4> Coures Title </h4>  </td> <td> @Model.Course.Title </td></tr>
-            <tr> <td>    <h4> Coures ID </h4>  </td> <td>  @Model.Course.ID </td></tr>
-            <tr> <td>   <h4> Faculty Name   </h4> </td> <td> @Model.Faculty.ID </td></tr>
-            <tr> <td>   <h4> Credit Hours   </h4> </td> <td> @Model.Course.Hours </td></tr>
-            <tr> <td>   <h4> Course Coordinator   </h4> </td> <td> @Model.CourseCoordinator.Coordinator </td></tr>
-            <tr> <td>   <h4> day time  </h4> </td> <td> @Model.CourseCoordinator.DayTime </td></tr>
+    <div class="block-item" style="margin-right:30px; width:auto; " >
+        <table class="table-active" style="width:100%; border: 1px solid gray">
+            <tr  style="margin-left:auto; margin-right:auto;">   <th scope="row" colspan="2" style="text-align:center;"> <p> Course Information </p>  </th></tr>
+            <tr  style=" text-align:center;"> <td>   <h4> Coures Title </h4>  </td> <td> @Model.Course.Title </td></tr>
+            <tr  style=" text-align:center;"> <td>    <h4> Coures ID </h4>  </td> <td>  @Model.Course.ID </td></tr>
+            <tr  style="text-align:center;"> <td>   <h4> Faculty Name   </h4> </td> <td> @Model.Faculty.ID </td></tr>
+            <tr  style=" text-align:center;"> <td>   <h4> Credit Hours   </h4> </td> <td> @Model.Course.Hours </td></tr>
+            <tr style=" text-align:center;"> <td>   <h4> Course Coordinator   </h4> </td> <td> @Model.CourseCoordinator.Coordinator </td></tr>
+            <tr  style=" text-align:center;"> <td>   <h4> day time  </h4> </td> <td> @Model.CourseCoordinator.DayTime </td></tr>
         </table>
     </div>
 
-    <div class="block-item">
+    <div class="block-item" style="width:auto;">
         <h2>Course Text Books </h2>
-        <table>
-            <tr>   <th> <h4> Title </h4></th> <th><h4> Author </h4></th> <th><h4> Year of Publish   </h4> </th> <th><h4> City/State</h4></th>  <th><h4> publisher </h4></th></tr>
+        <table class="table-hover" style="width:97%">
+            <tr class="table-primary">   <th> <h4> Title </h4></th> <th><h4> Author </h4></th> <th><h4> Year of Publish   </h4> </th> <th><h4> City/State</h4></th>  <th><h4> publisher </h4></th></tr>
             @foreach (CourseTextBook book in Model.CourseTextBooks)
             {
                 <tr>  <td> @book.Book_Title </td>  <td> @book.Author</td><td> @book.YearOfpublish </td> <td> @book.City_State </td> <td>@book.Publisher</td></tr>
@@ -37,20 +37,26 @@
 </div>
 
 <div class="block-item">
-    <ul>
-        Clo :
-
+    <h5 style="text-align:center;">Clo :</h5> 
+    <ol>
         @foreach (CLO clo in Model.CLOs)
         {
-            <li> @clo.Description</li>
+            <li>
+                <b style=" float:left; text-align: left;">
+                    @clo.Description
+                </b>
+                <div>
+                   @Html.ActionLink("Delete ", "DeleteCLO",new { id = clo.ID})
+                </div>
+            </li>
         }
 
-    </ul>
+    </ol>
 
 
 </div>
 
-<div id="addCLO" class="modal fade" tabindex="-1" role="dialog">
+<div id="addCLO" class="modal fade" tabindex="-1" role="dialog">x 
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             @{
@@ -59,29 +65,34 @@
         </div>
     </div>
 </div>
-<button id='open' class="btn btn-outline-primary" data-toggle="modal" data-target="#addCLO">ِAdd Course Learning outcome</button>
+<button id='open' class="btn btn-outline-primary" data-toggle="modal" data-target="#addCLO">Add Course Learning outcome</button>
 
 
 @if (Model.SLO_PI != null)
 {
-    <div class="block-item">
-        <table>
-            <tr>
-                <td>SLO</td>
+    <div class="block-item" style="width:auto;">
+        <table class="table-hover" style="border: 1px solid black; width:100%;">
+            <tr style="border: 1px solid black;">
+                <td class="table-primary" style="border: .2px solid #5F5E61; text-align:center;"> SLO</td>
                 @for (int i = 0; i < Model.SLO_PI.Count(); i++)
                 {
-                    <td colspan=" @Model.SLO_PI.ElementAt(i).Value.Count();">
-                        @Model.SLO_PI.ElementAt(i).Key
+                    <td colspan=" @Model.SLO_PI.ElementAt(i).Value.Count()"style="border: .2px solid #5F5E61; text-align:center;">
+                        @Model.SLO_PI.ElementAt(i).Key.SLOID
                     </td>
                 }
             </tr>
             <tr>
-                <td> PI</td>
+                <td class="table-primary" style="border: .2px solid #5F5E61; text-align:center;"> PI</td>
                 @for (int i = 0; i < Model.SLO_PI.Count(); i++)
                 {
-                    <td>
-                        @Model.SLO_PI.ElementAt(i).Value
-                    </td>
+                    foreach (PI pi in Model.SLO_PI.ElementAt(i).Value)
+                    {
+
+                        <td style="border: .2px solid #5F5E61; text-align:center;">
+                            @pi.ID
+                        </td>
+
+                    }
                 }
             </tr>
         </table>
