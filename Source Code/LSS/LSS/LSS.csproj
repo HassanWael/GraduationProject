@@ -287,7 +287,11 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\Al-Ahliya_Amman_University_Logo.png" />
     <Content Include="Images\analysis.png" />
+    <Content Include="Images\Certified.PNG" />
     <Content Include="Images\notebook.png" />
+    <Content Include="Images\Quality.PNG" />
+    <Content Include="Images\R.PNG" />
+    <Content Include="Images\Risk.PNG" />
     <Content Include="Images\studying.png" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -329,6 +333,9 @@
     </EntityDeploy>
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Content Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
     </Content>
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />

@@ -7,7 +7,7 @@ namespace LSS.Models.DepartmentViewModel
 {
     public class AddSLOMV
     {
-        LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
+      private readonly LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
         public AddSLOMV(int deptID)
         {
           

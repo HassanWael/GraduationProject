@@ -7,7 +7,7 @@ namespace LSS.Models.CoursesModelView
 {
     public class AddCLOMV
     {
-        LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
+        readonly LSS_databaseEntities  _DatabaseEntities = new LSS_databaseEntities();
         public AddCLOMV()
         {
         }   

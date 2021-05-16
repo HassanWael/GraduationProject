@@ -8,9 +8,9 @@ namespace LSS.Controllers
 {
     public class CourseCoordinatorController : Controller
     {
-        LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
+        private readonly LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
 
-        private YearAndSemester yas = SemesterSingelton.getCurrentYearAndSemester();
+        private readonly YearAndSemester yas = SemesterSingelton.getCurrentYearAndSemester();
 
         // GET: Courses
         public ActionResult CouresPage(string? courseID)
@@ -63,8 +63,9 @@ namespace LSS.Controllers
         }
 
 
-        public ActionResult CreateCourseInformationForm(string id)
+        public ActionResult CreateCourseInformationForm()
         {
+            
             return View();
         }
         public ActionResult CreateCLO() {

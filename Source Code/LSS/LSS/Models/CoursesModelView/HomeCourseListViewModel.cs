@@ -8,13 +8,12 @@ namespace LSS.Models.CoursesModelView
 {
     public class HomeCourseListViewModel
     {
-        LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
-        private YearAndSemester YearAndSemester;
-        private List<CourseCoordinator> CCS;
+        readonly LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
+        private readonly YearAndSemester YearAndSemester = SemesterSingelton.getCurrentYearAndSemester();
+        private readonly List<CourseCoordinator> CCS;
 
         public HomeCourseListViewModel(String LecturerID)
         {
-            YearAndSemester = SemesterSingelton.getCurrentYearAndSemester();
             Lecturer = _DatabaseEntities.Lecturers.Find(LecturerID);
 
             CCS = _DatabaseEntities.CourseCoordinators.Where(x => x.YearAndSemester.Year.Equals(YearAndSemester.Year)&& x.YearAndSemester.Semester.Equals(YearAndSemester.Semester)).ToList();

@@ -6,13 +6,11 @@ using System.Dynamic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using LSS.Models.LSS_DB_Model;
 namespace LSS.Controllers
 {
 
     public class LogedInController : Controller
     {
-       private readonly LSS_databaseEntities _databaseEntities = new LSS_databaseEntities();
 
 
         // GET: LogedIn
@@ -20,11 +18,7 @@ namespace LSS.Controllers
         public ActionResult Index()
         {
             String userID = Session["ID"].ToString();
-            String role = Session["Role"].ToString();
-            String dpts = Session["Dpt"].ToString();
-            int dpt = int.Parse(Session["Dpt"].ToString());
             HomeCourseListViewModel CLVM= new HomeCourseListViewModel(userID);
-
             return View(CLVM);
         }
     }

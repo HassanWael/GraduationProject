@@ -5,22 +5,25 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using LSS.Models;
+using LSS.Models.arc;
+
 namespace LSS.Controllers
 {
    //[Authorize(Roles ="Admin")]
     public class AdminController : Controller
     {
-        LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
+        readonly LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
         // GET: Admin
         //ToDO :Create Index View for Admin.
-
+        readonly YearAndSemester YAS = SemesterSingelton.getCurrentYearAndSemester();
 
         public ActionResult AddCourseToSemster( string CourseID)
         {
             CourseCoordinator cc = new CourseCoordinator
             {
-                CourseID = CourseID
-            };
+                CourseID = CourseID,
+                Year = YAS.Year
+        };
             return View(cc);
         }
 
@@ -159,10 +162,12 @@ namespace LSS.Controllers
 
         public ActionResult CreateNewSemster()
         {
-            Dictionary<string, string> semester = new Dictionary<string, string>();
-            semester.Add("1", "First semester");
-            semester.Add("2", "Second semester");
-            semester.Add("3", "Third semester");
+            Dictionary<string, string> semester = new Dictionary<string, string>
+            {
+                { "1", "First semester" },
+                { "2", "Second semester" },
+                { "3", "Third semester" }
+            };
 
             ViewBag.semester = new SelectList(semester, "Key", "Value");
             return View();
