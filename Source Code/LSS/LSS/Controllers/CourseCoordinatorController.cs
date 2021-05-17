@@ -2,6 +2,8 @@
 using LSS.Models.arc;
 using LSS.Models.CoursesModelView;
 using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -71,26 +73,84 @@ namespace LSS.Controllers
         }
         public ActionResult DeleteCLO(int id)
         {
-            //try
-            //{
-            //    if (clo != null)
-            //    {
-            CLO CLO = _DatabaseEntities.CLOes.Find(id);
+            try
+            {
+                CLO CLO = _DatabaseEntities.CLOes.Find(id);
+                if (CLO != null)
+                {
                     string courseID = CLO.courseId;
                     _DatabaseEntities.CLOes.Remove(CLO);
                     _DatabaseEntities.SaveChanges();
 
-                    return RedirectToAction("CouresPage", courseID);
-                //}
-                //else{
-                //    return HttpNotFound();
-                //}
-        //    }
-        //    catch (Exception e )
-        //    {
-        //        Console.WriteLine("Error at line 72 of CourseCoordinator" + e);
-        //        return View();
-        //    }
+                    return RedirectToAction("CouresPage", "CourseCoordinator", courseID);
+                }
+                else
+                {
+                    return HttpNotFound();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error at line 72 of CourseCoordinator" + e);
+                return View();
+            }
+        }
+
+
+        public ActionResult ActionsForImproving(string courseId)
+        {
+            List<ActionsForImprovingTheCourse> AFITC = _DatabaseEntities.ActionsForImprovingTheCourses.Where(x => x.CourseID.Equals(courseId)).ToList();
+            ViewBag.courseId = courseId;
+            return View(AFITC);
+        }
+        public ActionResult ActionsForImprovingDetails(string CourseID, System.DateTime Year, string Semseter)
+        {
+            ActionsForImprovingTheCourse AFITC = _DatabaseEntities.ActionsForImprovingTheCourses.Find(CourseID, Year, Semseter);
+            return View(AFITC);
+        }
+
+        public ActionResult AddActionsForImproving(string courseId)
+        {
+            ActionsForImprovingTheCourse ActionsForImprovingTheCourse = _DatabaseEntities.ActionsForImprovingTheCourses.Find(courseId, yas.Year, yas.Semester);
+            if (ActionsForImprovingTheCourse == null)
+            {
+                ActionsForImprovingTheCourse = new ActionsForImprovingTheCourse()
+                {
+                    CourseID = courseId,
+                    Year = yas.Year,
+                    Semseter = yas.Semester
+                };
+            }
+            return View(ActionsForImprovingTheCourse);
+        }
+
+        [HttpPost]
+        public ActionResult AddActionsForImproving(ActionsForImprovingTheCourse ActionsForImprovingTheCourse)
+        {
+            try {
+                if (ModelState.IsValid)
+                {
+                    if (_DatabaseEntities.ActionsForImprovingTheCourses.Find(ActionsForImprovingTheCourse.CourseID, yas.Year, yas.Semester) == null)
+                    {
+                        _DatabaseEntities.ActionsForImprovingTheCourses.Add(ActionsForImprovingTheCourse);
+                        _DatabaseEntities.SaveChanges();
+                    }
+                    else
+                    {
+                        _DatabaseEntities.Entry(ActionsForImprovingTheCourse).State = EntityState.Modified;
+                        _DatabaseEntities.SaveChanges();
+
+                    }
+                    return RedirectToAction("CouresPage","CourseCoordinator", ActionsForImprovingTheCourse.CourseID);
+                }
+                return View(ActionsForImprovingTheCourse);
+            }
+            catch (Exception e )
+            {
+                ModelState.AddModelError(e.Message, "an error has accoured please try again later ");
+                Console.WriteLine("Error at line 123 Course Coordinator");
+                return View(ActionsForImprovingTheCourse);
+            }
         }
 
     }

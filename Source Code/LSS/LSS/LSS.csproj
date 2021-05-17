@@ -473,6 +473,8 @@
     <Content Include="Views\Admin\AddCourseToSemester.cshtml" />
     <Content Include="Views\Admin\CreateNewSemster.cshtml" />
     <Content Include="Views\Admin\ListCourses.cshtml" />
+    <Content Include="Views\CourseCoordinator\ActionsForImproving.cshtml" />
+    <Content Include="Views\CourseCoordinator\ActionsForImprovingDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
