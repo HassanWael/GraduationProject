@@ -153,6 +153,31 @@ namespace LSS.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult IsAssessedPartialView(isAssessed isAssessed)
+        {
+            isAssessed a = _DatabaseEntities.isAssesseds.Find(isAssessed.CourseID, isAssessed.Year, isAssessed.Semseter);
+            try
+            {
+                if (a == null)
+                {
+                    _DatabaseEntities.isAssesseds.Add(isAssessed);
+                }
+                else
+                {
+                    _DatabaseEntities.Entry(isAssessed).State = EntityState.Modified;
+                }
+                _DatabaseEntities.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError(e.Message, "an error has accoured please try again later ");
+                Console.WriteLine("Error at line 123 Course Coordinator");
+                return View(isAssessed);
+            }
+            return RedirectToAction("CouresPage", "CourseCoordinator", isAssessed.CourseID);
+        }
+
     }
 
 }

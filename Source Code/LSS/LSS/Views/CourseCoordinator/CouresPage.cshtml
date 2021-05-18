@@ -147,7 +147,7 @@ else
 
         }
 
-        else if (Model.CourseCoordinator.isAssessed == true)
+        else if (Model.CourseCoordinator.isAssessed.isAssessed1 == true)
         {
     <h4 class="card-title">
         Yes this Course will be Assessed
@@ -166,7 +166,7 @@ else
 
         
             <p class="card-text">
-                Why Not:@Html.DisplayFor(model => model.CourseCoordinator.whyNot)
+                Why Not:@Html.DisplayFor(model => model.CourseCoordinator.isAssessed.WhyNot)
                 <br />
                 <button id='open' class="btn btn-link" data-toggle="modal" data-target="#isAssessed">Edit </button>
 
@@ -183,7 +183,20 @@ else
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             @{
-                Html.RenderPartial("AddCLO", new AddCLOMV(Model.Course.ID));
+                if (Model.CourseCoordinator.isAssessed == null)
+                {
+                    Html.RenderPartial("IsAssessed", new isAssessed()
+                    {
+                        CourseID = Model.CourseCoordinator.CourseID,
+                        Year = Model.CourseCoordinator.Year,
+                        Semseter = Model.CourseCoordinator.Semseter,
+                        isAssessed1 = false
+                    });
+                }
+                else
+                {
+                    Html.RenderPartial("IsAssessed", Model.CourseCoordinator.isAssessed);
+                }
             }
         </div>
     </div>

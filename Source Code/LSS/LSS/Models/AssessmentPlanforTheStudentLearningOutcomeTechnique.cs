@@ -14,17 +14,22 @@ namespace LSS.Models
     
     public partial class AssessmentPlanforTheStudentLearningOutcomeTechnique
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AssessmentPlanforTheStudentLearningOutcomeTechnique()
-        {
-            this.CourseCoordinators = new HashSet<CourseCoordinator>();
-        }
+        public string CourseID { get; set; }
+        public System.DateTime Year { get; set; }
+        public string Semester { get; set; }
+        public Nullable<bool> Midterm_Test { get; set; }
+        public Nullable<bool> Final_Exam { get; set; }
+        public Nullable<bool> Quiz { get; set; }
+        public Nullable<bool> Assignment { get; set; }
+        public Nullable<bool> project { get; set; }
+        public Nullable<bool> Written_Report { get; set; }
+        public Nullable<bool> Oral_Presenation { get; set; }
+        public Nullable<bool> Practice_In_The_Lab { get; set; }
+        public Nullable<bool> Case_Studdy { get; set; }
+        public Nullable<bool> Coruse_Assessment_Survey_By_Students { get; set; }
+        public Nullable<bool> Gropu_Discussions { get; set; }
+        public Nullable<bool> Students_Interviews { get; set; }
     
-        public string ID { get; set; }
-        public string Type { get; set; }
-        public string strategy { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CourseCoordinator> CourseCoordinators { get; set; }
+        public virtual CourseCoordinator CourseCoordinator { get; set; }
     }
 }

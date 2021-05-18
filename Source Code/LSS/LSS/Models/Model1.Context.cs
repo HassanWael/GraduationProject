@@ -44,6 +44,7 @@ namespace LSS.Models
         public virtual DbSet<Faculty> Faculties { get; set; }
         public virtual DbSet<ineffectiveAssessmentStrategi> ineffectiveAssessmentStrategis { get; set; }
         public virtual DbSet<ineffectiveTeachingStrategi> ineffectiveTeachingStrategis { get; set; }
+        public virtual DbSet<isAssessed> isAssesseds { get; set; }
         public virtual DbSet<Lecturer> Lecturers { get; set; }
         public virtual DbSet<ModerationChecklist> ModerationChecklists { get; set; }
         public virtual DbSet<OtherLecturer> OtherLecturers { get; set; }

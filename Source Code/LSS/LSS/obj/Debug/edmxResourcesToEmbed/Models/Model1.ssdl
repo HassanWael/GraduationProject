@@ -28,11 +28,25 @@
   </EntityType>
   <EntityType Name="AssessmentPlanforTheStudentLearningOutcomeTechnique">
     <Key>
-      <PropertyRef Name="ID" />
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Semester" />
     </Key>
-    <Property Name="ID" Type="nvarchar" MaxLength="30" Nullable="false" />
-    <Property Name="Type" Type="nvarchar" MaxLength="50" />
-    <Property Name="strategy" Type="nvarchar" MaxLength="255" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Year" Type="date" Nullable="false" />
+    <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Midterm_Test" Type="bit" />
+    <Property Name="Final_Exam" Type="bit" />
+    <Property Name="Quiz" Type="bit" />
+    <Property Name="Assignment" Type="bit" />
+    <Property Name="project" Type="bit" />
+    <Property Name="Written_Report" Type="bit" />
+    <Property Name="Oral_Presenation" Type="bit" />
+    <Property Name="Practice_In_The_Lab" Type="bit" />
+    <Property Name="Case_Studdy" Type="bit" />
+    <Property Name="Coruse_Assessment_Survey_By_Students" Type="bit" />
+    <Property Name="Gropu_Discussions" Type="bit" />
+    <Property Name="Students_Interviews" Type="bit" />
   </EntityType>
   <EntityType Name="byCompletingThisCourseStudentsAreAbleTo">
     <Key>
@@ -102,18 +116,6 @@
     <Property Name="SLOID" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="DeptID" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="CourseAssessmentPlan">
-    <Key>
-      <PropertyRef Name="CourseID" />
-      <PropertyRef Name="Year" />
-      <PropertyRef Name="Semseter" />
-      <PropertyRef Name="AssessmetnID" />
-    </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
-    <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
-    <Property Name="AssessmetnID" Type="nvarchar" MaxLength="30" Nullable="false" />
-  </EntityType>
   <EntityType Name="CourseAssessmentSurvay">
     <Key>
       <PropertyRef Name="CourseID" />
@@ -140,8 +142,6 @@
     <Property Name="courseNotAssessedReason " Type="nvarchar" MaxLength="255" />
     <Property Name="DayTime" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Coordinator" Type="nvarchar" MaxLength="30" Nullable="false" />
-    <Property Name="isAssessed" Type="bit" />
-    <Property Name="whyNot" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="CourseFileCheckList">
     <Key>
@@ -261,6 +261,18 @@
     <Property Name="Year" Type="date" Nullable="false" />
     <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
     <Property Name="Reason" Type="nvarchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="isAssessed">
+    <Key>
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Semseter" />
+    </Key>
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Year" Type="date" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="isAssessed" Type="bit" Nullable="false" />
+    <Property Name="WhyNot" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="Lecturers">
     <Key>
@@ -460,7 +472,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     <Property Name="modify_date" Type="datetime" Nullable="false" />
   </EntityType>
   <Association Name="FK_ActionsForImprovingTheCourse_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="ActionsForImprovingTheCourse" Type="Self.ActionsForImprovingTheCourse" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="CourseCoordinator">
@@ -475,8 +489,28 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_AP_toCC">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AssessmentPlanforTheStudentLearningOutcomeTechnique" Type="Self.AssessmentPlanforTheStudentLearningOutcomeTechnique" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Principal>
+      <Dependent Role="AssessmentPlanforTheStudentLearningOutcomeTechnique">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semester" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_AssessedCourses_ToCourse">
-    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Course" Type="Self.Course" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="AssessedCourses" Type="Self.AssessedCourses" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Course">
@@ -488,7 +522,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_byCompletingThisCourseStudentsAreAbleTo_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="byCompletingThisCourseStudentsAreAbleTo" Type="Self.byCompletingThisCourseStudentsAreAbleTo" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="CourseCoordinator">
@@ -504,7 +540,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_CAM_ToPI">
-    <End Role="PI" Type="Self.PI" Multiplicity="1" />
+    <End Role="PI" Type="Self.PI" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="CourseAssessmentMapping" Type="Self.CourseAssessmentMapping" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PI">
@@ -520,7 +558,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_CLO_ToCourse">
-    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Course" Type="Self.Course" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="CLO" Type="Self.CLO" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Course">
@@ -532,7 +572,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_CLO-PI_ToCLO">
-    <End Role="CLO" Type="Self.CLO" Multiplicity="1" />
+    <End Role="CLO" Type="Self.CLO" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="CLO-PI" Type="Self.CLO-PI" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CLO">
@@ -544,7 +586,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_CLO-PI_ToPI">
-    <End Role="PI" Type="Self.PI" Multiplicity="1" />
+    <End Role="PI" Type="Self.PI" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="CLO-PI" Type="Self.CLO-PI" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PI">
@@ -608,7 +652,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_CourseAssessmentMapping_ToCLO">
-    <End Role="CLO" Type="Self.CLO" Multiplicity="1" />
+    <End Role="CLO" Type="Self.CLO" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="CourseAssessmentMapping" Type="Self.CourseAssessmentMapping" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CLO">
@@ -620,7 +666,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_CourseAssessmentMapping_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="CourseAssessmentMapping" Type="Self.CourseAssessmentMapping" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CourseCoordinator">
@@ -636,7 +684,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_CourseAssessmentMapping_ToDep">
-    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="Department" Type="Self.Department" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="CourseAssessmentMapping" Type="Self.CourseAssessmentMapping" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Department">
@@ -647,36 +697,10 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_CourseAssessmentPlan_ToAssessment">
-    <End Role="AssessmentPlanforTheStudentLearningOutcomeTechnique" Type="Self.AssessmentPlanforTheStudentLearningOutcomeTechnique" Multiplicity="1" />
-    <End Role="CourseAssessmentPlan" Type="Self.CourseAssessmentPlan" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AssessmentPlanforTheStudentLearningOutcomeTechnique">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="CourseAssessmentPlan">
-        <PropertyRef Name="AssessmetnID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_CourseAssessmentPlan_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
-    <End Role="CourseAssessmentPlan" Type="Self.CourseAssessmentPlan" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CourseCoordinator">
-        <PropertyRef Name="CourseID" />
-        <PropertyRef Name="Year" />
-        <PropertyRef Name="Semseter" />
-      </Principal>
-      <Dependent Role="CourseAssessmentPlan">
-        <PropertyRef Name="CourseID" />
-        <PropertyRef Name="Year" />
-        <PropertyRef Name="Semseter" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_CourseAssessmentSurvay_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="CourseAssessmentSurvay" Type="Self.CourseAssessmentSurvay" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CourseCoordinator">
@@ -750,7 +774,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_CourseReport_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="CourseReport" Type="Self.CourseReport" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="CourseCoordinator">
@@ -766,7 +792,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_CourseSyllabus_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="CourseSyllabus" Type="Self.CourseSyllabus" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="CourseCoordinator">
@@ -782,7 +810,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_CourseTeachingStrategies_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="CourseTeachingStrategies" Type="Self.CourseTeachingStrategies" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CourseCoordinator">
@@ -798,7 +828,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_CourseTestBook_course">
-    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Course" Type="Self.Course" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="CourseTextBook" Type="Self.CourseTextBook" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Course">
@@ -810,7 +842,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Department_Faculty">
-    <End Role="Faculty" Type="Self.Faculty" Multiplicity="1" />
+    <End Role="Faculty" Type="Self.Faculty" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Department" Type="Self.Department" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Faculty">
@@ -822,7 +856,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_DPT_ToLecturer">
-    <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="0..1" />
+    <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Department" Type="Self.Department" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Lecturers">
@@ -877,6 +913,24 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_isAssessed_ToCC">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="isAssessed" Type="Self.isAssessed" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Principal>
+      <Dependent Role="isAssessed">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Lecturers_ToDpt">
     <End Role="Department" Type="Self.Department" Multiplicity="1" />
     <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="*" />
@@ -890,7 +944,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ModerationChecklist_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="ModerationChecklist" Type="Self.ModerationChecklist" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CourseCoordinator">
@@ -906,7 +962,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_OtherLecturers_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="OtherLecturers" Type="Self.OtherLecturers" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CourseCoordinator">
@@ -922,7 +980,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_OtherLecturers_ToLecturer">
-    <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="1" />
+    <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="OtherLecturers" Type="Self.OtherLecturers" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Lecturers">
@@ -934,7 +994,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PEO_Department">
-    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="Department" Type="Self.Department" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="PEO" Type="Self.PEO" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Department">
@@ -946,7 +1008,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ResultOfCourseDirectAssessment_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="ResultOfCourseDirectAssessment" Type="Self.ResultOfCourseDirectAssessment" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="CourseCoordinator">
@@ -992,7 +1056,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_schedule_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CourseCoordinator">
@@ -1008,7 +1074,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_SLO_Course_ToCourse">
-    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Course" Type="Self.Course" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="SLO_Course" Type="Self.SLO_Course" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Course">
@@ -1020,7 +1088,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_SLO_Course_ToSLO">
-    <End Role="SLO" Type="Self.SLO" Multiplicity="1" />
+    <End Role="SLO" Type="Self.SLO" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="SLO_Course" Type="Self.SLO_Course" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="SLO">
@@ -1046,7 +1116,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_SLO_PEO_ToPEO">
-    <End Role="PEO" Type="Self.PEO" Multiplicity="1" />
+    <End Role="PEO" Type="Self.PEO" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="SLO_PEO" Type="Self.SLO_PEO" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PEO">
@@ -1060,7 +1132,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_SLO_PEO_ToSLO">
-    <End Role="SLO" Type="Self.SLO" Multiplicity="1" />
+    <End Role="SLO" Type="Self.SLO" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="SLO_PEO" Type="Self.SLO_PEO" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="SLO">
@@ -1074,7 +1148,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Student_departement">
-    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="Department" Type="Self.Department" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Student" Type="Self.Student" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Department">
@@ -1086,7 +1162,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Student-Course-Grade_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Student-Course-Grade" Type="Self.Student-Course-Grade" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CourseCoordinator">
@@ -1102,7 +1180,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Student-Course-Grade_ToStudents">
-    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Student-Course-Grade" Type="Self.Student-Course-Grade" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Student">
@@ -1114,7 +1194,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Student-PI-Outcome_ToStudents">
-    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Student-PI-Outcome" Type="Self.Student-PI-Outcome" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Student">
@@ -1126,7 +1208,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Student-PI-Outcome_ToTeachingAndLearningStrategiesTechnique">
-    <End Role="TeachingAndLearningStrategiesTechnique" Type="Self.TeachingAndLearningStrategiesTechnique" Multiplicity="1" />
+    <End Role="TeachingAndLearningStrategiesTechnique" Type="Self.TeachingAndLearningStrategiesTechnique" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Student-PI-Outcome" Type="Self.Student-PI-Outcome" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="TeachingAndLearningStrategiesTechnique">
@@ -1138,7 +1222,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="PI_ToSLO">
-    <End Role="SLO" Type="Self.SLO" Multiplicity="1" />
+    <End Role="SLO" Type="Self.SLO" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="PI" Type="Self.PI" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="SLO">
@@ -1160,7 +1246,6 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     <EntitySet Name="CLO-PI" EntityType="Self.CLO-PI" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseAssessmentMapping" EntityType="Self.CourseAssessmentMapping" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="CourseAssessmentPlan" EntityType="Self.CourseAssessmentPlan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseAssessmentSurvay" EntityType="Self.CourseAssessmentSurvay" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseCoordinator" EntityType="Self.CourseCoordinator" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseFileCheckList" EntityType="Self.CourseFileCheckList" Schema="dbo" store:Type="Tables" />
@@ -1173,6 +1258,7 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     <EntitySet Name="Faculty" EntityType="Self.Faculty" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ineffectiveAssessmentStrategis" EntityType="Self.ineffectiveAssessmentStrategis" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ineffectiveTeachingStrategis" EntityType="Self.ineffectiveTeachingStrategis" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="isAssessed" EntityType="Self.isAssessed" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Lecturers" EntityType="Self.Lecturers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ModerationChecklist" EntityType="Self.ModerationChecklist" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OtherLecturers" EntityType="Self.OtherLecturers" Schema="dbo" store:Type="Tables" />
@@ -1202,6 +1288,10 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     <AssociationSet Name="FK_ActionsForImprovingTheCourse_ToCourseCoordinator" Association="Self.FK_ActionsForImprovingTheCourse_ToCourseCoordinator">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
       <End Role="ActionsForImprovingTheCourse" EntitySet="ActionsForImprovingTheCourse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AP_toCC" Association="Self.FK_AP_toCC">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+      <End Role="AssessmentPlanforTheStudentLearningOutcomeTechnique" EntitySet="AssessmentPlanforTheStudentLearningOutcomeTechnique" />
     </AssociationSet>
     <AssociationSet Name="FK_AssessedCourses_ToCourse" Association="Self.FK_AssessedCourses_ToCourse">
       <End Role="Course" EntitySet="Course" />
@@ -1254,14 +1344,6 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     <AssociationSet Name="FK_CourseAssessmentMapping_ToDep" Association="Self.FK_CourseAssessmentMapping_ToDep">
       <End Role="Department" EntitySet="Department" />
       <End Role="CourseAssessmentMapping" EntitySet="CourseAssessmentMapping" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CourseAssessmentPlan_ToAssessment" Association="Self.FK_CourseAssessmentPlan_ToAssessment">
-      <End Role="AssessmentPlanforTheStudentLearningOutcomeTechnique" EntitySet="AssessmentPlanforTheStudentLearningOutcomeTechnique" />
-      <End Role="CourseAssessmentPlan" EntitySet="CourseAssessmentPlan" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CourseAssessmentPlan_ToCourseCoordinator" Association="Self.FK_CourseAssessmentPlan_ToCourseCoordinator">
-      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
-      <End Role="CourseAssessmentPlan" EntitySet="CourseAssessmentPlan" />
     </AssociationSet>
     <AssociationSet Name="FK_CourseAssessmentSurvay_ToCourseCoordinator" Association="Self.FK_CourseAssessmentSurvay_ToCourseCoordinator">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
@@ -1318,6 +1400,10 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     <AssociationSet Name="FK_ineffectiveTeachingStrategis_ToCourseCoordinator" Association="Self.FK_ineffectiveTeachingStrategis_ToCourseCoordinator">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
       <End Role="ineffectiveTeachingStrategis" EntitySet="ineffectiveTeachingStrategis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_isAssessed_ToCC" Association="Self.FK_isAssessed_ToCC">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+      <End Role="isAssessed" EntitySet="isAssessed" />
     </AssociationSet>
     <AssociationSet Name="FK_Lecturers_ToDpt" Association="Self.FK_Lecturers_ToDpt">
       <End Role="Department" EntitySet="Department" />
