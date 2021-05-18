@@ -9,6 +9,7 @@ namespace LSS.Models.CoursesModelView
     {
         LSS_databaseEntities db = new LSS_databaseEntities();
         private int _NoOFSection { set; get; }
+        private List<string> _SLO { set; get; }
         public CouresReportModelView(CourseCoordinator courseCoordinator) {
             this.CourseCoordinator = courseCoordinator;
 
@@ -23,6 +24,20 @@ namespace LSS.Models.CoursesModelView
 
                 return _NoOFSection;
             }
+        }
+
+        public List<string> SLO
+        {
+
+            get {
+
+                _SLO.Add("New York");
+                _SLO.Add("London");
+                _SLO.Add("Mumbai");
+                _SLO.Add("Chicago");
+                return _SLO;
+            }
+       
         }
 
 

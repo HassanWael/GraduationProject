@@ -280,6 +280,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\coursepage.css" />
     <Content Include="Content\FormsStyle.css" />
+    <Content Include="Content\hideCSS.css" />
     <Content Include="Content\HomePage.css" />
     <Content Include="Content\jquery-customselect.css" />
     <Content Include="Content\LoginCSS.css" />

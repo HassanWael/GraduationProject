@@ -3,8 +3,12 @@
 @{
     ViewBag.Title = "CourseReport";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 <link rel="stylesheet" href="~/Content/FormsStyle.css" />
+<link href="~/Content/hideCSS.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <header>
     <table align="center">
         <tr>
@@ -20,6 +24,7 @@
         </tr>
     </table>
 
+
     <P align="center"><b> Faculty of Information Technology</b> </P>
     <hr style="border: 2px solid black" />
 </header>
@@ -34,7 +39,7 @@
     </tr>
     <tr>
         <th bgcolor="silver" style=" border:1px solid black"> Faculty </th>
-        <td style=" border:1px solid black">@Html.DisplayFor(x=>x.Department.Faculty.Name) </td>
+        <td style=" border:1px solid black">@Html.DisplayFor(x => x.Department.Faculty.Name) </td>
         <th bgcolor="silver" style=" border:1px solid black"> Department </th>
         <td style=" border:1px solid black">@Html.DisplayFor(x => x.Course.Department.Name) </td>
     </tr>
@@ -67,9 +72,9 @@
     </tr>
     <tr>
         <th bgcolor="silver" style=" border:1px solid black"> No. of Sections</th>
-        <td style=" border:1px solid black"> @Html.DisplayFor(x=>x.NoOFSection) </td>
+        <td style=" border:1px solid black"> @Html.DisplayFor(x => x.NoOFSection) </td>
         <th bgcolor="silver" style=" border:1px solid black">No. of Students</th>
-        <td style=" border:1px solid black"@Html.DisplayFor(x=>x.CourseCoordinator.NoOFStudents)>  </td>
+        <td style=" border:1px solid black" @Html.DisplayFor(x => x.CourseCoordinator.NoOFStudents)>  </td>
     </tr>
     <tr>
         <th bgcolor="silver" style=" border:1px solid black" colspan="4"> Instructor/Coordinator Information: </th>
@@ -88,12 +93,12 @@
     </tr>
 </table>
 
-<table class="table" style="border: 2px solid black">
+<table class="table" style="border: 2px solid black; " id="Content_Delv_table">
     <tr>
         <th bgcolor="silver" style=" border:1px solid black" colspan="3"> Content delivery: </th>
     </tr>
     <tr>
-        <td style=" border:1px solid black" colspan="3"> <input type="radio" name="topic"  onchange="change(false)" /> All topics were covered as planned </td>
+        <td style=" border:1px solid black" colspan="3"> <input type="radio" name="topic" id="removeAll" onchange="change(false)" /> All topics were covered as planned </td>
     </tr>
     <tr>
         <td style=" border:1px solid black" rowspan="2"> <input type="checkbox" /> Modifications to the content were made </td>
@@ -106,28 +111,66 @@
         <td style=" border:1px solid black" colspan="3"> <input type="radio" name="topic" onchange="change(true)" /> Not all topics were covered:  </td>
     </tr>
     <tr>
-        <th bgcolor="silver" style=" border:1px solid black">Topics (if any) not Fully Covered</th>
+        <th bgcolor="silver" style=" border:1px solid black">Topics (if any) not Fully Covered <a id="add" style="margin-left:10px;color:white">  add </a> <a id="remove" style="margin-left:10px;color:white;"> remove  </a></th>
         <th bgcolor="silver" style=" border:1px solid black">Effected Student <br />Learning <br /> Outcomes</th>
         <th bgcolor="silver" style=" border:1px solid black">Possible Compensating Action</th>
     </tr>
     <tr>
-        <td style=" border:1px solid black"> <input type="text" id="topics" placeholder="Topic 1"/> </td>
-        <td style=" border:1px solid black" colspan="2"> </td>
+        <td style=" border:1px solid black"> <input type="text" id="topics" placeholder="Topic 1" /> </td>
+        <td style=" border:1px solid black"> <select><option>@Model.CLOs.Count </option></select> </td>
+        <td style=" border:1px solid black"> <input type="text" id="possible_action" name="record0" placeholder="Possible Action" ondblclick="add()" /> </td>
     </tr>
-    
+
 </table>
 <script>
     let input = document.getElementById("topics");
-    let data = input.innerHTML;
+    let remove_link = document.getElementById("remove");
+    let add_link = document.getElementById("add");
+    let content_table = document.getElementById("Content_Delv_table");
+    var a9le = content_table.innerHTML;
+    var data;
+    var id = 1;
     function change(cond) {
         switch (cond) {
             case true: input.disabled = false;
+                remove_link.style.display = "inline";
+                add_link.style.display = "inline";
                 break;
             case false: input.disabled = true;
+                remove_link.style.display = "none";
+                add_link.style.display = "none";
+
                 break;
 
         }
     }
+    $(document).ready(function () {
+        $("#add").click(function () {
+          data = ' <tr> <td style=" border:1px solid black"> <input type="text" id="topics" placeholder="Topic '+ ++id+'" /> </td>\
+            <td style=" border:1px solid black"> <select><option>@Model.CLOs.Count </option></select> </td><td style=" border:1px solid black">\
+            <input type = "text" name="record'+ id +'" id = "possible_action_new" placeholder = "Possible Action"  /> </td ></tr > ';
+
+            $("#Content_Delv_table").append(data);
+        });
+
+        // Find and remove selected table rows
+        $("#remove").click(function () {
+            $("#Content_Delv_table").find('input[name="record' + id-- +'"]').each(function () {
+
+                    $(this).parents("tr").remove();
+
+            });
+        });
+        $("#removeAll").click(function () {
+            $("#Content_Delv_table").find('input[id="possible_action_new"]').each(function () {
+
+                $(this).parents("tr").remove();
+                id = 1;
+            });
+        });
+
+    });
+
 
 </script>
 <div style="page-break-before: always" id="Pagebreak">
@@ -461,46 +504,46 @@
     <br />
 </div>
 <div style="page-break-before: always" id="Pagebreak">
-    </div>
-    <br />
-    <table class="table" style="border: 2px solid black">
-        <tr>
-            <th bgcolor="silver" style=" border:1px solid black" colspan="6"> Responsible Staff Signature: </th>
-        </tr>
-        <tr>
-            <th bgcolor="aliceblue" style=" border:1px solid black"> Course Instructor/ <br />Coordinator </th>
-            <td style=" border:1px solid black">  </td>
-            <th bgcolor="aliceblue" style=" border:1px solid black"> Date </th>
-            <td style=" border:1px solid black">  </td>
-            <th bgcolor="aliceblue" style=" border:1px solid black"> Signature </th>
-            <td style=" border:1px solid black">  </td>
-        </tr>
-        <tr>
-            <th bgcolor="aliceblue" style=" border:1px solid black"> Head of Department </th>
-            <td style=" border:1px solid black">  </td>
-            <th bgcolor="aliceblue" style=" border:1px solid black"> Date </th>
-            <td style=" border:1px solid black">  </td>
-            <th bgcolor="aliceblue" style=" border:1px solid black"> Signature </th>
-            <td style=" border:1px solid black">  </td>
-        </tr>
-        <tr>
-            <th bgcolor="aliceblue" style=" border:1px solid black"> Vice Dean of <br /> Accreditation and Quality </th>
-            <td style=" border:1px solid black">  </td>
-            <th bgcolor="aliceblue" style=" border:1px solid black"> Date </th>
-            <td style=" border:1px solid black">  </td>
-            <th bgcolor="Aliceblue" style=" border:1px solid black"> Signature </th>
-            <td style=" border:1px solid black">  </td>
-        </tr>
-    </table>
-   
-    <p align="center" style="background-color:antiquewhite">Appendices</p>
-    <b>Appendix A:</b> Results ofCourse Assessment Worksheet
-    <br />
-  
-    <br />
-    <b>Appendix B:</b> Results ofCourse Assessment Survey
-   
-    
+</div>
+<br />
+<table class="table" style="border: 2px solid black">
+    <tr>
+        <th bgcolor="silver" style=" border:1px solid black" colspan="6"> Responsible Staff Signature: </th>
+    </tr>
+    <tr>
+        <th bgcolor="aliceblue" style=" border:1px solid black"> Course Instructor/ <br />Coordinator </th>
+        <td style=" border:1px solid black">  </td>
+        <th bgcolor="aliceblue" style=" border:1px solid black"> Date </th>
+        <td style=" border:1px solid black">  </td>
+        <th bgcolor="aliceblue" style=" border:1px solid black"> Signature </th>
+        <td style=" border:1px solid black">  </td>
+    </tr>
+    <tr>
+        <th bgcolor="aliceblue" style=" border:1px solid black"> Head of Department </th>
+        <td style=" border:1px solid black">  </td>
+        <th bgcolor="aliceblue" style=" border:1px solid black"> Date </th>
+        <td style=" border:1px solid black">  </td>
+        <th bgcolor="aliceblue" style=" border:1px solid black"> Signature </th>
+        <td style=" border:1px solid black">  </td>
+    </tr>
+    <tr>
+        <th bgcolor="aliceblue" style=" border:1px solid black"> Vice Dean of <br /> Accreditation and Quality </th>
+        <td style=" border:1px solid black">  </td>
+        <th bgcolor="aliceblue" style=" border:1px solid black"> Date </th>
+        <td style=" border:1px solid black">  </td>
+        <th bgcolor="Aliceblue" style=" border:1px solid black"> Signature </th>
+        <td style=" border:1px solid black">  </td>
+    </tr>
+</table>
+
+<p align="center" style="background-color:antiquewhite">Appendices</p>
+<b>Appendix A:</b> Results ofCourse Assessment Worksheet
+<br />
+
+<br />
+<b>Appendix B:</b> Results ofCourse Assessment Survey
+
+
 <footer>
 
     <table>
