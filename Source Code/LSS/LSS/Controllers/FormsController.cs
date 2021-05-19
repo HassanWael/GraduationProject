@@ -1,4 +1,7 @@
-﻿using System;
+﻿using LSS.Models;
+using LSS.Models.arc;
+using LSS.Models.CoursesModelView;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,8 +9,11 @@ using System.Web.Mvc;
 
 namespace LSS.Controllers
 {
+
     public class FormsController : Controller
     {
+        private readonly YearAndSemester yearAndSemester = SemesterSingelton.getCurrentYearAndSemester();
+        private readonly LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
         // GET: Forms
         public ActionResult Index()
         {
@@ -19,14 +25,22 @@ namespace LSS.Controllers
             return View();
         }
 
-        public ActionResult CourseFileChecklist()
+        public ActionResult CourseFileChecklist(string? CourseID)
         {
+            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, yearAndSemester.Year, yearAndSemester.Semester);
             return View();
         }
 
-        public ActionResult CourseInformationForm()
+        public ActionResult CourseInformationForm(string? CourseID)
         {
-            return View();
+            if (CourseID is null)
+            {
+                    RedirectToAction("Index","Home");
+            }
+
+            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, yearAndSemester.Year, yearAndSemester.Semester);
+            CouresModelView cmv = new CouresModelView(cc);
+            return View(cmv);
         }
 
         public ActionResult CourseReport()
@@ -34,9 +48,11 @@ namespace LSS.Controllers
             return View();
         }
 
-        public ActionResult CourseSyllabus()
+        public ActionResult CourseSyllabus(string? id)
         {
-            return View();
+            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(id, yearAndSemester.Year, yearAndSemester.Semester);
+
+            return View(cc);
         }
 
         public ActionResult ExamEvaluation()
@@ -45,12 +61,15 @@ namespace LSS.Controllers
         }
 
         public ActionResult ExamModerationChecklist()
-        {
+        {   
             return View();
         }
 
              public ActionResult QuestionsAnswersSheet()
         {
+            return View();
+        }
+        public ActionResult CouresSyllabusAddData() {
             return View();
         }
     }

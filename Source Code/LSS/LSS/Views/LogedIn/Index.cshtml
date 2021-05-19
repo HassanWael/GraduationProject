@@ -1,0 +1,60 @@
+﻿@using LSS.Models
+@using LSS.Models.CoursesModelView
+
+@model LSS.Models.CoursesModelView.HomeCourseListViewModel
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div id="Coordinated_Courses" class="Course_ShowCase">
+
+    @if (Model.CoordinatedCourses != null)
+    {<ul>
+    @foreach (CourseCoordinator cc in Model.CoordinatedCourses)
+    {
+    <li> @Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator",   new { courseID = cc.Course.ID },null) </li>
+
+    }
+
+
+</ul>
+    }
+    else
+    {
+        <h2> no courses has been added yet</h2>
+    }
+
+</div>
+
+
+@if (Model.DepartmentCCs != null)
+{
+    <div id="dptCdourses" class="Course_ShowCase">
+        <ul>
+            @foreach (CourseCoordinator cc in Model.DepartmentCCs)
+            {
+                <li>@Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator",  new { courseID = cc.Course.ID },null)  </li>
+            }
+        </ul>
+
+    </div>
+}
+
+@if (Model.FacultyCCS != null)
+{
+    <div id="dptCdourses" class="Course_ShowCase">
+        <ul>
+            @foreach (CourseCoordinator cc in Model.FacultyCCS)
+            {
+            <li> @Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator",  new { courseID = cc.Course.ID }, null)  </li>
+            }
+        </ul>
+
+    </div>
+}

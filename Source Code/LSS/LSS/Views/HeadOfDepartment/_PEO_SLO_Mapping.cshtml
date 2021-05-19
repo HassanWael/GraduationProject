@@ -1,0 +1,58 @@
+﻿@model LSS.Models.DepartmentViewModel.MappedPEO_SLO
+@using LSS.Models
+
+<html>
+<body>
+    <div>
+        <h2>unmapped SLO to PEO : </h2>
+        @Model.UnmappedSLO.Count() 
+    </div>
+
+    <div>
+        <h2>unmapped PEO to SLO : </h2>
+        @Model.UnmappedPEO.Count() 
+    </div>
+
+
+    @if (Model != null)
+    {
+        <table>
+            <tr>
+                <td>
+                </td>
+                @for (int i = 0; i < Model.PEOs.Count(); i++)
+                {
+                    <td> @Model.PEOs[i].ID</td>
+                }
+            </tr>
+            @for (int i = 0; i < Model.SLOes.Count(); i++)
+            {
+                <tr>
+                    <td>
+                        @Model.SLOes[i].SLOID
+                    </td>
+                    @for (int j = 0; j < Model.PEOs.Count(); j++)
+                    {
+
+
+                        if (Model.SLO_PEO.Where(x=>x.SLOID.Equals(Model.SLOes[i].SLOID) && x.PEOID.Equals(Model.PEOs[j].ID)).FirstOrDefault() != null)
+                        {
+                             <td>
+                                @Html.CheckBox("name", true, new { disabled = true })
+                             </td>
+                        }
+                        else
+                        {
+                            <td>
+                             @Html.CheckBox("name", false, new { disabled = true })
+                            </td>
+                        }
+                    }
+                    
+                </tr>
+            }
+
+        </table>
+    }
+</body>
+</html>

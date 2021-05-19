@@ -1,50 +1,58 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+<body>
+    <link href="~/Content/HomePage.css" rel="stylesheet" type="text/css" />
+    <div class="block">
+        <div class="block-item">
+            <img id="logo" src="~/Images/Al-Ahliya_Amman_University_Logo.png" />
 
-<link href="~/Content/HomePage.css" rel="stylesheet" type="text/css" />
-<div class="block">
-    <div class="block-item">
-        <img id="logo" src="~/Images/Al-Ahliya_Amman_University_Logo.png" />
+            <h1 id="header"> Al-Ahliyya Amman University</h1>
 
-        <h1 id="header"> Al-Ahliyya Amman University</h1>
+        </div>
 
+        <div class="block-item">
+            <h2> الخدمات الالكترونية</h2>
 
+        </div>
+        <div class="services">
 
+            <ul style="display:flex; list-style:none; flex-wrap:wrap;">
+                <li>
+                    <div class="block-item">
 
+                        <img src="~/Images/studying.png" /> <h5>Student project management </h5>
+                    </div>
+                </li>
+                <li>
+                    <div class="block-item">
+                        <img src="~/Images/notebook.png" />  <h5> Course Report</h5>
+                    </div>
+                </li>
+                <li>
+                    <div class="block-item">
+                        <img src="~/Images/analysis.png" /> <h5>Accreditaion Tracker</h5>
+                    </div>
+                </li>
+                <li>
+                    <div class="block-item">
+                        <img src="~/Images/notebook.png" /> <h5>Exam question assesment</h5>
+                    </div>
+                </li>
+                <li>
+                    <div class="block-item">
+                        <img src="~/Images/notebook.png" /> <h5>Student assesment</h5>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
     </div>
-
-    <div class="block-item">
-        <h2> الخدمات الالكترونية</h2>
-
-    </div>
-    <div class="services">
-
-
-        <div class="block-item">
-
-            <img src="~/Images/studying.png" /> <h5>Student project management </h5>
-        </div>
-        <div class="block-item">
-            <img src="~/Images/notebook.png" />  <h5> Course Report</h5>
-        </div>
-
-        <div class="block-item">
-            <img src="~/Images/analysis.png" /> <h5>Accreditaion Tracker</h5>
-        </div>
-        <div class="block-item">
-            <img src="~/Images/notebook.png" /> <h5>Exam question assesment</h5>
-        </div>
-        <div class="block-item">
-            <img src="~/Images/notebook.png" /> <h5>Student assesment</h5>
-        </div>
-
-
-    </div>
-</div>
-
-@Html.ActionLink("Go to Course", "couresPage", "Home");
-
-
-
-
+</body>
+<footer class="footer">
+    <hr />
+    <p>&copy; 2021 -AAU Lecturer Support System</p>
+</footer>

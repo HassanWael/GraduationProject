@@ -1,0 +1,80 @@
+﻿@model IEnumerable<LSS.Models.Course>
+
+@{
+    ViewBag.Title = "ListCourses";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ListCourses</h2>
+
+<table>
+    <tr>
+        @using (Html.BeginForm("ListCourses", "Admin", FormMethod.Get))
+        {
+            <td style="padding-left:2%;">
+                @Html.DropDownList("Department", (IEnumerable<SelectListItem>)ViewBag.deprtments, "Select Department", htmlAttributes: new { @class = "custom-select", @name = "standard" })
+            </td>
+            <td style="padding-left:2%;">
+                @Html.TextBox("Search", null, new { @class = "form-control" , placeholder = "Search" })
+            </td>
+            <td style="padding-left:2%;">
+                <input type="submit" value="search" class="btn btn-dark" />
+            </td>
+
+
+                }
+        </tr>
+    </table>   
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hours)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.VclassURL)
+        </th>
+
+      
+        <th>
+            @Html.DisplayNameFor(model => model.Department.Name)
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hours)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Department.Name)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })|
+            @Html.ActionLink("Add course to schedule", "AddCourseToSemster", new { id = item.ID })
+        </td>
+    </tr>
+}
+
+</table>
