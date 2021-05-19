@@ -145,6 +145,29 @@ namespace LSS.Models.CoursesModelView
             set { _SLO_PI = value; }
         }
 
+        private isAssessed _isAssessed { get;set; }
+        public isAssessed IsAssessed { get
+            {
+                if (_isAssessed == null)
+                {
+                   _isAssessed= CourseCoordinator.isAssessed;
+                }
+                return _isAssessed;
+            }
+        }
+
+        private AssessmentPlanforTheStudentLearningOutcomeTechnique _AssessmentPlan { get; set; }
+        public AssessmentPlanforTheStudentLearningOutcomeTechnique AssessmentPlan { get
+            {
+                if (_AssessmentPlan == null)
+                {
+                    _AssessmentPlan = CourseCoordinator.AssessmentPlanforTheStudentLearningOutcomeTechnique;
+                }
+
+                return _AssessmentPlan;
+            }
+        }
+
         public string getName() {
 
 

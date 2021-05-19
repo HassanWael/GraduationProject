@@ -40,18 +40,19 @@
           <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Year" Type="date" Nullable="false" />
           <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
-          <Property Name="Midterm_Test" Type="bit" />
-          <Property Name="Final_Exam" Type="bit" />
-          <Property Name="Quiz" Type="bit" />
-          <Property Name="Assignment" Type="bit" />
-          <Property Name="project" Type="bit" />
-          <Property Name="Written_Report" Type="bit" />
-          <Property Name="Oral_Presenation" Type="bit" />
-          <Property Name="Practice_In_The_Lab" Type="bit" />
-          <Property Name="Case_Studdy" Type="bit" />
-          <Property Name="Coruse_Assessment_Survey_By_Students" Type="bit" />
-          <Property Name="Gropu_Discussions" Type="bit" />
-          <Property Name="Students_Interviews" Type="bit" />
+          <Property Name="Midterm_Test" Type="bit" Nullable="false" />
+          <Property Name="Final_Exam" Type="bit" Nullable="false" />
+          <Property Name="Quiz" Type="bit" Nullable="false" />
+          <Property Name="Assignment" Type="bit" Nullable="false" />
+          <Property Name="project" Type="bit" Nullable="false" />
+          <Property Name="Written_Report" Type="bit" Nullable="false" />
+          <Property Name="Oral_Presenation" Type="bit" Nullable="false" />
+          <Property Name="Practice_In_The_Lab" Type="bit" Nullable="false" />
+          <Property Name="Case_Studdy" Type="bit" Nullable="false" />
+          <Property Name="Coruse_Assessment_Survey_By_Students" Type="bit" Nullable="false" />
+          <Property Name="Gropu_Discussions" Type="bit" Nullable="false" />
+          <Property Name="Students_Interviews" Type="bit" Nullable="false" />
+          <Property Name="Other" Type="nchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="byCompletingThisCourseStudentsAreAbleTo">
           <Key>
@@ -1757,19 +1758,20 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
-          <Property Name="Midterm_Test" Type="Boolean" />
-          <Property Name="Final_Exam" Type="Boolean" />
-          <Property Name="Quiz" Type="Boolean" />
-          <Property Name="Assignment" Type="Boolean" />
-          <Property Name="project" Type="Boolean" />
-          <Property Name="Written_Report" Type="Boolean" />
-          <Property Name="Oral_Presenation" Type="Boolean" />
-          <Property Name="Practice_In_The_Lab" Type="Boolean" />
-          <Property Name="Case_Studdy" Type="Boolean" />
-          <Property Name="Coruse_Assessment_Survey_By_Students" Type="Boolean" />
-          <Property Name="Gropu_Discussions" Type="Boolean" />
-          <Property Name="Students_Interviews" Type="Boolean" />
+          <Property Name="Midterm_Test" Type="Boolean" Nullable="false" />
+          <Property Name="Final_Exam" Type="Boolean" Nullable="false" />
+          <Property Name="Quiz" Type="Boolean" Nullable="false" />
+          <Property Name="Assignment" Type="Boolean" Nullable="false" />
+          <Property Name="project" Type="Boolean" Nullable="false" />
+          <Property Name="Written_Report" Type="Boolean" Nullable="false" />
+          <Property Name="Oral_Presenation" Type="Boolean" Nullable="false" />
+          <Property Name="Practice_In_The_Lab" Type="Boolean" Nullable="false" />
+          <Property Name="Case_Studdy" Type="Boolean" Nullable="false" />
+          <Property Name="Coruse_Assessment_Survey_By_Students" Type="Boolean" Nullable="false" />
+          <Property Name="Gropu_Discussions" Type="Boolean" Nullable="false" />
+          <Property Name="Students_Interviews" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="CourseCoordinator" Relationship="Model.FK_AP_toCC" FromRole="AssessmentPlanforTheStudentLearningOutcomeTechnique" ToRole="CourseCoordinator" />
+          <Property Name="Other" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="byCompletingThisCourseStudentsAreAbleTo">
           <Key>
@@ -2966,6 +2968,7 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <EntitySetMapping Name="AssessmentPlanforTheStudentLearningOutcomeTechniques">
             <EntityTypeMapping TypeName="Model.AssessmentPlanforTheStudentLearningOutcomeTechnique">
               <MappingFragment StoreEntitySet="AssessmentPlanforTheStudentLearningOutcomeTechnique">
+                <ScalarProperty Name="Other" ColumnName="Other" />
                 <ScalarProperty Name="Students_Interviews" ColumnName="Students_Interviews" />
                 <ScalarProperty Name="Gropu_Discussions" ColumnName="Gropu_Discussions" />
                 <ScalarProperty Name="Coruse_Assessment_Survey_By_Students" ColumnName="Coruse_Assessment_Survey_By_Students" />

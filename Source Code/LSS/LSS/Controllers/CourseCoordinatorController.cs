@@ -178,6 +178,15 @@ namespace LSS.Controllers
             return RedirectToAction("CouresPage", "CourseCoordinator", isAssessed.CourseID);
         }
 
+        [HttpPost]
+        public ActionResult AssessmentPlan()
+        {
+            return View();
+
+        }
+
+
     }
+
 
 }

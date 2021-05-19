@@ -262,19 +262,20 @@
     <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
-    <Property Name="Midterm_Test" Type="Boolean" />
-    <Property Name="Final_Exam" Type="Boolean" />
-    <Property Name="Quiz" Type="Boolean" />
-    <Property Name="Assignment" Type="Boolean" />
-    <Property Name="project" Type="Boolean" />
-    <Property Name="Written_Report" Type="Boolean" />
-    <Property Name="Oral_Presenation" Type="Boolean" />
-    <Property Name="Practice_In_The_Lab" Type="Boolean" />
-    <Property Name="Case_Studdy" Type="Boolean" />
-    <Property Name="Coruse_Assessment_Survey_By_Students" Type="Boolean" />
-    <Property Name="Gropu_Discussions" Type="Boolean" />
-    <Property Name="Students_Interviews" Type="Boolean" />
+    <Property Name="Midterm_Test" Type="Boolean" Nullable="false" />
+    <Property Name="Final_Exam" Type="Boolean" Nullable="false" />
+    <Property Name="Quiz" Type="Boolean" Nullable="false" />
+    <Property Name="Assignment" Type="Boolean" Nullable="false" />
+    <Property Name="project" Type="Boolean" Nullable="false" />
+    <Property Name="Written_Report" Type="Boolean" Nullable="false" />
+    <Property Name="Oral_Presenation" Type="Boolean" Nullable="false" />
+    <Property Name="Practice_In_The_Lab" Type="Boolean" Nullable="false" />
+    <Property Name="Case_Studdy" Type="Boolean" Nullable="false" />
+    <Property Name="Coruse_Assessment_Survey_By_Students" Type="Boolean" Nullable="false" />
+    <Property Name="Gropu_Discussions" Type="Boolean" Nullable="false" />
+    <Property Name="Students_Interviews" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="CourseCoordinator" Relationship="Model.FK_AP_toCC" FromRole="AssessmentPlanforTheStudentLearningOutcomeTechnique" ToRole="CourseCoordinator" />
+    <Property Name="Other" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="byCompletingThisCourseStudentsAreAbleTo">
     <Key>

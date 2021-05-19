@@ -1,6 +1,7 @@
 ﻿@model LSS.Models.isAssessed
 
-@using (Html.BeginForm())
+<link href="~/Content/ULStyleForAssessmentPlan.css" rel="stylesheet" />
+@using (Html.BeginForm("IsAssessedPartialView", "CourseCoordinator",FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     

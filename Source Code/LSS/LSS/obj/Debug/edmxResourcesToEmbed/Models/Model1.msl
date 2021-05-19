@@ -28,6 +28,7 @@
     <EntitySetMapping Name="AssessmentPlanforTheStudentLearningOutcomeTechniques">
       <EntityTypeMapping TypeName="Model.AssessmentPlanforTheStudentLearningOutcomeTechnique">
         <MappingFragment StoreEntitySet="AssessmentPlanforTheStudentLearningOutcomeTechnique">
+          <ScalarProperty Name="Other" ColumnName="Other" />
           <ScalarProperty Name="Students_Interviews" ColumnName="Students_Interviews" />
           <ScalarProperty Name="Gropu_Discussions" ColumnName="Gropu_Discussions" />
           <ScalarProperty Name="Coruse_Assessment_Survey_By_Students" ColumnName="Coruse_Assessment_Survey_By_Students" />

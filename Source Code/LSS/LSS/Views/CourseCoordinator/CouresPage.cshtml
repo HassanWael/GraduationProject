@@ -132,27 +132,29 @@ else
 }
 
 
+
+
 <div class="card bg-secondary mb-3" style="max-width: 20rem;">
     <div class="card-header"> <h5>Will This Course Be Assessed </h5></div>
     <div class="card-body">
 
-        @if (Model.CourseCoordinator.isAssessed == null)
+        @if (Model.IsAssessed == null)
         {
 
             <h4>this has not been set up yet please fill the information</h4>
             <p class="card-text">
-                <button id='open' class="btn btn-link" data-toggle="modal" data-target="#isAssessed">Fill the Information </button>
+                <button id='open' class="card-link" data-toggle="modal" data-target="#isAssessed">Fill the Information </button>
 
             </p>
 
         }
 
-        else if (Model.CourseCoordinator.isAssessed.isAssessed1 == true)
+        else if (Model.IsAssessed.isAssessed1 == true)
         {
-    <h4 class="card-title">
-        Yes this Course will be Assessed
-        <button id='open' class="btn btn-link" data-toggle="modal" data-target="#isAssessed">Edit </button>
-    </h4>
+            <h4 class="card-title">
+                Yes this Course will be Assessed
+                <button id='open' class="card-link" data-toggle="modal" data-target="#isAssessed">Edit </button>
+            </h4>
             <p class="card-text">
             </p>
 
@@ -164,11 +166,11 @@ else
                 No
             </h4>
 
-        
+
             <p class="card-text">
-                Why Not:@Html.DisplayFor(model => model.CourseCoordinator.isAssessed.WhyNot)
+                Why Not:@Html.DisplayFor(model => model.IsAssessed.WhyNot)
                 <br />
-                <button id='open' class="btn btn-link" data-toggle="modal" data-target="#isAssessed">Edit </button>
+                <button id='open' class="card-link" data-toggle="modal" data-target="#isAssessed">Edit </button>
 
             </p>
         }
@@ -177,6 +179,11 @@ else
 
     </div>
 </div>
+
+
+
+
+
 
 
 <div id="isAssessed" class="modal fade" tabindex="-1" role="dialog">
@@ -195,7 +202,158 @@ else
                 }
                 else
                 {
-                    Html.RenderPartial("IsAssessed", Model.CourseCoordinator.isAssessed);
+                    Html.RenderPartial("IsAssessed", Model.IsAssessed);
+                }
+            }
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card bg-secondary mb-3" style="max-width: 20rem;">
+    <div class="card-header">Assessment Plan for the Student Learning Outcome</div>
+    <div class="card-body">
+        @if (Model.AssessmentPlan == null)
+        {
+            <p class="card-text">
+                The Assessment Plan has not been set up yet
+                <button id='open' class="card-link" data-toggle="modal" data-target="#addAssmentPlan">create Assessment plan for this semester</button>
+
+            </p>
+
+        }
+        else
+        {
+    <p class="card-text">
+        <ul>
+            @if (Model.AssessmentPlan.Midterm_Test)
+            {
+                <li>
+                    @Html.DisplayNameFor(model => model.AssessmentPlan.Midterm_Test);
+                </li>
+            }
+
+            @if (Model.AssessmentPlan.Final_Exam)
+            {
+                <li>
+                    @Html.DisplayNameFor(model => model.AssessmentPlan.Final_Exam);
+                </li>
+            }
+            @if (Model.AssessmentPlan.Quiz)
+            {
+                <li>
+                    @Html.DisplayNameFor(model => model.AssessmentPlan.Quiz);
+                </li>
+            }
+
+            @if (Model.AssessmentPlan.Assignment)
+            {
+                <li>
+                    @Html.DisplayNameFor(model => model.AssessmentPlan.Assignment);
+                </li>
+            }
+
+            @if (Model.AssessmentPlan.project)
+            {
+                <li>
+                    @Html.DisplayNameFor(model => model.AssessmentPlan.project);
+                </li>
+            }
+
+
+            @if (Model.AssessmentPlan.Written_Report)
+            {
+                <li>
+                    @Html.DisplayNameFor(model => model.AssessmentPlan.Written_Report);
+                </li>
+            }   @if (Model.AssessmentPlan.Oral_Presenation)
+            {
+                <li>
+                    @Html.DisplayNameFor(model => model.AssessmentPlan.Oral_Presenation);
+                </li>
+            }
+            @if (Model.AssessmentPlan.Practice_In_The_Lab)
+            {
+                <li>
+                    @Html.DisplayNameFor(model => model.AssessmentPlan.Practice_In_The_Lab);
+                </li>
+            }
+            @if (Model.AssessmentPlan.Case_Studdy)
+            {
+                <li>
+                    @Html.DisplayNameFor(model => model.AssessmentPlan.Case_Studdy);
+                </li>
+            }
+            @if (Model.AssessmentPlan.Coruse_Assessment_Survey_By_Students)
+            {
+                <li>
+                    @Html.DisplayNameFor(model => model.AssessmentPlan.Coruse_Assessment_Survey_By_Students);
+                </li>
+            }
+            @if (Model.AssessmentPlan.Gropu_Discussions)
+            {
+                <li>
+                    @Html.DisplayNameFor(model => model.AssessmentPlan.Gropu_Discussions);
+                </li>
+            }
+            @if (Model.AssessmentPlan.Students_Interviews)
+            {
+                <li>
+                    @Html.DisplayNameFor(model => model.AssessmentPlan.Students_Interviews);
+                </li>
+            }
+            @if (Model.AssessmentPlan.Other != null)
+            {
+                <li>
+                    @Html.DisplayNameFor(model => model.AssessmentPlan.Other);
+                    @Html.DisplayFor(model => model.AssessmentPlan.Other);
+                </li>
+            }
+        </ul>
+        <button id='open' class="card-link" data-toggle="modal" data-target="#addAssmentPlan">Edite the  Assessment plan for this semester</button>
+
+    </p>
+
+        }
+
+
+    </div>
+</div>
+
+
+
+
+
+
+<div id="addAssmentPlan" class="modal fade" tabindex="-1" role="dialog" >
+    <div class="modal-dialog" role="document"  style="width:auto;">
+        <div class="modal-content" style="width:auto;">
+            @{
+                if (Model.AssessmentPlan == null)
+                {
+                    Html.RenderPartial("AssessmentPlan", new AssessmentPlanforTheStudentLearningOutcomeTechnique()
+                    {
+                        CourseID = Model.CourseCoordinator.CourseID,
+                        Year = Model.CourseCoordinator.Year,
+                        Semester = Model.CourseCoordinator.Semseter,
+                        Midterm_Test = false,
+                        Final_Exam = false,
+                        Quiz = false,
+                        Assignment = false,
+                        project = false,
+                        Written_Report = false,
+                        Oral_Presenation = false,
+                        Practice_In_The_Lab = false,
+                        Case_Studdy = false,
+                        Coruse_Assessment_Survey_By_Students = false,
+                        Gropu_Discussions = false,
+                        Students_Interviews = false
+                    });
+                }
+                else
+                {
+                    Html.RenderPartial("AssessmentPlan", Model.AssessmentPlan);
                 }
             }
         </div>

@@ -285,6 +285,7 @@
     <Content Include="Content\HomePage.css" />
     <Content Include="Content\jquery-customselect.css" />
     <Content Include="Content\LoginCSS.css" />
+    <Content Include="Content\ULStyleForAssessmentPlan.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -479,6 +480,7 @@
     <Content Include="Views\CourseCoordinator\ActionsForImproving.cshtml" />
     <Content Include="Views\CourseCoordinator\ActionsForImprovingDetails.cshtml" />
     <Content Include="Views\CourseCoordinator\IsAssessed.cshtml" />
+    <Content Include="Views\CourseCoordinator\AssessmentPlan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

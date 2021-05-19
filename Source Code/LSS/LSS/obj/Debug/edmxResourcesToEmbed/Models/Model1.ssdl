@@ -35,18 +35,19 @@
     <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
     <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
-    <Property Name="Midterm_Test" Type="bit" />
-    <Property Name="Final_Exam" Type="bit" />
-    <Property Name="Quiz" Type="bit" />
-    <Property Name="Assignment" Type="bit" />
-    <Property Name="project" Type="bit" />
-    <Property Name="Written_Report" Type="bit" />
-    <Property Name="Oral_Presenation" Type="bit" />
-    <Property Name="Practice_In_The_Lab" Type="bit" />
-    <Property Name="Case_Studdy" Type="bit" />
-    <Property Name="Coruse_Assessment_Survey_By_Students" Type="bit" />
-    <Property Name="Gropu_Discussions" Type="bit" />
-    <Property Name="Students_Interviews" Type="bit" />
+    <Property Name="Midterm_Test" Type="bit" Nullable="false" />
+    <Property Name="Final_Exam" Type="bit" Nullable="false" />
+    <Property Name="Quiz" Type="bit" Nullable="false" />
+    <Property Name="Assignment" Type="bit" Nullable="false" />
+    <Property Name="project" Type="bit" Nullable="false" />
+    <Property Name="Written_Report" Type="bit" Nullable="false" />
+    <Property Name="Oral_Presenation" Type="bit" Nullable="false" />
+    <Property Name="Practice_In_The_Lab" Type="bit" Nullable="false" />
+    <Property Name="Case_Studdy" Type="bit" Nullable="false" />
+    <Property Name="Coruse_Assessment_Survey_By_Students" Type="bit" Nullable="false" />
+    <Property Name="Gropu_Discussions" Type="bit" Nullable="false" />
+    <Property Name="Students_Interviews" Type="bit" Nullable="false" />
+    <Property Name="Other" Type="nchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="byCompletingThisCourseStudentsAreAbleTo">
     <Key>
