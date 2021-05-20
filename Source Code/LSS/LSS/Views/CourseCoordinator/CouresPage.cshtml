@@ -32,6 +32,8 @@
                     @Html.ActionLink("Question Answer Sheet", "QuestionsAnswersSheet", "Forms", new { courseId = Model.Course.ID }, new { @class = "dropdown-item" })
                 </div>
             </li>
+            <li> Upload Course Assessment Survey Result </li>
+            <li>Upload Exam Results </li>
         </ul>
     </div>
 </nav>
@@ -63,6 +65,12 @@
         </table>
     </div>
 </div>
+
+
+<br />
+<hr />
+
+
 
 <div class="block-item">
     <h5 style="text-align:center;">Clo :</h5>
@@ -101,7 +109,7 @@
     <div class="block-item" style="width:auto;">
         <table class="table-hover" style="border: 1px solid black; width:100%;">
             <tr style="border: 1px solid black;">
-                <td class="table-primary" style="border: .2px solid #5F5E61; text-align:center;"> SLO</td>
+                <td class="table-primary" style="border: .2px solid #5F5E61; text-align:center;">  Student Learning Outcomes</td>
                 @for (int i = 0; i < Model.SLO_PI.Count(); i++)
                 {
                     <td colspan=" @Model.SLO_PI.ElementAt(i).Value.Count()" style="border: .2px solid #5F5E61; text-align:center;">
