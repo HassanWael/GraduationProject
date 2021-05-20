@@ -24,7 +24,7 @@
                 <a class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">Forms</a>
                 <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 44px, 0px);">
                     @Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { courseId = Model.Course.ID }, new { @class = "dropdown-item" })
-                    @Html.ActionLink("Course Assessment Survey", "CourseAssessmentSurvey", "Forms", new { courseId = Model.Course.ID }, new { @class = "dropdown-item" })
+                    @Html.ActionLink("Course Assessment Survey", "CourseAssessmentSurvey", "CourseCoordinator", new { courseId = Model.Course.ID }, new { @class = "dropdown-item" })
                     @Html.ActionLink("Course File Checklist", "CourseFileChecklist", "Forms", new { courseId = Model.Course.ID }, new { @class = "dropdown-item" })
                     @Html.ActionLink("Course Information Form ", "CourseInformationForm", "Forms", new { courseId = Model.Course.ID }, new { @class = "dropdown-item" })
                     @Html.ActionLink("Coures Report", "CourseReport", "Forms", new { courseId = Model.Course.ID }, new { @class = "dropdown-item" })

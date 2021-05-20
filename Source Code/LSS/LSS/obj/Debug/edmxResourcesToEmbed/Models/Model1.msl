@@ -47,6 +47,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="AssessmentSurveyAnswers">
+      <EntityTypeMapping TypeName="Model.AssessmentSurveyAnswer">
+        <MappingFragment StoreEntitySet="AssessmentSurveyAnswer">
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+          <ScalarProperty Name="QID" ColumnName="QID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="byCompletingThisCourseStudentsAreAbleToes">
       <EntityTypeMapping TypeName="Model.byCompletingThisCourseStudentsAreAbleTo">
         <MappingFragment StoreEntitySet="byCompletingThisCourseStudentsAreAbleTo">
@@ -105,6 +114,7 @@
           <ScalarProperty Name="Semseter" ColumnName="Semseter" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -390,18 +400,6 @@
         <MappingFragment StoreEntitySet="YearAndSemester">
           <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="database_firewall_rules">
-      <EntityTypeMapping TypeName="Model.database_firewall_rules">
-        <MappingFragment StoreEntitySet="database_firewall_rules">
-          <ScalarProperty Name="modify_date" ColumnName="modify_date" />
-          <ScalarProperty Name="create_date" ColumnName="create_date" />
-          <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
-          <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

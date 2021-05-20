@@ -1,0 +1,72 @@
+﻿@model LSS.Models.CoursesModelView.CourseAssessmentID
+@using LSS.Models
+
+<div style="margin-top:10%;">
+    <table style="min-width:40%" class="table table-active">
+        <tr class="table-secondary">
+            <th style="min-width:10%;">
+                @Html.DisplayName("No")
+            </th>
+            <th style="min-width:80%;">
+                @Html.DisplayName("Qustion")
+            </th>
+                @if (Model.AssessmentQustions.Count() != 0)
+                {
+                    <th> @Html.DisplayName("Score ")</th>
+                }
+                else
+                {
+                    <th> @Html.DisplayName("Upload Answers to view the Scores")</th>
+
+                }
+        </tr>
+        @{
+            int i = 0;
+        }
+        @foreach (CourseAssessmentSurvay s in Model.AssessmentQustions)
+        {
+
+            <tr>
+                <td>
+                    @i
+                </td>
+                <td>
+                    @Html.DisplayFor(model => s.Qustion)
+                </td>
+                @if (Model.AssessmentQustions.Count() != 0)
+                {
+                    <td>
+                        @Model.getScore(s.ID)
+                    </td>
+                }
+
+            </tr>
+            i++; 
+        }
+    </table>
+
+
+    <button> add Qustion to the Lest</button>
+
+    <hr />
+
+    @using (Html.BeginForm("Upload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        <table>
+            <tr>
+                <td>File:</td>
+                <td>
+                    <input type="file" name="Upload answers" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" name="Submit" value="Submit" />
+                </td>
+            </tr>
+        </table>
+    }
+
+
+</div> 

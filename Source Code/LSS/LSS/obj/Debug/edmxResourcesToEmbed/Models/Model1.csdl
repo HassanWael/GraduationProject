@@ -4,6 +4,7 @@
     <EntitySet Name="ActionsForImprovingTheCourses" EntityType="Model.ActionsForImprovingTheCourse" />
     <EntitySet Name="AssessedCourses" EntityType="Model.AssessedCours" />
     <EntitySet Name="AssessmentPlanforTheStudentLearningOutcomeTechniques" EntityType="Model.AssessmentPlanforTheStudentLearningOutcomeTechnique" />
+    <EntitySet Name="AssessmentSurveyAnswers" EntityType="Model.AssessmentSurveyAnswer" />
     <EntitySet Name="byCompletingThisCourseStudentsAreAbleToes" EntityType="Model.byCompletingThisCourseStudentsAreAbleTo" />
     <EntitySet Name="CLOes" EntityType="Model.CLO" />
     <EntitySet Name="Courses" EntityType="Model.Course" />
@@ -35,7 +36,6 @@
     <EntitySet Name="Student_PI_Outcome" EntityType="Model.Student_PI_Outcome" />
     <EntitySet Name="TeachingAndLearningStrategiesTechniques" EntityType="Model.TeachingAndLearningStrategiesTechnique" />
     <EntitySet Name="YearAndSemesters" EntityType="Model.YearAndSemester" />
-    <EntitySet Name="database_firewall_rules" EntityType="Model.database_firewall_rules" />
     <AssociationSet Name="FK_ActionsForImprovingTheCourse_ToCourseCoordinator" Association="Model.FK_ActionsForImprovingTheCourse_ToCourseCoordinator">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
       <End Role="ActionsForImprovingTheCourse" EntitySet="ActionsForImprovingTheCourses" />
@@ -47,6 +47,10 @@
     <AssociationSet Name="FK_AP_toCC" Association="Model.FK_AP_toCC">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
       <End Role="AssessmentPlanforTheStudentLearningOutcomeTechnique" EntitySet="AssessmentPlanforTheStudentLearningOutcomeTechniques" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AssessmentSurveyAnswer_ToCourseAssessmentSurvey" Association="Model.FK_AssessmentSurveyAnswer_ToCourseAssessmentSurvey">
+      <End Role="CourseAssessmentSurvay" EntitySet="CourseAssessmentSurvays" />
+      <End Role="AssessmentSurveyAnswer" EntitySet="AssessmentSurveyAnswers" />
     </AssociationSet>
     <AssociationSet Name="FK_byCompletingThisCourseStudentsAreAbleTo_ToCourseCoordinator" Association="Model.FK_byCompletingThisCourseStudentsAreAbleTo_ToCourseCoordinator">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
@@ -274,8 +278,17 @@
     <Property Name="Coruse_Assessment_Survey_By_Students" Type="Boolean" Nullable="false" />
     <Property Name="Gropu_Discussions" Type="Boolean" Nullable="false" />
     <Property Name="Students_Interviews" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="CourseCoordinator" Relationship="Model.FK_AP_toCC" FromRole="AssessmentPlanforTheStudentLearningOutcomeTechnique" ToRole="CourseCoordinator" />
     <Property Name="Other" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="CourseCoordinator" Relationship="Model.FK_AP_toCC" FromRole="AssessmentPlanforTheStudentLearningOutcomeTechnique" ToRole="CourseCoordinator" />
+  </EntityType>
+  <EntityType Name="AssessmentSurveyAnswer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QID" Type="Int32" Nullable="false" />
+    <Property Name="Answer" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CourseAssessmentSurvay" Relationship="Model.FK_AssessmentSurveyAnswer_ToCourseAssessmentSurvey" FromRole="AssessmentSurveyAnswer" ToRole="CourseAssessmentSurvay" />
   </EntityType>
   <EntityType Name="byCompletingThisCourseStudentsAreAbleTo">
     <Key>
@@ -354,15 +367,14 @@
   </EntityType>
   <EntityType Name="CourseAssessmentSurvay">
     <Key>
-      <PropertyRef Name="CourseID" />
-      <PropertyRef Name="Year" />
-      <PropertyRef Name="Semseter" />
-      <PropertyRef Name="Qustion" />
+      <PropertyRef Name="ID" />
     </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="Semseter" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
     <Property Name="Qustion" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AssessmentSurveyAnswers" Relationship="Model.FK_AssessmentSurveyAnswer_ToCourseAssessmentSurvey" FromRole="CourseAssessmentSurvay" ToRole="AssessmentSurveyAnswer" />
     <NavigationProperty Name="CourseCoordinator" Relationship="Model.FK_CourseAssessmentSurvay_ToCourseCoordinator" FromRole="CourseAssessmentSurvay" ToRole="CourseCoordinator" />
   </EntityType>
   <EntityType Name="CourseCoordinator">
@@ -737,22 +749,6 @@
     <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="CourseCoordinators" Relationship="Model.FK_CourseCoordinator_YearAndSemester" FromRole="YearAndSemester" ToRole="CourseCoordinator" />
   </EntityType>
-  <EntityType Name="database_firewall_rules">
-    <Key>
-      <PropertyRef Name="id" />
-      <PropertyRef Name="name" />
-      <PropertyRef Name="start_ip_address" />
-      <PropertyRef Name="end_ip_address" />
-      <PropertyRef Name="create_date" />
-      <PropertyRef Name="modify_date" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="start_ip_address" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-    <Property Name="end_ip_address" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
-  </EntityType>
   <Association Name="FK_ActionsForImprovingTheCourse_ToCourseCoordinator">
     <End Type="Model.CourseCoordinator" Role="CourseCoordinator" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -800,6 +796,18 @@
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
         <PropertyRef Name="Semester" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AssessmentSurveyAnswer_ToCourseAssessmentSurvey">
+    <End Type="Model.CourseAssessmentSurvay" Role="CourseAssessmentSurvay" Multiplicity="1" />
+    <End Type="Model.AssessmentSurveyAnswer" Role="AssessmentSurveyAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseAssessmentSurvay">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AssessmentSurveyAnswer">
+        <PropertyRef Name="QID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

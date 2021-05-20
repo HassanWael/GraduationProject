@@ -186,6 +186,17 @@ namespace LSS.Controllers
         }
 
 
+        public ActionResult CourseAssessmentSurvey()
+        {
+            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find("A0334501", yas.Year, yas.Semester);
+
+            CourseAssessmentID a = new CourseAssessmentID()
+            {
+                CC = cc,
+            };
+            return View(a);
+        }
+
     }
 
 
