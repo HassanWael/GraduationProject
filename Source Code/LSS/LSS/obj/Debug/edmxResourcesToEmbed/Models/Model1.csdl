@@ -228,6 +228,10 @@
       <End Role="Course" EntitySet="Courses" />
       <End Role="SLO" EntitySet="SLOes" />
     </AssociationSet>
+    <AssociationSet Name="FK_CourseAssessmentSurvay_ToPI" Association="Model.FK_CourseAssessmentSurvay_ToPI">
+      <End Role="PI" EntitySet="PIs" />
+      <End Role="CourseAssessmentSurvay" EntitySet="CourseAssessmentSurvays" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="ActionsForImprovingTheCourse">
     <Key>
@@ -376,6 +380,10 @@
     <Property Name="Qustion" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="AssessmentSurveyAnswers" Relationship="Model.FK_AssessmentSurveyAnswer_ToCourseAssessmentSurvey" FromRole="CourseAssessmentSurvay" ToRole="AssessmentSurveyAnswer" />
     <NavigationProperty Name="CourseCoordinator" Relationship="Model.FK_CourseAssessmentSurvay_ToCourseCoordinator" FromRole="CourseAssessmentSurvay" ToRole="CourseCoordinator" />
+    <Property Name="PI_ID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="SLOID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="DeptID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PI" Relationship="Model.FK_CourseAssessmentSurvay_ToPI" FromRole="CourseAssessmentSurvay" ToRole="PI" />
   </EntityType>
   <EntityType Name="CourseCoordinator">
     <Key>
@@ -636,6 +644,7 @@
     <NavigationProperty Name="CourseAssessmentMappings" Relationship="Model.FK_CAM_ToPI" FromRole="PI" ToRole="CourseAssessmentMapping" />
     <NavigationProperty Name="SLO" Relationship="Model.PI_ToSLO" FromRole="PI" ToRole="SLO" />
     <NavigationProperty Name="CLOes" Relationship="Model.CLO_PI" FromRole="PI" ToRole="CLO" />
+    <NavigationProperty Name="CourseAssessmentSurvays" Relationship="Model.FK_CourseAssessmentSurvay_ToPI" FromRole="PI" ToRole="CourseAssessmentSurvay" />
   </EntityType>
   <EntityType Name="ResultOfCourseDirectAssessment">
     <Key>
@@ -1446,5 +1455,21 @@
   <Association Name="SLO_Course">
     <End Type="Model.Course" Role="Course" Multiplicity="*" />
     <End Type="Model.SLO" Role="SLO" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_CourseAssessmentSurvay_ToPI">
+    <End Type="Model.PI" Role="PI" Multiplicity="1" />
+    <End Type="Model.CourseAssessmentSurvay" Role="CourseAssessmentSurvay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PI">
+        <PropertyRef Name="SLOID" />
+        <PropertyRef Name="ID" />
+        <PropertyRef Name="DeptID" />
+      </Principal>
+      <Dependent Role="CourseAssessmentSurvay">
+        <PropertyRef Name="SLOID" />
+        <PropertyRef Name="PI_ID" />
+        <PropertyRef Name="DeptID" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
 </Schema>

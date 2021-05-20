@@ -139,6 +139,9 @@
           <Property Name="Year" Type="date" Nullable="false" />
           <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
           <Property Name="Qustion" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="PI_ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="SLOID" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DeptID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="CourseCoordinator">
           <Key>
@@ -718,6 +721,22 @@
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
               <PropertyRef Name="Semseter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseAssessmentSurvay_ToPI">
+          <End Role="PI" Type="Self.PI" Multiplicity="1" />
+          <End Role="CourseAssessmentSurvay" Type="Self.CourseAssessmentSurvay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI">
+              <PropertyRef Name="SLOID" />
+              <PropertyRef Name="ID" />
+              <PropertyRef Name="DeptID" />
+            </Principal>
+            <Dependent Role="CourseAssessmentSurvay">
+              <PropertyRef Name="SLOID" />
+              <PropertyRef Name="PI_ID" />
+              <PropertyRef Name="DeptID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1350,6 +1369,10 @@
             <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
             <End Role="CourseAssessmentSurvay" EntitySet="CourseAssessmentSurvay" />
           </AssociationSet>
+          <AssociationSet Name="FK_CourseAssessmentSurvay_ToPI" Association="Self.FK_CourseAssessmentSurvay_ToPI">
+            <End Role="PI" EntitySet="PI" />
+            <End Role="CourseAssessmentSurvay" EntitySet="CourseAssessmentSurvay" />
+          </AssociationSet>
           <AssociationSet Name="FK_CourseCoordinator_Coruse" Association="Self.FK_CourseCoordinator_Coruse">
             <End Role="Course" EntitySet="Course" />
             <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
@@ -1719,6 +1742,10 @@
             <End Role="Course" EntitySet="Courses" />
             <End Role="SLO" EntitySet="SLOes" />
           </AssociationSet>
+          <AssociationSet Name="FK_CourseAssessmentSurvay_ToPI" Association="Model.FK_CourseAssessmentSurvay_ToPI">
+            <End Role="PI" EntitySet="PIs" />
+            <End Role="CourseAssessmentSurvay" EntitySet="CourseAssessmentSurvays" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ActionsForImprovingTheCourse">
           <Key>
@@ -1867,6 +1894,10 @@
           <Property Name="Qustion" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AssessmentSurveyAnswers" Relationship="Model.FK_AssessmentSurveyAnswer_ToCourseAssessmentSurvey" FromRole="CourseAssessmentSurvay" ToRole="AssessmentSurveyAnswer" />
           <NavigationProperty Name="CourseCoordinator" Relationship="Model.FK_CourseAssessmentSurvay_ToCourseCoordinator" FromRole="CourseAssessmentSurvay" ToRole="CourseCoordinator" />
+          <Property Name="PI_ID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SLOID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DeptID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PI" Relationship="Model.FK_CourseAssessmentSurvay_ToPI" FromRole="CourseAssessmentSurvay" ToRole="PI" />
         </EntityType>
         <EntityType Name="CourseCoordinator">
           <Key>
@@ -2127,6 +2158,7 @@
           <NavigationProperty Name="CourseAssessmentMappings" Relationship="Model.FK_CAM_ToPI" FromRole="PI" ToRole="CourseAssessmentMapping" />
           <NavigationProperty Name="SLO" Relationship="Model.PI_ToSLO" FromRole="PI" ToRole="SLO" />
           <NavigationProperty Name="CLOes" Relationship="Model.CLO_PI" FromRole="PI" ToRole="CLO" />
+          <NavigationProperty Name="CourseAssessmentSurvays" Relationship="Model.FK_CourseAssessmentSurvay_ToPI" FromRole="PI" ToRole="CourseAssessmentSurvay" />
         </EntityType>
         <EntityType Name="ResultOfCourseDirectAssessment">
           <Key>
@@ -2938,6 +2970,22 @@
           <End Type="Model.Course" Role="Course" Multiplicity="*" />
           <End Type="Model.SLO" Role="SLO" Multiplicity="*" />
         </Association>
+        <Association Name="FK_CourseAssessmentSurvay_ToPI">
+          <End Type="Model.PI" Role="PI" Multiplicity="1" />
+          <End Type="Model.CourseAssessmentSurvay" Role="CourseAssessmentSurvay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PI">
+              <PropertyRef Name="SLOID" />
+              <PropertyRef Name="ID" />
+              <PropertyRef Name="DeptID" />
+            </Principal>
+            <Dependent Role="CourseAssessmentSurvay">
+              <PropertyRef Name="SLOID" />
+              <PropertyRef Name="PI_ID" />
+              <PropertyRef Name="DeptID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3053,6 +3101,9 @@
           <EntitySetMapping Name="CourseAssessmentSurvays">
             <EntityTypeMapping TypeName="Model.CourseAssessmentSurvay">
               <MappingFragment StoreEntitySet="CourseAssessmentSurvay">
+                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+                <ScalarProperty Name="SLOID" ColumnName="SLOID" />
+                <ScalarProperty Name="PI_ID" ColumnName="PI_ID" />
                 <ScalarProperty Name="Qustion" ColumnName="Qustion" />
                 <ScalarProperty Name="Semseter" ColumnName="Semseter" />
                 <ScalarProperty Name="Year" ColumnName="Year" />

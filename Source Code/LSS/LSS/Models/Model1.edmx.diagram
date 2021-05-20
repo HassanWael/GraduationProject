@@ -88,6 +88,7 @@
         <AssociationConnector Association="Model.CLO_PI" />
         <AssociationConnector Association="Model.Schedule_CLO" />
         <AssociationConnector Association="Model.SLO_Course" />
+        <AssociationConnector Association="Model.FK_CourseAssessmentSurvay_ToPI" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

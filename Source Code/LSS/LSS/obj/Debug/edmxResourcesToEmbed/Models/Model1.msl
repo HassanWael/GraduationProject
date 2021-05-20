@@ -110,6 +110,9 @@
     <EntitySetMapping Name="CourseAssessmentSurvays">
       <EntityTypeMapping TypeName="Model.CourseAssessmentSurvay">
         <MappingFragment StoreEntitySet="CourseAssessmentSurvay">
+          <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+          <ScalarProperty Name="SLOID" ColumnName="SLOID" />
+          <ScalarProperty Name="PI_ID" ColumnName="PI_ID" />
           <ScalarProperty Name="Qustion" ColumnName="Qustion" />
           <ScalarProperty Name="Semseter" ColumnName="Semseter" />
           <ScalarProperty Name="Year" ColumnName="Year" />

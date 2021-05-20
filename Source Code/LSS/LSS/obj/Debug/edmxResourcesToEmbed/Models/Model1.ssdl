@@ -134,6 +134,9 @@
     <Property Name="Year" Type="date" Nullable="false" />
     <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
     <Property Name="Qustion" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="PI_ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="SLOID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DeptID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="CourseCoordinator">
     <Key>
@@ -713,6 +716,22 @@
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
         <PropertyRef Name="Semseter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseAssessmentSurvay_ToPI">
+    <End Role="PI" Type="Self.PI" Multiplicity="1" />
+    <End Role="CourseAssessmentSurvay" Type="Self.CourseAssessmentSurvay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PI">
+        <PropertyRef Name="SLOID" />
+        <PropertyRef Name="ID" />
+        <PropertyRef Name="DeptID" />
+      </Principal>
+      <Dependent Role="CourseAssessmentSurvay">
+        <PropertyRef Name="SLOID" />
+        <PropertyRef Name="PI_ID" />
+        <PropertyRef Name="DeptID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1343,6 +1362,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_CourseAssessmentSurvay_ToCourseCoordinator" Association="Self.FK_CourseAssessmentSurvay_ToCourseCoordinator">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+      <End Role="CourseAssessmentSurvay" EntitySet="CourseAssessmentSurvay" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseAssessmentSurvay_ToPI" Association="Self.FK_CourseAssessmentSurvay_ToPI">
+      <End Role="PI" EntitySet="PI" />
       <End Role="CourseAssessmentSurvay" EntitySet="CourseAssessmentSurvay" />
     </AssociationSet>
     <AssociationSet Name="FK_CourseCoordinator_Coruse" Association="Self.FK_CourseCoordinator_Coruse">
