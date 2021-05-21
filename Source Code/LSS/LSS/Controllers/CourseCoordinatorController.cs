@@ -1,10 +1,12 @@
 ﻿using LSS.Models;
 using LSS.Models.arc;
 using LSS.Models.CoursesModelView;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 
 namespace LSS.Controllers
@@ -196,6 +198,77 @@ namespace LSS.Controllers
             };
             return View(a);
         }
+
+        //todo: creat col itterator and configure the xlsx file that woul be uploaded 
+        public ActionResult UploadSurveyAnswers( FormCollection formCollection ,string? CourseID , DateTime? Year , string? Semseter)
+        {
+            List<int> QID = _DatabaseEntities.CourseAssessmentSurvays.Where(x => x.CourseID.Equals(CourseID)&&x.Year.Equals(Year)&&x.Semseter
+            .Equals(Semseter)).Select(x => x.ID).ToList();
+
+            if (Request != null)
+            {               
+                HttpPostedFileBase file = Request.Files["Select Excel file"];
+                if ((file != null) && (file.ContentLength != 0) && !string.IsNullOrEmpty(file.FileName))   
+                {
+                    string fileName = file.FileName;
+                    string fileContentType = file.ContentType;
+                    byte[] fileBytes = new byte[file.ContentLength];
+                    var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
+                    var AssessmentSurveyAnswers = new List<AssessmentSurveyAnswer>();
+                    
+                    using (var package = new ExcelPackage(file.InputStream))
+                    {
+                        var currentSheet = package.Workbook.Worksheets;
+                        var workSheet = currentSheet.First();
+                        var noOfCol = workSheet.Dimension.End.Column;
+                        var noOfRow = workSheet.Dimension.End.Row;
+
+                        for (int colIterator = 0; colIterator < QID.Count(); colIterator++)
+                        {
+                            int rowIterator = 2;
+                            while (!workSheet.Cells[rowIterator, (colIterator+1) ].Equals("") || workSheet.Cells[rowIterator, (colIterator + 1)]!=null)
+                            {
+                                var answer = new AssessmentSurveyAnswer();
+
+                                answer.Answer = workSheet.Cells[rowIterator, 2].Value.ToString();
+                                answer.QID = QID[colIterator];
+                                try
+                                {
+                                    _DatabaseEntities.AssessmentSurveyAnswers.Add(answer);
+                                    _DatabaseEntities.SaveChanges();
+                                }
+                                catch (Exception e)
+                                {
+                                    Console.WriteLine("Error at 235 CourseCoorddinatorController" + e);
+                                }
+                                rowIterator++;
+                            }
+
+                        }
+                    }
+                }
+            }
+            return RedirectToAction("CourseAssessmentSurvey",CourseID);
+        }
+        
+        [HttpPost]
+        public ActionResult AddSurveyQustion(CourseAssessmentSurvay CAS)
+        {
+            try
+            {
+                String SLOID = _DatabaseEntities.PIs.Where(x => x.ID.Equals(CAS.PI_ID) && x.DeptID.Equals(CAS.DeptID)).Select(x=>x.SLOID).FirstOrDefault();
+                CAS.SLOID = SLOID;
+                _DatabaseEntities.CourseAssessmentSurvays.Add(CAS);
+                _DatabaseEntities.SaveChanges();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error at 255 CourseCoorddinatorController" + e);
+            }
+            return View();
+        }
+
 
     }
 

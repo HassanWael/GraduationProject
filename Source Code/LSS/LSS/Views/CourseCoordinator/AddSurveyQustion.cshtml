@@ -1,0 +1,39 @@
+﻿@model LSS.Models.CoursesModelView.AddSurveyQustionMV
+@using LSS.Models
+@using (Html.BeginForm("AddSurveyQustion", "CourseCoordinator", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>CourseAssessmentSurvay</h4>
+    @Html.HiddenFor(x => x.CAS.CourseID)
+    @Html.HiddenFor(x => x.CAS.Year)
+    @Html.HiddenFor(x => x.CAS.Semseter)
+    @Html.HiddenFor(x => x.CAS.DeptID)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CAS.Qustion, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CAS.Qustion, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CAS.Qustion, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Select PI", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(x => x.CAS.PI_ID, new SelectList(Model.PIs, "ID", "ID"), "Select One Please")
+            @Html.ValidationMessageFor(model => model.CAS.PI_ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back", "CourseAssessmentSurvey", new { CourseID = Model.CC.CourseID})
+</div>

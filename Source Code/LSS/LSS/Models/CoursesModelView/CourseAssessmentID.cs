@@ -58,7 +58,7 @@ namespace LSS.Models.CoursesModelView
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("Errorr at Line 47 of CourseAssessmentID");
+                    Console.WriteLine("Errorr at Line 47 of CourseAssessmentID"+e.Message);
                 }
             }
             double avg = sum / count * 1.0;

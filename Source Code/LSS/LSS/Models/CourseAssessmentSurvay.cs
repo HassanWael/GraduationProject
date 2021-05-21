@@ -25,9 +25,13 @@ namespace LSS.Models
         public System.DateTime Year { get; set; }
         public string Semseter { get; set; }
         public string Qustion { get; set; }
+        public string PI_ID { get; set; }
+        public string SLOID { get; set; }
+        public int DeptID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AssessmentSurveyAnswer> AssessmentSurveyAnswers { get; set; }
         public virtual CourseCoordinator CourseCoordinator { get; set; }
+        public virtual PI PI { get; set; }
     }
 }

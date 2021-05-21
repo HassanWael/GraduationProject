@@ -91,5 +91,8 @@ namespace LSS.Models.CoursesModelView
                 return facultyCCS;
             }
         }
+
+
+
     }
 }
