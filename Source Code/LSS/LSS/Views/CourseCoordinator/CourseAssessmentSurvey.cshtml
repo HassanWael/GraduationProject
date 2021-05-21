@@ -23,7 +23,7 @@
             }
         </tr>
         @{
-            int i = 0;
+            int i = 1;
         }
         @foreach (CourseAssessmentSurvay s in Model.AssessmentQustions)
         {
@@ -53,9 +53,7 @@
 
     @using (Html.BeginForm("UploadSurveyAnswers", "CourseCoordinator", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
-        <input type="hidden" id="CourseID" name="CourseID" value='@Model.CC.CourseID' />
-        <input type="hidden" id="Year" name="Year" value='@Model.CC.Year' />
-        <input type="hidden" id="Semseter" name="Semseter" value='@Model.CC.Semseter' />
+
 
         <table>
             <tr>
@@ -70,6 +68,9 @@
                 </td>
             </tr>
         </table>
+        <input type="hidden" id="CourseID" name="CourseID" value='@Model.CC.CourseID' />
+        <input type="hidden" id="Year" name="Year" value='@Model.CC.Year' />
+        <input type="hidden" id="Semseter" name="Semseter" value='@Model.CC.Semseter' />
     }
 
 
@@ -77,7 +78,7 @@
 
 
 
-<div id="addCLO" class="modal fade" tabindex="-1" role="dialog">
+@*<div id="addCLO" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             @{
@@ -89,4 +90,4 @@
         </div>
     </div>
 </div>
-<button id='open' class="btn btn-outline-primary" data-toggle="modal" data-target="#addCLO">Add Course Learning outcome</button>
+<button id='open' class="btn btn-outline-primary" data-toggle="modal" data-target="#addCLO">Add Course Learning outcome</button>*@

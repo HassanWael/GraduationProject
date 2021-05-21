@@ -200,7 +200,7 @@ namespace LSS.Controllers
         }
 
         //todo: creat col itterator and configure the xlsx file that woul be uploaded 
-        public ActionResult UploadSurveyAnswers( FormCollection formCollection ,string? CourseID , DateTime? Year , string? Semseter)
+        public ActionResult UploadSurveyAnswers( FormCollection formCollection ,string CourseID , DateTime Year , string Semseter)
         {
             List<int> QID = _DatabaseEntities.CourseAssessmentSurvays.Where(x => x.CourseID.Equals(CourseID)&&x.Year.Equals(Year)&&x.Semseter
             .Equals(Semseter)).Select(x => x.ID).ToList();
@@ -223,15 +223,15 @@ namespace LSS.Controllers
                         var noOfCol = workSheet.Dimension.End.Column;
                         var noOfRow = workSheet.Dimension.End.Row;
 
-                        for (int colIterator = 0; colIterator < QID.Count(); colIterator++)
+                        for (int colIterator = 1; colIterator <= QID.Count(); colIterator++)
                         {
-                            int rowIterator = 2;
-                            while (!workSheet.Cells[rowIterator, (colIterator+1) ].Equals("") || workSheet.Cells[rowIterator, (colIterator + 1)]!=null)
+                            int rowIterator = 2; 
+                            while (workSheet.Cells[rowIterator, (colIterator )].Value != null && !workSheet.Cells[rowIterator, (colIterator)].Value.ToString().Equals("")  )
                             {
                                 var answer = new AssessmentSurveyAnswer();
 
-                                answer.Answer = workSheet.Cells[rowIterator, 2].Value.ToString();
-                                answer.QID = QID[colIterator];
+                                answer.Answer = workSheet.Cells[rowIterator, colIterator].Value.ToString();
+                                answer.QID = QID[colIterator-1];
                                 try
                                 {
                                     _DatabaseEntities.AssessmentSurveyAnswers.Add(answer);
@@ -248,7 +248,7 @@ namespace LSS.Controllers
                     }
                 }
             }
-            return RedirectToAction("CourseAssessmentSurvey",CourseID);
+            return RedirectToAction("CourseAssessmentSurvey", "CourseCoordinator", CourseID);
         }
         
         [HttpPost]

@@ -49,11 +49,12 @@ namespace LSS.Models.CoursesModelView
             CourseAssessmentSurvay s = AssessmentQustions.Where(x => x.ID.Equals(QID)).FirstOrDefault();
             int   sum = 0;
             int count = 0;
-            foreach(AssessmentSurveyAnswer answer in AnswerList[s])
+            double avg = 0.0;
+            foreach (AssessmentSurveyAnswer answer in AnswerList[s])
             {
                 try
                 {
-                    sum =int.Parse( answer.Answer);
+                    sum+=int.Parse( answer.Answer);
                     count++;
                 }
                 catch (Exception e)
@@ -61,7 +62,8 @@ namespace LSS.Models.CoursesModelView
                     Console.WriteLine("Errorr at Line 47 of CourseAssessmentID"+e.Message);
                 }
             }
-            double avg = sum / count * 1.0;
+            if(count!=0)
+                avg =1.0* sum / count;
             avg = Math.Floor(avg * 100) / 100;
             return avg;
         }
