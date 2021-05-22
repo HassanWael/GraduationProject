@@ -26,27 +26,7 @@
             @Html.ValidationMessageFor(model => model.CAS.PI_ID, "", new { @class = "text-danger" })
         </div>
     </div>
-    <script>      
-            function change() {
-                var str = $('#SLOID_dropdown option:selected').val();
-               
-                if (!(str == "D" || str == "EP")) {
-                    $('#pi_dropdown').hide()
-                    $('#text').hide()
-
-                } else {
-                    $('#pi_dropdown').show()
-                    $('#text').show()
-                 
-                    
-                }
-        }
-
-    </script>
-
-
-
-
+    
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Create" class="btn btn-default" />
