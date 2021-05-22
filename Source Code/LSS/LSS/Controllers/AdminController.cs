@@ -263,7 +263,6 @@ namespace LSS.Controllers
                 List<Department> departments = _DatabaseEntities.Departments.ToList();
                 ViewBag.Department = new SelectList(departments, "ID", "Name");
                 PagedList<Course> CoursesPaged = new PagedList<Course>(Courses, page, pageSize);
-
                 return View(CoursesPaged);
             }
             else if (Search == null || Search=="")
@@ -272,6 +271,8 @@ namespace LSS.Controllers
                 List<Department> departments = _DatabaseEntities.Departments.ToList();
                 ViewBag.Department = new SelectList(departments, "ID", "Name");
                 PagedList<Course> CoursesPaged = new PagedList<Course>(Courses, page, pageSize);
+                ViewBag.Search = Search;
+                ViewBag.DepartmentID = Department;
                 return View(CoursesPaged);
              
             }
@@ -281,18 +282,87 @@ namespace LSS.Controllers
                 List<Department> departments = _DatabaseEntities.Departments.ToList();
                 ViewBag.Department = new SelectList(departments, "ID", "Name");
                 PagedList<Course> CoursesPaged = new PagedList<Course>(Courses, page, pageSize);
+                ViewBag.Search = Search;
+                ViewBag.DepartmentID = Department;
 
                 return View(CoursesPaged);
             }
             else
             {
-                List<Course> Courses = _DatabaseEntities.Courses.Where(x=> x.dptid.Equals(Department)&& (x.Title.ToLower().Contains(Search.ToLower())||x.ID.ToLower().Contains(Search.ToLower()))).ToList();
+                List<Course> Courses = _DatabaseEntities.Courses.Where(x => x.Title.ToLower().Contains(Search.ToLower()) || x.ID.ToLower().Contains(Search.ToLower())).ToList();
+                Courses = Courses.Where(x => x.dptid.Equals(Department)).ToList();
                 List<Department> departments = _DatabaseEntities.Departments.ToList();
                 ViewBag.Department = new SelectList(departments, "ID", "Name");
                 PagedList<Course> CoursesPaged = new PagedList<Course>(Courses, page, pageSize);
+                ViewBag.Search = Search;
+                ViewBag.DepartmentID = Department;
                 return View(CoursesPaged);
             }
         }
 
+
+        public ActionResult ListStudents(string? Search, int? Department, int page = 1, int pageSize = 10)
+        {
+            if ((Search == null || Search == "") && Department == null)
+            {
+                List<Student> students = _DatabaseEntities.Students.ToList();
+                List<Department> departments = _DatabaseEntities.Departments.ToList();
+                PagedList<Student> studentsPaged = new PagedList<Student>(students, page, pageSize);
+                ViewBag.Department = new SelectList(departments, "ID", "Name");
+                ViewBag.Search = Search;
+                ViewBag.DepartmentID = Department;
+                return View(studentsPaged);
+
+
+            }
+            else if (Search == null || Search == "")
+            {
+                List<Student> students = _DatabaseEntities.Students.Where(x => x.DptID == Department).ToList();
+                List<Department> departments = _DatabaseEntities.Departments.ToList();
+                PagedList<Student> studentsPaged = new PagedList<Student>(students, page, pageSize);
+                ViewBag.Department = new SelectList(departments, "ID", "Name");
+                ViewBag.Search = Search;
+                ViewBag.DepartmentID = Department;
+                return View(studentsPaged);
+            }
+            else if (Department == null)
+            {
+                List<Student> students = _DatabaseEntities.Students.Where(x => x.ID.ToLower().Contains(Search.ToLower())).ToList();
+                List<Department> departments = _DatabaseEntities.Departments.ToList();
+                PagedList<Student> studentsPaged = new PagedList<Student>(students, page, pageSize);
+                ViewBag.Department = new SelectList(departments, "ID", "Name");
+                ViewBag.Search = Search;
+                ViewBag.DepartmentID = Department;
+                return View(studentsPaged);
+            }
+            else
+            {
+                List<Student> students = _DatabaseEntities.Students.Where(x => x.ID.StartsWith(Search)).ToList();
+                students = students.Where(x => x.DptID == Department).ToList();
+                List<Department> departments = _DatabaseEntities.Departments.ToList();
+                PagedList<Student> studentsPaged = new PagedList<Student>(students, page, pageSize);
+                ViewBag.Department = new SelectList(departments, "ID", "Name");
+                ViewBag.Search = Search;
+                ViewBag.DepartmentID = Department;
+                return View(studentsPaged);
+            }
+        }
+        public ActionResult UpdateStudent()
+        {
+
+            return View();
+        }
+        public ActionResult CreateStudent()
+        {
+
+            return View();
+        }
+
+        public ActionResult AddStudentList()
+        {
+
+
+            return View();
+        }
     }
 }
