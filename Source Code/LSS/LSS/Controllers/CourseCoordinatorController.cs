@@ -228,10 +228,11 @@ namespace LSS.Controllers
                             int rowIterator = 2; 
                             while (workSheet.Cells[rowIterator, (colIterator )].Value != null && !workSheet.Cells[rowIterator, (colIterator)].Value.ToString().Equals("")  )
                             {
-                                var answer = new AssessmentSurveyAnswer();
-
-                                answer.Answer = workSheet.Cells[rowIterator, colIterator].Value.ToString();
-                                answer.QID = QID[colIterator-1];
+                                var answer = new AssessmentSurveyAnswer
+                                {
+                                    Answer = workSheet.Cells[rowIterator, colIterator].Value.ToString(),
+                                    QID = QID[colIterator - 1]
+                                };
                                 try
                                 {
                                     _DatabaseEntities.AssessmentSurveyAnswers.Add(answer);

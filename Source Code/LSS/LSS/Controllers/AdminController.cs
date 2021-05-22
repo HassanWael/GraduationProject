@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using LSS.Models;
 using LSS.Models.arc;
+using PagedList;
 
 namespace LSS.Controllers
 {
@@ -254,22 +255,24 @@ namespace LSS.Controllers
         }
 
         [HttpGet]
-        public ActionResult ListCourses(string? Search, int? Department)
+        public ActionResult ListCourses(string? Search, int? Department , int page = 1 ,int pageSize = 10)
         {
             if ((Search == null || Search=="" )&& Department == null)
             {
                 List<Course> Courses = _DatabaseEntities.Courses.ToList();
                 List<Department> departments = _DatabaseEntities.Departments.ToList();
                 ViewBag.Department = new SelectList(departments, "ID", "Name");
-               
-            return View(Courses);
+                PagedList<Course> CoursesPaged = new PagedList<Course>(Courses, page, pageSize);
+
+                return View(CoursesPaged);
             }
             else if (Search == null || Search=="")
             {
                 List<Course> Courses = _DatabaseEntities.Courses.Where(x=>x.dptid==Department).ToList();
                 List<Department> departments = _DatabaseEntities.Departments.ToList();
                 ViewBag.Department = new SelectList(departments, "ID", "Name");
-                return View(Courses);
+                PagedList<Course> CoursesPaged = new PagedList<Course>(Courses, page, pageSize);
+                return View(CoursesPaged);
              
             }
             else if(Department == null)
@@ -277,14 +280,17 @@ namespace LSS.Controllers
                 List<Course> Courses = _DatabaseEntities.Courses.Where(x=> x.Title.ToLower().Contains(Search.ToLower()) || x.ID.ToLower().Contains(Search.ToLower())).ToList();
                 List<Department> departments = _DatabaseEntities.Departments.ToList();
                 ViewBag.Department = new SelectList(departments, "ID", "Name");
-                return View(Courses);
+                PagedList<Course> CoursesPaged = new PagedList<Course>(Courses, page, pageSize);
+
+                return View(CoursesPaged);
             }
             else
             {
                 List<Course> Courses = _DatabaseEntities.Courses.Where(x=> x.dptid.Equals(Department)&& (x.Title.ToLower().Contains(Search.ToLower())||x.ID.ToLower().Contains(Search.ToLower()))).ToList();
                 List<Department> departments = _DatabaseEntities.Departments.ToList();
                 ViewBag.Department = new SelectList(departments, "ID", "Name");
-                return View(Courses);
+                PagedList<Course> CoursesPaged = new PagedList<Course>(Courses, page, pageSize);
+                return View(CoursesPaged);
             }
         }
 

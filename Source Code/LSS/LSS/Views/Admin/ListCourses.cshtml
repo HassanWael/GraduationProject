@@ -1,5 +1,5 @@
-﻿@model IEnumerable<LSS.Models.Course>
-
+﻿@model PagedList.IPagedList<LSS.Models.Course>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "ListCourses";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -15,64 +15,75 @@
                 @Html.DropDownList("Department", (IEnumerable<SelectListItem>)ViewBag.deprtments, "Select Department", htmlAttributes: new { @class = "custom-select", @name = "standard" })
             </td>
             <td style="padding-left:2%;">
-                @Html.TextBox("Search", null, new { @class = "form-control" , placeholder = "Search" })
+                @Html.TextBox("Search", null, new { @class = "form-control", placeholder = "Search" })
             </td>
             <td style="padding-left:2%;">
                 <input type="submit" value="search" class="btn btn-dark" />
             </td>
-                }
-        </tr>
-    </table>   
+        }
+    </tr>
+</table>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Hours)
-        </th>
-       
-        <th>
-            @Html.DisplayNameFor(model => model.VclassURL)
-        </th>
+<div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("ID")
+            </th>
+            <th>
+                @Html.DisplayName("Title")
+            </th>
+            <th>
+                @Html.DisplayName("Hours")
+            </th>
 
-      
-        <th>
-            @Html.DisplayNameFor(model => model.Department.Name)
-        </th>
-        
-        <th></th>
-    </tr>
+            <th>
+                @Html.DisplayName("VclassURL")
+            </th>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Hours)
-        </td>
-       
-        <td>
-            @Html.DisplayFor(modelItem => item.Department.Name)
-        </td>
 
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID })|
-            @Html.ActionLink("Add course to schedule", "AddCourseToSemster", new { id = item.ID })
-        </td>
-    </tr>
-}
+            <th>
+                @Html.DisplayName("Department.Name")
+            </th>
 
-</table>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hours)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })|
+                    @Html.ActionLink("Add course to schedule", "AddCourseToSemster", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    </table>
+    <br />
+
+    @Html.PagedListPager(Model, page => Url.Action("ListCourses", new { page, pageSize = Model.PageSize }), new PagedListRenderOptions
+    {
+    DisplayLinkToIndividualPages = true,
+    DisplayPageCountAndCurrentLocation = false,
+    MaximumPageNumbersToDisplay = 10,
+    LiElementClasses = new string[] { "page-item" }
+    })
+    Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Products
+</div>
