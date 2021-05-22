@@ -421,9 +421,7 @@ namespace LSS.Controllers
                     string fileName = file.FileName;
                     string fileContentType = file.ContentType;
                     byte[] fileBytes = new byte[file.ContentLength];
-                    var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
-                    var AssessmentSurveyAnswers = new List<AssessmentSurveyAnswer>();
-                 
+                    var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));                 
                     using (var package = new ExcelPackage(file.InputStream))
                     {
                         var currentSheet = package.Workbook.Worksheets;

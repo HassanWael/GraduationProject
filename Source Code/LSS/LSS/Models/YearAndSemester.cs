@@ -23,7 +23,6 @@ namespace LSS.Models
         [Display(Name = "ValidFrom")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{yyyy}", ApplyFormatInEditMode = true)]
-        public System.DateTime ValidFrom { get; set; }
         public System.DateTime Year { get; set; }
         public string Semester { get; set; }
     
