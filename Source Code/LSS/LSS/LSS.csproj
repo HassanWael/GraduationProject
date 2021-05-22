@@ -181,7 +181,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CoursesModelView\AddCLOMV.cs" />
-    <Compile Include="Models\CoursesModelView\CouresReportModelView.cs" />
     <Compile Include="Models\CoursesModelView\CouresModelView.cs" />
     <Compile Include="Models\CoursesModelView\HomeCourseListViewModel.cs" />
     <Compile Include="Models\CourseSyllabu.cs">
@@ -208,6 +207,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ineffectiveTeachingStrategi.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\isAssessed.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Lecturer.cs">
@@ -280,16 +282,20 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\coursepage.css" />
     <Content Include="Content\FormsStyle.css" />
-    <Content Include="Content\hideCSS.css" />
     <Content Include="Content\HomePage.css" />
     <Content Include="Content\jquery-customselect.css" />
     <Content Include="Content\LoginCSS.css" />
+    <Content Include="Content\ULStyleForAssessmentPlan.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\Al-Ahliya_Amman_University_Logo.png" />
     <Content Include="Images\analysis.png" />
+    <Content Include="Images\Certified.PNG" />
     <Content Include="Images\notebook.png" />
+    <Content Include="Images\Quality.PNG" />
+    <Content Include="Images\R.PNG" />
+    <Content Include="Images\Risk.PNG" />
     <Content Include="Images\studying.png" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -331,6 +337,9 @@
     </EntityDeploy>
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Content Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
     </Content>
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
@@ -468,6 +477,10 @@
     <Content Include="Views\Admin\AddCourseToSemester.cshtml" />
     <Content Include="Views\Admin\CreateNewSemster.cshtml" />
     <Content Include="Views\Admin\ListCourses.cshtml" />
+    <Content Include="Views\CourseCoordinator\ActionsForImproving.cshtml" />
+    <Content Include="Views\CourseCoordinator\ActionsForImprovingDetails.cshtml" />
+    <Content Include="Views\CourseCoordinator\IsAssessed.cshtml" />
+    <Content Include="Views\CourseCoordinator\AssessmentPlan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
