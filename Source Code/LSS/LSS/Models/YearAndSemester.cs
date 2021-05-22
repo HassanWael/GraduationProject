@@ -11,10 +11,22 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class YearAndSemester
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public YearAndSemester()
+        {
+            this.CourseCoordinators = new HashSet<CourseCoordinator>();
+        }
+        [Display(Name = "ValidFrom")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime Year { get; set; }
         public string Semester { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CourseCoordinator> CourseCoordinators { get; set; }
     }
 }

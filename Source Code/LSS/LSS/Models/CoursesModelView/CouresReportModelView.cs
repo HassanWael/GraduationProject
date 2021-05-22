@@ -8,13 +8,17 @@ namespace LSS.Models.CoursesModelView
     public class CouresReportModelView : CouresModelView
     {
         LSS_databaseEntities db = new LSS_databaseEntities();
-        private int _NoOFSection { set; get; }
-        private List<string> _SLO { set; get; }
-        public CouresReportModelView(CourseCoordinator courseCoordinator) {
-            this.CourseCoordinator = courseCoordinator;
 
+        public CouresReportModelView(CourseCoordinator courseCoordinator)
+        {
+            this.CourseCoordinator = courseCoordinator;
         }
 
+
+        private int _NoOFSection { set; get; }
+        private List<string> _SLO { set; get; }
+       
+      
         public int NoOFSection {
 
             get {

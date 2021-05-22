@@ -24,19 +24,19 @@ namespace LSS.Models
             this.OtherLecturers = new HashSet<OtherLecturer>();
             this.schedules = new HashSet<schedule>();
             this.Student_Course_Grade = new HashSet<Student_Course_Grade>();
-            this.AssessmentPlanforTheStudentLearningOutcomeTechniques = new HashSet<AssessmentPlanforTheStudentLearningOutcomeTechnique>();
         }
     
         public string CourseID { get; set; }
         public System.DateTime Year { get; set; }
         public string Semseter { get; set; }
-        public string Coordinator { get; set; }
         public int NoOFStudents { get; set; }
         public string ClassRoom { get; set; }
         public string courseNotAssessedReason_ { get; set; }
         public string DayTime { get; set; }
+        public string Coordinator { get; set; }
     
         public virtual ActionsForImprovingTheCourse ActionsForImprovingTheCourse { get; set; }
+        public virtual AssessmentPlanforTheStudentLearningOutcomeTechnique AssessmentPlanforTheStudentLearningOutcomeTechnique { get; set; }
         public virtual byCompletingThisCourseStudentsAreAbleTo byCompletingThisCourseStudentsAreAbleTo { get; set; }
         public virtual Course Course { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -44,6 +44,7 @@ namespace LSS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseAssessmentSurvay> CourseAssessmentSurvays { get; set; }
         public virtual Lecturer Lecturer { get; set; }
+        public virtual YearAndSemester YearAndSemester { get; set; }
         public virtual CourseFileCheckList CourseFileCheckList { get; set; }
         public virtual CourseInformationForm CourseInformationForm { get; set; }
         public virtual CourseReport CourseReport { get; set; }
@@ -52,6 +53,7 @@ namespace LSS.Models
         public virtual ICollection<CourseTeachingStrategy> CourseTeachingStrategies { get; set; }
         public virtual ineffectiveAssessmentStrategi ineffectiveAssessmentStrategi { get; set; }
         public virtual ineffectiveTeachingStrategi ineffectiveTeachingStrategi { get; set; }
+        public virtual isAssessed isAssessed { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ModerationChecklist> ModerationChecklists { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -61,7 +63,5 @@ namespace LSS.Models
         public virtual ICollection<schedule> schedules { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student_Course_Grade> Student_Course_Grade { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AssessmentPlanforTheStudentLearningOutcomeTechnique> AssessmentPlanforTheStudentLearningOutcomeTechniques { get; set; }
     }
 }

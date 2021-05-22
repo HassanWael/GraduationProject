@@ -6,9 +6,9 @@
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semseter" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
     <Property Name="ActionsTaken" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="ActionsResults" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="RecomandedActions" Type="nvarchar" MaxLength="255" Nullable="false" />
@@ -20,17 +20,42 @@
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semester" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semester" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="IsAssessed" Type="bit" Nullable="false" />
+    <Property Name="WhyNot" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="AssessmentPlanforTheStudentLearningOutcomeTechnique">
     <Key>
-      <PropertyRef Name="ID" />
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Semester" />
     </Key>
-    <Property Name="ID" Type="int" Nullable="false" />
-    <Property Name="Type" Type="nvarchar" MaxLength="255" />
-    <Property Name="strategy" Type="nvarchar" MaxLength="255" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Year" Type="date" Nullable="false" />
+    <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Midterm_Test" Type="bit" Nullable="false" />
+    <Property Name="Final_Exam" Type="bit" Nullable="false" />
+    <Property Name="Quiz" Type="bit" Nullable="false" />
+    <Property Name="Assignment" Type="bit" Nullable="false" />
+    <Property Name="project" Type="bit" Nullable="false" />
+    <Property Name="Written_Report" Type="bit" Nullable="false" />
+    <Property Name="Oral_Presenation" Type="bit" Nullable="false" />
+    <Property Name="Practice_In_The_Lab" Type="bit" Nullable="false" />
+    <Property Name="Case_Studdy" Type="bit" Nullable="false" />
+    <Property Name="Coruse_Assessment_Survey_By_Students" Type="bit" Nullable="false" />
+    <Property Name="Gropu_Discussions" Type="bit" Nullable="false" />
+    <Property Name="Students_Interviews" Type="bit" Nullable="false" />
+    <Property Name="Other" Type="nchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="AssessmentSurveyAnswer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QID" Type="int" Nullable="false" />
+    <Property Name="Answer" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="byCompletingThisCourseStudentsAreAbleTo">
     <Key>
@@ -38,10 +63,10 @@
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semseter" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="SLO" Type="nvarchar" MaxLength="255" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="SLO" Type="nvarchar" MaxLength="20" />
     <Property Name="AggrementLVL" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="CLO">
@@ -49,32 +74,36 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="Course" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="courseId" Type="nvarchar" MaxLength="30" Nullable="false" />
   </EntityType>
   <EntityType Name="CLO-PI">
     <Key>
       <PropertyRef Name="CLOID" />
       <PropertyRef Name="PI-ID" />
+      <PropertyRef Name="DeptID" />
+      <PropertyRef Name="SLOID" />
     </Key>
     <Property Name="CLOID" Type="int" Nullable="false" />
-    <Property Name="PI-ID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="PI-ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DeptID" Type="int" Nullable="false" />
+    <Property Name="SLOID" Type="nvarchar" MaxLength="20" Nullable="false" />
   </EntityType>
   <EntityType Name="Course">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="ID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="DptID" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="Pre-requisite" Type="nvarchar" MaxLength="255" />
     <Property Name="Hours" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="Co-requisite" Type="nvarchar" MaxLength="255" />
     <Property Name="Designation" Type="nvarchar" MaxLength="255" />
-    <Property Name="VclassURL" Type="nvarchar" MaxLength="255" />
+    <Property Name="VclassURL" Type="nvarchar" MaxLength="50" />
     <Property Name="Description" Type="nvarchar" MaxLength="255" />
     <Property Name="Other Online resources" Type="nvarchar" MaxLength="255" />
     <Property Name="Other Required Material" Type="nvarchar" MaxLength="255" />
+    <Property Name="pre-requisite" Type="nvarchar" MaxLength="30" />
+    <Property Name="co-requisite" Type="nvarchar" MaxLength="30" />
+    <Property Name="dptid" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="CourseAssessmentMapping">
     <Key>
@@ -83,40 +112,31 @@
       <PropertyRef Name="Semseter" />
       <PropertyRef Name="AssessmentID" />
       <PropertyRef Name="CLO" />
-      <PropertyRef Name="SLO" />
+      <PropertyRef Name="PI" />
+      <PropertyRef Name="SLOID" />
       <PropertyRef Name="DeptID" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="AssessmentID" Type="int" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="AssessmentID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="CLO" Type="int" Nullable="false" />
-    <Property Name="SLO" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="DeptID" Type="nvarchar" MaxLength="255" Nullable="false" />
-  </EntityType>
-  <EntityType Name="CourseAssessmentPlan">
-    <Key>
-      <PropertyRef Name="CourseID" />
-      <PropertyRef Name="Year" />
-      <PropertyRef Name="Semseter" />
-      <PropertyRef Name="AssessmetnID" />
-    </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="AssessmetnID" Type="int" Nullable="false" />
+    <Property Name="PI" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="SLOID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DeptID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="CourseAssessmentSurvay">
     <Key>
-      <PropertyRef Name="CourseID" />
-      <PropertyRef Name="Year" />
-      <PropertyRef Name="Semseter" />
-      <PropertyRef Name="Qustion" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
     <Property Name="Qustion" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="PI_ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="SLOID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DeptID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="CourseCoordinator">
     <Key>
@@ -124,14 +144,14 @@
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semseter" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Coordinator" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
     <Property Name="NoOFStudents" Type="int" Nullable="false" />
     <Property Name="ClassRoom" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="courseNotAssessedReason " Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="courseNotAssessedReason " Type="nvarchar" MaxLength="255" />
     <Property Name="DayTime" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Coordinator" Type="nvarchar" MaxLength="30" Nullable="false" />
   </EntityType>
   <EntityType Name="CourseFileCheckList">
     <Key>
@@ -139,9 +159,9 @@
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semseter" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
     <Property Name="CoordinatorSignature" Type="bit" />
     <Property Name="HeadOFDeptSignature" Type="bit" />
     <Property Name="ViceDeanSignature" Type="bit" />
@@ -153,9 +173,9 @@
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semseter" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
     <Property Name="CoordinatorSignature" Type="bit" />
     <Property Name="HeadOFDeptSignature" Type="bit" />
     <Property Name="ViceDeanSignature" Type="bit" />
@@ -167,9 +187,9 @@
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semseter" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
     <Property Name="CoordinatorSignature" Type="bit" />
     <Property Name="HeadOFDeptSignature" Type="bit" />
     <Property Name="ViceDeanSignature" Type="bit" />
@@ -181,9 +201,9 @@
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semseter" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
     <Property Name="CoordinatorSignature" Type="bit" />
     <Property Name="HeadOFDeptSignature" Type="bit" />
     <Property Name="ReasonOfDisaproval" Type="nvarchar" MaxLength="255" />
@@ -195,40 +215,40 @@
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semseter" />
     </Key>
-    <Property Name="StrategyID" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="StrategyID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
   </EntityType>
   <EntityType Name="CourseTextBook">
     <Key>
       <PropertyRef Name="Course" />
       <PropertyRef Name="Book Title" />
     </Key>
-    <Property Name="Course" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="Book Title" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="Author" Type="nvarchar" MaxLength="255" />
+    <Property Name="Course" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Book Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Author" Type="nvarchar" MaxLength="50" />
     <Property Name="YearOfpublish" Type="date" />
-    <Property Name="City/State" Type="nvarchar" MaxLength="255" />
-    <Property Name="Publisher" Type="nvarchar" MaxLength="255" />
+    <Property Name="City/State" Type="nvarchar" MaxLength="50" />
+    <Property Name="Publisher" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Department">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="255" />
-    <Property Name="FacultyID" Type="nvarchar" MaxLength="255" />
-    <Property Name="HeadOFDepartment" Type="nvarchar" MaxLength="255" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="HeadOFDepartment" Type="nvarchar" MaxLength="30" />
+    <Property Name="FacultyId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Faculty">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="255" />
-    <Property Name="Dean" Type="nvarchar" MaxLength="255" />
-    <Property Name="ViceDean" Type="nvarchar" MaxLength="255" />
+    <Property Name="ViceDean" Type="nvarchar" MaxLength="30" />
+    <Property Name="dean" Type="nvarchar" MaxLength="30" />
   </EntityType>
   <EntityType Name="ineffectiveAssessmentStrategis">
     <Key>
@@ -236,9 +256,9 @@
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semseter" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
     <Property Name="Reason" Type="nvarchar" MaxLength="255" Nullable="false" />
   </EntityType>
   <EntityType Name="ineffectiveTeachingStrategis">
@@ -247,22 +267,34 @@
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semseter" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
     <Property Name="Reason" Type="nvarchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="isAssessed">
+    <Key>
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Semseter" />
+    </Key>
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Year" Type="date" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="isAssessed" Type="bit" Nullable="false" />
+    <Property Name="WhyNot" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="Lecturers">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="Role" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="OfficeNo" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="Password" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="DptID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="ID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Role" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="OfficeNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="dptId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ModerationChecklist">
     <Key>
@@ -271,9 +303,9 @@
       <PropertyRef Name="Semseter" />
       <PropertyRef Name="Qustion" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
     <Property Name="Qustion" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Answer" Type="bit" Nullable="false" />
     <Property Name="commetns" Type="nvarchar" MaxLength="255" />
@@ -285,37 +317,33 @@
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semseter" />
     </Key>
-    <Property Name="LecturerID" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="LecturerID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
     <Property Name="DayTime" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="ClassRoom" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="noOFStudents" Type="int" />
   </EntityType>
   <EntityType Name="PEO">
     <Key>
       <PropertyRef Name="ID" />
       <PropertyRef Name="DeptID" />
     </Key>
-    <Property Name="ID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="ID" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="Desc" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="DeptID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="DeptID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="PI">
     <Key>
       <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="Desc" Type="nvarchar" MaxLength="255" Nullable="false" />
-  </EntityType>
-  <EntityType Name="PI_SLO">
-    <Key>
-      <PropertyRef Name="PI_ID" />
       <PropertyRef Name="SLOID" />
+      <PropertyRef Name="DeptID" />
     </Key>
-    <Property Name="PI_ID" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="SLOID" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="DeptID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Desc" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="SLOID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DeptID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ResultOfCourseDirectAssessment">
     <Key>
@@ -323,9 +351,9 @@
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semseter" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
     <Property Name="ActionsTaken" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Observation" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="AnalysisAndJustification" Type="nvarchar" MaxLength="255" Nullable="false" />
@@ -338,9 +366,9 @@
       <PropertyRef Name="Semseter" />
       <PropertyRef Name="Week" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
     <Property Name="Week" Type="int" Nullable="false" />
     <Property Name="Topics" Type="nvarchar" MaxLength="255" />
     <Property Name="Assigments" Type="nvarchar" MaxLength="255" />
@@ -354,9 +382,9 @@
       <PropertyRef Name="Week" />
       <PropertyRef Name="CLO" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
     <Property Name="Week" Type="int" Nullable="false" />
     <Property Name="CLO" Type="int" Nullable="false" />
   </EntityType>
@@ -365,27 +393,37 @@
       <PropertyRef Name="SLOID" />
       <PropertyRef Name="DeptID" />
     </Key>
-    <Property Name="SLOID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="SLOID" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="Desc" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="DeptID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="DeptID" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="SLO-PEO">
+  <EntityType Name="SLO_Course">
     <Key>
-      <PropertyRef Name="SLO" />
-      <PropertyRef Name="PEO" />
+      <PropertyRef Name="SLOID" />
+      <PropertyRef Name="DeptID" />
+      <PropertyRef Name="CourseID" />
+    </Key>
+    <Property Name="SLOID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DeptID" Type="int" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SLO_PEO">
+    <Key>
+      <PropertyRef Name="SLOID" />
+      <PropertyRef Name="PEOID" />
       <PropertyRef Name="DeptID" />
     </Key>
-    <Property Name="SLO" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="PEO" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="DeptID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="SLOID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="PEOID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DeptID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Student">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="255" />
-    <Property Name="DptID" Type="nvarchar" MaxLength="255" />
+    <Property Name="ID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="DptID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Student-Course-Grade">
     <Key>
@@ -394,10 +432,10 @@
       <PropertyRef Name="Semseter" />
       <PropertyRef Name="StudentID" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="StudentID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="StudentID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Mark" Type="int" />
   </EntityType>
   <EntityType Name="Student-PI-Outcome">
@@ -405,8 +443,8 @@
       <PropertyRef Name="CoordinatorID" />
       <PropertyRef Name="StudentID" />
     </Key>
-    <Property Name="CoordinatorID" Type="int" Nullable="false" />
-    <Property Name="StudentID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="CoordinatorID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="StudentID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="AssessmentMethod" Type="int" Nullable="false" />
     <Property Name="Mark" Type="int" />
   </EntityType>
@@ -415,7 +453,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" Nullable="false" />
-    <Property Name="strategy" Type="nvarchar" MaxLength="255" />
+    <Property Name="strategy" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="YearAndSemester">
     <Key>
@@ -423,34 +461,12 @@
       <PropertyRef Name="Semester" />
     </Key>
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semester" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
   </EntityType>
-  <Association Name="FK__CourseCoo__Corde__75F77EB0">
-    <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="1" />
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Lecturers">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="CourseCoordinator">
-        <PropertyRef Name="Coordinator" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__PEO__DeptID__1293BD5E">
-    <End Role="Department" Type="Self.Department" Multiplicity="1" />
-    <End Role="PEO" Type="Self.PEO" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Department">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="PEO">
-        <PropertyRef Name="DeptID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_ActionsForImprovingTheCourse_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="ActionsForImprovingTheCourse" Type="Self.ActionsForImprovingTheCourse" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="CourseCoordinator">
@@ -465,8 +481,28 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_AP_toCC">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AssessmentPlanforTheStudentLearningOutcomeTechnique" Type="Self.AssessmentPlanforTheStudentLearningOutcomeTechnique" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Principal>
+      <Dependent Role="AssessmentPlanforTheStudentLearningOutcomeTechnique">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semester" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_AssessedCourses_ToCourse">
-    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Course" Type="Self.Course" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="AssessedCourses" Type="Self.AssessedCourses" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Course">
@@ -477,8 +513,22 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_AssessmentSurveyAnswer_ToCourseAssessmentSurvey">
+    <End Role="CourseAssessmentSurvay" Type="Self.CourseAssessmentSurvay" Multiplicity="1" />
+    <End Role="AssessmentSurveyAnswer" Type="Self.AssessmentSurveyAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseAssessmentSurvay">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AssessmentSurveyAnswer">
+        <PropertyRef Name="QID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_byCompletingThisCourseStudentsAreAbleTo_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="byCompletingThisCourseStudentsAreAbleTo" Type="Self.byCompletingThisCourseStudentsAreAbleTo" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="CourseCoordinator">
@@ -493,20 +543,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_CAM_ToPI">
+    <End Role="PI" Type="Self.PI" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CourseAssessmentMapping" Type="Self.CourseAssessmentMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PI">
+        <PropertyRef Name="SLOID" />
+        <PropertyRef Name="ID" />
+        <PropertyRef Name="DeptID" />
+      </Principal>
+      <Dependent Role="CourseAssessmentMapping">
+        <PropertyRef Name="SLOID" />
+        <PropertyRef Name="PI" />
+        <PropertyRef Name="DeptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_CLO_ToCourse">
-    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Course" Type="Self.Course" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="CLO" Type="Self.CLO" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Course">
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="CLO">
-        <PropertyRef Name="Course" />
+        <PropertyRef Name="courseId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_CLO-PI_ToCLO">
-    <End Role="CLO" Type="Self.CLO" Multiplicity="1" />
+    <End Role="CLO" Type="Self.CLO" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="CLO-PI" Type="Self.CLO-PI" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CLO">
@@ -518,14 +590,32 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_CLO-PI_ToPI">
-    <End Role="PI" Type="Self.PI" Multiplicity="1" />
+    <End Role="PI" Type="Self.PI" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="CLO-PI" Type="Self.CLO-PI" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PI">
+        <PropertyRef Name="SLOID" />
         <PropertyRef Name="ID" />
+        <PropertyRef Name="DeptID" />
       </Principal>
       <Dependent Role="CLO-PI">
+        <PropertyRef Name="SLOID" />
         <PropertyRef Name="PI-ID" />
+        <PropertyRef Name="DeptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Coordinator">
+    <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lecturers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CourseCoordinator">
+        <PropertyRef Name="Coordinator" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -537,7 +627,7 @@
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="Course1">
-        <PropertyRef Name="Co-requisite" />
+        <PropertyRef Name="co-requisite" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -549,7 +639,7 @@
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="Course">
-        <PropertyRef Name="DptID" />
+        <PropertyRef Name="dptid" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -561,12 +651,14 @@
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="Course1">
-        <PropertyRef Name="Pre-requisite" />
+        <PropertyRef Name="pre-requisite" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_CourseAssessmentMapping_ToCLO">
-    <End Role="CLO" Type="Self.CLO" Multiplicity="1" />
+    <End Role="CLO" Type="Self.CLO" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="CourseAssessmentMapping" Type="Self.CourseAssessmentMapping" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CLO">
@@ -578,7 +670,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_CourseAssessmentMapping_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="CourseAssessmentMapping" Type="Self.CourseAssessmentMapping" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CourseCoordinator">
@@ -593,50 +687,24 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_CourseAssessmentMapping_ToSLO">
-    <End Role="SLO" Type="Self.SLO" Multiplicity="1" />
+  <Association Name="FK_CourseAssessmentMapping_ToDep">
+    <End Role="Department" Type="Self.Department" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="CourseAssessmentMapping" Type="Self.CourseAssessmentMapping" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="SLO">
-        <PropertyRef Name="DeptID" />
-        <PropertyRef Name="SLOID" />
-      </Principal>
-      <Dependent Role="CourseAssessmentMapping">
-        <PropertyRef Name="DeptID" />
-        <PropertyRef Name="SLO" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_CourseAssessmentPlan_ToAssessment">
-    <End Role="AssessmentPlanforTheStudentLearningOutcomeTechnique" Type="Self.AssessmentPlanforTheStudentLearningOutcomeTechnique" Multiplicity="1" />
-    <End Role="CourseAssessmentPlan" Type="Self.CourseAssessmentPlan" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AssessmentPlanforTheStudentLearningOutcomeTechnique">
+      <Principal Role="Department">
         <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="CourseAssessmentPlan">
-        <PropertyRef Name="AssessmetnID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_CourseAssessmentPlan_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
-    <End Role="CourseAssessmentPlan" Type="Self.CourseAssessmentPlan" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CourseCoordinator">
-        <PropertyRef Name="CourseID" />
-        <PropertyRef Name="Year" />
-        <PropertyRef Name="Semseter" />
-      </Principal>
-      <Dependent Role="CourseAssessmentPlan">
-        <PropertyRef Name="CourseID" />
-        <PropertyRef Name="Year" />
-        <PropertyRef Name="Semseter" />
+      <Dependent Role="CourseAssessmentMapping">
+        <PropertyRef Name="DeptID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_CourseAssessmentSurvay_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="CourseAssessmentSurvay" Type="Self.CourseAssessmentSurvay" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CourseCoordinator">
@@ -651,6 +719,22 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_CourseAssessmentSurvay_ToPI">
+    <End Role="PI" Type="Self.PI" Multiplicity="1" />
+    <End Role="CourseAssessmentSurvay" Type="Self.CourseAssessmentSurvay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PI">
+        <PropertyRef Name="SLOID" />
+        <PropertyRef Name="ID" />
+        <PropertyRef Name="DeptID" />
+      </Principal>
+      <Dependent Role="CourseAssessmentSurvay">
+        <PropertyRef Name="SLOID" />
+        <PropertyRef Name="PI_ID" />
+        <PropertyRef Name="DeptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_CourseCoordinator_Coruse">
     <End Role="Course" Type="Self.Course" Multiplicity="1" />
     <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="*" />
@@ -660,6 +744,20 @@
       </Principal>
       <Dependent Role="CourseCoordinator">
         <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseCoordinator_YearAndSemester">
+    <End Role="YearAndSemester" Type="Self.YearAndSemester" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YearAndSemester">
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semester" />
+      </Principal>
+      <Dependent Role="CourseCoordinator">
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -696,7 +794,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_CourseReport_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="CourseReport" Type="Self.CourseReport" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="CourseCoordinator">
@@ -712,7 +812,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_CourseSyllabus_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="CourseSyllabus" Type="Self.CourseSyllabus" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="CourseCoordinator">
@@ -727,20 +829,10 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_CourseTeachingStrategies_ToCourse">
-    <End Role="Course" Type="Self.Course" Multiplicity="1" />
-    <End Role="CourseTeachingStrategies" Type="Self.CourseTeachingStrategies" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Course">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="CourseTeachingStrategies">
-        <PropertyRef Name="CourseID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_CourseTeachingStrategies_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="CourseTeachingStrategies" Type="Self.CourseTeachingStrategies" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CourseCoordinator">
@@ -756,7 +848,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_CourseTestBook_course">
-    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Course" Type="Self.Course" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="CourseTextBook" Type="Self.CourseTextBook" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Course">
@@ -768,19 +862,23 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Department_Faculty">
-    <End Role="Faculty" Type="Self.Faculty" Multiplicity="0..1" />
+    <End Role="Faculty" Type="Self.Faculty" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Department" Type="Self.Department" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Faculty">
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="Department">
-        <PropertyRef Name="FacultyID" />
+        <PropertyRef Name="FacultyId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_DPT_ToLecturer">
-    <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="0..1" />
+    <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Department" Type="Self.Department" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Lecturers">
@@ -788,18 +886,6 @@
       </Principal>
       <Dependent Role="Department">
         <PropertyRef Name="HeadOFDepartment" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Fac_Dean_ToLecturer">
-    <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="0..1" />
-    <End Role="Faculty" Type="Self.Faculty" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Lecturers">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Faculty">
-        <PropertyRef Name="Dean" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -811,7 +897,7 @@
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="Faculty">
-        <PropertyRef Name="Dean" />
+        <PropertyRef Name="dean" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -847,6 +933,24 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_isAssessed_ToCC">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="isAssessed" Type="Self.isAssessed" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Principal>
+      <Dependent Role="isAssessed">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Lecturers_ToDpt">
     <End Role="Department" Type="Self.Department" Multiplicity="1" />
     <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="*" />
@@ -855,12 +959,14 @@
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="Lecturers">
-        <PropertyRef Name="DptID" />
+        <PropertyRef Name="dptId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ModerationChecklist_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="ModerationChecklist" Type="Self.ModerationChecklist" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CourseCoordinator">
@@ -876,7 +982,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_OtherLecturers_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="OtherLecturers" Type="Self.OtherLecturers" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CourseCoordinator">
@@ -892,7 +1000,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_OtherLecturers_ToLecturer">
-    <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="1" />
+    <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="OtherLecturers" Type="Self.OtherLecturers" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Lecturers">
@@ -903,34 +1013,24 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_PI_SLO_ToPI">
-    <End Role="PI" Type="Self.PI" Multiplicity="1" />
-    <End Role="PI_SLO" Type="Self.PI_SLO" Multiplicity="*" />
+  <Association Name="FK_PEO_Department">
+    <End Role="Department" Type="Self.Department" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PEO" Type="Self.PEO" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="PI">
+      <Principal Role="Department">
         <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="PI_SLO">
-        <PropertyRef Name="PI_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_PI_SLO_ToSLO">
-    <End Role="SLO" Type="Self.SLO" Multiplicity="1" />
-    <End Role="PI_SLO" Type="Self.PI_SLO" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="SLO">
+      <Dependent Role="PEO">
         <PropertyRef Name="DeptID" />
-        <PropertyRef Name="SLOID" />
-      </Principal>
-      <Dependent Role="PI_SLO">
-        <PropertyRef Name="DeptID" />
-        <PropertyRef Name="SLOID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ResultOfCourseDirectAssessment_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="ResultOfCourseDirectAssessment" Type="Self.ResultOfCourseDirectAssessment" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="CourseCoordinator">
@@ -976,7 +1076,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_schedule_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CourseCoordinator">
@@ -991,36 +1093,84 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_SLO-PEO_ToPEO">
-    <End Role="PEO" Type="Self.PEO" Multiplicity="1" />
-    <End Role="SLO-PEO" Type="Self.SLO-PEO" Multiplicity="*" />
+  <Association Name="FK_SLO_Course_ToCourse">
+    <End Role="Course" Type="Self.Course" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SLO_Course" Type="Self.SLO_Course" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="PEO">
+      <Principal Role="Course">
         <PropertyRef Name="ID" />
-        <PropertyRef Name="DeptID" />
       </Principal>
-      <Dependent Role="SLO-PEO">
-        <PropertyRef Name="PEO" />
-        <PropertyRef Name="DeptID" />
+      <Dependent Role="SLO_Course">
+        <PropertyRef Name="CourseID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_SLO-PEO_ToSLO">
-    <End Role="SLO" Type="Self.SLO" Multiplicity="1" />
-    <End Role="SLO-PEO" Type="Self.SLO-PEO" Multiplicity="*" />
+  <Association Name="FK_SLO_Course_ToSLO">
+    <End Role="SLO" Type="Self.SLO" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SLO_Course" Type="Self.SLO_Course" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="SLO">
         <PropertyRef Name="DeptID" />
         <PropertyRef Name="SLOID" />
       </Principal>
-      <Dependent Role="SLO-PEO">
+      <Dependent Role="SLO_Course">
         <PropertyRef Name="DeptID" />
-        <PropertyRef Name="SLO" />
+        <PropertyRef Name="SLOID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SLO_Dept">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="SLO" Type="Self.SLO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SLO">
+        <PropertyRef Name="DeptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SLO_PEO_ToPEO">
+    <End Role="PEO" Type="Self.PEO" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SLO_PEO" Type="Self.SLO_PEO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PEO">
+        <PropertyRef Name="ID" />
+        <PropertyRef Name="DeptID" />
+      </Principal>
+      <Dependent Role="SLO_PEO">
+        <PropertyRef Name="PEOID" />
+        <PropertyRef Name="DeptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SLO_PEO_ToSLO">
+    <End Role="SLO" Type="Self.SLO" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SLO_PEO" Type="Self.SLO_PEO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SLO">
+        <PropertyRef Name="DeptID" />
+        <PropertyRef Name="SLOID" />
+      </Principal>
+      <Dependent Role="SLO_PEO">
+        <PropertyRef Name="DeptID" />
+        <PropertyRef Name="SLOID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Student_departement">
-    <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+    <End Role="Department" Type="Self.Department" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Student" Type="Self.Student" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Department">
@@ -1032,7 +1182,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Student-Course-Grade_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Student-Course-Grade" Type="Self.Student-Course-Grade" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CourseCoordinator">
@@ -1048,7 +1200,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Student-Course-Grade_ToStudents">
-    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Student-Course-Grade" Type="Self.Student-Course-Grade" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Student">
@@ -1060,7 +1214,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Student-PI-Outcome_ToStudents">
-    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Student-PI-Outcome" Type="Self.Student-PI-Outcome" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Student">
@@ -1072,7 +1228,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Student-PI-Outcome_ToTeachingAndLearningStrategiesTechnique">
-    <End Role="TeachingAndLearningStrategiesTechnique" Type="Self.TeachingAndLearningStrategiesTechnique" Multiplicity="1" />
+    <End Role="TeachingAndLearningStrategiesTechnique" Type="Self.TeachingAndLearningStrategiesTechnique" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Student-PI-Outcome" Type="Self.Student-PI-Outcome" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="TeachingAndLearningStrategiesTechnique">
@@ -1083,16 +1241,32 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="PI_ToSLO">
+    <End Role="SLO" Type="Self.SLO" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PI" Type="Self.PI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SLO">
+        <PropertyRef Name="DeptID" />
+        <PropertyRef Name="SLOID" />
+      </Principal>
+      <Dependent Role="PI">
+        <PropertyRef Name="DeptID" />
+        <PropertyRef Name="SLOID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="ModelStoreContainer">
     <EntitySet Name="ActionsForImprovingTheCourse" EntityType="Self.ActionsForImprovingTheCourse" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AssessedCourses" EntityType="Self.AssessedCourses" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AssessmentPlanforTheStudentLearningOutcomeTechnique" EntityType="Self.AssessmentPlanforTheStudentLearningOutcomeTechnique" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AssessmentSurveyAnswer" EntityType="Self.AssessmentSurveyAnswer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="byCompletingThisCourseStudentsAreAbleTo" EntityType="Self.byCompletingThisCourseStudentsAreAbleTo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CLO" EntityType="Self.CLO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CLO-PI" EntityType="Self.CLO-PI" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseAssessmentMapping" EntityType="Self.CourseAssessmentMapping" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="CourseAssessmentPlan" EntityType="Self.CourseAssessmentPlan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseAssessmentSurvay" EntityType="Self.CourseAssessmentSurvay" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseCoordinator" EntityType="Self.CourseCoordinator" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseFileCheckList" EntityType="Self.CourseFileCheckList" Schema="dbo" store:Type="Tables" />
@@ -1105,41 +1279,46 @@
     <EntitySet Name="Faculty" EntityType="Self.Faculty" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ineffectiveAssessmentStrategis" EntityType="Self.ineffectiveAssessmentStrategis" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ineffectiveTeachingStrategis" EntityType="Self.ineffectiveTeachingStrategis" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="isAssessed" EntityType="Self.isAssessed" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Lecturers" EntityType="Self.Lecturers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ModerationChecklist" EntityType="Self.ModerationChecklist" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OtherLecturers" EntityType="Self.OtherLecturers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PEO" EntityType="Self.PEO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PI" EntityType="Self.PI" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="PI_SLO" EntityType="Self.PI_SLO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ResultOfCourseDirectAssessment" EntityType="Self.ResultOfCourseDirectAssessment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="schedule" EntityType="Self.schedule" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Schedule_CLO" EntityType="Self.Schedule_CLO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SLO" EntityType="Self.SLO" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="SLO-PEO" EntityType="Self.SLO-PEO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SLO_Course" EntityType="Self.SLO_Course" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SLO_PEO" EntityType="Self.SLO_PEO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Student-Course-Grade" EntityType="Self.Student-Course-Grade" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Student-PI-Outcome" EntityType="Self.Student-PI-Outcome" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TeachingAndLearningStrategiesTechnique" EntityType="Self.TeachingAndLearningStrategiesTechnique" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="YearAndSemester" EntityType="Self.YearAndSemester" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__CourseCoo__Corde__75F77EB0" Association="Self.FK__CourseCoo__Corde__75F77EB0">
-      <End Role="Lecturers" EntitySet="Lecturers" />
-      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
-    </AssociationSet>
-    <AssociationSet Name="FK__PEO__DeptID__1293BD5E" Association="Self.FK__PEO__DeptID__1293BD5E">
-      <End Role="Department" EntitySet="Department" />
-      <End Role="PEO" EntitySet="PEO" />
-    </AssociationSet>
     <AssociationSet Name="FK_ActionsForImprovingTheCourse_ToCourseCoordinator" Association="Self.FK_ActionsForImprovingTheCourse_ToCourseCoordinator">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
       <End Role="ActionsForImprovingTheCourse" EntitySet="ActionsForImprovingTheCourse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AP_toCC" Association="Self.FK_AP_toCC">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+      <End Role="AssessmentPlanforTheStudentLearningOutcomeTechnique" EntitySet="AssessmentPlanforTheStudentLearningOutcomeTechnique" />
     </AssociationSet>
     <AssociationSet Name="FK_AssessedCourses_ToCourse" Association="Self.FK_AssessedCourses_ToCourse">
       <End Role="Course" EntitySet="Course" />
       <End Role="AssessedCourses" EntitySet="AssessedCourses" />
     </AssociationSet>
+    <AssociationSet Name="FK_AssessmentSurveyAnswer_ToCourseAssessmentSurvey" Association="Self.FK_AssessmentSurveyAnswer_ToCourseAssessmentSurvey">
+      <End Role="CourseAssessmentSurvay" EntitySet="CourseAssessmentSurvay" />
+      <End Role="AssessmentSurveyAnswer" EntitySet="AssessmentSurveyAnswer" />
+    </AssociationSet>
     <AssociationSet Name="FK_byCompletingThisCourseStudentsAreAbleTo_ToCourseCoordinator" Association="Self.FK_byCompletingThisCourseStudentsAreAbleTo_ToCourseCoordinator">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
       <End Role="byCompletingThisCourseStudentsAreAbleTo" EntitySet="byCompletingThisCourseStudentsAreAbleTo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CAM_ToPI" Association="Self.FK_CAM_ToPI">
+      <End Role="PI" EntitySet="PI" />
+      <End Role="CourseAssessmentMapping" EntitySet="CourseAssessmentMapping" />
     </AssociationSet>
     <AssociationSet Name="FK_CLO_ToCourse" Association="Self.FK_CLO_ToCourse">
       <End Role="Course" EntitySet="Course" />
@@ -1152,6 +1331,10 @@
     <AssociationSet Name="FK_CLO-PI_ToPI" Association="Self.FK_CLO-PI_ToPI">
       <End Role="PI" EntitySet="PI" />
       <End Role="CLO-PI" EntitySet="CLO-PI" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Coordinator" Association="Self.FK_Coordinator">
+      <End Role="Lecturers" EntitySet="Lecturers" />
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
     </AssociationSet>
     <AssociationSet Name="FK_Course_co" Association="Self.FK_Course_co">
       <End Role="Course" EntitySet="Course" />
@@ -1173,24 +1356,24 @@
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
       <End Role="CourseAssessmentMapping" EntitySet="CourseAssessmentMapping" />
     </AssociationSet>
-    <AssociationSet Name="FK_CourseAssessmentMapping_ToSLO" Association="Self.FK_CourseAssessmentMapping_ToSLO">
-      <End Role="SLO" EntitySet="SLO" />
+    <AssociationSet Name="FK_CourseAssessmentMapping_ToDep" Association="Self.FK_CourseAssessmentMapping_ToDep">
+      <End Role="Department" EntitySet="Department" />
       <End Role="CourseAssessmentMapping" EntitySet="CourseAssessmentMapping" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CourseAssessmentPlan_ToAssessment" Association="Self.FK_CourseAssessmentPlan_ToAssessment">
-      <End Role="AssessmentPlanforTheStudentLearningOutcomeTechnique" EntitySet="AssessmentPlanforTheStudentLearningOutcomeTechnique" />
-      <End Role="CourseAssessmentPlan" EntitySet="CourseAssessmentPlan" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CourseAssessmentPlan_ToCourseCoordinator" Association="Self.FK_CourseAssessmentPlan_ToCourseCoordinator">
-      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
-      <End Role="CourseAssessmentPlan" EntitySet="CourseAssessmentPlan" />
     </AssociationSet>
     <AssociationSet Name="FK_CourseAssessmentSurvay_ToCourseCoordinator" Association="Self.FK_CourseAssessmentSurvay_ToCourseCoordinator">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
       <End Role="CourseAssessmentSurvay" EntitySet="CourseAssessmentSurvay" />
     </AssociationSet>
+    <AssociationSet Name="FK_CourseAssessmentSurvay_ToPI" Association="Self.FK_CourseAssessmentSurvay_ToPI">
+      <End Role="PI" EntitySet="PI" />
+      <End Role="CourseAssessmentSurvay" EntitySet="CourseAssessmentSurvay" />
+    </AssociationSet>
     <AssociationSet Name="FK_CourseCoordinator_Coruse" Association="Self.FK_CourseCoordinator_Coruse">
       <End Role="Course" EntitySet="Course" />
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseCoordinator_YearAndSemester" Association="Self.FK_CourseCoordinator_YearAndSemester">
+      <End Role="YearAndSemester" EntitySet="YearAndSemester" />
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
     </AssociationSet>
     <AssociationSet Name="FK_CourseFileCheckList_ToCourseCoordinator" Association="Self.FK_CourseFileCheckList_ToCourseCoordinator">
@@ -1209,10 +1392,6 @@
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
       <End Role="CourseSyllabus" EntitySet="CourseSyllabus" />
     </AssociationSet>
-    <AssociationSet Name="FK_CourseTeachingStrategies_ToCourse" Association="Self.FK_CourseTeachingStrategies_ToCourse">
-      <End Role="Course" EntitySet="Course" />
-      <End Role="CourseTeachingStrategies" EntitySet="CourseTeachingStrategies" />
-    </AssociationSet>
     <AssociationSet Name="FK_CourseTeachingStrategies_ToCourseCoordinator" Association="Self.FK_CourseTeachingStrategies_ToCourseCoordinator">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
       <End Role="CourseTeachingStrategies" EntitySet="CourseTeachingStrategies" />
@@ -1229,10 +1408,6 @@
       <End Role="Lecturers" EntitySet="Lecturers" />
       <End Role="Department" EntitySet="Department" />
     </AssociationSet>
-    <AssociationSet Name="FK_Fac_Dean_ToLecturer" Association="Self.FK_Fac_Dean_ToLecturer">
-      <End Role="Lecturers" EntitySet="Lecturers" />
-      <End Role="Faculty" EntitySet="Faculty" />
-    </AssociationSet>
     <AssociationSet Name="FK_Fac_ViceDean_ToLecturer" Association="Self.FK_Fac_ViceDean_ToLecturer">
       <End Role="Lecturers" EntitySet="Lecturers" />
       <End Role="Faculty" EntitySet="Faculty" />
@@ -1244,6 +1419,10 @@
     <AssociationSet Name="FK_ineffectiveTeachingStrategis_ToCourseCoordinator" Association="Self.FK_ineffectiveTeachingStrategis_ToCourseCoordinator">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
       <End Role="ineffectiveTeachingStrategis" EntitySet="ineffectiveTeachingStrategis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_isAssessed_ToCC" Association="Self.FK_isAssessed_ToCC">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+      <End Role="isAssessed" EntitySet="isAssessed" />
     </AssociationSet>
     <AssociationSet Name="FK_Lecturers_ToDpt" Association="Self.FK_Lecturers_ToDpt">
       <End Role="Department" EntitySet="Department" />
@@ -1261,13 +1440,9 @@
       <End Role="Lecturers" EntitySet="Lecturers" />
       <End Role="OtherLecturers" EntitySet="OtherLecturers" />
     </AssociationSet>
-    <AssociationSet Name="FK_PI_SLO_ToPI" Association="Self.FK_PI_SLO_ToPI">
-      <End Role="PI" EntitySet="PI" />
-      <End Role="PI_SLO" EntitySet="PI_SLO" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PI_SLO_ToSLO" Association="Self.FK_PI_SLO_ToSLO">
-      <End Role="SLO" EntitySet="SLO" />
-      <End Role="PI_SLO" EntitySet="PI_SLO" />
+    <AssociationSet Name="FK_PEO_Department" Association="Self.FK_PEO_Department">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="PEO" EntitySet="PEO" />
     </AssociationSet>
     <AssociationSet Name="FK_ResultOfCourseDirectAssessment_ToCourseCoordinator" Association="Self.FK_ResultOfCourseDirectAssessment_ToCourseCoordinator">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
@@ -1285,13 +1460,25 @@
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
       <End Role="schedule" EntitySet="schedule" />
     </AssociationSet>
-    <AssociationSet Name="FK_SLO-PEO_ToPEO" Association="Self.FK_SLO-PEO_ToPEO">
-      <End Role="PEO" EntitySet="PEO" />
-      <End Role="SLO-PEO" EntitySet="SLO-PEO" />
+    <AssociationSet Name="FK_SLO_Course_ToCourse" Association="Self.FK_SLO_Course_ToCourse">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="SLO_Course" EntitySet="SLO_Course" />
     </AssociationSet>
-    <AssociationSet Name="FK_SLO-PEO_ToSLO" Association="Self.FK_SLO-PEO_ToSLO">
+    <AssociationSet Name="FK_SLO_Course_ToSLO" Association="Self.FK_SLO_Course_ToSLO">
       <End Role="SLO" EntitySet="SLO" />
-      <End Role="SLO-PEO" EntitySet="SLO-PEO" />
+      <End Role="SLO_Course" EntitySet="SLO_Course" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SLO_Dept" Association="Self.FK_SLO_Dept">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="SLO" EntitySet="SLO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SLO_PEO_ToPEO" Association="Self.FK_SLO_PEO_ToPEO">
+      <End Role="PEO" EntitySet="PEO" />
+      <End Role="SLO_PEO" EntitySet="SLO_PEO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SLO_PEO_ToSLO" Association="Self.FK_SLO_PEO_ToSLO">
+      <End Role="SLO" EntitySet="SLO" />
+      <End Role="SLO_PEO" EntitySet="SLO_PEO" />
     </AssociationSet>
     <AssociationSet Name="FK_Student_departement" Association="Self.FK_Student_departement">
       <End Role="Department" EntitySet="Department" />
@@ -1312,6 +1499,10 @@
     <AssociationSet Name="FK_Student-PI-Outcome_ToTeachingAndLearningStrategiesTechnique" Association="Self.FK_Student-PI-Outcome_ToTeachingAndLearningStrategiesTechnique">
       <End Role="TeachingAndLearningStrategiesTechnique" EntitySet="TeachingAndLearningStrategiesTechnique" />
       <End Role="Student-PI-Outcome" EntitySet="Student-PI-Outcome" />
+    </AssociationSet>
+    <AssociationSet Name="PI_ToSLO" Association="Self.PI_ToSLO">
+      <End Role="SLO" EntitySet="SLO" />
+      <End Role="PI" EntitySet="PI" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -17,13 +17,15 @@ namespace LSS.Models
         public string CourseID { get; set; }
         public System.DateTime Year { get; set; }
         public string Semseter { get; set; }
-        public int AssessmentID { get; set; }
+        public string AssessmentID { get; set; }
         public int CLO { get; set; }
-        public string SLO { get; set; }
-        public string DeptID { get; set; }
+        public string PI { get; set; }
+        public string SLOID { get; set; }
+        public int DeptID { get; set; }
     
         public virtual CLO CLO1 { get; set; }
+        public virtual PI PI1 { get; set; }
         public virtual CourseCoordinator CourseCoordinator { get; set; }
-        public virtual SLO SLO1 { get; set; }
+        public virtual Department Department { get; set; }
     }
 }

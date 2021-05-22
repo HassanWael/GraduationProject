@@ -18,24 +18,30 @@ namespace LSS.Models
         public Department()
         {
             this.Courses = new HashSet<Course>();
-            this.PEOs = new HashSet<PEO>();
+            this.CourseAssessmentMappings = new HashSet<CourseAssessmentMapping>();
             this.Lecturers = new HashSet<Lecturer>();
+            this.PEOs = new HashSet<PEO>();
+            this.SLOes = new HashSet<SLO>();
             this.Students = new HashSet<Student>();
         }
     
-        public string ID { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
-        public string FacultyID { get; set; }
         public string HeadOFDepartment { get; set; }
+        public int FacultyId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Course> Courses { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PEO> PEOs { get; set; }
+        public virtual ICollection<CourseAssessmentMapping> CourseAssessmentMappings { get; set; }
         public virtual Faculty Faculty { get; set; }
         public virtual Lecturer Lecturer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Lecturer> Lecturers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PEO> PEOs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SLO> SLOes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student> Students { get; set; }
     }
