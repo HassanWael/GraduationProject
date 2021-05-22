@@ -80,12 +80,12 @@
 
     @Html.PagedListPager(Model, page => Url.Action("ListCourses", new { Search = ViewBag.Search, Department=ViewBag.DepartmentID, page, pageSize = Model.PageSize }), new PagedListRenderOptions
 {
-    DisplayLinkToIndividualPages = true,
-    DisplayPageCountAndCurrentLocation = false,
-    MaximumPageNumbersToDisplay = 10,
-    UlElementClasses = new[] { "pagination" },
-    LiElementClasses= new[] { "btn btn-secondary disabled" },
-}) 
+
+    ContainerDivClasses = new[] { "pagination pagination-sm" },
+    UlElementClasses = new[] { "pagination pagination-sm" },
+    LiElementClasses = new[] { "page-item","btn-outline-primary" }
+
+})
     Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Products
 </div>
 <sp
