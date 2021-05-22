@@ -7,6 +7,7 @@ namespace LSS.Models.DepartmentViewModel
 {
     public class MappedPEO_SLO
     {
+        private readonly LSS_databaseEntities _databaseEntities = new LSS_databaseEntities();
         public Department Department { get; set; }
         private List<PEO> peos
         {

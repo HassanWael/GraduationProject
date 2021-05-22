@@ -33,16 +33,26 @@ namespace LSS.Controllers
 
         public ActionResult CourseInformationForm(string? CourseID)
         {
-           
+            if (CourseID is null)
+            {
+                    RedirectToAction("Index","Home");
+            }
 
-            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find("A0334501", yearAndSemester.Year, yearAndSemester.Semester);
+            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, yearAndSemester.Year, yearAndSemester.Semester);
             CouresModelView cmv = new CouresModelView(cc);
             return View(cmv);
         }
 
-        public ActionResult CourseReport()
+        public ActionResult CourseReport(string? CourseID)
         {
-            return View();
+            if (CourseID is null)
+            {
+                RedirectToAction("Index", "Home");
+            }
+
+            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, yearAndSemester.Year, yearAndSemester.Semester);
+            CouresReportModelView cmv = new CouresReportModelView(cc);
+            return View(cmv);
         }
 
         public ActionResult CourseSyllabus(string? id)

@@ -24,7 +24,7 @@ namespace LSS.Controllers
             {
                 RedirectToAction("Index", "LogedIN");
             }
-             
+
             //String userID = Session["ID"].ToString();
             CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find("A0334501", yas.Year, yas.Semester);
             CouresModelView course = new CouresModelView(cc);
@@ -70,7 +70,7 @@ namespace LSS.Controllers
 
         public ActionResult CreateCourseInformationForm()
         {
-            
+
             return View();
         }
         public ActionResult DeleteCLO(int id)
@@ -129,7 +129,8 @@ namespace LSS.Controllers
         [HttpPost]
         public ActionResult AddActionsForImproving(ActionsForImprovingTheCourse ActionsForImprovingTheCourse)
         {
-            try {
+            try
+            {
                 if (ModelState.IsValid)
                 {
                     if (_DatabaseEntities.ActionsForImprovingTheCourses.Find(ActionsForImprovingTheCourse.CourseID, yas.Year, yas.Semester) == null)
@@ -143,11 +144,11 @@ namespace LSS.Controllers
                         _DatabaseEntities.SaveChanges();
 
                     }
-                    return RedirectToAction("CouresPage","CourseCoordinator", ActionsForImprovingTheCourse.CourseID);
+                    return RedirectToAction("CouresPage", "CourseCoordinator", ActionsForImprovingTheCourse.CourseID);
                 }
                 return View(ActionsForImprovingTheCourse);
             }
-            catch (Exception e )
+            catch (Exception e)
             {
                 ModelState.AddModelError(e.Message, "an error has accoured please try again later ");
                 Console.WriteLine("Error at line 123 Course Coordinator");
@@ -200,22 +201,22 @@ namespace LSS.Controllers
         }
 
         //todo: creat col itterator and configure the xlsx file that woul be uploaded 
-        public ActionResult UploadSurveyAnswers( FormCollection formCollection ,string CourseID , DateTime Year , string Semseter)
+        public ActionResult UploadSurveyAnswers(FormCollection formCollection, string CourseID, DateTime Year, string Semseter)
         {
-            List<int> QID = _DatabaseEntities.CourseAssessmentSurvays.Where(x => x.CourseID.Equals(CourseID)&&x.Year.Equals(Year)&&x.Semseter
+            List<int> QID = _DatabaseEntities.CourseAssessmentSurvays.Where(x => x.CourseID.Equals(CourseID) && x.Year.Equals(Year) && x.Semseter
             .Equals(Semseter)).Select(x => x.ID).ToList();
 
             if (Request != null)
-            {               
+            {
                 HttpPostedFileBase file = Request.Files["Select Excel file"];
-                if ((file != null) && (file.ContentLength != 0) && !string.IsNullOrEmpty(file.FileName))   
+                if ((file != null) && (file.ContentLength != 0) && !string.IsNullOrEmpty(file.FileName))
                 {
                     string fileName = file.FileName;
                     string fileContentType = file.ContentType;
                     byte[] fileBytes = new byte[file.ContentLength];
                     var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
                     var AssessmentSurveyAnswers = new List<AssessmentSurveyAnswer>();
-                    
+
                     using (var package = new ExcelPackage(file.InputStream))
                     {
                         var currentSheet = package.Workbook.Worksheets;
@@ -225,8 +226,8 @@ namespace LSS.Controllers
 
                         for (int colIterator = 1; colIterator <= QID.Count(); colIterator++)
                         {
-                            int rowIterator = 2; 
-                            while (workSheet.Cells[rowIterator, (colIterator )].Value != null && !workSheet.Cells[rowIterator, (colIterator)].Value.ToString().Equals("")  )
+                            int rowIterator = 2;
+                            while (workSheet.Cells[rowIterator, (colIterator)].Value != null && !workSheet.Cells[rowIterator, (colIterator)].Value.ToString().Equals(""))
                             {
                                 var answer = new AssessmentSurveyAnswer
                                 {
@@ -251,15 +252,15 @@ namespace LSS.Controllers
             }
             return RedirectToAction("CourseAssessmentSurvey", "CourseCoordinator", CourseID);
         }
-        
+
         [HttpPost]
         public ActionResult AddSurveyQustion(CourseAssessmentSurvay CAS)
         {
             try
             {
-                String SLOID = _DatabaseEntities.PIs.Where(x => x.ID.Equals(CAS.PI_ID) && x.DeptID.Equals(CAS.DeptID)).Select(x=>x.SLOID).FirstOrDefault();
+                String SLOID = _DatabaseEntities.PIs.Where(x => x.ID.Equals(CAS.PI_ID) && x.DeptID.Equals(CAS.DeptID)).Select(x => x.SLOID).FirstOrDefault();
                 CAS.SLOID = SLOID;
-                _DatabaseEntities.CourseAssessmentSurvays.Add(CAS); 
+                _DatabaseEntities.CourseAssessmentSurvays.Add(CAS);
                 _DatabaseEntities.SaveChanges();
 
             }

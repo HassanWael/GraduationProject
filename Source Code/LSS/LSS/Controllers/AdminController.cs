@@ -14,10 +14,9 @@ namespace LSS.Controllers
     //[Authorize(Roles ="Admin")]
     public class AdminController : Controller
     {
-        readonly LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
+        LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
         // GET: Admin
         //ToDO :Create Index View for Admin.
-        readonly YearAndSemester YAS = SemesterSingelton.getCurrentYearAndSemester();
 
         public ActionResult AddCourseToSemester(string CourseID)
         {
@@ -39,13 +38,21 @@ namespace LSS.Controllers
             List<Lecturer> CC = _DatabaseEntities.Lecturers.Where(x => x.dptId.Equals(deptID)).ToList();
             ViewBag.Lecturers = new SelectList(CC, "ID", "Name");
 
+        public ActionResult AddCourseToSemster( string CourseID)
+        {
+            CourseCoordinator cc = new CourseCoordinator();
+            cc.CourseID = CourseID;
             return View(cc);
         }
 
         [HttpPost]
-        public ActionResult AddCourseToSemester(CourseCoordinator cc)
+        public ActionResult AddCourseToSemster(CourseCoordinator cc )
         {
-            if (ModelState.IsValid)
+            try { 
+            _DatabaseEntities.CourseCoordinators.Add(cc);
+            _DatabaseEntities.SaveChanges();
+            }
+            catch
             {
                 try
                 {
@@ -69,6 +76,13 @@ namespace LSS.Controllers
                 }
                 return RedirectToAction("Index");
             }
+            return RedirectToAction("Index");
+        }
+        public ActionResult AddCourseToSemester()
+        {
+            List<Course> courses = _DatabaseEntities.Courses.ToList();
+
+            ViewBag.Courses = new SelectList(courses, "ID", "Title");
             return View();
         }
 
@@ -104,7 +118,6 @@ namespace LSS.Controllers
                 return View();
             }
         }
-
 
         public ActionResult CreatUser()
         {
@@ -248,17 +261,14 @@ namespace LSS.Controllers
 
         public ActionResult CreateNewSemster()
         {
-            Dictionary<string, string> semester = new Dictionary<string, string>
-            {
-                { "1", "First semester" },
-                { "2", "Second semester" },
-                { "3", "Third semester" }
-            };
+            Dictionary<string, string> semester = new Dictionary<string, string>();
+            semester.Add("1", "First semester");
+            semester.Add("2", "Second semester");
+            semester.Add("3", "Third semester");
 
             ViewBag.semester = new SelectList(semester, "Key", "Value");
             return View();
         }
-
         [HttpGet]
         public ActionResult ListCourses(string? Search, int? Department, int page = 1, int pageSize = 10)
         {

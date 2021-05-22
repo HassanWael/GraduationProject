@@ -1,4 +1,4 @@
-﻿@Styles.Render("~/Content/css")
+@Styles.Render("~/Content/css")
 @Scripts.Render("~/bundles/modernizr")
 @using LSS.Models
 @model LSS.Models.CoursesModelView.CouresModelView
@@ -188,12 +188,6 @@ else
     </div>
 </div>
 
-
-
-
-
-
-
 <div id="isAssessed" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -233,95 +227,95 @@ else
         }
         else
         {
-    <p class="card-text">
-        <ul>
-            @if (Model.AssessmentPlan.Midterm_Test)
-            {
-                <li>
-                    @Html.DisplayNameFor(model => model.AssessmentPlan.Midterm_Test);
-                </li>
-            }
+            <p class="card-text">
+                <ul>
+                    @if (Model.AssessmentPlan.Midterm_Test)
+                    {
+                        <li>
+                            @Html.DisplayNameFor(model => model.AssessmentPlan.Midterm_Test);
+                        </li>
+                    }
 
-            @if (Model.AssessmentPlan.Final_Exam)
-            {
-                <li>
-                    @Html.DisplayNameFor(model => model.AssessmentPlan.Final_Exam);
-                </li>
-            }
-            @if (Model.AssessmentPlan.Quiz)
-            {
-                <li>
-                    @Html.DisplayNameFor(model => model.AssessmentPlan.Quiz);
-                </li>
-            }
+                    @if (Model.AssessmentPlan.Final_Exam)
+                    {
+                        <li>
+                            @Html.DisplayNameFor(model => model.AssessmentPlan.Final_Exam);
+                        </li>
+                    }
+                    @if (Model.AssessmentPlan.Quiz)
+                    {
+                        <li>
+                            @Html.DisplayNameFor(model => model.AssessmentPlan.Quiz);
+                        </li>
+                    }
 
-            @if (Model.AssessmentPlan.Assignment)
-            {
-                <li>
-                    @Html.DisplayNameFor(model => model.AssessmentPlan.Assignment);
-                </li>
-            }
+                    @if (Model.AssessmentPlan.Assignment)
+                    {
+                        <li>
+                            @Html.DisplayNameFor(model => model.AssessmentPlan.Assignment);
+                        </li>
+                    }
 
-            @if (Model.AssessmentPlan.project)
-            {
-                <li>
-                    @Html.DisplayNameFor(model => model.AssessmentPlan.project);
-                </li>
-            }
+                    @if (Model.AssessmentPlan.project)
+                    {
+                        <li>
+                            @Html.DisplayNameFor(model => model.AssessmentPlan.project);
+                        </li>
+                    }
 
 
-            @if (Model.AssessmentPlan.Written_Report)
-            {
-                <li>
-                    @Html.DisplayNameFor(model => model.AssessmentPlan.Written_Report);
-                </li>
-            }   @if (Model.AssessmentPlan.Oral_Presenation)
-            {
-                <li>
-                    @Html.DisplayNameFor(model => model.AssessmentPlan.Oral_Presenation);
-                </li>
-            }
-            @if (Model.AssessmentPlan.Practice_In_The_Lab)
-            {
-                <li>
-                    @Html.DisplayNameFor(model => model.AssessmentPlan.Practice_In_The_Lab);
-                </li>
-            }
-            @if (Model.AssessmentPlan.Case_Studdy)
-            {
-                <li>
-                    @Html.DisplayNameFor(model => model.AssessmentPlan.Case_Studdy);
-                </li>
-            }
-            @if (Model.AssessmentPlan.Coruse_Assessment_Survey_By_Students)
-            {
-                <li>
-                    @Html.DisplayNameFor(model => model.AssessmentPlan.Coruse_Assessment_Survey_By_Students);
-                </li>
-            }
-            @if (Model.AssessmentPlan.Gropu_Discussions)
-            {
-                <li>
-                    @Html.DisplayNameFor(model => model.AssessmentPlan.Gropu_Discussions);
-                </li>
-            }
-            @if (Model.AssessmentPlan.Students_Interviews)
-            {
-                <li>
-                    @Html.DisplayNameFor(model => model.AssessmentPlan.Students_Interviews);
-                </li>
-            }
-            @if (Model.AssessmentPlan.Other != null)
-            {
-                <li>
-                    @Html.DisplayNameFor(model => model.AssessmentPlan.Other);
-                    @Html.DisplayFor(model => model.AssessmentPlan.Other);
-                </li>
-            }
-        </ul>
-        <button id='open' class="card-link" data-toggle="modal" data-target="#addAssmentPlan">Edite the  Assessment plan for this semester</button>
+                    @if (Model.AssessmentPlan.Written_Report)
+                    {
+                        <li>
+                            @Html.DisplayNameFor(model => model.AssessmentPlan.Written_Report);
+                        </li>
+                    }   @if (Model.AssessmentPlan.Oral_Presenation)
+                    {
+                        <li>
+                            @Html.DisplayNameFor(model => model.AssessmentPlan.Oral_Presenation);
+                        </li>
+                    }
+                    @if (Model.AssessmentPlan.Practice_In_The_Lab)
+                    {
+                        <li>
+                            @Html.DisplayNameFor(model => model.AssessmentPlan.Practice_In_The_Lab);
+                        </li>
+                    }
+                    @if (Model.AssessmentPlan.Case_Studdy)
+                    {
+                        <li>
+                            @Html.DisplayNameFor(model => model.AssessmentPlan.Case_Studdy);
+                        </li>
+                    }
+                    @if (Model.AssessmentPlan.Coruse_Assessment_Survey_By_Students)
+                    {
+                        <li>
+                            @Html.DisplayNameFor(model => model.AssessmentPlan.Coruse_Assessment_Survey_By_Students);
+                        </li>
+                    }
+                    @if (Model.AssessmentPlan.Gropu_Discussions)
+                    {
+                        <li>
+                            @Html.DisplayNameFor(model => model.AssessmentPlan.Gropu_Discussions);
+                        </li>
+                    }
+                    @if (Model.AssessmentPlan.Students_Interviews)
+                    {
+                        <li>
+                            @Html.DisplayNameFor(model => model.AssessmentPlan.Students_Interviews);
+                        </li>
+                    }
+                    @if (Model.AssessmentPlan.Other != null)
+                    {
+                        <li>
+                            @Html.DisplayNameFor(model => model.AssessmentPlan.Other);
+                            @Html.DisplayFor(model => model.AssessmentPlan.Other);
+                        </li>
+                    }
+                </ul>
+                <button id='open' class="card-link" data-toggle="modal" data-target="#addAssmentPlan">Edite the  Assessment plan for this semester</button>
 
-    </p>
+            </p>
 
         }
 
@@ -329,13 +323,8 @@ else
     </div>
 </div>
 
-
-
-
-
-
-<div id="addAssmentPlan" class="modal fade" tabindex="-1" role="dialog" >
-    <div class="modal-dialog" role="document"  style="width:auto;">
+<div id="addAssmentPlan" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document" style="width:auto;">
         <div class="modal-content" style="width:auto;">
             @{
                 if (Model.AssessmentPlan == null)
