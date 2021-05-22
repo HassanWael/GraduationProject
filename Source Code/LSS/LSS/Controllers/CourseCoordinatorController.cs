@@ -1,21 +1,16 @@
 ﻿using LSS.Models;
 using LSS.Models.arc;
 using LSS.Models.CoursesModelView;
-using OfficeOpenXml;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace LSS.Controllers
 {
     public class CourseCoordinatorController : Controller
     {
-        private readonly LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
+        LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
 
-        private readonly YearAndSemester yas = SemesterSingelton.getCurrentYearAndSemester();
+        private YearAndSemester yas = SemesterSingelton.getCurrentYearAndSemester();
 
         // GET: Courses
         public ActionResult CouresPage(string? courseID)
@@ -25,6 +20,7 @@ namespace LSS.Controllers
                 RedirectToAction("Index", "LogedIN");
             }
              
+            YearAndSemester y = SemesterSingelton.getCurrentYearAndSemester();
             //String userID = Session["ID"].ToString();
             CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find("A0334501", yas.Year, yas.Semester);
             CouresModelView course = new CouresModelView(cc);
@@ -68,9 +64,8 @@ namespace LSS.Controllers
         }
 
 
-        public ActionResult CreateCourseInformationForm()
+        public ActionResult CreateCourseInformationForm(string id)
         {
-            
             return View();
         }
         public ActionResult DeleteCLO(int id)
@@ -267,11 +262,10 @@ namespace LSS.Controllers
             {
                 Console.WriteLine("Error at 255 CourseCoorddinatorController" + e);
             }
+        public ActionResult CreateCLO() {
             return View();
         }
 
-
     }
-
 
 }
