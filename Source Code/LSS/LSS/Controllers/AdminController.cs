@@ -5,68 +5,41 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using LSS.Models;
-using LSS.Models.arc;
-
 namespace LSS.Controllers
 {
    //[Authorize(Roles ="Admin")]
     public class AdminController : Controller
     {
-        readonly LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
+        LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
         // GET: Admin
         //ToDO :Create Index View for Admin.
-        readonly YearAndSemester YAS = SemesterSingelton.getCurrentYearAndSemester();
 
-        public ActionResult AddCourseToSemester( string CourseID)
+
+        public ActionResult AddCourseToSemster( string CourseID)
         {
-            CourseCoordinator cc;
-            if (_DatabaseEntities.CourseCoordinators.Find(CourseID, YAS.Year, YAS.Semester) == null)
-            {
-                cc = new CourseCoordinator
-                {
-                    CourseID = CourseID,
-                    Year = YAS.Year,
-                    Semseter = YAS.Semester
-                };
-            }
-            else
-            {
-                cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, YAS.Year, YAS.Semester);
-            }
-            int deptID = _DatabaseEntities.Courses.Where(x => x.ID.Equals(CourseID)).Select(x => x.dptid).FirstOrDefault();
-            List<Lecturer> CC = _DatabaseEntities.Lecturers.Where(x => x.dptId.Equals(deptID)).ToList();
-            ViewBag.Lecturers = new SelectList(CC, "ID", "Name");
-
+            CourseCoordinator cc = new CourseCoordinator();
+            cc.CourseID = CourseID;
             return View(cc);
         }
 
         [HttpPost]
-        public ActionResult AddCourseToSemester(CourseCoordinator cc )
+        public ActionResult AddCourseToSemster(CourseCoordinator cc )
         {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    if (_DatabaseEntities.CourseCoordinators.Find(cc.CourseID, cc.Year, cc.Semseter) == null)
-                    {
-                        _DatabaseEntities.CourseCoordinators.Add(cc);
-                        _DatabaseEntities.SaveChanges();
-                    }
-                    else
-                    {
-                        _DatabaseEntities.Entry(cc).State = EntityState.Modified;
-                        _DatabaseEntities.SaveChanges();
-
-                    }
-                }
-                catch(Exception e )
-                {
-                    ModelState.AddModelError("An errorr Has Acoured please try again later", e );
-                    Console.WriteLine("Error at the Line 48 of AdminController : "+e.Message);
-                    return View();
-                }
-                return RedirectToAction("Index");
+            try { 
+            _DatabaseEntities.CourseCoordinators.Add(cc);
+            _DatabaseEntities.SaveChanges();
             }
+            catch
+            {
+                return View();
+            }
+            return RedirectToAction("Index");
+        }
+        public ActionResult AddCourseToSemester()
+        {
+            List<Course> courses = _DatabaseEntities.Courses.ToList();
+
+            ViewBag.Courses = new SelectList(courses, "ID", "Title");
             return View();
         }
        
@@ -78,29 +51,14 @@ namespace LSS.Controllers
         {
             return View();
         } 
+
         [HttpPost]
         public ActionResult CreateCourse(Course course )
         {
-            try {
-                if (_DatabaseEntities.Courses.Find(course.ID) != null)
-                {
-                    _DatabaseEntities.Courses.Add(course);
-                    _DatabaseEntities.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-                else {
-                    ModelState.AddModelError("Dublicate Value", "This Course is already in the database");
-                    return View();
-                }
-            }
-            catch (Exception e)
-            {
-                ModelState.AddModelError("Error", "An errorr Has Acoured please try again later");
-                Console.WriteLine("Error at the Line 82 of AdminController : " + e.Message);
-                return View();
-            }
+            _DatabaseEntities.Courses.Add(course);
+            _DatabaseEntities.SaveChanges();
+            return RedirectToAction("Index");
         }
-
 
         public ActionResult CreatUser()
         {
@@ -109,29 +67,10 @@ namespace LSS.Controllers
         [HttpPost]
         public ActionResult CreatUser(Lecturer lecturer)
         {
-            try
-            {
-                if (_DatabaseEntities.Lecturers.Find(lecturer.ID)==null) {
-                    if (ModelState.IsValid)
-                    {
-                        _DatabaseEntities.Lecturers.Add(lecturer);
-                        _DatabaseEntities.SaveChanges();
-                        return RedirectToAction("Index");
-                    }
-                    return View();
-                }
-                else{
+            _DatabaseEntities.Lecturers.Add(lecturer);
+            _DatabaseEntities.SaveChanges();
 
-                    ModelState.AddModelError("Dublicate Value", " lecturer ID is already in the database");
-                    return View();
-                }
-            }
-            catch(Exception e )
-            {
-                ModelState.AddModelError("Error", "An errorr Has Acoured please try again later");
-                Console.WriteLine("Error at the Line 82 of AdminController : " + e.Message);
-                return View();
-            }
+            return View();
         }
 
         public ActionResult CreatDpt()
@@ -143,33 +82,9 @@ namespace LSS.Controllers
 
         public ActionResult CreatDpt(Department department)
         {
-            try
-            {
-                if (_DatabaseEntities.Departments.Find(department.ID) == null)
-                {
-                    if (ModelState.IsValid)
-                    {
-                        _DatabaseEntities.Departments.Add(department);
-                        _DatabaseEntities.SaveChanges();
-                        return RedirectToAction("Index");
-                    }
-                    return View();
-
-                }
-                else
-                {
-                    ModelState.AddModelError("Dublicate Value", " department ID is already in the database");
-                    return View();
-                }
-
-            }
-            catch(Exception e)
-            {
-                ModelState.AddModelError("Error", "An errorr Has Acoured please try again later");
-                Console.WriteLine("Error at the Line 82 of AdminController : " + e.Message);
-                return View();
-            }
-      
+            _DatabaseEntities.Departments.Add(department);
+            _DatabaseEntities.SaveChanges();
+            return View();
         }
         public ActionResult CreatFaculty()
         {
@@ -242,17 +157,14 @@ namespace LSS.Controllers
 
         public ActionResult CreateNewSemster()
         {
-            Dictionary<string, string> semester = new Dictionary<string, string>
-            {
-                { "1", "First semester" },
-                { "2", "Second semester" },
-                { "3", "Third semester" }
-            };
+            Dictionary<string, string> semester = new Dictionary<string, string>();
+            semester.Add("1", "First semester");
+            semester.Add("2", "Second semester");
+            semester.Add("3", "Third semester");
 
             ViewBag.semester = new SelectList(semester, "Key", "Value");
             return View();
         }
-
         [HttpGet]
         public ActionResult ListCourses(string? Search, int? Department)
         {

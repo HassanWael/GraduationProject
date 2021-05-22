@@ -122,50 +122,20 @@ namespace LSS.Models.CoursesModelView
                         HashSet<PI> temp = new HashSet<PI>();
                         try
                         {
+                            temp = _SLO_PI[pi.SLO];
                         }catch(Exception e)
                         {
                             Console.WriteLine("CourseModelView line 122 : " + e.Message);
                         }
-                        if (_SLO_PI.ContainsKey(pi.SLO))
-                        {
-                            temp = _SLO_PI[pi.SLO];
-                            temp.Add(pi);
-                            _SLO_PI[pi.SLO] = temp;
-                        }
-                        else
-                        {
-                            temp.Add(pi);
-                            _SLO_PI.Add(pi.SLO, temp);
-                        }
+                        temp.Add(pi);
+
+                        _SLO_PI.Add(pi.SLO, temp);
                     }
                 }
                 
                 return _SLO_PI;
             }
             set { _SLO_PI = value; }
-        }
-
-        private isAssessed _isAssessed { get;set; }
-        public isAssessed IsAssessed { get
-            {
-                if (_isAssessed == null)
-                {
-                   _isAssessed= CourseCoordinator.isAssessed;
-                }
-                return _isAssessed;
-            }
-        }
-
-        private AssessmentPlanforTheStudentLearningOutcomeTechnique _AssessmentPlan { get; set; }
-        public AssessmentPlanforTheStudentLearningOutcomeTechnique AssessmentPlan { get
-            {
-                if (_AssessmentPlan == null)
-                {
-                    _AssessmentPlan = CourseCoordinator.AssessmentPlanforTheStudentLearningOutcomeTechnique;
-                }
-
-                return _AssessmentPlan;
-            }
         }
 
         public string getName() {

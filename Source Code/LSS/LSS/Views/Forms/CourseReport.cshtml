@@ -120,26 +120,6 @@
         <td style=" border:1px solid black"> <select><option>@Model.CLOs.Count </option></select> </td>
         <td style=" border:1px solid black"> <input type="text" id="possible_action" name="record0" placeholder="Possible Action" ondblclick="add()" /> </td>
     </tr>
-    <tr>
-        <td style=" border:1px solid black"> </td>
-        <td style=" border:1px solid black" colspan="2"> </td>
-    </tr>
-</table>
-<br />
-<br />
-<br />
-<table class="img_footer">
-    <tr>
-
-        <td> <img src="~/Images/R.PNG" /> </td>
-        <td><img src="~/Images/Quality.PNG" /> </td>
-        <td><img src="~/Images/Risk.PNG" /></td>
-        <td>
-            <b>
-                EP-F891, Rev. a<br />
-                Ref.: 15/06/2019 - 2020<br />
-                Date: 10/10/2019
-            </b>
 
 </table>
 <script>
@@ -169,6 +149,7 @@
           data = ' <tr> <td style=" border:1px solid black"> <input type="text" id="topics" placeholder="Topic '+ ++id+'" /> </td>\
             <td style=" border:1px solid black"> <select><option>@Model.CLOs.Count </option></select> </td><td style=" border:1px solid black">\
             <input type = "text" name="record'+ id +'" id = "possible_action_new" placeholder = "Possible Action"  /> </td ></tr > ';
+<<<<<<< HEAD
 
             $("#Content_Delv_table").append(data);
         });
@@ -250,6 +231,8 @@
 <br />
 <table class="img_footer">
     <tr>
+=======
+>>>>>>> parent of 5451c89 (Merge branch 'Khouri' into HassanJdeedJdeed)
 
         <td> <img src="~/Images/R.PNG" /> </td>
         <td><img src="~/Images/Quality.PNG" /> </td>
@@ -261,6 +244,7 @@
                 Date: 10/10/2019
             </b>
 
+<<<<<<< HEAD
 </table>
 <br />
 <br />
@@ -467,6 +451,25 @@
             <th>
                 Al-Ahliyya Amman University
             </th>
+=======
+                    $(this).parents("tr").remove();
+
+            });
+        });
+        $("#removeAll").click(function () {
+            $("#Content_Delv_table").find('input[id="possible_action_new"]').each(function () {
+
+                $(this).parents("tr").remove();
+                id = 1;
+            });
+        });
+
+    });
+
+
+</script>
+<div style="page-break-before: always" id="Pagebreak">
+>>>>>>> parent of 5451c89 (Merge branch 'Khouri' into HassanJdeedJdeed)
 
             <td>
                 <img src="~/Images/Al-Ahliya_Amman_University_Logo.png" />
@@ -950,9 +953,14 @@
 
 <br />
 <b>Appendix B:</b> Results ofCourse Assessment Survey
+<<<<<<< HEAD
 <br />
 <br />
 <br />
+=======
+
+
+>>>>>>> parent of 5451c89 (Merge branch 'Khouri' into HassanJdeedJdeed)
 <footer>
     <table class="img_footer">
         <tr>
