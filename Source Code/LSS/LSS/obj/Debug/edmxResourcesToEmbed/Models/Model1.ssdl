@@ -6,9 +6,9 @@
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semseter" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="ActionsTaken" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="ActionsResults" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="RecomandedActions" Type="nvarchar" MaxLength="255" Nullable="false" />
@@ -20,18 +20,16 @@
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semester" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
-    <Property Name="IsAssessed" Type="bit" Nullable="false" />
-    <Property Name="WhyNot" Type="nvarchar" MaxLength="255" />
+    <Property Name="Semester" Type="nvarchar" MaxLength="255" Nullable="false" />
   </EntityType>
   <EntityType Name="AssessmentPlanforTheStudentLearningOutcomeTechnique">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="nvarchar" MaxLength="30" Nullable="false" />
-    <Property Name="Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="255" />
     <Property Name="strategy" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="byCompletingThisCourseStudentsAreAbleTo">
@@ -40,10 +38,10 @@
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semseter" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
-    <Property Name="SLO" Type="nvarchar" MaxLength="20" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SLO" Type="nvarchar" MaxLength="255" />
     <Property Name="AggrementLVL" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="CLO">
@@ -51,36 +49,32 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="courseId" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Course" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="CLO-PI">
     <Key>
       <PropertyRef Name="CLOID" />
       <PropertyRef Name="PI-ID" />
-      <PropertyRef Name="DeptID" />
-      <PropertyRef Name="SLOID" />
     </Key>
     <Property Name="CLOID" Type="int" Nullable="false" />
-    <Property Name="PI-ID" Type="nvarchar" MaxLength="20" Nullable="false" />
-    <Property Name="DeptID" Type="int" Nullable="false" />
-    <Property Name="SLOID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="PI-ID" Type="nvarchar" MaxLength="255" Nullable="false" />
   </EntityType>
   <EntityType Name="Course">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="ID" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="DptID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Pre-requisite" Type="nvarchar" MaxLength="255" />
     <Property Name="Hours" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Co-requisite" Type="nvarchar" MaxLength="255" />
     <Property Name="Designation" Type="nvarchar" MaxLength="255" />
-    <Property Name="VclassURL" Type="nvarchar" MaxLength="50" />
+    <Property Name="VclassURL" Type="nvarchar" MaxLength="255" />
     <Property Name="Description" Type="nvarchar" MaxLength="255" />
     <Property Name="Other Online resources" Type="nvarchar" MaxLength="255" />
     <Property Name="Other Required Material" Type="nvarchar" MaxLength="255" />
-    <Property Name="pre-requisite" Type="nvarchar" MaxLength="30" />
-    <Property Name="co-requisite" Type="nvarchar" MaxLength="30" />
-    <Property Name="dptid" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="CourseAssessmentMapping">
     <Key>
@@ -89,18 +83,16 @@
       <PropertyRef Name="Semseter" />
       <PropertyRef Name="AssessmentID" />
       <PropertyRef Name="CLO" />
-      <PropertyRef Name="PI" />
-      <PropertyRef Name="SLOID" />
+      <PropertyRef Name="SLO" />
       <PropertyRef Name="DeptID" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
-    <Property Name="AssessmentID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="AssessmentID" Type="int" Nullable="false" />
     <Property Name="CLO" Type="int" Nullable="false" />
-    <Property Name="PI" Type="nvarchar" MaxLength="20" Nullable="false" />
-    <Property Name="SLOID" Type="nvarchar" MaxLength="20" Nullable="false" />
-    <Property Name="DeptID" Type="int" Nullable="false" />
+    <Property Name="SLO" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="DeptID" Type="nvarchar" MaxLength="255" Nullable="false" />
   </EntityType>
   <EntityType Name="CourseAssessmentPlan">
     <Key>
@@ -109,10 +101,10 @@
       <PropertyRef Name="Semseter" />
       <PropertyRef Name="AssessmetnID" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
-    <Property Name="AssessmetnID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="AssessmetnID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="CourseAssessmentSurvay">
     <Key>
@@ -121,9 +113,9 @@
       <PropertyRef Name="Semseter" />
       <PropertyRef Name="Qustion" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Qustion" Type="nvarchar" MaxLength="255" Nullable="false" />
   </EntityType>
   <EntityType Name="CourseCoordinator">
@@ -132,16 +124,14 @@
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semseter" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Coordinator" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="NoOFStudents" Type="int" Nullable="false" />
     <Property Name="ClassRoom" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="courseNotAssessedReason " Type="nvarchar" MaxLength="255" />
+    <Property Name="courseNotAssessedReason " Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="DayTime" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Coordinator" Type="nvarchar" MaxLength="30" Nullable="false" />
-    <Property Name="isAssessed" Type="bit" />
-    <Property Name="whyNot" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="CourseFileCheckList">
     <Key>
@@ -149,9 +139,9 @@
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semseter" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="CoordinatorSignature" Type="bit" />
     <Property Name="HeadOFDeptSignature" Type="bit" />
     <Property Name="ViceDeanSignature" Type="bit" />
@@ -163,9 +153,9 @@
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semseter" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="CoordinatorSignature" Type="bit" />
     <Property Name="HeadOFDeptSignature" Type="bit" />
     <Property Name="ViceDeanSignature" Type="bit" />
@@ -177,9 +167,9 @@
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semseter" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="CoordinatorSignature" Type="bit" />
     <Property Name="HeadOFDeptSignature" Type="bit" />
     <Property Name="ViceDeanSignature" Type="bit" />
@@ -191,9 +181,9 @@
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semseter" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="CoordinatorSignature" Type="bit" />
     <Property Name="HeadOFDeptSignature" Type="bit" />
     <Property Name="ReasonOfDisaproval" Type="nvarchar" MaxLength="255" />
@@ -205,40 +195,40 @@
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semseter" />
     </Key>
-    <Property Name="StrategyID" Type="nvarchar" MaxLength="30" Nullable="false" />
-    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="StrategyID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="CourseTextBook">
     <Key>
       <PropertyRef Name="Course" />
       <PropertyRef Name="Book Title" />
     </Key>
-    <Property Name="Course" Type="nvarchar" MaxLength="30" Nullable="false" />
-    <Property Name="Book Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Author" Type="nvarchar" MaxLength="50" />
+    <Property Name="Course" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Book Title" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Author" Type="nvarchar" MaxLength="255" />
     <Property Name="YearOfpublish" Type="date" />
-    <Property Name="City/State" Type="nvarchar" MaxLength="50" />
-    <Property Name="Publisher" Type="nvarchar" MaxLength="50" />
+    <Property Name="City/State" Type="nvarchar" MaxLength="255" />
+    <Property Name="Publisher" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="Department">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="int" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="HeadOFDepartment" Type="nvarchar" MaxLength="30" />
-    <Property Name="FacultyId" Type="int" Nullable="false" />
+    <Property Name="ID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" />
+    <Property Name="FacultyID" Type="nvarchar" MaxLength="255" />
+    <Property Name="HeadOFDepartment" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="Faculty">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="ID" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="255" />
-    <Property Name="ViceDean" Type="nvarchar" MaxLength="30" />
-    <Property Name="dean" Type="nvarchar" MaxLength="30" />
+    <Property Name="Dean" Type="nvarchar" MaxLength="255" />
+    <Property Name="ViceDean" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="ineffectiveAssessmentStrategis">
     <Key>
@@ -246,9 +236,9 @@
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semseter" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Reason" Type="nvarchar" MaxLength="255" Nullable="false" />
   </EntityType>
   <EntityType Name="ineffectiveTeachingStrategis">
@@ -257,22 +247,22 @@
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semseter" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Reason" Type="nvarchar" MaxLength="255" Nullable="false" />
   </EntityType>
   <EntityType Name="Lecturers">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="nvarchar" MaxLength="30" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Role" Type="nvarchar" MaxLength="20" Nullable="false" />
-    <Property Name="OfficeNo" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="dptId" Type="int" Nullable="false" />
+    <Property Name="ID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Role" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="OfficeNo" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="DptID" Type="nvarchar" MaxLength="255" Nullable="false" />
   </EntityType>
   <EntityType Name="ModerationChecklist">
     <Key>
@@ -281,9 +271,9 @@
       <PropertyRef Name="Semseter" />
       <PropertyRef Name="Qustion" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Qustion" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Answer" Type="bit" Nullable="false" />
     <Property Name="commetns" Type="nvarchar" MaxLength="255" />
@@ -295,33 +285,37 @@
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semseter" />
     </Key>
-    <Property Name="LecturerID" Type="nvarchar" MaxLength="30" Nullable="false" />
-    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="LecturerID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="DayTime" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="ClassRoom" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="noOFStudents" Type="int" />
   </EntityType>
   <EntityType Name="PEO">
     <Key>
       <PropertyRef Name="ID" />
       <PropertyRef Name="DeptID" />
     </Key>
-    <Property Name="ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ID" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Desc" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="DeptID" Type="int" Nullable="false" />
+    <Property Name="DeptID" Type="nvarchar" MaxLength="255" Nullable="false" />
   </EntityType>
   <EntityType Name="PI">
     <Key>
       <PropertyRef Name="ID" />
-      <PropertyRef Name="SLOID" />
-      <PropertyRef Name="DeptID" />
     </Key>
-    <Property Name="ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ID" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Desc" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="SLOID" Type="nvarchar" MaxLength="20" Nullable="false" />
-    <Property Name="DeptID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PI_SLO">
+    <Key>
+      <PropertyRef Name="PI_ID" />
+      <PropertyRef Name="SLOID" />
+    </Key>
+    <Property Name="PI_ID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="SLOID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="DeptID" Type="nvarchar" MaxLength="255" Nullable="false" />
   </EntityType>
   <EntityType Name="ResultOfCourseDirectAssessment">
     <Key>
@@ -329,9 +323,9 @@
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semseter" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="ActionsTaken" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Observation" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="AnalysisAndJustification" Type="nvarchar" MaxLength="255" Nullable="false" />
@@ -344,9 +338,9 @@
       <PropertyRef Name="Semseter" />
       <PropertyRef Name="Week" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Week" Type="int" Nullable="false" />
     <Property Name="Topics" Type="nvarchar" MaxLength="255" />
     <Property Name="Assigments" Type="nvarchar" MaxLength="255" />
@@ -360,9 +354,9 @@
       <PropertyRef Name="Week" />
       <PropertyRef Name="CLO" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Week" Type="int" Nullable="false" />
     <Property Name="CLO" Type="int" Nullable="false" />
   </EntityType>
@@ -371,37 +365,27 @@
       <PropertyRef Name="SLOID" />
       <PropertyRef Name="DeptID" />
     </Key>
-    <Property Name="SLOID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="SLOID" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Desc" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="DeptID" Type="int" Nullable="false" />
+    <Property Name="DeptID" Type="nvarchar" MaxLength="255" Nullable="false" />
   </EntityType>
-  <EntityType Name="SLO_Course">
+  <EntityType Name="SLO-PEO">
     <Key>
-      <PropertyRef Name="SLOID" />
-      <PropertyRef Name="DeptID" />
-      <PropertyRef Name="CourseID" />
-    </Key>
-    <Property Name="SLOID" Type="nvarchar" MaxLength="20" Nullable="false" />
-    <Property Name="DeptID" Type="int" Nullable="false" />
-    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
-  </EntityType>
-  <EntityType Name="SLO_PEO">
-    <Key>
-      <PropertyRef Name="SLOID" />
-      <PropertyRef Name="PEOID" />
+      <PropertyRef Name="SLO" />
+      <PropertyRef Name="PEO" />
       <PropertyRef Name="DeptID" />
     </Key>
-    <Property Name="SLOID" Type="nvarchar" MaxLength="20" Nullable="false" />
-    <Property Name="PEOID" Type="nvarchar" MaxLength="20" Nullable="false" />
-    <Property Name="DeptID" Type="int" Nullable="false" />
+    <Property Name="SLO" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="PEO" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="DeptID" Type="nvarchar" MaxLength="255" Nullable="false" />
   </EntityType>
   <EntityType Name="Student">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="nvarchar" MaxLength="30" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="50" />
-    <Property Name="DptID" Type="int" Nullable="false" />
+    <Property Name="ID" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" />
+    <Property Name="DptID" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="Student-Course-Grade">
     <Key>
@@ -410,10 +394,10 @@
       <PropertyRef Name="Semseter" />
       <PropertyRef Name="StudentID" />
     </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
-    <Property Name="StudentID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="StudentID" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Mark" Type="int" />
   </EntityType>
   <EntityType Name="Student-PI-Outcome">
@@ -421,8 +405,8 @@
       <PropertyRef Name="CoordinatorID" />
       <PropertyRef Name="StudentID" />
     </Key>
-    <Property Name="CoordinatorID" Type="nvarchar" MaxLength="30" Nullable="false" />
-    <Property Name="StudentID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CoordinatorID" Type="int" Nullable="false" />
+    <Property Name="StudentID" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="AssessmentMethod" Type="int" Nullable="false" />
     <Property Name="Mark" Type="int" />
   </EntityType>
@@ -431,7 +415,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" Nullable="false" />
-    <Property Name="strategy" Type="nvarchar" MaxLength="50" />
+    <Property Name="strategy" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="YearAndSemester">
     <Key>
@@ -439,26 +423,32 @@
       <PropertyRef Name="Semester" />
     </Key>
     <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Semester" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="database_firewall_rules">
-    <Key>
-      <PropertyRef Name="id" />
-      <PropertyRef Name="name" />
-      <PropertyRef Name="start_ip_address" />
-      <PropertyRef Name="end_ip_address" />
-      <PropertyRef Name="create_date" />
-      <PropertyRef Name="modify_date" />
-    </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="start_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
-    <Property Name="end_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
-    <Property Name="create_date" Type="datetime" Nullable="false" />
-    <Property Name="modify_date" Type="datetime" Nullable="false" />
-  </EntityType>
+  <Association Name="FK__CourseCoo__Corde__75F77EB0">
+    <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lecturers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CourseCoordinator">
+        <PropertyRef Name="Coordinator" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PEO__DeptID__1293BD5E">
+    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="PEO" Type="Self.PEO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PEO">
+        <PropertyRef Name="DeptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ActionsForImprovingTheCourse_ToCourseCoordinator">
     <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
     <End Role="ActionsForImprovingTheCourse" Type="Self.ActionsForImprovingTheCourse" Multiplicity="0..1" />
@@ -503,22 +493,6 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_CAM_ToPI">
-    <End Role="PI" Type="Self.PI" Multiplicity="1" />
-    <End Role="CourseAssessmentMapping" Type="Self.CourseAssessmentMapping" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="PI">
-        <PropertyRef Name="SLOID" />
-        <PropertyRef Name="ID" />
-        <PropertyRef Name="DeptID" />
-      </Principal>
-      <Dependent Role="CourseAssessmentMapping">
-        <PropertyRef Name="SLOID" />
-        <PropertyRef Name="PI" />
-        <PropertyRef Name="DeptID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_CLO_ToCourse">
     <End Role="Course" Type="Self.Course" Multiplicity="1" />
     <End Role="CLO" Type="Self.CLO" Multiplicity="*" />
@@ -527,7 +501,7 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="CLO">
-        <PropertyRef Name="courseId" />
+        <PropertyRef Name="Course" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -548,26 +522,10 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     <End Role="CLO-PI" Type="Self.CLO-PI" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PI">
-        <PropertyRef Name="SLOID" />
         <PropertyRef Name="ID" />
-        <PropertyRef Name="DeptID" />
       </Principal>
       <Dependent Role="CLO-PI">
-        <PropertyRef Name="SLOID" />
         <PropertyRef Name="PI-ID" />
-        <PropertyRef Name="DeptID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Coordinator">
-    <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="1" />
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Lecturers">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="CourseCoordinator">
-        <PropertyRef Name="Coordinator" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -579,7 +537,7 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="Course1">
-        <PropertyRef Name="co-requisite" />
+        <PropertyRef Name="Co-requisite" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -591,7 +549,7 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="Course">
-        <PropertyRef Name="dptid" />
+        <PropertyRef Name="DptID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -603,7 +561,7 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="Course1">
-        <PropertyRef Name="pre-requisite" />
+        <PropertyRef Name="Pre-requisite" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -635,15 +593,17 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_CourseAssessmentMapping_ToDep">
-    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+  <Association Name="FK_CourseAssessmentMapping_ToSLO">
+    <End Role="SLO" Type="Self.SLO" Multiplicity="1" />
     <End Role="CourseAssessmentMapping" Type="Self.CourseAssessmentMapping" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Department">
-        <PropertyRef Name="ID" />
+      <Principal Role="SLO">
+        <PropertyRef Name="DeptID" />
+        <PropertyRef Name="SLOID" />
       </Principal>
       <Dependent Role="CourseAssessmentMapping">
         <PropertyRef Name="DeptID" />
+        <PropertyRef Name="SLO" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -700,20 +660,6 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
       </Principal>
       <Dependent Role="CourseCoordinator">
         <PropertyRef Name="CourseID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_CourseCoordinator_YearAndSemester">
-    <End Role="YearAndSemester" Type="Self.YearAndSemester" Multiplicity="1" />
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="YearAndSemester">
-        <PropertyRef Name="Year" />
-        <PropertyRef Name="Semester" />
-      </Principal>
-      <Dependent Role="CourseCoordinator">
-        <PropertyRef Name="Year" />
-        <PropertyRef Name="Semseter" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -781,6 +727,18 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_CourseTeachingStrategies_ToCourse">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="CourseTeachingStrategies" Type="Self.CourseTeachingStrategies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CourseTeachingStrategies">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_CourseTeachingStrategies_ToCourseCoordinator">
     <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
     <End Role="CourseTeachingStrategies" Type="Self.CourseTeachingStrategies" Multiplicity="*" />
@@ -810,14 +768,14 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Department_Faculty">
-    <End Role="Faculty" Type="Self.Faculty" Multiplicity="1" />
+    <End Role="Faculty" Type="Self.Faculty" Multiplicity="0..1" />
     <End Role="Department" Type="Self.Department" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Faculty">
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="Department">
-        <PropertyRef Name="FacultyId" />
+        <PropertyRef Name="FacultyID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -833,6 +791,18 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Fac_Dean_ToLecturer">
+    <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="0..1" />
+    <End Role="Faculty" Type="Self.Faculty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lecturers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Faculty">
+        <PropertyRef Name="Dean" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Fac_ViceDean_ToLecturer">
     <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="0..1" />
     <End Role="Faculty" Type="Self.Faculty" Multiplicity="*" />
@@ -841,7 +811,7 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="Faculty">
-        <PropertyRef Name="dean" />
+        <PropertyRef Name="Dean" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -885,7 +855,7 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="Lecturers">
-        <PropertyRef Name="dptId" />
+        <PropertyRef Name="DptID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -933,15 +903,29 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_PEO_Department">
-    <End Role="Department" Type="Self.Department" Multiplicity="1" />
-    <End Role="PEO" Type="Self.PEO" Multiplicity="*" />
+  <Association Name="FK_PI_SLO_ToPI">
+    <End Role="PI" Type="Self.PI" Multiplicity="1" />
+    <End Role="PI_SLO" Type="Self.PI_SLO" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Department">
+      <Principal Role="PI">
         <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="PEO">
+      <Dependent Role="PI_SLO">
+        <PropertyRef Name="PI_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PI_SLO_ToSLO">
+    <End Role="SLO" Type="Self.SLO" Multiplicity="1" />
+    <End Role="PI_SLO" Type="Self.PI_SLO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SLO">
         <PropertyRef Name="DeptID" />
+        <PropertyRef Name="SLOID" />
+      </Principal>
+      <Dependent Role="PI_SLO">
+        <PropertyRef Name="DeptID" />
+        <PropertyRef Name="SLOID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1007,74 +991,36 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_SLO_Course_ToCourse">
-    <End Role="Course" Type="Self.Course" Multiplicity="1" />
-    <End Role="SLO_Course" Type="Self.SLO_Course" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Course">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="SLO_Course">
-        <PropertyRef Name="CourseID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SLO_Course_ToSLO">
-    <End Role="SLO" Type="Self.SLO" Multiplicity="1" />
-    <End Role="SLO_Course" Type="Self.SLO_Course" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="SLO">
-        <PropertyRef Name="DeptID" />
-        <PropertyRef Name="SLOID" />
-      </Principal>
-      <Dependent Role="SLO_Course">
-        <PropertyRef Name="DeptID" />
-        <PropertyRef Name="SLOID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SLO_Dept">
-    <End Role="Department" Type="Self.Department" Multiplicity="1" />
-    <End Role="SLO" Type="Self.SLO" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Department">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="SLO">
-        <PropertyRef Name="DeptID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SLO_PEO_ToPEO">
+  <Association Name="FK_SLO-PEO_ToPEO">
     <End Role="PEO" Type="Self.PEO" Multiplicity="1" />
-    <End Role="SLO_PEO" Type="Self.SLO_PEO" Multiplicity="*" />
+    <End Role="SLO-PEO" Type="Self.SLO-PEO" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PEO">
         <PropertyRef Name="ID" />
         <PropertyRef Name="DeptID" />
       </Principal>
-      <Dependent Role="SLO_PEO">
-        <PropertyRef Name="PEOID" />
+      <Dependent Role="SLO-PEO">
+        <PropertyRef Name="PEO" />
         <PropertyRef Name="DeptID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_SLO_PEO_ToSLO">
+  <Association Name="FK_SLO-PEO_ToSLO">
     <End Role="SLO" Type="Self.SLO" Multiplicity="1" />
-    <End Role="SLO_PEO" Type="Self.SLO_PEO" Multiplicity="*" />
+    <End Role="SLO-PEO" Type="Self.SLO-PEO" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="SLO">
         <PropertyRef Name="DeptID" />
         <PropertyRef Name="SLOID" />
       </Principal>
-      <Dependent Role="SLO_PEO">
+      <Dependent Role="SLO-PEO">
         <PropertyRef Name="DeptID" />
-        <PropertyRef Name="SLOID" />
+        <PropertyRef Name="SLO" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Student_departement">
-    <End Role="Department" Type="Self.Department" Multiplicity="1" />
+    <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
     <End Role="Student" Type="Self.Student" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Department">
@@ -1137,20 +1083,6 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="PI_ToSLO">
-    <End Role="SLO" Type="Self.SLO" Multiplicity="1" />
-    <End Role="PI" Type="Self.PI" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="SLO">
-        <PropertyRef Name="DeptID" />
-        <PropertyRef Name="SLOID" />
-      </Principal>
-      <Dependent Role="PI">
-        <PropertyRef Name="DeptID" />
-        <PropertyRef Name="SLOID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="ModelStoreContainer">
     <EntitySet Name="ActionsForImprovingTheCourse" EntityType="Self.ActionsForImprovingTheCourse" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AssessedCourses" EntityType="Self.AssessedCourses" Schema="dbo" store:Type="Tables" />
@@ -1178,27 +1110,25 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     <EntitySet Name="OtherLecturers" EntityType="Self.OtherLecturers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PEO" EntityType="Self.PEO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PI" EntityType="Self.PI" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PI_SLO" EntityType="Self.PI_SLO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ResultOfCourseDirectAssessment" EntityType="Self.ResultOfCourseDirectAssessment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="schedule" EntityType="Self.schedule" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Schedule_CLO" EntityType="Self.Schedule_CLO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SLO" EntityType="Self.SLO" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="SLO_Course" EntityType="Self.SLO_Course" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="SLO_PEO" EntityType="Self.SLO_PEO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SLO-PEO" EntityType="Self.SLO-PEO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Student-Course-Grade" EntityType="Self.Student-Course-Grade" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Student-PI-Outcome" EntityType="Self.Student-PI-Outcome" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TeachingAndLearningStrategiesTechnique" EntityType="Self.TeachingAndLearningStrategiesTechnique" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="YearAndSemester" EntityType="Self.YearAndSemester" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
-      <DefiningQuery>SELECT 
-    [database_firewall_rules].[id] AS [id], 
-    [database_firewall_rules].[name] AS [name], 
-    [database_firewall_rules].[start_ip_address] AS [start_ip_address], 
-    [database_firewall_rules].[end_ip_address] AS [end_ip_address], 
-    [database_firewall_rules].[create_date] AS [create_date], 
-    [database_firewall_rules].[modify_date] AS [modify_date]
-    FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery>
-    </EntitySet>
+    <AssociationSet Name="FK__CourseCoo__Corde__75F77EB0" Association="Self.FK__CourseCoo__Corde__75F77EB0">
+      <End Role="Lecturers" EntitySet="Lecturers" />
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PEO__DeptID__1293BD5E" Association="Self.FK__PEO__DeptID__1293BD5E">
+      <End Role="Department" EntitySet="Department" />
+      <End Role="PEO" EntitySet="PEO" />
+    </AssociationSet>
     <AssociationSet Name="FK_ActionsForImprovingTheCourse_ToCourseCoordinator" Association="Self.FK_ActionsForImprovingTheCourse_ToCourseCoordinator">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
       <End Role="ActionsForImprovingTheCourse" EntitySet="ActionsForImprovingTheCourse" />
@@ -1211,10 +1141,6 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
       <End Role="byCompletingThisCourseStudentsAreAbleTo" EntitySet="byCompletingThisCourseStudentsAreAbleTo" />
     </AssociationSet>
-    <AssociationSet Name="FK_CAM_ToPI" Association="Self.FK_CAM_ToPI">
-      <End Role="PI" EntitySet="PI" />
-      <End Role="CourseAssessmentMapping" EntitySet="CourseAssessmentMapping" />
-    </AssociationSet>
     <AssociationSet Name="FK_CLO_ToCourse" Association="Self.FK_CLO_ToCourse">
       <End Role="Course" EntitySet="Course" />
       <End Role="CLO" EntitySet="CLO" />
@@ -1226,10 +1152,6 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     <AssociationSet Name="FK_CLO-PI_ToPI" Association="Self.FK_CLO-PI_ToPI">
       <End Role="PI" EntitySet="PI" />
       <End Role="CLO-PI" EntitySet="CLO-PI" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Coordinator" Association="Self.FK_Coordinator">
-      <End Role="Lecturers" EntitySet="Lecturers" />
-      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
     </AssociationSet>
     <AssociationSet Name="FK_Course_co" Association="Self.FK_Course_co">
       <End Role="Course" EntitySet="Course" />
@@ -1251,8 +1173,8 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
       <End Role="CourseAssessmentMapping" EntitySet="CourseAssessmentMapping" />
     </AssociationSet>
-    <AssociationSet Name="FK_CourseAssessmentMapping_ToDep" Association="Self.FK_CourseAssessmentMapping_ToDep">
-      <End Role="Department" EntitySet="Department" />
+    <AssociationSet Name="FK_CourseAssessmentMapping_ToSLO" Association="Self.FK_CourseAssessmentMapping_ToSLO">
+      <End Role="SLO" EntitySet="SLO" />
       <End Role="CourseAssessmentMapping" EntitySet="CourseAssessmentMapping" />
     </AssociationSet>
     <AssociationSet Name="FK_CourseAssessmentPlan_ToAssessment" Association="Self.FK_CourseAssessmentPlan_ToAssessment">
@@ -1271,10 +1193,6 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
       <End Role="Course" EntitySet="Course" />
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
     </AssociationSet>
-    <AssociationSet Name="FK_CourseCoordinator_YearAndSemester" Association="Self.FK_CourseCoordinator_YearAndSemester">
-      <End Role="YearAndSemester" EntitySet="YearAndSemester" />
-      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
-    </AssociationSet>
     <AssociationSet Name="FK_CourseFileCheckList_ToCourseCoordinator" Association="Self.FK_CourseFileCheckList_ToCourseCoordinator">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
       <End Role="CourseFileCheckList" EntitySet="CourseFileCheckList" />
@@ -1291,6 +1209,10 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
       <End Role="CourseSyllabus" EntitySet="CourseSyllabus" />
     </AssociationSet>
+    <AssociationSet Name="FK_CourseTeachingStrategies_ToCourse" Association="Self.FK_CourseTeachingStrategies_ToCourse">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="CourseTeachingStrategies" EntitySet="CourseTeachingStrategies" />
+    </AssociationSet>
     <AssociationSet Name="FK_CourseTeachingStrategies_ToCourseCoordinator" Association="Self.FK_CourseTeachingStrategies_ToCourseCoordinator">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
       <End Role="CourseTeachingStrategies" EntitySet="CourseTeachingStrategies" />
@@ -1306,6 +1228,10 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     <AssociationSet Name="FK_DPT_ToLecturer" Association="Self.FK_DPT_ToLecturer">
       <End Role="Lecturers" EntitySet="Lecturers" />
       <End Role="Department" EntitySet="Department" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Fac_Dean_ToLecturer" Association="Self.FK_Fac_Dean_ToLecturer">
+      <End Role="Lecturers" EntitySet="Lecturers" />
+      <End Role="Faculty" EntitySet="Faculty" />
     </AssociationSet>
     <AssociationSet Name="FK_Fac_ViceDean_ToLecturer" Association="Self.FK_Fac_ViceDean_ToLecturer">
       <End Role="Lecturers" EntitySet="Lecturers" />
@@ -1335,9 +1261,13 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
       <End Role="Lecturers" EntitySet="Lecturers" />
       <End Role="OtherLecturers" EntitySet="OtherLecturers" />
     </AssociationSet>
-    <AssociationSet Name="FK_PEO_Department" Association="Self.FK_PEO_Department">
-      <End Role="Department" EntitySet="Department" />
-      <End Role="PEO" EntitySet="PEO" />
+    <AssociationSet Name="FK_PI_SLO_ToPI" Association="Self.FK_PI_SLO_ToPI">
+      <End Role="PI" EntitySet="PI" />
+      <End Role="PI_SLO" EntitySet="PI_SLO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PI_SLO_ToSLO" Association="Self.FK_PI_SLO_ToSLO">
+      <End Role="SLO" EntitySet="SLO" />
+      <End Role="PI_SLO" EntitySet="PI_SLO" />
     </AssociationSet>
     <AssociationSet Name="FK_ResultOfCourseDirectAssessment_ToCourseCoordinator" Association="Self.FK_ResultOfCourseDirectAssessment_ToCourseCoordinator">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
@@ -1355,25 +1285,13 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
       <End Role="schedule" EntitySet="schedule" />
     </AssociationSet>
-    <AssociationSet Name="FK_SLO_Course_ToCourse" Association="Self.FK_SLO_Course_ToCourse">
-      <End Role="Course" EntitySet="Course" />
-      <End Role="SLO_Course" EntitySet="SLO_Course" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SLO_Course_ToSLO" Association="Self.FK_SLO_Course_ToSLO">
-      <End Role="SLO" EntitySet="SLO" />
-      <End Role="SLO_Course" EntitySet="SLO_Course" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SLO_Dept" Association="Self.FK_SLO_Dept">
-      <End Role="Department" EntitySet="Department" />
-      <End Role="SLO" EntitySet="SLO" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SLO_PEO_ToPEO" Association="Self.FK_SLO_PEO_ToPEO">
+    <AssociationSet Name="FK_SLO-PEO_ToPEO" Association="Self.FK_SLO-PEO_ToPEO">
       <End Role="PEO" EntitySet="PEO" />
-      <End Role="SLO_PEO" EntitySet="SLO_PEO" />
+      <End Role="SLO-PEO" EntitySet="SLO-PEO" />
     </AssociationSet>
-    <AssociationSet Name="FK_SLO_PEO_ToSLO" Association="Self.FK_SLO_PEO_ToSLO">
+    <AssociationSet Name="FK_SLO-PEO_ToSLO" Association="Self.FK_SLO-PEO_ToSLO">
       <End Role="SLO" EntitySet="SLO" />
-      <End Role="SLO_PEO" EntitySet="SLO_PEO" />
+      <End Role="SLO-PEO" EntitySet="SLO-PEO" />
     </AssociationSet>
     <AssociationSet Name="FK_Student_departement" Association="Self.FK_Student_departement">
       <End Role="Department" EntitySet="Department" />
@@ -1394,10 +1312,6 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     <AssociationSet Name="FK_Student-PI-Outcome_ToTeachingAndLearningStrategiesTechnique" Association="Self.FK_Student-PI-Outcome_ToTeachingAndLearningStrategiesTechnique">
       <End Role="TeachingAndLearningStrategiesTechnique" EntitySet="TeachingAndLearningStrategiesTechnique" />
       <End Role="Student-PI-Outcome" EntitySet="Student-PI-Outcome" />
-    </AssociationSet>
-    <AssociationSet Name="PI_ToSLO" Association="Self.PI_ToSLO">
-      <End Role="SLO" EntitySet="SLO" />
-      <End Role="PI" EntitySet="PI" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

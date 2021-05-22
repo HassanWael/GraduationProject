@@ -22,7 +22,7 @@ namespace LSS.Models
     
         public string ID { get; set; }
         public string Desc { get; set; }
-        public int DeptID { get; set; }
+        public string DeptID { get; set; }
     
         public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

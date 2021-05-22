@@ -17,8 +17,6 @@ namespace LSS.Models
         public string CourseID { get; set; }
         public System.DateTime Year { get; set; }
         public string Semester { get; set; }
-        public bool IsAssessed { get; set; }
-        public string WhyNot { get; set; }
     
         public virtual Course Course { get; set; }
     }

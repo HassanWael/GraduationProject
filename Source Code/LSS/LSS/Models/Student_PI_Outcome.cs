@@ -14,7 +14,7 @@ namespace LSS.Models
     
     public partial class Student_PI_Outcome
     {
-        public string CoordinatorID { get; set; }
+        public int CoordinatorID { get; set; }
         public string StudentID { get; set; }
         public int AssessmentMethod { get; set; }
         public Nullable<int> Mark { get; set; }

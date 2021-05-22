@@ -17,19 +17,16 @@ namespace LSS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PI()
         {
-            this.CourseAssessmentMappings = new HashSet<CourseAssessmentMapping>();
             this.CLOes = new HashSet<CLO>();
+            this.SLOes = new HashSet<SLO>();
         }
     
         public string ID { get; set; }
         public string Desc { get; set; }
-        public string SLOID { get; set; }
-        public int DeptID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CourseAssessmentMapping> CourseAssessmentMappings { get; set; }
-        public virtual SLO SLO { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CLO> CLOes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SLO> SLOes { get; set; }
     }
 }

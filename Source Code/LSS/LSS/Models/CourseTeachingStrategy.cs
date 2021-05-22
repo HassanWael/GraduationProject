@@ -19,6 +19,7 @@ namespace LSS.Models
         public System.DateTime Year { get; set; }
         public string Semseter { get; set; }
     
+        public virtual Course Course { get; set; }
         public virtual CourseCoordinator CourseCoordinator { get; set; }
     }
 }

@@ -14,11 +14,11 @@ namespace LSS.Models
     
     public partial class SLO_PEO
     {
-        public string SLOID { get; set; }
-        public string PEOID { get; set; }
-        public int DeptID { get; set; }
+        public string SLO { get; set; }
+        public string PEO { get; set; }
+        public string DeptID { get; set; }
     
-        public virtual PEO PEO { get; set; }
-        public virtual SLO SLO { get; set; }
+        public virtual PEO PEO1 { get; set; }
+        public virtual SLO SLO1 { get; set; }
     }
 }
