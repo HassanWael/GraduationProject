@@ -6,11 +6,12 @@ using System.Web;
 using System.Web.Mvc;
 using LSS.Models;
 using LSS.Models.arc;
+using OfficeOpenXml;
 using PagedList;
 
 namespace LSS.Controllers
 {
-   //[Authorize(Roles ="Admin")]
+    //[Authorize(Roles ="Admin")]
     public class AdminController : Controller
     {
         readonly LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
@@ -18,7 +19,7 @@ namespace LSS.Controllers
         //ToDO :Create Index View for Admin.
         readonly YearAndSemester YAS = SemesterSingelton.getCurrentYearAndSemester();
 
-        public ActionResult AddCourseToSemester( string CourseID)
+        public ActionResult AddCourseToSemester(string CourseID)
         {
             CourseCoordinator cc;
             if (_DatabaseEntities.CourseCoordinators.Find(CourseID, YAS.Year, YAS.Semester) == null)
@@ -42,7 +43,7 @@ namespace LSS.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddCourseToSemester(CourseCoordinator cc )
+        public ActionResult AddCourseToSemester(CourseCoordinator cc)
         {
             if (ModelState.IsValid)
             {
@@ -60,17 +61,17 @@ namespace LSS.Controllers
 
                     }
                 }
-                catch(Exception e )
+                catch (Exception e)
                 {
-                    ModelState.AddModelError("An errorr Has Acoured please try again later", e );
-                    Console.WriteLine("Error at the Line 48 of AdminController : "+e.Message);
+                    ModelState.AddModelError("An errorr Has Acoured please try again later", e);
+                    Console.WriteLine("Error at the Line 48 of AdminController : " + e.Message);
                     return View();
                 }
                 return RedirectToAction("Index");
             }
             return View();
         }
-       
+
         public ActionResult Index()
         {
             return View();
@@ -78,18 +79,20 @@ namespace LSS.Controllers
         public ActionResult CreateCourse()
         {
             return View();
-        } 
+        }
         [HttpPost]
-        public ActionResult CreateCourse(Course course )
+        public ActionResult CreateCourse(Course course)
         {
-            try {
+            try
+            {
                 if (_DatabaseEntities.Courses.Find(course.ID) != null)
                 {
                     _DatabaseEntities.Courses.Add(course);
                     _DatabaseEntities.SaveChanges();
                     return RedirectToAction("Index");
                 }
-                else {
+                else
+                {
                     ModelState.AddModelError("Dublicate Value", "This Course is already in the database");
                     return View();
                 }
@@ -112,7 +115,8 @@ namespace LSS.Controllers
         {
             try
             {
-                if (_DatabaseEntities.Lecturers.Find(lecturer.ID)==null) {
+                if (_DatabaseEntities.Lecturers.Find(lecturer.ID) == null)
+                {
                     if (ModelState.IsValid)
                     {
                         _DatabaseEntities.Lecturers.Add(lecturer);
@@ -121,13 +125,14 @@ namespace LSS.Controllers
                     }
                     return View();
                 }
-                else{
+                else
+                {
 
                     ModelState.AddModelError("Dublicate Value", " lecturer ID is already in the database");
                     return View();
                 }
             }
-            catch(Exception e )
+            catch (Exception e)
             {
                 ModelState.AddModelError("Error", "An errorr Has Acoured please try again later");
                 Console.WriteLine("Error at the Line 82 of AdminController : " + e.Message);
@@ -137,7 +142,7 @@ namespace LSS.Controllers
 
         public ActionResult CreatDpt()
         {
-           
+
             return View();
         }
         [HttpPost]
@@ -164,13 +169,13 @@ namespace LSS.Controllers
                 }
 
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 ModelState.AddModelError("Error", "An errorr Has Acoured please try again later");
                 Console.WriteLine("Error at the Line 82 of AdminController : " + e.Message);
                 return View();
             }
-      
+
         }
         public ActionResult CreatFaculty()
         {
@@ -215,7 +220,7 @@ namespace LSS.Controllers
             _DatabaseEntities.Entry(department).State = EntityState.Modified;
             _DatabaseEntities.SaveChanges();
             return RedirectToAction("Index");
-            
+
         }
         public ActionResult EditFaculty(String id)
         {
@@ -255,9 +260,9 @@ namespace LSS.Controllers
         }
 
         [HttpGet]
-        public ActionResult ListCourses(string? Search, int? Department , int page = 1 ,int pageSize = 10)
+        public ActionResult ListCourses(string? Search, int? Department, int page = 1, int pageSize = 10)
         {
-            if ((Search == null || Search=="" )&& Department == null)
+            if ((Search == null || Search == "") && Department == null)
             {
                 List<Course> Courses = _DatabaseEntities.Courses.ToList();
                 List<Department> departments = _DatabaseEntities.Departments.ToList();
@@ -265,20 +270,20 @@ namespace LSS.Controllers
                 PagedList<Course> CoursesPaged = new PagedList<Course>(Courses, page, pageSize);
                 return View(CoursesPaged);
             }
-            else if (Search == null || Search=="")
+            else if (Search == null || Search == "")
             {
-                List<Course> Courses = _DatabaseEntities.Courses.Where(x=>x.dptid==Department).ToList();
+                List<Course> Courses = _DatabaseEntities.Courses.Where(x => x.dptid == Department).ToList();
                 List<Department> departments = _DatabaseEntities.Departments.ToList();
                 ViewBag.Department = new SelectList(departments, "ID", "Name");
                 PagedList<Course> CoursesPaged = new PagedList<Course>(Courses, page, pageSize);
                 ViewBag.Search = Search;
                 ViewBag.DepartmentID = Department;
                 return View(CoursesPaged);
-             
+
             }
-            else if(Department == null)
+            else if (Department == null)
             {
-                List<Course> Courses = _DatabaseEntities.Courses.Where(x=> x.Title.ToLower().Contains(Search.ToLower()) || x.ID.ToLower().Contains(Search.ToLower())).ToList();
+                List<Course> Courses = _DatabaseEntities.Courses.Where(x => x.Title.ToLower().Contains(Search.ToLower()) || x.ID.ToLower().Contains(Search.ToLower())).ToList();
                 List<Department> departments = _DatabaseEntities.Departments.ToList();
                 ViewBag.Department = new SelectList(departments, "ID", "Name");
                 PagedList<Course> CoursesPaged = new PagedList<Course>(Courses, page, pageSize);
@@ -301,8 +306,9 @@ namespace LSS.Controllers
         }
 
 
-        public ActionResult ListStudents(string? Search, int? Department, int page = 1, int pageSize = 10)
+        public ActionResult ListStudents(string? Search, int? Department, string? updateMassege, int page = 1, int pageSize = 10)
         {
+            ViewBag.updateMassege = updateMassege; 
             if ((Search == null || Search == "") && Department == null)
             {
                 List<Student> students = _DatabaseEntities.Students.ToList();
@@ -349,20 +355,117 @@ namespace LSS.Controllers
         }
         public ActionResult UpdateStudent()
         {
-
+            ViewBag.Departments = _DatabaseEntities.Departments.ToList();
             return View();
         }
+        [HttpPost]
+        public ActionResult UpdateStudent(Student student)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _DatabaseEntities.Entry(student).State = EntityState.Modified;
+                    _DatabaseEntities.SaveChanges();
+
+                    return RedirectToAction("ListStudents");
+                }
+                return View();
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError(e.Message, "an error has accoured please try again later ");
+                Console.WriteLine("Error at line 365  Admin" + e);
+                return View();
+            }
+
+
+        }
+
         public ActionResult CreateStudent()
         {
-
+            ViewBag.Departments = _DatabaseEntities.Departments.ToList();
             return View();
         }
-
-        public ActionResult AddStudentList()
+        public ActionResult CreateStudent(Student student)
         {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _DatabaseEntities.Students.Add(student);
+                    _DatabaseEntities.SaveChanges();
 
+                }
+                return View();
 
-            return View();
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError(e.Message, "an error has accoured please try again later ");
+                Console.WriteLine("Error at line 384 Admin" + e);
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult AddStudentList(FormCollection formCollection)
+        {
+            int added = 0;
+            int edited = 0;
+            if (Request != null)
+            {
+                HttpPostedFileBase file = Request.Files["Select Excel file"];
+                if ((file != null) && (file.ContentLength != 0) && !string.IsNullOrEmpty(file.FileName))
+                {
+                    string fileName = file.FileName;
+                    string fileContentType = file.ContentType;
+                    byte[] fileBytes = new byte[file.ContentLength];
+                    var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
+                    var AssessmentSurveyAnswers = new List<AssessmentSurveyAnswer>();
+                 
+                    using (var package = new ExcelPackage(file.InputStream))
+                    {
+                        var currentSheet = package.Workbook.Worksheets;
+                        var workSheet = currentSheet.First();
+                        var noOfCol = workSheet.Dimension.End.Column;
+                        var noOfRow = workSheet.Dimension.End.Row;
+                        for (int rowIterator = 2; rowIterator < noOfRow; rowIterator++)
+                        {
+                            if (workSheet.Cells[rowIterator, 1].Value != null && workSheet.Cells[rowIterator, 2].Value!=null&& workSheet.Cells[rowIterator, 3].Value!=null)
+                            try
+                            {
+                                var Student = new Student
+                                {
+                                    ID = workSheet.Cells[rowIterator, 1].Value.ToString(),
+                                    Name = workSheet.Cells[rowIterator, 2].Value.ToString(),
+                                    DptID = int.Parse(workSheet.Cells[rowIterator, 3].Value.ToString()),
+                                };
+                                if (_DatabaseEntities.Students.Find(Student.ID) == null)
+                                {
+                                    _DatabaseEntities.Students.Add(Student);
+                                    _DatabaseEntities.SaveChanges();
+                                        added++;
+                                }
+                                else
+                                {
+                                    _DatabaseEntities.Entry(Student).State = EntityState.Modified;
+                                    _DatabaseEntities.SaveChanges();
+                                        edited++;
+                                }
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine("Error at 235 CourseCoorddinatorController" + e);
+                            }
+                            rowIterator++;
+                        }
+                    }
+                }
+
+            }
+            string updateMassege =  (added+" new student added /n  "+ edited + " student info changed");
+            return RedirectToAction("ListStudents", "Admin", new { updateMassege = updateMassege });
         }
     }
 }

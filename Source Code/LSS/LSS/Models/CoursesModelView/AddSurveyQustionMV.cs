@@ -7,11 +7,6 @@ namespace LSS.Models.CoursesModelView
 {
     public class AddSurveyQustionMV
     {
-       private readonly LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
-     
-
-
-
         public CourseCoordinator CC { get; set; }
         
         private CourseAssessmentSurvay _CAS { get; set; }
@@ -20,11 +15,13 @@ namespace LSS.Models.CoursesModelView
             {
                 if (_CAS == null)
                 {
-                    _CAS = new CourseAssessmentSurvay();
-                    _CAS.CourseID = CC.CourseID;
-                    _CAS.Year = CC.Year;
-                    _CAS.Semseter = CC.Semseter;
-                    _CAS.DeptID = CC.Course.Department.ID;
+                    _CAS = new CourseAssessmentSurvay
+                    {
+                        CourseID = CC.CourseID,
+                        Year = CC.Year,
+                        Semseter = CC.Semseter,
+                        DeptID = CC.Course.Department.ID
+                    };
                 }
                 return _CAS;
             } 
