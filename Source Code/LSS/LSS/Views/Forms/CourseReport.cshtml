@@ -108,7 +108,7 @@
         <td style=" border:1px solid black" colspan="2"> </td>
     </tr>
     <tr>
-        <td style=" border:1px solid black" colspan="3"> <input type="radio" name="topic" onchange="change(true)" checked/> Not all topics were covered:  </td>
+        <td style=" border:1px solid black" colspan="3"> <input type="radio" name="topic" onchange="change(true)" checked /> Not all topics were covered:  </td>
     </tr>
     <tr>
         <th bgcolor="silver" style=" border:1px solid black">Topics (if any) not Fully Covered <a id="add" style="margin-left:10px;color:white">  add </a> <a id="remove" style="margin-left:10px;color:white;"> remove  </a></th>
@@ -169,9 +169,31 @@
           data = ' <tr> <td style=" border:1px solid black"> <input type="text" id="topics" placeholder="Topic '+ ++id+'" /> </td>\
             <td style=" border:1px solid black"> <select><option>@Model.CLOs.Count </option></select> </td><td style=" border:1px solid black">\
             <input type = "text" name="record'+ id +'" id = "possible_action_new" placeholder = "Possible Action"  /> </td ></tr > ';
-        <th>  جامعة عمان الأهلية </th>
-    </tr>
-</table>
+
+            $("#Content_Delv_table").append(data);
+        });
+
+        // Find and remove selected table rows
+        $("#remove").click(function () {
+            $("#Content_Delv_table").find('input[name="record' + id-- + '"]').each(function () {
+
+                $(this).parents("tr").remove();
+
+            });
+        });
+        $("#removeAll").click(function () {
+            $("#Content_Delv_table").find('input[id="possible_action_new"]').each(function () {
+
+                $(this).parents("tr").remove();
+                id = 1;
+            });
+        });
+
+    });
+
+
+</script>
+
 <table class="table" style="border: 2px solid black">
     <tr>
         <th bgcolor="silver" style=" border:1px solid black" colspan="2"> Teaching and Learning Strategies: </th>
@@ -229,16 +251,16 @@
 <table class="img_footer">
     <tr>
 
-            $("#Content_Delv_table").append(data);
-        });
+        <td> <img src="~/Images/R.PNG" /> </td>
+        <td><img src="~/Images/Quality.PNG" /> </td>
+        <td><img src="~/Images/Risk.PNG" /></td>
+        <td>
+            <b>
+                EP-F891, Rev. a<br />
+                Ref.: 15/06/2019 - 2020<br />
+                Date: 10/10/2019
+            </b>
 
-        // Find and remove selected table rows
-        $("#remove").click(function () {
-            $("#Content_Delv_table").find('input[name="record' + id-- +'"]').each(function () {
-
-                    $(this).parents("tr").remove();
-        <td> <img src="~/Images/Certified.PNG" /> </td>
-    </tr>
 </table>
 <br />
 <br />
@@ -249,15 +271,6 @@
             Al-Ahliyya Amman University
         </th>
 
-            });
-        });
-        $("#removeAll").click(function () {
-            $("#Content_Delv_table").find('input[id="possible_action_new"]').each(function () {
-
-                $(this).parents("tr").remove();
-                id = 1;
-            });
-        });
         <th>  جامعة عمان الأهلية </th>
     </tr>
 </table>
@@ -430,194 +443,198 @@
 <table class="img_footer">
     <tr>
 
-    });
+        <td> <img src="~/Images/R.PNG" /> </td>
+        <td><img src="~/Images/Quality.PNG" /> </td>
+        <td><img src="~/Images/Risk.PNG" /></td>
+        <td>
+            <b>
+                EP-F891, Rev. a<br />
+                Ref.: 15/06/2019 - 2020<br />
+                Date: 10/10/2019
+            </b>
 
+        </td>
 
-</script>
-<div style="page-break-before: always" id="Pagebreak">
         <td> <img src="~/Images/Certified.PNG" /> </td>
     </tr>
 </table>
-<br />
-<br />
-<br />
-<table align="center">
-    <tr>
-        <th>
-            Al-Ahliyya Amman University
-        </th>
+<div style="page-break-before: always" id="Pagebreak">
+    <br />
+    <br />
+    <br />
+    <table align="center">
+        <tr>
+            <th>
+                Al-Ahliyya Amman University
+            </th>
 
-        <td>
-            <img src="~/Images/Al-Ahliya_Amman_University_Logo.png" />
-        </td>
+            <td>
+                <img src="~/Images/Al-Ahliya_Amman_University_Logo.png" />
+            </td>
 
-        <th>  جامعة عمان الأهلية </th>
-    </tr>
-</table>
-<P align="center"><b> Faculty of Information Technology</b> </P>
-<hr style="border: 2px solid black" />
-<br />
-<table class="table" style="border: 2px solid black">
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black" colspan="2">Results of Course Assessment Survey by Students: </th>
-    </tr>
-    <tr>
-        <th bgcolor="aliceblue" style=" border:1px solid black">Did students evaluate the course?</th>
-        <th bgcolor="aliceblue" style=" border:1px solid black">
-            <select name="menu">
-                <option>Please Select...</option>
-                <option>Yes, please attach results of the students evaluation survey.</option>
-                <option>No</option>
-            </select>
-        </th>
-    </tr>
-    <tr>
-        <th bgcolor="aliceblue" style=" border:1px solid black" colspan="2"> If Yes, Please list below the instructor observationsand students’ commentsto be taken for improvement</th>
-    </tr>
-    <tr>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> Instructor <br /> Observations</th>
-        <td style=" border:1px solid black">     </td>
-    </tr>
-    <tr>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> Student’s <br />Comments</th>
-        <td style=" border:1px solid black">     </td>
-    </tr>
-    <tr>
-        <td bgcolor="silver" style=" border:1px solid black" colspan="2"><b>Result of Other Evaluations: </b><br />Example: Head of department, Peers/colleaguesobservations, External examiners, Visiting reviewers, etc.…</td>
-    </tr>
-    <tr>
-        <th bgcolor="aliceblue" style=" border:1px solid black">Is there other evaluation?</th>
-        <th bgcolor="aliceblue" style=" border:1px solid black">
-            <select name="menu">
-                <option>Please Select...</option>
-                <option>Yes.</option>
-                <option>No.</option>
-            </select>
-        </th>
-    </tr>
-    <tr>
-        <th bgcolor="aliceblue" style=" border:1px solid black" colspan="2"> If Yes, List the most important recommendations for improvement and response of instructor </th>
-    </tr>
-    <tr>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> Recommendations<br /> for improvement</th>
-        <td style=" border:1px solid black">     </td>
-    </tr>
-    <tr>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> Response of <br /> instructor </th>
-        <td style=" border:1px solid black">     </td>
-    </tr>
-</table>
-<br />
-<table class="table" style="border: 2px solid black">
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black" colspan="3">Plans/Actions for Improving the Course: </th>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black" colspan="3">
-            <b>1.	Progress on actions proposed for improving the course in previous course reports (if any).</b><br />
-            <br />(State whether each action was undertaken, the impact, and if the proposed action was not undertaken or completed,<br /> give reasons)
-        </td>
-    </tr>
-    <tr>
-        <td bgcolor="aliceblue" style=" border:1px solid black">Actions recommended<br /> from the most recent course report(s) </td>
-        <td bgcolor="aliceblue" style=" border:1px solid black">Actions Taken</td>
-        <td bgcolor="aliceblue" style=" border:1px solid black">Action Results</td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black" colspan="3">
-            <b>2.	Action Plan for Improvement for Next Semester/Year</b><br />
-            <br />Provide a brief summary of any action that should be taken to improve the course.  (For example:  professional <br /> development for faculty members, modifications to the course,  new equipment, new teaching techniques etc.)
-        </td>
-    </tr>
-    <tr>
-        <td bgcolor="aliceblue" style=" border:1px solid black" colspan="2">Actions Recommended for next semester/year</td>
-        <td bgcolor="aliceblue" style=" border:1px solid black">Person Responsible</td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black" colspan="2">  </td>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black" colspan="2">  </td>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black" colspan="2">  </td>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-</table>
-<br />
-<br /> 
-<table class="img_footer">
-    <tr>
-
-
+            <th>  جامعة عمان الأهلية </th>
+        </tr>
+    </table>
+    <P align="center"><b> Faculty of Information Technology</b> </P>
+    <hr style="border: 2px solid black" />
+    <br />
     <table class="table" style="border: 2px solid black">
         <tr>
-            <th bgcolor="silver" style=" border:1px solid black" colspan="2"> Teaching and Learning Strategies: </th>
+            <th bgcolor="silver" style=" border:1px solid black" colspan="2">Results of Course Assessment Survey by Students: </th>
         </tr>
         <tr>
-            <td style=" border:1px solid black" colspan="2">
-                Teaching style used for this course?<br />
-                <input type="checkbox" /> In-class lectures
-                <input type="checkbox" /> Group discussion
-                <input type="checkbox" /> Demonstration
-                <input type="checkbox" /> Others:
+            <th bgcolor="aliceblue" style=" border:1px solid black">Did students evaluate the course?</th>
+            <th bgcolor="aliceblue" style=" border:1px solid black">
+                <select name="menu">
+                    <option>Please Select...</option>
+                    <option>Yes, please attach results of the students evaluation survey.</option>
+                    <option>No</option>
+                </select>
+            </th>
+        </tr>
+        <tr>
+            <th bgcolor="aliceblue" style=" border:1px solid black" colspan="2"> If Yes, Please list below the instructor observationsand students’ commentsto be taken for improvement</th>
+        </tr>
+        <tr>
+            <th bgcolor="aliceblue" style=" border:1px solid black"> Instructor <br /> Observations</th>
+            <td style=" border:1px solid black">     </td>
+        </tr>
+        <tr>
+            <th bgcolor="aliceblue" style=" border:1px solid black"> Student’s <br />Comments</th>
+            <td style=" border:1px solid black">     </td>
+        </tr>
+        <tr>
+            <td bgcolor="silver" style=" border:1px solid black" colspan="2"><b>Result of Other Evaluations: </b><br />Example: Head of department, Peers/colleaguesobservations, External examiners, Visiting reviewers, etc.…</td>
+        </tr>
+        <tr>
+            <th bgcolor="aliceblue" style=" border:1px solid black">Is there other evaluation?</th>
+            <th bgcolor="aliceblue" style=" border:1px solid black">
+                <select name="menu">
+                    <option>Please Select...</option>
+                    <option>Yes.</option>
+                    <option>No.</option>
+                </select>
+            </th>
+        </tr>
+        <tr>
+            <th bgcolor="aliceblue" style=" border:1px solid black" colspan="2"> If Yes, List the most important recommendations for improvement and response of instructor </th>
+        </tr>
+        <tr>
+            <th bgcolor="aliceblue" style=" border:1px solid black"> Recommendations<br /> for improvement</th>
+            <td style=" border:1px solid black">     </td>
+        </tr>
+        <tr>
+            <th bgcolor="aliceblue" style=" border:1px solid black"> Response of <br /> instructor </th>
+            <td style=" border:1px solid black">     </td>
+        </tr>
+    </table>
+    <br />
+    <table class="table" style="border: 2px solid black">
+        <tr>
+            <th bgcolor="silver" style=" border:1px solid black" colspan="3">Plans/Actions for Improving the Course: </th>
+        </tr>
+        <tr>
+            <td style=" border:1px solid black" colspan="3">
+                <b>1.	Progress on actions proposed for improving the course in previous course reports (if any).</b><br />
+                <br />(State whether each action was undertaken, the impact, and if the proposed action was not undertaken or completed,<br /> give reasons)
             </td>
         </tr>
         <tr>
-            <td style=" border:1px solid black" colspan="2"> <input type="checkbox" /> Teaching and Learning strategies were effective for the specified SLOs of the course </td>
+            <td bgcolor="aliceblue" style=" border:1px solid black">Actions recommended<br /> from the most recent course report(s) </td>
+            <td bgcolor="aliceblue" style=" border:1px solid black">Actions Taken</td>
+            <td bgcolor="aliceblue" style=" border:1px solid black">Action Results</td>
         </tr>
         <tr>
-            <td style=" border:1px solid black" rowspan="2"><input type="checkbox" /> Not all effective </td>
-            <td style=" border:1px solid black" bgcolor="silver">Reasons for ineffectiveness: (Suggested modifications to improve) </td>
+            <td style=" border:1px solid black">  </td>
+            <td style=" border:1px solid black">  </td>
+            <td style=" border:1px solid black">  </td>
         </tr>
         <tr>
+            <td style=" border:1px solid black">  </td>
+            <td style=" border:1px solid black">  </td>
+            <td style=" border:1px solid black">  </td>
+        </tr>
+        <tr>
+            <td style=" border:1px solid black">  </td>
+            <td style=" border:1px solid black">  </td>
+            <td style=" border:1px solid black">  </td>
+        </tr>
+        <tr>
+            <td style=" border:1px solid black" colspan="3">
+                <b>2.	Action Plan for Improvement for Next Semester/Year</b><br />
+                <br />Provide a brief summary of any action that should be taken to improve the course.  (For example:  professional <br /> development for faculty members, modifications to the course,  new equipment, new teaching techniques etc.)
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="aliceblue" style=" border:1px solid black" colspan="2">Actions Recommended for next semester/year</td>
+            <td bgcolor="aliceblue" style=" border:1px solid black">Person Responsible</td>
+        </tr>
+        <tr>
+            <td style=" border:1px solid black" colspan="2">  </td>
+            <td style=" border:1px solid black">  </td>
+        </tr>
+        <tr>
+            <td style=" border:1px solid black" colspan="2">  </td>
+            <td style=" border:1px solid black">  </td>
+        </tr>
+        <tr>
+            <td style=" border:1px solid black" colspan="2">  </td>
             <td style=" border:1px solid black">  </td>
         </tr>
     </table>
     <br />
     <br />
     <table class="table" style="border: 2px solid black">
-        <tr>
-            <th bgcolor="silver" style=" border:1px solid black" colspan="2"> Assessment Strategies: </th>
-        </tr>
-        <tr>
-            <td style=" border:1px solid black" colspan="2">
-                Assessment strategies used for this course :<br />
-                <input type="checkbox" /> Exams
-                <input type="checkbox" /> Assignments
-                <input type="checkbox" /> Quizzes
-                <input type="checkbox" /> Projects
-                <input type="checkbox" /> Others:
-            </td>
-        </tr>
-        <tr>
-            <td style=" border:1px solid black" colspan="2"> <input type="checkbox" /> Assessment strategieswere effective for the specified SLOs of the course </td>
-        </tr>
-        <tr>
-            <td style=" border:1px solid black" rowspan="2"><input type="checkbox" /> Not all effective </td>
-            <td style=" border:1px solid black" bgcolor=" aliceblue">Reasons for ineffectiveness: (Suggested modifications to improve) </td>
-        </tr>
-        <tr>
-            <td style=" border:1px solid black">  </td>
-        </tr>
-    </table>
+                <tr>
+                    <th bgcolor="silver" style=" border:1px solid black" colspan="2"> Teaching and Learning Strategies: </th>
+                </tr>
+                <tr>
+                    <td style=" border:1px solid black" colspan="2">
+                        Teaching style used for this course?<br />
+                        <input type="checkbox" /> In-class lectures
+                        <input type="checkbox" /> Group discussion
+                        <input type="checkbox" /> Demonstration
+                        <input type="checkbox" /> Others:
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" border:1px solid black" colspan="2"> <input type="checkbox" /> Teaching and Learning strategies were effective for the specified SLOs of the course </td>
+                </tr>
+                <tr>
+                    <td style=" border:1px solid black" rowspan="2"><input type="checkbox" /> Not all effective </td>
+                    <td style=" border:1px solid black" bgcolor="silver">Reasons for ineffectiveness: (Suggested modifications to improve) </td>
+                </tr>
+                <tr>
+                    <td style=" border:1px solid black">  </td>
+                </tr>
+            </table>
+            <br />
+            <br />
+            <table class="table" style="border: 2px solid black">
+                <tr>
+                    <th bgcolor="silver" style=" border:1px solid black" colspan="2"> Assessment Strategies: </th>
+                </tr>
+                <tr>
+                    <td style=" border:1px solid black" colspan="2">
+                        Assessment strategies used for this course :<br />
+                        <input type="checkbox" /> Exams
+                        <input type="checkbox" /> Assignments
+                        <input type="checkbox" /> Quizzes
+                        <input type="checkbox" /> Projects
+                        <input type="checkbox" /> Others:
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" border:1px solid black" colspan="2"> <input type="checkbox" /> Assessment strategieswere effective for the specified SLOs of the course </td>
+                </tr>
+                <tr>
+                    <td style=" border:1px solid black" rowspan="2"><input type="checkbox" /> Not all effective </td>
+                    <td style=" border:1px solid black" bgcolor=" aliceblue">Reasons for ineffectiveness: (Suggested modifications to improve) </td>
+                </tr>
+                <tr>
+                    <td style=" border:1px solid black">  </td>
+                </tr>
+            </table>
 </div>
 <div style="page-break-before: always" id="Pagebreak">
 
@@ -936,13 +953,8 @@
 <br />
 <br />
 <br />
-<table class="img_footer">
-    <tr>
-
-
 <footer>
-
-    <table>
+    <table class="img_footer">
         <tr>
 
             <td> <img src="~/Images/R.PNG" /> </td>
@@ -960,5 +972,4 @@
             <td> <img src="~/Images/Certified.PNG" /> </td>
         </tr>
     </table>
-
 </footer>
