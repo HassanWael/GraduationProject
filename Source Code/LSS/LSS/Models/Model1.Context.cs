@@ -28,6 +28,7 @@ namespace LSS.Models
         public virtual DbSet<ActionsForImprovingTheCourse> ActionsForImprovingTheCourses { get; set; }
         public virtual DbSet<AssessedCours> AssessedCourses { get; set; }
         public virtual DbSet<AssessmentPlanforTheStudentLearningOutcomeTechnique> AssessmentPlanforTheStudentLearningOutcomeTechniques { get; set; }
+        public virtual DbSet<AssessmentSurveyAnswer> AssessmentSurveyAnswers { get; set; }
         public virtual DbSet<byCompletingThisCourseStudentsAreAbleTo> byCompletingThisCourseStudentsAreAbleToes { get; set; }
         public virtual DbSet<CLO> CLOes { get; set; }
         public virtual DbSet<Course> Courses { get; set; }
@@ -44,6 +45,7 @@ namespace LSS.Models
         public virtual DbSet<Faculty> Faculties { get; set; }
         public virtual DbSet<ineffectiveAssessmentStrategi> ineffectiveAssessmentStrategis { get; set; }
         public virtual DbSet<ineffectiveTeachingStrategi> ineffectiveTeachingStrategis { get; set; }
+        public virtual DbSet<isAssessed> isAssesseds { get; set; }
         public virtual DbSet<Lecturer> Lecturers { get; set; }
         public virtual DbSet<ModerationChecklist> ModerationChecklists { get; set; }
         public virtual DbSet<OtherLecturer> OtherLecturers { get; set; }
@@ -58,6 +60,5 @@ namespace LSS.Models
         public virtual DbSet<Student_PI_Outcome> Student_PI_Outcome { get; set; }
         public virtual DbSet<TeachingAndLearningStrategiesTechnique> TeachingAndLearningStrategiesTechniques { get; set; }
         public virtual DbSet<YearAndSemester> YearAndSemesters { get; set; }
-        public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
     }
 }

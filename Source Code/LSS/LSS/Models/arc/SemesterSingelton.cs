@@ -8,9 +8,9 @@ namespace LSS.Models.arc
     public class SemesterSingelton
     {
 
-        private LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
-        private SemesterSingelton(){ yearAndSemester = _DatabaseEntities.YearAndSemesters.FirstOrDefault(); }
-        private static SemesterSingelton semesterSingelton;
+        private readonly LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
+        private  SemesterSingelton(){ yearAndSemester = _DatabaseEntities.YearAndSemesters.FirstOrDefault(); }
+        private  static SemesterSingelton semesterSingelton;
         private static YearAndSemester yearAndSemester;
         public static YearAndSemester getCurrentYearAndSemester()
         {

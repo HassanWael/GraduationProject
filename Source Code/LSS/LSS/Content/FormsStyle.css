@@ -3,6 +3,25 @@
     color: #f00;
     text-align: center;
 }
+.img_footer tr img {
+    width:50px;
+    height:40px;
+}
+#FormName {
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px double solid black;
+    vertical-align: middle;
+    align-items: center;
+    width: 80%;
+    height: 30%;
+    text-align:center;
+}
+
+@page {
+    size: A4;
+    margin: 11mm 17mm 17mm 17mm;
+}
 
     #FormName {
         margin-left: auto;

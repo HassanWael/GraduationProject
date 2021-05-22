@@ -1,0 +1,13 @@
+﻿#innerUL ul {
+    display: table !important;
+    background-color: #98B709;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+li {
+    display: inline-block;
+    float: left;
+    position: relative;
+    list-style: none;
+}

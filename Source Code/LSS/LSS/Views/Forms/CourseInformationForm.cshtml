@@ -1,90 +1,111 @@
-﻿
+﻿@model LSS.Models.CoursesModelView.CouresModelView
+@using LSS.Models
+
 @{
     ViewBag.Title = "CourseInformationForm";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<table align="center">
-    <tr>
-        <th>
-            Al-Ahliyya Amman University
-        </th>
+<link rel="stylesheet" href="~/Content/FormsStyle.css" />
+<header>
+    <table align="center">
+        <tr>
+            <th>
+                Al-Ahliyya Amman University
+            </th>
 
-        <td>
-            <img src="~/Images/Al-Ahliya_Amman_University_Logo.png" />
-        </td>
+            <td>
+                <img src="~/Images/Al-Ahliya_Amman_University_Logo.png" />
+            </td>
 
-        <th>  جامعة عمان الأهلية </th>
-    </tr>
-</table>
-<P align="center"><b> Faculty of Information Technology</b> </P>
-<hr style="border: 2px solid black" />
+            <th>  جامعة عمان الأهلية </th>
+        </tr>
+    </table>
+    <P align="center"><b> Faculty of Information Technology</b> </P>
+    <hr style="border: 2px solid black" />
+</header>
 
-<table style=" border:double, 2px solid black" align="center" width="30%" height="30%">
+<table id="FormName">
     <tr> <td bgcolor="silver" style="border:1px solid black">  <p align="center"> <b>Course Information Form </b> </p></tr>
 </table>
 <br />
-<br />
+@{
+    int col = (Model.CourseCoordinator.OtherLecturers.Count + 1) * 2;
+    int j = 1;
+}
+
 <table class="table" style="border: 2px solid black">
     <tr>
         <th bgcolor="silver" style=" border:1px solid black"> Faculty</th>
-        <td style=" border:1px solid black">  </td>
+        <td style=" border:1px solid black">@Html.DisplayFor(x => x.Faculty.Name)   </td>
         <th bgcolor="silver" style=" border:1px solid black"> Department </th>
-        <td style=" border:1px solid black" colspan="6">  </td>
+        <td style=" border:1px solid black" colspan="@col"> @Html.DisplayFor(x => x.Department.Name)  </td>
     </tr>
     <tr>
         <th bgcolor="silver" style=" border:1px solid black"> Course Title</th>
-        <td style=" border:1px solid black">  </td>
+        <td style=" border:1px solid black"> @Html.DisplayFor(x => x.Course.Title) </td>
         <th bgcolor="silver" style=" border:1px solid black"> Course Code  </th>
-        <td style=" border:1px solid black" colspan="6">  </td>
+        <td style=" border:1px solid black" colspan="@col">@Html.DisplayFor(x => x.Course.ID) </td>
     </tr>
     <tr>
         <th bgcolor="silver" style=" border:1px solid black"> Pre- requisite</th>
-        <td style=" border:1px solid black">  </td>
+        <td style=" border:1px solid black"> @Html.DisplayFor(x => x.Course.Course1)  </td>
         <th bgcolor="silver" style=" border:1px solid black"> Co- requisite  </th>
-        <td style=" border:1px solid black" colspan="6">  </td>
+        <td style=" border:1px solid black" colspan="@col"> @Html.DisplayFor(x => x.Course.Course2)  </td>
     </tr>
     <tr>
         <th bgcolor="silver" style=" border:1px solid black"> Academic Year </th>
-        <td style=" border:1px solid black">  </td>
+        <td style=" border:1px solid black">@Html.DisplayFor(x => x.CourseCoordinator.Year)   </td>
         <th bgcolor="silver" style=" border:1px solid black"> Semester  </th>
-        <td style=" border:1px solid black" colspan="6">  </td>
+        <td style=" border:1px solid black" colspan="@col">
+            @if (Model.CourseCoordinator.Semseter == "") { }
+            else if (Model.CourseCoordinator.Semseter == "1")
+            {<p>First Semester</p> }
+            else if (Model.CourseCoordinator.Semseter == "2")
+            {<p>Second Semester</p> }
+            else
+            {<p>Summer Semester</p>}
+        </td>
     </tr>
     <tr>
         <th bgcolor="silver" style=" border:1px solid black"> Course Instructor/<br />Coordinator </th>
-        <td style=" border:1px solid black">  </td>
+        <td style=" border:1px solid black"> @Html.DisplayFor(x => x.CourseCoordinator.Coordinator)  </td>
         <th bgcolor="silver" style=" border:1px solid black"> No. of Students in <br />each Section  </th>
         <th style=" border:1px solid black"> 1 </th>
-        <td style=" border:1px solid black">  </td>
-        <th style=" border:1px solid black"> 2 </th>
-        <td style=" border:1px solid black">  </td>
-        <th style=" border:1px solid black"> 3 </th>
-        <td style=" border:1px solid black">  </td>
+        <td style=" border:1px solid black">  @Html.DisplayFor(x => x.CourseCoordinator.NoOFStudents) </td>
+
+        @for (int i = 0; i < Model.CourseCoordinator.OtherLecturers.Count(); i++)
+        {
+            j++;
+            <th style=" border:1px solid black"> @Html.Display(j + "")</th>
+            <td style=" border:1px solid black"> @Model.CourseCoordinator.OtherLecturers.ElementAt(i).noOFStudents </td>
+        }
     </tr>
 </table>
 <br />
 <br />
 <table class="table" style="border: 2px solid black">
     <tr>
-        <th bgcolor="silver" style=" border:1px solid black" colspan="7"> List ofStudentLearning Outcomes&Performance Indicators (PIs) that are aligned with the Course </th>
+        <th bgcolor="silver" style=" border:1px solid black" colspan="7"> List of StudentLearning Outcomes&Performance Indicators (PIs) that are aligned with the Course </th>
     </tr>
     <tr>
-        <th bgcolor="silver" style=" border:1px solid black"> Student Learning<br /> Outcomes </th>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
+        <th bgcolor="silver" style=" border:1px solid black; text-align:center; max-width:20px; "> Student Learning<br /> Outcomes </th>
+        @for (int i = 0; i < Model.SLO_PI.Count(); i++)
+        {
+            col = Model.SLO_PI.ElementAt(i).Value.Count();
+            <td style=" border:1px solid black; text-align:center;" colspan="@col"> @Model.SLO_PI.ElementAt(i).Key.SLOID</td>
+        }
     </tr>
     <tr>
-        <th bgcolor="silver" style=" border:1px solid black"> Performance <br /> Indicators (PIs) </th>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
+        <th bgcolor="silver" style=" border:1px solid black;text-align:center; max-width:20px;"> Performance <br /> Indicators (PIs) </th>
+        @for (int i = 0; i < Model.SLO_PI.Count(); i++)
+        {
+            foreach (PI pi in Model.SLO_PI.ElementAt(i).Value)
+            {
+
+                <td style=" border:1px solid black; text-align:center; "> @pi.ID </td>
+            }
+        }
     </tr>
 </table>
 <br />
@@ -97,279 +118,231 @@
         <th bgcolor="silver" style=" border:1px solid black"> Student Learning Outcomes   </th>
         <th bgcolor="silver" style=" border:1px solid black" colspan="2"> Performance Indicators  </th>
     </tr>
-    <tr>
-        <td style=" border:1px solid black" rowspan="2">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black" rowspan="2">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-    </tr>
+
+    @for (int i = 0; i < Model.SLO_PI.Count(); i++)
+    {
+        col = Model.SLO_PI.ElementAt(i).Value.Count();
+
+        <tr>
+            <td style=" border:1px solid black" rowspan="@col"><b>@Model.SLO_PI.ElementAt(i).Key.SLOID :</b>@Model.SLO_PI.ElementAt(i).Key.Desc</td>
+            @if (Model.SLO_PI.ElementAt(i).Value != null)
+            {
+                <td style=" border:1px solid black">@Model.SLO_PI.ElementAt(i).Value.ElementAt(0).ID</td>
+                <td style=" border:1px solid black"> @Model.SLO_PI.ElementAt(i).Value.ElementAt(0).Desc </td>
+                for (int k = 1; k < Model.SLO_PI.ElementAt(i).Value.Count(); k++)
+                {
+                <tr>
+                    <td style=" border:1px solid black">@Model.SLO_PI.ElementAt(i).Value.ElementAt(k).ID</td>
+                    <td style=" border:1px solid black"> @Model.SLO_PI.ElementAt(i).Value.ElementAt(k).Desc </td>
+                </tr>
+                }
+              }
+        </tr>
+      }
 </table>
 <br />
 <br />
 <br />
-<table>
-    <tr>
+<div id="Pagebreak" style="page-break-before: always">
+    <table class="table" style="border: 2px solid black">
+        <tr>
+            <th bgcolor="silver" style=" border:1px solid black" colspan="3"> CLOs-SLOs Map  </th>
+        </tr>
+        <tr>
+            <th bgcolor="silver" style=" border:1px solid black"> <p align="center"> No. </p> </th>
+            <th bgcolor="silver" style=" border:1px solid black"> <p align="center">Course Learning Outcome(s) </p> </th>
+            <th bgcolor="silver" style=" border:1px solid black"> <p align="center"> Relationship<br /> toStudentLearning <br />Outcomes </p> </th>
+        </tr>
+        @for (int i = 0; i < Model.CLOs.Count(); i++)
+        {
+            col = i + 1;
+            <tr>
+                <th style=" border:1px solid black"> <p align="center"> @col</p> </th>
+                <td style=" border:1px solid black"> <p> @Model.CLOs[i].Description</p> </td>
+                <td style=" border:1px solid black">
+                    @for (int k = 0; k < Model.CLOs[i].PIs.Count(); k++)
+                    {
 
-        <td> <img src="~/Images/R.PNG" /> </td>
-        <td><img src="~/Images/Quality.PNG" /> </td>
-        <td><img src="~/Images/Risk.PNG" /></td>
-        <td>
-            <b>
-                EP-F891, Rev. a<br />
-                Ref.: 15/06/2019 - 2020<br />
-                Date: 10/10/2019
-            </b>
+                        if (k == 0)
+                        {
+                            <span>@Model.CLOs[i].PIs.ElementAt(k).ID.ToString()</span>
+                        }
+                        <span>, @Model.CLOs[i].PIs.ElementAt(k).ID.ToString()</span>
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+    <br />
+    <table class="table" style="border: 2px solid black">
+        <tr>
+            <th bgcolor="silver" style=" border:1px solid black" colspan="3"> Course Assessment  </th>
+        </tr>
+        <tr>
+            <th bgcolor="silver" style=" border:1px solid black; width:70px;"> Will this course be Assessed <br /> in this Semester? </th>
+            <td style=" border:1px solid black">
+                <p align="center">
+                    @if (Model.IsAssessed != null && Model.IsAssessed.isAssessed1)
+                    {<span> Yes</span> }
+                    else
+                    { <span>No</span>}
+                </p>
+            </td>
+            <th style=" border:1px solid black">
+                @if (Model.IsAssessed != null)
+                {<span>@Model.IsAssessed.WhyNot </span>}
+            </th>
 
-        </td>
+        </tr>
 
-        <td> <img src="~/Images/Certified.PNG" /> </td>
-    </tr>
-</table>
-<br />
-<br />
-<table align="center">
-    <tr>
-        <th>
-            Al-Ahliyya Amman University
-        </th>
+    </table>
 
-        <td>
-            <img src="~/Images/Al-Ahliya_Amman_University_Logo.png" />
-        </td>
 
-        <th>  جامعة عمان الأهلية </th>
-    </tr>
-</table>
-<P align="center"><b> Faculty of Information Technology</b> </P>
-<hr style="border: 2px solid black" />
-<br />
-<br />
-<table class="table" style="border: 2px solid black">
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black" colspan="3"> CLOs-SLOs Map  </th>
-    </tr>
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black"> <p align="center"> No. </p> </th>
-        <th bgcolor="silver" style=" border:1px solid black"> <p align="center">Course Learning Outcome(s) </p> </th>
-        <th bgcolor="silver" style=" border:1px solid black"> <p align="center"> Relationship<br /> toStudentLearning <br />Outcomes </p> </th>
-    </tr>
-    <tr>
-        <th style=" border:1px solid black"> <p align="center">1</p>  </th>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-    <tr>
-        <th style=" border:1px solid black"> <p align="center">2</p> </th>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-    <tr>
-        <th style=" border:1px solid black"> <p align="center">3</p> </th>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-    <tr>
-        <th style=" border:1px solid black"><p align="center">4</p> </th>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-</table>
-<br />
-<table class="table" style="border: 2px solid black">
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black" colspan="3"> Course Assessment  </th>
-    </tr>
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black"> Will this course be Assessed <br /> in this Semester? </th>
-        <td style=" border:1px solid black"> <p align="center"> (Yes/No) </p>  </td>
-        <th style=" border:1px solid black"> If No, Please Specify the Reason: <br /><hr style="border: 1px dashed " /> </th>
-    </tr>
-</table>
+    <b>If Yes, Please list below the Assessment Plan: </b>
 
-<b>If Yes, Please list below the Assessment Plan: </b>
-<br />
-<br />
-<table class="table" style="border: 2px solid black">
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black" colspan="2"> Assessment Plan for the Student Learning Outcome (just select) </th>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black">
-            <b> 1.	Direct Assessment Activities: </b><br />
-            <input type="checkbox" /> Midterm Test.<br />
-            <input type="checkbox" /> Final Exam.<br />
-            <input type="checkbox" /> Quiz.<br />
-            <input type="checkbox" /> Assignment.<br />
-            <input type="checkbox" /> Project.
-        </td>
-        <td style=" border:1px solid black">
-            <br />
-            <input type="checkbox" /> Written Report.<br />
-            <input type="checkbox" /> Oral Presentation.<br />
-            <input type="checkbox" /> Practice in the Lab.<br />
-            <input type="checkbox" /> Case Study.<br />
-            <input type="checkbox" /> Others (identify):……………………..
-        </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black">
-            <b> 2.	Indirect Assessment Activities:</b> <br />
-            <input type="checkbox" /> Course Assessment Survey by students. <br />
-            <input type="checkbox" /> Group Discussions.
-        </td>
-        <td>
-            <br />
-            <input type="checkbox" /> Students’ Interviews.  <br />
-            <input type="checkbox" /> Others (identify):…………………
-        </td>
-    </tr>
-</table>
-<br />
-<br />
-<br />
-<table>
-    <tr>
+    <br />
 
-        <td> <img src="~/Images/R.PNG" /> </td>
-        <td><img src="~/Images/Quality.PNG" /> </td>
-        <td><img src="~/Images/Risk.PNG" /></td>
-        <td>
-            <b>
-                EP-F891, Rev. a<br />
-                Ref.: 15/06/2019 - 2020<br />
-                Date: 10/10/2019
-            </b>
+    <br />
 
-        </td>
+    <table class="table" style="border: 2px solid black">
+        <tr>
+            <th bgcolor="silver" style=" border:1px solid black" colspan="2"> Assessment Plan for the Student Learning Outcome (just select) </th>
+        </tr>
+        <tr>
+            <td style=" border:1px solid black">
+                <b> 1.	Direct Assessment Activities: </b><br />
+                @Html.CheckBoxFor(model => model.AssessmentPlan.Midterm_Test) <label class="form-check-label" for="flexCheckChecked">Midterm Test.</label>
+                @Html.CheckBoxFor(model => model.AssessmentPlan.Final_Exam) <label class="form-check-label" for="flexCheckChecked">Final Exam.</label>
+                @Html.CheckBoxFor(model => model.AssessmentPlan.Quiz) <label class="form-check-label" for="flexCheckChecked"> Quiz.</label>
+                @Html.CheckBoxFor(model => model.AssessmentPlan.Assignment) <label class="form-check-label" for="flexCheckChecked">Assignment.</label>
+                @Html.CheckBoxFor(model => model.AssessmentPlan.project) <label class="form-check-label" for="flexCheckChecked">Project.</label>
+            </td>
+            <td style=" border:1px solid black">
+                <br />
+                @Html.CheckBoxFor(model => model.AssessmentPlan.Midterm_Test) <label class="form-check-label" for="flexCheckChecked">Written Report.</label>
+                @Html.CheckBoxFor(model => model.AssessmentPlan.Oral_Presenation) <label class="form-check-label" for="flexCheckChecked">Oral Presentation.</label>
+                @Html.CheckBoxFor(model => model.AssessmentPlan.Practice_In_The_Lab) <label class="form-check-label" for="flexCheckChecked">Practice in the Lab.</label>
+                @Html.CheckBoxFor(model => model.AssessmentPlan.Case_Studdy) <label class="form-check-label" for="flexCheckChecked">Case Study.</label>
+            </td>
+        </tr>
+        <tr>
+            <td style=" border:1px solid black">
+                <b> 2.	Indirect Assessment Activities:</b> <br />
+                @Html.CheckBoxFor(model => model.AssessmentPlan.Coruse_Assessment_Survey_By_Students) <label class="form-check-label" for="flexCheckChecked">Course Assessment Survey by students. </label>
+                @Html.CheckBoxFor(model => model.AssessmentPlan.Gropu_Discussions) <label class="form-check-label" for="flexCheckChecked"> Group Discussions.</label>
+            </td>
+            <td>
+                <br />
+                @Html.CheckBoxFor(model => model.AssessmentPlan.Coruse_Assessment_Survey_By_Students) <label class="form-check-label" for="flexCheckChecked">Students’ Interviews. </label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                @if (Model.AssessmentPlan != null)
+                {
+                    @Model.AssessmentPlan.Other
+                }
+            </td>
+        </tr>
+    </table>
+</div>
 
-        <td> <img src="~/Images/Certified.PNG" /> </td>
-    </tr>
-</table>
-<br />
-<br />
-<table align="center">
-    <tr>
-        <th>
-            Al-Ahliyya Amman University
-        </th>
+<div style="page-break-before: always" id="Pagebreak">
+    <table style=" border:double, 2px solid black" align="center" width="30%" height="30%">
+        <tr> <td bgcolor="silver" style="border:1px solid black"> <b>Assessment Tools </b> </tr>
+    </table>
+    <br />
+    <b>1)	Direct Assessment Tool:</b>
+    <br />
+    The intended students' learning outcomes will be directly assessed based on the rubrics provided below.
+    <br />
+    <br />
+    <b>2)	Indirect Assessment Tool:</b>
+    <br />
+    The intended students' learning outcomes will be indirectly assessed using the Course Assessment Survey
+    <br />provided below(To be filled by each Student at the time of Course Completion).
+    <br />
+    <br />
+    <table class="table" style="border: 2px solid black">
+        <tr>
+            <th style="border: 1px solid black" bgcolor="silver" rowspan="2">
+                <h4>
+                    <b>
+                        Studentlearning outcomes
+                        <br />(by completing this course, students are able to:)
+                    </b>
+                </h4>
+            </th>
+            <th style="border: 1px solid black" bgcolor="silver">Strongly<br /> Disagree</th>
+            <td style="border: 1px solid black" bgcolor="silver" colspan="3"> </td>
+            <th style="border: 1px solid black" bgcolor="silver">Strongly <br />Agree</th>
+        </tr>
 
-        <td>
-            <img src="~/Images/Al-Ahliya_Amman_University_Logo.png" />
-        </td>
+        <tr>
+            <th style="border: 1px solid black">1</th>
+            <th style="border: 1px solid black">2</th>
+            <th style="border: 1px solid black">3</th>
+            <th style="border: 1px solid black">4</th>
+            <th style="border: 1px solid black">5</th>
+        </tr>
+        <tr>
+            <th>1. </th>
+            <td style="border: 1px solid black"><input type="checkbox" /> </td>
+            <td style="border: 1px solid black"> <input type="checkbox" /></td>
+            <td style="border: 1px solid black"> <input type="checkbox" /></td>
+            <td style="border: 1px solid black"><input type="checkbox" /> </td>
+            <td style="border: 1px solid black"><input type="checkbox" /> </td>
+        </tr>
+    </table>
+    <br />
+    <table class="table" style="border: 2px solid black">
+        <tr>
+            <th bgcolor="grey" style=" border:1px solid black" colspan="6"> Responsible Staff Signature: </th>
+        </tr>
+        <tr>
+            <th bgcolor="silver" style=" border:1px solid black"> Course Instructor/ <br />Coordinator </th>
+            <td style=" border:1px solid black">  </td>
+            <th bgcolor="silver" style=" border:1px solid black"> Date </th>
+            <td style=" border:1px solid black">  </td>
+            <th bgcolor="silver" style=" border:1px solid black"> Signature </th>
+            <td style=" border:1px solid black">  </td>
+        </tr>
+        <tr>
+            <th bgcolor="silver" style=" border:1px solid black"> Head of Department </th>
+            <td style=" border:1px solid black">  </td>
+            <th bgcolor="silver" style=" border:1px solid black"> Date </th>
+            <td style=" border:1px solid black">  </td>
+            <th bgcolor="silver" style=" border:1px solid black"> Signature </th>
+            <td style=" border:1px solid black">  </td>
+        </tr>
+        <tr>
+            <th bgcolor="silver" style=" border:1px solid black"> Vice Dean of <br /> Accreditation and Quality </th>
+            <td style=" border:1px solid black">  </td>
+            <th bgcolor="silver" style=" border:1px solid black"> Date </th>
+            <td style=" border:1px solid black">  </td>
+            <th bgcolor="silver" style=" border:1px solid black"> Signature </th>
+            <td style=" border:1px solid black">  </td>
+        </tr>
+    </table>
+</div>
+<footer>
+    <table>
+        <tr>
 
-        <th>  جامعة عمان الأهلية </th>
-    </tr>
-</table>
-<P align="center"><b> Faculty of Information Technology</b> </P>
-<hr style="border: 2px solid black" />
-
-<table style=" border:double, 2px solid black" align="center" width="30%" height="30%">
-    <tr> <td bgcolor="silver" style="border:1px solid black"> <b>Assessment Tools </b> </tr>
-</table>
-<br />
-<b>1)	Direct Assessment Tool:</b>
-<br />
-The intended students' learning outcomes will be directly assessed based on the rubrics provided below.
-<br />
-<br />
-<b>2)	Indirect Assessment Tool:</b>
-<br />
-The intended students' learning outcomes will be indirectly assessed using the Course Assessment Survey
-<br />provided below(To be filled by each Student at the time of Course Completion).
-<br />
-<br />
-<table class="table" style="border: 2px solid black">
-    <tr>
-        <th style="border: 1px solid black" bgcolor="silver" rowspan="2">
-            <h4>
+            <td> <img src="~/Images/R.PNG" /> </td>
+            <td><img src="~/Images/Quality.PNG" /> </td>
+            <td><img src="~/Images/Risk.PNG" /></td>
+            <td>
                 <b>
-                    Studentlearning outcomes
-                    <br />(by completing this course, students are able to:)
+                    EP-F891, Rev. a<br />
+                    Ref.: 15/06/2019 - 2020<br />
+                    Date: 10/10/2019
                 </b>
-            </h4>
-        </th>
-        <th style="border: 1px solid black" bgcolor="silver">Strongly<br /> Disagree</th>
-        <td style="border: 1px solid black" bgcolor="silver" colspan="3"> </td>
-        <th style="border: 1px solid black" bgcolor="silver">Strongly <br />Agree</th>
-    </tr>
 
-    <tr>
-        <th style="border: 1px solid black">1</th>
-        <th style="border: 1px solid black">2</th>
-        <th style="border: 1px solid black">3</th>
-        <th style="border: 1px solid black">4</th>
-        <th style="border: 1px solid black">5</th>
-    </tr>
-    <tr>
-        <th>1. </th>
-        <td style="border: 1px solid black"><input type="checkbox" /> </td>
-        <td style="border: 1px solid black"> <input type="checkbox" /></td>
-        <td style="border: 1px solid black"> <input type="checkbox" /></td>
-        <td style="border: 1px solid black"><input type="checkbox" /> </td>
-        <td style="border: 1px solid black"><input type="checkbox" /> </td>
-    </tr>
-</table>
-<br />
-<table class="table" style="border: 2px solid black">
-    <tr>
-        <th bgcolor="grey" style=" border:1px solid black" colspan="6"> Responsible Staff Signature: </th>
-    </tr>
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black"> Course Instructor/ <br />Coordinator </th>
-        <td style=" border:1px solid black">  </td>
-        <th bgcolor="silver" style=" border:1px solid black"> Date </th>
-        <td style=" border:1px solid black">  </td>
-        <th bgcolor="silver" style=" border:1px solid black"> Signature </th>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black"> Head of Department </th>
-        <td style=" border:1px solid black">  </td>
-        <th bgcolor="silver" style=" border:1px solid black"> Date </th>
-        <td style=" border:1px solid black">  </td>
-        <th bgcolor="silver" style=" border:1px solid black"> Signature </th>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black"> Vice Dean of <br /> Accreditation and Quality </th>
-        <td style=" border:1px solid black">  </td>
-        <th bgcolor="silver" style=" border:1px solid black"> Date </th>
-        <td style=" border:1px solid black">  </td>
-        <th bgcolor="silver" style=" border:1px solid black"> Signature </th>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-</table>
-<br />
-<br />
-<br />
-<table>
-    <tr>
+            </td>
 
-        <td> <img src="~/Images/R.PNG" /> </td>
-        <td><img src="~/Images/Quality.PNG" /> </td>
-        <td><img src="~/Images/Risk.PNG" /></td>
-        <td>
-            <b>
-                EP-F891, Rev. a<br />
-                Ref.: 15/06/2019 - 2020<br />
-                Date: 10/10/2019
-            </b>
+            <td> <img src="~/Images/Certified.PNG" /> </td>
+        </tr>
+    </table>
 
-        </td>
-
-        <td> <img src="~/Images/Certified.PNG" /> </td>
-    </tr>
-</table>
-
+</footer>

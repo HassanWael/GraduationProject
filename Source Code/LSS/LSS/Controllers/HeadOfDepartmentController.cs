@@ -12,19 +12,12 @@ namespace LSS.Controllers
 {
     public class HeadOfDepartmentController : Controller
     {
-        private int DptID;
-        private  LSS_databaseEntities _databaseEntities = new LSS_databaseEntities();
+    
+        private readonly LSS_databaseEntities _databaseEntities = new LSS_databaseEntities();
         // GET: HeadOfDepartment
         public ActionResult Index(int? dptID )
         {
-            if(dptID != null)
-            {
-                DptID = (int)dptID;
-            }
-            else
-            {
-                DptID = 2;
-            }
+            //ToDo when u finsh CSS add the deptID to find 
             Department d = _databaseEntities.Departments.Find(2);
             return View(d);
         }
