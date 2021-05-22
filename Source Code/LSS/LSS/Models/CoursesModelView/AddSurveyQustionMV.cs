@@ -73,11 +73,12 @@ namespace LSS.Models.CoursesModelView
         {
             get
             {
-                if (slo== null)
+                if (slo == null)
                 {
                     slo = new HashSet<SLO>();
-                    foreach(PI pi in PIs)
+                    foreach (PI pi in PIs)
                     {
+                        
                         slo.Add(pi.SLO);
                     }
                 }
@@ -91,6 +92,8 @@ namespace LSS.Models.CoursesModelView
         }
 
         //SLO
-        // PI where SLO = SLO 
+        // PI where SLO = SLO
+
+
     }
 }
