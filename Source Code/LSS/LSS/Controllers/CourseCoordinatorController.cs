@@ -259,7 +259,7 @@ namespace LSS.Controllers
             {
                 String SLOID = _DatabaseEntities.PIs.Where(x => x.ID.Equals(CAS.PI_ID) && x.DeptID.Equals(CAS.DeptID)).Select(x=>x.SLOID).FirstOrDefault();
                 CAS.SLOID = SLOID;
-                _DatabaseEntities.CourseAssessmentSurvays.Add(CAS);
+                _DatabaseEntities.CourseAssessmentSurvays.Add(CAS); 
                 _DatabaseEntities.SaveChanges();
 
             }
