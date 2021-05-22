@@ -48,6 +48,9 @@ namespace LSS.Models.CoursesModelView
             }
         }
 
+
+        
+
         private HashSet<PI> pi { get; set; }
         public HashSet<PI> PIs
         {
@@ -67,5 +70,31 @@ namespace LSS.Models.CoursesModelView
                 return pi;
             }
         }
+
+        private HashSet<SLO> slo { get; set; }
+        public HashSet<SLO> SLO
+        {
+            get
+            {
+                if (slo== null)
+                {
+                    foreach(PI pi in PIs)
+                    {
+                        slo.Add(pi.SLO);
+                    }
+                }
+
+                return slo;
+            }
+            set
+            {
+                slo = value;
+            }
+        }
+
+        //SLO
+        // PI where SLO = SLO 
+
+
     }
 }
