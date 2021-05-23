@@ -17,9 +17,9 @@ namespace LSS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Student()
         {
+            this.EnroledStudents = new HashSet<EnroledStudent>();
             this.Student_Course_Grade = new HashSet<Student_Course_Grade>();
             this.Student_PI_Outcome = new HashSet<Student_PI_Outcome>();
-            this.CourseCoordinators = new HashSet<CourseCoordinator>();
         }
     
         public string ID { get; set; }
@@ -28,10 +28,10 @@ namespace LSS.Models
     
         public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EnroledStudent> EnroledStudents { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student_Course_Grade> Student_Course_Grade { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student_PI_Outcome> Student_PI_Outcome { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CourseCoordinator> CourseCoordinators { get; set; }
     }
 }

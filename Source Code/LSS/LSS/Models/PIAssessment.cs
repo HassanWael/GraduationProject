@@ -12,19 +12,18 @@ namespace LSS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CourseAssessmentMapping
+    public partial class PIAssessment
     {
+        public int ID { get; set; }
+        public string StudentID { get; set; }
         public string CourseID { get; set; }
         public System.DateTime Year { get; set; }
         public string Semseter { get; set; }
-        public string AssessmentID { get; set; }
-        public int CLO { get; set; }
-        public string PI { get; set; }
-        public string SLOID { get; set; }
-        public int DeptID { get; set; }
+        public int PI { get; set; }
+        public string WhereItWasTakenFrom { get; set; }
+        public Nullable<float> mark { get; set; }
     
-        public virtual CLO CLO1 { get; set; }
-        public virtual CourseCoordinator CourseCoordinator { get; set; }
-        public virtual Department Department { get; set; }
+        public virtual EnroledStudent EnroledStudent { get; set; }
+        public virtual PI PI1 { get; set; }
     }
 }

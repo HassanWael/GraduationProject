@@ -285,8 +285,8 @@ namespace LSS.Controllers
                 return RedirectToAction("Index", "LogedIn");
 
             }
-            PagedList<Student> studentsPaged;
-            List<Student> CourseStudents;
+            PagedList<EnroledStudent> studentsPaged;
+            List<EnroledStudent> CourseStudents;
             ViewBag.Search = Search;
             ViewBag.CourseID = CourseID;
             ViewBag.Year = Year;
@@ -295,25 +295,25 @@ namespace LSS.Controllers
 
 
             if ((Search == null || Search.Equals("")) && Department == null ) {
-                CourseStudents = cc.Students.ToList();
-                studentsPaged = new PagedList<Student>(CourseStudents, page, pageSize);
+                CourseStudents = cc.EnroledStudents.ToList();
+                studentsPaged = new PagedList<EnroledStudent>(CourseStudents, page, pageSize);
             }
             else if (Department == null)
             {
-                CourseStudents = cc.Students.Where(x=>x.ID.Equals(Search)|| x.Name.Contains(Search)).ToList();
-                studentsPaged = new PagedList<Student>(CourseStudents, page, pageSize);
+                CourseStudents = cc.EnroledStudents.Where(x=>x.Student.ID.Equals(Search)|| x.Student.Name.Contains(Search)).ToList();
+                studentsPaged = new PagedList<EnroledStudent>(CourseStudents, page, pageSize);
                 
             }else if ((Search == null || Search.Equals("")))
             {
-                CourseStudents = cc.Students.Where(x =>x.DptID.Equals(Department)).ToList();
-                studentsPaged = new PagedList<Student>(CourseStudents, page, pageSize);
+                CourseStudents = cc.EnroledStudents.Where(x =>x.Student.DptID.Equals(Department)).ToList();
+                studentsPaged = new PagedList<EnroledStudent>(CourseStudents, page, pageSize);
 
             }
             else
             {
-                CourseStudents = cc.Students.Where(x => x.ID.Equals(Search) || x.Name.Contains(Search)).ToList();
-                CourseStudents = CourseStudents.Where(x => x.DptID.Equals(Department)).ToList();
-                studentsPaged = new PagedList<Student>(CourseStudents, page, pageSize);
+                CourseStudents = cc.EnroledStudents.Where(x => x.Student.ID.Equals(Search) || x.Student.Name.Contains(Search)).ToList();
+                CourseStudents = CourseStudents.Where(x => x.Student.DptID.Equals(Department)).ToList();
+                studentsPaged = new PagedList<EnroledStudent>(CourseStudents, page, pageSize);
             }
             return View(studentsPaged);
         }
@@ -322,6 +322,8 @@ namespace LSS.Controllers
         public ActionResult AddStudentListToCourse(FormCollection formCollection, string CourseID, DateTime Year, string Semseter)
         {
             int added = 0;
+            int dicarded = 0;
+
             if (Request != null)
             {
                 HttpPostedFileBase file = Request.Files["Select Excel file"];
@@ -349,8 +351,22 @@ namespace LSS.Controllers
                                      
                                         if (Student != null)
                                         {
-                                            cc.Students.Add(Student);
+                                            EnroledStudent e = new EnroledStudent()
+                                            {
+                                                StudentID = Student.ID,
+                                                CourseID = cc.CourseID,
+                                                Year = cc.Year,
+                                                Semseter = cc.Semseter
+                                            };
+                                            _DatabaseEntities.EnroledStudents.Add(e);
+                                            _DatabaseEntities.SaveChanges();
+
                                             added++;
+                                        }
+                                        else
+                                        {
+                                            dicarded++;
+
                                         }
                                     }
                                     catch (Exception e)
@@ -376,12 +392,10 @@ namespace LSS.Controllers
         {
             try
             {
-                CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semseter);
-                if (cc != null)
+                EnroledStudent s = _DatabaseEntities.EnroledStudents.Find(StudetnID,CourseID, Year, Semseter);
+                if (s != null)
                 {
-                    Student s = _DatabaseEntities.Students.Find(StudetnID);
-                    cc.Students.Remove(s);
-                    _DatabaseEntities.Entry(s).State = EntityState.Modified;
+                    _DatabaseEntities.EnroledStudents.Remove(s);
                     _DatabaseEntities.SaveChanges();
                 }
                 else
