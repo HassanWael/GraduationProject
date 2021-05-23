@@ -8,7 +8,6 @@
     ViewBag.Title = Model.Course.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link href="~/Content/coursepage.css" rel="stylesheet" type="text/css" />
 
 <navbar class="navbar navbar-expand-lg navbar-light bg-light" style="border:0px; margin-top:1%;">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,7 +17,7 @@
     <div class="navbar-collapse collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto" style="display:inline">
             <li class="nav-item" style="float:left;">
-                @Html.ActionLink("Previous Recomandation for improving the course", "ActionsForImproving", "CourseCoordinator", new { courseId = Model.Course.ID }, new { @class = "btn btn-outline-primary" })
+                @Html.ActionLink("Previous Recomandation for improving the course", "ActionsForImproving", "CourseCoordinator", new { courseId = Model.Course.ID }, new { @class = "btn btn-primary" })
             </li>
 
             <li class="nav-item dropdown show" style="position:absolute; right:0; margin-right:1rem;">
@@ -39,7 +38,7 @@
 
 
 
-<div class="block" style="margin-top:3%;">
+<div class="block" style="margin-top:3%; display:flex; justify-content:center; align-items:center">
     <div class="block-item" style=" width:100%;">
         <table class="table table-hover" style=" border: 1px solid cyan;  border:hidden; background:white;">
             <thread>
@@ -74,7 +73,7 @@
                 </tr>
 
                 <tr style=" text-align:center;">
-                    <td>   <h4> day time  </h4> </td>
+                    <td>   <h4> Day Time  </h4> </td>
                     <td> @Model.CourseCoordinator.DayTime </td>
                 </tr>
             </tbody>
@@ -82,11 +81,13 @@
     </div>
 </div>
 
-<div class="block" style="width:auto">
+<div class="block" style="width:auto; display:flex; justify-content:center; align-items:center "">
     <table class="table table-hover" style=" border: 1px solid cyan;  border:hidden; background:white;">
         <thread>
             <tr style="margin-left:auto; margin-right:auto; border-bottom:solid; border-bottom-color:cyan; Background:white">
-                <th scope="row" colspan="5" style="text-align:center;"> <h3> Course Text Books </h3>  </th>
+                <th scope="row" colspan="5">
+                    <h3> Course Text Books <button id='open' style="float:right; margin:5px" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addBook">Add Book</button></h3>
+                </th>
             </tr>
         </thread>
 
@@ -113,34 +114,43 @@
     </table>
 </div>
 
+@*<div id="addBook" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @{
+                Html.RenderPartial("AddBook", new AddBook(Model.Course.ID));
+            }
+        </div>
+    </div>
+</div>*@
+
 <br />
 <hr style="border-color:red; margin-bottom:3rem" />
 
 
 
-<div class="block-item" style="background:white">
-    <div class="block-item" style="float:left; background:white; width:100%">
-        <h4 style="text-align:left; margin:5px">
-            Course Learning Outcome:
-            <button id='open' style="float:right; margin:5px" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#addCLO">
-                Add
-            </button>
-        </h4>
+<div class="block-item" style="background:white; margin-top:3%; display:flex; justify-content:center; align-items:center">
+    <div class="block-item" style="background:white; width:100%">
+            <h4 style="text-align:left; margin:5px">
+                Course Learning Outcome:
+                <button id='open' style="float:right; margin:5px" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addCLO">
+                    Add
+                </button>
+            </h4>
         <hr style="border-color:cyan" />
-        <div style="width:auto">
-            <ol style="display:inline;" >
+
+
+        <table class="table table-hover" style="border:hidden; margin-top:3%;">
+            <tbody>
                 @foreach (CLO clo in Model.CLOs)
                 {
-                    <li style="padding-left:1rem; border-left:1px solid cyan; margin-right:1rem; margin-left:1rem; margin-bottom:1rem">
-                        <b>@clo.Description</b>
-                        <div style="align-items:center">
-                            @Html.ActionLink("Delete ", "DeleteCLO", new { id = clo.ID })
-                        </div>
-                    </li>
+                    <tr style="margin-left:1rem; margin-bottom:1rem; border-bottom: 1px solid black;">
+                        <td><b>@clo.Description</b> </td>
+                        <td> <div style="align-items:center"> @Html.ActionLink("Delete ", "DeleteCLO", new { id = clo.ID }) </div> </td>
+                    </tr>
                 }
-            </ol>
-        </div>
-
+            </tbody>
+        </table>
     </div>
 </div>
 
@@ -195,20 +205,22 @@ else
 <br />
 <hr style="border-color:red; margin-bottom:3rem" />
 
-<div>
-    <ul style="display:inline;">
+<div style=" display: flex; justify-content: center; align-items: center; width:100%;">
+    <ul style="list-style-type:none; display:inline-flex">
         @* First card*@
-        <li style="margin:1rem">
-            <div class="card bg-secondary mb-3" style="max-width: 20rem;">
+        <li style="margin:1rem; display:flex; justify-content:center; align-items:center">
+            <div class="card border-primary mb-3" style="max-width: 18rem; height:15rem;">
                 <div class="card-header"> <h5>Will This Course Be Assessed? </h5></div>
-                <div class="card-body">
+                <div class="card-body text-primary">
 
                     @if (Model.IsAssessed == null)
                     {
 
-                        <h4>this has not been set up yet please fill the information</h4>
+                        <h4 class="card-title">This has not been set up yet, please fill the information.</h4>
                         <p class="card-text">
-                            <button id='open' class="btn btn-outline-info card-link" data-toggle="modal" data-target="#isAssessed">Fill the Information </button>
+                            <div style="display:flex; justify-content:center; align-items:center " >
+                                <button id='open' class="btn btn-primary card-link" data-toggle="modal" data-target="#isAssessed">Fill the Information </button>
+                                </div>
 
                         </p>
                     }
@@ -217,12 +229,13 @@ else
                     {
                         <h4 class="card-title">
                             Yes this Course will be Assessed
-                            <button id='open' class="btn btn-outline-info card-link" data-toggle="modal" data-target="#isAssessed">Edit </button>
+                            <button id='open' class="btn btn-primary card-link" data-toggle="modal" data-target="#isAssessed">Edit </button>
                         </h4>
                         <p class="card-text">
                         </p>
                     }
-                    else{
+                    else
+                    {
                         <h4 class="card-title">
                             No
                         </h4>
@@ -230,7 +243,7 @@ else
                         <p class="card-text">
                             Why Not:@Html.DisplayFor(model => model.IsAssessed.WhyNot)
                             <br />
-                            <button id='open' class="btn btn-outline-info card-link" data-toggle="modal" data-target="#isAssessed">Edit </button>
+                            <button id='open' class="btn btn-primary card-link" data-toggle="modal" data-target="#isAssessed">Edit </button>
 
                         </p>
                     }
@@ -266,17 +279,19 @@ else
 
         @*Second card*@
 
-        <li style="margin:1rem">
-            <div class="card bg-secondary mb-3" style="max-width: 20rem; float:right">
-                <div class="card-header">Assessment Plan for the Student Learning Outcome</div>
-                <div class="card-body">
+        <li style="margin:1rem;">
+            <div class="card border-primary mb-3" style="max-width: 18rem; height:15rem;">
+                <div class="card-header"> <h5>Assessment Plan for the SLO</h5></div>
+                <div class="card-body text-primary">
                     @if (Model.AssessmentPlan == null)
                     {
-                        <p class="card-text">
-                            The Assessment Plan has not been set up yet
-                            <button id='open' class="btn btn-outline-info card-link" data-toggle="modal" data-target="#addAssmentPlan">create Assessment plan for this semester</button>
+                        <h4 class="card-text">
+                            The Assessment Plan has not been set up yet.
+                            <div style=" display: flex; justify-content: center; align-items: center; margin-top:2.5rem;"> 
+                                <button id='open' class="btn btn-primary card-link" data-toggle="modal" data-target="#addAssmentPlan">create Assessment Plan</button>
+                                </div>
 
-                        </p>
+                        </h4>
 
                     }
                     else
@@ -367,7 +382,7 @@ else
                                     </li>
                                 }
                             </ul>
-                            <button id='open' class="btn btn-outline-info card-link" data-toggle="modal" data-target="#addAssmentPlan">Edite the  Assessment plan for this semester</button>
+                            <button id='open' class="btn btn-primary card-link" data-toggle="modal" data-target="#addAssmentPlan">Edite the  Assessment plan for this semester</button>
                         </p>
 
                     }

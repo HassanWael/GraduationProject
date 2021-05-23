@@ -4,24 +4,27 @@
 
 
 <div style="margin-top:10%;">
-    <table style="min-width:40%" class="table table-active">
-        <tr class="table-secondary">
-            <th style="min-width:10%;">
-                @Html.DisplayName("No")
-            </th>
-            <th style="min-width:80%;">
-                @Html.DisplayName("Qustion")
-            </th>
-            @if (Model.AssessmentQustions.Count() != 0)
-            {
-                <th> @Html.DisplayName("Score ")</th>
-            }
-            else
-            {
-                <th> @Html.DisplayName("Upload Answers to view the Scores")</th>
+    <table class="table" style=" border: 1px solid cyan;  border:hidden; background:white;">
+        <thread>
+            <tr class="table-primary">
+                <th style="min-width:10%;">
+                    @Html.DisplayName("No")
+                </th>
+                <th style="min-width:80%;">
+                    @Html.DisplayName("Qustion")
+                </th>
+                @if (Model.AssessmentQustions.Count() != 0)
+                {
+                    <th> @Html.DisplayName("Score ")</th>
+                }
+                else
+                {
+                    <th> @Html.DisplayName("Upload Answers to view the Scores")</th>
 
-            }
-        </tr>
+                }
+            </tr>
+        </thread>
+        
         @{
             int i = 1;
         }
@@ -55,18 +58,24 @@
     {
 
 
-        <table>
+        <table style="margin-bottom:1rem;">
             <tr>
                 <td>File:</td>
                 <td>
-                    <input type="file" name="Select Excel file" />
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="inputGroupFile04" name="Select Excel file">
+                            <label class="custom-file-label" for="inputGroupFile04">Choose file..</label>
+                        </div>
+                        <div class="input-group-append">
+                            <input class="btn btn-primary" value="Submit" type="submit"/>
+                        </div>
+                    </div>
                 </td>
+
+
             </tr>
-            <tr>
-                <td colspan="2">
-                    <input type="submit" name="Upload" value="Submit" />
-                </td>
-            </tr>
+
         </table>
         <input type="hidden" id="CourseID" name="CourseID" value='@Model.CC.CourseID' />
         <input type="hidden" id="Year" name="Year" value='@Model.CC.Year' />
@@ -76,7 +85,7 @@
 
 </div>
 
-<button id='open' class="btn btn-outline-primary" data-toggle="modal" data-target="#addQustion">Add Course Learning outcome</button>
+<button id='open' class="btn btn-primary" data-toggle="modal" data-target="#addQustion" style="margin-left:1.8rem;">Add Course Learning outcome</button>
 
 <div id="addQustion" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
