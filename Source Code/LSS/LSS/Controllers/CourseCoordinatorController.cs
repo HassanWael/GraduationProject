@@ -99,7 +99,7 @@ namespace LSS.Controllers
         }
 
 
-        public ActionResult ActionsForImproving(string courseId)
+        public ActionResult ActionsForImproving(string? courseId)
         {
             List<ActionsForImprovingTheCourse> AFITC = _DatabaseEntities.ActionsForImprovingTheCourses.Where(x => x.CourseID.Equals(courseId)).ToList();
             ViewBag.courseId = courseId;

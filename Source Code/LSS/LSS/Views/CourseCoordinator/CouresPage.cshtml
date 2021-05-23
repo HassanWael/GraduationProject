@@ -175,7 +175,8 @@
                 <td class="table-primary" style="border: .2px solid #5F5E61; text-align:center;">  Student Learning Outcomes</td>
                 @for (int i = 0; i < Model.SLO_PI.Count(); i++)
                 {
-                    <td colspan=" @Model.SLO_PI.ElementAt(i).Value.Count()" style="border: .2px solid #5F5E61; text-align:center;">
+                    @{int col = Model.SLO_PI.ElementAt(i).Value.Count() + 1; }
+                    <td colspan="@col" style="border: .2px solid #5F5E61; text-align:center;">
                         @Model.SLO_PI.ElementAt(i).Key.SLOID
                     </td>
                 }
