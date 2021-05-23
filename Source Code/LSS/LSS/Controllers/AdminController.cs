@@ -17,6 +17,7 @@ namespace LSS.Controllers
         LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
         // GET: Admin
         //ToDO :Create Index View for Admin.
+        YearAndSemester YAS = SemesterSingelton.getCurrentYearAndSemester();
 
         public ActionResult AddCourseToSemester(string CourseID)
         {
@@ -37,8 +38,10 @@ namespace LSS.Controllers
             int deptID = _DatabaseEntities.Courses.Where(x => x.ID.Equals(CourseID)).Select(x => x.dptid).FirstOrDefault();
             List<Lecturer> CC = _DatabaseEntities.Lecturers.Where(x => x.dptId.Equals(deptID)).ToList();
             ViewBag.Lecturers = new SelectList(CC, "ID", "Name");
+            return View(cc);
 
-        public ActionResult AddCourseToSemster( string CourseID)
+        }
+        public ActionResult AddCourseToSemster(string CourseID)
         {
             CourseCoordinator cc = new CourseCoordinator();
             cc.CourseID = CourseID;
@@ -46,11 +49,12 @@ namespace LSS.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddCourseToSemster(CourseCoordinator cc )
+        public ActionResult AddCourseToSemster(CourseCoordinator cc)
         {
-            try { 
-            _DatabaseEntities.CourseCoordinators.Add(cc);
-            _DatabaseEntities.SaveChanges();
+            try
+            {
+                _DatabaseEntities.CourseCoordinators.Add(cc);
+                _DatabaseEntities.SaveChanges();
             }
             catch
             {
@@ -318,7 +322,7 @@ namespace LSS.Controllers
 
         public ActionResult ListStudents(string? Search, int? Department, string? updateMassege, int page = 1, int pageSize = 10)
         {
-            ViewBag.updateMassege = updateMassege; 
+            ViewBag.updateMassege = updateMassege;
             if ((Search == null || Search == "") && Department == null)
             {
                 List<Student> students = _DatabaseEntities.Students.ToList();
@@ -431,7 +435,7 @@ namespace LSS.Controllers
                     string fileName = file.FileName;
                     string fileContentType = file.ContentType;
                     byte[] fileBytes = new byte[file.ContentLength];
-                    var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));                 
+                    var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
                     using (var package = new ExcelPackage(file.InputStream))
                     {
                         var currentSheet = package.Workbook.Worksheets;
@@ -440,40 +444,41 @@ namespace LSS.Controllers
                         var noOfRow = workSheet.Dimension.End.Row;
                         for (int rowIterator = 2; rowIterator < noOfRow; rowIterator++)
                         {
-                            if (workSheet.Cells[rowIterator, 1].Value != null && workSheet.Cells[rowIterator, 2].Value!=null&& workSheet.Cells[rowIterator, 3].Value!=null)
-                            try
-                            {
-                                var Student = new Student
+                            if (workSheet.Cells[rowIterator, 1].Value != null && workSheet.Cells[rowIterator, 2].Value != null && workSheet.Cells[rowIterator, 3].Value != null)
+                                try
                                 {
-                                    ID = workSheet.Cells[rowIterator, 1].Value.ToString(),
-                                    Name = workSheet.Cells[rowIterator, 2].Value.ToString(),
-                                    DptID = int.Parse(workSheet.Cells[rowIterator, 3].Value.ToString()),
-                                };
-                                if (_DatabaseEntities.Students.Find(Student.ID) == null)
-                                {
-                                    _DatabaseEntities.Students.Add(Student);
-                                    _DatabaseEntities.SaveChanges();
+                                    var Student = new Student
+                                    {
+                                        ID = workSheet.Cells[rowIterator, 1].Value.ToString(),
+                                        Name = workSheet.Cells[rowIterator, 2].Value.ToString(),
+                                        DptID = int.Parse(workSheet.Cells[rowIterator, 3].Value.ToString()),
+                                    };
+                                    if (_DatabaseEntities.Students.Find(Student.ID) == null)
+                                    {
+                                        _DatabaseEntities.Students.Add(Student);
+                                        _DatabaseEntities.SaveChanges();
                                         added++;
-                                }
-                                else
-                                {
-                                    _DatabaseEntities.Entry(Student).State = EntityState.Modified;
-                                    _DatabaseEntities.SaveChanges();
+                                    }
+                                    else
+                                    {
+                                        _DatabaseEntities.Entry(Student).State = EntityState.Modified;
+                                        _DatabaseEntities.SaveChanges();
                                         edited++;
+                                    }
                                 }
-                            }
-                            catch (Exception e)
-                            {
-                                Console.WriteLine("Error at 235 CourseCoorddinatorController" + e);
-                            }
+                                catch (Exception e)
+                                {
+                                    Console.WriteLine("Error at 235 CourseCoorddinatorController" + e);
+                                }
                             rowIterator++;
                         }
                     }
                 }
 
             }
-            string updateMassege =  (added+" new student added /n  "+ edited + " student info changed");
+            string updateMassege = (added + " new student added /n  " + edited + " student info changed");
             return RedirectToAction("ListStudents", "Admin", new { updateMassege = updateMassege });
         }
     }
 }
+

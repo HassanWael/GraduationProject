@@ -24,6 +24,8 @@ namespace LSS.Models
         public string Name { get; set; }
         public string ViceDean { get; set; }
         public string dean { get; set; }
+        public int PassingGradeForPI { get; set; }
+        public float PassingGradeForAssessmentSurvey { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Department> Departments { get; set; }

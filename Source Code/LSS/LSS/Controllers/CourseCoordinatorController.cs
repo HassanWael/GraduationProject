@@ -18,7 +18,7 @@ namespace LSS.Controllers
         private readonly YearAndSemester yas = SemesterSingelton.getCurrentYearAndSemester();
 
         // GET: Courses
-        public ActionResult CouresPage(string? courseID)
+        public ActionResult CouresPage(string? courseID = "A0334501")
         {
             if (courseID == null)
             {
@@ -26,7 +26,7 @@ namespace LSS.Controllers
             }
 
             //String userID = Session["ID"].ToString();
-            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find("A0334501", yas.Year, yas.Semester);
+            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(courseID, yas.Year, yas.Semester);
             CouresModelView course = new CouresModelView(cc);
 
             if (cc == null)
@@ -211,12 +211,6 @@ namespace LSS.Controllers
                 HttpPostedFileBase file = Request.Files["Select Excel file"];
                 if ((file != null) && (file.ContentLength != 0) && !string.IsNullOrEmpty(file.FileName))
                 {
-                    string fileName = file.FileName;
-                    string fileContentType = file.ContentType;
-                    byte[] fileBytes = new byte[file.ContentLength];
-                    var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
-                    var AssessmentSurveyAnswers = new List<AssessmentSurveyAnswer>();
-
                     using (var package = new ExcelPackage(file.InputStream))
                     {
                         var currentSheet = package.Workbook.Worksheets;
