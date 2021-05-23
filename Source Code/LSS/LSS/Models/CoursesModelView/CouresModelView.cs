@@ -174,13 +174,5 @@ namespace LSS.Models.CoursesModelView
                 return _AssessmentPlan;
             }
         }
-
-        public string getName()
-        {
-
-
-            return "qusai";
-        }
-
     }
 }
