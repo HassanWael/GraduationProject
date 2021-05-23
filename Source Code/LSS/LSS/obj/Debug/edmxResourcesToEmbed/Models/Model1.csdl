@@ -187,6 +187,7 @@
     <NavigationProperty Name="ResultOfCourseDirectAssessment" Relationship="Self.FK_ResultOfCourseDirectAssessment_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="ResultOfCourseDirectAssessment" />
     <NavigationProperty Name="schedules" Relationship="Self.FK_schedule_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="schedule" />
     <NavigationProperty Name="Student_Course_Grade" Relationship="Self.FK_Student_Course_Grade_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="Student_Course_Grade" />
+    <NavigationProperty Name="Students" Relationship="Model.EnroledStudents" FromRole="CourseCoordinator" ToRole="Student" />
   </EntityType>
   <EntityType Name="CourseFileCheckList">
     <Key>
@@ -482,6 +483,7 @@
     <NavigationProperty Name="Department" Relationship="Self.FK_Student_departement" FromRole="Student" ToRole="Department" />
     <NavigationProperty Name="Student_Course_Grade" Relationship="Self.FK_Student_Course_Grade_ToStudents" FromRole="Student" ToRole="Student_Course_Grade" />
     <NavigationProperty Name="Student_PI_Outcome" Relationship="Self.FK_Student_PI_Outcome_ToStudents" FromRole="Student" ToRole="Student_PI_Outcome" />
+    <NavigationProperty Name="CourseCoordinators" Relationship="Model.EnroledStudents" FromRole="Student" ToRole="CourseCoordinator" />
   </EntityType>
   <EntityType Name="Student_Course_Grade">
     <Key>
@@ -1474,6 +1476,10 @@
       <End Role="SLO" EntitySet="SLOes" />
     </AssociationSet>
     <EntitySet Name="database_firewall_rules" EntityType="Model.database_firewall_rules" />
+    <AssociationSet Name="EnroledStudents" Association="Model.EnroledStudents">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="database_firewall_rules">
     <Key>
@@ -1491,4 +1497,8 @@
     <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
+  <Association Name="EnroledStudents">
+    <End Type="Model.CourseCoordinator" Role="CourseCoordinator" Multiplicity="*" />
+    <End Type="Model.Student" Role="Student" Multiplicity="*" />
+  </Association>
 </Schema>

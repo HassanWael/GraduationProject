@@ -2,6 +2,7 @@
 using LSS.Models.arc;
 using LSS.Models.CoursesModelView;
 using OfficeOpenXml;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -266,7 +267,138 @@ namespace LSS.Controllers
         }
 
 
+        public ActionResult CourseStudentList(string? CourseID,string? updateMassege, DateTime? Year, string? Semester,int? Department, string? Search, int page = 1, int pageSize = 10)
+        {
+            if(Year ==null&& Semester == null)
+            {
+                Year = yas.Year;
+                Semester = yas.Semester;
+            }
+               //if (CourseID == null)
+            //{
+            //    return RedirectToAction("Index", "LogedIn");
+            //}
+            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find("A0334501", Year, Semester);
+
+            if (cc == null)
+            {
+                return RedirectToAction("Index", "LogedIn");
+
+            }
+            PagedList<Student> studentsPaged;
+            List<Student> CourseStudents;
+            ViewBag.Search = Search;
+            ViewBag.CourseID = CourseID;
+            ViewBag.Year = Year;
+            ViewBag.Semester = Semester;
+            ViewBag.Department = Department;
+
+
+            if ((Search == null || Search.Equals("")) && Department == null ) {
+                CourseStudents = cc.Students.ToList();
+                studentsPaged = new PagedList<Student>(CourseStudents, page, pageSize);
+            }
+            else if (Department == null)
+            {
+                CourseStudents = cc.Students.Where(x=>x.ID.Equals(Search)|| x.Name.Contains(Search)).ToList();
+                studentsPaged = new PagedList<Student>(CourseStudents, page, pageSize);
+                
+            }else if ((Search == null || Search.Equals("")))
+            {
+                CourseStudents = cc.Students.Where(x =>x.DptID.Equals(Department)).ToList();
+                studentsPaged = new PagedList<Student>(CourseStudents, page, pageSize);
+
+            }
+            else
+            {
+                CourseStudents = cc.Students.Where(x => x.ID.Equals(Search) || x.Name.Contains(Search)).ToList();
+                CourseStudents = CourseStudents.Where(x => x.DptID.Equals(Department)).ToList();
+                studentsPaged = new PagedList<Student>(CourseStudents, page, pageSize);
+            }
+            return View(studentsPaged);
+        }
+
+
+        public ActionResult AddStudentListToCourse(FormCollection formCollection, string CourseID, DateTime Year, string Semseter)
+        {
+            int added = 0;
+            if (Request != null)
+            {
+                HttpPostedFileBase file = Request.Files["Select Excel file"];
+                if ((file != null) && (file.ContentLength != 0) && !string.IsNullOrEmpty(file.FileName))
+                {
+                    string fileName = file.FileName;
+                    string fileContentType = file.ContentType;
+                    byte[] fileBytes = new byte[file.ContentLength];
+                    var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
+                    using (var package = new ExcelPackage(file.InputStream))
+                    {
+                        var currentSheet = package.Workbook.Worksheets;
+                        var workSheet = currentSheet.First();
+                        var noOfCol = workSheet.Dimension.End.Column;
+                        var noOfRow = workSheet.Dimension.End.Row;
+                        CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semseter);
+                        if (cc != null)
+                        {
+                            for (int rowIterator = 2; rowIterator < noOfRow; rowIterator++)
+                            {
+                                if (workSheet.Cells[rowIterator, 1].Value != null && workSheet.Cells[rowIterator, 2].Value != null && workSheet.Cells[rowIterator, 3].Value != null)
+                                    try
+                                    {
+                                        var Student = _DatabaseEntities.Students.Find(workSheet.Cells[rowIterator, 1].Value.ToString());
+                                     
+                                        if (Student != null)
+                                        {
+                                            cc.Students.Add(Student);
+                                            added++;
+                                        }
+                                    }
+                                    catch (Exception e)
+                                    {
+                                        Console.WriteLine("Error at 340 CourseCoorddinatorController" + e);
+                                    }
+                                rowIterator++;
+                            }
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "LogedIn");
+                        }
+                    }
+                }
+            }
+            string updateMassege = (added + " student has been added to the Course.");
+            return RedirectToAction("CourseStudentList", new { CourseID, updateMassege, Year, Semseter } );
+        }
+
+        [HttpPost]
+        public ActionResult RemoveStudentFromCourse(string? StudetnID ,string? CourseID, DateTime? Year, string Semseter)
+        {
+            try
+            {
+                CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semseter);
+                if (cc != null)
+                {
+                    Student s = _DatabaseEntities.Students.Find(StudetnID);
+                    cc.Students.Remove(s);
+                    _DatabaseEntities.Entry(s).State = EntityState.Modified;
+                    _DatabaseEntities.SaveChanges();
+                }
+                else
+                {
+                    return RedirectToAction("Index", "LogedIn");
+                }
+            }
+            catch { 
+                return RedirectToAction("CourseStudentList", new { CourseID, Year, Semseter });
+            }
+
+            return RedirectToAction("CourseStudentList", new { CourseID,  Year, Semseter });
+        }
     }
 
 
+
+
+    
 }

@@ -450,5 +450,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <AssociationSetMapping Name="EnroledStudents" TypeName="Model.EnroledStudents" StoreEntitySet="EnroledStudents">
+      <EndProperty Name="Student">
+        <ScalarProperty Name="ID" ColumnName="StudentID" />
+      </EndProperty>
+      <EndProperty Name="CourseCoordinator">
+        <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+        <ScalarProperty Name="Year" ColumnName="Year" />
+        <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

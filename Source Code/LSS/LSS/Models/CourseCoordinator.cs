@@ -24,6 +24,7 @@ namespace LSS.Models
             this.OtherLecturers = new HashSet<OtherLecturer>();
             this.schedules = new HashSet<schedule>();
             this.Student_Course_Grade = new HashSet<Student_Course_Grade>();
+            this.Students = new HashSet<Student>();
         }
     
         public string CourseID { get; set; }
@@ -63,5 +64,7 @@ namespace LSS.Models
         public virtual ICollection<schedule> schedules { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student_Course_Grade> Student_Course_Grade { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Student> Students { get; set; }
     }
 }

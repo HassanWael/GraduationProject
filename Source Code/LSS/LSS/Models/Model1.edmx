@@ -246,6 +246,18 @@
           <Property Name="HeadOFDepartment" Type="nvarchar" MaxLength="30" />
           <Property Name="FacultyId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="EnroledStudents">
+          <Key>
+            <PropertyRef Name="StudentID" />
+            <PropertyRef Name="CourseID" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Semseter" />
+          </Key>
+          <Property Name="StudentID" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Year" Type="date" Nullable="false" />
+          <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+        </EntityType>
         <EntityType Name="Faculty">
           <Key>
             <PropertyRef Name="ID" />
@@ -914,6 +926,34 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_EnroledStudents_CourseCoordinator">
+          <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+          <End Role="EnroledStudents" Type="Self.EnroledStudents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CourseCoordinator">
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
+            </Principal>
+            <Dependent Role="EnroledStudents">
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EnroledStudents_ToStudetn">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="EnroledStudents" Type="Self.EnroledStudents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EnroledStudents">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Fac_ViceDean_ToLecturer">
           <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="0..1" />
           <End Role="Faculty" Type="Self.Faculty" Multiplicity="*" />
@@ -1301,6 +1341,7 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <EntitySet Name="CourseTeachingStrategies" EntityType="Self.CourseTeachingStrategies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CourseTextBook" EntityType="Self.CourseTextBook" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EnroledStudents" EntityType="Self.EnroledStudents" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Faculty" EntityType="Self.Faculty" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ineffectiveAssessmentStrategis" EntityType="Self.ineffectiveAssessmentStrategis" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ineffectiveTeachingStrategis" EntityType="Self.ineffectiveTeachingStrategis" Schema="dbo" store:Type="Tables" />
@@ -1442,6 +1483,14 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <AssociationSet Name="FK_DPT_ToLecturer" Association="Self.FK_DPT_ToLecturer">
             <End Role="Lecturers" EntitySet="Lecturers" />
             <End Role="Department" EntitySet="Department" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EnroledStudents_CourseCoordinator" Association="Self.FK_EnroledStudents_CourseCoordinator">
+            <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+            <End Role="EnroledStudents" EntitySet="EnroledStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EnroledStudents_ToStudetn" Association="Self.FK_EnroledStudents_ToStudetn">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="EnroledStudents" EntitySet="EnroledStudents" />
           </AssociationSet>
           <AssociationSet Name="FK_Fac_ViceDean_ToLecturer" Association="Self.FK_Fac_ViceDean_ToLecturer">
             <End Role="Lecturers" EntitySet="Lecturers" />
@@ -1731,6 +1780,7 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <NavigationProperty Name="ResultOfCourseDirectAssessment" Relationship="Self.FK_ResultOfCourseDirectAssessment_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="ResultOfCourseDirectAssessment" />
           <NavigationProperty Name="schedules" Relationship="Self.FK_schedule_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="schedule" />
           <NavigationProperty Name="Student_Course_Grade" Relationship="Self.FK_Student_Course_Grade_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="Student_Course_Grade" />
+          <NavigationProperty Name="Students" Relationship="Model.EnroledStudents" FromRole="CourseCoordinator" ToRole="Student" />
         </EntityType>
         <EntityType Name="CourseFileCheckList">
           <Key>
@@ -2026,6 +2076,7 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <NavigationProperty Name="Department" Relationship="Self.FK_Student_departement" FromRole="Student" ToRole="Department" />
           <NavigationProperty Name="Student_Course_Grade" Relationship="Self.FK_Student_Course_Grade_ToStudents" FromRole="Student" ToRole="Student_Course_Grade" />
           <NavigationProperty Name="Student_PI_Outcome" Relationship="Self.FK_Student_PI_Outcome_ToStudents" FromRole="Student" ToRole="Student_PI_Outcome" />
+          <NavigationProperty Name="CourseCoordinators" Relationship="Model.EnroledStudents" FromRole="Student" ToRole="CourseCoordinator" />
         </EntityType>
         <EntityType Name="Student_Course_Grade">
           <Key>
@@ -3018,6 +3069,10 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
             <End Role="SLO" EntitySet="SLOes" />
           </AssociationSet>
           <EntitySet Name="database_firewall_rules" EntityType="Model.database_firewall_rules" />
+          <AssociationSet Name="EnroledStudents" Association="Model.EnroledStudents">
+            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="database_firewall_rules">
           <Key>
@@ -3035,6 +3090,10 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
           <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
+        <Association Name="EnroledStudents">
+          <End Type="Model.CourseCoordinator" Role="CourseCoordinator" Multiplicity="*" />
+          <End Type="Model.Student" Role="Student" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3490,6 +3549,16 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="EnroledStudents" TypeName="Model.EnroledStudents" StoreEntitySet="EnroledStudents">
+            <EndProperty Name="Student">
+              <ScalarProperty Name="ID" ColumnName="StudentID" />
+            </EndProperty>
+            <EndProperty Name="CourseCoordinator">
+              <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+              <ScalarProperty Name="Year" ColumnName="Year" />
+              <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
