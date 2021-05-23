@@ -18,15 +18,16 @@ namespace LSS.Models
         public PI()
         {
             this.CourseAssessmentMappings = new HashSet<CourseAssessmentMapping>();
+            this.CourseAssessmentSurvays = new HashSet<CourseAssessmentSurvay>();
             this.CLOes = new HashSet<CLO>();
         }
-
         public PI(string SLOID, int deptID)
-        : this()
+             : this()
         {
             this.DeptID = deptID;
             this.SLOID = SLOID;
         }
+
         public string ID { get; set; }
         public string Desc { get; set; }
         public string SLOID { get; set; }
@@ -34,6 +35,8 @@ namespace LSS.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseAssessmentMapping> CourseAssessmentMappings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CourseAssessmentSurvay> CourseAssessmentSurvays { get; set; }
         public virtual SLO SLO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CLO> CLOes { get; set; }

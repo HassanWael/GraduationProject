@@ -21,7 +21,6 @@ namespace LSS.Models
         [DisplayName("Will this Course be Assessed")]
         public bool isAssessed1 { get; set; }
         [DisplayName("Please Specify the Reason:")]
-
         public string WhyNot { get; set; }
     
         public virtual CourseCoordinator CourseCoordinator { get; set; }

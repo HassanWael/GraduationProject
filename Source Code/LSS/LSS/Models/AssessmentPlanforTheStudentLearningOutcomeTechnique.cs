@@ -46,7 +46,7 @@ namespace LSS.Models
         public bool Students_Interviews { get; set; }
         [DisplayName("Others (identify):")]
         public string Other { get; set; }
-    
+
         public virtual CourseCoordinator CourseCoordinator { get; set; }
     }
 }

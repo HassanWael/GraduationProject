@@ -1,0 +1,94 @@
+﻿@model LSS.Models.CoursesModelView.CourseAssessmentID
+@using LSS.Models
+@using LSS.Models.CoursesModelView
+
+
+<div style="margin-top:10%;">
+    <table style="min-width:40%" class="table table-active">
+        <tr class="table-secondary">
+            <th style="min-width:10%;">
+                @Html.DisplayName("No")
+            </th>
+            <th style="min-width:80%;">
+                @Html.DisplayName("Qustion")
+            </th>
+            @if (Model.AssessmentQustions.Count() != 0)
+            {
+                <th> @Html.DisplayName("Score ")</th>
+            }
+            else
+            {
+                <th> @Html.DisplayName("Upload Answers to view the Scores")</th>
+
+            }
+        </tr>
+        @{
+            int i = 1;
+        }
+        @foreach (CourseAssessmentSurvay s in Model.AssessmentQustions)
+        {
+
+            <tr>
+                <td>
+                    @i
+                </td>
+                <td>
+                    @Html.DisplayFor(model => s.Qustion)
+                </td>
+                @if (Model.AssessmentQustions.Count() != 0)
+                {
+                    <td>
+                        @Model.getScore(s.ID)
+                    </td>
+                }
+
+            </tr>
+            i++;
+        }
+    </table>
+
+
+
+    <hr />
+
+    @using (Html.BeginForm("UploadSurveyAnswers", "CourseCoordinator", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+
+        <table>
+            <tr>
+                <td>File:</td>
+                <td>
+                    <input type="file" name="Select Excel file" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" name="Upload" value="Submit" />
+                </td>
+            </tr>
+        </table>
+        <input type="hidden" id="CourseID" name="CourseID" value='@Model.CC.CourseID' />
+        <input type="hidden" id="Year" name="Year" value='@Model.CC.Year' />
+        <input type="hidden" id="Semseter" name="Semseter" value='@Model.CC.Semseter' />
+    }
+
+
+</div>
+
+<button id='open' class="btn btn-outline-primary" data-toggle="modal" data-target="#addQustion">Add Course Learning outcome</button>
+
+<div id="addQustion" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @{
+                Html.RenderPartial("AddSurveyQustion", new AddSurveyQustionMV()
+                {
+                    CC = Model.CC
+                });
+            }
+        </div>
+    </div>
+</div>
+
+

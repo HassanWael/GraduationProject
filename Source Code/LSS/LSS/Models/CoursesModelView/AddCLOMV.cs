@@ -7,10 +7,10 @@ namespace LSS.Models.CoursesModelView
 {
     public class AddCLOMV
     {
-        readonly LSS_databaseEntities  _DatabaseEntities = new LSS_databaseEntities();
+        LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
         public AddCLOMV()
         {
-        }   
+        }
         public AddCLOMV(CLO CLO)
         {
             this.CLO = CLO; 
@@ -26,9 +26,9 @@ namespace LSS.Models.CoursesModelView
             }
         }
 
-        public AddCLOMV(String courseID)
+        public AddCLOMV(String DeptID)
         {
-            CLO = new CLO(courseID);
+            CLO = new CLO(DeptID);
         }
 
         public CLO CLO { get; set; }
