@@ -295,13 +295,11 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="ViceDean" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="dean" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Departments" Relationship="Self.FK_Department_Faculty" FromRole="Faculty" ToRole="Department" />
     <NavigationProperty Name="Lecturer" Relationship="Self.FK_Fac_ViceDean_ToLecturer" FromRole="Faculty" ToRole="Lecturers" />
-    <Property Name="PassingGradeForPI" Type="Int32" Nullable="false" />
-    <Property Name="PassingGradeForAssessmentSurvey" Type="Single" Nullable="false" />
   </EntityType>
   <EntityType Name="ineffectiveAssessmentStrategi">
     <Key>
@@ -1473,22 +1471,5 @@
       <End Role="Course" EntitySet="Courses" />
       <End Role="SLO" EntitySet="SLOes" />
     </AssociationSet>
-    <EntitySet Name="database_firewall_rules" EntityType="Model.database_firewall_rules" />
   </EntityContainer>
-  <EntityType Name="database_firewall_rules">
-    <Key>
-      <PropertyRef Name="id" />
-      <PropertyRef Name="name" />
-      <PropertyRef Name="start_ip_address" />
-      <PropertyRef Name="end_ip_address" />
-      <PropertyRef Name="create_date" />
-      <PropertyRef Name="modify_date" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="start_ip_address" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-    <Property Name="end_ip_address" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
-  </EntityType>
 </Schema>

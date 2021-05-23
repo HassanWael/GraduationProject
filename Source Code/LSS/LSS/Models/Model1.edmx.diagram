@@ -89,7 +89,6 @@
         <AssociationConnector Association="Model.CLO_PI" ManuallyRouted="false" />
         <AssociationConnector Association="Model.Schedule_CLO" ManuallyRouted="false" />
         <AssociationConnector Association="Model.SLO_Course" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="Model.database_firewall_rules" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
