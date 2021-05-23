@@ -10,87 +10,145 @@
 }
 <link href="~/Content/coursepage.css" rel="stylesheet" type="text/css" />
 
-<nav class="navbar navbar-expand-lg navbar-light  " style="border:0px;">
-
+<navbar class="navbar navbar-expand-lg navbar-light bg-light" style="border:0px; margin-top:1%;">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="navbar-collapse collapse" id="navbarSupportedContent">
-        <ul class="nav navbar-nav mr-auto">
-            <li class="nav-item">
-                @Html.ActionLink("previous Recomandation for improving the course", "ActionsForImproving", "CourseCoordinator", new { courseId = Model.Course.ID }, new { @class = "btn btn-secondary" })
+        <ul class="navbar-nav mr-auto" style="display:inline">
+            <li class="nav-item" style="float:left;">
+                @Html.ActionLink("Previous Recomandation for improving the course", "ActionsForImproving", "CourseCoordinator", new { courseId = Model.Course.ID }, new { @class = "btn btn-outline-primary" })
             </li>
-            <li class="nav-item dropdown show">
-                <a class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">Forms</a>
-                <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 44px, 0px);">
+
+            <li class="nav-item dropdown show" style="position:absolute; right:0; margin-right:1rem;">
+                <a class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">Forms</a>
+                <div class="dropdown-menu" x-placement="bottom-start" style="will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 44px, 0px);">
                     @Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { courseId = Model.Course.ID }, new { @class = "dropdown-item" })
                     @Html.ActionLink("Course Assessment Survey", "CourseAssessmentSurvey", "Forms", new { courseId = Model.Course.ID }, new { @class = "dropdown-item" })
                     @Html.ActionLink("Course File Checklist", "CourseFileChecklist", "Forms", new { courseId = Model.Course.ID }, new { @class = "dropdown-item" })
-                    @Html.ActionLink("Course Information Form ", "CourseInformationForm", "Forms", new { courseId = Model.Course.ID }, new { @class = "dropdown-item" })
+                    @Html.ActionLink("Course Information Form", "CourseInformationForm", "Forms", new { courseId = Model.Course.ID }, new { @class = "dropdown-item" })
                     @Html.ActionLink("Coures Report", "CourseReport", "Forms", new { courseId = Model.Course.ID }, new { @class = "dropdown-item" })
                     @Html.ActionLink("Exam Evaluation", "ExamEvaluation", "Forms", new { courseId = Model.Course.ID }, new { @class = "dropdown-item" })
                     @Html.ActionLink("Question Answer Sheet", "QuestionsAnswersSheet", "Forms", new { courseId = Model.Course.ID }, new { @class = "dropdown-item" })
                 </div>
             </li>
-            <li> Upload Course Assessment Survey Result </li>
-            <li>Upload Exam Results </li>
         </ul>
     </div>
-</nav>
+</navbar>
 
 
 
-<div class="block">
+<div class="block" style="margin-top:3%;">
+    <div class="block-item" style=" width:auto;">
+        <table class="table table-hover" style=" border: 1px solid cyan;  border:hidden; background:white;">
+            <thread>
+                <tr style="margin-left:auto; margin-right:auto; border-bottom:solid; border-bottom-color:cyan; Background:white">
+                    <th scope="row" colspan="2" style="text-align:center;"> <h3> COURSE INFORMATION </h3>  </th>
+                </tr>
+            </thread>
 
-    <div class="block-item" style="margin-right:30px; width:auto; ">
-        <table class="table-active" style="width:100%; border: 1px solid gray">
-            <tr style="margin-left:auto; margin-right:auto;">   <th scope="row" colspan="2" style="text-align:center;"> <p> Course Information </p>  </th></tr>
-            <tr style=" text-align:center;"> <td>   <h4> Coures Title </h4>  </td> <td> @Model.Course.Title </td></tr>
-            <tr style=" text-align:center;"> <td>    <h4> Coures ID </h4>  </td> <td>  @Model.Course.ID </td></tr>
-            <tr style="text-align:center;"> <td>   <h4> Faculty Name   </h4> </td> <td> @Model.Faculty.ID </td></tr>
-            <tr style=" text-align:center;"> <td>   <h4> Credit Hours   </h4> </td> <td> @Model.Course.Hours </td></tr>
-            <tr style=" text-align:center;"> <td>   <h4> Course Coordinator   </h4> </td> <td> @Model.CourseCoordinator.Coordinator </td></tr>
-            <tr style=" text-align:center;"> <td>   <h4> day time  </h4> </td> <td> @Model.CourseCoordinator.DayTime </td></tr>
+            <tbody>
+                <tr style=" text-align:center;">
+                    <td> <h4> Coures Title </h4> </td>
+                    <td> @Model.Course.Title </td>
+                </tr>
+
+                <tr style=" text-align:center;">
+                    <td>    <h4> Coures ID </h4>  </td>
+                    <td>  @Model.Course.ID </td>
+                </tr>
+                <tr style="text-align:center;">
+                    <td>   <h4> Faculty Name   </h4> </td>
+                    <td> @Model.Faculty.ID </td>
+                </tr>
+
+                <tr style=" text-align:center;">
+                    <td>   <h4> Credit Hours   </h4> </td>
+                    <td> @Model.Course.Hours </td>
+                </tr>
+
+                <tr style=" text-align:center;">
+                    <td>   <h4> Course Coordinator   </h4> </td>
+                    <td> @Model.CourseCoordinator.Coordinator </td>
+                </tr>
+
+                <tr style=" text-align:center;">
+                    <td>   <h4> day time  </h4> </td>
+                    <td> @Model.CourseCoordinator.DayTime </td>
+                </tr>
+            </tbody>
         </table>
     </div>
 
-    <div class="block-item" style="width:auto;">
-        <h2>Course Text Books </h2>
-        <table class="table-hover" style="width:97%">
-            <tr class="table-primary">   <th> <h4> Title </h4></th> <th><h4> Author </h4></th> <th><h4> Year of Publish   </h4> </th> <th><h4> City/State</h4></th>  <th><h4> publisher </h4></th></tr>
-            @foreach (CourseTextBook book in Model.CourseTextBooks)
-            {
-                <tr>  <td> @book.Book_Title </td>  <td> @book.Author</td><td> @book.YearOfpublish </td> <td> @book.City_State </td> <td>@book.Publisher</td></tr>
-            }
+
+    <div class="block" style="width:auto">
+        <table class="table table-hover" style=" border: 1px solid cyan;  border:hidden; background:white;">
+            <thread>
+                <tr style="margin-left:auto; margin-right:auto; border-bottom:solid; border-bottom-color:cyan; Background:white">
+                    <th scope="row" colspan="5" style="text-align:center;"> <h3> Course Text Books </h3>  </th>
+                </tr>
+            </thread>
+
+            <tbody>
+                <tr>
+                    <th><h4>Title</h4></th>
+                    <th><h4>Author</h4></th>
+                    <th><h4>Year of Publish</h4></th>
+                    <th><h4>City/State</h4></th>
+                    <th><h4>Publisher</h4></th>
+                </tr>
+
+                @foreach (CourseTextBook book in Model.CourseTextBooks)
+                {
+                    <tr>
+                        <td> @book.Book_Title </td>
+                        <td> @book.Author</td>
+                        <td> @book.YearOfpublish </td>
+                        <td> @book.City_State </td>
+                        <td>@book.Publisher</td>
+                    </tr>
+                }
+            </tbody>
+
+
         </table>
     </div>
 </div>
 
 
 <br />
-<hr />
+<hr style="border-color:red; margin-bottom:3rem" />
 
 
 
-<div class="block-item">
-    <h5 style="text-align:center;">Clo :</h5>
-    <ol>
-        @foreach (CLO clo in Model.CLOs)
-        {
-            <li>
-                <b style=" float:left; text-align: left;">
-                    @clo.Description
-                </b>
-                <div>
-                    @Html.ActionLink("Delete ", "DeleteCLO", new { id = clo.ID })
-                </div>
-            </li>
-        }
+<div class="block-item" style="background:white">
+    <div class="block-item" style="float:left; background:white; width:100%">
+        <h4 style="text-align:left; margin:5px">
+            Course Learning Outcome:
+            <button id='open' style="float:right; margin:5px" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#addCLO">
+                Add
+            </button>
+        </h4>
+        <hr style="border-color:cyan" />
+        <div>
+            <ul style="display:inline; align-items:center">
+                @foreach (CLO clo in Model.CLOs)
+                {
+                    <li style="padding-left:1rem; border-left:1px solid cyan; margin-right:1rem; margin-left:1rem; margin-bottom:1rem">
+                        <b><u> @clo.Description </u></b>
+                        <div style="align-items:center">
+                            @Html.ActionLink("Delete ", "DeleteCLO", new { id = clo.ID })
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
 
-    </ol>
-
-
+    </div>
 </div>
+
+
 
 <div id="addCLO" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -101,12 +159,11 @@
         </div>
     </div>
 </div>
-<button id='open' class="btn btn-outline-primary" data-toggle="modal" data-target="#addCLO">Add Course Learning outcome</button>
 
 
 @if (Model.SLO_PI != null)
 {
-    <div class="block-item" style="width:auto;">
+    <div class="block-item" style="width:auto; background:white; margin-bottom:2rem">
         <table class="table-hover" style="border: 1px solid black; width:100%;">
             <tr style="border: 1px solid black;">
                 <td class="table-primary" style="border: .2px solid #5F5E61; text-align:center;">  Student Learning Outcomes</td>
@@ -136,234 +193,248 @@
 }
 else
 {
-    <h6> There is no Pi listed for this course yet</h6>
+    <h4 style="text-align:center; color:YELLOW;">!! THERE IS NO PI LISTED YET !!</h4>
 }
 
+<br />
+<hr style="border-color:red; margin-bottom:3rem" />
 
+<div>
+    <ul style="display:inline;">
+        @* First card*@
+        <li style="margin:1rem">
+            <div class="card bg-secondary mb-3" style="max-width: 20rem;">
+                <div class="card-header"> <h5>Will This Course Be Assessed? </h5></div>
+                <div class="card-body">
 
-
-<div class="card bg-secondary mb-3" style="max-width: 20rem;">
-    <div class="card-header"> <h5>Will This Course Be Assessed </h5></div>
-    <div class="card-body">
-
-        @if (Model.IsAssessed == null)
-        {
-
-            <h4>this has not been set up yet please fill the information</h4>
-            <p class="card-text">
-                <button id='open' class="card-link" data-toggle="modal" data-target="#isAssessed">Fill the Information </button>
-
-            </p>
-
-        }
-
-        else if (Model.IsAssessed.isAssessed1 == true)
-        {
-            <h4 class="card-title">
-                Yes this Course will be Assessed
-                <button id='open' class="card-link" data-toggle="modal" data-target="#isAssessed">Edit </button>
-            </h4>
-            <p class="card-text">
-            </p>
-
-        }
-        else
-        {
-
-            <h4 class="card-title">
-                No
-            </h4>
-
-
-            <p class="card-text">
-                Why Not:@Html.DisplayFor(model => model.IsAssessed.WhyNot)
-                <br />
-                <button id='open' class="card-link" data-toggle="modal" data-target="#isAssessed">Edit </button>
-
-            </p>
-        }
-
-
-
-    </div>
-</div>
-
-
-
-
-
-
-
-<div id="isAssessed" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            @{
-                if (Model.CourseCoordinator.isAssessed == null)
-                {
-                    Html.RenderPartial("IsAssessed", new isAssessed()
+                    @if (Model.IsAssessed == null)
                     {
-                        CourseID = Model.CourseCoordinator.CourseID,
-                        Year = Model.CourseCoordinator.Year,
-                        Semseter = Model.CourseCoordinator.Semseter,
-                        isAssessed1 = false
-                    });
-                }
-                else
-                {
-                    Html.RenderPartial("IsAssessed", Model.IsAssessed);
-                }
-            }
-        </div>
-    </div>
-</div>
 
+                        <h4>this has not been set up yet please fill the information</h4>
+                        <p class="card-text">
+                            <button id='open' class="btn btn-outline-info card-link" data-toggle="modal" data-target="#isAssessed">Fill the Information </button>
 
+                        </p>
+                    }
 
-<div class="card bg-secondary mb-3" style="max-width: 20rem;">
-    <div class="card-header">Assessment Plan for the Student Learning Outcome</div>
-    <div class="card-body">
-        @if (Model.AssessmentPlan == null)
-        {
-            <p class="card-text">
-                The Assessment Plan has not been set up yet
-                <button id='open' class="card-link" data-toggle="modal" data-target="#addAssmentPlan">create Assessment plan for this semester</button>
-
-            </p>
-
-        }
-        else
-        {
-    <p class="card-text">
-        <ul>
-            @if (Model.AssessmentPlan.Midterm_Test)
-            {
-                <li>
-                    @Html.DisplayNameFor(model => model.AssessmentPlan.Midterm_Test);
-                </li>
-            }
-
-            @if (Model.AssessmentPlan.Final_Exam)
-            {
-                <li>
-                    @Html.DisplayNameFor(model => model.AssessmentPlan.Final_Exam);
-                </li>
-            }
-            @if (Model.AssessmentPlan.Quiz)
-            {
-                <li>
-                    @Html.DisplayNameFor(model => model.AssessmentPlan.Quiz);
-                </li>
-            }
-
-            @if (Model.AssessmentPlan.Assignment)
-            {
-                <li>
-                    @Html.DisplayNameFor(model => model.AssessmentPlan.Assignment);
-                </li>
-            }
-
-            @if (Model.AssessmentPlan.project)
-            {
-                <li>
-                    @Html.DisplayNameFor(model => model.AssessmentPlan.project);
-                </li>
-            }
-
-
-            @if (Model.AssessmentPlan.Written_Report)
-            {
-                <li>
-                    @Html.DisplayNameFor(model => model.AssessmentPlan.Written_Report);
-                </li>
-            }   @if (Model.AssessmentPlan.Oral_Presenation)
-            {
-                <li>
-                    @Html.DisplayNameFor(model => model.AssessmentPlan.Oral_Presenation);
-                </li>
-            }
-            @if (Model.AssessmentPlan.Practice_In_The_Lab)
-            {
-                <li>
-                    @Html.DisplayNameFor(model => model.AssessmentPlan.Practice_In_The_Lab);
-                </li>
-            }
-            @if (Model.AssessmentPlan.Case_Studdy)
-            {
-                <li>
-                    @Html.DisplayNameFor(model => model.AssessmentPlan.Case_Studdy);
-                </li>
-            }
-            @if (Model.AssessmentPlan.Coruse_Assessment_Survey_By_Students)
-            {
-                <li>
-                    @Html.DisplayNameFor(model => model.AssessmentPlan.Coruse_Assessment_Survey_By_Students);
-                </li>
-            }
-            @if (Model.AssessmentPlan.Gropu_Discussions)
-            {
-                <li>
-                    @Html.DisplayNameFor(model => model.AssessmentPlan.Gropu_Discussions);
-                </li>
-            }
-            @if (Model.AssessmentPlan.Students_Interviews)
-            {
-                <li>
-                    @Html.DisplayNameFor(model => model.AssessmentPlan.Students_Interviews);
-                </li>
-            }
-            @if (Model.AssessmentPlan.Other != null)
-            {
-                <li>
-                    @Html.DisplayNameFor(model => model.AssessmentPlan.Other);
-                    @Html.DisplayFor(model => model.AssessmentPlan.Other);
-                </li>
-            }
-        </ul>
-        <button id='open' class="card-link" data-toggle="modal" data-target="#addAssmentPlan">Edite the  Assessment plan for this semester</button>
-
-    </p>
-
-        }
-
-
-    </div>
-</div>
-
-
-
-
-
-
-<div id="addAssmentPlan" class="modal fade" tabindex="-1" role="dialog" >
-    <div class="modal-dialog" role="document"  style="width:auto;">
-        <div class="modal-content" style="width:auto;">
-            @{
-                if (Model.AssessmentPlan == null)
-                {
-                    Html.RenderPartial("AssessmentPlan", new AssessmentPlanforTheStudentLearningOutcomeTechnique()
+                    else if (Model.IsAssessed.isAssessed1 == true)
                     {
-                        CourseID = Model.CourseCoordinator.CourseID,
-                        Year = Model.CourseCoordinator.Year,
-                        Semester = Model.CourseCoordinator.Semseter,
-                        Midterm_Test = false,
-                        Final_Exam = false,
-                        Quiz = false,
-                        Assignment = false,
-                        project = false,
-                        Written_Report = false,
-                        Oral_Presenation = false,
-                        Practice_In_The_Lab = false,
-                        Case_Studdy = false,
-                        Coruse_Assessment_Survey_By_Students = false,
-                        Gropu_Discussions = false,
-                        Students_Interviews = false
-                    });
-                }
-                else
-                {
-                    Html.RenderPartial("AssessmentPlan", Model.AssessmentPlan);
-                }
-            }
-        </div>
-    </div>
+                        <h4 class="card-title">
+                            Yes this Course will be Assessed
+                            <button id='open' class="btn btn-outline-info card-link" data-toggle="modal" data-target="#isAssessed">Edit </button>
+                        </h4>
+                        <p class="card-text">
+                        </p>
+                    }
+                    else{
+                        <h4 class="card-title">
+                            No
+                        </h4>
+
+                        <p class="card-text">
+                            Why Not:@Html.DisplayFor(model => model.IsAssessed.WhyNot)
+                            <br />
+                            <button id='open' class="btn btn-outline-info card-link" data-toggle="modal" data-target="#isAssessed">Edit </button>
+
+                        </p>
+                    }
+                </div>
+            </div>
+        </li>
+
+
+        <li style="margin:1rem">
+            <div id="isAssessed" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        @{
+                            if (Model.CourseCoordinator.isAssessed == null)
+                            {
+                                Html.RenderPartial("IsAssessed", new isAssessed()
+                                {
+                                    CourseID = Model.CourseCoordinator.CourseID,
+                                    Year = Model.CourseCoordinator.Year,
+                                    Semseter = Model.CourseCoordinator.Semseter,
+                                    isAssessed1 = false
+                                });
+                            }
+                            else
+                            {
+                                Html.RenderPartial("IsAssessed", Model.IsAssessed);
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </li>
+
+        @*Second card*@
+
+        <li style="margin:1rem">
+            <div class="card bg-secondary mb-3" style="max-width: 20rem; float:right">
+                <div class="card-header">Assessment Plan for the Student Learning Outcome</div>
+                <div class="card-body">
+                    @if (Model.AssessmentPlan == null)
+                    {
+                        <p class="card-text">
+                            The Assessment Plan has not been set up yet
+                            <button id='open' class="btn btn-outline-info card-link" data-toggle="modal" data-target="#addAssmentPlan">create Assessment plan for this semester</button>
+
+                        </p>
+
+                    }
+                    else
+                    {
+                        <p class="card-text">
+                            <ul>
+                                @if (Model.AssessmentPlan.Midterm_Test)
+                                {
+                                    <li>
+                                        @Html.DisplayNameFor(model => model.AssessmentPlan.Midterm_Test);
+                                    </li>
+                                }
+
+                                @if (Model.AssessmentPlan.Final_Exam)
+                                {
+                                    <li>
+                                        @Html.DisplayNameFor(model => model.AssessmentPlan.Final_Exam);
+                                    </li>
+                                }
+                                @if (Model.AssessmentPlan.Quiz)
+                                {
+                                    <li>
+                                        @Html.DisplayNameFor(model => model.AssessmentPlan.Quiz);
+                                    </li>
+                                }
+
+                                @if (Model.AssessmentPlan.Assignment)
+                                {
+                                    <li>
+                                        @Html.DisplayNameFor(model => model.AssessmentPlan.Assignment);
+                                    </li>
+                                }
+
+                                @if (Model.AssessmentPlan.project)
+                                {
+                                    <li>
+                                        @Html.DisplayNameFor(model => model.AssessmentPlan.project);
+                                    </li>
+                                }
+
+
+                                @if (Model.AssessmentPlan.Written_Report)
+                                {
+                                    <li>
+                                        @Html.DisplayNameFor(model => model.AssessmentPlan.Written_Report);
+                                    </li>
+                                }   @if (Model.AssessmentPlan.Oral_Presenation)
+                                {
+                                    <li>
+                                        @Html.DisplayNameFor(model => model.AssessmentPlan.Oral_Presenation);
+                                    </li>
+                                }
+                                @if (Model.AssessmentPlan.Practice_In_The_Lab)
+                                {
+                                    <li>
+                                        @Html.DisplayNameFor(model => model.AssessmentPlan.Practice_In_The_Lab);
+                                    </li>
+                                }
+                                @if (Model.AssessmentPlan.Case_Studdy)
+                                {
+                                    <li>
+                                        @Html.DisplayNameFor(model => model.AssessmentPlan.Case_Studdy);
+                                    </li>
+                                }
+                                @if (Model.AssessmentPlan.Coruse_Assessment_Survey_By_Students)
+                                {
+                                    <li>
+                                        @Html.DisplayNameFor(model => model.AssessmentPlan.Coruse_Assessment_Survey_By_Students);
+                                    </li>
+                                }
+                                @if (Model.AssessmentPlan.Gropu_Discussions)
+                                {
+                                    <li>
+                                        @Html.DisplayNameFor(model => model.AssessmentPlan.Gropu_Discussions);
+                                    </li>
+                                }
+                                @if (Model.AssessmentPlan.Students_Interviews)
+                                {
+                                    <li>
+                                        @Html.DisplayNameFor(model => model.AssessmentPlan.Students_Interviews);
+                                    </li>
+                                }
+                                @if (Model.AssessmentPlan.Other != null)
+                                {
+                                    <li>
+                                        @Html.DisplayNameFor(model => model.AssessmentPlan.Other);
+                                        @Html.DisplayFor(model => model.AssessmentPlan.Other);
+                                    </li>
+                                }
+                            </ul>
+                            <button id='open' class="btn btn-outline-info card-link" data-toggle="modal" data-target="#addAssmentPlan">Edite the  Assessment plan for this semester</button>
+                        </p>
+
+                    }
+                </div>
+            </div>
+        </li>
+
+
+        <li style="margin:1rem">
+            <div id="addAssmentPlan" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document" style="width:auto;">
+                    <div class="modal-content" style="width:auto;">
+                        @{
+                            if (Model.AssessmentPlan == null)
+                            {
+                                Html.RenderPartial("AssessmentPlan", new AssessmentPlanforTheStudentLearningOutcomeTechnique()
+                                {
+                                    CourseID = Model.CourseCoordinator.CourseID,
+                                    Year = Model.CourseCoordinator.Year,
+                                    Semester = Model.CourseCoordinator.Semseter,
+                                    Midterm_Test = false,
+                                    Final_Exam = false,
+                                    Quiz = false,
+                                    Assignment = false,
+                                    project = false,
+                                    Written_Report = false,
+                                    Oral_Presenation = false,
+                                    Practice_In_The_Lab = false,
+                                    Case_Studdy = false,
+                                    Coruse_Assessment_Survey_By_Students = false,
+                                    Gropu_Discussions = false,
+                                    Students_Interviews = false
+                                });
+                            }
+                            else
+                            {
+                                Html.RenderPartial("AssessmentPlan", Model.AssessmentPlan);
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
