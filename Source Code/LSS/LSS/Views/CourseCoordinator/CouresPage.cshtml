@@ -166,7 +166,7 @@
     </div>
 </div>
 
-
+@{ int col = 0;}
 @if (Model.SLO_PI != null)
 {
     <div class="block-item" style="width:auto; background:white; margin-bottom:2rem">
@@ -175,7 +175,7 @@
                 <td class="table-primary" style="border: .2px solid #5F5E61; text-align:center;">  Student Learning Outcomes</td>
                 @for (int i = 0; i < Model.SLO_PI.Count(); i++)
                 {
-                    @{int col = Model.SLO_PI.ElementAt(i).Value.Count() + 1; }
+                    { col = Model.SLO_PI.ElementAt(i).Value.Count() + 1; }
                     <td colspan="@col" style="border: .2px solid #5F5E61; text-align:center;">
                         @Model.SLO_PI.ElementAt(i).Key.SLOID
                     </td>
