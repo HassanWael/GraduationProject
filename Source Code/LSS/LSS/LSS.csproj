@@ -153,6 +153,9 @@
     <Compile Include="Models\AssessmentPlanforTheStudentLearningOutcomeTechnique.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AssessmentSurveyAnswer.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\byCompletingThisCourseStudentsAreAbleTo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
