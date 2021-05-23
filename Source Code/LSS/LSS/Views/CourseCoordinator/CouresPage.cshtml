@@ -40,10 +40,10 @@
 
 
 <div class="block" style="margin-top:3%;">
-    <div class="block-item" style=" width:auto;">
+    <div class="block-item" style=" width:100%;">
         <table class="table table-hover" style=" border: 1px solid cyan;  border:hidden; background:white;">
             <thread>
-                <tr style="margin-left:auto; margin-right:auto; border-bottom:solid; border-bottom-color:cyan; Background:white">
+                <tr style="margin-right:auto; border-bottom:solid; border-bottom-color:cyan; Background:white">
                     <th scope="row" colspan="2" style="text-align:center;"> <h3> COURSE INFORMATION </h3>  </th>
                 </tr>
             </thread>
@@ -80,42 +80,38 @@
             </tbody>
         </table>
     </div>
-
-
-    <div class="block" style="width:auto">
-        <table class="table table-hover" style=" border: 1px solid cyan;  border:hidden; background:white;">
-            <thread>
-                <tr style="margin-left:auto; margin-right:auto; border-bottom:solid; border-bottom-color:cyan; Background:white">
-                    <th scope="row" colspan="5" style="text-align:center;"> <h3> Course Text Books </h3>  </th>
-                </tr>
-            </thread>
-
-            <tbody>
-                <tr>
-                    <th><h4>Title</h4></th>
-                    <th><h4>Author</h4></th>
-                    <th><h4>Year of Publish</h4></th>
-                    <th><h4>City/State</h4></th>
-                    <th><h4>Publisher</h4></th>
-                </tr>
-
-                @foreach (CourseTextBook book in Model.CourseTextBooks)
-                {
-                    <tr>
-                        <td> @book.Book_Title </td>
-                        <td> @book.Author</td>
-                        <td> @book.YearOfpublish </td>
-                        <td> @book.City_State </td>
-                        <td>@book.Publisher</td>
-                    </tr>
-                }
-            </tbody>
-
-
-        </table>
-    </div>
 </div>
 
+<div class="block" style="width:auto">
+    <table class="table table-hover" style=" border: 1px solid cyan;  border:hidden; background:white;">
+        <thread>
+            <tr style="margin-left:auto; margin-right:auto; border-bottom:solid; border-bottom-color:cyan; Background:white">
+                <th scope="row" colspan="5" style="text-align:center;"> <h3> Course Text Books </h3>  </th>
+            </tr>
+        </thread>
+
+        <tbody>
+            <tr>
+                <th><h4>Title</h4></th>
+                <th><h4>Author</h4></th>
+                <th><h4>Year of Publish</h4></th>
+                <th><h4>City/State</h4></th>
+                <th><h4>Publisher</h4></th>
+            </tr>
+
+            @foreach (CourseTextBook book in Model.CourseTextBooks)
+            {
+                <tr>
+                    <td> @book.Book_Title </td>
+                    <td> @book.Author</td>
+                    <td> @book.YearOfpublish </td>
+                    <td> @book.City_State </td>
+                    <td>@book.Publisher</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
 <br />
 <hr style="border-color:red; margin-bottom:3rem" />
@@ -131,18 +127,18 @@
             </button>
         </h4>
         <hr style="border-color:cyan" />
-        <div>
-            <ul style="display:inline; align-items:center">
+        <div style="width:auto">
+            <ol style="display:inline;" >
                 @foreach (CLO clo in Model.CLOs)
                 {
                     <li style="padding-left:1rem; border-left:1px solid cyan; margin-right:1rem; margin-left:1rem; margin-bottom:1rem">
-                        <b><u> @clo.Description </u></b>
+                        <b>@clo.Description</b>
                         <div style="align-items:center">
                             @Html.ActionLink("Delete ", "DeleteCLO", new { id = clo.ID })
                         </div>
                     </li>
                 }
-            </ul>
+            </ol>
         </div>
 
     </div>
@@ -417,24 +413,3 @@ else
         </li>
     </ul>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
