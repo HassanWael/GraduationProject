@@ -17,9 +17,20 @@
     <div class="navbar-collapse collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto" style="display:inline">
             <li class="nav-item" style="float:left;">
-                @Html.ActionLink("Previous Recomandation for improving the course", "ActionsForImproving", "CourseCoordinator", new { courseId = Model.Course.ID }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Recomandation \n for improving the course", "ActionsForImproving", "CourseCoordinator", new { courseId = Model.Course.ID }, new { @class = "btn btn-primary" })
             </li>
-
+            <li class="nav-item" style="float:left;">
+                @Html.ActionLink("Students List", "CourseStudentList", "CourseCoordinator", new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "btn btn-primary" })
+            </li>
+            <li class="nav-item" style="float:left;">
+                @Html.ActionLink("Final Grads", "Final Grads", "CourseCoordinator", new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "btn btn-primary" })
+            </li>
+            <li class="nav-item" style="float:left;">
+                @Html.ActionLink("PI Assessment", "PI Assessment", "CourseCoordinator", new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "btn btn-primary" })
+            </li>
+            <li class="nav-item" style="float:left;">
+                @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator", new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "btn btn-primary" })
+            </li>
             <li class="nav-item dropdown show" style="position:absolute; right:0; margin-right:1rem;">
                 <a class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">Forms</a>
                 <div class="dropdown-menu" x-placement="bottom-start" style="will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 44px, 0px);">
@@ -114,15 +125,15 @@
     </table>
 </div>
 
-@*<div id="addBook" class="modal fade" tabindex="-1" role="dialog">
+<div id="addBook" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             @{
-                Html.RenderPartial("AddBook", new AddBook(Model.Course.ID));
+                Html.RenderPartial("AddBook", new CourseTextBook(){Course=Model.Course.ID });
             }
         </div>
     </div>
-</div>*@
+</div>
 
 <br />
 <hr style="border-color:red; margin-bottom:3rem" />
@@ -167,6 +178,8 @@
 </div>
 
 
+@{ int col = 0;}
+
 @if (Model.SLO_PI != null)
 {
     <div class="block-item" style="width:auto; background:white; margin-bottom:2rem">
@@ -175,7 +188,9 @@
                 <td class="table-primary" style="border: .2px solid #5F5E61; text-align:center;">  Student Learning Outcomes</td>
                 @for (int i = 0; i < Model.SLO_PI.Count(); i++)
                 {
-                    @{int col = Model.SLO_PI.ElementAt(i).Value.Count() + 1; }
+      
+                  { col = Model.SLO_PI.ElementAt(i).Value.Count() + 1;}
+
                     <td colspan="@col" style="border: .2px solid #5F5E61; text-align:center;">
                         @Model.SLO_PI.ElementAt(i).Key.SLOID
                     </td>

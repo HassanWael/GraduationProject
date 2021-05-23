@@ -267,6 +267,7 @@ namespace LSS.Controllers
         }
 
 
+        //todo: create a Model for CourseStudent List 
         public ActionResult CourseStudentList(string? CourseID,string? updateMassege, DateTime? Year, string? Semester,int? Department, string? Search, int page = 1, int pageSize = 10)
         {
             if(Year ==null&& Semester == null)
@@ -291,19 +292,9 @@ namespace LSS.Controllers
             ViewBag.CourseID = CourseID;
             ViewBag.Year = Year;
             ViewBag.Semester = Semester;
-            ViewBag.Department = Department;
 
-
-            if ((Search == null || Search.Equals("")) && Department == null ) {
-                CourseStudents = cc.EnroledStudents.ToList();
-                studentsPaged = new PagedList<EnroledStudent>(CourseStudents, page, pageSize);
-            }
-            else if (Department == null)
-            {
-                CourseStudents = cc.EnroledStudents.Where(x=>x.Student.ID.Equals(Search)|| x.Student.Name.Contains(Search)).ToList();
-                studentsPaged = new PagedList<EnroledStudent>(CourseStudents, page, pageSize);
                 
-            }else if ((Search == null || Search.Equals("")))
+            if ((Search == null || Search.Equals("")))
             {
                 CourseStudents = cc.EnroledStudents.Where(x =>x.Student.DptID.Equals(Department)).ToList();
                 studentsPaged = new PagedList<EnroledStudent>(CourseStudents, page, pageSize);
@@ -312,7 +303,6 @@ namespace LSS.Controllers
             else
             {
                 CourseStudents = cc.EnroledStudents.Where(x => x.Student.ID.Equals(Search) || x.Student.Name.Contains(Search)).ToList();
-                CourseStudents = CourseStudents.Where(x => x.Student.DptID.Equals(Department)).ToList();
                 studentsPaged = new PagedList<EnroledStudent>(CourseStudents, page, pageSize);
             }
             return View(studentsPaged);
@@ -409,10 +399,42 @@ namespace LSS.Controllers
 
             return RedirectToAction("CourseStudentList", new { CourseID,  Year, Semseter });
         }
+
+
+        // to do: read uploaded Files 
+        public ActionResult UploadGrades()
+        {
+
+            return RedirectToAction("CourseStudentList");
+        }
+
+
+
+        [HttpPost]
+        public ActionResult AddBook(CourseTextBook courseTextBook)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _DatabaseEntities.CourseTextBooks.Add(courseTextBook);
+                    _DatabaseEntities.SaveChanges();
+                }
+                catch (Exception e )
+                {
+                    Console.WriteLine("Error at line 413 CourseCoordinator" + e.Message);
+
+                    return RedirectToAction("CoursePage", courseTextBook.Course);
+                }
+
+            }
+            if(courseTextBook.Course !=null && !courseTextBook.Course.Equals(""))
+                return RedirectToAction("CoursePage", courseTextBook.Course);
+            return RedirectToAction("Index", "LogedIn");
+
+        }
+
+
     }
-
-
-
-
     
 }
