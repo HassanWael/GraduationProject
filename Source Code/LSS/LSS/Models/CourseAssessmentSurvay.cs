@@ -32,6 +32,5 @@ namespace LSS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AssessmentSurveyAnswer> AssessmentSurveyAnswers { get; set; }
         public virtual CourseCoordinator CourseCoordinator { get; set; }
-        public virtual PI PI { get; set; }
     }
 }

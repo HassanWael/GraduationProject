@@ -12,19 +12,22 @@ namespace LSS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CourseAssessmentMapping
+    public partial class EnroledStudent
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public EnroledStudent()
+        {
+            this.PIAssessments = new HashSet<PIAssessment>();
+        }
+    
+        public string StudentID { get; set; }
         public string CourseID { get; set; }
         public System.DateTime Year { get; set; }
         public string Semseter { get; set; }
-        public string AssessmentID { get; set; }
-        public int CLO { get; set; }
-        public string PI { get; set; }
-        public string SLOID { get; set; }
-        public int DeptID { get; set; }
     
-        public virtual CLO CLO1 { get; set; }
         public virtual CourseCoordinator CourseCoordinator { get; set; }
-        public virtual Department Department { get; set; }
+        public virtual Student Student { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PIAssessment> PIAssessments { get; set; }
     }
 }

@@ -42,6 +42,7 @@ namespace LSS.Models
         public virtual DbSet<CourseTeachingStrategy> CourseTeachingStrategies { get; set; }
         public virtual DbSet<CourseTextBook> CourseTextBooks { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
+        public virtual DbSet<EnroledStudent> EnroledStudents { get; set; }
         public virtual DbSet<Faculty> Faculties { get; set; }
         public virtual DbSet<ineffectiveAssessmentStrategi> ineffectiveAssessmentStrategis { get; set; }
         public virtual DbSet<ineffectiveTeachingStrategi> ineffectiveTeachingStrategis { get; set; }
@@ -51,6 +52,7 @@ namespace LSS.Models
         public virtual DbSet<OtherLecturer> OtherLecturers { get; set; }
         public virtual DbSet<PEO> PEOs { get; set; }
         public virtual DbSet<PI> PIs { get; set; }
+        public virtual DbSet<PIAssessment> PIAssessments { get; set; }
         public virtual DbSet<ResultOfCourseDirectAssessment> ResultOfCourseDirectAssessments { get; set; }
         public virtual DbSet<schedule> schedules { get; set; }
         public virtual DbSet<SLO> SLOes { get; set; }
