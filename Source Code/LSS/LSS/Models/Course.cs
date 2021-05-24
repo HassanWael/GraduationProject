@@ -17,7 +17,6 @@ namespace LSS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Course()
         {
-            this.AssessedCourses = new HashSet<AssessedCours>();
             this.CLOes = new HashSet<CLO>();
             this.Course1 = new HashSet<Course>();
             this.Course11 = new HashSet<Course>();
@@ -38,8 +37,6 @@ namespace LSS.Models
         public string co_requisite { get; set; }
         public int dptid { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AssessedCours> AssessedCourses { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CLO> CLOes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

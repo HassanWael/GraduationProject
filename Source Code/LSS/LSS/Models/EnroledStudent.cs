@@ -24,6 +24,7 @@ namespace LSS.Models
         public string CourseID { get; set; }
         public System.DateTime Year { get; set; }
         public string Semseter { get; set; }
+        public Nullable<int> FinalGrade { get; set; }
     
         public virtual CourseCoordinator CourseCoordinator { get; set; }
         public virtual Student Student { get; set; }

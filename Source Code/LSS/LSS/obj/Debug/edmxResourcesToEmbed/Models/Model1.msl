@@ -14,17 +14,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="AssessedCourses">
-      <EntityTypeMapping TypeName="Model.AssessedCours">
-        <MappingFragment StoreEntitySet="AssessedCourses">
-          <ScalarProperty Name="WhyNot" ColumnName="WhyNot" />
-          <ScalarProperty Name="IsAssessed" ColumnName="IsAssessed" />
-          <ScalarProperty Name="Semester" ColumnName="Semester" />
-          <ScalarProperty Name="Year" ColumnName="Year" />
-          <ScalarProperty Name="CourseID" ColumnName="CourseID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="AssessmentPlanforTheStudentLearningOutcomeTechniques">
       <EntityTypeMapping TypeName="Model.AssessmentPlanforTheStudentLearningOutcomeTechnique">
         <MappingFragment StoreEntitySet="AssessmentPlanforTheStudentLearningOutcomeTechnique">
@@ -221,6 +210,7 @@
     <EntitySetMapping Name="EnroledStudents">
       <EntityTypeMapping TypeName="Model.EnroledStudent">
         <MappingFragment StoreEntitySet="EnroledStudents">
+          <ScalarProperty Name="FinalGrade" ColumnName="FinalGrade" />
           <ScalarProperty Name="Semseter" ColumnName="Semseter" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
@@ -393,17 +383,6 @@
           <ScalarProperty Name="DptID" ColumnName="DptID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Student_Course_Grade">
-      <EntityTypeMapping TypeName="Model.Student_Course_Grade">
-        <MappingFragment StoreEntitySet="Student-Course-Grade">
-          <ScalarProperty Name="Mark" ColumnName="Mark" />
-          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
-          <ScalarProperty Name="Semseter" ColumnName="Semseter" />
-          <ScalarProperty Name="Year" ColumnName="Year" />
-          <ScalarProperty Name="CourseID" ColumnName="CourseID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
