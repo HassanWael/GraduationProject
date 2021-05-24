@@ -2,6 +2,7 @@
 using LSS.Models.arc;
 using LSS.Models.CoursesModelView;
 using OfficeOpenXml;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
