@@ -25,9 +25,6 @@ namespace LSS.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<CourseExam> CourseExams { get; set; }
-        public virtual DbSet<CourseExamQuestion> CourseExamQuestions { get; set; }
-        public virtual DbSet<CourseExamQustion> CourseExamQustions { get; set; }
         public virtual DbSet<ActionsForImprovingTheCourse> ActionsForImprovingTheCourses { get; set; }
         public virtual DbSet<AssessmentPlanforTheStudentLearningOutcomeTechnique> AssessmentPlanforTheStudentLearningOutcomeTechniques { get; set; }
         public virtual DbSet<AssessmentSurveyAnswer> AssessmentSurveyAnswers { get; set; }
@@ -37,7 +34,9 @@ namespace LSS.Models
         public virtual DbSet<CourseAssessmentMapping> CourseAssessmentMappings { get; set; }
         public virtual DbSet<CourseAssessmentSurvay> CourseAssessmentSurvays { get; set; }
         public virtual DbSet<CourseCoordinator> CourseCoordinators { get; set; }
+        public virtual DbSet<CourseExam> CourseExams { get; set; }
         public virtual DbSet<CourseExamEval> CourseExamEvals { get; set; }
+        public virtual DbSet<CourseExamQuestion> CourseExamQuestions { get; set; }
         public virtual DbSet<CourseFileCheckList> CourseFileCheckLists { get; set; }
         public virtual DbSet<CourseInformationForm> CourseInformationForms { get; set; }
         public virtual DbSet<CourseReport> CourseReports { get; set; }
@@ -62,7 +61,6 @@ namespace LSS.Models
         public virtual DbSet<SLO_PEO> SLO_PEO { get; set; }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Student_PI_Outcome> Student_PI_Outcome { get; set; }
-        public virtual DbSet<Table> Tables { get; set; }
         public virtual DbSet<TeachingAndLearningStrategiesTechnique> TeachingAndLearningStrategiesTechniques { get; set; }
         public virtual DbSet<YearAndSemester> YearAndSemesters { get; set; }
         public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
