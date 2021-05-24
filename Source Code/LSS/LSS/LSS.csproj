@@ -510,6 +510,7 @@
     <Content Include="Views\Admin\ListStudents.cshtml" />
     <Content Include="Views\Admin\UpdateStudent.cshtml" />
     <Content Include="Views\Admin\CreateStudent.cshtml" />
+    <Content Include="Views\Forms\addCourseSyllabus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
