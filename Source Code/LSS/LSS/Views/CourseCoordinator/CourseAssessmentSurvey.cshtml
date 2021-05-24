@@ -1,6 +1,8 @@
 ﻿@model LSS.Models.CoursesModelView.CourseAssessmentID
 @using LSS.Models
 @using LSS.Models.CoursesModelView
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
 
 <head>
     @{
@@ -14,106 +16,145 @@
 </head>
 
 <body>
-    <div style="margin-top:10%;">
-        <table class="table" style=" border: 1px solid cyan;  border:hidden; background:white;">
-            <thread>
-                <tr class="table-primary">
-                    <th style="min-width:10%;">
-                        @Html.DisplayName("No")
-                    </th>
-                    <th style="min-width:80%;">
-                        @Html.DisplayName("Qustion")
-                    </th>
-                    @if (Model.AssessmentQustions.Count() != 0)
-                    {
-                        <th> @Html.DisplayName("Score ")</th>
-                    }
-                    else
-                    {
-                        <th> @Html.DisplayName("Upload Answers to view the Scores")</th>
+    <div class="row">
+        <div class="col-2 mt-lg-5">
+            <div class="list-group list-group-flush w-50">
+                <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Content</b> </h4>
+                @Html.ActionLink("Recomandations for improving the course", "ActionsForImproving", "CourseCoordinator", new { ViewBag.courseID }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
 
-                    }
-                </tr>
-            </thread>
+                @Html.ActionLink("Students List", "CourseStudentList", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semseter }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
 
-            @{
-                int i = 1;
-            }
-            @foreach (CourseAssessmentSurvay s in Model.AssessmentQustions)
-            {
+                @Html.ActionLink("PI Assessment", "PI Assessment", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semseter }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
 
-                <tr>
-                    <td>
-                        @i
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => s.Qustion)
-                    </td>
-                    @if (Model.AssessmentQustions.Count() != 0)
-                    {
-                        <td>
-                            @Model.getScore(s.ID)
-                        </td>
-                    }
+                @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semseter }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info active" })
+                <br />
+                <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Forms</b> </h4>
+                @Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { ViewBag.courseID }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
+                @Html.ActionLink("Course Assessment Survey", "CourseAssessmentSurvey", "Forms", new { ViewBag.courseID }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
+                @Html.ActionLink("Course File Checklist", "CourseFileChecklist", "Forms", new { ViewBag.courseID }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
+                @Html.ActionLink("Course Information Form", "CourseInformationForm", "Forms", new { ViewBag.courseID }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
+                @Html.ActionLink("Coures Report", "CourseReport", "Forms", new { ViewBag.courseID }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
+                @Html.ActionLink("Exam Evaluation", "ExamEvaluation", "Forms", new { ViewBag.courseID }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
+                @Html.ActionLink("Question Answer Sheet", "QuestionsAnswersSheet", "Forms", new { ViewBag.courseID }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
+            </div>
+        </div>
 
-                </tr>
-                i++;
-            }
-        </table>
+        <div class="col-lg-8">
+            <div class="contrainer shadow-lg p-3 mb-3 mt-5 align-content-center bg-white">
+                <div class="d-flex justify-content-center">
+                    <div class="align-items-center">
+                        <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo" alt="Logo" style="height:150px; width:120px;" />
+                        <h4 class="d-flex justify-content-center align-items-center"> Survey  </h4>
+                    </div>
+                </div>
 
 
+                <div class="w-100">
+                    <div class="shadow">
+                        <table class="table table-hover">
+                            <thread>
+                                <tr class="table-primary">
+                                    <th>
+                                        @Html.DisplayName("No")
+                                    </th>
 
-        <hr />
+                                    <th >
+                                        @Html.DisplayName("Qustion")
+                                    </th>
 
-        @using (Html.BeginForm("UploadSurveyAnswers", "CourseCoordinator", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
+                                    @if (Model.AssessmentQustions.Count() != 0)
+                                    {
+                                        <th> @Html.DisplayName("Score ")</th>
+                                    }
+                                    else
+                                    {
+                                        <th> @Html.DisplayName("Upload Answers to view the Scores")</th>
+
+                                    }
+                                </tr>
+                            </thread>
+
+                            @{
+                                int i = 1;
+                            }
+                            @foreach (CourseAssessmentSurvay s in Model.AssessmentQustions)
+                            {
+
+                                <tr>
+                                    <td>
+                                        @i
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => s.Qustion)
+                                    </td>
+                                    @if (Model.AssessmentQustions.Count() != 0)
+                                    {
+                                        <td>
+                                            @Model.getScore(s.ID)
+                                        </td>
+                                    }
+
+                                </tr>
+                                i++;
+                            }
+                        </table>
+                    </div>
+
+                    <br />
+                    <hr style="border-color:red; margin-bottom:3rem; width:70%" />
+
+                    <div class="justify-content-center align-content-center d-flex">
+                        <div class="card border-primary w-50">
+                            <div class="card-header">Upload Exam</div>
+                            <div class="card-body">
+                                <table class="w-100">
+                                    <tr>
+                                        @using (Html.BeginForm("UploadSurveyAnswers", "CourseCoordinator", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                        {
+                                            <td>
+                                                <div class="input-group mb-3">
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" id="InputExam" name="Select CLO file">
+                                                        <label class="custom-file-label" for="InputExam">Choose file..</label>
+                                                    </div>
+                                                    <div class="input-group-append">
+                                                        <input class="btn btn-primary" value="Submit" type="submit" />
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        }
+                                    </tr>
+                                </table>
 
 
-            <table style="margin-bottom:1rem;">
-                <tr>
-                    <td>File:</td>
-                    <td>
-                        <div class="input-group">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="InputExcelFile" name="Select Excel file">
-                                <label class="custom-file-label" for="InputExcelFile">Choose file..</label>
                             </div>
-                            <div class="input-group-append">
-                                <input class="btn btn-primary" value="Submit" type="submit" />
+
+                            <input type="hidden" id="CourseID" name="CourseID" value='@Model.CC.CourseID' />
+                            <input type="hidden" id="Year" name="Year" value='@Model.CC.Year' />
+                            <input type="hidden" id="Semseter" name="Semseter" value='@Model.CC.Semseter' />
+                        </div>
+
+                        <div id="addQustion" class="modal fade" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    @{
+                                        Html.RenderPartial("AddSurveyQustion", new AddSurveyQustionMV()
+                                        {
+                                            CC = Model.CC
+                                        });
+                                    }
+                                </div>
                             </div>
                         </div>
-                    </td>
-
-
-                </tr>
-
-            </table>
-            <input type="hidden" id="CourseID" name="CourseID" value='@Model.CC.CourseID' />
-            <input type="hidden" id="Year" name="Year" value='@Model.CC.Year' />
-            <input type="hidden" id="Semseter" name="Semseter" value='@Model.CC.Semseter' />
-        }
-
-
-    </div>
-
-    <button id='open' class="btn btn-primary" data-toggle="modal" data-target="#addQustion" style="margin-left:1.8rem;">Add Course Learning outcome</button>
-
-    <div id="addQustion" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                @{
-                    Html.RenderPartial("AddSurveyQustion", new AddSurveyQustionMV()
-                    {
-                        CC = Model.CC
-                    });
-                }
+                    </div>
+                    <button id='open' class="btn btn-primary" data-toggle="modal" data-target="#addQustion">Add Course Learning outcome</button>
+                </div>
             </div>
         </div>
     </div>
 
-
     <script>
-        $('#InputExcelFile').on('change', function () {
+        $('#InputExam').on('change', function () {
             //get the file name
             var fileName = $(this).val();
             //replace the "Choose a file" label
