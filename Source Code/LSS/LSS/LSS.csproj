@@ -317,6 +317,8 @@
     <Content Include="Images\analysis.png" />
     <Content Include="Images\Certified.PNG" />
     <Content Include="Images\Excel Format\StudentListExcel.png" />
+    <Content Include="Images\Excel Format\StudetnGradeImage.png" />
+    <Content Include="Images\LOGO-removebg-preview.png" />
     <Content Include="Images\notebook.png" />
     <Content Include="Images\Quality.PNG" />
     <Content Include="Images\R.PNG" />
@@ -510,7 +512,8 @@
     <Content Include="Views\Admin\ListStudents.cshtml" />
     <Content Include="Views\Admin\UpdateStudent.cshtml" />
     <Content Include="Views\Admin\CreateStudent.cshtml" />
-    <Content Include="Views\Forms\addCourseSyllabus.cshtml" />
+    <Content Include="Views\CourseCoordinator\CourseStudentList.cshtml" />
+    <Content Include="Views\CourseCoordinator\AddBook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

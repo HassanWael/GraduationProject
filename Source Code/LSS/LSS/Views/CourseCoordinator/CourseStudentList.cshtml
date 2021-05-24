@@ -1,0 +1,122 @@
+﻿@model PagedList.IPagedList<LSS.Models.EnroledStudent>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title ="Enroled Students";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Enroled Students</h2>
+
+
+
+<table>
+    <tr>
+        @using (Html.BeginForm("CourseStudentList", "CourseCoordinator", FormMethod.Get))
+        {
+            <td style="padding-left:2%;">
+                @Html.TextBox("Search", null, new { @class = "form-control", placeholder = "Search" })
+            </td>
+            <td style="padding-left:2%;">
+                <input type="submit" value="search" class="btn btn-dark" />
+            </td>
+        }
+    </tr>
+</table>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Name")
+        </th>
+        <th>
+            @Html.DisplayName("Department")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.Department.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Remove", "RemoveStudentFromCourse", new { StudetnID = item.Student.ID , CourseID = ViewBag.CourseID, Year = ViewBag.Year, Semseter = ViewBag.Semester })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@Html.PagedListPager(Model, page => Url.Action("ListStudents", new { Search = ViewBag.Search, page, pageSize = Model.PageSize }), new PagedListRenderOptions
+{
+ContainerDivClasses = new[] { "pagination pagination-sm" },
+UlElementClasses = new[] { "pagination pagination-sm" },
+LiElementClasses = new[] { "page-item", "btn-outline-primary" }
+})
+
+<div class="card border-primary mb-3" style="width:100%">
+    <div class="card-header">Add Students From Excel </div>
+    <div class="card-body">
+        @using (Html.BeginForm("AddStudentListToCourse", "CourseCoordinator", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <input type="hidden" id="CourseID" name="CourseID" value='@ViewBag.CourseID' />
+            <input type="hidden" id="Year" name="Year" value='@ViewBag.Year' />
+            <input type="hidden" id="Semseter" name="Semseter" value='@ViewBag.Semester' />
+            <table>
+                <tr>
+                    <td>File:</td>
+                    <td>
+                        <input type="file" name="Select Excel file" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <input type="submit" name="Upload" value="Submit" />
+                    </td>
+                </tr>
+            </table>
+        }
+        <hr />
+        <h6><b> the header for the Excel File </b></h6>
+        <img src="~/Images/Excel Format/CourseListExample.png" style="max-width: 100%;  max-height: 100%;  display: block;" />
+    </div>
+</div>
+
+
+<div class="card border-primary mb-3" style="width:100%">
+    <div class="card-header">Upload Final Grades  </div>
+    <div class="card-body">
+        @using (Html.BeginForm("UploadGrades", "CourseCoordinator", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <input type="hidden" id="CourseID" name="CourseID" value='@ViewBag.CourseID' />
+            <input type="hidden" id="Year" name="Year" value='@ViewBag.Year' />
+            <input type="hidden" id="Semseter" name="Semseter" value='@ViewBag.Semester' />
+            <table>
+                <tr>
+                    <td>File:</td>
+                    <td>
+                        <input type="file" name="Select Excel file" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <input type="submit" name="Upload" value="Submit" />
+                    </td>
+                </tr>
+            </table>
+        }
+        <hr />
+        <h6><b> the header for the Excel File </b></h6>
+        <img src="~/Images/Excel Format/StudetnGradeImage.png" style="max-width: 100%;  max-height: 100%;  display: block;" />/>
+    </div>
+</div>
+
