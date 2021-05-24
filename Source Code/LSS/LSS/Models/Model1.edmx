@@ -158,6 +158,15 @@
           <Property Name="ExamDate" Type="date" Nullable="false" />
           <Property Name="AdditionalComments" Type="nvarchar" MaxLength="255" />
         </EntityType>
+        <EntityType Name="CourseExamEval">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="StudentID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="StudentID" Type="int" Nullable="false" />
+          <Property Name="Mark" Type="real" Nullable="false" />
+        </EntityType>
         <EntityType Name="CourseExamQuestion">
           <Key>
             <PropertyRef Name="ID" />
@@ -167,12 +176,6 @@
           <Property Name="QuestionNumber" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="Question" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Weight" Type="real" Nullable="false" />
-        </EntityType>
-        <EntityType Name="CourseExamQustion">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="CourseFileCheckList">
           <Key>
@@ -475,6 +478,12 @@
           <Property Name="StudentID" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="AssessmentMethod" Type="int" Nullable="false" />
           <Property Name="Mark" Type="int" />
+        </EntityType>
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TeachingAndLearningStrategiesTechnique">
           <Key>
@@ -779,6 +788,18 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CourseExamEV">
+          <End Role="EnroledStudents" Type="Self.EnroledStudents" Multiplicity="1" />
+          <End Role="CourseExamEval" Type="Self.CourseExamEval" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EnroledStudents">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CourseExamEval">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CourseExamQ">
           <End Role="CourseExam" Type="Self.CourseExam" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -922,9 +943,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EnroledStudents_CourseCoordinator">
-          <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
           <End Role="EnroledStudents" Type="Self.EnroledStudents" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourseCoordinator">
@@ -940,9 +959,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EnroledStudents_ToStudetn">
-          <End Role="Student" Type="Self.Student" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
           <End Role="EnroledStudents" Type="Self.EnroledStudents" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Student">
@@ -1325,8 +1342,8 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <EntitySet Name="CourseAssessmentSurvay" EntityType="Self.CourseAssessmentSurvay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CourseCoordinator" EntityType="Self.CourseCoordinator" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CourseExam" EntityType="Self.CourseExam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CourseExamEval" EntityType="Self.CourseExamEval" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CourseExamQuestion" EntityType="Self.CourseExamQuestion" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CourseExamQustion" EntityType="Self.CourseExamQustion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CourseFileCheckList" EntityType="Self.CourseFileCheckList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CourseInformationForm" EntityType="Self.CourseInformationForm" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CourseReport" EntityType="Self.CourseReport" Schema="dbo" store:Type="Tables" />
@@ -1353,6 +1370,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <EntitySet Name="SLO_PEO" EntityType="Self.SLO_PEO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student-PI-Outcome" EntityType="Self.Student-PI-Outcome" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TeachingAndLearningStrategiesTechnique" EntityType="Self.TeachingAndLearningStrategiesTechnique" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="YearAndSemester" EntityType="Self.YearAndSemester" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
@@ -1436,6 +1454,10 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <AssociationSet Name="FK_CourseExam" Association="Self.FK_CourseExam">
             <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
             <End Role="CourseExam" EntitySet="CourseExam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseExamEV" Association="Self.FK_CourseExamEV">
+            <End Role="EnroledStudents" EntitySet="EnroledStudents" />
+            <End Role="CourseExamEval" EntitySet="CourseExamEval" />
           </AssociationSet>
           <AssociationSet Name="FK_CourseExamQ" Association="Self.FK_CourseExamQ">
             <End Role="CourseExam" EntitySet="CourseExam" />
@@ -1583,6 +1605,13 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="LSS_databaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CourseExams" EntityType="Model.CourseExam" />
+          <EntitySet Name="CourseExamQuestions" EntityType="Model.CourseExamQuestion" />
+          <EntitySet Name="CourseExamQustions" EntityType="Model.CourseExamQustion" />
+          <AssociationSet Name="FK_CourseExamQ" Association="Model.FK_CourseExamQ">
+            <End Role="CourseExam" EntitySet="CourseExams" />
+            <End Role="CourseExamQuestion" EntitySet="CourseExamQuestions" />
+          </AssociationSet>
           <EntitySet Name="ActionsForImprovingTheCourses" EntityType="Model.ActionsForImprovingTheCourse" />
           <EntitySet Name="AssessmentPlanforTheStudentLearningOutcomeTechniques" EntityType="Model.AssessmentPlanforTheStudentLearningOutcomeTechnique" />
           <EntitySet Name="AssessmentSurveyAnswers" EntityType="Model.AssessmentSurveyAnswer" />
@@ -1592,9 +1621,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <EntitySet Name="CourseAssessmentMappings" EntityType="Model.CourseAssessmentMapping" />
           <EntitySet Name="CourseAssessmentSurvays" EntityType="Model.CourseAssessmentSurvay" />
           <EntitySet Name="CourseCoordinators" EntityType="Model.CourseCoordinator" />
-          <EntitySet Name="CourseExams" EntityType="Model.CourseExam" />
-          <EntitySet Name="CourseExamQuestions" EntityType="Model.CourseExamQuestion" />
-          <EntitySet Name="CourseExamQustions" EntityType="Model.CourseExamQustion" />
+          <EntitySet Name="CourseExamEvals" EntityType="Model.CourseExamEval" />
           <EntitySet Name="CourseFileCheckLists" EntityType="Model.CourseFileCheckList" />
           <EntitySet Name="CourseInformationForms" EntityType="Model.CourseInformationForm" />
           <EntitySet Name="CourseReports" EntityType="Model.CourseReport" />
@@ -1619,6 +1646,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <EntitySet Name="SLO_PEO" EntityType="Model.SLO_PEO" />
           <EntitySet Name="Students" EntityType="Model.Student" />
           <EntitySet Name="Student_PI_Outcome" EntityType="Model.Student_PI_Outcome" />
+          <EntitySet Name="Tables" EntityType="Model.Table" />
           <EntitySet Name="TeachingAndLearningStrategiesTechniques" EntityType="Model.TeachingAndLearningStrategiesTechnique" />
           <EntitySet Name="YearAndSemesters" EntityType="Model.YearAndSemester" />
           <EntitySet Name="database_firewall_rules" EntityType="Model.database_firewall_rules" />
@@ -1738,13 +1766,13 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
             <End Role="schedule" EntitySet="schedules" />
           </AssociationSet>
-          <AssociationSet Name="FK_CourseExamQ" Association="Model.FK_CourseExamQ">
-            <End Role="CourseExam" EntitySet="CourseExams" />
-            <End Role="CourseExamQuestion" EntitySet="CourseExamQuestions" />
-          </AssociationSet>
           <AssociationSet Name="FK_ModerationChecklist_ToCourseCoordinator" Association="Model.FK_ModerationChecklist_ToCourseCoordinator">
             <End Role="CourseExam" EntitySet="CourseExams" />
             <End Role="ModerationChecklist" EntitySet="ModerationChecklists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseExamEV" Association="Model.FK_CourseExamEV">
+            <End Role="EnroledStudent" EntitySet="EnroledStudents" />
+            <End Role="CourseExamEval" EntitySet="CourseExamEvals" />
           </AssociationSet>
           <AssociationSet Name="FK_Department_Faculty" Association="Model.FK_Department_Faculty">
             <End Role="Faculty" EntitySet="Faculties" />
@@ -1822,7 +1850,57 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <End Role="Course" EntitySet="Courses" />
             <End Role="SLO" EntitySet="SLOes" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
+        <EntityType Name="CourseExam">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Semseter" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Moderator" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ExamWeight" Type="Int32" Nullable="false" />
+          <Property Name="ExamDurationTime" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ModerationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ExamDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AdditionalComments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CourseExamQuestions" Relationship="Model.FK_CourseExamQ" FromRole="CourseExam" ToRole="CourseExamQuestion" />
+          <NavigationProperty Name="CourseCoordinator" Relationship="Model.FK_CourseExam" FromRole="CourseExam" ToRole="CourseCoordinator" />
+          <NavigationProperty Name="ModerationChecklist" Relationship="Model.FK_ModerationChecklist_ToCourseCoordinator" FromRole="CourseExam" ToRole="ModerationChecklist" />
+        </EntityType>
+        <EntityType Name="CourseExamQuestion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExamID" Type="Int32" Nullable="false" />
+          <Property Name="QuestionNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Question" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Weight" Type="Single" Nullable="false" />
+          <NavigationProperty Name="CourseExam" Relationship="Model.FK_CourseExamQ" FromRole="CourseExamQuestion" ToRole="CourseExam" />
+        </EntityType>
+        <EntityType Name="CourseExamQustion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CourseExamQ">
+          <End Type="Model.CourseExam" Role="CourseExam" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.CourseExamQuestion" Role="CourseExamQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CourseExam">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CourseExamQuestion">
+              <PropertyRef Name="ExamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="ActionsForImprovingTheCourse">
           <Key>
             <PropertyRef Name="CourseID" />
@@ -1995,41 +2073,15 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <NavigationProperty Name="ResultOfCourseDirectAssessment" Relationship="Model.FK_ResultOfCourseDirectAssessment_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="ResultOfCourseDirectAssessment" />
           <NavigationProperty Name="schedules" Relationship="Model.FK_schedule_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="schedule" />
         </EntityType>
-        <EntityType Name="CourseExam">
+        <EntityType Name="CourseExamEval">
           <Key>
             <PropertyRef Name="ID" />
+            <PropertyRef Name="StudentID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Semseter" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
-          <Property Name="Type" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="Moderator" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="ExamWeight" Type="Int32" Nullable="false" />
-          <Property Name="ExamDurationTime" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="ModerationDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="ExamDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="AdditionalComments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CourseCoordinator" Relationship="Model.FK_CourseExam" FromRole="CourseExam" ToRole="CourseCoordinator" />
-          <NavigationProperty Name="CourseExamQuestions" Relationship="Model.FK_CourseExamQ" FromRole="CourseExam" ToRole="CourseExamQuestion" />
-          <NavigationProperty Name="ModerationChecklist" Relationship="Model.FK_ModerationChecklist_ToCourseCoordinator" FromRole="CourseExam" ToRole="ModerationChecklist" />
-        </EntityType>
-        <EntityType Name="CourseExamQuestion">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ExamID" Type="Int32" Nullable="false" />
-          <Property Name="QuestionNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Question" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Weight" Type="Single" Nullable="false" />
-          <NavigationProperty Name="CourseExam" Relationship="Model.FK_CourseExamQ" FromRole="CourseExamQuestion" ToRole="CourseExam" />
-        </EntityType>
-        <EntityType Name="CourseExamQustion">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="StudentID" Type="Int32" Nullable="false" />
+          <Property Name="Mark" Type="Single" Nullable="false" />
+          <NavigationProperty Name="EnroledStudent" Relationship="Model.FK_CourseExamEV" FromRole="CourseExamEval" ToRole="EnroledStudent" />
         </EntityType>
         <EntityType Name="CourseFileCheckList">
           <Key>
@@ -2144,6 +2196,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <Property Name="Semseter" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="FinalGrade" Type="Int32" />
           <NavigationProperty Name="CourseCoordinator" Relationship="Model.FK_EnroledStudents_CourseCoordinator" FromRole="EnroledStudent" ToRole="CourseCoordinator" />
+          <NavigationProperty Name="CourseExamEvals" Relationship="Model.FK_CourseExamEV" FromRole="EnroledStudent" ToRole="CourseExamEval" />
           <NavigationProperty Name="Student" Relationship="Model.FK_EnroledStudents_ToStudetn" FromRole="EnroledStudent" ToRole="Student" />
           <NavigationProperty Name="PIAssessments" Relationship="Model.FK_PIAssessment_toEnroledStudents" FromRole="EnroledStudent" ToRole="PIAssessment" />
         </EntityType>
@@ -2359,6 +2412,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <Property Name="Mark" Type="Int32" />
           <NavigationProperty Name="Student" Relationship="Model.FK_Student_PI_Outcome_ToStudents" FromRole="Student_PI_Outcome" ToRole="Student" />
           <NavigationProperty Name="TeachingAndLearningStrategiesTechnique" Relationship="Model.FK_Student_PI_Outcome_ToTeachingAndLearningStrategiesTechnique" FromRole="Student_PI_Outcome" ToRole="TeachingAndLearningStrategiesTechnique" />
+        </EntityType>
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="TeachingAndLearningStrategiesTechnique">
           <Key>
@@ -2730,9 +2789,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EnroledStudents_CourseCoordinator">
-          <End Type="Model.CourseCoordinator" Role="CourseCoordinator" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Type="Model.CourseCoordinator" Role="CourseCoordinator" Multiplicity="1" />
           <End Type="Model.EnroledStudent" Role="EnroledStudent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourseCoordinator">
@@ -2851,20 +2908,6 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CourseExamQ">
-          <End Type="Model.CourseExam" Role="CourseExam" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="Model.CourseExamQuestion" Role="CourseExamQuestion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CourseExam">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="CourseExamQuestion">
-              <PropertyRef Name="ExamID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ModerationChecklist_ToCourseCoordinator">
           <End Type="Model.CourseExam" Role="CourseExam" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -2876,6 +2919,18 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             </Principal>
             <Dependent Role="ModerationChecklist">
               <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseExamEV">
+          <End Type="Model.EnroledStudent" Role="EnroledStudent" Multiplicity="1" />
+          <End Type="Model.CourseExamEval" Role="CourseExamEval" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EnroledStudent">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CourseExamEval">
+              <PropertyRef Name="StudentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2960,9 +3015,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EnroledStudents_ToStudetn">
-          <End Type="Model.Student" Role="Student" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Type="Model.Student" Role="Student" Multiplicity="1" />
           <End Type="Model.EnroledStudent" Role="EnroledStudent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Student">
@@ -3115,12 +3168,40 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <End Type="Model.Course" Role="Course" Multiplicity="*" />
           <End Type="Model.SLO" Role="SLO" Multiplicity="*" />
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="LSS_databaseEntities">
+          <EntitySetMapping Name="CourseExams">
+            <EntityTypeMapping TypeName="Model.CourseExam">
+              <MappingFragment StoreEntitySet="CourseExam">
+                <ScalarProperty Name="AdditionalComments" ColumnName="AdditionalComments" />
+                <ScalarProperty Name="ExamDate" ColumnName="ExamDate" />
+                <ScalarProperty Name="ModerationDate" ColumnName="ModerationDate" />
+                <ScalarProperty Name="ExamDurationTime" ColumnName="ExamDurationTime" />
+                <ScalarProperty Name="ExamWeight" ColumnName="ExamWeight" />
+                <ScalarProperty Name="Moderator" ColumnName="Moderator" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CourseExamQuestions">
+            <EntityTypeMapping TypeName="Model.CourseExamQuestion">
+              <MappingFragment StoreEntitySet="CourseExamQuestion">
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="QuestionNumber" ColumnName="QuestionNumber" />
+                <ScalarProperty Name="ExamID" ColumnName="ExamID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ActionsForImprovingTheCourses">
             <EntityTypeMapping TypeName="Model.ActionsForImprovingTheCourse">
               <MappingFragment StoreEntitySet="ActionsForImprovingTheCourse">
@@ -3244,38 +3325,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CourseExams">
-            <EntityTypeMapping TypeName="Model.CourseExam">
-              <MappingFragment StoreEntitySet="CourseExam">
-                <ScalarProperty Name="AdditionalComments" ColumnName="AdditionalComments" />
-                <ScalarProperty Name="ExamDate" ColumnName="ExamDate" />
-                <ScalarProperty Name="ModerationDate" ColumnName="ModerationDate" />
-                <ScalarProperty Name="ExamDurationTime" ColumnName="ExamDurationTime" />
-                <ScalarProperty Name="ExamWeight" ColumnName="ExamWeight" />
-                <ScalarProperty Name="Moderator" ColumnName="Moderator" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="Semseter" ColumnName="Semseter" />
-                <ScalarProperty Name="Year" ColumnName="Year" />
-                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+          <EntitySetMapping Name="CourseExamEvals">
+            <EntityTypeMapping TypeName="Model.CourseExamEval">
+              <MappingFragment StoreEntitySet="CourseExamEval">
+                <ScalarProperty Name="Mark" ColumnName="Mark" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CourseExamQuestions">
-            <EntityTypeMapping TypeName="Model.CourseExamQuestion">
-              <MappingFragment StoreEntitySet="CourseExamQuestion">
-                <ScalarProperty Name="Weight" ColumnName="Weight" />
-                <ScalarProperty Name="Question" ColumnName="Question" />
-                <ScalarProperty Name="QuestionNumber" ColumnName="QuestionNumber" />
-                <ScalarProperty Name="ExamID" ColumnName="ExamID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CourseExamQustions">
-            <EntityTypeMapping TypeName="Model.CourseExamQustion">
-              <MappingFragment StoreEntitySet="CourseExamQustion">
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3550,6 +3605,13 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Tables">
+            <EntityTypeMapping TypeName="Model.Table">
+              <MappingFragment StoreEntitySet="Table">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TeachingAndLearningStrategiesTechniques">
             <EntityTypeMapping TypeName="Model.TeachingAndLearningStrategiesTechnique">
               <MappingFragment StoreEntitySet="TeachingAndLearningStrategiesTechnique">
@@ -3606,7 +3668,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
               <ScalarProperty Name="ID" ColumnName="CourseID" />
             </EndProperty>
           </AssociationSetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

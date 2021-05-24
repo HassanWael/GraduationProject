@@ -153,6 +153,15 @@
     <Property Name="ExamDate" Type="date" Nullable="false" />
     <Property Name="AdditionalComments" Type="nvarchar" MaxLength="255" />
   </EntityType>
+  <EntityType Name="CourseExamEval">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="StudentID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="StudentID" Type="int" Nullable="false" />
+    <Property Name="Mark" Type="real" Nullable="false" />
+  </EntityType>
   <EntityType Name="CourseExamQuestion">
     <Key>
       <PropertyRef Name="ID" />
@@ -162,12 +171,6 @@
     <Property Name="QuestionNumber" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="Question" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="Weight" Type="real" Nullable="false" />
-  </EntityType>
-  <EntityType Name="CourseExamQustion">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="CourseFileCheckList">
     <Key>
@@ -470,6 +473,12 @@
     <Property Name="StudentID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="AssessmentMethod" Type="int" Nullable="false" />
     <Property Name="Mark" Type="int" />
+  </EntityType>
+  <EntityType Name="Table">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="TeachingAndLearningStrategiesTechnique">
     <Key>
@@ -774,6 +783,18 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_CourseExamEV">
+    <End Role="EnroledStudents" Type="Self.EnroledStudents" Multiplicity="1" />
+    <End Role="CourseExamEval" Type="Self.CourseExamEval" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EnroledStudents">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CourseExamEval">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_CourseExamQ">
     <End Role="CourseExam" Type="Self.CourseExam" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -917,9 +938,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_EnroledStudents_CourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
     <End Role="EnroledStudents" Type="Self.EnroledStudents" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CourseCoordinator">
@@ -935,9 +954,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_EnroledStudents_ToStudetn">
-    <End Role="Student" Type="Self.Student" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
     <End Role="EnroledStudents" Type="Self.EnroledStudents" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Student">
@@ -1320,8 +1337,8 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
     <EntitySet Name="CourseAssessmentSurvay" EntityType="Self.CourseAssessmentSurvay" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseCoordinator" EntityType="Self.CourseCoordinator" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseExam" EntityType="Self.CourseExam" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourseExamEval" EntityType="Self.CourseExamEval" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseExamQuestion" EntityType="Self.CourseExamQuestion" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="CourseExamQustion" EntityType="Self.CourseExamQustion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseFileCheckList" EntityType="Self.CourseFileCheckList" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseInformationForm" EntityType="Self.CourseInformationForm" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseReport" EntityType="Self.CourseReport" Schema="dbo" store:Type="Tables" />
@@ -1348,6 +1365,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
     <EntitySet Name="SLO_PEO" EntityType="Self.SLO_PEO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Student-PI-Outcome" EntityType="Self.Student-PI-Outcome" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TeachingAndLearningStrategiesTechnique" EntityType="Self.TeachingAndLearningStrategiesTechnique" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="YearAndSemester" EntityType="Self.YearAndSemester" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
@@ -1431,6 +1449,10 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
     <AssociationSet Name="FK_CourseExam" Association="Self.FK_CourseExam">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
       <End Role="CourseExam" EntitySet="CourseExam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseExamEV" Association="Self.FK_CourseExamEV">
+      <End Role="EnroledStudents" EntitySet="EnroledStudents" />
+      <End Role="CourseExamEval" EntitySet="CourseExamEval" />
     </AssociationSet>
     <AssociationSet Name="FK_CourseExamQ" Association="Self.FK_CourseExamQ">
       <End Role="CourseExam" EntitySet="CourseExam" />

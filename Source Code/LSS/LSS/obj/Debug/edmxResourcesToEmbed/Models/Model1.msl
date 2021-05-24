@@ -1,6 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="LSS_databaseEntities">
+    <EntitySetMapping Name="CourseExams">
+      <EntityTypeMapping TypeName="Model.CourseExam">
+        <MappingFragment StoreEntitySet="CourseExam">
+          <ScalarProperty Name="AdditionalComments" ColumnName="AdditionalComments" />
+          <ScalarProperty Name="ExamDate" ColumnName="ExamDate" />
+          <ScalarProperty Name="ModerationDate" ColumnName="ModerationDate" />
+          <ScalarProperty Name="ExamDurationTime" ColumnName="ExamDurationTime" />
+          <ScalarProperty Name="ExamWeight" ColumnName="ExamWeight" />
+          <ScalarProperty Name="Moderator" ColumnName="Moderator" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CourseExamQuestions">
+      <EntityTypeMapping TypeName="Model.CourseExamQuestion">
+        <MappingFragment StoreEntitySet="CourseExamQuestion">
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+          <ScalarProperty Name="Question" ColumnName="Question" />
+          <ScalarProperty Name="QuestionNumber" ColumnName="QuestionNumber" />
+          <ScalarProperty Name="ExamID" ColumnName="ExamID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="ActionsForImprovingTheCourses">
       <EntityTypeMapping TypeName="Model.ActionsForImprovingTheCourse">
         <MappingFragment StoreEntitySet="ActionsForImprovingTheCourse">
@@ -124,38 +152,12 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CourseExams">
-      <EntityTypeMapping TypeName="Model.CourseExam">
-        <MappingFragment StoreEntitySet="CourseExam">
-          <ScalarProperty Name="AdditionalComments" ColumnName="AdditionalComments" />
-          <ScalarProperty Name="ExamDate" ColumnName="ExamDate" />
-          <ScalarProperty Name="ModerationDate" ColumnName="ModerationDate" />
-          <ScalarProperty Name="ExamDurationTime" ColumnName="ExamDurationTime" />
-          <ScalarProperty Name="ExamWeight" ColumnName="ExamWeight" />
-          <ScalarProperty Name="Moderator" ColumnName="Moderator" />
-          <ScalarProperty Name="Type" ColumnName="Type" />
-          <ScalarProperty Name="Semseter" ColumnName="Semseter" />
-          <ScalarProperty Name="Year" ColumnName="Year" />
-          <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+    <EntitySetMapping Name="CourseExamEvals">
+      <EntityTypeMapping TypeName="Model.CourseExamEval">
+        <MappingFragment StoreEntitySet="CourseExamEval">
+          <ScalarProperty Name="Mark" ColumnName="Mark" />
+          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="CourseExamQuestions">
-      <EntityTypeMapping TypeName="Model.CourseExamQuestion">
-        <MappingFragment StoreEntitySet="CourseExamQuestion">
-          <ScalarProperty Name="Weight" ColumnName="Weight" />
-          <ScalarProperty Name="Question" ColumnName="Question" />
-          <ScalarProperty Name="QuestionNumber" ColumnName="QuestionNumber" />
-          <ScalarProperty Name="ExamID" ColumnName="ExamID" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="CourseExamQustions">
-      <EntityTypeMapping TypeName="Model.CourseExamQustion">
-        <MappingFragment StoreEntitySet="CourseExamQustion">
-          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -427,6 +429,13 @@
           <ScalarProperty Name="AssessmentMethod" ColumnName="AssessmentMethod" />
           <ScalarProperty Name="StudentID" ColumnName="StudentID" />
           <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tables">
+      <EntityTypeMapping TypeName="Model.Table">
+        <MappingFragment StoreEntitySet="Table">
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

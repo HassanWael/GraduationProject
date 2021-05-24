@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="LSS_databaseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CourseExams" EntityType="Model.CourseExam" />
+    <EntitySet Name="CourseExamQuestions" EntityType="Model.CourseExamQuestion" />
+    <EntitySet Name="CourseExamQustions" EntityType="Model.CourseExamQustion" />
+    <AssociationSet Name="FK_CourseExamQ" Association="Model.FK_CourseExamQ">
+      <End Role="CourseExam" EntitySet="CourseExams" />
+      <End Role="CourseExamQuestion" EntitySet="CourseExamQuestions" />
+    </AssociationSet>
     <EntitySet Name="ActionsForImprovingTheCourses" EntityType="Model.ActionsForImprovingTheCourse" />
     <EntitySet Name="AssessmentPlanforTheStudentLearningOutcomeTechniques" EntityType="Model.AssessmentPlanforTheStudentLearningOutcomeTechnique" />
     <EntitySet Name="AssessmentSurveyAnswers" EntityType="Model.AssessmentSurveyAnswer" />
@@ -10,9 +17,7 @@
     <EntitySet Name="CourseAssessmentMappings" EntityType="Model.CourseAssessmentMapping" />
     <EntitySet Name="CourseAssessmentSurvays" EntityType="Model.CourseAssessmentSurvay" />
     <EntitySet Name="CourseCoordinators" EntityType="Model.CourseCoordinator" />
-    <EntitySet Name="CourseExams" EntityType="Model.CourseExam" />
-    <EntitySet Name="CourseExamQuestions" EntityType="Model.CourseExamQuestion" />
-    <EntitySet Name="CourseExamQustions" EntityType="Model.CourseExamQustion" />
+    <EntitySet Name="CourseExamEvals" EntityType="Model.CourseExamEval" />
     <EntitySet Name="CourseFileCheckLists" EntityType="Model.CourseFileCheckList" />
     <EntitySet Name="CourseInformationForms" EntityType="Model.CourseInformationForm" />
     <EntitySet Name="CourseReports" EntityType="Model.CourseReport" />
@@ -37,6 +42,7 @@
     <EntitySet Name="SLO_PEO" EntityType="Model.SLO_PEO" />
     <EntitySet Name="Students" EntityType="Model.Student" />
     <EntitySet Name="Student_PI_Outcome" EntityType="Model.Student_PI_Outcome" />
+    <EntitySet Name="Tables" EntityType="Model.Table" />
     <EntitySet Name="TeachingAndLearningStrategiesTechniques" EntityType="Model.TeachingAndLearningStrategiesTechnique" />
     <EntitySet Name="YearAndSemesters" EntityType="Model.YearAndSemester" />
     <EntitySet Name="database_firewall_rules" EntityType="Model.database_firewall_rules" />
@@ -156,13 +162,13 @@
       <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
       <End Role="schedule" EntitySet="schedules" />
     </AssociationSet>
-    <AssociationSet Name="FK_CourseExamQ" Association="Model.FK_CourseExamQ">
-      <End Role="CourseExam" EntitySet="CourseExams" />
-      <End Role="CourseExamQuestion" EntitySet="CourseExamQuestions" />
-    </AssociationSet>
     <AssociationSet Name="FK_ModerationChecklist_ToCourseCoordinator" Association="Model.FK_ModerationChecklist_ToCourseCoordinator">
       <End Role="CourseExam" EntitySet="CourseExams" />
       <End Role="ModerationChecklist" EntitySet="ModerationChecklists" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseExamEV" Association="Model.FK_CourseExamEV">
+      <End Role="EnroledStudent" EntitySet="EnroledStudents" />
+      <End Role="CourseExamEval" EntitySet="CourseExamEvals" />
     </AssociationSet>
     <AssociationSet Name="FK_Department_Faculty" Association="Model.FK_Department_Faculty">
       <End Role="Faculty" EntitySet="Faculties" />
@@ -241,6 +247,56 @@
       <End Role="SLO" EntitySet="SLOes" />
     </AssociationSet>
   </EntityContainer>
+  <EntityType Name="CourseExam">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Semseter" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Moderator" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="ExamWeight" Type="Int32" Nullable="false" />
+    <Property Name="ExamDurationTime" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="ModerationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ExamDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="AdditionalComments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CourseExamQuestions" Relationship="Model.FK_CourseExamQ" FromRole="CourseExam" ToRole="CourseExamQuestion" />
+    <NavigationProperty Name="CourseCoordinator" Relationship="Model.FK_CourseExam" FromRole="CourseExam" ToRole="CourseCoordinator" />
+    <NavigationProperty Name="ModerationChecklist" Relationship="Model.FK_ModerationChecklist_ToCourseCoordinator" FromRole="CourseExam" ToRole="ModerationChecklist" />
+  </EntityType>
+  <EntityType Name="CourseExamQuestion">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExamID" Type="Int32" Nullable="false" />
+    <Property Name="QuestionNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Question" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Weight" Type="Single" Nullable="false" />
+    <NavigationProperty Name="CourseExam" Relationship="Model.FK_CourseExamQ" FromRole="CourseExamQuestion" ToRole="CourseExam" />
+  </EntityType>
+  <EntityType Name="CourseExamQustion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_CourseExamQ">
+    <End Type="Model.CourseExam" Role="CourseExam" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.CourseExamQuestion" Role="CourseExamQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseExam">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CourseExamQuestion">
+        <PropertyRef Name="ExamID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityType Name="ActionsForImprovingTheCourse">
     <Key>
       <PropertyRef Name="CourseID" />
@@ -413,41 +469,15 @@
     <NavigationProperty Name="ResultOfCourseDirectAssessment" Relationship="Model.FK_ResultOfCourseDirectAssessment_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="ResultOfCourseDirectAssessment" />
     <NavigationProperty Name="schedules" Relationship="Model.FK_schedule_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="schedule" />
   </EntityType>
-  <EntityType Name="CourseExam">
+  <EntityType Name="CourseExamEval">
     <Key>
       <PropertyRef Name="ID" />
+      <PropertyRef Name="StudentID" />
     </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="Semseter" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
-    <Property Name="Type" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="Moderator" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="ExamWeight" Type="Int32" Nullable="false" />
-    <Property Name="ExamDurationTime" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="ModerationDate" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="ExamDate" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="AdditionalComments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="CourseCoordinator" Relationship="Model.FK_CourseExam" FromRole="CourseExam" ToRole="CourseCoordinator" />
-    <NavigationProperty Name="CourseExamQuestions" Relationship="Model.FK_CourseExamQ" FromRole="CourseExam" ToRole="CourseExamQuestion" />
-    <NavigationProperty Name="ModerationChecklist" Relationship="Model.FK_ModerationChecklist_ToCourseCoordinator" FromRole="CourseExam" ToRole="ModerationChecklist" />
-  </EntityType>
-  <EntityType Name="CourseExamQuestion">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ExamID" Type="Int32" Nullable="false" />
-    <Property Name="QuestionNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="Question" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Weight" Type="Single" Nullable="false" />
-    <NavigationProperty Name="CourseExam" Relationship="Model.FK_CourseExamQ" FromRole="CourseExamQuestion" ToRole="CourseExam" />
-  </EntityType>
-  <EntityType Name="CourseExamQustion">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="StudentID" Type="Int32" Nullable="false" />
+    <Property Name="Mark" Type="Single" Nullable="false" />
+    <NavigationProperty Name="EnroledStudent" Relationship="Model.FK_CourseExamEV" FromRole="CourseExamEval" ToRole="EnroledStudent" />
   </EntityType>
   <EntityType Name="CourseFileCheckList">
     <Key>
@@ -562,6 +592,7 @@
     <Property Name="Semseter" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
     <Property Name="FinalGrade" Type="Int32" />
     <NavigationProperty Name="CourseCoordinator" Relationship="Model.FK_EnroledStudents_CourseCoordinator" FromRole="EnroledStudent" ToRole="CourseCoordinator" />
+    <NavigationProperty Name="CourseExamEvals" Relationship="Model.FK_CourseExamEV" FromRole="EnroledStudent" ToRole="CourseExamEval" />
     <NavigationProperty Name="Student" Relationship="Model.FK_EnroledStudents_ToStudetn" FromRole="EnroledStudent" ToRole="Student" />
     <NavigationProperty Name="PIAssessments" Relationship="Model.FK_PIAssessment_toEnroledStudents" FromRole="EnroledStudent" ToRole="PIAssessment" />
   </EntityType>
@@ -777,6 +808,12 @@
     <Property Name="Mark" Type="Int32" />
     <NavigationProperty Name="Student" Relationship="Model.FK_Student_PI_Outcome_ToStudents" FromRole="Student_PI_Outcome" ToRole="Student" />
     <NavigationProperty Name="TeachingAndLearningStrategiesTechnique" Relationship="Model.FK_Student_PI_Outcome_ToTeachingAndLearningStrategiesTechnique" FromRole="Student_PI_Outcome" ToRole="TeachingAndLearningStrategiesTechnique" />
+  </EntityType>
+  <EntityType Name="Table">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="TeachingAndLearningStrategiesTechnique">
     <Key>
@@ -1148,9 +1185,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_EnroledStudents_CourseCoordinator">
-    <End Type="Model.CourseCoordinator" Role="CourseCoordinator" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
+    <End Type="Model.CourseCoordinator" Role="CourseCoordinator" Multiplicity="1" />
     <End Type="Model.EnroledStudent" Role="EnroledStudent" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CourseCoordinator">
@@ -1269,20 +1304,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_CourseExamQ">
-    <End Type="Model.CourseExam" Role="CourseExam" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="Model.CourseExamQuestion" Role="CourseExamQuestion" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CourseExam">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="CourseExamQuestion">
-        <PropertyRef Name="ExamID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_ModerationChecklist_ToCourseCoordinator">
     <End Type="Model.CourseExam" Role="CourseExam" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -1294,6 +1315,18 @@
       </Principal>
       <Dependent Role="ModerationChecklist">
         <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseExamEV">
+    <End Type="Model.EnroledStudent" Role="EnroledStudent" Multiplicity="1" />
+    <End Type="Model.CourseExamEval" Role="CourseExamEval" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EnroledStudent">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CourseExamEval">
+        <PropertyRef Name="StudentID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1378,9 +1411,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_EnroledStudents_ToStudetn">
-    <End Type="Model.Student" Role="Student" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
+    <End Type="Model.Student" Role="Student" Multiplicity="1" />
     <End Type="Model.EnroledStudent" Role="EnroledStudent" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Student">

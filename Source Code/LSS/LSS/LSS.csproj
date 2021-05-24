@@ -192,6 +192,9 @@
     <Compile Include="Models\CourseExam.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CourseExamEval.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CourseExamQuestion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -294,6 +297,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Student_PI_Outcome.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Table.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TeachingAndLearningStrategiesTechnique.cs">
