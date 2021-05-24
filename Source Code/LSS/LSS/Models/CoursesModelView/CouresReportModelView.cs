@@ -44,7 +44,23 @@ namespace LSS.Models.CoursesModelView
        
         }
 
+        private AssessmentPlanforTheStudentLearningOutcomeTechnique ass { get;set; }
 
+        public AssessmentPlanforTheStudentLearningOutcomeTechnique ASS {
+            get
+            {
+                if (ass == null)
+                {
+                    ass = CourseCoordinator.AssessmentPlanforTheStudentLearningOutcomeTechnique;
+                }
+                return ass;
+            }
+            set
+            {
+                ass = value;
+            }
+
+        }
 
 
 
