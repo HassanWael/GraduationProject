@@ -1,0 +1,118 @@
+﻿@model LSS.Models.CourseExam
+@using LSS.Models;
+@{
+    ViewBag.Title = "CourseExamDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CourseExamDetails</h2>
+
+<div>
+    <h4>CourseExam</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Moderator)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Moderator)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExamWeight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExamWeight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExamDurationTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExamDurationTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModerationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModerationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExamDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExamDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdditionalComments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdditionalComments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseCoordinator.ClassRoom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CourseCoordinator.ClassRoom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModerationChecklist.CourseID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModerationChecklist.CourseID)
+        </dd>
+
+    </dl>
+</div>
+@Model.CourseExamQuestions
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("QuestionNumber")
+        </th>
+        <th>
+            @Html.DisplayName("Question")
+        </th>
+        <th>
+            @Html.DisplayName("Weight")
+        </th>
+    </tr>
+
+
+    @foreach (var item in Model.CourseExamQuestions)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuestionNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Question)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weight)
+            </td>
+            </tr>
+    }
+    </table>

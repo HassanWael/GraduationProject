@@ -95,6 +95,8 @@
         <AssociationConnector Association="Model.CLO_PI" />
         <AssociationConnector Association="Model.Schedule_CLO" />
         <AssociationConnector Association="Model.SLO_Course" />
+        <EntityTypeShape EntityType="Model.Question_IP" Width="1.5" PointX="5.375" PointY="0.75" />
+        <AssociationConnector Association="Model.FK_PIAsessment_ToExamQ" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
