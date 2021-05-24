@@ -2,100 +2,122 @@
 @using LSS.Models
 @using LSS.Models.CoursesModelView
 
-
-<div style="margin-top:10%;">
-    <table class="table" style=" border: 1px solid cyan;  border:hidden; background:white;">
-        <thread>
-            <tr class="table-primary">
-                <th style="min-width:10%;">
-                    @Html.DisplayName("No")
-                </th>
-                <th style="min-width:80%;">
-                    @Html.DisplayName("Qustion")
-                </th>
-                @if (Model.AssessmentQustions.Count() != 0)
-                {
-                    <th> @Html.DisplayName("Score ")</th>
-                }
-                else
-                {
-                    <th> @Html.DisplayName("Upload Answers to view the Scores")</th>
-
-                }
-            </tr>
-        </thread>
-
-        @{
-            int i = 1;
-        }
-        @foreach (CourseAssessmentSurvay s in Model.AssessmentQustions)
-        {
-
-            <tr>
-                <td>
-                    @i
-                </td>
-                <td>
-                    @Html.DisplayFor(model => s.Qustion)
-                </td>
-                @if (Model.AssessmentQustions.Count() != 0)
-                {
-                    <td>
-                        @Model.getScore(s.ID)
-                    </td>
-                }
-
-            </tr>
-            i++;
-        }
-    </table>
-
-
-
-    <hr />
-
-    @using (Html.BeginForm("UploadSurveyAnswers", "CourseCoordinator", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-
-
-        <table style="margin-bottom:1rem;">
-            <tr>
-                <td>File:</td>
-                <td>
-                    <div class="input-group">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="inputGroupFile04" name="Select Excel file">
-                            <label class="custom-file-label" for="inputGroupFile04">Choose file..</label>
-                        </div>
-                        <div class="input-group-append">
-                            <input class="btn btn-primary" value="Submit" type="submit" />
-                        </div>
-                    </div>
-                </td>
-
-
-            </tr>
-
-        </table>
-        <input type="hidden" id="CourseID" name="CourseID" value='@Model.CC.CourseID' />
-        <input type="hidden" id="Year" name="Year" value='@Model.CC.Year' />
-        <input type="hidden" id="Semseter" name="Semseter" value='@Model.CC.Semseter' />
+<head>
+    @{
+        ViewBag.Title = "Enroled Students";
+        Layout = "~/Views/Shared/_Layout.cshtml";
     }
 
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+</head>
 
-</div>
+<body>
+    <div style="margin-top:10%;">
+        <table class="table" style=" border: 1px solid cyan;  border:hidden; background:white;">
+            <thread>
+                <tr class="table-primary">
+                    <th style="min-width:10%;">
+                        @Html.DisplayName("No")
+                    </th>
+                    <th style="min-width:80%;">
+                        @Html.DisplayName("Qustion")
+                    </th>
+                    @if (Model.AssessmentQustions.Count() != 0)
+                    {
+                        <th> @Html.DisplayName("Score ")</th>
+                    }
+                    else
+                    {
+                        <th> @Html.DisplayName("Upload Answers to view the Scores")</th>
 
-<button id='open' class="btn btn-primary" data-toggle="modal" data-target="#addQustion" style="margin-left:1.8rem;">Add Course Learning outcome</button>
+                    }
+                </tr>
+            </thread>
 
-<div id="addQustion" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
             @{
-                Html.RenderPartial("AddSurveyQustion", new AddSurveyQustionMV()
-                {
-                    CC = Model.CC
-                });
+                int i = 1;
             }
+            @foreach (CourseAssessmentSurvay s in Model.AssessmentQustions)
+            {
+
+                <tr>
+                    <td>
+                        @i
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => s.Qustion)
+                    </td>
+                    @if (Model.AssessmentQustions.Count() != 0)
+                    {
+                        <td>
+                            @Model.getScore(s.ID)
+                        </td>
+                    }
+
+                </tr>
+                i++;
+            }
+        </table>
+
+
+
+        <hr />
+
+        @using (Html.BeginForm("UploadSurveyAnswers", "CourseCoordinator", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+
+
+            <table style="margin-bottom:1rem;">
+                <tr>
+                    <td>File:</td>
+                    <td>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="InputExcelFile" name="Select Excel file">
+                                <label class="custom-file-label" for="InputExcelFile">Choose file..</label>
+                            </div>
+                            <div class="input-group-append">
+                                <input class="btn btn-primary" value="Submit" type="submit" />
+                            </div>
+                        </div>
+                    </td>
+
+
+                </tr>
+
+            </table>
+            <input type="hidden" id="CourseID" name="CourseID" value='@Model.CC.CourseID' />
+            <input type="hidden" id="Year" name="Year" value='@Model.CC.Year' />
+            <input type="hidden" id="Semseter" name="Semseter" value='@Model.CC.Semseter' />
+        }
+
+
+    </div>
+
+    <button id='open' class="btn btn-primary" data-toggle="modal" data-target="#addQustion" style="margin-left:1.8rem;">Add Course Learning outcome</button>
+
+    <div id="addQustion" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                @{
+                    Html.RenderPartial("AddSurveyQustion", new AddSurveyQustionMV()
+                    {
+                        CC = Model.CC
+                    });
+                }
+            </div>
         </div>
     </div>
-</div>
+
+
+    <script>
+        $('#InputExcelFile').on('change', function () {
+            //get the file name
+            var fileName = $(this).val();
+            //replace the "Choose a file" label
+            $(this).next('.custom-file-label').html(fileName);
+        })
+    </script>
+</body>
