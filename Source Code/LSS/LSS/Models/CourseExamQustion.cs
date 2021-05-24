@@ -12,15 +12,8 @@ namespace LSS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Student_Course_Grade
+    public partial class CourseExamQustion
     {
-        public string CourseID { get; set; }
-        public System.DateTime Year { get; set; }
-        public string Semseter { get; set; }
-        public string StudentID { get; set; }
-        public Nullable<int> Mark { get; set; }
-    
-        public virtual CourseCoordinator CourseCoordinator { get; set; }
-        public virtual Student Student { get; set; }
+        public int Id { get; set; }
     }
 }

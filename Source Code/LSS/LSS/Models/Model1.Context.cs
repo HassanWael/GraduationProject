@@ -26,7 +26,6 @@ namespace LSS.Models
         }
     
         public virtual DbSet<ActionsForImprovingTheCourse> ActionsForImprovingTheCourses { get; set; }
-        public virtual DbSet<AssessedCours> AssessedCourses { get; set; }
         public virtual DbSet<AssessmentPlanforTheStudentLearningOutcomeTechnique> AssessmentPlanforTheStudentLearningOutcomeTechniques { get; set; }
         public virtual DbSet<AssessmentSurveyAnswer> AssessmentSurveyAnswers { get; set; }
         public virtual DbSet<byCompletingThisCourseStudentsAreAbleTo> byCompletingThisCourseStudentsAreAbleToes { get; set; }
@@ -35,6 +34,9 @@ namespace LSS.Models
         public virtual DbSet<CourseAssessmentMapping> CourseAssessmentMappings { get; set; }
         public virtual DbSet<CourseAssessmentSurvay> CourseAssessmentSurvays { get; set; }
         public virtual DbSet<CourseCoordinator> CourseCoordinators { get; set; }
+        public virtual DbSet<CourseExam> CourseExams { get; set; }
+        public virtual DbSet<CourseExamQuestion> CourseExamQuestions { get; set; }
+        public virtual DbSet<CourseExamQustion> CourseExamQustions { get; set; }
         public virtual DbSet<CourseFileCheckList> CourseFileCheckLists { get; set; }
         public virtual DbSet<CourseInformationForm> CourseInformationForms { get; set; }
         public virtual DbSet<CourseReport> CourseReports { get; set; }
@@ -58,7 +60,6 @@ namespace LSS.Models
         public virtual DbSet<SLO> SLOes { get; set; }
         public virtual DbSet<SLO_PEO> SLO_PEO { get; set; }
         public virtual DbSet<Student> Students { get; set; }
-        public virtual DbSet<Student_Course_Grade> Student_Course_Grade { get; set; }
         public virtual DbSet<Student_PI_Outcome> Student_PI_Outcome { get; set; }
         public virtual DbSet<TeachingAndLearningStrategiesTechnique> TeachingAndLearningStrategiesTechniques { get; set; }
         public virtual DbSet<YearAndSemester> YearAndSemesters { get; set; }

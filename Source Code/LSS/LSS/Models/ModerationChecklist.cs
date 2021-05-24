@@ -14,13 +14,14 @@ namespace LSS.Models
     
     public partial class ModerationChecklist
     {
+        public int ID { get; set; }
         public string CourseID { get; set; }
         public System.DateTime Year { get; set; }
         public string Semseter { get; set; }
-        public string Qustion { get; set; }
+        public string Question { get; set; }
         public bool Answer { get; set; }
         public string commetns { get; set; }
     
-        public virtual CourseCoordinator CourseCoordinator { get; set; }
+        public virtual CourseExam CourseExam { get; set; }
     }
 }

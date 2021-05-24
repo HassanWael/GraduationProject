@@ -15,10 +15,7 @@ namespace LSS.Models
     public partial class PIAssessment
     {
         public int ID { get; set; }
-        public string StudentID { get; set; }
-        public string CourseID { get; set; }
-        public System.DateTime Year { get; set; }
-        public string Semseter { get; set; }
+        public int EnrollmentID { get; set; }
         public int PI { get; set; }
         public string WhereItWasTakenFrom { get; set; }
         public Nullable<float> mark { get; set; }

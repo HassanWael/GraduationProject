@@ -12,14 +12,14 @@ namespace LSS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class AssessedCours
+    public partial class CourseExamQuestion
     {
-        public string CourseID { get; set; }
-        public System.DateTime Year { get; set; }
-        public string Semester { get; set; }
-        public bool IsAssessed { get; set; }
-        public string WhyNot { get; set; }
+        public int ID { get; set; }
+        public int ExamID { get; set; }
+        public string QuestionNumber { get; set; }
+        public string Question { get; set; }
+        public float Weight { get; set; }
     
-        public virtual Course Course { get; set; }
+        public virtual CourseExam CourseExam { get; set; }
     }
 }
