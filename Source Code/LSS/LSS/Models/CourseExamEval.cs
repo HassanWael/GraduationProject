@@ -12,8 +12,12 @@ namespace LSS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CourseExamQustion
+    public partial class CourseExamEval
     {
-        public int Id { get; set; }
+        public int ID { get; set; }
+        public int StudentID { get; set; }
+        public float Mark { get; set; }
+    
+        public virtual EnroledStudent EnroledStudent { get; set; }
     }
 }

@@ -35,8 +35,8 @@ namespace LSS.Models
         public virtual DbSet<CourseAssessmentSurvay> CourseAssessmentSurvays { get; set; }
         public virtual DbSet<CourseCoordinator> CourseCoordinators { get; set; }
         public virtual DbSet<CourseExam> CourseExams { get; set; }
+        public virtual DbSet<CourseExamEval> CourseExamEvals { get; set; }
         public virtual DbSet<CourseExamQuestion> CourseExamQuestions { get; set; }
-        public virtual DbSet<CourseExamQustion> CourseExamQustions { get; set; }
         public virtual DbSet<CourseFileCheckList> CourseFileCheckLists { get; set; }
         public virtual DbSet<CourseInformationForm> CourseInformationForms { get; set; }
         public virtual DbSet<CourseReport> CourseReports { get; set; }
