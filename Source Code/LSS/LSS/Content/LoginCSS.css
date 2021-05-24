@@ -40,7 +40,6 @@ html {
 }
 
 .login_btn { 
-    margin-top:1rem;
     width: 100%;
     background: #007bff !important;
     color: white !important;
@@ -52,7 +51,6 @@ html {
     }
 
 .login_container {
-    margin-top:1rem;
     padding: 0 2rem;
 }
 
