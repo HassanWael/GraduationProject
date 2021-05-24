@@ -12,24 +12,29 @@ namespace LSS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class EnroledStudent
+    public partial class CourseExam
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public EnroledStudent()
+        public CourseExam()
         {
-            this.PIAssessments = new HashSet<PIAssessment>();
+            this.CourseExamQuestions = new HashSet<CourseExamQuestion>();
         }
     
         public int ID { get; set; }
-        public string StudentID { get; set; }
         public string CourseID { get; set; }
         public System.DateTime Year { get; set; }
         public string Semseter { get; set; }
-        public Nullable<int> FinalGrade { get; set; }
+        public string Type { get; set; }
+        public string Moderator { get; set; }
+        public int ExamWeight { get; set; }
+        public string ExamDurationTime { get; set; }
+        public System.DateTime ModerationDate { get; set; }
+        public System.DateTime ExamDate { get; set; }
+        public string AdditionalComments { get; set; }
     
         public virtual CourseCoordinator CourseCoordinator { get; set; }
-        public virtual Student Student { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PIAssessment> PIAssessments { get; set; }
+        public virtual ICollection<CourseExamQuestion> CourseExamQuestions { get; set; }
+        public virtual ModerationChecklist ModerationChecklist { get; set; }
     }
 }

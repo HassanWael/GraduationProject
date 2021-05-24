@@ -124,6 +124,41 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="CourseExams">
+      <EntityTypeMapping TypeName="Model.CourseExam">
+        <MappingFragment StoreEntitySet="CourseExam">
+          <ScalarProperty Name="AdditionalComments" ColumnName="AdditionalComments" />
+          <ScalarProperty Name="ExamDate" ColumnName="ExamDate" />
+          <ScalarProperty Name="ModerationDate" ColumnName="ModerationDate" />
+          <ScalarProperty Name="ExamDurationTime" ColumnName="ExamDurationTime" />
+          <ScalarProperty Name="ExamWeight" ColumnName="ExamWeight" />
+          <ScalarProperty Name="Moderator" ColumnName="Moderator" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CourseExamQuestions">
+      <EntityTypeMapping TypeName="Model.CourseExamQuestion">
+        <MappingFragment StoreEntitySet="CourseExamQuestion">
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+          <ScalarProperty Name="Question" ColumnName="Question" />
+          <ScalarProperty Name="QuestionNumber" ColumnName="QuestionNumber" />
+          <ScalarProperty Name="ExamID" ColumnName="ExamID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CourseExamQustions">
+      <EntityTypeMapping TypeName="Model.CourseExamQustion">
+        <MappingFragment StoreEntitySet="CourseExamQustion">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="CourseFileCheckLists">
       <EntityTypeMapping TypeName="Model.CourseFileCheckList">
         <MappingFragment StoreEntitySet="CourseFileCheckList">
@@ -215,6 +250,7 @@
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
           <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -279,10 +315,11 @@
         <MappingFragment StoreEntitySet="ModerationChecklist">
           <ScalarProperty Name="commetns" ColumnName="commetns" />
           <ScalarProperty Name="Answer" ColumnName="Answer" />
-          <ScalarProperty Name="Qustion" ColumnName="Qustion" />
+          <ScalarProperty Name="Question" ColumnName="Question" />
           <ScalarProperty Name="Semseter" ColumnName="Semseter" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -325,10 +362,7 @@
           <ScalarProperty Name="mark" ColumnName="mark" />
           <ScalarProperty Name="WhereItWasTakenFrom" ColumnName="WhereItWasTakenFrom" />
           <ScalarProperty Name="PI" ColumnName="PI" />
-          <ScalarProperty Name="Semseter" ColumnName="Semseter" />
-          <ScalarProperty Name="Year" ColumnName="Year" />
-          <ScalarProperty Name="CourseID" ColumnName="CourseID" />
-          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+          <ScalarProperty Name="EnrollmentID" ColumnName="EnrollmentID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>

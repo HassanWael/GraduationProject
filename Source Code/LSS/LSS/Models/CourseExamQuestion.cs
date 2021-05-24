@@ -12,15 +12,14 @@ namespace LSS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PIAssessment
+    public partial class CourseExamQuestion
     {
         public int ID { get; set; }
-        public int EnrollmentID { get; set; }
-        public int PI { get; set; }
-        public string WhereItWasTakenFrom { get; set; }
-        public Nullable<float> mark { get; set; }
+        public int ExamID { get; set; }
+        public string QuestionNumber { get; set; }
+        public string Question { get; set; }
+        public float Weight { get; set; }
     
-        public virtual EnroledStudent EnroledStudent { get; set; }
-        public virtual PI PI1 { get; set; }
+        public virtual CourseExam CourseExam { get; set; }
     }
 }

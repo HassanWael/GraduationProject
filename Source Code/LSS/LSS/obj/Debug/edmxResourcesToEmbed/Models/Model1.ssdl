@@ -137,6 +137,38 @@
     <Property Name="DayTime" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Coordinator" Type="nvarchar" MaxLength="30" Nullable="false" />
   </EntityType>
+  <EntityType Name="CourseExam">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Year" Type="date" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Moderator" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="ExamWeight" Type="int" Nullable="false" />
+    <Property Name="ExamDurationTime" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="ModerationDate" Type="date" Nullable="false" />
+    <Property Name="ExamDate" Type="date" Nullable="false" />
+    <Property Name="AdditionalComments" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="CourseExamQuestion">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExamID" Type="int" Nullable="false" />
+    <Property Name="QuestionNumber" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Question" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Weight" Type="real" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CourseExamQustion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="CourseFileCheckList">
     <Key>
       <PropertyRef Name="CourseID" />
@@ -227,11 +259,9 @@
   </EntityType>
   <EntityType Name="EnroledStudents">
     <Key>
-      <PropertyRef Name="StudentID" />
-      <PropertyRef Name="CourseID" />
-      <PropertyRef Name="Year" />
-      <PropertyRef Name="Semseter" />
+      <PropertyRef Name="ID" />
     </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="StudentID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
@@ -297,15 +327,13 @@
   </EntityType>
   <EntityType Name="ModerationChecklist">
     <Key>
-      <PropertyRef Name="CourseID" />
-      <PropertyRef Name="Year" />
-      <PropertyRef Name="Semseter" />
-      <PropertyRef Name="Qustion" />
+      <PropertyRef Name="ID" />
     </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
     <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
     <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
-    <Property Name="Qustion" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Question" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Answer" Type="bit" Nullable="false" />
     <Property Name="commetns" Type="nvarchar" MaxLength="255" />
   </EntityType>
@@ -348,10 +376,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="StudentID" Type="nvarchar" MaxLength="30" Nullable="false" />
-    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
-    <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="EnrollmentID" Type="int" Nullable="false" />
     <Property Name="PI" Type="int" Nullable="false" />
     <Property Name="WhereItWasTakenFrom" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="mark" Type="real" />
@@ -731,6 +756,38 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_CourseExam">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CourseExam" Type="Self.CourseExam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Principal>
+      <Dependent Role="CourseExam">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseExamQ">
+    <End Role="CourseExam" Type="Self.CourseExam" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CourseExamQuestion" Type="Self.CourseExamQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseExam">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CourseExamQuestion">
+        <PropertyRef Name="ExamID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_CourseFileCheckList_ToCourseCoordinator">
     <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
     <End Role="CourseFileCheckList" Type="Self.CourseFileCheckList" Multiplicity="0..1" />
@@ -860,7 +917,9 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_EnroledStudents_CourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="EnroledStudents" Type="Self.EnroledStudents" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CourseCoordinator">
@@ -876,7 +935,9 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_EnroledStudents_ToStudetn">
-    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="EnroledStudents" Type="Self.EnroledStudents" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Student">
@@ -962,20 +1023,16 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ModerationChecklist_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+    <End Role="CourseExam" Type="Self.CourseExam" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Role="ModerationChecklist" Type="Self.ModerationChecklist" Multiplicity="*" />
+    <End Role="ModerationChecklist" Type="Self.ModerationChecklist" Multiplicity="0..1" />
     <ReferentialConstraint>
-      <Principal Role="CourseCoordinator">
-        <PropertyRef Name="CourseID" />
-        <PropertyRef Name="Year" />
-        <PropertyRef Name="Semseter" />
+      <Principal Role="CourseExam">
+        <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="ModerationChecklist">
-        <PropertyRef Name="CourseID" />
-        <PropertyRef Name="Year" />
-        <PropertyRef Name="Semseter" />
+        <PropertyRef Name="ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1025,26 +1082,24 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_PIAssessment_ToEnrolled">
-    <End Role="EnroledStudents" Type="Self.EnroledStudents" Multiplicity="1" />
+  <Association Name="FK_PIAssessment_toEnroledStudents">
+    <End Role="EnroledStudents" Type="Self.EnroledStudents" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="PIAssessment" Type="Self.PIAssessment" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="EnroledStudents">
-        <PropertyRef Name="StudentID" />
-        <PropertyRef Name="CourseID" />
-        <PropertyRef Name="Year" />
-        <PropertyRef Name="Semseter" />
+        <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="PIAssessment">
-        <PropertyRef Name="StudentID" />
-        <PropertyRef Name="CourseID" />
-        <PropertyRef Name="Year" />
-        <PropertyRef Name="Semseter" />
+        <PropertyRef Name="EnrollmentID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PIAssessment_ToPI">
-    <End Role="PI" Type="Self.PI" Multiplicity="1" />
+    <End Role="PI" Type="Self.PI" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="PIAssessment" Type="Self.PIAssessment" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PI">
@@ -1264,6 +1319,9 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
     <EntitySet Name="CourseAssessmentMapping" EntityType="Self.CourseAssessmentMapping" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseAssessmentSurvay" EntityType="Self.CourseAssessmentSurvay" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseCoordinator" EntityType="Self.CourseCoordinator" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourseExam" EntityType="Self.CourseExam" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourseExamQuestion" EntityType="Self.CourseExamQuestion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourseExamQustion" EntityType="Self.CourseExamQustion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseFileCheckList" EntityType="Self.CourseFileCheckList" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseInformationForm" EntityType="Self.CourseInformationForm" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseReport" EntityType="Self.CourseReport" Schema="dbo" store:Type="Tables" />
@@ -1370,6 +1428,14 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
       <End Role="YearAndSemester" EntitySet="YearAndSemester" />
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
     </AssociationSet>
+    <AssociationSet Name="FK_CourseExam" Association="Self.FK_CourseExam">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+      <End Role="CourseExam" EntitySet="CourseExam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseExamQ" Association="Self.FK_CourseExamQ">
+      <End Role="CourseExam" EntitySet="CourseExam" />
+      <End Role="CourseExamQuestion" EntitySet="CourseExamQuestion" />
+    </AssociationSet>
     <AssociationSet Name="FK_CourseFileCheckList_ToCourseCoordinator" Association="Self.FK_CourseFileCheckList_ToCourseCoordinator">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
       <End Role="CourseFileCheckList" EntitySet="CourseFileCheckList" />
@@ -1431,7 +1497,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
       <End Role="Lecturers" EntitySet="Lecturers" />
     </AssociationSet>
     <AssociationSet Name="FK_ModerationChecklist_ToCourseCoordinator" Association="Self.FK_ModerationChecklist_ToCourseCoordinator">
-      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+      <End Role="CourseExam" EntitySet="CourseExam" />
       <End Role="ModerationChecklist" EntitySet="ModerationChecklist" />
     </AssociationSet>
     <AssociationSet Name="FK_OtherLecturers_ToCourseCoordinator" Association="Self.FK_OtherLecturers_ToCourseCoordinator">
@@ -1446,7 +1512,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
       <End Role="Department" EntitySet="Department" />
       <End Role="PEO" EntitySet="PEO" />
     </AssociationSet>
-    <AssociationSet Name="FK_PIAssessment_ToEnrolled" Association="Self.FK_PIAssessment_ToEnrolled">
+    <AssociationSet Name="FK_PIAssessment_toEnroledStudents" Association="Self.FK_PIAssessment_toEnroledStudents">
       <End Role="EnroledStudents" EntitySet="EnroledStudents" />
       <End Role="PIAssessment" EntitySet="PIAssessment" />
     </AssociationSet>
