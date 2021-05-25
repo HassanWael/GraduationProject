@@ -17,9 +17,10 @@ namespace LSS.Models
         public int ID { get; set; }
         public int EnrollmentID { get; set; }
         public int PI { get; set; }
-        public string WhereItWasTakenFrom { get; set; }
+        public int WhereItWasTakenFrom { get; set; }
         public Nullable<float> mark { get; set; }
     
+        public virtual CourseExamQuestion CourseExamQuestion { get; set; }
         public virtual EnroledStudent EnroledStudent { get; set; }
         public virtual PI PI1 { get; set; }
     }

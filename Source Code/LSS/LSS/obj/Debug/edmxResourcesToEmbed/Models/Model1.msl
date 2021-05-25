@@ -468,6 +468,14 @@
         <ScalarProperty Name="ID" ColumnName="CLOID" />
       </EndProperty>
     </AssociationSetMapping>
+    <AssociationSetMapping Name="Question_IP" TypeName="Model.Question_IP" StoreEntitySet="Question_IP">
+      <EndProperty Name="PI">
+        <ScalarProperty Name="PIUniqueID" ColumnName="PIUniqueID" />
+      </EndProperty>
+      <EndProperty Name="CourseExamQuestion">
+        <ScalarProperty Name="ID" ColumnName="EQ_ID" />
+      </EndProperty>
+    </AssociationSetMapping>
     <AssociationSetMapping Name="Schedule_CLO" TypeName="Model.Schedule_CLO" StoreEntitySet="Schedule_CLO">
       <EndProperty Name="schedule">
         <ScalarProperty Name="Week" ColumnName="Week" />

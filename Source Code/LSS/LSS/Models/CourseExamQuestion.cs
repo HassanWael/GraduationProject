@@ -14,6 +14,13 @@ namespace LSS.Models
     
     public partial class CourseExamQuestion
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CourseExamQuestion()
+        {
+            this.PIAssessments = new HashSet<PIAssessment>();
+            this.PIs = new HashSet<PI>();
+        }
+    
         public int ID { get; set; }
         public int ExamID { get; set; }
         public string QuestionNumber { get; set; }
@@ -21,5 +28,9 @@ namespace LSS.Models
         public float Weight { get; set; }
     
         public virtual CourseExam CourseExam { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PIAssessment> PIAssessments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PI> PIs { get; set; }
     }
 }
