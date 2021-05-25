@@ -1,54 +1,77 @@
 ﻿@model LSS.Models.isAssessed
 
-<link href="~/Content/ULStyleForAssessmentPlan.css" rel="stylesheet" />
-@using (Html.BeginForm("IsAssessedPartialView", "CourseCoordinator",FormMethod.Post))
+@using (Html.BeginForm("IsAssessedPartialView", "CourseCoordinator", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>isAssessed</h4>
+
+    <div class="container">
+        <h4>Assessment Information</h4>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.CourseID)
-        @Html.HiddenFor(model => model.Year)
-        @Html.HiddenFor(model => model.Semseter)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.isAssessed1, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.CheckBoxFor(model => model.isAssessed1,new {onchange="change()",id="checkbox" })
-                    @Html.ValidationMessageFor(model => model.isAssessed1, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
+        <table class="table table-borderless w-100">
+            <thread>
+                <tr>
+                    <th colspan="3"> Will this be Assessed? </th>
+                </tr>
+            </thread>
 
-        <div class="form-group" id="whynot_div" hidden>
-            @Html.LabelFor(model => model.WhyNot, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.WhyNot, new { htmlAttributes = new { @class = "form-control", id="whynoteditor" } })
-                @Html.ValidationMessageFor(model => model.WhyNot, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <script>
-            function change() {
-                if (document.getElementById('checkbox').checked) {
-                    document.getElementById('whynot_div').hidden = false;
-                } else {
-                    document.getElementById('whynot_div').hidden = true;
-                    document.getElementById('whynoteditor').value = " ";
-                }
-            }
-        </script>
+            <tbody class="text-left">
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <p>
+                                    @Html.CheckBoxFor(model => model.isAssessed1, new { onchange = "change()", id = "checkbox" })
+                                    No it will not
+                                    @Html.ValidationMessageFor(model => model.isAssessed1, "", new { @class = "text-danger" })
+                                </p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+                <tr>
+                    <td>
+                        <div class="form-group" id="whynot_div" hidden>
+                            <p>
+                                Reasons for not Assessing (If any):
+                                <div class="w-100">
+                                    @Html.EditorFor(model => model.WhyNot, new { htmlAttributes = new { @class = "form-control", id = "whynoteditor" } })
+                                    @Html.ValidationMessageFor(model => model.WhyNot, "", new { @class = "text-danger" })
+                                </div>
+                            </p>
+                        </div>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="justify-content-center align-items-center d-flex">
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            @Html.ActionLink("Back to List", "CouresPage", "CourseCoordinator", Model.CourseID)
         </div>
     </div>
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.CourseID)
+    @Html.HiddenFor(model => model.Year)
+    @Html.HiddenFor(model => model.Semseter)
 }
 
-<div>
-    @Html.ActionLink("Back to List", "CoursePage","CourseCoordintor",new { courseID = Model.CourseID})
-</div>
+<script>
+    function change() {
+        if (document.getElementById('checkbox').checked) {
+            document.getElementById('whynot_div').hidden = false;
+        } else {
+            document.getElementById('whynot_div').hidden = true;
+            document.getElementById('whynoteditor').value = " ";
+        }
+    }
+</script>

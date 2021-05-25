@@ -166,27 +166,66 @@ namespace LSS.Controllers
                 if (a == null)
                 {
                     _DatabaseEntities.isAssesseds.Add(isAssessed);
+                    _DatabaseEntities.SaveChanges();
+
                 }
                 else
                 {
-                    _DatabaseEntities.Entry(isAssessed).State = EntityState.Modified;
+                    a.isAssessed1 = isAssessed.isAssessed1;
+                    a.WhyNot = isAssessed.WhyNot;
+                    _DatabaseEntities.Entry(a).State = EntityState.Modified;
+                    _DatabaseEntities.SaveChanges();
+
                 }
-                _DatabaseEntities.SaveChanges();
             }
             catch (Exception e)
             {
                 ModelState.AddModelError(e.Message, "an error has accoured please try again later ");
                 Console.WriteLine("Error at line 123 Course Coordinator");
-                return View(isAssessed);
+                return View("Index", "LogedIn");
             }
             return RedirectToAction("CouresPage", "CourseCoordinator", isAssessed.CourseID);
         }
 
         [HttpPost]
-        public ActionResult AssessmentPlan()
+        public ActionResult AssessmentPlan(AssessmentPlanforTheStudentLearningOutcomeTechnique A)
         {
-            return View();
+            AssessmentPlanforTheStudentLearningOutcomeTechnique a = _DatabaseEntities.AssessmentPlanforTheStudentLearningOutcomeTechniques.Find(A.CourseID, A.Year, A.Semester);
+            if (a == null)
+            {
+                _DatabaseEntities.AssessmentPlanforTheStudentLearningOutcomeTechniques.Add(A);
+                _DatabaseEntities.SaveChanges();
+            }
+            else
+            {
+                a.Midterm_Test = A.Midterm_Test;
 
+                a.Final_Exam = A.Final_Exam;
+
+                a.Quiz = A.Quiz;
+
+                a.Assignment = A.Assignment;
+
+                a.project = A.project;
+
+                a.Written_Report = A.Written_Report;
+
+                a.Oral_Presenation = A.Oral_Presenation;
+
+                a.Practice_In_The_Lab = A.Practice_In_The_Lab;
+
+                a.Case_Studdy = A.Case_Studdy;
+
+                a.Gropu_Discussions = A.Gropu_Discussions;
+
+                a.Students_Interviews = A.Students_Interviews;
+
+                a.Other = A.Other;
+
+                _DatabaseEntities.Entry(a).State = EntityState.Modified;
+                _DatabaseEntities.SaveChanges();
+            }
+            return RedirectToAction("CouresPage", new { courseID = A.CourseID });
         }
 
 
@@ -268,14 +307,14 @@ namespace LSS.Controllers
 
 
         //todo: create a Model for CourseStudent List
-        public ActionResult CourseStudentList(string? CourseID,string? updateMassege, DateTime? Year, string? Semester,int? Department, string? Search, int page = 1, int pageSize = 10)
+        public ActionResult CourseStudentList(string? CourseID, string? updateMassege, DateTime? Year, string? Semester, int? Department, string? Search, int page = 1, int pageSize = 10)
         {
-            if(Year ==null&& Semester == null)
+            if (Year == null && Semester == null)
             {
                 Year = yas.Year;
                 Semester = yas.Semester;
             }
-               //if (CourseID == null)
+            //if (CourseID == null)
             //{
             //    return RedirectToAction("Index", "LogedIn");
             //}
@@ -296,7 +335,7 @@ namespace LSS.Controllers
 
             if ((Search == null || Search.Equals("")))
             {
-                CourseStudents = cc.EnroledStudents.Where(x =>x.Student.DptID.Equals(Department)).ToList();
+                CourseStudents = cc.EnroledStudents.Where(x => x.Student.DptID.Equals(Department)).ToList();
                 studentsPaged = new PagedList<EnroledStudent>(CourseStudents, page, pageSize);
 
             }
@@ -374,15 +413,15 @@ namespace LSS.Controllers
                 }
             }
             string updateMassege = (added + " student has been added to the Course.");
-            return RedirectToAction("CourseStudentList", new { CourseID, updateMassege, Year, Semseter } );
+            return RedirectToAction("CourseStudentList", new { CourseID, updateMassege, Year, Semseter });
         }
 
         [HttpPost]
-        public ActionResult RemoveStudentFromCourse(string? StudetnID ,string? CourseID, DateTime? Year, string Semseter)
+        public ActionResult RemoveStudentFromCourse(string? StudetnID, string? CourseID, DateTime? Year, string Semseter)
         {
             try
             {
-                EnroledStudent s = _DatabaseEntities.EnroledStudents.Find(StudetnID,CourseID, Year, Semseter);
+                EnroledStudent s = _DatabaseEntities.EnroledStudents.Find(StudetnID, CourseID, Year, Semseter);
                 if (s != null)
                 {
                     _DatabaseEntities.EnroledStudents.Remove(s);
@@ -393,11 +432,12 @@ namespace LSS.Controllers
                     return RedirectToAction("Index", "LogedIn");
                 }
             }
-            catch {
+            catch
+            {
                 return RedirectToAction("CourseStudentList", new { CourseID, Year, Semseter });
             }
 
-            return RedirectToAction("CourseStudentList", new { CourseID,  Year, Semseter });
+            return RedirectToAction("CourseStudentList", new { CourseID, Year, Semseter });
         }
 
 
@@ -420,7 +460,7 @@ namespace LSS.Controllers
                     _DatabaseEntities.CourseTextBooks.Add(courseTextBook);
                     _DatabaseEntities.SaveChanges();
                 }
-                catch (Exception e )
+                catch (Exception e)
                 {
                     Console.WriteLine("Error at line 413 CourseCoordinator" + e.Message);
 
@@ -428,7 +468,7 @@ namespace LSS.Controllers
                 }
 
             }
-            if(courseTextBook.Course !=null && !courseTextBook.Course.Equals(""))
+            if (courseTextBook.Course != null && !courseTextBook.Course.Equals(""))
                 return RedirectToAction("CoursePage", courseTextBook.Course);
             return RedirectToAction("Index", "LogedIn");
 
