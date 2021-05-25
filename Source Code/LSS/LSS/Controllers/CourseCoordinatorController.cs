@@ -165,18 +165,23 @@ namespace LSS.Controllers
                 if (a == null)
                 {
                     _DatabaseEntities.isAssesseds.Add(isAssessed);
+                    _DatabaseEntities.SaveChanges();
+
                 }
                 else
                 {
-                    _DatabaseEntities.Entry(isAssessed).State = EntityState.Modified;
+                    a.isAssessed1 = isAssessed.isAssessed1;
+                    a.WhyNot = isAssessed.WhyNot;
+                    _DatabaseEntities.Entry(a).State = EntityState.Modified;
+                    _DatabaseEntities.SaveChanges();
+
                 }
-                _DatabaseEntities.SaveChanges();
             }
             catch (Exception e)
             {
                 ModelState.AddModelError(e.Message, "an error has accoured please try again later ");
                 Console.WriteLine("Error at line 123 Course Coordinator");
-                return View(isAssessed);
+                return View("Index","LogedIn");
             }
             return RedirectToAction("CouresPage", "CourseCoordinator", isAssessed.CourseID);
         }
