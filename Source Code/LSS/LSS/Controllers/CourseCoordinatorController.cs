@@ -187,9 +187,43 @@ namespace LSS.Controllers
         }
 
         [HttpPost]
-        public ActionResult AssessmentPlan()
+        public ActionResult AssessmentPlan(AssessmentPlanforTheStudentLearningOutcomeTechnique A)
         {
-            return View();
+            AssessmentPlanforTheStudentLearningOutcomeTechnique a = _DatabaseEntities.AssessmentPlanforTheStudentLearningOutcomeTechniques.Find(A.CourseID, A.Year, A.Semester);
+            if (a == null)
+            {
+                _DatabaseEntities.AssessmentPlanforTheStudentLearningOutcomeTechniques.Add(A);
+                _DatabaseEntities.SaveChanges();
+            }
+            else
+            {
+                a.Midterm_Test = A.Midterm_Test;
+                a.Final_Exam = A.Final_Exam;
+
+
+                a.Quiz = A.Quiz;
+
+                a.Assignment = A.Assignment;
+
+                a.project = A.project;
+
+                a.Written_Report = A.Written_Report;
+
+                a.Oral_Presenation = A.Oral_Presenation;
+
+                a.Practice_In_The_Lab = A.Practice_In_The_Lab;
+
+                a.Case_Studdy = A.Case_Studdy;
+
+                a.Gropu_Discussions = A.Gropu_Discussions;
+                a.Students_Interviews = A.Students_Interviews;
+                a.Other = A.Other;
+
+                _DatabaseEntities.Entry(a).State = EntityState.Modified;
+                _DatabaseEntities.SaveChanges();
+
+            }
+            return RedirectToAction("CouresPage", new { courseID = A.CourseID });
 
         }
 
