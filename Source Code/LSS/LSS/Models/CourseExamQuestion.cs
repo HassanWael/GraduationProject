@@ -11,22 +11,26 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class CourseExamQuestion
     {
+        LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CourseExamQuestion()
         {
             this.PIAssessments = new HashSet<PIAssessment>();
             this.PIs = new HashSet<PI>();
+       
         }
-    
+
         public int ID { get; set; }
         public int ExamID { get; set; }
         public string QuestionNumber { get; set; }
         public string Question { get; set; }
         public float Weight { get; set; }
-    
+
+
+       
         public virtual CourseExam CourseExam { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PIAssessment> PIAssessments { get; set; }

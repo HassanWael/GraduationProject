@@ -7,7 +7,7 @@
 
 <h2>CreateCourseExam</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("CreateCourseExam","Exam",FormMethod.Post)) 
 {
     @Html.AntiForgeryToken()
     
@@ -19,10 +19,6 @@
     @Html.HiddenFor(model => model.CourseID)
     @Html.HiddenFor(model => model.Year)
     @Html.HiddenFor(model => model.Semseter)
-
-
-
-    
 
     <div class="form-group">
         @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -88,6 +84,3 @@
 </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

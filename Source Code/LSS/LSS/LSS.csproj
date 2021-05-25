@@ -527,8 +527,9 @@
     <Content Include="Views\CourseCoordinator\AddBook.cshtml" />
     <Content Include="Views\CourseCoordinator\Book.cshtml" />
     <Content Include="Views\Exam\CreateCourseExam.cshtml" />
-    <Content Include="Views\Exam\ListCourseExam.cshtml" />
+    <Content Include="Views\Exam\ListCourseExamsAndTasks.cshtml" />
     <Content Include="Views\Exam\CourseExamDetails.cshtml" />
+    <Content Include="Views\Exam\ListExamQustions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

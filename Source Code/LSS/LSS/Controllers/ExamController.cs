@@ -12,20 +12,30 @@ namespace LSS.Controllers
     {
         private readonly LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
         // GET: Exam
-        public ActionResult CreateCourseExam(int CourseID, int Year, string Semester)
+        public ActionResult CreateCourseExam(string? CourseID, DateTime? Year, string? Semester)
         {
-            CourseExam name = _DatabaseEntities.CourseExams.Find(CourseID, Year, Semester);
-            if (name == null)
+
+            CourseCoordinator CC = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester);
+            if (CC == null)
             {
                 return RedirectToAction("Index", "LogedIn");
             }
-            return View(name);
-            
+            CourseExam courseExam = new CourseExam()
+            {
+                CourseID=CC.CourseID,
+                Year=CC.Year,
+                Semseter=CC.Semseter,
+                ExamDate = DateTime.Now,
+                ModerationDate= DateTime.Now
+            };
+            return View(courseExam);
         }
         [HttpPost]
-        public ActionResult CreatExam(CourseExam courseExam)
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateCourseExam(CourseExam courseExam)
         {
-            if (courseExam != null)
+            
+            if (ModelState.IsValid&& courseExam != null)
             {
                 try
                 {
@@ -36,27 +46,36 @@ namespace LSS.Controllers
                 {
                     Console.WriteLine("Errorr e " + e.Message);
                 }
-
-
+            }
+            else
+            {
+                return View();
             }
 
-            return View();
+            return RedirectToAction("CourseExamDetails", new { ExamID = courseExam.ID });
 }
-        public ActionResult ListCourseExam(string CourseID, int Year, string Semester, int page = 1, int pageSize = 10)
+        public ActionResult ListCourseExamsAndTasks(string? CourseID, DateTime? Year, string? Semester, int page = 1, int pageSize = 10)
         {
-            List<CourseExam> Exams = _DatabaseEntities.CourseExams.Where(x => x.CourseID.Equals(CourseID) && x.Year.Equals(Year) && x.Semseter.Equals(Semester)).ToList();
+            ViewBag.CourseID = CourseID;
+            ViewBag.Year = Year;
+            ViewBag.Semester = Semester;
+            CourseCoordinator courseCoordinator = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester);
+            List<CourseExam> Exams = courseCoordinator.CourseExams.ToList();
             PagedList<CourseExam> CoursesPaged = new PagedList<CourseExam>(Exams , page, pageSize);
             return View(CoursesPaged);
-
         }
-        public ActionResult CourseExamDetails(int ExamID)
+        public ActionResult CourseExamDetails(int? ExamID)
         {
             CourseExam Exam = _DatabaseEntities.CourseExams.Find(ExamID);
-
-            if (Exam != null)
+            if (Exam== null)
                 return new HttpStatusCodeResult(404);
             return View(Exam);
-           
+        }
+                
+        public ActionResult PIAssessments(string CourseID, DateTime Year, string Semester)
+        {
+
+            return View();
         }
 
     }

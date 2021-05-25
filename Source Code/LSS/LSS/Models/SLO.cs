@@ -21,7 +21,12 @@ namespace LSS.Models
             this.SLO_PEO = new HashSet<SLO_PEO>();
             this.Courses = new HashSet<Course>();
         }
-    
+        public SLO(int deptID)
+            : this()
+        {
+            this.DeptID = deptID;
+        }
+
         public string SLOID { get; set; }
         public string Desc { get; set; }
         public int DeptID { get; set; }

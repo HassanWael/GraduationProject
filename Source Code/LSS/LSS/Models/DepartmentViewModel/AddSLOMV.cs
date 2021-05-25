@@ -19,7 +19,6 @@ namespace LSS.Models.DepartmentViewModel
         }
         public AddSLOMV()
         {
-            
         }
         public SLO SLO { get; set; }
 

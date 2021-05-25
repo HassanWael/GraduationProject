@@ -11,14 +11,21 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class database_firewall_rules
     {
         public int id { get; set; }
         public string name { get; set; }
         public string start_ip_address { get; set; }
         public string end_ip_address { get; set; }
+        [Required]
+        [Display(Name = "Date")]
+        [DataType(DataType.Date)]
         public System.DateTime create_date { get; set; }
+        [Required]
+        [Display(Name = "Birth Date")]
+        [DataType(DataType.Date)]
         public System.DateTime modify_date { get; set; }
     }
 }
