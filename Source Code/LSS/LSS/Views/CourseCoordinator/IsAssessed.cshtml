@@ -18,32 +18,37 @@
             <tbody class="text-left">
                 <tr>
                     <td>
-                        <div class="form-group">
-                            <div class="checkbox">
-                                <p>
-                                    @Html.CheckBoxFor(model => model.isAssessed1, new { onchange = "change()", id = "checkbox" })
-                                    No it will not
-                                    @Html.ValidationMessageFor(model => model.isAssessed1, "", new { @class = "text-danger" })
-                                </p>
-                            </div>
+                        <div class="form-check form-check-inline">
+                            <p>
+                                @Html.RadioButtonFor(model => model.isAssessed1, false, new { id = "radioNo" })
+                                <label class="form-check-label" for="radioNo">No it will not.</label>
+                                @Html.ValidationMessageFor(model => model.isAssessed1, "", new { @class = "text-danger" })
+                            </p>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <p>
+                                @Html.RadioButtonFor(model => model.isAssessed1, true, new { id = "radioYes" })
+                                <label class="form-check-label" for="radioYes">Yes it will.</label>
+                                @Html.ValidationMessageFor(model => model.isAssessed1, "", new { @class = "text-danger" })
+                            </p>
                         </div>
                     </td>
                 </tr>
 
                 <tr>
                     <td>
-                        <div class="form-group" id="whynot_div" hidden>
+                        <div class="form-group" id="whynot_div">
                             <p>
-                                Reasons for not Assessing (If any):
-                                <div class="w-100">
-                                    @Html.EditorFor(model => model.WhyNot, new { htmlAttributes = new { @class = "form-control", id = "whynoteditor" } })
-                                    @Html.ValidationMessageFor(model => model.WhyNot, "", new { @class = "text-danger" })
-                                </div>
+                                Reasons for not assessing (If any):
+
                             </p>
+                            @Html.TextAreaFor(model => model.WhyNot, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.WhyNot, "", new { @class = "text-danger" })
                         </div>
                     </td>
-
                 </tr>
+         
 
                 <tr>
                     <td>
@@ -64,14 +69,3 @@
     @Html.HiddenFor(model => model.Year)
     @Html.HiddenFor(model => model.Semseter)
 }
-
-<script>
-    function change() {
-        if (document.getElementById('checkbox').checked) {
-            document.getElementById('whynot_div').hidden = false;
-        } else {
-            document.getElementById('whynot_div').hidden = true;
-            document.getElementById('whynoteditor').value = " ";
-        }
-    }
-</script>
