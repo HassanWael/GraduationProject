@@ -168,6 +168,10 @@
       <End Role="EnroledStudent" EntitySet="EnroledStudents" />
       <End Role="CourseExamEval" EntitySet="CourseExamEvals" />
     </AssociationSet>
+    <AssociationSet Name="FK_PIAsessment_ToExamQ" Association="Model.FK_PIAsessment_ToExamQ">
+      <End Role="CourseExamQuestion" EntitySet="CourseExamQuestions" />
+      <End Role="PIAssessment" EntitySet="PIAssessments" />
+    </AssociationSet>
     <AssociationSet Name="FK_Department_Faculty" Association="Model.FK_Department_Faculty">
       <End Role="Faculty" EntitySet="Faculties" />
       <End Role="Department" EntitySet="Departments" />
@@ -234,6 +238,10 @@
     </AssociationSet>
     <AssociationSet Name="CLO_PI" Association="Model.CLO_PI">
       <End Role="CLO" EntitySet="CLOes" />
+      <End Role="PI" EntitySet="PIs" />
+    </AssociationSet>
+    <AssociationSet Name="Question_IP" Association="Model.Question_IP">
+      <End Role="CourseExamQuestion" EntitySet="CourseExamQuestions" />
       <End Role="PI" EntitySet="PIs" />
     </AssociationSet>
     <AssociationSet Name="Schedule_CLO" Association="Model.Schedule_CLO">
@@ -456,6 +464,8 @@
     <Property Name="Question" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="Weight" Type="Single" Nullable="false" />
     <NavigationProperty Name="CourseExam" Relationship="Model.FK_CourseExamQ" FromRole="CourseExamQuestion" ToRole="CourseExam" />
+    <NavigationProperty Name="PIAssessments" Relationship="Model.FK_PIAsessment_ToExamQ" FromRole="CourseExamQuestion" ToRole="PIAssessment" />
+    <NavigationProperty Name="PIs" Relationship="Model.Question_IP" FromRole="CourseExamQuestion" ToRole="PI" />
   </EntityType>
   <EntityType Name="CourseFileCheckList">
     <Key>
@@ -694,6 +704,7 @@
     <NavigationProperty Name="PIAssessments" Relationship="Model.FK_PIAssessment_ToPI" FromRole="PI" ToRole="PIAssessment" />
     <NavigationProperty Name="SLO" Relationship="Model.PI_ToSLO" FromRole="PI" ToRole="SLO" />
     <NavigationProperty Name="CLOes" Relationship="Model.CLO_PI" FromRole="PI" ToRole="CLO" />
+    <NavigationProperty Name="CourseExamQuestions" Relationship="Model.Question_IP" FromRole="PI" ToRole="CourseExamQuestion" />
   </EntityType>
   <EntityType Name="PIAssessment">
     <Key>
@@ -702,8 +713,9 @@
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="EnrollmentID" Type="Int32" Nullable="false" />
     <Property Name="PI" Type="Int32" Nullable="false" />
-    <Property Name="WhereItWasTakenFrom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="WhereItWasTakenFrom" Type="Int32" Nullable="false" />
     <Property Name="mark" Type="Single" />
+    <NavigationProperty Name="CourseExamQuestion" Relationship="Model.FK_PIAsessment_ToExamQ" FromRole="PIAssessment" ToRole="CourseExamQuestion" />
     <NavigationProperty Name="EnroledStudent" Relationship="Model.FK_PIAssessment_toEnroledStudents" FromRole="PIAssessment" ToRole="EnroledStudent" />
     <NavigationProperty Name="PI1" Relationship="Model.FK_PIAssessment_ToPI" FromRole="PIAssessment" ToRole="PI" />
   </EntityType>
@@ -1316,6 +1328,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_PIAsessment_ToExamQ">
+    <End Type="Model.CourseExamQuestion" Role="CourseExamQuestion" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.PIAssessment" Role="PIAssessment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseExamQuestion">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PIAssessment">
+        <PropertyRef Name="WhereItWasTakenFrom" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Department_Faculty">
     <End Type="Model.Faculty" Role="Faculty" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -1540,6 +1566,10 @@
   </Association>
   <Association Name="CLO_PI">
     <End Type="Model.CLO" Role="CLO" Multiplicity="*" />
+    <End Type="Model.PI" Role="PI" Multiplicity="*" />
+  </Association>
+  <Association Name="Question_IP">
+    <End Type="Model.CourseExamQuestion" Role="CourseExamQuestion" Multiplicity="*" />
     <End Type="Model.PI" Role="PI" Multiplicity="*" />
   </Association>
   <Association Name="Schedule_CLO">

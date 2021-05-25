@@ -19,6 +19,7 @@ namespace LSS.Models
         {
             this.PIAssessments = new HashSet<PIAssessment>();
             this.CLOes = new HashSet<CLO>();
+            this.CourseExamQuestions = new HashSet<CourseExamQuestion>();
         }
     
         public string ID { get; set; }
@@ -32,5 +33,7 @@ namespace LSS.Models
         public virtual SLO SLO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CLO> CLOes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CourseExamQuestion> CourseExamQuestions { get; set; }
     }
 }
