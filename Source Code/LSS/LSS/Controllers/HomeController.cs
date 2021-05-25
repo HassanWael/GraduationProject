@@ -28,7 +28,7 @@ namespace LSS.Controllers
             {
                 Lecturer ValidUser = _databaseEntities.Lecturers.SingleOrDefault(lecturer => lecturer.ID.Equals(user.ID) && lecturer.Password.Equals(user.Password));
                 if (ValidUser != null)
-                {
+                {        
                     FormsAuthentication.SetAuthCookie(ValidUser.ID, false);
                     if (Url.IsLocalUrl(ReturnUrl))
                     {

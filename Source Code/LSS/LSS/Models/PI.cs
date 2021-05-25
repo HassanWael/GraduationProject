@@ -20,9 +20,9 @@ namespace LSS.Models
             this.PIAssessments = new HashSet<PIAssessment>();
             this.CLOes = new HashSet<CLO>();
         }
-       
+
         public PI(string SLOID, int deptID)
-               : this()
+             : this()
         {
             this.DeptID = deptID;
             this.SLOID = SLOID;

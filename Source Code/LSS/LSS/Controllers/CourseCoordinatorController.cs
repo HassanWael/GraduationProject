@@ -239,7 +239,7 @@ namespace LSS.Controllers
             return View(a);
         }
 
-        //todo: creat col itterator and configure the xlsx file that woul be uploaded 
+        //todo: creat col itterator and configure the xlsx file that woul be uploaded
         public ActionResult UploadSurveyAnswers(FormCollection formCollection, string CourseID, DateTime Year, string Semseter)
         {
             List<int> QID = _DatabaseEntities.CourseAssessmentSurvays.Where(x => x.CourseID.Equals(CourseID) && x.Year.Equals(Year) && x.Semseter
@@ -327,5 +327,5 @@ namespace LSS.Controllers
             return RedirectToAction("Index", "LogedIn");
         }
     }
-    
+
 }

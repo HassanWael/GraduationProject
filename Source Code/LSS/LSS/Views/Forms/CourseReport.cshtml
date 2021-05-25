@@ -181,10 +181,21 @@
     <tr>
         <td style=" border:1px solid black" colspan="2">
             Teaching style used for this course?<br />
-            <input type="checkbox" /> In-class lectures
-            <input type="checkbox" /> Group discussion
-            <input type="checkbox" /> Demonstration
-            <input type="checkbox" /> Others:
+
+            @Html.CheckBoxFor(x => x.ASS.Oral_Presenation, new { disabled = "disabled" })
+            @Html.LabelFor(x => x.ASS.Oral_Presenation, "In class lectures")
+
+
+            @Html.CheckBoxFor(x => x.ASS.Gropu_Discussions, new { disabled = "disabled" })
+            @Html.LabelFor(x => x.AssessmentPlan.Gropu_Discussions, "Group discussion")
+
+
+            @Html.CheckBoxFor(x => x.ASS.Case_Studdy, new { disabled = "disabled" })
+            @Html.LabelFor(x => x.ASS.Case_Studdy, "Demonstration")
+
+            @Html.LabelFor(x => x.ASS.Other, "Others..")
+            @Html.DisplayFor(x => x.ASS.Other, new { disabled = "disabled" })
+
         </td>
     </tr>
     <tr>

@@ -211,7 +211,6 @@
     <Compile Include="Models\CoursesModelView\AddCLOMV.cs" />
     <Compile Include="Models\CoursesModelView\AddSurveyQustionMV.cs" />
     <Compile Include="Models\CoursesModelView\CouresModelView.cs" />
-    <Compile Include="Models\CoursesModelView\CouresReportModelView.cs" />
     <Compile Include="Models\CoursesModelView\CourseAssessmentID.cs" />
     <Compile Include="Models\CoursesModelView\HomeCourseListViewModel.cs" />
     <Compile Include="Models\CourseSyllabu.cs">
@@ -329,6 +328,7 @@
     <Content Include="Images\Certified.PNG" />
     <Content Include="Images\Excel Format\StudentListExcel.png" />
     <Content Include="Images\Excel Format\StudetnGradeImage.png" />
+    <Content Include="Images\LOGO-removebg-preview.png" />
     <Content Include="Images\notebook.png" />
     <Content Include="Images\Quality.PNG" />
     <Content Include="Images\R.PNG" />
