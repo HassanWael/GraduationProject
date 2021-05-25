@@ -287,7 +287,6 @@ namespace LSS.Controllers
                 return RedirectToAction("CoursePage", courseTextBook.Course);
             return RedirectToAction("Index", "LogedIn");
         }
-
     }
     
 }
