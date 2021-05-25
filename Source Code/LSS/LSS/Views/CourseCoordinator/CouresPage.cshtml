@@ -19,7 +19,7 @@
                 @Html.ActionLink("Recomandations for improving the course", "ActionsForImproving", "CourseCoordinator", new { courseId = Model.Course.ID }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
 
                 @Html.ActionLink("Students List", "CourseStudentList", "CourseCoordinator", new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
-               
+
                 @Html.ActionLink("PI Assessment", "PI Assessment", "CourseCoordinator", new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
 
                 @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator", new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
@@ -58,26 +58,26 @@
                                     <td> @Model.Course.Title </td>
                                 </tr>
 
-                                <tr >
+                                <tr>
                                     <td>    <h4> Coures ID </h4>  </td>
                                     <td>  @Model.Course.ID </td>
                                 </tr>
-                                <tr >
+                                <tr>
                                     <td>   <h4> Faculty Name   </h4> </td>
                                     <td> @Model.Faculty.ID </td>
                                 </tr>
 
-                                <tr >
+                                <tr>
                                     <td>   <h4> Credit Hours   </h4> </td>
                                     <td> @Model.Course.Hours </td>
                                 </tr>
 
-                                <tr >
+                                <tr>
                                     <td>   <h4> Course Coordinator   </h4> </td>
                                     <td> @Model.CourseCoordinator.Coordinator </td>
                                 </tr>
 
-                                <tr >
+                                <tr>
                                     <td>   <h4> Day Time  </h4> </td>
                                     <td> @Model.CourseCoordinator.DayTime </td>
                                 </tr>
@@ -242,10 +242,9 @@
                                     {
                                         <h4 class="card-title">
                                             Yes this Course will be Assessed
-                                            <button id='open' class="btn btn-primary card-link" data-toggle="modal" data-target="#isAssessed">Edit </button>
+
                                         </h4>
-                                        <p class="card-text">
-                                        </p>
+                                        <button id='open' class="btn btn-primary card-link" data-toggle="modal" data-target="#isAssessed">Edit </button>
                                     }
                                     else
                                     {
@@ -256,9 +255,8 @@
                                         <p class="card-text">
                                             Why Not:@Html.DisplayFor(model => model.IsAssessed.WhyNot)
                                             <br />
-                                            <button id='open' class="btn btn-primary card-link" data-toggle="modal" data-target="#isAssessed">Edit </button>
-
                                         </p>
+                                        <button id='open' class="btn btn-primary card-link" data-toggle="modal" data-target="#isAssessed">Edit </button>
                                     }
                                 </div>
                             </div>
@@ -292,9 +290,12 @@
 
                         @*Second card*@
 
-                        <li>
-                            <div class="card border-primary mb-3">
-                                <div class="card-header"> <h5>Assessment Plan for the SLO</h5></div>
+                        <li class="pb-1">
+                            <div class="card border-primary mb-1">
+                                <div class="card-header">
+                                    <h5>Assessment Plan for the SLO</h5>
+                                </div>
+
                                 <div class="card-body text-primary">
                                     @if (Model.AssessmentPlan == null)
                                     {
@@ -302,7 +303,7 @@
                                             The Assessment Plan has not been set up yet.
                                             <p>
                                                 <div>
-                                                    <button id='open' class="btn btn-primary card-link" data-toggle="modal" data-target="#addAssmentPlan">create Assessment Plan</button>
+                                                    <button id='open' class="btn btn-primary card-link" data-toggle="modal" data-target="#addAssmentPlan">Create Assessment Plan</button>
                                                 </div>
                                             </p>
                                         </h4>
@@ -310,8 +311,8 @@
                                     }
                                     else
                                     {
-                                        <p class="card-text">
-                                            <ul>
+                                        <p class="card-text mb-1">
+                                            <ul class="list-unstyled">
                                                 @if (Model.AssessmentPlan.Midterm_Test)
                                                 {
                                                     <li>
@@ -396,9 +397,8 @@
                                                     </li>
                                                 }
                                             </ul>
-                                            <button id='open' class="btn btn-primary card-link" data-toggle="modal" data-target="#addAssmentPlan">Edite the  Assessment plan for this semester</button>
+                                            <button id='open' class="btn btn-primary card-link mt-3" data-toggle="modal" data-target="#addAssmentPlan">Edit the  Assessment plan for this semester</button>
                                         </p>
-
                                     }
                                 </div>
                             </div>
@@ -444,8 +444,5 @@
                 </div>
             </div>
         </div>
-
-    </div>
-
     </div>
 </body>
