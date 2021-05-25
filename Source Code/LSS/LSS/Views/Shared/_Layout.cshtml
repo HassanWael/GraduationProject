@@ -20,7 +20,7 @@
                         <a class="nav-link" href="@Url.Action("Index","Home")">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("About", "Home")">About </a>
+                        <a class="nav-link" href="@Url.Action("Index", "LogedIn")">Classes </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("Contact", "Home")">Contact </a>
@@ -28,10 +28,12 @@
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <ul class="navbar-nav mr-auto">
-                         <li class="nav-item">
-                             <a class="nav-link" href="@Url.Action("Login","Home")"> Login</a>
-                         </li>
-                    </ul>
+                        <li class="nav-item">
+                         
+                        @Html.ActionLink("Login", "Login")</li>
+                       
+                       
+                   </ul>
                 </form>
             </div>
         </nav>
