@@ -16,191 +16,193 @@
 
 
 
-        <div class="container w-100 shadow">
-            <table class=" table table-borderless text-left">
-                <thead>
-                    <tr>
-                        <td colspan="3">
-                            <h5>1. Direct Assessment Activities:</h5>
-                        </td>
-                    </tr>
-                </thead>
+    <div class="container w-100 shadow">
+        <table class=" table table-borderless text-left">
+            <thead>
+                <tr>
+                    <td colspan="3">
+                        <h5>1. Direct Assessment Activities:</h5>
+                    </td>
+                </tr>
+            </thead>
 
-                <tbody>
-                    <tr>
-                        <td>
-                            <div class="form-group">
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <div class="form-check form-switch">
+                                @Html.CheckBoxFor(model => model.Midterm_Test, htmlAttributes: new { @class = "form-check-input" })
+                                @Html.LabelFor(model => model.Midterm_Test, htmlAttributes: new { @class = "form-check-label" })
+                                @Html.ValidationMessageFor(model => model.Midterm_Test, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="form-group">
+                            <div class="form-check form-switch">
+                                @Html.CheckBoxFor(model => model.Final_Exam, htmlAttributes: new { @class = "form-check-input" })
+                                @Html.LabelFor(model => model.Final_Exam, htmlAttributes: new { @class = "form-check-label" })
+
+                                @Html.ValidationMessageFor(model => model.Final_Exam, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    </td>
+
+                    <td>
+                        <div class="form-group">
+                            <div class="form-check form-switch">
+                                @Html.CheckBoxFor(model => model.Quiz, htmlAttributes: new { @class = "form-check-input" })
+                                @Html.LabelFor(model => model.Quiz, htmlAttributes: new { @class = "form-check-label" })
+
+                                @Html.ValidationMessageFor(model => model.Quiz, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <div class="form-check form-switch">
+                                @Html.CheckBoxFor(model => model.Assignment, htmlAttributes: new { @class = "form-check-input" })
+                                @Html.LabelFor(model => model.Assignment, htmlAttributes: new { @class = "form-check-label" })
+
+                                @Html.ValidationMessageFor(model => model.Assignment, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <div class="form-check form-switch">
+                                @Html.CheckBoxFor(model => model.project, htmlAttributes: new { @class = "form-check-input" })
+                                @Html.LabelFor(model => model.project, htmlAttributes: new { @class = "form-check-label" })
+
+                                @Html.ValidationMessageFor(model => model.project, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <div class="form-check form-switch">
+                                @Html.CheckBoxFor(model => model.Written_Report, htmlAttributes: new { @class = "form-check-input" })
+                                @Html.LabelFor(model => model.Written_Report, htmlAttributes: new { @class = "form-check-label" })
+
+                                @Html.ValidationMessageFor(model => model.Written_Report, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <div class="form-check form-switch">
+                                @Html.CheckBoxFor(model => model.Oral_Presenation, htmlAttributes: new { @class = "form-check-input" })
+                                @Html.LabelFor(model => model.Oral_Presenation, htmlAttributes: new { @class = "form-check-label" })
+
+                                @Html.ValidationMessageFor(model => model.Oral_Presenation, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="form-group">
+                            <div class="form-check form-switch">
+                                @Html.CheckBoxFor(model => model.Practice_In_The_Lab, htmlAttributes: new { @class = "form-check-input" })
+                                @Html.LabelFor(model => model.Practice_In_The_Lab, htmlAttributes: new { @class = "form-check-label" })
+
+                                @Html.ValidationMessageFor(model => model.Practice_In_The_Lab, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="form-group">
+                            <div class="form-check form-switch">
+                                @Html.CheckBoxFor(model => model.Case_Studdy, htmlAttributes: new { @class = "form-check-input" })
+                                @Html.LabelFor(model => model.Case_Studdy, htmlAttributes: new { @class = "form-check-label" })
+                                @Html.ValidationMessageFor(model => model.Case_Studdy, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+        <hr style="border-color:red; margin-bottom:3rem;  width:70%" />
+
+        <table class="table table-borderless text-left">
+            <thread>
+                <tr>
+                    <td colspan="3">
+                        <h5>2. Indirect Assessment Activities:</h5>
+                    </td>
+                </tr>
+            </thread>
+
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <div class="col-md-10">
                                 <div class="form-check form-switch">
-                                    @Html.CheckBoxFor(model => model.Midterm_Test, htmlAttributes: new { @class = "form-check-input" })
-                                    @Html.LabelFor(model => model.Midterm_Test, htmlAttributes: new { @class = "form-check-label" })
-                                    @Html.ValidationMessageFor(model => model.Midterm_Test, "", new { @class = "text-danger" })
+                                    @Html.CheckBoxFor(model => model.Coruse_Assessment_Survey_By_Students, htmlAttributes: new { @class = "form-check-input" })
+                                    @Html.LabelFor(model => model.Coruse_Assessment_Survey_By_Students, htmlAttributes: new { @class = "form-check-label" })
+
+                                    @Html.ValidationMessageFor(model => model.Coruse_Assessment_Survey_By_Students, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-                        </td>
+                        </div>
+                    </td>
+                </tr>
 
-                        <td>
-                            <div class="form-group">
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <div class="col-md-10">
                                 <div class="form-check form-switch">
-                                    @Html.CheckBoxFor(model => model.Final_Exam, htmlAttributes: new { @class = "form-check-input" })
-                                    @Html.LabelFor(model => model.Final_Exam, htmlAttributes: new { @class = "form-check-label" })
+                                    @Html.CheckBoxFor(model => model.Gropu_Discussions, htmlAttributes: new { @class = "form-check-input" })
+                                    @Html.LabelFor(model => model.Gropu_Discussions, htmlAttributes: new { @class = "form-check-label" })
 
-                                    @Html.ValidationMessageFor(model => model.Final_Exam, "", new { @class = "text-danger" })
+                                    @Html.ValidationMessageFor(model => model.Gropu_Discussions, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-
-                        </td>
-
-                        <td>
-                            <div class="form-group">
+                        </div>
+                    </td>
+                </tr>
+                <tr class="w-25">
+                    <td>
+                        <div class="form-group">
+                            <div class="col-md-10">
                                 <div class="form-check form-switch">
-                                    @Html.CheckBoxFor(model => model.Quiz, htmlAttributes: new { @class = "form-check-input" })
-                                    @Html.LabelFor(model => model.Quiz, htmlAttributes: new { @class = "form-check-label" })
+                                    @Html.CheckBoxFor(model => model.Students_Interviews, htmlAttributes: new { @class = "form-check-input" })
+                                    @Html.LabelFor(model => model.Students_Interviews, htmlAttributes: new { @class = "form-check-label" })
 
-                                    @Html.ValidationMessageFor(model => model.Quiz, "", new { @class = "text-danger" })
+                                    @Html.ValidationMessageFor(model => model.Students_Interviews, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-                        </td>
-                    </tr>
+                        </div>
+                    </td>
+                </tr>
 
-                    <tr>
-                        <td>
-                            <div class="form-group">
-                                <div class="form-check form-switch">
-                                    @Html.CheckBoxFor(model => model.Assignment, htmlAttributes: new { @class = "form-check-input" })
-                                    @Html.LabelFor(model => model.Assignment, htmlAttributes: new { @class = "form-check-label" })
-
-                                    @Html.ValidationMessageFor(model => model.Assignment, "", new { @class = "text-danger" })
-                                </div>
+                <tr class="w-25">
+                    <td colspan="2">
+                        <div class="form-group" style="width:100%;">
+                            @Html.LabelFor(model => model.Other, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="form-check form-switch" style="width:100%;">
+                                @Html.TextAreaFor(model => model.Other, new { @class = "form-control", style = "width: 90%;" })
+                                @Html.ValidationMessageFor(model => model.Other, "", new { @class = "text-danger" })
                             </div>
-                        </td>
-                        <td>
-                            <div class="form-group">
-                                <div class="form-check form-switch">
-                                    @Html.CheckBoxFor(model => model.project, htmlAttributes: new { @class = "form-check-input" })
-                                    @Html.LabelFor(model => model.project, htmlAttributes: new { @class = "form-check-label" })
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-                                    @Html.ValidationMessageFor(model => model.project, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group">
-                                <div class="form-check form-switch">
-                                    @Html.CheckBoxFor(model => model.Written_Report, htmlAttributes: new { @class = "form-check-input" })
-                                    @Html.LabelFor(model => model.Written_Report, htmlAttributes: new { @class = "form-check-label" })
-
-                                    @Html.ValidationMessageFor(model => model.Written_Report, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <div class="form-group">
-                                <div class="form-check form-switch">
-                                    @Html.CheckBoxFor(model => model.Oral_Presenation, htmlAttributes: new { @class = "form-check-input" })
-                                    @Html.LabelFor(model => model.Oral_Presenation, htmlAttributes: new { @class = "form-check-label" })
-
-                                    @Html.ValidationMessageFor(model => model.Oral_Presenation, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </td>
-
-                        <td>
-                            <div class="form-group">
-                                <div class="form-check form-switch">
-                                    @Html.CheckBoxFor(model => model.Practice_In_The_Lab, htmlAttributes: new { @class = "form-check-input" })
-                                    @Html.LabelFor(model => model.Practice_In_The_Lab, htmlAttributes: new { @class = "form-check-label" })
-
-                                    @Html.ValidationMessageFor(model => model.Practice_In_The_Lab, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </td>
-
-                        <td>
-                            <div class="form-group">
-                                <div class="form-check form-switch">
-                                    @Html.CheckBoxFor(model => model.Case_Studdy, htmlAttributes: new { @class = "form-check-input" })
-                                    @Html.LabelFor(model => model.Case_Studdy, htmlAttributes: new { @class = "form-check-label" })
-                                    @Html.ValidationMessageFor(model => model.Case_Studdy, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-
-                </tbody>
-            </table>
-
-            <table class="table table-borderless text-left">
-                <thread>
-                    <tr>
-                        <td colspan="3">
-                            <h5>2. Indirect Assessment Activities:</h5>
-                        </td>
-                    </tr>
-                </thread>
-
-                <tbody>
-                    <tr>
-                        <td>
-                            <div class="form-group">
-                                <div class="col-md-10">
-                                    <div class="form-check form-switch">
-                                        @Html.CheckBoxFor(model => model.Coruse_Assessment_Survey_By_Students, htmlAttributes: new { @class = "form-check-input" })
-                                        @Html.LabelFor(model => model.Coruse_Assessment_Survey_By_Students, htmlAttributes: new { @class = "form-check-label" })
-
-                                        @Html.ValidationMessageFor(model => model.Coruse_Assessment_Survey_By_Students, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <div class="form-group">
-                                <div class="col-md-10">
-                                    <div class="form-check form-switch">
-                                        @Html.CheckBoxFor(model => model.Gropu_Discussions, htmlAttributes: new { @class = "form-check-input" })
-                                        @Html.LabelFor(model => model.Gropu_Discussions, htmlAttributes: new { @class = "form-check-label" })
-
-                                        @Html.ValidationMessageFor(model => model.Gropu_Discussions, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="w-25">
-                        <td>
-                            <div class="form-group">
-                                <div class="col-md-10">
-                                    <div class="form-check form-switch">
-                                        @Html.CheckBoxFor(model => model.Students_Interviews, htmlAttributes: new { @class = "form-check-input" })
-                                        @Html.LabelFor(model => model.Students_Interviews, htmlAttributes: new { @class = "form-check-label" })
-
-                                        @Html.ValidationMessageFor(model => model.Students_Interviews, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr class="w-25">
-                        <td colspan="2">
-                            <div class="form-group" style="width:100%;">
-                                @Html.LabelFor(model => model.Other, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="form-check form-switch" style="width:100%;">
-                                    @Html.TextAreaFor(model => model.Other, new { @class = "form-control", style = "width: 90%;" })
-                                    @Html.ValidationMessageFor(model => model.Other, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-        </div>
+    </div>
 
 
         <hr style="width:50%;" />
