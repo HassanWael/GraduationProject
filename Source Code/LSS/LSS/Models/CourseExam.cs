@@ -32,9 +32,9 @@ namespace LSS.Models
         public System.DateTime ExamDate { get; set; }
         public string AdditionalComments { get; set; }
     
-        public virtual CourseCoordinator CourseCoordinator { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseExamQuestion> CourseExamQuestions { get; set; }
+        public virtual CourseCoordinator CourseCoordinator { get; set; }
         public virtual ModerationChecklist ModerationChecklist { get; set; }
     }
 }
