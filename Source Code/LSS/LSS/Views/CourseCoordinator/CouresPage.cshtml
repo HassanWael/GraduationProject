@@ -18,9 +18,9 @@
                 <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Content</b> </h4>
                 @Html.ActionLink("Recomandations for improving the course", "ActionsForImproving", "CourseCoordinator", new { courseId = Model.Course.ID }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
 
-                @Html.ActionLink("Students List", "CourseStudentList", "CourseCoordinator", new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
+                @Html.ActionLink("Students List", "CourseStudentList", "Students", new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
                
-                @Html.ActionLink("PI Assessment", "PI Assessment", "CourseCoordinator", new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
+                @Html.ActionLink("PI Assessment", "PIAssessment", "CourseCoordinator", new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
 
                 @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator", new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
                 <br />
@@ -187,7 +187,7 @@
                                 <td class="table-primary" style="border: .2px solid #5F5E61; text-align:center;">  Student Learning Outcomes</td>
                                 @for (int i = 0; i < Model.SLO_PI.Count(); i++)
                                 {
-                                    { col = Model.SLO_PI.ElementAt(i).Value.Count() + 1; }
+                                    { col = Model.SLO_PI.ElementAt(i).Value.Count(); }
                                     <td colspan="@col" style="border: .2px solid #5F5E61; text-align:center;">
                                         @Model.SLO_PI.ElementAt(i).Key.SLOID
                                     </td>
@@ -444,8 +444,6 @@
                 </div>
             </div>
         </div>
-
-    </div>
 
     </div>
 </body>

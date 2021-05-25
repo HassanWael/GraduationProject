@@ -212,6 +212,15 @@ namespace LSS.Controllers
             return View(studentsPaged);
         
         }
+        
+        public ActionResult PIAssessments(string CourseID, DateTime Year , string Semester)
+        {
 
+
+            return View();
+        }
+        
+        
+    
     }
 }
