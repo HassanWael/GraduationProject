@@ -3,53 +3,55 @@
 @using (Html.BeginForm("AddCLO", "CourseCoordinator", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    <h4>CLO</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.CLO.courseId, "courseId", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.CLO.courseId, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+    <div class="container">
+        <h4 class="mt-3 text-center">CLO</h4>
+        <hr style="border-color:red; margin-bottom:3rem; width:70%" />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-            @Html.ValidationMessageFor(model => model.CLO.courseId, "", new { @class = "text-danger" })
+
+
+        <div class="container">
+
+            <div class="form-group" hidden>
+                @Html.LabelFor(model => model.CLO.courseId, "courseId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CLO.courseId, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                    @Html.ValidationMessageFor(model => model.CLO.courseId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CLO.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.CLO.Description, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CLO.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CLO.PIs, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @if (Model.DepratmentPI.Count == 0)
+                    {
+                        <p>
+                            <h6> There is no PI to include with this CLO, you can add it later on.</h6>
+                            To add PIs please ask the Head of department to add them in the Department Page.
+                        </p>
+                    }
+                    @foreach (PI pi in Model.DepratmentPI)
+                    {
+                        <input type="checkbox" id="PI_ID" name="PI_ID" value="@pi.ID" checked="@Model.SelectedPIs.Contains(pi.ID)" /> <b style="padding-bottom:2%; margin-bottom:2%">@pi.ID</b>
+                    }
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="justify-content-center align-items-center d-flex">
+                    <input type="submit" value="Create" class="btn btn-primary mb-1" />
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.CLO.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextAreaFor(model => model.CLO.Description, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.CLO.Description, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-
-    <div class="form-group"> 
-        @Html.LabelFor(model=> model.CLO.PIs, htmlAttributes:new { @class= "control-label col-md-2" })
-        <div class="col-md-10">
-            @if (Model.DepratmentPI.Count == 0) { 
-                <p>
-                    <h6> There  is no PI to include with this CLO, you can add it later on.</h6>
-                   to add PIs please ask the Head of the  department to add them in the Department Page 
-                </p >
-            }
-            @foreach (PI pi in Model.DepratmentPI)
-            {
-                <input type="checkbox" id="PI_ID" name="PI_ID" value="@pi.ID" checked="@Model.SelectedPIs.Contains(pi.ID)" /> <b style="padding-bottom:2%; margin-bottom:2%">@pi.ID</b>
-            }
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
-        </div>
-    </div>
-</div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

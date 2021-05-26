@@ -1,648 +1,1359 @@
-﻿
-@{
-    ViewBag.Title = "CourseReport";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿@model LSS.Models.CoursesModelView.CouresReportModelView
+@using LSS.Models
 
-<table align="center">
-    <tr>
-        <th>
-            Al-Ahliyya Amman University
-        </th>
+<header>
+    @{
+        ViewBag.Title = "CourseFileChecklist";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 
-        <td>
-            <img src="~/Images/Al-Ahliya_Amman_University_Logo.png" />
-        </td>
+    <link rel="stylesheet" href="~/Content/FormsStyle.css" />
+    <link href="~/Content/hideCSS.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-        <th>  جامعة عمان الأهلية </th>
-    </tr>
-</table>
-<P align="center"><b> Faculty of Information Technology</b> </P>
-<hr style="border: 2px solid black" />
+</header>
 
-<table style=" border:double, 2px solid black" align="center" width="30%" height="30%">
-    <tr> <td bgcolor="silver" style="border:1px solid black">  <p align="center"> <b>Course Report </b> </p></tr>
-</table>
-<br />
-<br />
-<table class="table" style="border: 2px solid black">
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black" colspan="4"> General Information: </th>
-    </tr>
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black"> Faculty </th>
-        <td style=" border:1px solid black">  </td>
-        <th bgcolor="silver" style=" border:1px solid black"> Department </th>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black"> Academic Year </th>
-        <td style=" border:1px solid black">   </td>
-        <th bgcolor="silver" style=" border:1px solid black"> Semester </th>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black" colspan="4"> Course Information: </th>
-    </tr>
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black"> Course Title </th>
-        <td style=" border:1px solid black">  </td>
-        <th bgcolor="silver" style=" border:1px solid black"> Course Code </th>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black"> Pre-requisite </th>
-        <td style=" border:1px solid black">  </td>
-        <th bgcolor="silver" style=" border:1px solid black"> Co-requisite </th>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-    <tr>
-        <td bgcolor="silver" style=" border:1px solid black"> <b>Credit Hours</b> <br />(Theory, Practical)</td>
-        <td style=" border:1px solid black">  </td>
-        <th bgcolor="silver" style=" border:1px solid black">Designation <br /> (Req. or Elec.) </th>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black"> No. of Sections</th>
-        <td style=" border:1px solid black">  </td>
-        <th bgcolor="silver" style=" border:1px solid black">No. of Students</th>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black" colspan="4"> Instructor/Coordinator Information: </th>
-    </tr>
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black"> Instructor Name</th>
-        <td style=" border:1px solid black">  </td>
-        <th bgcolor="silver" style=" border:1px solid black">E-mail</th>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black"> Office No.</th>
-        <td style=" border:1px solid black">  </td>
-        <th bgcolor="silver" style=" border:1px solid black">Office Hours</th>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-</table>
+<body>
+    <div class="row">
+        <div class="col-2 mt-lg-5">
+            <div class="list-group list-group-flush w-50">
+                <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Content</b> </h4>
+                @Html.ActionLink("Recomandations for improving the course", "ActionsForImproving", "CourseCoordinator",
+               new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
 
-<table class="table" style="border: 2px solid black">
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black" colspan="3"> Content delivery: </th>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black" colspan="3"> <input type="checkbox" /> All topics were covered as planned </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black" rowspan="2"> <input type="checkbox" /> Modifications to the content were made </td>
-        <td bgcolor="silver" style=" border:1px solid black" colspan="2"> Reasons for variation:</td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black" colspan="2"> </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black" colspan="3"> <input type="checkbox" /> Not all topics were covered:  </td>
-    </tr>
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black">Topics (if any) not Fully Covered</th>
-        <th bgcolor="silver" style=" border:1px solid black">Effected Student <br />Learning <br /> Outcomes</th>
-        <th bgcolor="silver" style=" border:1px solid black">Possible Compensating Action</th>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black"> </td>
-        <td style=" border:1px solid black" colspan="2"> </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black"> </td>
-        <td style=" border:1px solid black" colspan="2"> </td>
-    </tr>
-</table>
-<br />
-<br />
-<br />
-<table>
-    <tr>
+                @Html.ActionLink("Students List", "CourseStudentList", "CourseCoordinator",
+               new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "bg-transparent pb-3" })
 
-        <td> <img src="~/Images/R.PNG" /> </td>
-        <td><img src="~/Images/Quality.PNG" /> </td>
-        <td><img src="~/Images/Risk.PNG" /></td>
-        <td>
-            <b>
-                EP-F891, Rev. a<br />
-                Ref.: 15/06/2019 - 2020<br />
-                Date: 10/10/2019
-            </b>
+                @Html.ActionLink("PI Assessment", "PI Assessment", "CourseCoordinator",
+               new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "bg-transparent pb-3" })
 
-        </td>
+                @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator",
+               new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "bg-transparent pb-3" })
+                <br />
+                <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Forms</b> </h4>
+                @Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Course Assessment Survey", "CourseAssessmentSurvey", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Course File Checklist", "CourseFileChecklist", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3 " })
+                @Html.ActionLink("Course Information Form", "CourseInformationForm", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Coures Report", "CourseReport", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3 text-success" })
+                @Html.ActionLink("Exam Evaluation", "ExamEvaluation", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Question Answer Sheet", "QuestionsAnswersSheet", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
+            </div>
+        </div>
 
-        <td> <img src="~/Images/Certified.PNG" /> </td>
-    </tr>
-</table>
-<br />
-<br />
-<br />
-<table align="center">
-    <tr>
-        <th>
-            Al-Ahliyya Amman University
-        </th>
+        <div class="col-lg-8">
+            <div class="container shadow-lg p-3 mb-3 mt-5 align-items-center bg-white">
+                <div class="d-flex justify-content-center align-items-center text-center">
+                    <div>
+                        <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo" alt="Logo" style="height:150px; width:120px;" />
+                        <h3>Faculty of Information Technology </h3>
+                    </div>
+                </div>
 
-        <td>
-            <img src="~/Images/Al-Ahliya_Amman_University_Logo.png" />
-        </td>
+                <hr style="border: 2px solid black" />
 
-        <th>  جامعة عمان الأهلية </th>
-    </tr>
-</table>
-<table class="table" style="border: 2px solid black">
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black" colspan="2"> Teaching and Learning Strategies: </th>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black" colspan="2">
-            Teaching style used for this course?<br />
-            <input type="checkbox" /> In-class lectures
-            <input type="checkbox" /> Group discussion
-            <input type="checkbox" /> Demonstration
-            <input type="checkbox" /> Others:
-        </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black" colspan="2"> <input type="checkbox" /> Teaching and Learning strategies were effective for the specified SLOs of the course </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black" rowspan="2"><input type="checkbox" /> Not all effective </td>
-        <td style=" border:1px solid black" bgcolor="silver">Reasons for ineffectiveness: (Suggested modifications to improve) </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-</table>
-<br />
-<br />
-<table class="table" style="border: 2px solid black">
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black" colspan="2"> Assessment Strategies: </th>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black" colspan="2">
-            Assessment strategies used for this course :<br />
-            <input type="checkbox" /> Exams
-            <input type="checkbox" /> Assignments
-            <input type="checkbox" /> Quizzes
-            <input type="checkbox" /> Projects
-            <input type="checkbox" /> Others:
-        </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black" colspan="2"> <input type="checkbox" /> Assessment strategieswere effective for the specified SLOs of the course </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black" rowspan="2"><input type="checkbox" /> Not all effective </td>
-        <td style=" border:1px solid black" bgcolor=" aliceblue">Reasons for ineffectiveness: (Suggested modifications to improve) </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-</table>
-<br />
-<br />
-<br />
-<table>
-    <tr>
+                <table id="FormName">
+                    <tr class="text-center">
+                        <td bgcolor="silver" style="border:1px solid black" class="pt-2">
+                            <h4 align="center"> <b>Course File Checklist</b> </h4>
+                        </td>
+                    </tr>
+                </table>
+                <br />
 
-        <td> <img src="~/Images/R.PNG" /> </td>
-        <td><img src="~/Images/Quality.PNG" /> </td>
-        <td><img src="~/Images/Risk.PNG" /></td>
-        <td>
-            <b>
-                EP-F891, Rev. a<br />
-                Ref.: 15/06/2019 - 2020<br />
-                Date: 10/10/2019
-            </b>
 
-        </td>
+                <div class="container p-3">
+                    <table class="table" style="border: 2px solid black">
+                        <tr>
+                            <th bgcolor="silver" style=" border:1px solid black" colspan="4"> General Information: </th>
+                        </tr>
+                        <tr>
+                            <th bgcolor="silver" style=" border:1px solid black"> Faculty </th>
+                            <td style=" border:1px solid black">@Html.DisplayFor(x => x.Department.Faculty.Name) </td>
+                            <th bgcolor="silver" style=" border:1px solid black"> Department </th>
+                            <td style=" border:1px solid black">@Html.DisplayFor(x => x.Course.Department.Name) </td>
+                        </tr>
+                        <tr>
+                            <th bgcolor="silver" style=" border:1px solid black"> Academic Year </th>
+                            <td style=" border:1px solid black">@Html.DisplayFor(x => x.CourseCoordinator.Year.Year)  </td>
+                            <th bgcolor="silver" style=" border:1px solid black"> Semester </th>
+                            <td style=" border:1px solid black">@Html.DisplayFor(x => x.CourseCoordinator.Semseter)  </td>
+                        </tr>
+                        <tr>
+                            <th bgcolor="silver" style=" border:1px solid black" colspan="4"> Course Information: </th>
+                        </tr>
+                        <tr>
+                            <th bgcolor="silver" style=" border:1px solid black"> Course Title </th>
+                            <td style=" border:1px solid black">@Html.DisplayFor(x => x.Course.Title)</td>
+                            <th bgcolor="silver" style=" border:1px solid black"> Course Code </th>
+                            <td style=" border:1px solid black">@Html.DisplayFor(x => x.CourseCoordinator.CourseID) </td>
+                        </tr>
+                        <tr>
+                            <th bgcolor="silver" style=" border:1px solid black"> Pre-requisite </th>
+                            <td style=" border:1px solid black">@Html.DisplayFor(x => x.Course.Course3.Title)  </td>
+                            <th bgcolor="silver" style=" border:1px solid black"> Co-requisite </th>
+                            <td style=" border:1px solid black">@Html.DisplayFor(x => x.Course.Course2.Title) </td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="silver" style=" border:1px solid black"> <b>Credit Hours</b> <br />(Theory, Practical)</td>
+                            <td style=" border:1px solid black">@Html.DisplayFor(x => x.Course.Hours)  </td>
+                            <th bgcolor="silver" style=" border:1px solid black">Designation <br /> (Req. or Elec.) </th>
+                            <td style=" border:1px solid black">@Html.DisplayFor(x => x.Course.Designation)  </td>
+                        </tr>
+                        <tr>
+                            <th bgcolor="silver" style=" border:1px solid black"> No. of Sections</th>
+                            <td style=" border:1px solid black"> @Html.DisplayFor(x => x.NoOFSection) </td>
+                            <th bgcolor="silver" style=" border:1px solid black">No. of Students</th>
+                            <td style=" border:1px solid black" @Html.DisplayFor(x => x.CourseCoordinator.NoOFStudents)>  </td>
+                        </tr>
+                        <tr>
+                            <th bgcolor="silver" style=" border:1px solid black" colspan="4"> Instructor/Coordinator Information: </th>
+                        </tr>
+                        <tr>
+                            <th bgcolor="silver" style=" border:1px solid black"> Instructor Name</th>
+                            <td style=" border:1px solid black">@Html.DisplayFor(x => x.CourseCoordinator.Lecturer.Name)  </td>
+                            <th bgcolor="silver" style=" border:1px solid black">E-mail</th>
+                            <td style=" border:1px solid black">@Html.DisplayFor(x => x.CourseCoordinator.Lecturer.Email)  </td>
+                        </tr>
+                        <tr>
+                            <th bgcolor="silver" style=" border:1px solid black"> Office No.</th>
+                            <td style=" border:1px solid black">@Html.DisplayFor(x => x.CourseCoordinator.Lecturer.OfficeNo)  </td>
+                            <th bgcolor="silver" style=" border:1px solid black">Office Hours</th>
+                            <td style=" border:1px solid black"> No office hours in the database  </td>
+                        </tr>
+                    </table>
 
-        <td> <img src="~/Images/Certified.PNG" /> </td>
-    </tr>
-</table>
-<br />
-<br />
-<br />
-<table align="center">
-    <tr>
-        <th>
-            Al-Ahliyya Amman University
-        </th>
+                    <table class="table" style="border: 2px solid black; " id="Content_Delv_table">
+                        <tr>
+                            <th bgcolor="silver" style=" border:1px solid black" colspan="3"> Content delivery: </th>
+                        </tr>
+                        <tr>
+                            <td style=" border:1px solid black" colspan="3"> <input type="radio" name="topic" id="removeAll" onchange="change(false)" /> All topics were covered as planned </td>
+                        </tr>
+                        <tr>
+                            <td style=" border:1px solid black" rowspan="2"> <input type="checkbox" /> Modifications to the content were made </td>
+                            <td bgcolor="silver" style=" border:1px solid black" colspan="2"> Reasons for variation:</td>
+                        </tr>
+                        <tr>
+                            <td style=" border:1px solid black" colspan="2"> </td>
+                        </tr>
+                        <tr>
+                            <td style=" border:1px solid black" colspan="3"> <input type="radio" name="topic" onchange="change(true)" checked /> Not all topics were covered:  </td>
+                        </tr>
+                        <tr>
+                            <th bgcolor="silver" style=" border:1px solid black">Topics (if any) not Fully Covered <a id="add" style="margin-left:10px;color:white">  add </a> <a id="remove" style="margin-left:10px;color:white;"> remove  </a></th>
+                            <th bgcolor="silver" style=" border:1px solid black">Effected Student <br />Learning <br /> Outcomes</th>
+                            <th bgcolor="silver" style=" border:1px solid black">Possible Compensating Action</th>
+                        </tr>
+                        <tr>
+                            <td style=" border:1px solid black"> <input type="text" id="topics" placeholder="Topic 1" /> </td>
+                            <td style=" border:1px solid black"> <select><option>@Model.CLOs.Count </option></select> </td>
+                            <td style=" border:1px solid black"> <input type="text" id="possible_action" name="record0" placeholder="Possible Action" ondblclick="add()" /> </td>
+                        </tr>
 
-        <td>
-            <img src="~/Images/Al-Ahliya_Amman_University_Logo.png" />
-        </td>
+                    </table>
 
-        <th>  جامعة عمان الأهلية </th>
-    </tr>
-</table>
-<P align="center"><b> Faculty of Information Technology</b> </P>
-<hr style="border: 2px solid black" />
-<br />
-<table class="table" style="border: 2px solid black">
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black" colspan="12"> Course Statistics </th>
-    </tr>
-    <tr>
-        <th style=" border:1px solid black" bgcolor="aliceblue"> Section </th>
-        <th style=" border:1px solid black" bgcolor="aliceblue"> No. Of <br />Enrolled Students </th>
-        <th style=" border:1px solid black" bgcolor="aliceblue"> No. Of <br />Attendees </th>
-        <th style=" border:1px solid black" bgcolor="aliceblue"> No. Of <br />Absentees </th>
-        <th style=" border:1px solid black" bgcolor="aliceblue"> No. Of <br />Dismissed </th>
-        <th style=" border:1px solid black" bgcolor="aliceblue"> No. Of <br />Withdrawn </th>
-        <th style=" border:1px solid black" bgcolor="aliceblue"> Highest<br />Grade </th>
-        <th style=" border:1px solid black" bgcolor="aliceblue"> Lowest <br />Grade </th>
-        <th style=" border:1px solid black" bgcolor="aliceblue"> Average<br />Grade </th>
-        <th style=" border:1px solid black" bgcolor="aliceblue"> Median <br />Grade </th>
-        <th style=" border:1px solid black" bgcolor="aliceblue"> Success <br /> Rate </th>
-        <th style=" border:1px solid black" bgcolor="aliceblue"> Class Absence <br /> Rate </th>
-    </tr>
-    <tr>
-        <th style=" border:1px solid black" bgcolor="aliceblue"> 1 </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-    </tr>
-    <tr>
-        <th style=" border:1px solid black" bgcolor="aliceblue"> 2 </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-    </tr>
-    <tr>
-        <th style=" border:1px solid black" bgcolor="aliceblue"> ... </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-    </tr>
-    <tr>
-        <th style=" border:1px solid black" bgcolor="aliceblue"> All <br /> Sections</th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-        <th style=" border:1px solid black">  </th>
-    </tr>
-</table>
-<br />
-<table class="table" style="border: 2px solid black">
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black" colspan="14"> Grade Distribution </th>
-    </tr>
-    <tr>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> Grade </th>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> A </th>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> A- </th>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> B+ </th>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> B </th>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> B- </th>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> C+ </th>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> C </th>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> C- </th>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> D+ </th>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> D </th>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> D- </th>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> F </th>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> Total </th>
-    </tr>
-    <tr>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> No. of students </th>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-    <tr>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> Percentage </th>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black"> 100% </td>
-    </tr>
-</table>
-<br />
-<table class="table" style="border: 2px solid black">
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black" colspan="2">Results of Course Direct Assessment:</th>
-    </tr>
-    <tr>
-        <th bgcolor="aliceblue" style=" border:1px solid black">Did you assess the course?</th>
-        <th bgcolor="aliceblue" style=" border:1px solid black">
-            <select name="menu">
-                <option>Please Select...</option>
-                <option>Yes, please attach results of the assessment tool.</option>
-                <option>No, write the reason:</option>
-            </select>
-        </th>
-    </tr>
-    <tr>
-        <th bgcolor="aliceblue" style=" border:1px solid black" colspan="2"> If Yes, Please list below the most important observations, and actions to be taken for improvement</th>
-    </tr>
-    <tr>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> Observations</th>
-        <td style=" border:1px solid black">     </td>
-    </tr>
-    <tr>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> Analysis & <br />Justifications</th>
-        <td style=" border:1px solid black">     </td>
-    </tr>
-    <tr>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> Recommendations</th>
-        <td style=" border:1px solid black">     </td>
-    </tr>
-</table>
-<br />
-<br />
-<br />
-<table>
-    <tr>
+                    <table class="table" style="border: 2px solid black">
+                        <tr>
+                            <th bgcolor="silver" style=" border:1px solid black" colspan="2"> Teaching and Learning Strategies: </th>
+                        </tr>
+                        <tr>
+                            <td style=" border:1px solid black" colspan="2">
+                                Teaching style used for this course?<br />
 
-        <td> <img src="~/Images/R.PNG" /> </td>
-        <td><img src="~/Images/Quality.PNG" /> </td>
-        <td><img src="~/Images/Risk.PNG" /></td>
-        <td>
-            <b>
-                EP-F891, Rev. a<br />
-                Ref.: 15/06/2019 - 2020<br />
-                Date: 10/10/2019
-            </b>
+                                @Html.CheckBoxFor(x => x.ASS.Oral_Presenation, new { disabled = "disabled" })
+                                @Html.LabelFor(x => x.ASS.Oral_Presenation, "In class lectures")
 
-        </td>
 
-        <td> <img src="~/Images/Certified.PNG" /> </td>
-    </tr>
-</table>
-<br />
-<br />
-<br />
-<table align="center">
-    <tr>
-        <th>
-            Al-Ahliyya Amman University
-        </th>
+                                @Html.CheckBoxFor(x => x.ASS.Gropu_Discussions, new { disabled = "disabled" })
+                                @Html.LabelFor(x => x.AssessmentPlan.Gropu_Discussions, "Group discussion")
 
-        <td>
-            <img src="~/Images/Al-Ahliya_Amman_University_Logo.png" />
-        </td>
 
-        <th>  جامعة عمان الأهلية </th>
-    </tr>
-</table>
-<P align="center"><b> Faculty of Information Technology</b> </P>
-<hr style="border: 2px solid black" />
-<br />
-<table class="table" style="border: 2px solid black">
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black" colspan="2">Results of Course Assessment Survey by Students: </th>
-    </tr>
-    <tr>
-        <th bgcolor="aliceblue" style=" border:1px solid black">Did students evaluate the course?</th>
-        <th bgcolor="aliceblue" style=" border:1px solid black">
-            <select name="menu">
-                <option>Please Select...</option>
-                <option>Yes, please attach results of the students evaluation survey.</option>
-                <option>No</option>
-            </select>
-        </th>
-    </tr>
-    <tr>
-        <th bgcolor="aliceblue" style=" border:1px solid black" colspan="2"> If Yes, Please list below the instructor observationsand students’ commentsto be taken for improvement</th>
-    </tr>
-    <tr>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> Instructor <br /> Observations</th>
-        <td style=" border:1px solid black">     </td>
-    </tr>
-    <tr>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> Student’s <br />Comments</th>
-        <td style=" border:1px solid black">     </td>
-    </tr>
-    <tr>
-        <td bgcolor="silver" style=" border:1px solid black" colspan="2"><b>Result of Other Evaluations: </b><br />Example: Head of department, Peers/colleaguesobservations, External examiners, Visiting reviewers, etc.…</td>
-    </tr>
-    <tr>
-        <th bgcolor="aliceblue" style=" border:1px solid black">Is there other evaluation?</th>
-        <th bgcolor="aliceblue" style=" border:1px solid black">
-            <select name="menu">
-                <option>Please Select...</option>
-                <option>Yes.</option>
-                <option>No.</option>
-            </select>
-        </th>
-    </tr>
-    <tr>
-        <th bgcolor="aliceblue" style=" border:1px solid black" colspan="2"> If Yes, List the most important recommendations for improvement and response of instructor </th>
-    </tr>
-    <tr>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> Recommendations<br /> for improvement</th>
-        <td style=" border:1px solid black">     </td>
-    </tr>
-    <tr>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> Response of <br /> instructor </th>
-        <td style=" border:1px solid black">     </td>
-    </tr>
-</table>
-<br />
-<table class="table" style="border: 2px solid black">
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black" colspan="3">Plans/Actions for Improving the Course: </th>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black" colspan="3">
-            <b>1.	Progress on actions proposed for improving the course in previous course reports (if any).</b><br />
-            <br />(State whether each action was undertaken, the impact, and if the proposed action was not undertaken or completed,<br /> give reasons)
-        </td>
-    </tr>
-    <tr>
-        <td bgcolor="aliceblue" style=" border:1px solid black">Actions recommended<br /> from the most recent course report(s) </td>
-        <td bgcolor="aliceblue" style=" border:1px solid black">Actions Taken</td>
-        <td bgcolor="aliceblue" style=" border:1px solid black">Action Results</td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black" colspan="3">
-            <b>2.	Action Plan for Improvement for Next Semester/Year</b><br />
-            <br />Provide a brief summary of any action that should be taken to improve the course.  (For example:  professional <br /> development for faculty members, modifications to the course,  new equipment, new teaching techniques etc.)
-        </td>
-    </tr>
-    <tr>
-        <td bgcolor="aliceblue" style=" border:1px solid black" colspan="2">Actions Recommended for next semester/year</td>
-        <td bgcolor="aliceblue" style=" border:1px solid black">Person Responsible</td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black" colspan="2">  </td>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black" colspan="2">  </td>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black" colspan="2">  </td>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-</table>
-<br />
-<br />
-<table>
-    <tr>
+                                @Html.CheckBoxFor(x => x.ASS.Case_Studdy, new { disabled = "disabled" })
+                                @Html.LabelFor(x => x.ASS.Case_Studdy, "Demonstration")
 
-        <td> <img src="~/Images/R.PNG" /> </td>
-        <td><img src="~/Images/Quality.PNG" /> </td>
-        <td><img src="~/Images/Risk.PNG" /></td>
-        <td>
-            <b>
-                EP-F891, Rev. a<br />
-                Ref.: 15/06/2019 - 2020<br />
-                Date: 10/10/2019
-            </b>
+                                @Html.LabelFor(x => x.ASS.Other, "Others..")
+                                @Html.DisplayFor(x => x.ASS.Other, new { disabled = "disabled" })
 
-        </td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style=" border:1px solid black" colspan="2"> <input type="checkbox" /> Teaching and Learning strategies were effective for the specified SLOs of the course </td>
+                        </tr>
+                        <tr>
+                            <td style=" border:1px solid black" rowspan="2"><input type="checkbox" /> Not all effective </td>
+                            <td style=" border:1px solid black" bgcolor="silver">Reasons for ineffectiveness: (Suggested modifications to improve) </td>
+                        </tr>
+                        <tr>
+                            <td style=" border:1px solid black">  </td>
+                        </tr>
+                    </table>
 
-        <td> <img src="~/Images/Certified.PNG" /> </td>
-    </tr>
-</table>
-<br />
-<br />
-<table align="center">
-    <tr>
-        <th>
-            Al-Ahliyya Amman University
-        </th>
+                    <table class="table" style="border: 2px solid black">
+                        <tr>
+                            <th bgcolor="silver" style=" border:1px solid black" colspan="2"> Assessment Strategies: </th>
+                        </tr>
+                        <tr>
+                            <td style=" border:1px solid black" colspan="2">
+                                Assessment strategies used for this course :<br />
+                                <input type="checkbox" /> Exams
+                                <input type="checkbox" /> Assignments
+                                <input type="checkbox" /> Quizzes
+                                <input type="checkbox" /> Projects
+                                <input type="checkbox" /> Others:
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style=" border:1px solid black" colspan="2"> <input type="checkbox" /> Assessment strategieswere effective for the specified SLOs of the course </td>
+                        </tr>
+                        <tr>
+                            <td style=" border:1px solid black" rowspan="2"><input type="checkbox" /> Not all effective </td>
+                            <td style=" border:1px solid black" bgcolor=" aliceblue">Reasons for ineffectiveness: (Suggested modifications to improve) </td>
+                        </tr>
+                        <tr>
+                            <td style=" border:1px solid black">  </td>
+                        </tr>
+                    </table>
+                </div>
+                <script>
+    let input = document.getElementById("topics");
+    let remove_link = document.getElementById("remove");
+    let add_link = document.getElementById("add");
+    let content_table = document.getElementById("Content_Delv_table");
+    var a9le = content_table.innerHTML;
+    var data;
+    var id = 1;
+    function change(cond) {
+        switch (cond) {
+            case true: input.disabled = false;
+                remove_link.style.display = "inline";
+                add_link.style.display = "inline";
+                break;
+            case false: input.disabled = true;
+                remove_link.style.display = "none";
+                add_link.style.display = "none";
 
-        <td>
-            <img src="~/Images/Al-Ahliya_Amman_University_Logo.png" />
-        </td>
+                break;
 
-        <th>  جامعة عمان الأهلية </th>
-    </tr>
-</table>
-<P align="center"><b> Faculty of Information Technology</b> </P>
-<hr style="border: 2px solid black" />
-<br />
-<br />
-<table class="table" style="border: 2px solid black">
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black" colspan="6"> Responsible Staff Signature: </th>
-    </tr>
-    <tr>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> Course Instructor/ <br />Coordinator </th>
-        <td style=" border:1px solid black">  </td>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> Date </th>
-        <td style=" border:1px solid black">  </td>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> Signature </th>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-    <tr>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> Head of Department </th>
-        <td style=" border:1px solid black">  </td>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> Date </th>
-        <td style=" border:1px solid black">  </td>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> Signature </th>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-    <tr>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> Vice Dean of <br /> Accreditation and Quality </th>
-        <td style=" border:1px solid black">  </td>
-        <th bgcolor="aliceblue" style=" border:1px solid black"> Date </th>
-        <td style=" border:1px solid black">  </td>
-        <th bgcolor="Aliceblue" style=" border:1px solid black"> Signature </th>
-        <td style=" border:1px solid black">  </td>
-    </tr>
-</table>
-<br />
-<br />
-<br />
-<p align="center" style="background-color:antiquewhite">Appendices</p>
-<b>Appendix A:</b> Results ofCourse Assessment Worksheet
-<br />
-<br />
-<br />
-<b>Appendix B:</b> Results ofCourse Assessment Survey
-<br />
-<br />
-<br />
-<table>
-    <tr>
+        }
+    }
+    $(document).ready(function () {
+        $("#add").click(function () {
+          data = ' <tr> <td style=" border:1px solid black"> <input type="text" id="topics" placeholder="Topic '+ ++id+'" /> </td>\
+            <td style=" border:1px solid black"> <select><option>@Model.CLOs.Count </option></select> </td><td style=" border:1px solid black">\
+            <input type = "text" name="record'+ id +'" id = "possible_action_new" placeholder = "Possible Action"  /> </td ></tr > ';
 
-        <td> <img src="~/Images/R.PNG" /> </td>
-        <td><img src="~/Images/Quality.PNG" /> </td>
-        <td><img src="~/Images/Risk.PNG" /></td>
-        <td>
-            <b>
-                EP-F891, Rev. a<br />
-                Ref.: 15/06/2019 - 2020<br />
-                Date: 10/10/2019
-            </b>
+            $("#Content_Delv_table").append(data);
+        });
 
-        </td>
+        // Find and remove selected table rows
+        $("#remove").click(function () {
+            $("#Content_Delv_table").find('input[name="record' + id-- + '"]').each(function () {
 
-        <td> <img src="~/Images/Certified.PNG" /> </td>
-    </tr>
-</table>
+                $(this).parents("tr").remove();
+
+            });
+        });
+        $("#removeAll").click(function () {
+            $("#Content_Delv_table").find('input[id="possible_action_new"]').each(function () {
+
+                $(this).parents("tr").remove();
+                id = 1;
+            });
+        });
+
+    });
+
+
+                </script>
+                <br />
+            </div>
+
+
+            <br />
+            <hr class="w-75 d-flex" />
+
+
+
+            <table class="justify-content-center align-items-center d-flex">
+                <tr>
+                    <td> <img src="~/Images/R.PNG" /> </td>
+                    <td><img src="~/Images/Quality.PNG" /> </td>
+                    <td><img src="~/Images/Risk.PNG" /></td>
+                    <td>
+                        <b>
+                            EP-F891, Rev. a<br />
+                            Ref.: 15/06/2019 - 2020<br />
+                            Date: 10/10/2019
+                        </b>
+
+                    </td>
+                    <td> <img src="~/Images/Certified.PNG" /> </td>
+                </tr>
+            </table>
+
+            <br />
+            <br />
+            <br />
+
+
+
+            <div class="container shadow bg-white pb-2">
+                <div class="d-flex justify-content-center align-items-center text-center">
+                    <div class="mt-2">
+                        <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo" alt="Logo" style="height:150px; width:120px;" />
+                        <h3>Faculty of Information Technology </h3>
+                    </div>
+                </div>
+
+                <hr style="border: 2px solid black" />
+                <br />
+                <table class="table" style="border: 2px solid black">
+                    <tr>
+                        <th bgcolor="silver" style=" border:1px solid black" colspan="12"> Course Statistics </th>
+                    </tr>
+                    <tr>
+                        <th style=" border:1px solid black" bgcolor="aliceblue"> Section </th>
+                        <th style=" border:1px solid black" bgcolor="aliceblue"> No. Of <br />Enrolled Students </th>
+                        <th style=" border:1px solid black" bgcolor="aliceblue"> No. Of <br />Attendees </th>
+                        <th style=" border:1px solid black" bgcolor="aliceblue"> No. Of <br />Absentees </th>
+                        <th style=" border:1px solid black" bgcolor="aliceblue"> No. Of <br />Dismissed </th>
+                        <th style=" border:1px solid black" bgcolor="aliceblue"> No. Of <br />Withdrawn </th>
+                        <th style=" border:1px solid black" bgcolor="aliceblue"> Highest<br />Grade </th>
+                        <th style=" border:1px solid black" bgcolor="aliceblue"> Lowest <br />Grade </th>
+                        <th style=" border:1px solid black" bgcolor="aliceblue"> Average<br />Grade </th>
+                        <th style=" border:1px solid black" bgcolor="aliceblue"> Median <br />Grade </th>
+                        <th style=" border:1px solid black" bgcolor="aliceblue"> Success <br /> Rate </th>
+                        <th style=" border:1px solid black" bgcolor="aliceblue"> Class Absence <br /> Rate </th>
+                    </tr>
+                    <tr>
+                        <th style=" border:1px solid black" bgcolor="aliceblue"> 1 </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                    </tr>
+                    <tr>
+                        <th style=" border:1px solid black" bgcolor="aliceblue"> 2 </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                    </tr>
+                    <tr>
+                        <th style=" border:1px solid black" bgcolor="aliceblue"> ... </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                    </tr>
+                    <tr>
+                        <th style=" border:1px solid black" bgcolor="aliceblue"> All <br /> Sections</th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                        <th style=" border:1px solid black">  </th>
+                    </tr>
+                </table>
+                <br />
+                <table class="table" style="border: 2px solid black">
+                    <tr>
+                        <th bgcolor="silver" style=" border:1px solid black" colspan="14"> Grade Distribution </th>
+                    </tr>
+                    <tr>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> Grade </th>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> A </th>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> A- </th>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> B+ </th>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> B </th>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> B- </th>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> C+ </th>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> C </th>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> C- </th>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> D+ </th>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> D </th>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> D- </th>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> F </th>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> Total </th>
+                    </tr>
+                    <tr>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> No. of students </th>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                    </tr>
+                    <tr>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> Percentage </th>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black"> 100% </td>
+                    </tr>
+                </table>
+                <br />
+                <table class="table" style="border: 2px solid black">
+                    <tr>
+                        <th bgcolor="silver" style=" border:1px solid black" colspan="2">Results of Course Direct Assessment:</th>
+                    </tr>
+                    <tr>
+                        <th bgcolor="aliceblue" style=" border:1px solid black">Did you assess the course?</th>
+                        <th bgcolor="aliceblue" style=" border:1px solid black">
+                            <select name="menu">
+                                <option>Please Select...</option>
+                                <option>Yes, please attach results of the assessment tool.</option>
+                                <option>No, write the reason:</option>
+                            </select>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th bgcolor="aliceblue" style=" border:1px solid black" colspan="2"> If Yes, Please list below the most important observations, and actions to be taken for improvement</th>
+                    </tr>
+                    <tr>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> Observations</th>
+                        <td style=" border:1px solid black">     </td>
+                    </tr>
+                    <tr>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> Analysis & <br />Justifications</th>
+                        <td style=" border:1px solid black">     </td>
+                    </tr>
+                    <tr>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> Recommendations</th>
+                        <td style=" border:1px solid black">     </td>
+                    </tr>
+                </table>
+            </div>
+
+            <br />
+            <br />
+            <hr class="w-75" />
+            <table class="justify-content-center align-items-center d-flex">
+                <tr>
+                    <td> <img src="~/Images/R.PNG" /> </td>
+                    <td><img src="~/Images/Quality.PNG" /> </td>
+                    <td><img src="~/Images/Risk.PNG" /></td>
+                    <td>
+                        <b>
+                            EP-F891, Rev. a<br />
+                            Ref.: 15/06/2019 - 2020<br />
+                            Date: 10/10/2019
+                        </b>
+
+                    </td>
+                    <td> <img src="~/Images/Certified.PNG" /> </td>
+                </tr>
+            </table>
+
+            <br />
+            <br />
+            <br />
+
+
+
+            <div class="container bg-white pb-2" id="Pagebreak">
+                <div class="d-flex justify-content-center align-items-center text-center">
+                    <div class="mt-2">
+                        <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo" alt="Logo" style="height:150px; width:120px;" />
+                        <h3>Faculty of Information Technology </h3>
+                    </div>
+                </div>
+
+                <hr style="border: 2px solid black" />
+                <br />
+                <table class="table" style="border: 2px solid black">
+                    <tr>
+                        <th bgcolor="silver" style=" border:1px solid black" colspan="2">Results of Course Assessment Survey by Students: </th>
+                    </tr>
+                    <tr>
+                        <th bgcolor="aliceblue" style=" border:1px solid black">Did students evaluate the course?</th>
+                        <th bgcolor="aliceblue" style=" border:1px solid black">
+                            <select name="menu">
+                                <option>Please Select...</option>
+                                <option>Yes, please attach results of the students evaluation survey.</option>
+                                <option>No</option>
+                            </select>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th bgcolor="aliceblue" style=" border:1px solid black" colspan="2"> If Yes, Please list below the instructor observationsand students’ commentsto be taken for improvement</th>
+                    </tr>
+                    <tr>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> Instructor <br /> Observations</th>
+                        <td style=" border:1px solid black">     </td>
+                    </tr>
+                    <tr>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> Student’s <br />Comments</th>
+                        <td style=" border:1px solid black">     </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="silver" style=" border:1px solid black" colspan="2"><b>Result of Other Evaluations: </b><br />Example: Head of department, Peers/colleaguesobservations, External examiners, Visiting reviewers, etc.…</td>
+                    </tr>
+                    <tr>
+                        <th bgcolor="aliceblue" style=" border:1px solid black">Is there other evaluation?</th>
+                        <th bgcolor="aliceblue" style=" border:1px solid black">
+                            <select name="menu">
+                                <option>Please Select...</option>
+                                <option>Yes.</option>
+                                <option>No.</option>
+                            </select>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th bgcolor="aliceblue" style=" border:1px solid black" colspan="2"> If Yes, List the most important recommendations for improvement and response of instructor </th>
+                    </tr>
+                    <tr>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> Recommendations<br /> for improvement</th>
+                        <td style=" border:1px solid black">     </td>
+                    </tr>
+                    <tr>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> Response of <br /> instructor </th>
+                        <td style=" border:1px solid black">     </td>
+                    </tr>
+                </table>
+                <br />
+                <table class="table" style="border: 2px solid black">
+                    <tr>
+                        <th bgcolor="silver" style=" border:1px solid black" colspan="3">Plans/Actions for Improving the Course: </th>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black" colspan="3">
+                            <b>1.	Progress on actions proposed for improving the course in previous course reports (if any).</b><br />
+                            <br />(State whether each action was undertaken, the impact, and if the proposed action was not undertaken or completed,<br /> give reasons)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="aliceblue" style=" border:1px solid black">Actions recommended<br /> from the most recent course report(s) </td>
+                        <td bgcolor="aliceblue" style=" border:1px solid black">Actions Taken</td>
+                        <td bgcolor="aliceblue" style=" border:1px solid black">Action Results</td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black" colspan="3">
+                            <b>2.	Action Plan for Improvement for Next Semester/Year</b><br />
+                            <br />Provide a brief summary of any action that should be taken to improve the course.  (For example:  professional <br /> development for faculty members, modifications to the course,  new equipment, new teaching techniques etc.)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="aliceblue" style=" border:1px solid black" colspan="2">Actions Recommended for next semester/year</td>
+                        <td bgcolor="aliceblue" style=" border:1px solid black">Person Responsible</td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black" colspan="2">  </td>
+                        <td style=" border:1px solid black">  </td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black" colspan="2">  </td>
+                        <td style=" border:1px solid black">  </td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black" colspan="2">  </td>
+                        <td style=" border:1px solid black">  </td>
+                    </tr>
+                </table>
+                <br />
+                <br />
+                <table class="table" style="border: 2px solid black">
+                    <tr>
+                        <th bgcolor="silver" style=" border:1px solid black" colspan="2"> Teaching and Learning Strategies: </th>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black" colspan="2">
+                            Teaching style used for this course?<br />
+                            <input type="checkbox" /> In-class lectures
+                            <input type="checkbox" /> Group discussion
+                            <input type="checkbox" /> Demonstration
+                            <input type="checkbox" /> Others:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black" colspan="2"> <input type="checkbox" /> Teaching and Learning strategies were effective for the specified SLOs of the course </td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black" rowspan="2"><input type="checkbox" /> Not all effective </td>
+                        <td style=" border:1px solid black" bgcolor="silver">Reasons for ineffectiveness: (Suggested modifications to improve) </td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black">  </td>
+                    </tr>
+                </table>
+                <br />
+                <br />
+                <table class="table" style="border: 2px solid black">
+                    <tr>
+                        <th bgcolor="silver" style=" border:1px solid black" colspan="2"> Assessment Strategies: </th>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black" colspan="2">
+                            Assessment strategies used for this course :<br />
+                            <input type="checkbox" /> Exams
+                            <input type="checkbox" /> Assignments
+                            <input type="checkbox" /> Quizzes
+                            <input type="checkbox" /> Projects
+                            <input type="checkbox" /> Others:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black" colspan="2"> <input type="checkbox" /> Assessment strategieswere effective for the specified SLOs of the course </td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black" rowspan="2"><input type="checkbox" /> Not all effective </td>
+                        <td style=" border:1px solid black" bgcolor=" aliceblue">Reasons for ineffectiveness: (Suggested modifications to improve) </td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black">  </td>
+                    </tr>
+                </table>
+
+
+                <div style="page-break-before: always" id="Pagebreak">
+
+                    <br />
+                    <table class="table" style="border: 2px solid black">
+                        <tr>
+                            <th bgcolor="silver" style=" border:1px solid black" colspan="12"> Course Statistics </th>
+                        </tr>
+                        <tr>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> Section </th>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> No. Of <br />Enrolled Students </th>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> No. Of <br />Attendees </th>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> No. Of <br />Absentees </th>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> No. Of <br />Dismissed </th>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> No. Of <br />Withdrawn </th>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> Highest<br />Grade </th>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> Lowest <br />Grade </th>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> Average<br />Grade </th>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> Median <br />Grade </th>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> Success <br /> Rate </th>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> Class Absence <br /> Rate </th>
+                        </tr>
+                        <tr>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> 1 </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                        </tr>
+                        <tr>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> 2 </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                        </tr>
+                        <tr>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> ... </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                        </tr>
+                        <tr>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> All <br /> Sections</th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                        </tr>
+                    </table>
+                    <br />
+                    <table class="table" style="border: 2px solid black">
+                        <tr>
+                            <th bgcolor="silver" style=" border:1px solid black" colspan="14"> Grade Distribution </th>
+                        </tr>
+                        <tr>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> Grade </th>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> A </th>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> A- </th>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> B+ </th>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> B </th>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> B- </th>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> C+ </th>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> C </th>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> C- </th>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> D+ </th>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> D </th>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> D- </th>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> F </th>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> Total </th>
+                        </tr>
+                        <tr>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> No. of students </th>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                        </tr>
+                        <tr>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> Percentage </th>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black"> 100% </td>
+                        </tr>
+                    </table>
+                    <br />
+                    <table class="table" style="border: 2px solid black">
+                        <tr>
+                            <th bgcolor="silver" style=" border:1px solid black" colspan="2">Results of Course Direct Assessment:</th>
+                        </tr>
+                        <tr>
+                            <th bgcolor="aliceblue" style=" border:1px solid black">Did you assess the course?</th>
+                            <th bgcolor="aliceblue" style=" border:1px solid black">
+                                <select name="menu">
+                                    <option>Please Select...</option>
+                                    <option>Yes, please attach results of the assessment tool.</option>
+                                    <option>No, write the reason:</option>
+                                </select>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th bgcolor="aliceblue" style=" border:1px solid black" colspan="2"> If Yes, Please list below the most important observations, and actions to be taken for improvement</th>
+                        </tr>
+                        <tr>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> Observations</th>
+                            <td style=" border:1px solid black">     </td>
+                        </tr>
+                        <tr>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> Analysis & <br />Justifications</th>
+                            <td style=" border:1px solid black">     </td>
+                        </tr>
+                        <tr>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> Recommendations</th>
+                            <td style=" border:1px solid black">     </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <hr class="w-75" />
+            <table class="justify-content-center align-items-center d-flex">
+                <tr>
+                    <td> <img src="~/Images/R.PNG" /> </td>
+                    <td><img src="~/Images/Quality.PNG" /> </td>
+                    <td><img src="~/Images/Risk.PNG" /></td>
+                    <td>
+                        <b>
+                            EP-F891, Rev. a<br />
+                            Ref.: 15/06/2019 - 2020<br />
+                            Date: 10/10/2019
+                        </b>
+
+                    </td>
+                    <td> <img src="~/Images/Certified.PNG" /> </td>
+                </tr>
+            </table>
+
+            <br />
+            <br />
+
+            <div class="container shadow bg-white" style="page-break-before: always" id="Pagebreak">
+                <div class="d-flex justify-content-center align-items-center text-center">
+                    <div class="mt-2">
+                        <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo" alt="Logo" style="height:150px; width:120px;" />
+                        <h3>Faculty of Information Technology </h3>
+                    </div>
+                </div>
+                <hr style="border: 2px solid black" />
+                <br />
+                <table class="table" style="border: 2px solid black">
+                    <tr>
+                        <th bgcolor="silver" style=" border:1px solid black" colspan="2">Results of Course Assessment Survey by Students: </th>
+                    </tr>
+                    <tr>
+                        <th bgcolor="aliceblue" style=" border:1px solid black">Did students evaluate the course?</th>
+                        <th bgcolor="aliceblue" style=" border:1px solid black">
+                            <select name="menu">
+                                <option>Please Select...</option>
+                                <option>Yes, please attach results of the students evaluation survey.</option>
+                                <option>No</option>
+                            </select>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th bgcolor="aliceblue" style=" border:1px solid black" colspan="2"> If Yes, Please list below the instructor observationsand students’ commentsto be taken for improvement</th>
+                    </tr>
+                    <tr>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> Instructor <br /> Observations</th>
+                        <td style=" border:1px solid black">     </td>
+                    </tr>
+                    <tr>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> Student’s <br />Comments</th>
+                        <td style=" border:1px solid black">     </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="silver" style=" border:1px solid black" colspan="2"><b>Result of Other Evaluations: </b><br />Example: Head of department, Peers/colleaguesobservations, External examiners, Visiting reviewers, etc.…</td>
+                    </tr>
+                    <tr>
+                        <th bgcolor="aliceblue" style=" border:1px solid black">Is there other evaluation?</th>
+                        <th bgcolor="aliceblue" style=" border:1px solid black">
+                            <select name="menu">
+                                <option>Please Select...</option>
+                                <option>Yes.</option>
+                                <option>No.</option>
+                            </select>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th bgcolor="aliceblue" style=" border:1px solid black" colspan="2"> If Yes, List the most important recommendations for improvement and response of instructor </th>
+                    </tr>
+                    <tr>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> Recommendations<br /> for improvement</th>
+                        <td style=" border:1px solid black">     </td>
+                    </tr>
+                    <tr>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> Response of <br /> instructor </th>
+                        <td style=" border:1px solid black">     </td>
+                    </tr>
+                </table>
+                <br />
+                <table class="table" style="border: 2px solid black">
+                    <tr>
+                        <th bgcolor="silver" style=" border:1px solid black" colspan="3">Plans/Actions for Improving the Course: </th>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black" colspan="3">
+                            <b>1.	Progress on actions proposed for improving the course in previous course reports (if any).</b><br />
+                            <br />(State whether each action was undertaken, the impact, and if the proposed action was not undertaken or completed,<br /> give reasons)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="aliceblue" style=" border:1px solid black">Actions recommended<br /> from the most recent course report(s) </td>
+                        <td bgcolor="aliceblue" style=" border:1px solid black">Actions Taken</td>
+                        <td bgcolor="aliceblue" style=" border:1px solid black">Action Results</td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black">  </td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black" colspan="3">
+                            <b>2.	Action Plan for Improvement for Next Semester/Year</b><br />
+                            <br />Provide a brief summary of any action that should be taken to improve the course.  (For example:  professional <br /> development for faculty members, modifications to the course,  new equipment, new teaching techniques etc.)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="aliceblue" style=" border:1px solid black" colspan="2">Actions Recommended for next semester/year</td>
+                        <td bgcolor="aliceblue" style=" border:1px solid black">Person Responsible</td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black" colspan="2">  </td>
+                        <td style=" border:1px solid black">  </td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black" colspan="2">  </td>
+                        <td style=" border:1px solid black">  </td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black" colspan="2">  </td>
+                        <td style=" border:1px solid black">  </td>
+                    </tr>
+                </table>
+                <br />
+                <br />
+                <table class="table" style="border: 2px solid black">
+                    <tr>
+                        <th bgcolor="silver" style=" border:1px solid black" colspan="2"> Teaching and Learning Strategies: </th>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black" colspan="2">
+                            Teaching style used for this course?<br />
+                            <input type="checkbox" /> In-class lectures
+                            <input type="checkbox" /> Group discussion
+                            <input type="checkbox" /> Demonstration
+                            <input type="checkbox" /> Others:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black" colspan="2"> <input type="checkbox" /> Teaching and Learning strategies were effective for the specified SLOs of the course </td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black" rowspan="2"><input type="checkbox" /> Not all effective </td>
+                        <td style=" border:1px solid black" bgcolor="silver">Reasons for ineffectiveness: (Suggested modifications to improve) </td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black">  </td>
+                    </tr>
+                </table>
+                <br />
+                <br />
+                <table class="table" style="border: 2px solid black">
+                    <tr>
+                        <th bgcolor="silver" style=" border:1px solid black" colspan="2"> Assessment Strategies: </th>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black" colspan="2">
+                            Assessment strategies used for this course :<br />
+                            <input type="checkbox" /> Exams
+                            <input type="checkbox" /> Assignments
+                            <input type="checkbox" /> Quizzes
+                            <input type="checkbox" /> Projects
+                            <input type="checkbox" /> Others:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black" colspan="2"> <input type="checkbox" /> Assessment strategieswere effective for the specified SLOs of the course </td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black" rowspan="2"><input type="checkbox" /> Not all effective </td>
+                        <td style=" border:1px solid black" bgcolor=" aliceblue">Reasons for ineffectiveness: (Suggested modifications to improve) </td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black">  </td>
+                    </tr>
+                </table>
+
+                <div style="page-break-before: always" id="Pagebreak">
+
+                    <br />
+                    <table class="table" style="border: 2px solid black">
+                        <tr>
+                            <th bgcolor="silver" style=" border:1px solid black" colspan="12"> Course Statistics </th>
+                        </tr>
+                        <tr>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> Section </th>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> No. Of <br />Enrolled Students </th>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> No. Of <br />Attendees </th>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> No. Of <br />Absentees </th>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> No. Of <br />Dismissed </th>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> No. Of <br />Withdrawn </th>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> Highest<br />Grade </th>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> Lowest <br />Grade </th>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> Average<br />Grade </th>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> Median <br />Grade </th>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> Success <br /> Rate </th>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> Class Absence <br /> Rate </th>
+                        </tr>
+                        <tr>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> 1 </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                        </tr>
+                        <tr>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> 2 </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                        </tr>
+                        <tr>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> ... </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                        </tr>
+                        <tr>
+                            <th style=" border:1px solid black" bgcolor="aliceblue"> All <br /> Sections</th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                            <th style=" border:1px solid black">  </th>
+                        </tr>
+                    </table>
+                    <br />
+                    <table class="table" style="border: 2px solid black">
+                        <tr>
+                            <th bgcolor="silver" style=" border:1px solid black" colspan="14"> Grade Distribution </th>
+                        </tr>
+                        <tr>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> Grade </th>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> A </th>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> A- </th>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> B+ </th>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> B </th>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> B- </th>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> C+ </th>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> C </th>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> C- </th>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> D+ </th>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> D </th>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> D- </th>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> F </th>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> Total </th>
+                        </tr>
+                        <tr>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> No. of students </th>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                        </tr>
+                        <tr>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> Percentage </th>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black"> 100% </td>
+                        </tr>
+                    </table>
+                    <br />
+                    <table class="table" style="border: 2px solid black">
+                        <tr>
+                            <th bgcolor="silver" style=" border:1px solid black" colspan="2">Results of Course Direct Assessment:</th>
+                        </tr>
+                        <tr>
+                            <th bgcolor="aliceblue" style=" border:1px solid black">Did you assess the course?</th>
+                            <th bgcolor="aliceblue" style=" border:1px solid black">
+                                <select name="menu">
+                                    <option>Please Select...</option>
+                                    <option>Yes, please attach results of the assessment tool.</option>
+                                    <option>No, write the reason:</option>
+                                </select>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th bgcolor="aliceblue" style=" border:1px solid black" colspan="2"> If Yes, Please list below the most important observations, and actions to be taken for improvement</th>
+                        </tr>
+                        <tr>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> Observations</th>
+                            <td style=" border:1px solid black">     </td>
+                        </tr>
+                        <tr>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> Analysis & <br />Justifications</th>
+                            <td style=" border:1px solid black">     </td>
+                        </tr>
+                        <tr>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> Recommendations</th>
+                            <td style=" border:1px solid black">     </td>
+                        </tr>
+                    </table>
+
+                </div>
+                <div style="page-break-before: always" id="Pagebreak">
+                    <br />
+                    <table class="table" style="border: 2px solid black">
+                        <tr>
+                            <th bgcolor="silver" style=" border:1px solid black" colspan="2">Results of Course Assessment Survey by Students: </th>
+                        </tr>
+                        <tr>
+                            <th bgcolor="aliceblue" style=" border:1px solid black">Did students evaluate the course?</th>
+                            <th bgcolor="aliceblue" style=" border:1px solid black">
+                                <select name="menu">
+                                    <option>Please Select...</option>
+                                    <option>Yes, please attach results of the students evaluation survey.</option>
+                                    <option>No</option>
+                                </select>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th bgcolor="aliceblue" style=" border:1px solid black" colspan="2"> If Yes, Please list below the instructor observationsand students’ commentsto be taken for improvement</th>
+                        </tr>
+                        <tr>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> Instructor <br /> Observations</th>
+                            <td style=" border:1px solid black">     </td>
+                        </tr>
+                        <tr>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> Student’s <br />Comments</th>
+                            <td style=" border:1px solid black">     </td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="silver" style=" border:1px solid black" colspan="2"><b>Result of Other Evaluations: </b><br />Example: Head of department, Peers/colleaguesobservations, External examiners, Visiting reviewers, etc.…</td>
+                        </tr>
+                        <tr>
+                            <th bgcolor="aliceblue" style=" border:1px solid black">Is there other evaluation?</th>
+                            <th bgcolor="aliceblue" style=" border:1px solid black">
+                                <select name="menu">
+                                    <option>Please Select...</option>
+                                    <option>Yes.</option>
+                                    <option>No.</option>
+                                </select>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th bgcolor="aliceblue" style=" border:1px solid black" colspan="2"> If Yes, List the most important recommendations for improvement and response of instructor </th>
+                        </tr>
+                        <tr>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> Recommendations<br /> for improvement</th>
+                            <td style=" border:1px solid black">     </td>
+                        </tr>
+                        <tr>
+                            <th bgcolor="aliceblue" style=" border:1px solid black"> Response of <br /> instructor </th>
+                            <td style=" border:1px solid black">     </td>
+                        </tr>
+                    </table>
+                    <br />
+                    <table class="table" style="border: 2px solid black">
+                        <tr>
+                            <th bgcolor="silver" style=" border:1px solid black" colspan="3">Plans/Actions for Improving the Course: </th>
+                        </tr>
+                        <tr>
+                            <td style=" border:1px solid black" colspan="3">
+                                <b>1.	Progress on actions proposed for improving the course in previous course reports (if any).</b><br />
+                                <br />(State whether each action was undertaken, the impact, and if the proposed action was not undertaken or completed,<br /> give reasons)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="aliceblue" style=" border:1px solid black">Actions recommended<br /> from the most recent course report(s) </td>
+                            <td bgcolor="aliceblue" style=" border:1px solid black">Actions Taken</td>
+                            <td bgcolor="aliceblue" style=" border:1px solid black">Action Results</td>
+                        </tr>
+                        <tr>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                        </tr>
+                        <tr>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                        </tr>
+                        <tr>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                            <td style=" border:1px solid black">  </td>
+                        </tr>
+                        <tr>
+                            <td style=" border:1px solid black" colspan="3">
+                                <b>2.	Action Plan for Improvement for Next Semester/Year</b><br />
+                                <br />Provide a brief summary of any action that should be taken to improve the course.  (For example:  professional <br /> development for faculty members, modifications to the course,  new equipment, new teaching techniques etc.)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="aliceblue" style=" border:1px solid black" colspan="2">Actions Recommended for next semester/year</td>
+                            <td bgcolor="aliceblue" style=" border:1px solid black">Person Responsible</td>
+                        </tr>
+                        <tr>
+                            <td style=" border:1px solid black" colspan="2">  </td>
+                            <td style=" border:1px solid black">  </td>
+                        </tr>
+                        <tr>
+                            <td style=" border:1px solid black" colspan="2">  </td>
+                            <td style=" border:1px solid black">  </td>
+                        </tr>
+                        <tr>
+                            <td style=" border:1px solid black" colspan="2">  </td>
+                            <td style=" border:1px solid black">  </td>
+                        </tr>
+                    </table>
+                    <br />
+                </div>
+
+                <table class="table" style="border: 2px solid black">
+                    <tr>
+                        <th bgcolor="silver" style=" border:1px solid black" colspan="6"> Responsible Staff Signature: </th>
+                    </tr>
+                    <tr>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> Course Instructor/ <br />Coordinator </th>
+                        <td style=" border:1px solid black">  </td>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> Date </th>
+                        <td style=" border:1px solid black">  </td>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> Signature </th>
+                        <td style=" border:1px solid black">  </td>
+                    </tr>
+                    <tr>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> Head of Department </th>
+                        <td style=" border:1px solid black">  </td>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> Date </th>
+                        <td style=" border:1px solid black">  </td>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> Signature </th>
+                        <td style=" border:1px solid black">  </td>
+                    </tr>
+                    <tr>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> Vice Dean of <br /> Accreditation and Quality </th>
+                        <td style=" border:1px solid black">  </td>
+                        <th bgcolor="aliceblue" style=" border:1px solid black"> Date </th>
+                        <td style=" border:1px solid black">  </td>
+                        <th bgcolor="Aliceblue" style=" border:1px solid black"> Signature </th>
+                        <td style=" border:1px solid black">  </td>
+                    </tr>
+                </table>
+
+                <p align="center" style="background-color:antiquewhite">Appendices</p>
+                <b>Appendix A:</b> Results of Course Assessment Worksheet
+                <br />
+                <br />
+                <br />
+                <b>Appendix B:</b> Results of Course Assessment Survey
+                <br />
+                <br />
+                <br />
+            </div>
+        </div>
+    </div>
+</body>
+<br />
+<hr />
+<footer class="justify-content-center align-items-center d-flex">
+    <table>
+        <tr>
+
+            <td> <img src="~/Images/R.PNG" /> </td>
+            <td><img src="~/Images/Quality.PNG" /> </td>
+            <td><img src="~/Images/Risk.PNG" /></td>
+            <td>
+                <b>
+                    EP-F891, Rev. a<br />
+                    Ref.: 15/06/2019 - 2020<br />
+                    Date: 10/10/2019
+                </b>
+
+            </td>
+
+            <td> <img src="~/Images/Certified.PNG" /> </td>
+        </tr>
+    </table>
+</footer>
