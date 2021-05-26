@@ -22,6 +22,7 @@ namespace LSS.Controllers
             return View();
         }
 
+
         [HttpPost]
         public ActionResult Login(Lecturer user, String ReturnUrl)
         {
@@ -71,6 +72,11 @@ namespace LSS.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
         }
 
     }
