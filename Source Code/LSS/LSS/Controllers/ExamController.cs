@@ -81,16 +81,43 @@ namespace LSS.Controllers
         
         public ActionResult CreateQustion(int? ExamID)
         {
-            //CourseExam exam = _DatabaseEntities.CourseExams.Find(ExamID);
+            CourseExam exam = _DatabaseEntities.CourseExams.Find(ExamID);
 
-            //QustionsVM q = new QustionsVM()
-            //{
-            //    CourseExam = exam
-            //};
+            QustionsVM q = new QustionsVM()
+            {
+                CourseExam = exam
+            };
 
-            //return View(q);
+            return View(q);
             return View();
         
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateQustion(int? ExamID, string[]? PI_ID)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+
+
+
+
+                    return View();
+
+                }
+                catch (Exception e )
+                {
+                    ModelState.AddModelError("","Error has Acoured Please contact Support \n error Message " + e.Message);
+                    return View();
+                }
+
+            }
+            else
+            {
+                return View();
+            }         
         }
 
     }

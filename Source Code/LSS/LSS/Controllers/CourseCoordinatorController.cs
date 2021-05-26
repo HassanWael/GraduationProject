@@ -44,6 +44,7 @@ namespace LSS.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddCLO(AddCLOMV addCLO, string[] PI_ID)
         {
             if (ModelState.IsValid)
