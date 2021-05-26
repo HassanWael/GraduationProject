@@ -82,29 +82,40 @@ namespace LSS.Controllers
         public ActionResult CreateQustion(int? ExamID)
         {
             CourseExam exam = _DatabaseEntities.CourseExams.Find(ExamID);
-
-            QustionsVM q = new QustionsVM()
+            if (exam == null)
             {
-                CourseExam = exam
-            };
+                return RedirectToAction("Index", "LogedIn");
+            }
 
+            QustionsVM q = new QustionsVM(exam);
             return View(q);
-            return View();
         
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateQustion(int? ExamID, string[]? PI_ID)
+        public ActionResult CreateQustion(QustionsVM Model, int[]? PI_ID)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
 
+                    CourseExamQuestion qustion = Model.Question; 
+                    _DatabaseEntities.CourseExamQuestions.Add(qustion); //error Here 
+                    _DatabaseEntities.SaveChanges();
+
+                    foreach(int id in PI_ID)
+                    {
+                        PI pi = _DatabaseEntities.PIs.Find(id);
+                        if(!qustion.PIs.Contains(pi))
+                            qustion.PIs.Add(pi); 
+                    }
+                    _DatabaseEntities.Entry(qustion).State = System.Data.Entity.EntityState.Modified;
+                    _DatabaseEntities.SaveChanges();
 
 
 
-                    return View();
+                    return RedirectToAction("CourseExamDetails", "Exam", new { ExamID = qustion.ExamID });
 
                 }
                 catch (Exception e )

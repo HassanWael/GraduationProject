@@ -7,7 +7,20 @@ namespace LSS.Models.Exams
 {
     public class QustionsVM
     {
+        public QustionsVM(CourseExam CourseExam)
+        {
+            this.CourseExam = CourseExam;
+            Question = new CourseExamQuestion();
+            Question.ExamID = CourseExam.ID;
+
+        }
+        public   QustionsVM()
+        {
+            
+        }
+      
         public CourseExamQuestion Question { get; set; }
+        
 
         public CourseExam CourseExam { get; set; }
 
@@ -36,7 +49,14 @@ namespace LSS.Models.Exams
             {
                 if (_SelectedPI == null)
                 {
-                    _SelectedPI = Question.PIs.ToList();
+                    _SelectedPI = new List<PI>();
+                    try{
+                        _SelectedPI = Question.PIs.ToList();
+                    }
+                    catch (Exception e )
+                    {
+                        Console.WriteLine("Error" + e);
+                    }
                 }
                 return _SelectedPI;
             }

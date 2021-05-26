@@ -88,6 +88,10 @@
         </tr>
     </table>
 </div>
-@{ 
-    Html.RenderPartial("ListExamQustions", Model.CourseExamQuestions.ToList());
-}
+
+<p>
+    @Html.ActionLink("Add Qustions", "CreateQustion",new { ExamID=Model.ID })
+</p>
+
+ 
+   @Html.Partial("ListExamQustions", Model.CourseExamQuestions )

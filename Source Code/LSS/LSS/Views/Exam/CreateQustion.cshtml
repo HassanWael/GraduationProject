@@ -7,7 +7,7 @@
 
 <h2>CreateQustion</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("CreateQustion", "Exam",FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     
@@ -16,7 +16,7 @@
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-
+    @Html.HiddenFor(model => model.Question.ExamID)
     <div class="form-group">
         @Html.LabelFor(model => model.Question.QuestionNumber, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -43,7 +43,7 @@
 
     @foreach (PI pi in Model.PIs)
     {
-        <input type="checkbox" id="PI_ID" name="PI_ID" value="@pi.PIUniqueID" checked="@Model.SelectedPI." /> <b style="padding-bottom:2%; margin-bottom:2%">@pi.ID</b>
+        <input type="checkbox" id="PI_ID" name="PI_ID" value="@pi.PIUniqueID"/> <b style="padding-bottom:2%; margin-bottom:2%">@pi.ID</b>
     }
 
 

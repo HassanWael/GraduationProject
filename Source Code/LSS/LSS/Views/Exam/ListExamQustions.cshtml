@@ -1,8 +1,6 @@
 ﻿@model IEnumerable<LSS.Models.CourseExamQuestion>
 
-<p>
-    @Html.ActionLink("Add Qustions", "CreateQustion")
-</p>
+
 <table class="table">
     <tr>
         <th>
@@ -32,7 +30,8 @@
             @Html.DisplayFor(modelItem => item.Weight)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.getAVG())
+            @{ double AVG = item.getAVG(); }
+            @Html.Display(AVG+"")
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
