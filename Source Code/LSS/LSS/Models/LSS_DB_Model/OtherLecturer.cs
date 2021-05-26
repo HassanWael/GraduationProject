@@ -7,21 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LSS.Models.LSS_DB_Model
+namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class OtherLecturer
+
+    public partial class CourseSyllabu
     {
-        public string LecturerID { get; set; }
         public string CourseID { get; set; }
         public System.DateTime Year { get; set; }
         public string Semseter { get; set; }
-        public string DayTime { get; set; }
-        public string ClassRoom { get; set; }
-    
+        public Nullable<bool> CoordinatorSignature { get; set; }
+        public Nullable<bool> HeadOFDeptSignature { get; set; }
+        public string ReasonOfDisaproval { get; set; }
+
         public virtual CourseCoordinator CourseCoordinator { get; set; }
-        public virtual Lecturer Lecturer { get; set; }
     }
 }

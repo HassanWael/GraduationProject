@@ -1,216 +1,252 @@
-﻿
-@{
-    ViewBag.Title = "CourseFileChecklist";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿<header>
+    @{
+        ViewBag.Title = "CourseFileChecklist";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+        <link rel="stylesheet" href="~/Content/FormsStyle.css" />
+    }
 
-<table align="center">
-    <tr>
-        <th>
-            Al-Ahliyya Amman University
-        </th>
+</header>
 
-        <td>
-            <img src="~/Images/Al-Ahliya_Amman_University_Logo.png" />
-        </td>
+<body>
+    <div class="row">
+        <div class="col-2 mt-lg-5">
+            @*<div class="list-group list-group-flush w-50">
+                    <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Content</b> </h4>
+                    @Html.ActionLink("Recomandations for improving the course", "ActionsForImproving", "CourseCoordinator",
+                   new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
 
-        <th>  جامعة عمان الأهلية </th>
-    </tr>
-</table>
-<P align="center"><b> Faculty of Information Technology</b> </P>
-<hr style="border: 2px solid black" />
+                    @Html.ActionLink("Students List", "CourseStudentList", "CourseCoordinator",
+                   new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "bg-transparent pb-3" })
 
-<table style=" border:double, 2px solid black" align="center" width="30%" height="30%">
-    <tr> <td bgcolor="silver" style="border:1px solid black">  <p align="center"> <b>Course File Checklist </b> </p></tr>
-</table>
-<br />
-<br />
-<table class="table" style="border: 2px solid black">
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black"> <p align="center"> Course Title </p> </th>
-        <td style="border:1px solid black" colspan="2">   </td>
-        <th bgcolor="silver" style=" border:1px solid black"> <p align="center">Course Code </p> </th>
-        <td style=" border:1px solid black" colspan="2">  </td>
+                    @Html.ActionLink("PI Assessment", "PI Assessment", "CourseCoordinator",
+                   new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "bg-transparent pb-3" })
 
-    </tr>
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black"> <p align="center">Instructor/<br /> Coordinator Name </p> </th>
-        <td style=" border:1px solid black">  </td>
-        <th bgcolor="silver" style=" border:1px solid black">  <p align="center"> Academic<br />Year</p> </th>
-        <td style=" border:1px solid black">  </td>
-        <th bgcolor="silver" style=" border:1px solid black"><p align="center"> Semester </p> </th>
-        <td style=" border:1px solid black">   </td>
+                    @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator",
+                   new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "bg-transparent pb-3" })
+                    <br />
+                    <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Forms</b> </h4>
+                    @Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
+                    @Html.ActionLink("Course Assessment Survey", "CourseAssessmentSurvey", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
+                    @Html.ActionLink("Course File Checklist", "CourseFileChecklist", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3 text-success" })
+                    @Html.ActionLink("Course Information Form", "CourseInformationForm", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
+                    @Html.ActionLink("Coures Report", "CourseReport", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
+                    @Html.ActionLink("Exam Evaluation", "ExamEvaluation", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
+                    @Html.ActionLink("Question Answer Sheet", "QuestionsAnswersSheet", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
+                </div>*@
+        </div>
 
+        <div class="col-lg-8">
+            <div class="container shadow-lg p-3 mb-3 mt-5 align-items-center bg-white">
+                <div class="d-flex justify-content-center align-items-center text-center">
+                    <div>
+                        <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo" alt="Logo" style="height:150px; width:120px;" />
+                        <h3>Faculty of Information Technology </h3>
+                    </div>
+                </div>
 
-    </tr>
-</table>
-<br />
+                <hr style="border: 2px solid black" />
 
-<table class="table" style="border: 2px solid black">
-    <tr>
-        <th bgcolor="grey" style=" border:1px solid black"> No. </th>
-        <th bgcolor="grey" style=" border:1px solid black"> Item </th>
-        <th bgcolor="grey" style=" border:1px solid black"> Tick(√) or N/A </th>
-        <th bgcolor="grey" style=" border:1px solid black"> Remarks </th>
-    </tr>
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black" colspan="4"> Instructor's Materials</th>
-    </tr>
-    <tr>
-        <th style=" border:1px solid black"> 1</th>
-        <td style=" border:1px solid black"> Course Syllabus </td>
-        <td style=" border:1px solid black"> </td>
-        <td style=" border:1px solid black"> </td>
-    </tr>
-    <tr>
-        <th style=" border:1px solid black"> 2</th>
-        <td style=" border:1px solid black"> Course Information Form </td>
-        <td style=" border:1px solid black"> </td>
-        <td style=" border:1px solid black"> </td>
-    </tr>
-    <tr>
-        <th style=" border:1px solid black"> 3</th>
-        <td style=" border:1px solid black"> Detailed Grade Sheet +  Statistical Analysis Report </td>
-        <td style=" border:1px solid black"> </td>
-        <td style=" border:1px solid black"> </td>
-    </tr>
-    <tr>
-        <th style=" border:1px solid black"> 4</th>
-        <td style=" border:1px solid black"> Course Report </td>
-        <td style=" border:1px solid black"> </td>
-        <td style=" border:1px solid black"> </td>
-    </tr>
-    <tr>
-        <th style=" border:1px solid black" rowspan="6"> 5</th>
-        <td style=" border:1px solid black" rowspan="3">
-            For each <b>Exam</b>: <br />
-            <ul type="square">
-                <li> Copy of Exam & Answer Keys</li>
-                <li> Copy of Exam Moderation Checklist</li>
-                <li> Copy of Exam Evaluation Form</li>
-            </ul>
-        </td>
-        <td style=" border:1px solid black"> </td>
-        <td style=" border:1px solid black"> </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black"> </td>
-        <td style=" border:1px solid black"> </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black"> </td>
-        <td style=" border:1px solid black"> </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black">For each <b>Quiz</b>: Copy of Quiz & Answer Keys</td>
-        <td style=" border:1px solid black"> </td>
-        <td style=" border:1px solid black"> </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black">For each <b>Assignment</b>: Copy of Homework & Answer Keys</td>
-        <td style=" border:1px solid black"> </td>
-        <td style=" border:1px solid black"> </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black">For each <b>Project</b>: Copy of Description & Instructions</td>
-        <td style=" border:1px solid black"> </td>
-        <td style=" border:1px solid black"> </td>
-    </tr>
+                <table id="FormName">
+                    <tr class="text-center">
+                        <td bgcolor="silver" style="border:1px solid black" class="pt-2">
+                            <h4 align="center"> <b>Course File Checklist</b> </h4>
+                        </td>
+                    </tr>
+                </table>
+
+                <br />
+
+                <table class="table" style="border: 2px solid black">
+                    <tr>
+                        <th bgcolor="silver" style=" border:1px solid black"> <p align="center"> Course Title </p> </th>
+                        <td style="border:1px solid black" colspan="2">   </td>
+                        <th bgcolor="silver" style=" border:1px solid black"> <p align="center">Course Code </p> </th>
+                        <td style=" border:1px solid black" colspan="2">  </td>
+
+                    </tr>
+                    <tr>
+                        <th bgcolor="silver" style=" border:1px solid black"> <p align="center">Instructor/<br /> Coordinator Name </p> </th>
+                        <td style=" border:1px solid black">  </td>
+                        <th bgcolor="silver" style=" border:1px solid black">  <p align="center"> Academic<br />Year</p> </th>
+                        <td style=" border:1px solid black">  </td>
+                        <th bgcolor="silver" style=" border:1px solid black"><p align="center"> Semester </p> </th>
+                        <td style=" border:1px solid black">   </td>
 
 
-    <tr>
-        <th style=" border:1px solid black" rowspan="4"> 6</th>
-        <td style=" border:1px solid black">For each <b>Exam</b>: One of the (Best, Average and Lowest)</td>
-        <td style=" border:1px solid black"> </td>
-        <td style=" border:1px solid black"> </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black">For each <b>Quiz</b>: One of the (Best, Average and Lowest)</td>
-        <td style=" border:1px solid black"> </td>
-        <td style=" border:1px solid black"> </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black">For each <b>Assignment</b>: One of the (Best, Average and Lowest)</td>
-        <td style=" border:1px solid black"> </td>
-        <td style=" border:1px solid black"> </td>
-    </tr>
-    <tr>
-        <td style=" border:1px solid black">For each <b>Project</b>: One of the (Best, Average and Lowest)</td>
-        <td style=" border:1px solid black"> </td>
-        <td style=" border:1px solid black"> </td>
-    </tr>
-    <tr>
-        <th bgcolor="silver" style=" border:1px solid black" colspan="4"> Miscellaneous</th>
-    </tr>
-    <tr>
-        <th style=" border:1px solid black"> 7</th>
-        <td style=" border:1px solid black">Attendance and Absence Sheet</td>
-        <td style=" border:1px solid black"> </td>
-        <td style=" border:1px solid black"> </td>
-    </tr>
-    <tr>
-        <th style=" border:1px solid black"> 8</th>
-        <td style=" border:1px solid black">Course Assessment Surveys (filled by students)</td>
-        <td style=" border:1px solid black"> </td>
-        <td style=" border:1px solid black"> </td>
-    </tr>
-    <tr>
-        <th style=" border:1px solid black"> 9</th>
-        <td style=" border:1px solid black">Others (e.g. Library Visit Form, Minutes of Meetings), please specify <br /> <hr style="border: 1px dashed " /></td>
-        <td style=" border:1px solid black"> </td>
-        <td style=" border:1px solid black"> </td>
-    </tr>
-</table>
+                    </tr>
+                </table>
+                <br />
+
+                <table class="table" style="border: 2px solid black">
+                    <tr>
+                        <th bgcolor="grey" style=" border:1px solid black"> No. </th>
+                        <th bgcolor="grey" style=" border:1px solid black"> Item </th>
+                        <th bgcolor="grey" style=" border:1px solid black"> Tick(√) or N/A </th>
+                        <th bgcolor="grey" style=" border:1px solid black"> Remarks </th>
+                    </tr>
+                    <tr>
+                        <th bgcolor="silver" style=" border:1px solid black" colspan="4"> Instructor's Materials</th>
+                    </tr>
+                    <tr>
+                        <th style=" border:1px solid black"> 1</th>
+                        <td style=" border:1px solid black"> Course Syllabus </td>
+                        <td style=" border:1px solid black"> </td>
+                        <td style=" border:1px solid black"> </td>
+                    </tr>
+                    <tr>
+                        <th style=" border:1px solid black"> 2</th>
+                        <td style=" border:1px solid black"> Course Information Form </td>
+                        <td style=" border:1px solid black"> </td>
+                        <td style=" border:1px solid black"> </td>
+                    </tr>
+                    <tr>
+                        <th style=" border:1px solid black"> 3</th>
+                        <td style=" border:1px solid black"> Detailed Grade Sheet +  Statistical Analysis Report </td>
+                        <td style=" border:1px solid black"> </td>
+                        <td style=" border:1px solid black"> </td>
+                    </tr>
+                    <tr>
+                        <th style=" border:1px solid black"> 4</th>
+                        <td style=" border:1px solid black"> Course Report </td>
+                        <td style=" border:1px solid black"> </td>
+                        <td style=" border:1px solid black"> </td>
+                    </tr>
+                    <tr>
+                        <th style=" border:1px solid black" rowspan="6"> 5</th>
+                        <td style=" border:1px solid black" rowspan="3">
+                            For each <b>Exam</b>: <br />
+                            <ul type="square">
+                                <li> Copy of Exam & Answer Keys</li>
+                                <li> Copy of Exam Moderation Checklist</li>
+                                <li> Copy of Exam Evaluation Form</li>
+                            </ul>
+                        </td>
+                        <td style=" border:1px solid black"> </td>
+                        <td style=" border:1px solid black"> </td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black"> </td>
+                        <td style=" border:1px solid black"> </td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black"> </td>
+                        <td style=" border:1px solid black"> </td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black">For each <b>Quiz</b>: Copy of Quiz & Answer Keys</td>
+                        <td style=" border:1px solid black"> </td>
+                        <td style=" border:1px solid black"> </td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black">For each <b>Assignment</b>: Copy of Homework & Answer Keys</td>
+                        <td style=" border:1px solid black"> </td>
+                        <td style=" border:1px solid black"> </td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black">For each <b>Project</b>: Copy of Description & Instructions</td>
+                        <td style=" border:1px solid black"> </td>
+                        <td style=" border:1px solid black"> </td>
+                    </tr>
 
 
-    <table class="table" style="border: 2px solid black">
+                    <tr>
+                        <th style=" border:1px solid black" rowspan="4"> 6</th>
+                        <td style=" border:1px solid black">For each <b>Exam</b>: One of the (Best, Average and Lowest)</td>
+                        <td style=" border:1px solid black"> </td>
+                        <td style=" border:1px solid black"> </td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black">For each <b>Quiz</b>: One of the (Best, Average and Lowest)</td>
+                        <td style=" border:1px solid black"> </td>
+                        <td style=" border:1px solid black"> </td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black">For each <b>Assignment</b>: One of the (Best, Average and Lowest)</td>
+                        <td style=" border:1px solid black"> </td>
+                        <td style=" border:1px solid black"> </td>
+                    </tr>
+                    <tr>
+                        <td style=" border:1px solid black">For each <b>Project</b>: One of the (Best, Average and Lowest)</td>
+                        <td style=" border:1px solid black"> </td>
+                        <td style=" border:1px solid black"> </td>
+                    </tr>
+                    <tr>
+                        <th bgcolor="silver" style=" border:1px solid black" colspan="4"> Miscellaneous</th>
+                    </tr>
+                    <tr>
+                        <th style=" border:1px solid black"> 7</th>
+                        <td style=" border:1px solid black">Attendance and Absence Sheet</td>
+                        <td style=" border:1px solid black"> </td>
+                        <td style=" border:1px solid black"> </td>
+                    </tr>
+                    <tr>
+                        <th style=" border:1px solid black"> 8</th>
+                        <td style=" border:1px solid black">Course Assessment Surveys (filled by students)</td>
+                        <td style=" border:1px solid black"> </td>
+                        <td style=" border:1px solid black"> </td>
+                    </tr>
+                    <tr>
+                        <th style=" border:1px solid black"> 9</th>
+                        <td style=" border:1px solid black">Others (e.g. Library Visit Form, Minutes of Meetings), please specify <br /> <hr style="border: 1px dashed " /></td>
+                        <td style=" border:1px solid black"> </td>
+                        <td style=" border:1px solid black"> </td>
+                    </tr>
+                </table>
+
+
+                <table class="table" style="border: 2px solid black">
+                    <tr>
+                        <th bgcolor="grey" style=" border:1px solid black" colspan="6"> Responsible Staff Signature: </th>
+                    </tr>
+                    <tr>
+                        <th bgcolor="silver" style=" border:1px solid black"> Course Instructor/ <br />Coordinator </th>
+                        <td style=" border:1px solid black">  </td>
+                        <th bgcolor="silver" style=" border:1px solid black"> Date </th>
+                        <td style=" border:1px solid black">  </td>
+                        <th bgcolor="silver" style=" border:1px solid black"> Signature </th>
+                        <td style=" border:1px solid black">  </td>
+                    </tr>
+                    <tr>
+                        <th bgcolor="silver" style=" border:1px solid black"> Head of Department </th>
+                        <td style=" border:1px solid black">  </td>
+                        <th bgcolor="silver" style=" border:1px solid black"> Date </th>
+                        <td style=" border:1px solid black">  </td>
+                        <th bgcolor="silver" style=" border:1px solid black"> Signature </th>
+                        <td style=" border:1px solid black">  </td>
+                    </tr>
+                    <tr>
+                        <th bgcolor="silver" style=" border:1px solid black"> Vice Dean of <br /> Accreditation and Quality </th>
+                        <td style=" border:1px solid black">  </td>
+                        <th bgcolor="silver" style=" border:1px solid black"> Date </th>
+                        <td style=" border:1px solid black">  </td>
+                        <th bgcolor="silver" style=" border:1px solid black"> Signature </th>
+                        <td style=" border:1px solid black">  </td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</body>
+<hr />
+
+<footer class="justify-content-center align-items-center d-flex">
+    <table>
         <tr>
-            <th bgcolor="grey" style=" border:1px solid black" colspan="6"> Responsible Staff Signature: </th>
-        </tr>
-        <tr>
-            <th bgcolor="silver" style=" border:1px solid black"> Course Instructor/ <br />Coordinator </th>
-            <td style=" border:1px solid black">  </td>
-            <th bgcolor="silver" style=" border:1px solid black"> Date </th>
-            <td style=" border:1px solid black">  </td>
-            <th bgcolor="silver" style=" border:1px solid black"> Signature </th>
-            <td style=" border:1px solid black">  </td>
-        </tr>
-        <tr>
-            <th bgcolor="silver" style=" border:1px solid black"> Head of Department </th>
-            <td style=" border:1px solid black">  </td>
-            <th bgcolor="silver" style=" border:1px solid black"> Date </th>
-            <td style=" border:1px solid black">  </td>
-            <th bgcolor="silver" style=" border:1px solid black"> Signature </th>
-            <td style=" border:1px solid black">  </td>
-        </tr>
-        <tr>
-            <th bgcolor="silver" style=" border:1px solid black"> Vice Dean of <br /> Accreditation and Quality </th>
-            <td style=" border:1px solid black">  </td>
-            <th bgcolor="silver" style=" border:1px solid black"> Date </th>
-            <td style=" border:1px solid black">  </td>
-            <th bgcolor="silver" style=" border:1px solid black"> Signature </th>
-            <td style=" border:1px solid black">  </td>
+
+            <td> <img src="~/Images/R.PNG" /> </td>
+            <td><img src="~/Images/Quality.PNG" /> </td>
+            <td><img src="~/Images/Risk.PNG" /></td>
+            <td>
+                <b>
+                    EP-F891, Rev. a<br />
+                    Ref.: 15/06/2019 - 2020<br />
+                    Date: 10/10/2019
+                </b>
+
+            </td>
+
+            <td> <img src="~/Images/Certified.PNG" /> </td>
         </tr>
     </table>
-    <P style="page-break-before: always">
-        <table>
-            <tr>
-
-                <td> <img src="~/Images/R.PNG" /> </td>
-                <td><img src="~/Images/Quality.PNG" /> </td>
-                <td><img src="~/Images/Risk.PNG" /></td>
-                <td>
-                    <b>
-                        EP-F891, Rev. a<br />
-                        Ref.: 15/06/2019 - 2020<br />
-                        Date: 10/10/2019
-                    </b>
-
-                </td>
-
-                <td> <img src="~/Images/Certified.PNG" /> </td>
-            </tr>
-        </table>
-    </P>
-  
-
+</footer>
