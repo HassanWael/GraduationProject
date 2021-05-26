@@ -252,6 +252,10 @@
       <End Role="Course" EntitySet="Courses" />
       <End Role="SLO" EntitySet="SLOes" />
     </AssociationSet>
+    <AssociationSet Name="FK_CourseExamEval_ToExamQ" Association="Model.FK_CourseExamEval_ToExamQ">
+      <End Role="CourseExamQuestion" EntitySet="CourseExamQuestions" />
+      <End Role="CourseExamEval" EntitySet="CourseExamEvals" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="ActionsForImprovingTheCourse">
     <Key>
@@ -453,6 +457,7 @@
     <Property Name="StudentID" Type="Int32" Nullable="false" />
     <Property Name="Mark" Type="Single" Nullable="false" />
     <NavigationProperty Name="EnroledStudent" Relationship="Model.FK_CourseExamEV" FromRole="CourseExamEval" ToRole="EnroledStudent" />
+    <NavigationProperty Name="CourseExamQuestion" Relationship="Model.FK_CourseExamEval_ToExamQ" FromRole="CourseExamEval" ToRole="CourseExamQuestion" />
   </EntityType>
   <EntityType Name="CourseExamQuestion">
     <Key>
@@ -466,6 +471,7 @@
     <NavigationProperty Name="CourseExam" Relationship="Model.FK_CourseExamQ" FromRole="CourseExamQuestion" ToRole="CourseExam" />
     <NavigationProperty Name="PIAssessments" Relationship="Model.FK_PIAsessment_ToExamQ" FromRole="CourseExamQuestion" ToRole="PIAssessment" />
     <NavigationProperty Name="PIs" Relationship="Model.Question_IP" FromRole="CourseExamQuestion" ToRole="PI" />
+    <NavigationProperty Name="CourseExamEvals" Relationship="Model.FK_CourseExamEval_ToExamQ" FromRole="CourseExamQuestion" ToRole="CourseExamEval" />
   </EntityType>
   <EntityType Name="CourseFileCheckList">
     <Key>
@@ -1579,5 +1585,17 @@
   <Association Name="SLO_Course">
     <End Type="Model.Course" Role="Course" Multiplicity="*" />
     <End Type="Model.SLO" Role="SLO" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_CourseExamEval_ToExamQ">
+    <End Type="Model.CourseExamQuestion" Role="CourseExamQuestion" Multiplicity="1" />
+    <End Type="Model.CourseExamEval" Role="CourseExamEval" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseExamQuestion">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CourseExamEval">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
 </Schema>

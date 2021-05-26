@@ -802,6 +802,18 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CourseExamEval_ToExamQ">
+          <End Role="CourseExamQuestion" Type="Self.CourseExamQuestion" Multiplicity="1" />
+          <End Role="CourseExamEval" Type="Self.CourseExamEval" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CourseExamQuestion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CourseExamEval">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CourseExamQ">
           <End Role="CourseExam" Type="Self.CourseExam" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -1131,20 +1143,6 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             </Principal>
             <Dependent Role="PIAssessment">
               <PropertyRef Name="EnrollmentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PIAssessment_ToPI">
-          <End Role="PI" Type="Self.PI" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="PIAssessment" Type="Self.PIAssessment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PI">
-              <PropertyRef Name="PIUniqueID" />
-            </Principal>
-            <Dependent Role="PIAssessment">
-              <PropertyRef Name="PI" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1503,6 +1501,10 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <End Role="EnroledStudents" EntitySet="EnroledStudents" />
             <End Role="CourseExamEval" EntitySet="CourseExamEval" />
           </AssociationSet>
+          <AssociationSet Name="FK_CourseExamEval_ToExamQ" Association="Self.FK_CourseExamEval_ToExamQ">
+            <End Role="CourseExamQuestion" EntitySet="CourseExamQuestion" />
+            <End Role="CourseExamEval" EntitySet="CourseExamEval" />
+          </AssociationSet>
           <AssociationSet Name="FK_CourseExamQ" Association="Self.FK_CourseExamQ">
             <End Role="CourseExam" EntitySet="CourseExam" />
             <End Role="CourseExamQuestion" EntitySet="CourseExamQuestion" />
@@ -1589,10 +1591,6 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           </AssociationSet>
           <AssociationSet Name="FK_PIAssessment_toEnroledStudents" Association="Self.FK_PIAssessment_toEnroledStudents">
             <End Role="EnroledStudents" EntitySet="EnroledStudents" />
-            <End Role="PIAssessment" EntitySet="PIAssessment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PIAssessment_ToPI" Association="Self.FK_PIAssessment_ToPI">
-            <End Role="PI" EntitySet="PI" />
             <End Role="PIAssessment" EntitySet="PIAssessment" />
           </AssociationSet>
           <AssociationSet Name="FK_Question_IP_ToEQ" Association="Self.FK_Question_IP_ToEQ">
@@ -1912,6 +1910,10 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <End Role="Course" EntitySet="Courses" />
             <End Role="SLO" EntitySet="SLOes" />
           </AssociationSet>
+          <AssociationSet Name="FK_CourseExamEval_ToExamQ" Association="Model.FK_CourseExamEval_ToExamQ">
+            <End Role="CourseExamQuestion" EntitySet="CourseExamQuestions" />
+            <End Role="CourseExamEval" EntitySet="CourseExamEvals" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ActionsForImprovingTheCourse">
           <Key>
@@ -2113,6 +2115,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <Property Name="StudentID" Type="Int32" Nullable="false" />
           <Property Name="Mark" Type="Single" Nullable="false" />
           <NavigationProperty Name="EnroledStudent" Relationship="Model.FK_CourseExamEV" FromRole="CourseExamEval" ToRole="EnroledStudent" />
+          <NavigationProperty Name="CourseExamQuestion" Relationship="Model.FK_CourseExamEval_ToExamQ" FromRole="CourseExamEval" ToRole="CourseExamQuestion" />
         </EntityType>
         <EntityType Name="CourseExamQuestion">
           <Key>
@@ -2126,6 +2129,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <NavigationProperty Name="CourseExam" Relationship="Model.FK_CourseExamQ" FromRole="CourseExamQuestion" ToRole="CourseExam" />
           <NavigationProperty Name="PIAssessments" Relationship="Model.FK_PIAsessment_ToExamQ" FromRole="CourseExamQuestion" ToRole="PIAssessment" />
           <NavigationProperty Name="PIs" Relationship="Model.Question_IP" FromRole="CourseExamQuestion" ToRole="PI" />
+          <NavigationProperty Name="CourseExamEvals" Relationship="Model.FK_CourseExamEval_ToExamQ" FromRole="CourseExamQuestion" ToRole="CourseExamEval" />
         </EntityType>
         <EntityType Name="CourseFileCheckList">
           <Key>
@@ -3239,6 +3243,18 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
         <Association Name="SLO_Course">
           <End Type="Model.Course" Role="Course" Multiplicity="*" />
           <End Type="Model.SLO" Role="SLO" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_CourseExamEval_ToExamQ">
+          <End Type="Model.CourseExamQuestion" Role="CourseExamQuestion" Multiplicity="1" />
+          <End Type="Model.CourseExamEval" Role="CourseExamEval" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CourseExamQuestion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CourseExamEval">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         </Schema>
     </edmx:ConceptualModels>

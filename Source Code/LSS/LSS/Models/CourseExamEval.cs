@@ -19,5 +19,6 @@ namespace LSS.Models
         public float Mark { get; set; }
     
         public virtual EnroledStudent EnroledStudent { get; set; }
+        public virtual CourseExamQuestion CourseExamQuestion { get; set; }
     }
 }
