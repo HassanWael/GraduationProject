@@ -235,6 +235,7 @@
     <Compile Include="Models\EnroledStudent.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Exams\QustionsVM.cs" />
     <Compile Include="Models\Faculty.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -530,6 +531,7 @@
     <Content Include="Views\Exam\ListCourseExamsAndTasks.cshtml" />
     <Content Include="Views\Exam\CourseExamDetails.cshtml" />
     <Content Include="Views\Exam\ListExamQustions.cshtml" />
+    <Content Include="Views\Exam\CreateQustion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

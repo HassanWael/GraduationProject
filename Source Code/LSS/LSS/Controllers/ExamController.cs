@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using LSS.Models.Exams;
 
 namespace LSS.Controllers
 {
@@ -76,6 +77,20 @@ namespace LSS.Controllers
         {
 
             return View();
+        }
+        
+        public ActionResult CreateQustion(int? ExamID)
+        {
+            //CourseExam exam = _DatabaseEntities.CourseExams.Find(ExamID);
+
+            //QustionsVM q = new QustionsVM()
+            //{
+            //    CourseExam = exam
+            //};
+
+            //return View(q);
+            return View();
+        
         }
 
     }
