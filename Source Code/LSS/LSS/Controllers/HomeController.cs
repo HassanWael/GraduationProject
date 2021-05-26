@@ -11,6 +11,7 @@ namespace LSS.Controllers
     public class HomeController : Controller
     {
         private readonly LSS_databaseEntities _databaseEntities = new LSS_databaseEntities();
+        
         public ActionResult Index()
         {
             return View();
