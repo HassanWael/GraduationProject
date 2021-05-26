@@ -10,27 +10,27 @@
         <div class="col-2 mt-lg-5">
             <div class="list-group list-group-flush w-50">
                 <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Content</b> </h4>
-                @Html.ActionLink("Recomandations for improving the course", "ActionsForImproving", "CourseCoordinator", new { ViewBag.courseID }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info active" })
+                @Html.ActionLink("Recomandations for improving the course", "ActionsForImproving", "CourseCoordinator", new { ViewBag.courseID }, new { @class = "bg-transparent pb-3 text-success" })
 
-                @Html.ActionLink("Students List", "CourseStudentList", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semseter }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
+                @Html.ActionLink("Students List", "CourseStudentList", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semseter }, new { @class = "bg-transparent pb-3" })
 
-                @Html.ActionLink("PI Assessment", "PI Assessment", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semseter }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
+                @Html.ActionLink("PI Assessment", "PI Assessment", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semseter }, new { @class = "bg-transparent pb-3" })
 
-                @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semseter }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
+                @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semseter }, new { @class = "bg-transparent pb-3" })
                 <br />
                 <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Forms</b> </h4>
-                @Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { ViewBag.courseID }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
-                @Html.ActionLink("Course Assessment Survey", "CourseAssessmentSurvey", "Forms", new { ViewBag.courseID }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
-                @Html.ActionLink("Course File Checklist", "CourseFileChecklist", "Forms", new { ViewBag.courseID }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
-                @Html.ActionLink("Course Information Form", "CourseInformationForm", "Forms", new { ViewBag.courseID }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
-                @Html.ActionLink("Coures Report", "CourseReport", "Forms", new { ViewBag.courseID }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
-                @Html.ActionLink("Exam Evaluation", "ExamEvaluation", "Forms", new { ViewBag.courseID }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
-                @Html.ActionLink("Question Answer Sheet", "QuestionsAnswersSheet", "Forms", new { ViewBag.courseID }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
+                @Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { ViewBag.courseID }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Course Assessment Survey", "CourseAssessmentSurvey", "Forms", new { ViewBag.courseID }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Course File Checklist", "CourseFileChecklist", "Forms", new { ViewBag.courseID }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Course Information Form", "CourseInformationForm", "Forms", new { ViewBag.courseID }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Coures Report", "CourseReport", "Forms", new { ViewBag.courseID }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Exam Evaluation", "ExamEvaluation", "Forms", new { ViewBag.courseID }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Question Answer Sheet", "QuestionsAnswersSheet", "Forms", new { ViewBag.courseID }, new { @class = "bg-transparent pb-3" })
             </div>
         </div>
 
         <div class="col-lg-8">
-            <div class="contrainer shadow-lg p-3 mb-3 mt-5 bg-white">
+            <div class="container shadow-lg p-3 mb-3 mt-5 bg-white">
                 <div class="d-flex justify-content-center align-items-center text-center">
                     <div>
                         <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo" alt="Logo" style="height:150px; width:120px;" />
