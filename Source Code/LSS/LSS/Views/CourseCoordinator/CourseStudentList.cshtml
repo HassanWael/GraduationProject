@@ -112,7 +112,7 @@
                                      LiElementClasses = new[] { "page-item", "btn-outline-primary" }
                                      })
 
-                                @using (Html.BeginForm("AddStudentListToCourse", "CourseCoordinator", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                @using (Html.BeginForm("AddStudentListToCourse", "Students", FormMethod.Post, new { enctype = "multipart/form-data" }))
                                 {
                                     <input type="hidden" id="CourseID" name="CourseID" value='@ViewBag.CourseID' />
                                     <input type="hidden" id="Year" name="Year" value='@ViewBag.Year' />
