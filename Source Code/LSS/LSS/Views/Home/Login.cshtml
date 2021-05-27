@@ -17,34 +17,40 @@
         <div class="d-flex justify-content-center h-100">
             <div class="user_card">
                 <div class="d-flex justify-content-center">
-                    <div class="brand_logo_container" >
-                        <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo" alt="Logo" style="height:150px; width:120px;"/>
+                    <div class="brand_logo_container">
+                        <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo" alt="Logo" style="height:150px; width:120px;" />
                     </div>
                 </div>
+
                 <div class="d-flex justify-content-center form_container">
-                    <form>
-                        <div>
-                            <h1 style="color:black; display:flex; justify-content:center; align-content:center; margin-top:-3rem; font-family:'Lucida Console'"> AAU </h1>
-                        </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    @using (Html.BeginForm("Login", "Home", new { ReturnUrl = Request.QueryString["ReturnUrl"] }, FormMethod.Post))
+                    {
+                        <form action="" method="post" class="Login">
+                            <div>
+                                <h1 style="color:black; display:flex; justify-content:center; align-content:center; margin-top:-3rem; font-family:'Lucida Console'"> AAU </h1>
                             </div>
-                            <input type="text" name="" class="form-control input_user" value="" placeholder="Username">
-                        </div>
-                        <div class="input-group mb-2">
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            <div class="input-group mb-3">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+
+                                @Html.TextBoxFor(u => u.ID, new { @class = "form-control input_user", @placeholder = "Username ", tabindex = "2" })
                             </div>
-                            <input type="password" name="" class="form-control input_pass" value="" placeholder="Password">
-                        </div>
-                    
-                        <div class="d-flex justify-content-center mt-3 login_container">
-                            <button type="button" name="button" class="btn login_btn" style="margin-top: 1rem;">Login</button>
-                        </div>
-                    </form>
+                            <div class="input-group mb-2">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                @Html.PasswordFor(u => u.Password, new { @class = "form-control input_pass", @placeholder = "Password ", tabindex = "2" })
+                            </div>
+                         
+                            <div class="d-flex justify-content-center mt-3 login_container" >
+                                <input type="submit" value="Login" class="btn login_btn">
+                            </div>
+                        </form>
+                    }
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>

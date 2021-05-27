@@ -1,6 +1,6 @@
 ﻿@model LSS.Models.CourseTextBook
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("AddBook","CourseCoordinator",FormMethod.Post)) 
 {
     @Html.AntiForgeryToken()
     

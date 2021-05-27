@@ -159,6 +159,7 @@
     <Compile Include="Controllers\HeadOfDepartmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogedInController.cs" />
+    <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -234,6 +235,7 @@
     <Compile Include="Models\EnroledStudent.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Exams\QustionsVM.cs" />
     <Compile Include="Models\Faculty.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -274,9 +276,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PI.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\PIAssessment.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ResultOfCourseDirectAssessment.cs">
@@ -522,12 +521,14 @@
     <Content Include="Views\Admin\ListStudents.cshtml" />
     <Content Include="Views\Admin\UpdateStudent.cshtml" />
     <Content Include="Views\Admin\CreateStudent.cshtml" />
-    <Content Include="Views\CourseCoordinator\CourseStudentList.cshtml" />
+    <Content Include="Views\Students\CourseStudentList.cshtml" />
     <Content Include="Views\CourseCoordinator\AddBook.cshtml" />
     <Content Include="Views\CourseCoordinator\Book.cshtml" />
     <Content Include="Views\Exam\CreateCourseExam.cshtml" />
-    <Content Include="Views\Exam\ListCourseExam.cshtml" />
+    <Content Include="Views\Exam\ListCourseExamsAndTasks.cshtml" />
     <Content Include="Views\Exam\CourseExamDetails.cshtml" />
+    <Content Include="Views\Exam\ListExamQustions.cshtml" />
+    <Content Include="Views\Exam\CreateQustion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

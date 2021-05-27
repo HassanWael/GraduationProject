@@ -11,6 +11,7 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class CourseCoordinator
     {
@@ -24,9 +25,13 @@ namespace LSS.Models
             this.EnroledStudents = new HashSet<EnroledStudent>();
             this.OtherLecturers = new HashSet<OtherLecturer>();
             this.schedules = new HashSet<schedule>();
+            this.CourseExamQuestions = new HashSet<CourseExamQuestion>();
         }
     
         public string CourseID { get; set; }
+        [Required]
+        [Display(Name = "Date")]
+        [DataType(DataType.Date)]
         public System.DateTime Year { get; set; }
         public string Semseter { get; set; }
         public int NoOFStudents { get; set; }
@@ -63,5 +68,7 @@ namespace LSS.Models
         public virtual ResultOfCourseDirectAssessment ResultOfCourseDirectAssessment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<schedule> schedules { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CourseExamQuestion> CourseExamQuestions { get; set; }
     }
 }

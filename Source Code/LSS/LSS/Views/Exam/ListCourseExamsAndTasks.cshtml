@@ -1,0 +1,70 @@
+﻿@model PagedList.IPagedList<LSS.Models.CourseExam>
+@using PagedList.Mvc;
+@using LSS.Models;
+@{
+    ViewBag.Title = "ListCourseExam";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ListCourseExam</h2>
+
+<p>
+    @Html.ActionLink("Create Exam Or Task", "CreateCourseExam", new { ViewBag.CourseID, ViewBag.Year, ViewBag.Semester })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Name")
+        </th>
+
+        <th>
+            @Html.DisplayName("ExamDurationTime")
+        </th>
+        <th>
+            @Html.DisplayName("Date")
+        </th>
+        <th>
+            @Html.DisplayName("ExamWeight")
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ExamDurationTime)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ExamDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExamWeight)
+            </td>
+
+            <td>
+
+                @Html.ActionLink("Details", "CourseExamDetails", new { ExamID = item.ID })
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+@Html.PagedListPager(Model, page => Url.Action("ListCourses", new { Search = ViewBag.Search, Department = ViewBag.DepartmentID, page, pageSize = Model.PageSize }), new PagedListRenderOptions
+{
+
+   ContainerDivClasses = new[] { "pagination pagination-sm" },
+   UlElementClasses = new[] { "pagination pagination-sm" },
+   LiElementClasses = new[] { "page-item", "btn-outline-primary" }
+
+})
+    Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Products

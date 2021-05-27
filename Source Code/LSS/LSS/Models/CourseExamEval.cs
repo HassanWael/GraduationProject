@@ -14,10 +14,11 @@ namespace LSS.Models
     
     public partial class CourseExamEval
     {
-        public int ID { get; set; }
+        public int QID { get; set; }
         public int StudentID { get; set; }
         public float Mark { get; set; }
     
         public virtual EnroledStudent EnroledStudent { get; set; }
+        public virtual CourseExamQuestion CourseExamQuestion { get; set; }
     }
 }

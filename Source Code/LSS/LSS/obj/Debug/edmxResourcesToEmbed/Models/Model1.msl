@@ -146,7 +146,7 @@
         <MappingFragment StoreEntitySet="CourseExamEval">
           <ScalarProperty Name="Mark" ColumnName="Mark" />
           <ScalarProperty Name="StudentID" ColumnName="StudentID" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="QID" ColumnName="QID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -358,17 +358,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="PIAssessments">
-      <EntityTypeMapping TypeName="Model.PIAssessment">
-        <MappingFragment StoreEntitySet="PIAssessment">
-          <ScalarProperty Name="mark" ColumnName="mark" />
-          <ScalarProperty Name="WhereItWasTakenFrom" ColumnName="WhereItWasTakenFrom" />
-          <ScalarProperty Name="PI" ColumnName="PI" />
-          <ScalarProperty Name="EnrollmentID" ColumnName="EnrollmentID" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ResultOfCourseDirectAssessments">
       <EntityTypeMapping TypeName="Model.ResultOfCourseDirectAssessment">
         <MappingFragment StoreEntitySet="ResultOfCourseDirectAssessment">
@@ -466,6 +455,16 @@
       </EndProperty>
       <EndProperty Name="CLO">
         <ScalarProperty Name="ID" ColumnName="CLOID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PIAssessment" TypeName="Model.PIAssessment" StoreEntitySet="PIAssessment">
+      <EndProperty Name="CourseExamQuestion">
+        <ScalarProperty Name="ID" ColumnName="QustionID" />
+      </EndProperty>
+      <EndProperty Name="CourseCoordinator">
+        <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+        <ScalarProperty Name="Year" ColumnName="Year" />
+        <ScalarProperty Name="CourseID" ColumnName="CourseID" />
       </EndProperty>
     </AssociationSetMapping>
     <AssociationSetMapping Name="Question_IP" TypeName="Model.Question_IP" StoreEntitySet="Question_IP">

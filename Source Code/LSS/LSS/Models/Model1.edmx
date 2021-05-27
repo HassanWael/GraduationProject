@@ -160,10 +160,10 @@
         </EntityType>
         <EntityType Name="CourseExamEval">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="QID" />
             <PropertyRef Name="StudentID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="QID" Type="int" Nullable="false" />
           <Property Name="StudentID" Type="int" Nullable="false" />
           <Property Name="Mark" Type="real" Nullable="false" />
         </EntityType>
@@ -381,13 +381,15 @@
         </EntityType>
         <EntityType Name="PIAssessment">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="CourseID" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Semseter" />
+            <PropertyRef Name="QustionID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EnrollmentID" Type="int" Nullable="false" />
-          <Property Name="PI" Type="int" Nullable="false" />
-          <Property Name="WhereItWasTakenFrom" Type="int" Nullable="false" />
-          <Property Name="mark" Type="real" />
+          <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Year" Type="date" Nullable="false" />
+          <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="QustionID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Question_IP">
           <Key>
@@ -802,6 +804,18 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CourseExamEval_ToExamQ">
+          <End Role="CourseExamQuestion" Type="Self.CourseExamQuestion" Multiplicity="1" />
+          <End Role="CourseExamEval" Type="Self.CourseExamEval" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CourseExamQuestion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CourseExamEval">
+              <PropertyRef Name="QID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CourseExamQ">
           <End Role="CourseExam" Type="Self.CourseExam" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -1106,45 +1120,31 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PIAsessment_ToExamQ">
-          <End Role="CourseExamQuestion" Type="Self.CourseExamQuestion" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+        <Association Name="FK_PIAssessment_ToCC">
+          <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+          <End Role="PIAssessment" Type="Self.PIAssessment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CourseCoordinator">
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
+            </Principal>
+            <Dependent Role="PIAssessment">
+              <PropertyRef Name="CourseID" />
+              <PropertyRef Name="Year" />
+              <PropertyRef Name="Semseter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PIAssessment_ToQ">
+          <End Role="CourseExamQuestion" Type="Self.CourseExamQuestion" Multiplicity="1" />
           <End Role="PIAssessment" Type="Self.PIAssessment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourseExamQuestion">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="PIAssessment">
-              <PropertyRef Name="WhereItWasTakenFrom" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PIAssessment_toEnroledStudents">
-          <End Role="EnroledStudents" Type="Self.EnroledStudents" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="PIAssessment" Type="Self.PIAssessment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EnroledStudents">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="PIAssessment">
-              <PropertyRef Name="EnrollmentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PIAssessment_ToPI">
-          <End Role="PI" Type="Self.PI" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="PIAssessment" Type="Self.PIAssessment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PI">
-              <PropertyRef Name="PIUniqueID" />
-            </Principal>
-            <Dependent Role="PIAssessment">
-              <PropertyRef Name="PI" />
+              <PropertyRef Name="QustionID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1503,6 +1503,10 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <End Role="EnroledStudents" EntitySet="EnroledStudents" />
             <End Role="CourseExamEval" EntitySet="CourseExamEval" />
           </AssociationSet>
+          <AssociationSet Name="FK_CourseExamEval_ToExamQ" Association="Self.FK_CourseExamEval_ToExamQ">
+            <End Role="CourseExamQuestion" EntitySet="CourseExamQuestion" />
+            <End Role="CourseExamEval" EntitySet="CourseExamEval" />
+          </AssociationSet>
           <AssociationSet Name="FK_CourseExamQ" Association="Self.FK_CourseExamQ">
             <End Role="CourseExam" EntitySet="CourseExam" />
             <End Role="CourseExamQuestion" EntitySet="CourseExamQuestion" />
@@ -1583,16 +1587,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <End Role="Department" EntitySet="Department" />
             <End Role="PEO" EntitySet="PEO" />
           </AssociationSet>
-          <AssociationSet Name="FK_PIAsessment_ToExamQ" Association="Self.FK_PIAsessment_ToExamQ">
+          <AssociationSet Name="FK_PIAssessment_ToCC" Association="Self.FK_PIAssessment_ToCC">
+            <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+            <End Role="PIAssessment" EntitySet="PIAssessment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PIAssessment_ToQ" Association="Self.FK_PIAssessment_ToQ">
             <End Role="CourseExamQuestion" EntitySet="CourseExamQuestion" />
-            <End Role="PIAssessment" EntitySet="PIAssessment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PIAssessment_toEnroledStudents" Association="Self.FK_PIAssessment_toEnroledStudents">
-            <End Role="EnroledStudents" EntitySet="EnroledStudents" />
-            <End Role="PIAssessment" EntitySet="PIAssessment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PIAssessment_ToPI" Association="Self.FK_PIAssessment_ToPI">
-            <End Role="PI" EntitySet="PI" />
             <End Role="PIAssessment" EntitySet="PIAssessment" />
           </AssociationSet>
           <AssociationSet Name="FK_Question_IP_ToEQ" Association="Self.FK_Question_IP_ToEQ">
@@ -1690,7 +1690,6 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <EntitySet Name="OtherLecturers" EntityType="Model.OtherLecturer" />
           <EntitySet Name="PEOs" EntityType="Model.PEO" />
           <EntitySet Name="PIs" EntityType="Model.PI" />
-          <EntitySet Name="PIAssessments" EntityType="Model.PIAssessment" />
           <EntitySet Name="ResultOfCourseDirectAssessments" EntityType="Model.ResultOfCourseDirectAssessment" />
           <EntitySet Name="schedules" EntityType="Model.schedule" />
           <EntitySet Name="SLOes" EntityType="Model.SLO" />
@@ -1828,9 +1827,9 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <End Role="EnroledStudent" EntitySet="EnroledStudents" />
             <End Role="CourseExamEval" EntitySet="CourseExamEvals" />
           </AssociationSet>
-          <AssociationSet Name="FK_PIAsessment_ToExamQ" Association="Model.FK_PIAsessment_ToExamQ">
+          <AssociationSet Name="FK_CourseExamEval_ToExamQ" Association="Model.FK_CourseExamEval_ToExamQ">
             <End Role="CourseExamQuestion" EntitySet="CourseExamQuestions" />
-            <End Role="PIAssessment" EntitySet="PIAssessments" />
+            <End Role="CourseExamEval" EntitySet="CourseExamEvals" />
           </AssociationSet>
           <AssociationSet Name="FK_Department_Faculty" Association="Model.FK_Department_Faculty">
             <End Role="Faculty" EntitySet="Faculties" />
@@ -1860,10 +1859,6 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <End Role="Student" EntitySet="Students" />
             <End Role="EnroledStudent" EntitySet="EnroledStudents" />
           </AssociationSet>
-          <AssociationSet Name="FK_PIAssessment_toEnroledStudents" Association="Model.FK_PIAssessment_toEnroledStudents">
-            <End Role="EnroledStudent" EntitySet="EnroledStudents" />
-            <End Role="PIAssessment" EntitySet="PIAssessments" />
-          </AssociationSet>
           <AssociationSet Name="FK_Fac_ViceDean_ToLecturer" Association="Model.FK_Fac_ViceDean_ToLecturer">
             <End Role="Lecturer" EntitySet="Lecturers" />
             <End Role="Faculty" EntitySet="Faculties" />
@@ -1875,10 +1870,6 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <AssociationSet Name="FK_SLO_PEO_ToPEO" Association="Model.FK_SLO_PEO_ToPEO">
             <End Role="PEO" EntitySet="PEOs" />
             <End Role="SLO_PEO" EntitySet="SLO_PEO" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PIAssessment_ToPI" Association="Model.FK_PIAssessment_ToPI">
-            <End Role="PI" EntitySet="PIs" />
-            <End Role="PIAssessment" EntitySet="PIAssessments" />
           </AssociationSet>
           <AssociationSet Name="PI_ToSLO" Association="Model.PI_ToSLO">
             <End Role="SLO" EntitySet="SLOes" />
@@ -1899,6 +1890,10 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <AssociationSet Name="CLO_PI" Association="Model.CLO_PI">
             <End Role="CLO" EntitySet="CLOes" />
             <End Role="PI" EntitySet="PIs" />
+          </AssociationSet>
+          <AssociationSet Name="PIAssessment" Association="Model.PIAssessment">
+            <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+            <End Role="CourseExamQuestion" EntitySet="CourseExamQuestions" />
           </AssociationSet>
           <AssociationSet Name="Question_IP" Association="Model.Question_IP">
             <End Role="CourseExamQuestion" EntitySet="CourseExamQuestions" />
@@ -2084,6 +2079,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <NavigationProperty Name="OtherLecturers" Relationship="Model.FK_OtherLecturers_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="OtherLecturer" />
           <NavigationProperty Name="ResultOfCourseDirectAssessment" Relationship="Model.FK_ResultOfCourseDirectAssessment_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="ResultOfCourseDirectAssessment" />
           <NavigationProperty Name="schedules" Relationship="Model.FK_schedule_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="schedule" />
+          <NavigationProperty Name="CourseExamQuestions" Relationship="Model.PIAssessment" FromRole="CourseCoordinator" ToRole="CourseExamQuestion" />
         </EntityType>
         <EntityType Name="CourseExam">
           <Key>
@@ -2106,13 +2102,14 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
         </EntityType>
         <EntityType Name="CourseExamEval">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="QID" />
             <PropertyRef Name="StudentID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="QID" Type="Int32" Nullable="false" />
           <Property Name="StudentID" Type="Int32" Nullable="false" />
           <Property Name="Mark" Type="Single" Nullable="false" />
           <NavigationProperty Name="EnroledStudent" Relationship="Model.FK_CourseExamEV" FromRole="CourseExamEval" ToRole="EnroledStudent" />
+          <NavigationProperty Name="CourseExamQuestion" Relationship="Model.FK_CourseExamEval_ToExamQ" FromRole="CourseExamEval" ToRole="CourseExamQuestion" />
         </EntityType>
         <EntityType Name="CourseExamQuestion">
           <Key>
@@ -2124,7 +2121,8 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <Property Name="Question" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Weight" Type="Single" Nullable="false" />
           <NavigationProperty Name="CourseExam" Relationship="Model.FK_CourseExamQ" FromRole="CourseExamQuestion" ToRole="CourseExam" />
-          <NavigationProperty Name="PIAssessments" Relationship="Model.FK_PIAsessment_ToExamQ" FromRole="CourseExamQuestion" ToRole="PIAssessment" />
+          <NavigationProperty Name="CourseExamEvals" Relationship="Model.FK_CourseExamEval_ToExamQ" FromRole="CourseExamQuestion" ToRole="CourseExamEval" />
+          <NavigationProperty Name="CourseCoordinators" Relationship="Model.PIAssessment" FromRole="CourseExamQuestion" ToRole="CourseCoordinator" />
           <NavigationProperty Name="PIs" Relationship="Model.Question_IP" FromRole="CourseExamQuestion" ToRole="PI" />
         </EntityType>
         <EntityType Name="CourseFileCheckList">
@@ -2242,7 +2240,6 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <NavigationProperty Name="CourseCoordinator" Relationship="Model.FK_EnroledStudents_CourseCoordinator" FromRole="EnroledStudent" ToRole="CourseCoordinator" />
           <NavigationProperty Name="CourseExamEvals" Relationship="Model.FK_CourseExamEV" FromRole="EnroledStudent" ToRole="CourseExamEval" />
           <NavigationProperty Name="Student" Relationship="Model.FK_EnroledStudents_ToStudetn" FromRole="EnroledStudent" ToRole="Student" />
-          <NavigationProperty Name="PIAssessments" Relationship="Model.FK_PIAssessment_toEnroledStudents" FromRole="EnroledStudent" ToRole="PIAssessment" />
         </EntityType>
         <EntityType Name="Faculty">
           <Key>
@@ -2361,23 +2358,9 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <Property Name="SLOID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="DeptID" Type="Int32" Nullable="false" />
           <Property Name="PIUniqueID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="PIAssessments" Relationship="Model.FK_PIAssessment_ToPI" FromRole="PI" ToRole="PIAssessment" />
           <NavigationProperty Name="SLO" Relationship="Model.PI_ToSLO" FromRole="PI" ToRole="SLO" />
           <NavigationProperty Name="CLOes" Relationship="Model.CLO_PI" FromRole="PI" ToRole="CLO" />
           <NavigationProperty Name="CourseExamQuestions" Relationship="Model.Question_IP" FromRole="PI" ToRole="CourseExamQuestion" />
-        </EntityType>
-        <EntityType Name="PIAssessment">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EnrollmentID" Type="Int32" Nullable="false" />
-          <Property Name="PI" Type="Int32" Nullable="false" />
-          <Property Name="WhereItWasTakenFrom" Type="Int32" Nullable="false" />
-          <Property Name="mark" Type="Single" />
-          <NavigationProperty Name="CourseExamQuestion" Relationship="Model.FK_PIAsessment_ToExamQ" FromRole="PIAssessment" ToRole="CourseExamQuestion" />
-          <NavigationProperty Name="EnroledStudent" Relationship="Model.FK_PIAssessment_toEnroledStudents" FromRole="PIAssessment" ToRole="EnroledStudent" />
-          <NavigationProperty Name="PI1" Relationship="Model.FK_PIAssessment_ToPI" FromRole="PIAssessment" ToRole="PI" />
         </EntityType>
         <EntityType Name="ResultOfCourseDirectAssessment">
           <Key>
@@ -2988,17 +2971,15 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PIAsessment_ToExamQ">
-          <End Type="Model.CourseExamQuestion" Role="CourseExamQuestion" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="Model.PIAssessment" Role="PIAssessment" Multiplicity="*" />
+        <Association Name="FK_CourseExamEval_ToExamQ">
+          <End Type="Model.CourseExamQuestion" Role="CourseExamQuestion" Multiplicity="1" />
+          <End Type="Model.CourseExamEval" Role="CourseExamEval" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourseExamQuestion">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="PIAssessment">
-              <PropertyRef Name="WhereItWasTakenFrom" />
+            <Dependent Role="CourseExamEval">
+              <PropertyRef Name="QID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3094,20 +3075,6 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PIAssessment_toEnroledStudents">
-          <End Type="Model.EnroledStudent" Role="EnroledStudent" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="Model.PIAssessment" Role="PIAssessment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EnroledStudent">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="PIAssessment">
-              <PropertyRef Name="EnrollmentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Fac_ViceDean_ToLecturer">
           <End Type="Model.Lecturer" Role="Lecturer" Multiplicity="0..1" />
           <End Type="Model.Faculty" Role="Faculty" Multiplicity="*" />
@@ -3147,20 +3114,6 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Dependent Role="SLO_PEO">
               <PropertyRef Name="PEOID" />
               <PropertyRef Name="DeptID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PIAssessment_ToPI">
-          <End Type="Model.PI" Role="PI" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="Model.PIAssessment" Role="PIAssessment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PI">
-              <PropertyRef Name="PIUniqueID" />
-            </Principal>
-            <Dependent Role="PIAssessment">
-              <PropertyRef Name="PI" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3227,6 +3180,10 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
         <Association Name="CLO_PI">
           <End Type="Model.CLO" Role="CLO" Multiplicity="*" />
           <End Type="Model.PI" Role="PI" Multiplicity="*" />
+        </Association>
+        <Association Name="PIAssessment">
+          <End Type="Model.CourseCoordinator" Role="CourseCoordinator" Multiplicity="*" />
+          <End Type="Model.CourseExamQuestion" Role="CourseExamQuestion" Multiplicity="*" />
         </Association>
         <Association Name="Question_IP">
           <End Type="Model.CourseExamQuestion" Role="CourseExamQuestion" Multiplicity="*" />
@@ -3391,7 +3348,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
               <MappingFragment StoreEntitySet="CourseExamEval">
                 <ScalarProperty Name="Mark" ColumnName="Mark" />
                 <ScalarProperty Name="StudentID" ColumnName="StudentID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="QID" ColumnName="QID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3603,17 +3560,6 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PIAssessments">
-            <EntityTypeMapping TypeName="Model.PIAssessment">
-              <MappingFragment StoreEntitySet="PIAssessment">
-                <ScalarProperty Name="mark" ColumnName="mark" />
-                <ScalarProperty Name="WhereItWasTakenFrom" ColumnName="WhereItWasTakenFrom" />
-                <ScalarProperty Name="PI" ColumnName="PI" />
-                <ScalarProperty Name="EnrollmentID" ColumnName="EnrollmentID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ResultOfCourseDirectAssessments">
             <EntityTypeMapping TypeName="Model.ResultOfCourseDirectAssessment">
               <MappingFragment StoreEntitySet="ResultOfCourseDirectAssessment">
@@ -3711,6 +3657,16 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             </EndProperty>
             <EndProperty Name="CLO">
               <ScalarProperty Name="ID" ColumnName="CLOID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="PIAssessment" TypeName="Model.PIAssessment" StoreEntitySet="PIAssessment">
+            <EndProperty Name="CourseExamQuestion">
+              <ScalarProperty Name="ID" ColumnName="QustionID" />
+            </EndProperty>
+            <EndProperty Name="CourseCoordinator">
+              <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+              <ScalarProperty Name="Year" ColumnName="Year" />
+              <ScalarProperty Name="CourseID" ColumnName="CourseID" />
             </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="Question_IP" TypeName="Model.Question_IP" StoreEntitySet="Question_IP">

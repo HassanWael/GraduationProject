@@ -5,44 +5,43 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="cdbc6dfdf77e476992735f8484709bf8" Name="Diagram1" ZoomLevel="84">
-        <EntityTypeShape EntityType="Model.ActionsForImprovingTheCourse" Width="1.5" PointX="5.25" PointY="53.25" />
-        <EntityTypeShape EntityType="Model.AssessmentPlanforTheStudentLearningOutcomeTechnique" Width="1.5" PointX="5.25" PointY="56.5" />
-        <EntityTypeShape EntityType="Model.AssessmentSurveyAnswer" Width="1.5" PointX="7.5" PointY="43.375" />
-        <EntityTypeShape EntityType="Model.byCompletingThisCourseStudentsAreAbleTo" Width="1.5" PointX="5.25" PointY="32.625" />
-        <EntityTypeShape EntityType="Model.CLO" Width="1.5" PointX="7.5" PointY="15.125" />
-        <EntityTypeShape EntityType="Model.Course" Width="1.5" PointX="0.75" PointY="30.875" />
-        <EntityTypeShape EntityType="Model.CourseAssessmentMapping" Width="1.5" PointX="5.25" PointY="35.75" />
-        <EntityTypeShape EntityType="Model.CourseAssessmentSurvay" Width="1.5" PointX="5.25" PointY="42.75" />
-        <EntityTypeShape EntityType="Model.CourseCoordinator" Width="1.5" PointX="3" PointY="34" />
-        <EntityTypeShape EntityType="Model.CourseExam" Width="1.5" PointX="5.25" PointY="23.25" />
-        <EntityTypeShape EntityType="Model.CourseExamEval" Width="1.5" PointX="10.5" PointY="36.375" />
-        <EntityTypeShape EntityType="Model.CourseExamQuestion" Width="1.5" PointX="7.5" PointY="25.5" />
-        <EntityTypeShape EntityType="Model.CourseFileCheckList" Width="1.5" PointX="5.25" PointY="61.625" />
-        <EntityTypeShape EntityType="Model.CourseInformationForm" Width="1.5" PointX="5.25" PointY="18.875" />
-        <EntityTypeShape EntityType="Model.CourseReport" Width="1.5" PointX="5.25" PointY="50" />
-        <EntityTypeShape EntityType="Model.CourseSyllabu" Width="1.5" PointX="5.25" PointY="73.625" />
-        <EntityTypeShape EntityType="Model.CourseTeachingStrategy" Width="1.5" PointX="5.25" PointY="67.625" />
-        <EntityTypeShape EntityType="Model.CourseTextBook" Width="1.5" PointX="3" PointY="42.125" />
-        <EntityTypeShape EntityType="Model.Department" Width="1.5" PointX="1.5" PointY="26.625" />
-        <EntityTypeShape EntityType="Model.EnroledStudent" Width="1.5" PointX="8.25" PointY="35.875" />
-        <EntityTypeShape EntityType="Model.Faculty" Width="1.5" PointX="1.5" PointY="22" />
-        <EntityTypeShape EntityType="Model.ineffectiveAssessmentStrategi" Width="1.5" PointX="5.25" PointY="64.875" />
-        <EntityTypeShape EntityType="Model.ineffectiveTeachingStrategi" Width="1.5" PointX="5.25" PointY="16.125" />
-        <EntityTypeShape EntityType="Model.isAssessed" Width="1.5" PointX="5.25" PointY="13.125" />
-        <EntityTypeShape EntityType="Model.Lecturer" Width="1.5" PointX="1.5" PointY="17.625" />
-        <EntityTypeShape EntityType="Model.ModerationChecklist" Width="1.5" PointX="7.5" PointY="22.125" />
-        <EntityTypeShape EntityType="Model.OtherLecturer" Width="1.5" PointX="10.25" PointY="40" />
-        <EntityTypeShape EntityType="Model.PEO" Width="1.5" PointX="3.75" PointY="27.75" />
-        <EntityTypeShape EntityType="Model.PI" Width="1.5" PointX="9.75" PointY="25.375" />
-        <EntityTypeShape EntityType="Model.PIAssessment" Width="1.5" PointX="12" PointY="25.5" />
-        <EntityTypeShape EntityType="Model.ResultOfCourseDirectAssessment" Width="1.5" PointX="5.25" PointY="70.375" />
-        <EntityTypeShape EntityType="Model.schedule" Width="1.5" PointX="8.25" PointY="32" />
-        <EntityTypeShape EntityType="Model.SLO" Width="1.5" PointX="7.5" PointY="19" />
-        <EntityTypeShape EntityType="Model.SLO_PEO" Width="1.5" PointX="9.75" PointY="22.375" />
-        <EntityTypeShape EntityType="Model.Student" Width="1.5" PointX="6" PointY="29.25" />
-        <EntityTypeShape EntityType="Model.Student_PI_Outcome" Width="1.5" PointX="10.25" PointY="15.25" />
+        <EntityTypeShape EntityType="Model.ActionsForImprovingTheCourse" Width="1.5" PointX="5.25" PointY="56.25" />
+        <EntityTypeShape EntityType="Model.AssessmentPlanforTheStudentLearningOutcomeTechnique" Width="1.5" PointX="5.25" PointY="47.75" />
+        <EntityTypeShape EntityType="Model.AssessmentSurveyAnswer" Width="1.5" PointX="7.5" PointY="20.125" />
+        <EntityTypeShape EntityType="Model.byCompletingThisCourseStudentsAreAbleTo" Width="1.5" PointX="5.25" PointY="37.875" />
+        <EntityTypeShape EntityType="Model.CLO" Width="1.5" PointX="10.5" PointY="42.125" />
+        <EntityTypeShape EntityType="Model.Course" Width="1.5" PointX="0.75" PointY="30.375" />
+        <EntityTypeShape EntityType="Model.CourseAssessmentMapping" Width="1.5" PointX="8.25" PointY="38.25" />
+        <EntityTypeShape EntityType="Model.CourseAssessmentSurvay" Width="1.5" PointX="5.25" PointY="19.625" />
+        <EntityTypeShape EntityType="Model.CourseCoordinator" Width="1.5" PointX="3" PointY="33.375" />
+        <EntityTypeShape EntityType="Model.CourseExam" Width="1.5" PointX="5.25" PointY="33.375" />
+        <EntityTypeShape EntityType="Model.CourseExamEval" Width="1.5" PointX="13.75" PointY="32.25" />
+        <EntityTypeShape EntityType="Model.CourseExamQuestion" Width="1.5" PointX="10.5" PointY="35.375" />
+        <EntityTypeShape EntityType="Model.CourseFileCheckList" Width="1.5" PointX="5.25" PointY="23.25" />
+        <EntityTypeShape EntityType="Model.CourseInformationForm" Width="1.5" PointX="5.25" PointY="65.625" />
+        <EntityTypeShape EntityType="Model.CourseReport" Width="1.5" PointX="5.25" PointY="69" />
+        <EntityTypeShape EntityType="Model.CourseSyllabu" Width="1.5" PointX="5.25" PointY="13.75" />
+        <EntityTypeShape EntityType="Model.CourseTeachingStrategy" Width="1.5" PointX="5.25" PointY="72.25" />
+        <EntityTypeShape EntityType="Model.CourseTextBook" Width="1.5" PointX="3" PointY="41.625" />
+        <EntityTypeShape EntityType="Model.Department" Width="1.5" PointX="1.5" PointY="26.125" />
+        <EntityTypeShape EntityType="Model.EnroledStudent" Width="1.5" PointX="8.25" PointY="30.375" />
+        <EntityTypeShape EntityType="Model.Faculty" Width="1.5" PointX="1.5" PointY="21.5" />
+        <EntityTypeShape EntityType="Model.ineffectiveAssessmentStrategi" Width="1.5" PointX="5.25" PointY="59.625" />
+        <EntityTypeShape EntityType="Model.ineffectiveTeachingStrategi" Width="1.5" PointX="5.25" PointY="16.875" />
+        <EntityTypeShape EntityType="Model.isAssessed" Width="1.5" PointX="5.25" PointY="26.625" />
+        <EntityTypeShape EntityType="Model.Lecturer" Width="1.5" PointX="1.5" PointY="17.125" />
+        <EntityTypeShape EntityType="Model.ModerationChecklist" Width="1.5" PointX="7.5" PointY="34" />
+        <EntityTypeShape EntityType="Model.OtherLecturer" Width="1.5" PointX="11.25" PointY="31.375" />
+        <EntityTypeShape EntityType="Model.PEO" Width="1.5" PointX="3.75" PointY="30.25" />
+        <EntityTypeShape EntityType="Model.PI" Width="1.5" PointX="12.75" PointY="35.5" />
+        <EntityTypeShape EntityType="Model.ResultOfCourseDirectAssessment" Width="1.5" PointX="5.25" PointY="62.375" />
+        <EntityTypeShape EntityType="Model.schedule" Width="1.5" PointX="5.25" PointY="41.375" />
+        <EntityTypeShape EntityType="Model.SLO" Width="1.5" PointX="10.5" PointY="39" />
+        <EntityTypeShape EntityType="Model.SLO_PEO" Width="1.5" PointX="15.75" PointY="35.875" />
+        <EntityTypeShape EntityType="Model.Student" Width="1.5" PointX="6" PointY="29.75" />
+        <EntityTypeShape EntityType="Model.Student_PI_Outcome" Width="1.5" PointX="8.25" PointY="15.5" />
         <EntityTypeShape EntityType="Model.TeachingAndLearningStrategiesTechnique" Width="1.5" PointX="0.75" PointY="1.25" />
-        <EntityTypeShape EntityType="Model.YearAndSemester" Width="1.5" PointX="0.75" PointY="36.5" />
+        <EntityTypeShape EntityType="Model.YearAndSemester" Width="1.5" PointX="0.75" PointY="36" />
         <EntityTypeShape EntityType="Model.database_firewall_rules" Width="1.5" PointX="2.75" PointY="0.75" />
         <AssociationConnector Association="Model.FK_ActionsForImprovingTheCourse_ToCourseCoordinator" />
         <AssociationConnector Association="Model.FK_AP_toCC" />
@@ -76,7 +75,7 @@
         <AssociationConnector Association="Model.FK_CourseExamQ" />
         <AssociationConnector Association="Model.FK_ModerationChecklist_ToCourseCoordinator" />
         <AssociationConnector Association="Model.FK_CourseExamEV" />
-        <AssociationConnector Association="Model.FK_PIAsessment_ToExamQ" />
+        <AssociationConnector Association="Model.FK_CourseExamEval_ToExamQ" />
         <AssociationConnector Association="Model.FK_Department_Faculty" />
         <AssociationConnector Association="Model.FK_DPT_ToLecturer" />
         <AssociationConnector Association="Model.FK_Lecturers_ToDpt" />
@@ -84,16 +83,15 @@
         <AssociationConnector Association="Model.FK_SLO_Dept" />
         <AssociationConnector Association="Model.FK_Student_departement" />
         <AssociationConnector Association="Model.FK_EnroledStudents_ToStudetn" />
-        <AssociationConnector Association="Model.FK_PIAssessment_toEnroledStudents" />
         <AssociationConnector Association="Model.FK_Fac_ViceDean_ToLecturer" />
         <AssociationConnector Association="Model.FK_OtherLecturers_ToLecturer" />
         <AssociationConnector Association="Model.FK_SLO_PEO_ToPEO" />
-        <AssociationConnector Association="Model.FK_PIAssessment_ToPI" />
         <AssociationConnector Association="Model.PI_ToSLO" />
         <AssociationConnector Association="Model.FK_SLO_PEO_ToSLO" />
         <AssociationConnector Association="Model.FK_Student_PI_Outcome_ToStudents" />
         <AssociationConnector Association="Model.FK_Student_PI_Outcome_ToTeachingAndLearningStrategiesTechnique" />
         <AssociationConnector Association="Model.CLO_PI" />
+        <AssociationConnector Association="Model.PIAssessment" />
         <AssociationConnector Association="Model.Question_IP" />
         <AssociationConnector Association="Model.Schedule_CLO" />
         <AssociationConnector Association="Model.SLO_Course" />

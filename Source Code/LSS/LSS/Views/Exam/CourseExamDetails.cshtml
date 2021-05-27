@@ -10,109 +10,88 @@
 <div>
     <h4>CourseExam</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Moderator)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Moderator)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ExamWeight)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ExamWeight)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ExamDurationTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ExamDurationTime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ModerationDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ModerationDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ExamDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ExamDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AdditionalComments)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AdditionalComments)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CourseCoordinator.ClassRoom)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CourseCoordinator.ClassRoom)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ModerationChecklist.CourseID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ModerationChecklist.CourseID)
-        </dd>
-
-    </dl>
-</div>
-@Model.CourseExamQuestions
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayName("QuestionNumber")
-        </th>
-        <th>
-            @Html.DisplayName("Question")
-        </th>
-        <th>
-            @Html.DisplayName("Weight")
-        </th>
-    </tr>
-
-
-    @foreach (var item in Model.CourseExamQuestions)
-    {
+    <table class="dl-horizontal">
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.QuestionNumber)
+                @Html.DisplayNameFor(model => model.Type)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Question)
+                @Html.DisplayFor(model => model.Type)
             </td>
+
+        </tr>
+        <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Weight)
+                @Html.DisplayNameFor(model => model.Moderator)
             </td>
-            </tr>
-    }
+
+            <td>
+                @Html.DisplayFor(model => model.Moderator)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.ExamWeight)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.ExamWeight)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.ExamDurationTime)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.ExamDurationTime)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.ModerationDate)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.ModerationDate)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.ExamDate)
+
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.ExamDate)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.AdditionalComments)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.AdditionalComments)
+            </td>
+        </tr>
+        <tr>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.ModerationChecklist.CourseID)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => model.ModerationChecklist.CourseID)
+            </td>
+        </tr>
     </table>
+</div>
+
+<p>
+    @Html.ActionLink("Add Qustions", "CreateQustion",new { ExamID=Model.ID })
+</p>
+
+ 
+   @Html.Partial("ListExamQustions", Model.CourseExamQuestions )
