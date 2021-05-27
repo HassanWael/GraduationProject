@@ -35,7 +35,22 @@ namespace LSS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateCourseExam(CourseExam courseExam)
         {
+            int sum = 0;
+            List<int> weight = _DatabaseEntities.CourseExams.Where(x => x.CourseID.Equals(courseExam.CourseID) && x.Year.Equals(courseExam.Year) && x.Semseter.Equals(courseExam.Semseter)).Select(x => x.ExamWeight).ToList();
+            foreach (int num in weight) {
+                sum += num;
+
+            }
+            if (courseExam.ExamWeight > (100 - sum)) {
+
+                ModelState.AddModelError("ExamWeight", "The Total of  Exam Weight can't be more than 100");
+            } else if (courseExam.ExamWeight <= 0)
+            {
+
+                ModelState.AddModelError("ExamWeight", " Exam Weight can't be less or equal than 0");
+            }
             
+
             if (ModelState.IsValid&& courseExam != null)
             {
                 try
@@ -95,25 +110,49 @@ namespace LSS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateQustion(QustionsVM Model, int[]? PI_ID)
         {
+            CourseExamQuestion qustion = Model.Question;
+            CourseExam exam = _DatabaseEntities.CourseExams.Find(qustion.ExamID);
+            Model.CourseExam = exam;
+            int sum = 0;
+            List<float> weight = _DatabaseEntities.CourseExamQuestions.Where(x => x.ExamID.Equals(qustion.ExamID)).Select(x => x.Weight).ToList();
+            foreach (int num in weight)
+            {
+                sum += num;
+
+            }
+            if (qustion.Weight > (exam.ExamWeight - sum))
+            {
+
+                ModelState.AddModelError("ExamWeight", "The Total of  Exam Weight can't be more than 100");
+            }
+            else if (qustion.Weight <= 0)
+            {
+
+                ModelState.AddModelError("ExamWeight", " Exam Weight can't be less or equal than 0");
+            }
+
             if (ModelState.IsValid)
             {
                 try
                 {
 
-                    CourseExamQuestion qustion = Model.Question; 
+                  
                     _DatabaseEntities.CourseExamQuestions.Add(qustion); //error Here 
                     _DatabaseEntities.SaveChanges();
 
-                    foreach(int id in PI_ID)
+                    if (PI_ID != null)
                     {
-                        PI pi = _DatabaseEntities.PIs.Find(id);
-                        if(!qustion.PIs.Contains(pi))
-                            qustion.PIs.Add(pi); 
+
+                        foreach (int id in PI_ID)
+                        {
+                            PI pi = _DatabaseEntities.PIs.Find(id);
+                            if (!qustion.PIs.Contains(pi))
+                                qustion.PIs.Add(pi);
+                        }
+                        _DatabaseEntities.Entry(qustion).State = System.Data.Entity.EntityState.Modified;
+                        _DatabaseEntities.SaveChanges();
+
                     }
-                    _DatabaseEntities.Entry(qustion).State = System.Data.Entity.EntityState.Modified;
-                    _DatabaseEntities.SaveChanges();
-
-
 
                     return RedirectToAction("CourseExamDetails", "Exam", new { ExamID = qustion.ExamID });
 
@@ -121,13 +160,13 @@ namespace LSS.Controllers
                 catch (Exception e )
                 {
                     ModelState.AddModelError("","Error has Acoured Please contact Support \n error Message " + e.Message);
-                    return View();
+                    return View(Model);
                 }
 
             }
             else
             {
-                return View();
+                return View(Model);
             }         
         }
 
