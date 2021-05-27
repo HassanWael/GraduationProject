@@ -109,13 +109,6 @@ namespace LSS.Controllers
             return RedirectToAction("CourseStudentList", new { CourseID, updateMassege, Year, Semseter });
         }
 
-        //            public string StudentID { get; set; }
-        //public string CourseID { get; set; }
-        //public System.DateTime Year { get; set; }
-        //public string Semseter { get; set; }
-        //public Nullable<int> FinalGrade { get; set; }
-
-
         public ActionResult UploadGrades(FormCollection formCollection, string CourseID, DateTime Year, string Semseter)
         {
             int failedToAddGraddeTo = 0; 

@@ -515,8 +515,6 @@ C:\Users\hassa\OneDrive\Documents\GitHub\GraduationProject\Source Code\LSS\LSS\b
 C:\Users\hassa\OneDrive\Documents\GitHub\GraduationProject\Source Code\LSS\LSS\bin\EPPlus.xml
 C:\Users\hassa\OneDrive\Documents\GitHub\GraduationProject\Source Code\LSS\LSS\bin\PagedList.xml
 C:\Users\hassa\OneDrive\Documents\GitHub\GraduationProject\Source Code\LSS\LSS\bin\PagedList.Mvc.xml
-<<<<<<< HEAD
-=======
 C:\Users\hassa\OneDrive\Documents\GitHub\GraduationProject\Source Code\LSS\LSS\bin\Microsoft.AspNetCore.Cryptography.Internal.dll
 C:\Users\hassa\OneDrive\Documents\GitHub\GraduationProject\Source Code\LSS\LSS\bin\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 C:\Users\hassa\OneDrive\Documents\GitHub\GraduationProject\Source Code\LSS\LSS\bin\Microsoft.Extensions.Caching.Abstractions.dll
@@ -581,4 +579,3 @@ C:\Users\Bashzilla\source\repos\GraduationProject\Source Code\LSS\LSS\bin\System
 C:\Users\Bashzilla\source\repos\GraduationProject\Source Code\LSS\LSS\bin\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\Bashzilla\source\repos\GraduationProject\Source Code\LSS\LSS\bin\System.Threading.Tasks.Extensions.xml
 C:\Users\Bashzilla\source\repos\GraduationProject\Source Code\LSS\LSS\bin\System.ValueTuple.xml
->>>>>>> Khouri

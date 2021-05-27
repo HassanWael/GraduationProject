@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -183,7 +184,7 @@ namespace LSS.Controllers
             {
                 ModelState.AddModelError(e.Message, "an error has accoured please try again later ");
                 Console.WriteLine("Error at line 123 Course Coordinator");
-                return View("Index","LogedIn");
+                return View("Index", "LogedIn");
             }
             return RedirectToAction("CouresPage", "CourseCoordinator", isAssessed.CourseID);
         }
@@ -227,28 +228,6 @@ namespace LSS.Controllers
             }
             return RedirectToAction("CouresPage", new { courseID = A.CourseID });
 
-                a.Assignment = A.Assignment;
-
-                a.project = A.project;
-
-                a.Written_Report = A.Written_Report;
-
-                a.Oral_Presenation = A.Oral_Presenation;
-
-                a.Practice_In_The_Lab = A.Practice_In_The_Lab;
-
-                a.Case_Studdy = A.Case_Studdy;
-
-                a.Gropu_Discussions = A.Gropu_Discussions;
-
-                a.Students_Interviews = A.Students_Interviews;
-
-                a.Other = A.Other;
-
-                _DatabaseEntities.Entry(a).State = EntityState.Modified;
-                _DatabaseEntities.SaveChanges();
-            }
-            return RedirectToAction("CouresPage", new { courseID = A.CourseID });
         }
 
 
@@ -350,6 +329,57 @@ namespace LSS.Controllers
                 return RedirectToAction("CoursePage", courseTextBook.Course);
             return RedirectToAction("Index", "LogedIn");
         }
+
+
+
+        public ActionResult DirectAssessmentPI(string? CourseID, DateTime? Year, string? Semester)
+        {
+            if (CourseID == null || Year == null || Semester == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            }
+            PIAssessmentMV assessment = new PIAssessmentMV
+            {
+                CourseCoordinator = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester)
+            };
+            if (assessment == null)
+            {
+                return HttpNotFound();
+            }
+            return View(assessment);
+        }
+
+
+        public ActionResult DirectAssessmentPI(PIAssessmentMV? pIAssessment, List<int> QID)
+        {
+            CourseCoordinator cc = pIAssessment.CourseCoordinator;
+            List<int> everyCourseQ = pIAssessment.AllQustions;
+
+
+            if (ModelState.IsValid)
+            {
+                if (QID != null)
+                {
+
+                }
+            }
+
+            return View();
+        }
+
+
+
+
+
+
+        public ActionResult DirectAssessment(string? CourseID, DateTime? Year, string? Semester)
+        {
+            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester);
+
+            return View(cc);
+        }
     }
+    
 
 }
