@@ -480,14 +480,6 @@ namespace LSS.Controllers
             string updateMassege = (added + " new student added /n  " + edited + " student info changed");
             return RedirectToAction("ListStudents", "Admin", new { updateMassege = updateMassege });
         }
-        public ActionResult Delete(String id)
-        {
-            
-            Student st = _DatabaseEntities.Students.Single(x=>x.ID==id);
-            _DatabaseEntities.Students.Remove(st);
-            _DatabaseEntities.SaveChanges();
-            return RedirectToAction("ListStudents");
-        }
     }
 }
 
