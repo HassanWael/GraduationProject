@@ -49,7 +49,6 @@ namespace LSS.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult AddCourseToSemster(CourseCoordinator cc)
         {
             try

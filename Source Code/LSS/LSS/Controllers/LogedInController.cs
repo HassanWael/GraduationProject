@@ -9,7 +9,6 @@ using System.Web.Mvc;
 
 namespace LSS.Controllers
 {
-    [Authorize]
     public class LogedInController : Controller
     {
        private readonly LSS_databaseEntities _databaseEntities = new LSS_databaseEntities();
@@ -19,9 +18,10 @@ namespace LSS.Controllers
         [Authorize]
         public ActionResult Index()
         {
-
-            String userID = User.Identity.Name;
-          
+            String userID = Session["ID"].ToString();
+            String role = Session["Role"].ToString();
+            String dpts = Session["Dpt"].ToString();
+            int dpt = int.Parse(Session["Dpt"].ToString());
             HomeCourseListViewModel CLVM= new HomeCourseListViewModel(userID);
 
             return View(CLVM);

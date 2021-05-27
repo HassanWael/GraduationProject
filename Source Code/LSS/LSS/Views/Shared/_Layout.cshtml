@@ -6,7 +6,6 @@
     <title>@ViewBag.Title - Muebles Pangal</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    
 </head>
 <body>
     <div class="container">
@@ -29,18 +28,12 @@
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <ul class="navbar-nav mr-auto">
-                      
-                            @if (Request.IsAuthenticated) //@if(User.Identity.IsAuthenticated)
-                            {
-                            <li class="nav-item"><a>Welcome @User.Identity.Name</a></li>
-                            <li class="nav-item">@Html.ActionLink("Logout", "Logout","Home")</li>
-                        }
-                        else
-                        {
-                            <li class="nav-item">@Html.ActionLink("Login", "Login")</li>
-                        }
-
-                        </ul>
+                        <li class="nav-item">
+                         
+                        @Html.ActionLink("Login", "Login")</li>
+                       
+                       
+                   </ul>
                 </form>
             </div>
         </nav>
@@ -53,7 +46,5 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-
 </body>
-
 </html>
