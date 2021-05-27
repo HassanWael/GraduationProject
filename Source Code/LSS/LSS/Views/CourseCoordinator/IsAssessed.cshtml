@@ -59,6 +59,9 @@
                 </tr>
             </tbody>
         </table>
+        <div>
+            @Html.ActionLink("Back to List", "CouresPage", "CourseCoordinator", Model.CourseID)
+        </div>
     </div>
 
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })

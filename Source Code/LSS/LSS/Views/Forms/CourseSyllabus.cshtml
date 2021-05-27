@@ -1,168 +1,129 @@
 ﻿@model LSS.Models.CoursesModelView.CouresReportModelView
 @using LSS.Models
-
-
+<link rel="stylesheet" href="~/Content/FormsStyle.css" />
+@{
+    ViewBag.Title = "CourseSyllabus";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 <header>
-    @{
-        ViewBag.Title = "CourseSyllabus";
-        Layout = "~/Views/Shared/_Layout.cshtml";
-        <link rel="stylesheet" href="~/Content/FormsStyle.css" />
-    }
+
+    <table align="center">
+        <tr>
+            <th>
+                Al-Ahliyya Amman University
+            </th>
+
+            <td>
+                <img src="~/Images/Al-Ahliya_Amman_University_Logo.png" />
+            </td>
+
+            <th>  جامعة عمان الأهلية </th>
+        </tr>
+    </table>
+
+
+    <P align="center"><b> Faculty of Information Technology</b> </P>
+    <hr style="border: 2px solid black" />
 </header>
+<table id="FormName">
+    <tr> <td bgcolor="silver" style="border:1px solid black">  <p align="center"> <b>Course Syllabus</b> </p></tr>
+</table>
+<br />
+<br />
+@Html.ActionLink("Edit", "CouresSyllabusAddData")
+<table class="table" style="border:double">
+    <tr>
+        <th style=" border:1px solid black" bgcolor="silver" colspan="4"> General Information:</th>
+    </tr>
+    <tr>
+        <th style=" border:1px solid black" bgcolor="grey"> Faculty</th>
+        <td style=" border:1px solid black">
+            @Html.DisplayFor(x => x.Department.Faculty.Name)
+        </td>
+        <th style=" border:1px solid black" bgcolor="grey"> Department</th>
+        <td style=" border:1px solid black">@Html.DisplayFor(x => x.Course.Department.Name) </td>
+    </tr>
+    <tr>
+        <th style=" border:1px solid black" bgcolor="grey"> Academic Year </th>
+        <td style=" border:1px solid black">@Html.DisplayFor(x => x.CourseCoordinator.Year.Year) </td>
+        <th style=" border:1px solid black" bgcolor="grey"> Semester </th>
+        <td style=" border:1px solid black">@Html.DisplayFor(x => x.CourseCoordinator.Semseter) </td>
+    </tr>
+    <tr>
+        <th style=" border:1px solid black" bgcolor="silver" colspan="4"> Course Information:</th>
+    </tr>
+    <tr>
+        <th style=" border:1px solid black" bgcolor="grey"> Course Name</th>
+        <td style=" border:1px solid black"> @Html.DisplayFor(x=>x.CourseCoordinator.Course.Title)  </td>
+        <th style=" border:1px solid black" bgcolor="grey"> Course No. </th>
+        <td style=" border:1px solid black">@Html.DisplayFor(x=>x.CourseCoordinator.CourseID) </td>
+    </tr>
+    <tr>
+        <th bgcolor="silver" style=" border:1px solid black"> Pre-requisite </th>
+        <td style=" border:1px solid black">@Html.DisplayFor(x => x.Course.Course3.Title)  </td>
+        <th bgcolor="silver" style=" border:1px solid black"> Co-requisite </th>
+        <td style=" border:1px solid black">@Html.DisplayFor(x => x.Course.Course2.Title) </td>
+    </tr>
+    <tr>
+        <td style=" border:1px solid black" bgcolor="grey"><b>Credit Hours</b><br />(Theory, Practical)</td>
+        <td style=" border:1px solid black">@Html.DisplayFor(x=>x.CourseCoordinator.Course.Hours) </td>
+        <td style=" border:1px solid black" bgcolor="grey"> <b>Designation</b> <br /> (Req. or Elec.)</td>
+        <td style=" border:1px solid black"> @Html.DisplayFor(x => x.CourseCoordinator.Course.Designation)</td>
+    </tr>
+    <tr>
+        <th style=" border:1px solid black" bgcolor="grey"> Course Day/Time</th>
+        <td style=" border:1px solid black"> @Html.DisplayFor(x=>x.CourseCoordinator.DayTime)</td>
+        <th style=" border:1px solid black" bgcolor="grey"> Class Room </th>
+        <td style=" border:1px solid black">@Html.DisplayFor(x=>x.CourseCoordinator.ClassRoom) </td>
+    </tr>
+    <tr>
+        <th style=" border:1px solid black" bgcolor="grey"> Web Address</th>
+        <td style=" border:1px solid black" colspan="3"> <a href="@Model.CourseCoordinator.Course.VclassURL">
+    @Html.DisplayFor(x => x.CourseCoordinator.Course.VclassURL)
+</a>
+           
+        </td>
+    </tr>
+    <tr>
+        <th style=" border:1px solid black" colspan="4" bgcolor="silver"> Instructor/Coordinator Information: </th>
+    </tr>
+    <tr>
+        <th style=" border:1px solid black" bgcolor="grey"> Instructor Name</th>
+        <td style=" border:1px solid black">@Html.DisplayFor(x=>x.CourseCoordinator.Lecturer.Name) </td>
+        <th style=" border:1px solid black" bgcolor="grey"> E-mail </th>
+        <td style=" border:1px solid black">@Html.DisplayFor(x => x.CourseCoordinator.Lecturer.Email) 
+       
+        </td>
+    </tr>
+    <tr>
+        <th style=" border:1px solid black" bgcolor="grey"> Office No. </th>
+        <td style=" border:1px solid black">@Html.DisplayFor(x => x.CourseCoordinator.Lecturer.OfficeNo) </td>
+        <th style=" border:1px solid black" bgcolor="grey"> Office Hours  </th>
+        <td style=" border:1px solid black">1-2 Tuesday </td>
+    </tr>
+</table>
+<br />
+<br />
+<table class="table" style="border:double">
+    <tr>
+        <th style=" border:1px solid black" bgcolor="silver"> Course Description: </th>
+    </tr>
+    <tr>
+        <td style=" border:1px solid black"> @Html.DisplayFor(x=>x.CourseCoordinator.Course.Description)  </td>
+    </tr>
+    <tr>
+        <th style=" border:1px solid black" bgcolor="silver"> References:  </th>
+    </tr>
+    <tr>
+        <td style=" border:1px solid black" bgcolor="silver"> <b>Textbook(s):</b> Author, A. A. (Year published). Book title (Edition). City, State: Publisher.  </td>
+    </tr>
+    <tr>
+        <td style=" border:1px solid black">  </td>
+    </tr>
+</table>
 
-
-<body>
-    <div class="row">
-        <div class="col-2 mt-lg-5">
-            <div class="list-group list-group-flush w-50">
-                <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Content</b> </h4>
-                @Html.ActionLink("Recomandations for improving the course", "ActionsForImproving", "CourseCoordinator",
-               new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
-
-                @Html.ActionLink("Students List", "CourseStudentList", "CourseCoordinator",
-               new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "bg-transparent pb-3" })
-
-                @Html.ActionLink("PI Assessment", "PI Assessment", "CourseCoordinator",
-               new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "bg-transparent pb-3" })
-
-                @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator",
-               new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "bg-transparent pb-3" })
-                <br />
-                <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Forms</b> </h4>
-                @Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3 text-success" })
-                @Html.ActionLink("Course Assessment Survey", "CourseAssessmentSurvey", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
-                @Html.ActionLink("Course File Checklist", "CourseFileChecklist", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
-                @Html.ActionLink("Course Information Form", "CourseInformationForm", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
-                @Html.ActionLink("Coures Report", "CourseReport", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
-                @Html.ActionLink("Exam Evaluation", "ExamEvaluation", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
-                @Html.ActionLink("Question Answer Sheet", "QuestionsAnswersSheet", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
-            </div>
-        </div>
-
-        <div class="col-lg-8">
-            <div class="container shadow-lg p-3 mb-3 mt-5 align-content-center bg-white">
-                <div class="d-flex justify-content-center align-items-center text-center">
-                    <div>
-                        <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo" alt="Logo" style="height:150px; width:120px;" />
-                        <h3>Faculty of Information Technology </h3>
-                    </div>
-                </div>
-
-                <hr style="border: 2px solid black" />
-
-
-
-                <table id="FormName">
-                    <tr class="text-center">
-                        <td bgcolor="silver" style="border:1px solid black" class="pt-2"> 
-                            <h4 align="center"> <b>Course Syllabus</b> </h4>
-                        </td>
-                    </tr>
-                </table>
-
-                <br />
-                <br />
-                @Html.ActionLink("Edit", "CouresSyllabusAddData")
-                <table class="table" style="border:double">
-                    <tr>
-                        <th style=" border:1px solid black" bgcolor="silver" colspan="4"> General Information:</th>
-                    </tr>
-                    <tr>
-                        <th style=" border:1px solid black" bgcolor="grey"> Faculty</th>
-                        <td style=" border:1px solid black">
-                            @Html.DisplayFor(x => x.Department.Faculty.Name)
-                        </td>
-                        <th style=" border:1px solid black" bgcolor="grey"> Department</th>
-                        <td style=" border:1px solid black">@Html.DisplayFor(x => x.Course.Department.Name) </td>
-                    </tr>
-                    <tr>
-                        <th style=" border:1px solid black" bgcolor="grey"> Academic Year </th>
-                        <td style=" border:1px solid black">@Html.DisplayFor(x => x.CourseCoordinator.Year.Year) </td>
-                        <th style=" border:1px solid black" bgcolor="grey"> Semester </th>
-                        <td style=" border:1px solid black">@Html.DisplayFor(x => x.CourseCoordinator.Semseter) </td>
-                    </tr>
-                    <tr>
-                        <th style=" border:1px solid black" bgcolor="silver" colspan="4"> Course Information:</th>
-                    </tr>
-                    <tr>
-                        <th style=" border:1px solid black" bgcolor="grey"> Course Name</th>
-                        <td style=" border:1px solid black"> @Html.DisplayFor(x => x.CourseCoordinator.Course.Title)  </td>
-                        <th style=" border:1px solid black" bgcolor="grey"> Course No. </th>
-                        <td style=" border:1px solid black">@Html.DisplayFor(x => x.CourseCoordinator.CourseID) </td>
-                    </tr>
-                    <tr>
-                        <th bgcolor="silver" style=" border:1px solid black"> Pre-requisite </th>
-                        <td style=" border:1px solid black">@Html.DisplayFor(x => x.Course.Course3.Title)  </td>
-                        <th bgcolor="silver" style=" border:1px solid black"> Co-requisite </th>
-                        <td style=" border:1px solid black">@Html.DisplayFor(x => x.Course.Course2.Title) </td>
-                    </tr>
-                    <tr>
-                        <td style=" border:1px solid black" bgcolor="grey"><b>Credit Hours</b><br />(Theory, Practical)</td>
-                        <td style=" border:1px solid black">@Html.DisplayFor(x => x.CourseCoordinator.Course.Hours) </td>
-                        <td style=" border:1px solid black" bgcolor="grey"> <b>Designation</b> <br /> (Req. or Elec.)</td>
-                        <td style=" border:1px solid black"> @Html.DisplayFor(x => x.CourseCoordinator.Course.Designation)</td>
-                    </tr>
-                    <tr>
-                        <th style=" border:1px solid black" bgcolor="grey"> Course Day/Time</th>
-                        <td style=" border:1px solid black"> @Html.DisplayFor(x => x.CourseCoordinator.DayTime)</td>
-                        <th style=" border:1px solid black" bgcolor="grey"> Class Room </th>
-                        <td style=" border:1px solid black">@Html.DisplayFor(x => x.CourseCoordinator.ClassRoom) </td>
-                    </tr>
-                    <tr>
-                        <th style=" border:1px solid black" bgcolor="grey"> Web Address</th>
-                        <td style=" border:1px solid black" colspan="3">
-                            <a href="@Model.CourseCoordinator.Course.VclassURL">
-                                @Html.DisplayFor(x => x.CourseCoordinator.Course.VclassURL)
-                            </a>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <th style=" border:1px solid black" colspan="4" bgcolor="silver"> Instructor/Coordinator Information: </th>
-                    </tr>
-                    <tr>
-                        <th style=" border:1px solid black" bgcolor="grey"> Instructor Name</th>
-                        <td style=" border:1px solid black">@Html.DisplayFor(x => x.CourseCoordinator.Lecturer.Name) </td>
-                        <th style=" border:1px solid black" bgcolor="grey"> E-mail </th>
-                        <td style=" border:1px solid black">
-                            @Html.DisplayFor(x => x.CourseCoordinator.Lecturer.Email)
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <th style=" border:1px solid black" bgcolor="grey"> Office No. </th>
-                        <td style=" border:1px solid black">@Html.DisplayFor(x => x.CourseCoordinator.Lecturer.OfficeNo) </td>
-                        <th style=" border:1px solid black" bgcolor="grey"> Office Hours  </th>
-                        <td style=" border:1px solid black">1-2 Tuesday </td>
-                    </tr>
-                </table>
-                <br />
-                <br />
-                <table class="table" style="border:double">
-                    <tr>
-                        <th style=" border:1px solid black" bgcolor="silver"> Course Description: </th>
-                    </tr>
-                    <tr>
-                        <td style=" border:1px solid black"> @Html.DisplayFor(x => x.CourseCoordinator.Course.Description)  </td>
-                    </tr>
-                    <tr>
-                        <th style=" border:1px solid black" bgcolor="silver"> References:  </th>
-                    </tr>
-                    <tr>
-                        <td style=" border:1px solid black" bgcolor="silver"> <b>Textbook(s):</b> Author, A. A. (Year published). Book title (Edition). City, State: Publisher.  </td>
-                    </tr>
-                    <tr>
-                        <td style=" border:1px solid black">  </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-
-    </div>
-    <hr />
-</body>
-
-<footer class="justify-content-center align-items-center d-flex">
+<!--<<div style="page-break-before: always"><div></div>-->
+<footer>
     <table>
         <tr>
 
