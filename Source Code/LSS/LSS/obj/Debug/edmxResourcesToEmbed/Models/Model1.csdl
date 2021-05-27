@@ -30,7 +30,6 @@
     <EntitySet Name="OtherLecturers" EntityType="Model.OtherLecturer" />
     <EntitySet Name="PEOs" EntityType="Model.PEO" />
     <EntitySet Name="PIs" EntityType="Model.PI" />
-    <EntitySet Name="PIAssessments" EntityType="Model.PIAssessment" />
     <EntitySet Name="ResultOfCourseDirectAssessments" EntityType="Model.ResultOfCourseDirectAssessment" />
     <EntitySet Name="schedules" EntityType="Model.schedule" />
     <EntitySet Name="SLOes" EntityType="Model.SLO" />
@@ -168,9 +167,9 @@
       <End Role="EnroledStudent" EntitySet="EnroledStudents" />
       <End Role="CourseExamEval" EntitySet="CourseExamEvals" />
     </AssociationSet>
-    <AssociationSet Name="FK_PIAsessment_ToExamQ" Association="Model.FK_PIAsessment_ToExamQ">
+    <AssociationSet Name="FK_CourseExamEval_ToExamQ" Association="Model.FK_CourseExamEval_ToExamQ">
       <End Role="CourseExamQuestion" EntitySet="CourseExamQuestions" />
-      <End Role="PIAssessment" EntitySet="PIAssessments" />
+      <End Role="CourseExamEval" EntitySet="CourseExamEvals" />
     </AssociationSet>
     <AssociationSet Name="FK_Department_Faculty" Association="Model.FK_Department_Faculty">
       <End Role="Faculty" EntitySet="Faculties" />
@@ -200,10 +199,6 @@
       <End Role="Student" EntitySet="Students" />
       <End Role="EnroledStudent" EntitySet="EnroledStudents" />
     </AssociationSet>
-    <AssociationSet Name="FK_PIAssessment_toEnroledStudents" Association="Model.FK_PIAssessment_toEnroledStudents">
-      <End Role="EnroledStudent" EntitySet="EnroledStudents" />
-      <End Role="PIAssessment" EntitySet="PIAssessments" />
-    </AssociationSet>
     <AssociationSet Name="FK_Fac_ViceDean_ToLecturer" Association="Model.FK_Fac_ViceDean_ToLecturer">
       <End Role="Lecturer" EntitySet="Lecturers" />
       <End Role="Faculty" EntitySet="Faculties" />
@@ -215,10 +210,6 @@
     <AssociationSet Name="FK_SLO_PEO_ToPEO" Association="Model.FK_SLO_PEO_ToPEO">
       <End Role="PEO" EntitySet="PEOs" />
       <End Role="SLO_PEO" EntitySet="SLO_PEO" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PIAssessment_ToPI" Association="Model.FK_PIAssessment_ToPI">
-      <End Role="PI" EntitySet="PIs" />
-      <End Role="PIAssessment" EntitySet="PIAssessments" />
     </AssociationSet>
     <AssociationSet Name="PI_ToSLO" Association="Model.PI_ToSLO">
       <End Role="SLO" EntitySet="SLOes" />
@@ -240,6 +231,10 @@
       <End Role="CLO" EntitySet="CLOes" />
       <End Role="PI" EntitySet="PIs" />
     </AssociationSet>
+    <AssociationSet Name="PIAssessment" Association="Model.PIAssessment">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
+      <End Role="CourseExamQuestion" EntitySet="CourseExamQuestions" />
+    </AssociationSet>
     <AssociationSet Name="Question_IP" Association="Model.Question_IP">
       <End Role="CourseExamQuestion" EntitySet="CourseExamQuestions" />
       <End Role="PI" EntitySet="PIs" />
@@ -251,10 +246,6 @@
     <AssociationSet Name="SLO_Course" Association="Model.SLO_Course">
       <End Role="Course" EntitySet="Courses" />
       <End Role="SLO" EntitySet="SLOes" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CourseExamEval_ToExamQ" Association="Model.FK_CourseExamEval_ToExamQ">
-      <End Role="CourseExamQuestion" EntitySet="CourseExamQuestions" />
-      <End Role="CourseExamEval" EntitySet="CourseExamEvals" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="ActionsForImprovingTheCourse">
@@ -428,6 +419,7 @@
     <NavigationProperty Name="OtherLecturers" Relationship="Model.FK_OtherLecturers_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="OtherLecturer" />
     <NavigationProperty Name="ResultOfCourseDirectAssessment" Relationship="Model.FK_ResultOfCourseDirectAssessment_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="ResultOfCourseDirectAssessment" />
     <NavigationProperty Name="schedules" Relationship="Model.FK_schedule_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="schedule" />
+    <NavigationProperty Name="CourseExamQuestions" Relationship="Model.PIAssessment" FromRole="CourseCoordinator" ToRole="CourseExamQuestion" />
   </EntityType>
   <EntityType Name="CourseExam">
     <Key>
@@ -450,10 +442,10 @@
   </EntityType>
   <EntityType Name="CourseExamEval">
     <Key>
-      <PropertyRef Name="ID" />
+      <PropertyRef Name="QID" />
       <PropertyRef Name="StudentID" />
     </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="QID" Type="Int32" Nullable="false" />
     <Property Name="StudentID" Type="Int32" Nullable="false" />
     <Property Name="Mark" Type="Single" Nullable="false" />
     <NavigationProperty Name="EnroledStudent" Relationship="Model.FK_CourseExamEV" FromRole="CourseExamEval" ToRole="EnroledStudent" />
@@ -469,9 +461,9 @@
     <Property Name="Question" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="Weight" Type="Single" Nullable="false" />
     <NavigationProperty Name="CourseExam" Relationship="Model.FK_CourseExamQ" FromRole="CourseExamQuestion" ToRole="CourseExam" />
-    <NavigationProperty Name="PIAssessments" Relationship="Model.FK_PIAsessment_ToExamQ" FromRole="CourseExamQuestion" ToRole="PIAssessment" />
-    <NavigationProperty Name="PIs" Relationship="Model.Question_IP" FromRole="CourseExamQuestion" ToRole="PI" />
     <NavigationProperty Name="CourseExamEvals" Relationship="Model.FK_CourseExamEval_ToExamQ" FromRole="CourseExamQuestion" ToRole="CourseExamEval" />
+    <NavigationProperty Name="CourseCoordinators" Relationship="Model.PIAssessment" FromRole="CourseExamQuestion" ToRole="CourseCoordinator" />
+    <NavigationProperty Name="PIs" Relationship="Model.Question_IP" FromRole="CourseExamQuestion" ToRole="PI" />
   </EntityType>
   <EntityType Name="CourseFileCheckList">
     <Key>
@@ -588,7 +580,6 @@
     <NavigationProperty Name="CourseCoordinator" Relationship="Model.FK_EnroledStudents_CourseCoordinator" FromRole="EnroledStudent" ToRole="CourseCoordinator" />
     <NavigationProperty Name="CourseExamEvals" Relationship="Model.FK_CourseExamEV" FromRole="EnroledStudent" ToRole="CourseExamEval" />
     <NavigationProperty Name="Student" Relationship="Model.FK_EnroledStudents_ToStudetn" FromRole="EnroledStudent" ToRole="Student" />
-    <NavigationProperty Name="PIAssessments" Relationship="Model.FK_PIAssessment_toEnroledStudents" FromRole="EnroledStudent" ToRole="PIAssessment" />
   </EntityType>
   <EntityType Name="Faculty">
     <Key>
@@ -707,23 +698,9 @@
     <Property Name="SLOID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="DeptID" Type="Int32" Nullable="false" />
     <Property Name="PIUniqueID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <NavigationProperty Name="PIAssessments" Relationship="Model.FK_PIAssessment_ToPI" FromRole="PI" ToRole="PIAssessment" />
     <NavigationProperty Name="SLO" Relationship="Model.PI_ToSLO" FromRole="PI" ToRole="SLO" />
     <NavigationProperty Name="CLOes" Relationship="Model.CLO_PI" FromRole="PI" ToRole="CLO" />
     <NavigationProperty Name="CourseExamQuestions" Relationship="Model.Question_IP" FromRole="PI" ToRole="CourseExamQuestion" />
-  </EntityType>
-  <EntityType Name="PIAssessment">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="EnrollmentID" Type="Int32" Nullable="false" />
-    <Property Name="PI" Type="Int32" Nullable="false" />
-    <Property Name="WhereItWasTakenFrom" Type="Int32" Nullable="false" />
-    <Property Name="mark" Type="Single" />
-    <NavigationProperty Name="CourseExamQuestion" Relationship="Model.FK_PIAsessment_ToExamQ" FromRole="PIAssessment" ToRole="CourseExamQuestion" />
-    <NavigationProperty Name="EnroledStudent" Relationship="Model.FK_PIAssessment_toEnroledStudents" FromRole="PIAssessment" ToRole="EnroledStudent" />
-    <NavigationProperty Name="PI1" Relationship="Model.FK_PIAssessment_ToPI" FromRole="PIAssessment" ToRole="PI" />
   </EntityType>
   <EntityType Name="ResultOfCourseDirectAssessment">
     <Key>
@@ -1334,17 +1311,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_PIAsessment_ToExamQ">
-    <End Type="Model.CourseExamQuestion" Role="CourseExamQuestion" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="Model.PIAssessment" Role="PIAssessment" Multiplicity="*" />
+  <Association Name="FK_CourseExamEval_ToExamQ">
+    <End Type="Model.CourseExamQuestion" Role="CourseExamQuestion" Multiplicity="1" />
+    <End Type="Model.CourseExamEval" Role="CourseExamEval" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CourseExamQuestion">
         <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="PIAssessment">
-        <PropertyRef Name="WhereItWasTakenFrom" />
+      <Dependent Role="CourseExamEval">
+        <PropertyRef Name="QID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1440,20 +1415,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_PIAssessment_toEnroledStudents">
-    <End Type="Model.EnroledStudent" Role="EnroledStudent" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="Model.PIAssessment" Role="PIAssessment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="EnroledStudent">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="PIAssessment">
-        <PropertyRef Name="EnrollmentID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Fac_ViceDean_ToLecturer">
     <End Type="Model.Lecturer" Role="Lecturer" Multiplicity="0..1" />
     <End Type="Model.Faculty" Role="Faculty" Multiplicity="*" />
@@ -1493,20 +1454,6 @@
       <Dependent Role="SLO_PEO">
         <PropertyRef Name="PEOID" />
         <PropertyRef Name="DeptID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_PIAssessment_ToPI">
-    <End Type="Model.PI" Role="PI" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="Model.PIAssessment" Role="PIAssessment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="PI">
-        <PropertyRef Name="PIUniqueID" />
-      </Principal>
-      <Dependent Role="PIAssessment">
-        <PropertyRef Name="PI" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1574,6 +1521,10 @@
     <End Type="Model.CLO" Role="CLO" Multiplicity="*" />
     <End Type="Model.PI" Role="PI" Multiplicity="*" />
   </Association>
+  <Association Name="PIAssessment">
+    <End Type="Model.CourseCoordinator" Role="CourseCoordinator" Multiplicity="*" />
+    <End Type="Model.CourseExamQuestion" Role="CourseExamQuestion" Multiplicity="*" />
+  </Association>
   <Association Name="Question_IP">
     <End Type="Model.CourseExamQuestion" Role="CourseExamQuestion" Multiplicity="*" />
     <End Type="Model.PI" Role="PI" Multiplicity="*" />
@@ -1585,17 +1536,5 @@
   <Association Name="SLO_Course">
     <End Type="Model.Course" Role="Course" Multiplicity="*" />
     <End Type="Model.SLO" Role="SLO" Multiplicity="*" />
-  </Association>
-  <Association Name="FK_CourseExamEval_ToExamQ">
-    <End Type="Model.CourseExamQuestion" Role="CourseExamQuestion" Multiplicity="1" />
-    <End Type="Model.CourseExamEval" Role="CourseExamEval" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CourseExamQuestion">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="CourseExamEval">
-        <PropertyRef Name="ID" />
-      </Dependent>
-    </ReferentialConstraint>
   </Association>
 </Schema>

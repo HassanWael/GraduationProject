@@ -17,11 +17,12 @@ namespace LSS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CourseExamQuestion()
         {
-            this.PIAssessments = new HashSet<PIAssessment>();
-            this.PIs = new HashSet<PI>();
             this.CourseExamEvals = new HashSet<CourseExamEval>();
+            this.CourseCoordinators = new HashSet<CourseCoordinator>();
+            this.PIs = new HashSet<PI>();
         }
         LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
+    
         public int ID { get; set; }
         public int ExamID { get; set; }
         public string QuestionNumber { get; set; }
@@ -51,10 +52,10 @@ namespace LSS.Models
         }
         public virtual CourseExam CourseExam { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PIAssessment> PIAssessments { get; set; }
+        public virtual ICollection<CourseExamEval> CourseExamEvals { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CourseCoordinator> CourseCoordinators { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PI> PIs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CourseExamEval> CourseExamEvals { get; set; }
     }
 }
