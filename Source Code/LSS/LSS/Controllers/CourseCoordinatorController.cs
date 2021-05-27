@@ -128,6 +128,7 @@ namespace LSS.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddActionsForImproving(ActionsForImprovingTheCourse ActionsForImprovingTheCourse)
         {
             try
@@ -226,6 +227,28 @@ namespace LSS.Controllers
             }
             return RedirectToAction("CouresPage", new { courseID = A.CourseID });
 
+                a.Assignment = A.Assignment;
+
+                a.project = A.project;
+
+                a.Written_Report = A.Written_Report;
+
+                a.Oral_Presenation = A.Oral_Presenation;
+
+                a.Practice_In_The_Lab = A.Practice_In_The_Lab;
+
+                a.Case_Studdy = A.Case_Studdy;
+
+                a.Gropu_Discussions = A.Gropu_Discussions;
+
+                a.Students_Interviews = A.Students_Interviews;
+
+                a.Other = A.Other;
+
+                _DatabaseEntities.Entry(a).State = EntityState.Modified;
+                _DatabaseEntities.SaveChanges();
+            }
+            return RedirectToAction("CouresPage", new { courseID = A.CourseID });
         }
 
 
@@ -304,7 +327,7 @@ namespace LSS.Controllers
             }
             return View();
         }
-        //todo: create a Model for CourseStudent List 
+        //todo: create a Model for CourseStudent List
         [HttpPost]
         public ActionResult AddBook(CourseTextBook courseTextBook)
         {
@@ -315,7 +338,7 @@ namespace LSS.Controllers
                     _DatabaseEntities.CourseTextBooks.Add(courseTextBook);
                     _DatabaseEntities.SaveChanges();
                 }
-                catch (Exception e )
+                catch (Exception e)
                 {
                     Console.WriteLine("Error at line 413 CourseCoordinator" + e.Message);
 
@@ -323,7 +346,7 @@ namespace LSS.Controllers
                 }
 
             }
-            if(courseTextBook.Course !=null && !courseTextBook.Course.Equals(""))
+            if (courseTextBook.Course != null && !courseTextBook.Course.Equals(""))
                 return RedirectToAction("CoursePage", courseTextBook.Course);
             return RedirectToAction("Index", "LogedIn");
         }

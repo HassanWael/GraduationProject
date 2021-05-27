@@ -4,57 +4,53 @@
 }
 @Styles.Render("~/Content/css")
 @Scripts.Render("~/bundles/modernizr")
-<body>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+
+<body class="container">
     <link href="~/Content/HomePage.css" rel="stylesheet" type="text/css" />
-    <div class="block">
-        <div class="block-item" style="display: flex; justify-content: center; align-items: center;">
-            <img id="logo" src="~/Images/LOGO-removebg-preview.png" style="height:215px; width:160px; background-color:transparent" />
- 
-            <h1 id="header"> Al-Ahliyya Amman University</h1>
+    <div class="shadow-lg bg-white mb-4 mt-4">
+        <div class="d-flex justify-content-center align-items-center text-center">
+            <div>
+                <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo mt-3" alt="Logo" style="height:150px; width:120px;" />
+                <h1>Al-Ahliyyeh Amman University</h1>
+            </div>
         </div>
 
-        <div class="block-item">
-            <h2> الخدمات الالكترونية</h2>
+        <div class="pb-5">
+            <div class="block-item mt-lg-5 mb-2">
+                <h2> الخدمات الالكترونية</h2>
+            </div>
 
-        </div>
-        <div class="services">
-
-            <ul style="display:flex; list-style:none; flex-wrap:wrap;">
-                <li>
-                    <div class="block-item">
-
-                        <img src="~/Images/studying.png" /> <h5>Student project management </h5>
-                    </div>
-                </li>
-                <li>
-                    <div class="block-item">
-                        <img src="~/Images/notebook.png" />  <h5> Course Report</h5>
-                    </div>
-                </li>
-                <li>
-                    <div class="block-item">
-                        <img src="~/Images/analysis.png" /> <h5>Accreditaion Tracker</h5>
-                    </div>
-                </li>
-                <li>
-                    <div class="block-item">
-                        <img src="~/Images/notebook.png" /> <h5>Exam question assesment</h5>
-                    </div>
-                </li>
-                <li>
-                    <div class="block-item">
-                        <img src="~/Images/notebook.png" /> <h5>Student assesment</h5>
-                    </div>
-                </li>
-
-            </ul>
+            <div class="block mt-5">
+                <ul class="list-unstyled justify-content-center align-items-center d-block">
+                    <li class="pb-1">
+                        <div class="block-item">
+                            <img src="~/Images/notebook.png" />  <h5> Course Report</h5>
+                        </div>
+                    </li>
+                    <li class="pb-1">
+                        <div class="block-item">
+                            <img src="~/Images/analysis.png" /> <h5>Accreditaion Tracker</h5>
+                        </div>
+                    </li>
+                    <li class="pb-1">
+                        <div class="block-item">
+                            <img src="~/Images/notebook.png" /> <h5>Exam Question assesment</h5>
+                        </div>
+                    </li>
+                    <li class="pb-1">
+                        <div class="block-item">
+                            <img src="~/Images/notebook.png" /> <h5>Student Assesment</h5>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </body>
+
 <footer class="footer">
     <hr />
     <p>&copy; 2021 -AAU Lecturer Support System</p>
 </footer>
-
-
-

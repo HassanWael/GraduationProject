@@ -24,7 +24,7 @@ namespace LSS.Models
         public Nullable<bool> CoordinatorSignature { get; set; }
         public Nullable<bool> HeadOFDeptSignature { get; set; }
         public string ReasonOfDisaproval { get; set; }
-    
+
         public virtual CourseCoordinator CourseCoordinator { get; set; }
     }
 }

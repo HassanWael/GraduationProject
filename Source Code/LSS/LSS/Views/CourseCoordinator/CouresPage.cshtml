@@ -9,6 +9,9 @@
         ViewBag.Title = Model.Course.Title;
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -16,7 +19,12 @@
         <div class="col-2 mt-lg-5">
             <div class="list-group list-group-flush w-50">
                 <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Content</b> </h4>
-                @Html.ActionLink("Recomandations for improving the course", "ActionsForImproving", "CourseCoordinator", new { courseId = Model.Course.ID }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
+                @Html.ActionLink("Recomandations for improving the course", "ActionsForImproving", "CourseCoordinator",
+               new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
+
+                @Html.ActionLink("Students List", "CourseStudentList", "CourseCoordinator",
+               new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter },
+               new { @class = "bg-transparent pb-3" })
 
                 @Html.ActionLink("Students List", "CourseStudentList", "Students", new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
 
@@ -28,18 +36,18 @@
 
                 <br />
                 <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Forms</b> </h4>
-                @Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { courseId = Model.Course.ID }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
-                @Html.ActionLink("Course Assessment Survey", "CourseAssessmentSurvey", "Forms", new { courseId = Model.Course.ID }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
-                @Html.ActionLink("Course File Checklist", "CourseFileChecklist", "Forms", new { courseId = Model.Course.ID }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
-                @Html.ActionLink("Course Information Form", "CourseInformationForm", "Forms", new { courseId = Model.Course.ID }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
-                @Html.ActionLink("Coures Report", "CourseReport", "Forms", new { courseId = Model.Course.ID }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
-                @Html.ActionLink("Exam Evaluation", "ExamEvaluation", "Forms", new { courseId = Model.Course.ID }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
-                @Html.ActionLink("Question Answer Sheet", "QuestionsAnswersSheet", "Forms", new { courseId = Model.Course.ID }, new { @class = "list-group-item list-group-item-flush bg-transparent border-info" })
+                @Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Course Assessment Survey", "CourseAssessmentSurvey", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Course File Checklist", "CourseFileChecklist", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Course Information Form", "CourseInformationForm", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Coures Report", "CourseReport", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Exam Evaluation", "ExamEvaluation", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Question Answer Sheet", "QuestionsAnswersSheet", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
             </div>
         </div>
 
         <div class="col-lg-8">
-            <div class="contrainer shadow-lg p-3 mb-3 mt-5 align-content-center bg-white">
+            <div class="container shadow-lg p-3 mb-3 mt-5 align-content-center bg-white">
                 <div class="d-flex justify-content-center align-items-center text-center">
                     <div>
                         <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo" alt="Logo" style="height:150px; width:120px;" />
@@ -61,26 +69,26 @@
                                     <td> @Model.Course.Title </td>
                                 </tr>
 
-                                <tr >
+                                <tr>
                                     <td>    <h4> Coures ID </h4>  </td>
                                     <td>  @Model.Course.ID </td>
                                 </tr>
-                                <tr >
+                                <tr>
                                     <td>   <h4> Faculty Name   </h4> </td>
                                     <td> @Model.Faculty.ID </td>
                                 </tr>
 
-                                <tr >
+                                <tr>
                                     <td>   <h4> Credit Hours   </h4> </td>
                                     <td> @Model.Course.Hours </td>
                                 </tr>
 
-                                <tr >
+                                <tr>
                                     <td>   <h4> Course Coordinator   </h4> </td>
                                     <td> @Model.CourseCoordinator.Coordinator </td>
                                 </tr>
 
-                                <tr >
+                                <tr>
                                     <td>   <h4> Day Time  </h4> </td>
                                     <td> @Model.CourseCoordinator.DayTime </td>
                                 </tr>
@@ -120,7 +128,7 @@
                                         <td> @book.Author</td>
                                         <td> @book.YearOfpublish </td>
                                         <td> @book.City_State </td>
-                                        <td>@book.Publisher</td>
+                                        <td> @book.Publisher</td>
                                     </tr>
                                 }
                             </tbody>
@@ -149,7 +157,7 @@
                         <h4 style="text-align:left; margin:5px">
                             Course Learning Outcome:
                             <button id='open' style="float:right; margin:5px" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addCLO">
-                                Add
+                                Add CLO
                             </button>
                         </h4>
                         <hr style="border-color:cyan" />
@@ -245,10 +253,9 @@
                                     {
                                         <h4 class="card-title">
                                             Yes this Course will be Assessed
-                                            <button id='open' class="btn btn-primary card-link" data-toggle="modal" data-target="#isAssessed">Edit </button>
+
                                         </h4>
-                                        <p class="card-text">
-                                        </p>
+                                        <button id='open' class="btn btn-primary card-link" data-toggle="modal" data-target="#isAssessed">Edit </button>
                                     }
                                     else
                                     {
@@ -259,9 +266,8 @@
                                         <p class="card-text">
                                             Why Not:@Html.DisplayFor(model => model.IsAssessed.WhyNot)
                                             <br />
-                                            <button id='open' class="btn btn-primary card-link" data-toggle="modal" data-target="#isAssessed">Edit </button>
-
                                         </p>
+                                        <button id='open' class="btn btn-primary card-link" data-toggle="modal" data-target="#isAssessed">Edit </button>
                                     }
                                 </div>
                             </div>
@@ -295,9 +301,12 @@
 
                         @*Second card*@
 
-                        <li>
-                            <div class="card border-primary mb-3">
-                                <div class="card-header"> <h5>Assessment Plan for the SLO</h5></div>
+                        <li class="pb-1">
+                            <div class="card border-primary mb-1">
+                                <div class="card-header">
+                                    <h5>Assessment Plan for the SLO</h5>
+                                </div>
+
                                 <div class="card-body text-primary">
                                     @if (Model.AssessmentPlan == null)
                                     {
@@ -305,7 +314,7 @@
                                             The Assessment Plan has not been set up yet.
                                             <p>
                                                 <div>
-                                                    <button id='open' class="btn btn-primary card-link" data-toggle="modal" data-target="#addAssmentPlan">create Assessment Plan</button>
+                                                    <button id='open' class="btn btn-primary card-link" data-toggle="modal" data-target="#addAssmentPlan">Create Assessment Plan</button>
                                                 </div>
                                             </p>
                                         </h4>
@@ -313,8 +322,8 @@
                                     }
                                     else
                                     {
-                                        <p class="card-text">
-                                            <ul>
+                                        <p class="card-text mb-1">
+                                            <ul class="list-unstyled">
                                                 @if (Model.AssessmentPlan.Midterm_Test)
                                                 {
                                                     <li>
@@ -399,9 +408,8 @@
                                                     </li>
                                                 }
                                             </ul>
-                                            <button id='open' class="btn btn-primary card-link" data-toggle="modal" data-target="#addAssmentPlan">Edite the  Assessment plan for this semester</button>
+                                            <button id='open' class="btn btn-primary card-link mt-3" data-toggle="modal" data-target="#addAssmentPlan">Edit the  Assessment plan for this semester</button>
                                         </p>
-
                                     }
                                 </div>
                             </div>
