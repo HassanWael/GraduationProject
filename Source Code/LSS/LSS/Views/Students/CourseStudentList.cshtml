@@ -2,7 +2,7 @@
 @Styles.Render("~/Content/css")
 @Scripts.Render("~/bundles/modernizr")
 @using PagedList.Mvc;
-
+@using LSS.Models
 
 <head>
     @{
@@ -75,7 +75,7 @@
                                 <th></th>
                             </tr>
 
-                            @foreach (var item in Model)
+                            @foreach (EnroledStudent item in Model)
                             {
                                 <tr>
                                     <td>
@@ -112,7 +112,7 @@
                                      LiElementClasses = new[] { "page-item", "btn-outline-primary" }
                                      })
 
-                                @using (Html.BeginForm("AddStudentListToCourse", "CourseCoordinator", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                @using (Html.BeginForm("AddStudentListToCourse", "Students", FormMethod.Post, new { enctype = "multipart/form-data" }))
                                 {
                                     <input type="hidden" id="CourseID" name="CourseID" value='@ViewBag.CourseID' />
                                     <input type="hidden" id="Year" name="Year" value='@ViewBag.Year' />
@@ -125,7 +125,7 @@
                                             <label class="custom-file-label" for="UploadFileExcel">Choose file..</label>
                                         </div>
                                         <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button" id="UploadFile">Upload</button>
+                                            <button class="btn btn-primary" type="submit" id="UploadFile">Upload</button>
                                         </div>
                                     </div>
 
@@ -143,7 +143,7 @@
                         <div class="card border-primary">
                             <div class="card-header">Upload Final Grades  </div>
                             <div class="card-body">
-                                @using (Html.BeginForm("UploadGrades", "CourseCoordinator", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                @using (Html.BeginForm("UploadGrades", "Students", FormMethod.Post, new { enctype = "multipart/form-data" }))
                                 {
                                     <input type="hidden" id="CourseID" name="CourseID" value='@ViewBag.CourseID' />
                                     <input type="hidden" id="Year" name="Year" value='@ViewBag.Year' />
@@ -156,7 +156,7 @@
                                                     <label class="custom-file-label" for="UploadGrades">Choose file..</label>
                                                 </div>
                                                 <div class="input-group-append">
-                                                    <button class="btn btn-primary" type="button" id="UploadFile">Upload</button>
+                                                    <button class="btn btn-primary" type="submit" id="UploadFile">Upload</button>
                                                 </div>
                                             </div>
                                         </tr>

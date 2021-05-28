@@ -269,6 +269,7 @@
     </Compile>
     <Compile Include="Models\CoursesModelView\AddCLOMV.cs" />
     <Compile Include="Models\CoursesModelView\AddSurveyQustionMV.cs" />
+    <Compile Include="Models\CoursesModelView\AssessingPI.cs" />
     <Compile Include="Models\CoursesModelView\CouresModelView.cs" />
     <Compile Include="Models\CoursesModelView\CouresReportModelView.cs" />
     <Compile Include="Models\CoursesModelView\CourseAssessmentID.cs" />
