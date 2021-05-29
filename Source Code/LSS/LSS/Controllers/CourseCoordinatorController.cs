@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -128,6 +129,7 @@ namespace LSS.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddActionsForImproving(ActionsForImprovingTheCourse ActionsForImprovingTheCourse)
         {
             try
@@ -182,7 +184,7 @@ namespace LSS.Controllers
             {
                 ModelState.AddModelError(e.Message, "an error has accoured please try again later ");
                 Console.WriteLine("Error at line 123 Course Coordinator");
-                return View("Index","LogedIn");
+                return View("Index", "LogedIn");
             }
             return RedirectToAction("CouresPage", "CourseCoordinator", isAssessed.CourseID);
         }
@@ -304,7 +306,7 @@ namespace LSS.Controllers
             }
             return View();
         }
-        //todo: create a Model for CourseStudent List 
+        //todo: create a Model for CourseStudent List
         [HttpPost]
         public ActionResult AddBook(CourseTextBook courseTextBook)
         {
@@ -315,7 +317,7 @@ namespace LSS.Controllers
                     _DatabaseEntities.CourseTextBooks.Add(courseTextBook);
                     _DatabaseEntities.SaveChanges();
                 }
-                catch (Exception e )
+                catch (Exception e)
                 {
                     Console.WriteLine("Error at line 413 CourseCoordinator" + e.Message);
 
@@ -323,10 +325,61 @@ namespace LSS.Controllers
                 }
 
             }
-            if(courseTextBook.Course !=null && !courseTextBook.Course.Equals(""))
+            if (courseTextBook.Course != null && !courseTextBook.Course.Equals(""))
                 return RedirectToAction("CoursePage", courseTextBook.Course);
             return RedirectToAction("Index", "LogedIn");
         }
+
+
+
+        public ActionResult DirectAssessmentPI(string? CourseID, DateTime? Year, string? Semester)
+        {
+            if (CourseID == null || Year == null || Semester == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            }
+            PIAssessmentMV assessment = new PIAssessmentMV
+            {
+                CourseCoordinator = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester)
+            };
+            if (assessment == null)
+            {
+                return HttpNotFound();
+            }
+            return View(assessment);
+        }
+
+
+        public ActionResult DirectAssessmentPI(PIAssessmentMV? pIAssessment, List<int> QID)
+        {
+            CourseCoordinator cc = pIAssessment.CourseCoordinator;
+            List<int> everyCourseQ = pIAssessment.AllQustions;
+
+
+            if (ModelState.IsValid)
+            {
+                if (QID != null)
+                {
+
+                }
+            }
+
+            return View();
+        }
+
+
+
+
+
+
+        public ActionResult DirectAssessment(string? CourseID, DateTime? Year, string? Semester)
+        {
+            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester);
+
+            return View(cc);
+        }
     }
+    
 
 }

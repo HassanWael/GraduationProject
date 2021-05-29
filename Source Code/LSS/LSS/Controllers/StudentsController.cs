@@ -5,6 +5,7 @@ using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -64,22 +65,22 @@ namespace LSS.Controllers
                         CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semseter);
                         if (cc != null)
                         {
-                            for (int rowIterator = 2; rowIterator < noOfRow; rowIterator++)
+                            int rowIterator = 2;
+                                
+                            while(workSheet.Cells[rowIterator, 1].Value != null)
                             {
-                                if (workSheet.Cells[rowIterator, 1].Value != null && workSheet.Cells[rowIterator, 2].Value != null && workSheet.Cells[rowIterator, 3].Value != null)
                                     try
                                     {
                                         var Student = _DatabaseEntities.Students.Find(workSheet.Cells[rowIterator, 1].Value.ToString());
 
                                         if (Student != null)
                                         {
-                                            EnroledStudent e = new EnroledStudent()
-                                            {
-                                                StudentID = Student.ID,
-                                                CourseID = cc.CourseID,
-                                                Year = cc.Year,
-                                                Semseter = cc.Semseter
-                                            };
+                                        EnroledStudent e = new EnroledStudent();
+                                        e.StudentID = Student.ID;
+                                        e.CourseID = cc.CourseID;
+                                        e.Year = cc.Year;
+                                        e.Semseter = cc.Semseter;
+                                          
                                             _DatabaseEntities.EnroledStudents.Add(e);
                                             _DatabaseEntities.SaveChanges();
 
@@ -106,15 +107,8 @@ namespace LSS.Controllers
                 }
             }
             string updateMassege = (added + " student has been added to the Course.");
-            return RedirectToAction("CourseStudentList", new { CourseID, updateMassege, Year, Semseter });
+            return RedirectToAction("CourseStudentList","Students", new { CourseID, updateMassege, Year, Semseter });
         }
-
-        //            public string StudentID { get; set; }
-        //public string CourseID { get; set; }
-        //public System.DateTime Year { get; set; }
-        //public string Semseter { get; set; }
-        //public Nullable<int> FinalGrade { get; set; }
-
 
         public ActionResult UploadGrades(FormCollection formCollection, string CourseID, DateTime Year, string Semseter)
         {
@@ -174,6 +168,10 @@ namespace LSS.Controllers
 
         public ActionResult CourseStudentList(string? CourseID, string? updateMassege, DateTime? Year, string? Semester, int? Department, string? Search, int page = 1, int pageSize = 10)
         {
+            if (CourseID == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             if (Year == null && Semester == null)
             {
                 Year = yas.Year;
@@ -183,7 +181,7 @@ namespace LSS.Controllers
             //{
             //    return RedirectToAction("Index", "LogedIn");
             //}
-            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find("A0334501", Year, Semester);
+            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester);
 
             if (cc == null)
             {
@@ -200,7 +198,7 @@ namespace LSS.Controllers
 
             if ((Search == null || Search.Equals("")))
             {
-                CourseStudents = cc.EnroledStudents.Where(x => x.Student.DptID.Equals(Department)).ToList();
+                CourseStudents = cc.EnroledStudents.ToList();
                 studentsPaged = new PagedList<EnroledStudent>(CourseStudents, page, pageSize);
 
             }

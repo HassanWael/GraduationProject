@@ -13,7 +13,7 @@
         <EntityTypeShape EntityType="Model.Course" Width="1.5" PointX="0.75" PointY="30.375" />
         <EntityTypeShape EntityType="Model.CourseAssessmentMapping" Width="1.5" PointX="8.25" PointY="38.25" />
         <EntityTypeShape EntityType="Model.CourseAssessmentSurvay" Width="1.5" PointX="5.25" PointY="19.625" />
-        <EntityTypeShape EntityType="Model.CourseCoordinator" Width="1.5" PointX="3" PointY="33.375" />
+        <EntityTypeShape EntityType="Model.CourseCoordinator" Width="2" PointX="3" PointY="33.375" />
         <EntityTypeShape EntityType="Model.CourseExam" Width="1.5" PointX="5.25" PointY="33.375" />
         <EntityTypeShape EntityType="Model.CourseExamEval" Width="1.5" PointX="13.75" PointY="32.25" />
         <EntityTypeShape EntityType="Model.CourseExamQuestion" Width="1.5" PointX="10.5" PointY="35.375" />

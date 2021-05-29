@@ -1,0 +1,58 @@
+﻿@using LSS.Models
+@model LSS.Models.CoursesModelView.PIAssessmentMV
+
+
+@{
+    ViewBag.Title = "DirectAssessment1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .collapsible {
+        background-color: #777;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+    }
+
+        .active, .collapsible:hover {
+            background-color: #555;
+        }
+
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+</style>
+
+
+<h2>DirectAssessment1</h2>
+
+@using (Html.BeginForm("DirectAssessmentPI", "CourseCoordinator", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+    @Html.HiddenFor(x => x.CourseCoordinator)
+    @Html.HiddenFor(x => x.CourseExamQuestions)
+
+    foreach (CourseExam exam in Model.CourseCoordinator.CourseExams)
+    {
+        <button type="button" class="collapsible">@exam.Type</button>
+        <div class="content">
+            @foreach (CourseExamQuestion question in exam.CourseExamQuestions)
+            {
+                <input type="checkbox" id="QID" name="QID" value="@question.ID" checked="@Model.CourseCoordinator.CourseExamQuestions.Select(x=>x.ID).Contains(question.ID)" /> <b style="padding-bottom:2%; margin-bottom:2%">@question.QuestionNumber</b>
+            }
+        </div>
+    }
+    <input type="submit" value="Save Selected" class="btn btn-primary mb-1" />
+}

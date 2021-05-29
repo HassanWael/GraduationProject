@@ -13,13 +13,13 @@ namespace LSS.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    
     public partial class EnroledStudent
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public EnroledStudent()
         {
             this.CourseExamEvals = new HashSet<CourseExamEval>();
-            this.PIAssessments = new HashSet<PIAssessment>();
         }
     
         public int ID { get; set; }
@@ -36,7 +36,5 @@ namespace LSS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseExamEval> CourseExamEvals { get; set; }
         public virtual Student Student { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PIAssessment> PIAssessments { get; set; }
     }
 }
