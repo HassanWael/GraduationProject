@@ -128,12 +128,73 @@ else
                     </td>
                 </tr>
             }
-
-
-
         </tbody>
     </table>
 
 
 }
+
+
+@if (Model.ResultOfCourseDirectAssessment == null)
+{
+    <div class="card border-danger mb-3" style="max-width: 20rem;">
+        <div class="card-header">Result of Course Direct Assessment</div>
+        <div class="card-body">
+            <h4 class="card-title">it has not been setup yet for this course  </h4>
+            <hr />
+            <button id='open' class="btn btn-primary card-link mt-3" data-toggle="modal" data-target="#AddRCDA">Create Assessment review</button>
+
+        </div>
+    </div>
+
+    <div id="AddRCDA" class="shadow modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                @{
+                    Html.RenderPartial("AddRCDA", new ResultOfCourseDirectAssessment() { CourseID = Model.CourseID, Year = Model.Year, Semseter = Model.Semseter });
+                }
+            </div>
+        </div>
+    </div>
+
+}
+else
+{
+    <div class="card border-secondary mb-3" style="max-width: 20rem;">
+        <div class="card-header">Result of Course Direct Assessment</div>
+        <div class="card-body">
+            <h4 class="card-title">Actions Taken </h4>
+            <p class="card-text">@Model.ResultOfCourseDirectAssessment.ActionsTaken</p>
+            <br />
+            <hr />
+            <h4 class="card-title">Observation</h4>
+            <p class="card-text">@Model.ResultOfCourseDirectAssessment.Observation</p>
+            <br />
+            <hr />
+            <h4 class="card-title">Analysis and justification</h4>
+            <p class="card-text">@Model.ResultOfCourseDirectAssessment.AnalysisAndJustification</p>
+            <br />
+            <hr />
+            <h4 class="card-title">Recomandations</h4>
+            <p class="card-text">@Model.ResultOfCourseDirectAssessment.Recommendation</p>
+            <br />
+            <hr />
+            <button id='open' class="btn btn-primary card-link mt-3" data-toggle="modal" data-target="#AddRCDA">Edite Assessment review</button>
+
+        </div>
+    </div>
+
+    <div id="AddRCDA" class="shadow modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                @{
+                    Html.RenderPartial("AddRCDA", Model.ResultOfCourseDirectAssessment);
+
+                }
+            </div>
+        </div>
+    </div>
+
+}
+
 

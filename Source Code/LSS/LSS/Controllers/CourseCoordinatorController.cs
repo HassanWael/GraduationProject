@@ -368,6 +368,23 @@ namespace LSS.Controllers
             return View();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddRCDA(ResultOfCourseDirectAssessment RCDA)
+        {
+            if(_DatabaseEntities.ResultOfCourseDirectAssessments.Find(RCDA.CourseID,RCDA.Year, RCDA.Semseter)!=null)
+            {
+                _DatabaseEntities.Entry(RCDA).State = EntityState.Modified;
+                _DatabaseEntities.SaveChanges();
+            }
+            else
+            {
+                _DatabaseEntities.ResultOfCourseDirectAssessments.Add(RCDA);
+                _DatabaseEntities.SaveChanges();
+
+            }
+            return View();
+        }
 
 
 

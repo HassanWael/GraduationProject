@@ -28,7 +28,6 @@
                 @Html.ActionLink("Question Answer Sheet", "QuestionsAnswersSheet", "Forms", new { ViewBag.courseID }, new { @class = "bg-transparent pb-3" })
             </div>
         </div>
-
         <div class="col-lg-8">
             <div class="container shadow-lg p-3 mb-3 mt-5 bg-white">
                 <div class="d-flex justify-content-center align-items-center text-center">
@@ -37,13 +36,10 @@
                         <h4> Actions For Improving  </h4>
                     </div>
                 </div>
-
                 <div class="mb-2">
                     @Html.ActionLink("Create New", "Create", new { courseId = ViewBag.courseId }, new { @class = "btn btn-primary" })
 
                 </div>
-
-
                 <div class="shadow block text-center">
                     <div class="block-item w-100">
                         <table class="table table-hover table-borderless bg-white ">
@@ -66,9 +62,6 @@
                                    </th>
                                </tr>
                            </thread>
-                            
-                            
-
                             @foreach (var item in Model)
                             {
                                 <tr class="bg-white">
@@ -101,24 +94,3 @@
         </div>
     </div>
 </body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -573,7 +573,6 @@
     <Content Include="Views\Admin\CreateNewSemster.cshtml" />
     <Content Include="Views\Admin\ListCourses.cshtml" />
     <Content Include="Views\CourseCoordinator\ActionsForImproving.cshtml" />
-    <Content Include="Views\CourseCoordinator\ActionsForImprovingDetails.cshtml" />
     <Content Include="Views\CourseCoordinator\IsAssessed.cshtml" />
     <Content Include="Views\CourseCoordinator\AssessmentPlan.cshtml" />
     <Content Include="Views\CourseCoordinator\CourseAssessmentSurvey.cshtml" />
@@ -591,6 +590,8 @@
     <Content Include="Views\Exam\CreateQustion.cshtml" />
     <Content Include="Views\CourseCoordinator\DirectAssessmentPI.cshtml" />
     <Content Include="Views\CourseCoordinator\DirectAssessment.cshtml" />
+    <Content Include="Views\CourseCoordinator\AddRCDA.cshtml" />
+    <Content Include="Views\CourseCoordinator\ActionsForImprovingDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
