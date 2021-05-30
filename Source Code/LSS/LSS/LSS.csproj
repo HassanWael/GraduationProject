@@ -565,7 +565,6 @@
     <Content Include="Views\Forms\ExamEvaluation.cshtml" />
     <Content Include="Views\Forms\ExamModerationChecklist.cshtml" />
     <Content Include="Views\Forms\QuestionsAnswersSheet.cshtml" />
-    <Content Include="Views\Forms\CouresSyllabusAddData.cshtml" />
     <Content Include="Views\HeadOfDepartment\EditSLO.cshtml" />
     <Content Include="Views\CourseCoordinator\AddCLO.cshtml" />
     <Content Include="Views\HeadOfDepartment\AddPI.cshtml" />
