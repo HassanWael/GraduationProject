@@ -36,6 +36,6 @@ namespace LSS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PI> PIs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<schedule> schedules { get; set; }
+        public virtual ICollection<Schedule> Schedules { get; set; }
     }
 }

@@ -368,6 +368,23 @@ namespace LSS.Controllers
             return View();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddRCDA(ResultOfCourseDirectAssessment RCDA)
+        {
+            if(_DatabaseEntities.ResultOfCourseDirectAssessments.Find(RCDA.CourseID,RCDA.Year, RCDA.Semseter)!=null)
+            {
+                _DatabaseEntities.Entry(RCDA).State = EntityState.Modified;
+                _DatabaseEntities.SaveChanges();
+            }
+            else
+            {
+                _DatabaseEntities.ResultOfCourseDirectAssessments.Add(RCDA);
+                _DatabaseEntities.SaveChanges();
+
+            }
+            return View();
+        }
 
 
 
@@ -378,6 +395,24 @@ namespace LSS.Controllers
             CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester);
 
             return View(cc);
+        }
+
+
+        public ActionResult CourseSchedule(string? CoursID, DateTime? Year, string? Semester)
+        {
+            if (CoursID == null || Year == null || Semester == null)
+            {
+
+            }
+
+            List<Schedule> schedules = _DatabaseEntities.Schedules.Where(x => x.CourseID.Equals(CoursID) &&
+              x.Year.Equals(Year) && x.Semseter.Equals(Semester)).ToList();
+            if (schedules == null)
+            {
+
+            }
+            
+            return View(schedules);
         }
     }
     

@@ -31,7 +31,7 @@
     <EntitySet Name="PEOs" EntityType="Model.PEO" />
     <EntitySet Name="PIs" EntityType="Model.PI" />
     <EntitySet Name="ResultOfCourseDirectAssessments" EntityType="Model.ResultOfCourseDirectAssessment" />
-    <EntitySet Name="schedules" EntityType="Model.schedule" />
+    <EntitySet Name="Schedules" EntityType="Model.Schedule" />
     <EntitySet Name="SLOes" EntityType="Model.SLO" />
     <EntitySet Name="SLO_PEO" EntityType="Model.SLO_PEO" />
     <EntitySet Name="Students" EntityType="Model.Student" />
@@ -151,9 +151,9 @@
       <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
       <End Role="ResultOfCourseDirectAssessment" EntitySet="ResultOfCourseDirectAssessments" />
     </AssociationSet>
-    <AssociationSet Name="FK_schedule_ToCourseCoordinator" Association="Model.FK_schedule_ToCourseCoordinator">
+    <AssociationSet Name="FK_SChedule_toCC" Association="Model.FK_SChedule_toCC">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
-      <End Role="schedule" EntitySet="schedules" />
+      <End Role="Schedule" EntitySet="Schedules" />
     </AssociationSet>
     <AssociationSet Name="FK_CourseExamQ" Association="Model.FK_CourseExamQ">
       <End Role="CourseExam" EntitySet="CourseExams" />
@@ -241,7 +241,7 @@
     </AssociationSet>
     <AssociationSet Name="Schedule_CLO" Association="Model.Schedule_CLO">
       <End Role="CLO" EntitySet="CLOes" />
-      <End Role="schedule" EntitySet="schedules" />
+      <End Role="Schedule" EntitySet="Schedules" />
     </AssociationSet>
     <AssociationSet Name="SLO_Course" Association="Model.SLO_Course">
       <End Role="Course" EntitySet="Courses" />
@@ -319,7 +319,7 @@
     <NavigationProperty Name="Course" Relationship="Model.FK_CLO_ToCourse" FromRole="CLO" ToRole="Course" />
     <NavigationProperty Name="CourseAssessmentMappings" Relationship="Model.FK_CourseAssessmentMapping_ToCLO" FromRole="CLO" ToRole="CourseAssessmentMapping" />
     <NavigationProperty Name="PIs" Relationship="Model.CLO_PI" FromRole="CLO" ToRole="PI" />
-    <NavigationProperty Name="schedules" Relationship="Model.Schedule_CLO" FromRole="CLO" ToRole="schedule" />
+    <NavigationProperty Name="Schedules" Relationship="Model.Schedule_CLO" FromRole="CLO" ToRole="Schedule" />
   </EntityType>
   <EntityType Name="Course">
     <Key>
@@ -418,7 +418,7 @@
     <NavigationProperty Name="isAssessed" Relationship="Model.FK_isAssessed_ToCC" FromRole="CourseCoordinator" ToRole="isAssessed" />
     <NavigationProperty Name="OtherLecturers" Relationship="Model.FK_OtherLecturers_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="OtherLecturer" />
     <NavigationProperty Name="ResultOfCourseDirectAssessment" Relationship="Model.FK_ResultOfCourseDirectAssessment_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="ResultOfCourseDirectAssessment" />
-    <NavigationProperty Name="schedules" Relationship="Model.FK_schedule_ToCourseCoordinator" FromRole="CourseCoordinator" ToRole="schedule" />
+    <NavigationProperty Name="Schedules" Relationship="Model.FK_SChedule_toCC" FromRole="CourseCoordinator" ToRole="Schedule" />
     <NavigationProperty Name="CourseExamQuestions" Relationship="Model.PIAssessment" FromRole="CourseCoordinator" ToRole="CourseExamQuestion" />
   </EntityType>
   <EntityType Name="CourseExam">
@@ -717,22 +717,22 @@
     <Property Name="Recommendation" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="CourseCoordinator" Relationship="Model.FK_ResultOfCourseDirectAssessment_ToCourseCoordinator" FromRole="ResultOfCourseDirectAssessment" ToRole="CourseCoordinator" />
   </EntityType>
-  <EntityType Name="schedule">
+  <EntityType Name="Schedule">
     <Key>
       <PropertyRef Name="CourseID" />
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semseter" />
-      <PropertyRef Name="Week" />
+      <PropertyRef Name="WeekNumber" />
     </Key>
     <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="Semseter" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
-    <Property Name="Week" Type="Int32" Nullable="false" />
-    <Property Name="Topics" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="Assigments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="Referance" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="CourseCoordinator" Relationship="Model.FK_schedule_ToCourseCoordinator" FromRole="schedule" ToRole="CourseCoordinator" />
-    <NavigationProperty Name="CLOes" Relationship="Model.Schedule_CLO" FromRole="schedule" ToRole="CLO" />
+    <Property Name="WeekNumber" Type="Int32" Nullable="false" />
+    <Property Name="Topic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Assignments" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Reference" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CourseCoordinator" Relationship="Model.FK_SChedule_toCC" FromRole="Schedule" ToRole="CourseCoordinator" />
+    <NavigationProperty Name="CLOes" Relationship="Model.Schedule_CLO" FromRole="Schedule" ToRole="CLO" />
   </EntityType>
   <EntityType Name="SLO">
     <Key>
@@ -1253,18 +1253,16 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_schedule_ToCourseCoordinator">
-    <End Type="Model.CourseCoordinator" Role="CourseCoordinator" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="Model.schedule" Role="schedule" Multiplicity="*" />
+  <Association Name="FK_SChedule_toCC">
+    <End Type="Model.CourseCoordinator" Role="CourseCoordinator" Multiplicity="1" />
+    <End Type="Model.Schedule" Role="Schedule" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CourseCoordinator">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
         <PropertyRef Name="Semseter" />
       </Principal>
-      <Dependent Role="schedule">
+      <Dependent Role="Schedule">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
         <PropertyRef Name="Semseter" />
@@ -1531,7 +1529,7 @@
   </Association>
   <Association Name="Schedule_CLO">
     <End Type="Model.CLO" Role="CLO" Multiplicity="*" />
-    <End Type="Model.schedule" Role="schedule" Multiplicity="*" />
+    <End Type="Model.Schedule" Role="Schedule" Multiplicity="*" />
   </Association>
   <Association Name="SLO_Course">
     <End Type="Model.Course" Role="Course" Multiplicity="*" />

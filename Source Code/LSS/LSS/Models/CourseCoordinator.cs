@@ -24,7 +24,7 @@ namespace LSS.Models
             this.CourseTeachingStrategies = new HashSet<CourseTeachingStrategy>();
             this.EnroledStudents = new HashSet<EnroledStudent>();
             this.OtherLecturers = new HashSet<OtherLecturer>();
-            this.schedules = new HashSet<schedule>();
+            this.Schedules = new HashSet<Schedule>();
             this.CourseExamQuestions = new HashSet<CourseExamQuestion>();
         }
     
@@ -67,7 +67,7 @@ namespace LSS.Models
         public virtual ICollection<OtherLecturer> OtherLecturers { get; set; }
         public virtual ResultOfCourseDirectAssessment ResultOfCourseDirectAssessment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<schedule> schedules { get; set; }
+        public virtual ICollection<Schedule> Schedules { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseExamQuestion> CourseExamQuestions { get; set; }
     }
