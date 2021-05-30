@@ -341,6 +341,9 @@
     <Compile Include="Models\ResultOfCourseDirectAssessment.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Schedule.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SiteRole.cs" />
     <Compile Include="Models\SLO.cs">
       <DependentUpon>Model1.tt</DependentUpon>
