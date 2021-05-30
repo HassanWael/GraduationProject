@@ -379,7 +379,30 @@ namespace LSS.Controllers
 
             return View(cc);
         }
-    }
-    
 
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CourseRecourse(Course courseRecourse)
+        {
+
+            Course c = _DatabaseEntities.Courses.Find(courseRecourse.ID);
+           
+            
+            if (c != null)
+            {
+                c.Other_Online_resources = courseRecourse.Other_Online_resources;
+                c.Other_Required_Material = courseRecourse.Other_Required_Material;
+                _DatabaseEntities.Entry(c).State = EntityState.Modified;
+                _DatabaseEntities.SaveChanges();
+            }
+            else
+            {
+                _DatabaseEntities.Courses.Add(courseRecourse);
+                _DatabaseEntities.SaveChanges();
+
+            }
+            return View();
+        }
+    }
 }

@@ -590,6 +590,7 @@
     <Content Include="Views\Exam\CreateQustion.cshtml" />
     <Content Include="Views\CourseCoordinator\DirectAssessmentPI.cshtml" />
     <Content Include="Views\CourseCoordinator\DirectAssessment.cshtml" />
+    <Content Include="Views\CourseCoordinator\CourseRecourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
