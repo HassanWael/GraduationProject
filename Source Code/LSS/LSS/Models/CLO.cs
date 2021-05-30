@@ -19,7 +19,7 @@ namespace LSS.Models
         {
             this.CourseAssessmentMappings = new HashSet<CourseAssessmentMapping>();
             this.PIs = new HashSet<PI>();
-            this.schedules = new HashSet<schedule>();
+            this.Schedules = new HashSet<Schedule>();
         }
         public CLO(string courseId)
             : this()
