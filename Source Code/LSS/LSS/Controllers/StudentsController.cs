@@ -52,10 +52,6 @@ namespace LSS.Controllers
                 HttpPostedFileBase file = Request.Files["Select Excel file"];
                 if ((file != null) && (file.ContentLength != 0) && !string.IsNullOrEmpty(file.FileName))
                 {
-                    string fileName = file.FileName;
-                    string fileContentType = file.ContentType;
-                    byte[] fileBytes = new byte[file.ContentLength];
-                    var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
                     using (var package = new ExcelPackage(file.InputStream))
                     {
                         var currentSheet = package.Workbook.Worksheets;
@@ -75,13 +71,15 @@ namespace LSS.Controllers
 
                                         if (Student != null)
                                         {
-                                        EnroledStudent e = new EnroledStudent();
-                                        e.StudentID = Student.ID;
-                                        e.CourseID = cc.CourseID;
-                                        e.Year = cc.Year;
-                                        e.Semseter = cc.Semseter;
-                                          
-                                            _DatabaseEntities.EnroledStudents.Add(e);
+                                        EnroledStudent e = new EnroledStudent
+                                        {
+                                            StudentID = Student.ID,
+                                            CourseID = cc.CourseID,
+                                            Year = cc.Year,
+                                            Semseter = cc.Semseter
+                                        };
+
+                                        _DatabaseEntities.EnroledStudents.Add(e);
                                             _DatabaseEntities.SaveChanges();
 
                                             added++;
@@ -163,11 +161,13 @@ namespace LSS.Controllers
                     }
                 }
             }
-                return RedirectToAction("CourseStudentList","Student",new { CourseID= CourseID , Year = Year , Semseter = Semseter });
+                return RedirectToAction("CourseStudentList","Student",new { CourseID, Year, Semseter });
         }
 
         public ActionResult CourseStudentList(string? CourseID, string? updateMassege, DateTime? Year, string? Semester, int? Department, string? Search, int page = 1, int pageSize = 10)
         {
+            ViewBag.updateMassege = updateMassege;
+
             if (CourseID == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<LSS.Models.Schedule>
+
 @{
     ViewBag.Title = "CourseSchedule";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,3 +7,52 @@
 
 <h2>CourseSchedule</h2>
 
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.WeekNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Topic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Assignments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reference)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseCoordinator.ClassRoom)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+          @Html.DisplayFor(modelItem=> item.WeekNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Topic)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Assignments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Reference)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseCoordinator.ClassRoom)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

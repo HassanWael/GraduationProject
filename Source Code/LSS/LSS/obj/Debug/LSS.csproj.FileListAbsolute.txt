@@ -593,7 +593,6 @@ C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\bin\ru\Microsoft.B
 C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\bin\tr\Microsoft.Build.resources.dll
 C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\bin\zh-Hans\Microsoft.Build.resources.dll
 C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\bin\zh-Hant\Microsoft.Build.resources.dll
-C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\obj\Debug\LSS.csprojAssemblyReference.cache
 C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\obj\Debug\LSS.csproj.CoreCompileInputs.cache
 C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\obj\Debug\LSS.csproj.CopyComplete
 C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\obj\Debug\LSS.dll

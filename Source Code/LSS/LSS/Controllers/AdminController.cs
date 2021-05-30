@@ -14,10 +14,10 @@ namespace LSS.Controllers
     //[Authorize(Roles ="Admin")]
     public class AdminController : Controller
     {
-        LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
+      readonly  LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
         // GET: Admin
         //ToDO :Create Index View for Admin.
-        YearAndSemester YAS = SemesterSingelton.getCurrentYearAndSemester();
+      readonly  YearAndSemester YAS = SemesterSingelton.getCurrentYearAndSemester();
 
         public ActionResult AddCourseToSemester(string CourseID)
         {
@@ -43,8 +43,10 @@ namespace LSS.Controllers
         }
         public ActionResult AddCourseToSemster(string CourseID)
         {
-            CourseCoordinator cc = new CourseCoordinator();
-            cc.CourseID = CourseID;
+            CourseCoordinator cc = new CourseCoordinator
+            {
+                CourseID = CourseID
+            };
             return View(cc);
         }
 
@@ -433,10 +435,7 @@ namespace LSS.Controllers
                 HttpPostedFileBase file = Request.Files["Select Excel file"];
                 if ((file != null) && (file.ContentLength != 0) && !string.IsNullOrEmpty(file.FileName))
                 {
-                    string fileName = file.FileName;
-                    string fileContentType = file.ContentType;
-                    byte[] fileBytes = new byte[file.ContentLength];
-                    var data = file.InputStream.Read(fileBytes, 0, Convert.ToInt32(file.ContentLength));
+      
                     using (var package = new ExcelPackage(file.InputStream))
                     {
                         var currentSheet = package.Workbook.Worksheets;
