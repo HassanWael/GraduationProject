@@ -411,10 +411,7 @@ namespace LSS.Controllers
             {
 
             }
-            
             return View(schedules);
         }
     }
-    
-
 }
