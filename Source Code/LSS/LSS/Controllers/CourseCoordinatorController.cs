@@ -396,6 +396,17 @@ namespace LSS.Controllers
 
             return View(cc);
         }
+
+
+        public ActionResult Courseschedule(string? CoursID, DateTime? Year, string? Semester)
+        {
+            if (CoursID == null || Year == null || Semester == null)
+            {
+
+            }
+
+            return View();
+        }
     }
     
 

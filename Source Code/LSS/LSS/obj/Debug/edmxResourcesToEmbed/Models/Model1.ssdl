@@ -408,34 +408,34 @@
     <Property Name="AnalysisAndJustification" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Recommendation" Type="nvarchar" MaxLength="255" Nullable="false" />
   </EntityType>
-  <EntityType Name="schedule">
+  <EntityType Name="Schedule">
     <Key>
       <PropertyRef Name="CourseID" />
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semseter" />
-      <PropertyRef Name="Week" />
+      <PropertyRef Name="WeekNumber" />
     </Key>
     <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
     <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
-    <Property Name="Week" Type="int" Nullable="false" />
-    <Property Name="Topics" Type="nvarchar" MaxLength="255" />
-    <Property Name="Assigments" Type="nvarchar" MaxLength="255" />
-    <Property Name="Referance" Type="nvarchar" MaxLength="255" />
+    <Property Name="WeekNumber" Type="int" Nullable="false" />
+    <Property Name="Topic" Type="nvarchar" MaxLength="50" />
+    <Property Name="Assignments" Type="nvarchar" MaxLength="50" />
+    <Property Name="Reference" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Schedule_CLO">
     <Key>
       <PropertyRef Name="CourseID" />
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semseter" />
-      <PropertyRef Name="Week" />
-      <PropertyRef Name="CLO" />
+      <PropertyRef Name="WeekNumber" />
+      <PropertyRef Name="CLOID" />
     </Key>
     <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
     <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
-    <Property Name="Week" Type="int" Nullable="false" />
-    <Property Name="CLO" Type="int" Nullable="false" />
+    <Property Name="WeekNumber" Type="int" Nullable="false" />
+    <Property Name="CLOID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="SLO">
     <Key>
@@ -1197,43 +1197,41 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="Schedule_CLO">
-        <PropertyRef Name="CLO" />
+        <PropertyRef Name="CLOID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Schedule_CLO_ToSchedule">
-    <End Role="schedule" Type="Self.schedule" Multiplicity="1" />
-    <End Role="Schedule_CLO" Type="Self.Schedule_CLO" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="schedule">
-        <PropertyRef Name="CourseID" />
-        <PropertyRef Name="Year" />
-        <PropertyRef Name="Semseter" />
-        <PropertyRef Name="Week" />
-      </Principal>
-      <Dependent Role="Schedule_CLO">
-        <PropertyRef Name="CourseID" />
-        <PropertyRef Name="Year" />
-        <PropertyRef Name="Semseter" />
-        <PropertyRef Name="Week" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_schedule_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
+  <Association Name="FK_SChedule_toCC">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CourseCoordinator">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
         <PropertyRef Name="Semseter" />
       </Principal>
-      <Dependent Role="schedule">
+      <Dependent Role="Schedule">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
         <PropertyRef Name="Semseter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScheduleCLO_toSchedule">
+    <End Role="Schedule" Type="Self.Schedule" Multiplicity="1" />
+    <End Role="Schedule_CLO" Type="Self.Schedule_CLO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Schedule">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+        <PropertyRef Name="WeekNumber" />
+      </Principal>
+      <Dependent Role="Schedule_CLO">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+        <PropertyRef Name="WeekNumber" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1403,7 +1401,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
     <EntitySet Name="PIAssessment" EntityType="Self.PIAssessment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Question_IP" EntityType="Self.Question_IP" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ResultOfCourseDirectAssessment" EntityType="Self.ResultOfCourseDirectAssessment" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="schedule" EntityType="Self.schedule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Schedule_CLO" EntityType="Self.Schedule_CLO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SLO" EntityType="Self.SLO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SLO_Course" EntityType="Self.SLO_Course" Schema="dbo" store:Type="Tables" />
@@ -1606,13 +1604,13 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
       <End Role="CLO" EntitySet="CLO" />
       <End Role="Schedule_CLO" EntitySet="Schedule_CLO" />
     </AssociationSet>
-    <AssociationSet Name="FK_Schedule_CLO_ToSchedule" Association="Self.FK_Schedule_CLO_ToSchedule">
-      <End Role="schedule" EntitySet="schedule" />
-      <End Role="Schedule_CLO" EntitySet="Schedule_CLO" />
-    </AssociationSet>
-    <AssociationSet Name="FK_schedule_ToCourseCoordinator" Association="Self.FK_schedule_ToCourseCoordinator">
+    <AssociationSet Name="FK_SChedule_toCC" Association="Self.FK_SChedule_toCC">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
-      <End Role="schedule" EntitySet="schedule" />
+      <End Role="Schedule" EntitySet="Schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScheduleCLO_toSchedule" Association="Self.FK_ScheduleCLO_toSchedule">
+      <End Role="Schedule" EntitySet="Schedule" />
+      <End Role="Schedule_CLO" EntitySet="Schedule_CLO" />
     </AssociationSet>
     <AssociationSet Name="FK_SLO_Course_ToCourse" Association="Self.FK_SLO_Course_ToCourse">
       <End Role="Course" EntitySet="Course" />

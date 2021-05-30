@@ -371,13 +371,13 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="schedules">
-      <EntityTypeMapping TypeName="Model.schedule">
-        <MappingFragment StoreEntitySet="schedule">
-          <ScalarProperty Name="Referance" ColumnName="Referance" />
-          <ScalarProperty Name="Assigments" ColumnName="Assigments" />
-          <ScalarProperty Name="Topics" ColumnName="Topics" />
-          <ScalarProperty Name="Week" ColumnName="Week" />
+    <EntitySetMapping Name="Schedules">
+      <EntityTypeMapping TypeName="Model.Schedule">
+        <MappingFragment StoreEntitySet="Schedule">
+          <ScalarProperty Name="Reference" ColumnName="Reference" />
+          <ScalarProperty Name="Assignments" ColumnName="Assignments" />
+          <ScalarProperty Name="Topic" ColumnName="Topic" />
+          <ScalarProperty Name="WeekNumber" ColumnName="WeekNumber" />
           <ScalarProperty Name="Semseter" ColumnName="Semseter" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
@@ -476,14 +476,14 @@
       </EndProperty>
     </AssociationSetMapping>
     <AssociationSetMapping Name="Schedule_CLO" TypeName="Model.Schedule_CLO" StoreEntitySet="Schedule_CLO">
-      <EndProperty Name="schedule">
-        <ScalarProperty Name="Week" ColumnName="Week" />
+      <EndProperty Name="Schedule">
+        <ScalarProperty Name="WeekNumber" ColumnName="WeekNumber" />
         <ScalarProperty Name="Semseter" ColumnName="Semseter" />
         <ScalarProperty Name="Year" ColumnName="Year" />
         <ScalarProperty Name="CourseID" ColumnName="CourseID" />
       </EndProperty>
       <EndProperty Name="CLO">
-        <ScalarProperty Name="ID" ColumnName="CLO" />
+        <ScalarProperty Name="ID" ColumnName="CLOID" />
       </EndProperty>
     </AssociationSetMapping>
     <AssociationSetMapping Name="SLO_Course" TypeName="Model.SLO_Course" StoreEntitySet="SLO_Course">
