@@ -597,3 +597,4 @@ C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\obj\Debug\LSS.cspr
 C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\obj\Debug\LSS.csproj.CopyComplete
 C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\obj\Debug\LSS.dll
 C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\obj\Debug\LSS.pdb
+C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\obj\Debug\LSS.csprojAssemblyReference.cache

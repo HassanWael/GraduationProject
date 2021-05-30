@@ -398,20 +398,31 @@ namespace LSS.Controllers
         }
 
 
-        public ActionResult CourseSchedule(string? CoursID, DateTime? Year, string? Semester)
+        public ActionResult CourseSchedule(string? CourseID, DateTime? Year, string? Semester)
         {
-            if (CoursID == null || Year == null || Semester == null)
+            if (CourseID == null || Year == null || Semester == null)
             {
-
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            List<Schedule> schedules = _DatabaseEntities.Schedules.Where(x => x.CourseID.Equals(CoursID) &&
-              x.Year.Equals(Year) && x.Semseter.Equals(Semester)).ToList();
-            if (schedules == null)
+            List<Schedule> schedules = _DatabaseEntities.Schedules.Where(x => x.CourseID.Equals(CourseID) &&
+              x.Year.Equals((DateTime)Year) && x.Semseter.Equals(Semester)).ToList();
+            if (!schedules.Any())
             {
-
+                for (int i = 0; i < 17; i++)
+                {
+                    Schedule schedule = new Schedule();
+                    schedule.CourseID = CourseID;
+                    schedule.Year = (DateTime)Year;
+                    schedule.Semseter = Semester;
+                    schedule.WeekNumber = i+1;
+                    _DatabaseEntities.Schedules.Add(schedule);
+                    _DatabaseEntities.SaveChanges();
+                    schedules.Add(schedule);
+                }
             }
             return View(schedules);
         }
+
     }
 }

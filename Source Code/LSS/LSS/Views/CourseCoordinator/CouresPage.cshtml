@@ -18,24 +18,28 @@
             <div class="list-group list-group-flush w-50">
                 <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Content</b> </h4>
                 @Html.ActionLink("Recomandations for improving the course", "ActionsForImproving", "CourseCoordinator",
-               new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
+               new { courseId = Model.CourseCoordinator.CourseID }, new { @class = "bg-transparent pb-3" })
 
                 @Html.ActionLink("Students List", "CourseStudentList", "Students",
-               new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter },
-               new { @class = "bg-transparent pb-3" })
-       
-                @Html.ActionLink("PI Assessment", "PIAssessment", "CourseCoordinator", 
-               new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, 
+               new { CourseID = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter },
                new { @class = "bg-transparent pb-3" })
 
-                @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator", 
-               new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, 
+                @Html.ActionLink("PI Assessment", "PIAssessment", "CourseCoordinator",
+               new { CourseID = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter },
                new { @class = "bg-transparent pb-3" })
 
-                @Html.ActionLink("Exams & Tasks", "ListCourseExamsAndTasks", "Exam", 
-               new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, 
+                @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator",
+               new { CourseID = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter },
                new { @class = "bg-transparent pb-3" })
 
+                @Html.ActionLink("Exams & Tasks", "ListCourseExamsAndTasks", "Exam",
+               new { CourseID = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter },
+               new { @class = "bg-transparent pb-3" })
+
+
+                @Html.ActionLink("schedule", "CourseSchedule", "CourseCoordinator",
+               new { CourseID = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter },
+               new { @class = "bg-transparent pb-3" })
                 <br />
                 <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Forms</b> </h4>
                 @Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
@@ -314,13 +318,13 @@
                                     {
                                         <h4 class="card-text">
                                             The Assessment Plan has not been set up yet.
-                                            <p>
-                                                <div>
-                                                    <button id='open' class="btn btn-primary card-link" data-toggle="modal" data-target="#addAssmentPlan">Create Assessment Plan</button>
-                                                </div>
-                                            </p>
+                                          
                                         </h4>
-
+                                        <p>
+                                            <div>
+                                                <button id='open' class="btn btn-primary card-link" data-toggle="modal" data-target="#addAssmentPlan">Create Assessment Plan</button>
+                                            </div>
+                                        </p>
                                     }
                                     else
                                     {
