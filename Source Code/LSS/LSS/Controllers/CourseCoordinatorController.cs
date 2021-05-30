@@ -398,14 +398,21 @@ namespace LSS.Controllers
         }
 
 
-        public ActionResult Courseschedule(string? CoursID, DateTime? Year, string? Semester)
+        public ActionResult CourseSchedule(string? CoursID, DateTime? Year, string? Semester)
         {
             if (CoursID == null || Year == null || Semester == null)
             {
 
             }
 
-            return View();
+            List<Schedule> schedules = _DatabaseEntities.Schedules.Where(x => x.CourseID.Equals(CoursID) &&
+              x.Year.Equals(Year) && x.Semseter.Equals(Semester)).ToList();
+            if (schedules == null)
+            {
+
+            }
+            
+            return View(schedules);
         }
     }
     
