@@ -4,6 +4,7 @@
     ViewBag.Title = "CourseSchedule";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@Scripts.Render("~/bundles/bootstrap")
 
 <h2>CourseSchedule</h2>
 
@@ -29,8 +30,12 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
+
+
+
+    @foreach (Schedule item in Model)
     {
+        string s = "Week_" + item.WeekNumber;
         <tr>
             <td>
                 Week:  @Html.DisplayFor(modelItem => item.WeekNumber)
@@ -51,23 +56,20 @@
                 }
             </td>
             <td>
-                <button id='open' style="float:right; margin:5px" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#@item">Edit</button>
-                  
-                    <div id="@item" class="modal fade" tabindex="-1" role="dialog">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                @{
-                                    Html.RenderPartial("_EditWeek",item);
-                                }
-                            </div>
+                <a class="btn btn-primary" style="margin:4%" id="open" data-toggle="modal" data-target="#@s">Edit</a>
+                <div id="@s" class="modal fade" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            @{
+                                Html.RenderPartial("EditWeek",item);
+                            }
                         </div>
                     </div>
+                </div>
+
             </td>
         </tr>
-
-
-
-
+     
     }
 </table>
 
