@@ -598,3 +598,5 @@ C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\obj\Debug\LSS.cspr
 C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\obj\Debug\LSS.dll
 C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\obj\Debug\LSS.pdb
 C:\Users\basha\Desktop\GgraduationProject\Source Code\LSS\LSS\obj\Debug\LSS.csprojAssemblyReference.cache
+C:\Users\Bashzilla\source\repos\GraduationProject\Source Code\LSS\LSS\bin\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\Bashzilla\source\repos\GraduationProject\Source Code\LSS\LSS\bin\Microsoft.IO.RecyclableMemoryStream.xml
