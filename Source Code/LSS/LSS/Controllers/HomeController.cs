@@ -11,6 +11,7 @@ namespace LSS.Controllers
     public class HomeController : Controller
     {
         private readonly LSS_databaseEntities _databaseEntities = new LSS_databaseEntities();
+        
         public ActionResult Index()
         {
             return View();
@@ -21,6 +22,7 @@ namespace LSS.Controllers
             return View();
         }
 
+
         [HttpPost]
         public ActionResult Login(Lecturer user, String ReturnUrl)
         {
@@ -28,7 +30,7 @@ namespace LSS.Controllers
             {
                 Lecturer ValidUser = _databaseEntities.Lecturers.SingleOrDefault(lecturer => lecturer.ID.Equals(user.ID) && lecturer.Password.Equals(user.Password));
                 if (ValidUser != null)
-                {
+                {        
                     FormsAuthentication.SetAuthCookie(ValidUser.ID, false);
                     if (Url.IsLocalUrl(ReturnUrl))
                     {
@@ -70,6 +72,11 @@ namespace LSS.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
         }
 
     }

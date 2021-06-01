@@ -11,17 +11,17 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
 
     public partial class isAssessed
     {
         public string CourseID { get; set; }
+        [Required]
+        [Display(Name = "Date")]
+        [DataType(DataType.Date)]
         public System.DateTime Year { get; set; }
         public string Semseter { get; set; }
-        [DisplayName("Will this Course be Assessed")]
         public bool isAssessed1 { get; set; }
-        [DisplayName("Please Specify the Reason:")]
-
         public string WhyNot { get; set; }
     
         public virtual CourseCoordinator CourseCoordinator { get; set; }

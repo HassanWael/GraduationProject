@@ -8,7 +8,7 @@
 
 <h2>CreatUser</h2>
 
-@using (Html.BeginForm("CreatUser","Admin",FormMethod.Post))
+@using (Html.BeginForm("CreatUser", "Admin", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -16,6 +16,15 @@
         <h4>Lecturer</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -27,7 +36,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Role, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.Role, new SelectList(ViewBag.role, "Key", "Value"), "Select Role", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -57,10 +66,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DptID, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.dptId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DptID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DptID, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.dptId, new SelectList(ViewBag.dept, "ID", "Name"), "Select Department", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.dptId, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -71,7 +80,3 @@
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

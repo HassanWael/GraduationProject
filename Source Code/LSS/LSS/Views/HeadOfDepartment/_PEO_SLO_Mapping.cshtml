@@ -3,56 +3,87 @@
 
 <html>
 <body>
-    <div>
-        <h2>unmapped SLO to PEO : </h2>
-        @Model.UnmappedSLO.Count() 
-    </div>
-
-    <div>
-        <h2>unmapped PEO to SLO : </h2>
-        @Model.UnmappedPEO.Count() 
-    </div>
-
-
-    @if (Model != null)
-    {
-        <table>
-            <tr>
-                <td>
-                </td>
-                @for (int i = 0; i < Model.PEOs.Count(); i++)
-                {
-                    <td> @Model.PEOs[i].ID</td>
-                }
-            </tr>
-            @for (int i = 0; i < Model.SLOes.Count(); i++)
-            {
-                <tr>
-                    <td>
-                        @Model.SLOes[i].SLOID
-                    </td>
-                    @for (int j = 0; j < Model.PEOs.Count(); j++)
+    <div class="card-group">
+        <div class="col-3 mt-3 text-primary font-weight-bold">
+            <ul class="list-unstyled">
+                <li>
+                    @if (Model != null)
                     {
+                        <table class="table-sm table-borderless">
+                            <tr>
+                                <td >
 
-
-                        if (Model.SLO_PEO.Where(x=>x.SLOID.Equals(Model.SLOes[i].SLOID) && x.PEOID.Equals(Model.PEOs[j].ID)).FirstOrDefault() != null)
-                        {
-                             <td>
-                                @Html.CheckBox("name", true, new { disabled = true })
-                             </td>
-                        }
-                        else
-                        {
-                            <td>
-                             @Html.CheckBox("name", false, new { disabled = true })
-                            </td>
-                        }
+                                </td>
+                                @for (int i = 0; i < Model.PEOs.Count(); i++)
+                                {
+                                    <td> @Model.PEOs[i].ID</td>
+                                }
+                            </tr>
+                            @for (int i = 0; i < Model.SLOes.Count(); i++)
+                            {
+                                <tr>
+                                    <td>
+                                        @Model.SLOes[i].SLOID
+                                    </td>
+                                    @for (int j = 0; j < Model.PEOs.Count(); j++)
+                                    {
+                                        if (Model.SLO_PEO.Where(x => x.SLOID.Equals(Model.SLOes[i].SLOID) && x.PEOID.Equals(Model.PEOs[j].ID)).FirstOrDefault() != null)
+                                        {
+                                            <td class="justify-content-center align-items-center text-center">
+                                                @Html.CheckBox("name", true, new { disabled = true })
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td class="justify-content-center align-items-center text-center">
+                                                @Html.CheckBox("name", false, new { disabled = true })
+                                            </td>
+                                        }
+                                    }
+                                </tr>
+                            }
+                        </table>
                     }
-                    
-                </tr>
-            }
+                </li>
+            </ul>
+        </div>
 
-        </table>
-    }
+        <div class="col-6 mt-3" id="PeoSloCard">
+            <ul class="list-unstyled text-center justify-content-center align-items-center d-flex w-100">
+                @if (Model.UnmappedSLO.Count() > 0)
+                {
+                    <li class="pr-4">
+                        <div class="card border-primary">
+                            <div class="card-header">
+                                <h4>unmapped SLO to PEO: </h4>
+                            </div>
+                            <div class="card-body">
+                                <blockquote class="blockquote mb-0">
+                                    <p class="text-warning"> @Model.UnmappedSLO.Count() </p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </li>
+                }
+
+
+                @if (Model.UnmappedPEO.Count() > 0)
+                {
+                    <li>
+                        <div class="card border-primary">
+                            <div class="card-header">
+                                <h4>unmapped PEO to SLO: </h4>
+                            </div>
+                            <div class="card-body">
+                                <blockquote class="blockquote mb-0">
+                                    <p class="text-warning"> @Model.UnmappedPEO.Count() </p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
 </body>
 </html>

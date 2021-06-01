@@ -3,13 +3,14 @@ using LSS.Models.arc;
 using LSS.Models.CoursesModelView;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
 namespace LSS.Controllers
 {
-
+    [Authorize]
     public class FormsController : Controller
     {
         private readonly YearAndSemester yearAndSemester = SemesterSingelton.getCurrentYearAndSemester();
@@ -43,16 +44,28 @@ namespace LSS.Controllers
             return View(cmv);
         }
 
-        public ActionResult CourseReport()
+        public ActionResult CourseReport(string? CourseID)
         {
-            return View();
+            if (CourseID is null)
+            {
+                RedirectToAction("Index", "Home");
+            }
+
+            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, yearAndSemester.Year, yearAndSemester.Semester);
+            CouresReportModelView cmv = new CouresReportModelView(cc);
+            return View(cmv);
         }
 
-        public ActionResult CourseSyllabus(string? id)
+        public ActionResult CourseSyllabus(string? CourseID)
         {
-            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(id, yearAndSemester.Year, yearAndSemester.Semester);
+            if (CourseID is null)
+            {
+                RedirectToAction("Index", "Home");
+            }
 
-            return View(cc);
+            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, yearAndSemester.Year, yearAndSemester.Semester);
+            CouresReportModelView cmv = new CouresReportModelView(cc);
+            return View(cmv);
         }
 
         public ActionResult ExamEvaluation()
@@ -71,6 +84,28 @@ namespace LSS.Controllers
         }
         public ActionResult CouresSyllabusAddData() {
             return View();
+        }
+        public ActionResult addCourseSyllabus(string id,DateTime year,string semester)
+        {
+            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(id, year, semester);
+            return View(cc);
+        }
+        [HttpPost]
+        public ActionResult addCourseSyllabus(CourseSyllabu cs)
+
+        {
+            try
+            {
+
+                _DatabaseEntities.CourseSyllabus.Add(cs);
+                _DatabaseEntities.SaveChanges();
+            }
+            catch {
+                _DatabaseEntities.Entry(cs).State = EntityState.Modified;
+                _DatabaseEntities.SaveChanges();
+            }
+                return RedirectToAction("CoursePage", "CourseCoordinator", new { couresId = cs.CourseID });
+            
         }
     }
 }

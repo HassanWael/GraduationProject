@@ -1,0 +1,20 @@
+﻿@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+@if (ViewBag.message != null)
+{
+    <div class="alert alert-dismissible alert-secondary">
+        <button type="button" class="btn-close" data-bs-dismiss="alert">X</button>
+        @ViewBag.message
+    </div>
+}
+
+
+
+

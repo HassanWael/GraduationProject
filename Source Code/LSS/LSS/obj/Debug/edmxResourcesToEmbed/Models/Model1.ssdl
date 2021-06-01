@@ -14,18 +14,6 @@
     <Property Name="RecomandedActions" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="PersonResponsible" Type="nvarchar" MaxLength="255" Nullable="false" />
   </EntityType>
-  <EntityType Name="AssessedCourses">
-    <Key>
-      <PropertyRef Name="CourseID" />
-      <PropertyRef Name="Year" />
-      <PropertyRef Name="Semester" />
-    </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
-    <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
-    <Property Name="IsAssessed" Type="bit" Nullable="false" />
-    <Property Name="WhyNot" Type="nvarchar" MaxLength="255" />
-  </EntityType>
   <EntityType Name="AssessmentPlanforTheStudentLearningOutcomeTechnique">
     <Key>
       <PropertyRef Name="CourseID" />
@@ -48,6 +36,14 @@
     <Property Name="Gropu_Discussions" Type="bit" Nullable="false" />
     <Property Name="Students_Interviews" Type="bit" Nullable="false" />
     <Property Name="Other" Type="nchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="AssessmentSurveyAnswer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QID" Type="int" Nullable="false" />
+    <Property Name="Answer" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="byCompletingThisCourseStudentsAreAbleTo">
     <Key>
@@ -72,14 +68,10 @@
   <EntityType Name="CLO-PI">
     <Key>
       <PropertyRef Name="CLOID" />
-      <PropertyRef Name="PI-ID" />
-      <PropertyRef Name="DeptID" />
-      <PropertyRef Name="SLOID" />
+      <PropertyRef Name="PIUniqueID" />
     </Key>
     <Property Name="CLOID" Type="int" Nullable="false" />
-    <Property Name="PI-ID" Type="nvarchar" MaxLength="20" Nullable="false" />
-    <Property Name="DeptID" Type="int" Nullable="false" />
-    <Property Name="SLOID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="PIUniqueID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Course">
     <Key>
@@ -119,15 +111,16 @@
   </EntityType>
   <EntityType Name="CourseAssessmentSurvay">
     <Key>
-      <PropertyRef Name="CourseID" />
-      <PropertyRef Name="Year" />
-      <PropertyRef Name="Semseter" />
-      <PropertyRef Name="Qustion" />
+      <PropertyRef Name="ID" />
     </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
     <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
     <Property Name="Qustion" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="PI_ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="SLOID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DeptID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="CourseCoordinator">
     <Key>
@@ -143,6 +136,41 @@
     <Property Name="courseNotAssessedReason " Type="nvarchar" MaxLength="255" />
     <Property Name="DayTime" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Coordinator" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CourseExam">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Year" Type="date" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Moderator" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="ExamWeight" Type="int" Nullable="false" />
+    <Property Name="ExamDurationTime" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="ModerationDate" Type="date" Nullable="false" />
+    <Property Name="ExamDate" Type="date" Nullable="false" />
+    <Property Name="AdditionalComments" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="CourseExamEval">
+    <Key>
+      <PropertyRef Name="QID" />
+      <PropertyRef Name="StudentID" />
+    </Key>
+    <Property Name="QID" Type="int" Nullable="false" />
+    <Property Name="StudentID" Type="int" Nullable="false" />
+    <Property Name="Mark" Type="real" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CourseExamQuestion">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExamID" Type="int" Nullable="false" />
+    <Property Name="QuestionNumber" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Question" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Weight" Type="real" Nullable="false" />
   </EntityType>
   <EntityType Name="CourseFileCheckList">
     <Key>
@@ -232,14 +260,27 @@
     <Property Name="HeadOFDepartment" Type="nvarchar" MaxLength="30" />
     <Property Name="FacultyId" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="EnroledStudents">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StudentID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Year" Type="date" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="FinalGrade" Type="int" />
+  </EntityType>
   <EntityType Name="Faculty">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="255" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="ViceDean" Type="nvarchar" MaxLength="30" />
     <Property Name="dean" Type="nvarchar" MaxLength="30" />
+    <Property Name="PassingGradeForPI" Type="int" Nullable="false" />
+    <Property Name="PassingGradeForAssessmentSurvey" Type="real" Nullable="false" />
   </EntityType>
   <EntityType Name="ineffectiveAssessmentStrategis">
     <Key>
@@ -289,15 +330,13 @@
   </EntityType>
   <EntityType Name="ModerationChecklist">
     <Key>
-      <PropertyRef Name="CourseID" />
-      <PropertyRef Name="Year" />
-      <PropertyRef Name="Semseter" />
-      <PropertyRef Name="Qustion" />
+      <PropertyRef Name="ID" />
     </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
     <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
     <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
-    <Property Name="Qustion" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Question" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Answer" Type="bit" Nullable="false" />
     <Property Name="commetns" Type="nvarchar" MaxLength="255" />
   </EntityType>
@@ -327,14 +366,33 @@
   </EntityType>
   <EntityType Name="PI">
     <Key>
-      <PropertyRef Name="ID" />
-      <PropertyRef Name="SLOID" />
-      <PropertyRef Name="DeptID" />
+      <PropertyRef Name="PIUniqueID" />
     </Key>
     <Property Name="ID" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="Desc" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="SLOID" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="DeptID" Type="int" Nullable="false" />
+    <Property Name="PIUniqueID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PIAssessment">
+    <Key>
+      <PropertyRef Name="CourseID" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="Semseter" />
+      <PropertyRef Name="QustionID" />
+    </Key>
+    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Year" Type="date" Nullable="false" />
+    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="QustionID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Question_IP">
+    <Key>
+      <PropertyRef Name="EQ_ID" />
+      <PropertyRef Name="PIUniqueID" />
+    </Key>
+    <Property Name="EQ_ID" Type="int" Nullable="false" />
+    <Property Name="PIUniqueID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ResultOfCourseDirectAssessment">
     <Key>
@@ -350,34 +408,34 @@
     <Property Name="AnalysisAndJustification" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Recommendation" Type="nvarchar" MaxLength="255" Nullable="false" />
   </EntityType>
-  <EntityType Name="schedule">
+  <EntityType Name="Schedule">
     <Key>
       <PropertyRef Name="CourseID" />
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semseter" />
-      <PropertyRef Name="Week" />
+      <PropertyRef Name="WeekNumber" />
     </Key>
     <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
     <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
-    <Property Name="Week" Type="int" Nullable="false" />
-    <Property Name="Topics" Type="nvarchar" MaxLength="255" />
-    <Property Name="Assigments" Type="nvarchar" MaxLength="255" />
-    <Property Name="Referance" Type="nvarchar" MaxLength="255" />
+    <Property Name="WeekNumber" Type="int" Nullable="false" />
+    <Property Name="Topic" Type="nvarchar" MaxLength="50" />
+    <Property Name="Assignments" Type="nvarchar" MaxLength="50" />
+    <Property Name="Reference" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Schedule_CLO">
     <Key>
       <PropertyRef Name="CourseID" />
       <PropertyRef Name="Year" />
       <PropertyRef Name="Semseter" />
-      <PropertyRef Name="Week" />
-      <PropertyRef Name="CLO" />
+      <PropertyRef Name="WeekNumber" />
+      <PropertyRef Name="CLOID" />
     </Key>
     <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Year" Type="date" Nullable="false" />
     <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
-    <Property Name="Week" Type="int" Nullable="false" />
-    <Property Name="CLO" Type="int" Nullable="false" />
+    <Property Name="WeekNumber" Type="int" Nullable="false" />
+    <Property Name="CLOID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="SLO">
     <Key>
@@ -415,19 +473,6 @@
     <Property Name="ID" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
     <Property Name="DptID" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Student-Course-Grade">
-    <Key>
-      <PropertyRef Name="CourseID" />
-      <PropertyRef Name="Year" />
-      <PropertyRef Name="Semseter" />
-      <PropertyRef Name="StudentID" />
-    </Key>
-    <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
-    <Property Name="Year" Type="date" Nullable="false" />
-    <Property Name="Semseter" Type="nvarchar" MaxLength="3" Nullable="false" />
-    <Property Name="StudentID" Type="nvarchar" MaxLength="30" Nullable="false" />
-    <Property Name="Mark" Type="int" />
   </EntityType>
   <EntityType Name="Student-PI-Outcome">
     <Key>
@@ -508,17 +553,15 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_AssessedCourses_ToCourse">
-    <End Role="Course" Type="Self.Course" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="AssessedCourses" Type="Self.AssessedCourses" Multiplicity="*" />
+  <Association Name="FK_AssessmentSurveyAnswer_ToCourseAssessmentSurvey">
+    <End Role="CourseAssessmentSurvay" Type="Self.CourseAssessmentSurvay" Multiplicity="1" />
+    <End Role="AssessmentSurveyAnswer" Type="Self.AssessmentSurveyAnswer" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Course">
+      <Principal Role="CourseAssessmentSurvay">
         <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="AssessedCourses">
-        <PropertyRef Name="CourseID" />
+      <Dependent Role="AssessmentSurveyAnswer">
+        <PropertyRef Name="QID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -540,24 +583,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_CAM_ToPI">
-    <End Role="PI" Type="Self.PI" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="CourseAssessmentMapping" Type="Self.CourseAssessmentMapping" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="PI">
-        <PropertyRef Name="SLOID" />
-        <PropertyRef Name="ID" />
-        <PropertyRef Name="DeptID" />
-      </Principal>
-      <Dependent Role="CourseAssessmentMapping">
-        <PropertyRef Name="SLOID" />
-        <PropertyRef Name="PI" />
-        <PropertyRef Name="DeptID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_CAM_ToPI' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_CAM_ToPI" />-->
   <Association Name="FK_CLO_ToCourse">
     <End Role="Course" Type="Self.Course" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -593,14 +621,10 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     <End Role="CLO-PI" Type="Self.CLO-PI" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PI">
-        <PropertyRef Name="SLOID" />
-        <PropertyRef Name="ID" />
-        <PropertyRef Name="DeptID" />
+        <PropertyRef Name="PIUniqueID" />
       </Principal>
       <Dependent Role="CLO-PI">
-        <PropertyRef Name="SLOID" />
-        <PropertyRef Name="PI-ID" />
-        <PropertyRef Name="DeptID" />
+        <PropertyRef Name="PIUniqueID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -716,6 +740,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_CourseAssessmentSurvay_ToPI" />-->
   <Association Name="FK_CourseCoordinator_Coruse">
     <End Role="Course" Type="Self.Course" Multiplicity="1" />
     <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="*" />
@@ -739,6 +766,62 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
       <Dependent Role="CourseCoordinator">
         <PropertyRef Name="Year" />
         <PropertyRef Name="Semseter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseExam">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CourseExam" Type="Self.CourseExam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Principal>
+      <Dependent Role="CourseExam">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseExamEV">
+    <End Role="EnroledStudents" Type="Self.EnroledStudents" Multiplicity="1" />
+    <End Role="CourseExamEval" Type="Self.CourseExamEval" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EnroledStudents">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CourseExamEval">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseExamEval_ToExamQ">
+    <End Role="CourseExamQuestion" Type="Self.CourseExamQuestion" Multiplicity="1" />
+    <End Role="CourseExamEval" Type="Self.CourseExamEval" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseExamQuestion">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CourseExamEval">
+        <PropertyRef Name="QID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseExamQ">
+    <End Role="CourseExam" Type="Self.CourseExam" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CourseExamQuestion" Type="Self.CourseExamQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseExam">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CourseExamQuestion">
+        <PropertyRef Name="ExamID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -870,6 +953,34 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_EnroledStudents_CourseCoordinator">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="EnroledStudents" Type="Self.EnroledStudents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Principal>
+      <Dependent Role="EnroledStudents">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EnroledStudents_ToStudetn">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="EnroledStudents" Type="Self.EnroledStudents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EnroledStudents">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Fac_ViceDean_ToLecturer">
     <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="0..1" />
     <End Role="Faculty" Type="Self.Faculty" Multiplicity="*" />
@@ -945,20 +1056,16 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ModerationChecklist_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
+    <End Role="CourseExam" Type="Self.CourseExam" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Role="ModerationChecklist" Type="Self.ModerationChecklist" Multiplicity="*" />
+    <End Role="ModerationChecklist" Type="Self.ModerationChecklist" Multiplicity="0..1" />
     <ReferentialConstraint>
-      <Principal Role="CourseCoordinator">
-        <PropertyRef Name="CourseID" />
-        <PropertyRef Name="Year" />
-        <PropertyRef Name="Semseter" />
+      <Principal Role="CourseExam">
+        <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="ModerationChecklist">
-        <PropertyRef Name="CourseID" />
-        <PropertyRef Name="Year" />
-        <PropertyRef Name="Semseter" />
+        <PropertyRef Name="ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1008,6 +1115,62 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_PIAssessment_ToCC">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="PIAssessment" Type="Self.PIAssessment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseCoordinator">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Principal>
+      <Dependent Role="PIAssessment">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PIAssessment_ToQ">
+    <End Role="CourseExamQuestion" Type="Self.CourseExamQuestion" Multiplicity="1" />
+    <End Role="PIAssessment" Type="Self.PIAssessment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseExamQuestion">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PIAssessment">
+        <PropertyRef Name="QustionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_IP_ToEQ">
+    <End Role="CourseExamQuestion" Type="Self.CourseExamQuestion" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Question_IP" Type="Self.Question_IP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseExamQuestion">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Question_IP">
+        <PropertyRef Name="EQ_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_IP_ToPI">
+    <End Role="PI" Type="Self.PI" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Question_IP" Type="Self.Question_IP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PI">
+        <PropertyRef Name="PIUniqueID" />
+      </Principal>
+      <Dependent Role="Question_IP">
+        <PropertyRef Name="PIUniqueID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ResultOfCourseDirectAssessment_ToCourseCoordinator">
     <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -1034,43 +1197,41 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="Schedule_CLO">
-        <PropertyRef Name="CLO" />
+        <PropertyRef Name="CLOID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Schedule_CLO_ToSchedule">
-    <End Role="schedule" Type="Self.schedule" Multiplicity="1" />
-    <End Role="Schedule_CLO" Type="Self.Schedule_CLO" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="schedule">
-        <PropertyRef Name="CourseID" />
-        <PropertyRef Name="Year" />
-        <PropertyRef Name="Semseter" />
-        <PropertyRef Name="Week" />
-      </Principal>
-      <Dependent Role="Schedule_CLO">
-        <PropertyRef Name="CourseID" />
-        <PropertyRef Name="Year" />
-        <PropertyRef Name="Semseter" />
-        <PropertyRef Name="Week" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_schedule_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
+  <Association Name="FK_SChedule_toCC">
+    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1" />
+    <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CourseCoordinator">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
         <PropertyRef Name="Semseter" />
       </Principal>
-      <Dependent Role="schedule">
+      <Dependent Role="Schedule">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
         <PropertyRef Name="Semseter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScheduleCLO_toSchedule">
+    <End Role="Schedule" Type="Self.Schedule" Multiplicity="1" />
+    <End Role="Schedule_CLO" Type="Self.Schedule_CLO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Schedule">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+        <PropertyRef Name="WeekNumber" />
+      </Principal>
+      <Dependent Role="Schedule_CLO">
+        <PropertyRef Name="CourseID" />
+        <PropertyRef Name="Year" />
+        <PropertyRef Name="Semseter" />
+        <PropertyRef Name="WeekNumber" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1162,38 +1323,6 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Student-Course-Grade_ToCourseCoordinator">
-    <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Student-Course-Grade" Type="Self.Student-Course-Grade" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CourseCoordinator">
-        <PropertyRef Name="CourseID" />
-        <PropertyRef Name="Year" />
-        <PropertyRef Name="Semseter" />
-      </Principal>
-      <Dependent Role="Student-Course-Grade">
-        <PropertyRef Name="CourseID" />
-        <PropertyRef Name="Year" />
-        <PropertyRef Name="Semseter" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Student-Course-Grade_ToStudents">
-    <End Role="Student" Type="Self.Student" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Student-Course-Grade" Type="Self.Student-Course-Grade" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Student">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Student-Course-Grade">
-        <PropertyRef Name="StudentID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Student-PI-Outcome_ToStudents">
     <End Role="Student" Type="Self.Student" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -1240,8 +1369,8 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
   </Association>
   <EntityContainer Name="ModelStoreContainer">
     <EntitySet Name="ActionsForImprovingTheCourse" EntityType="Self.ActionsForImprovingTheCourse" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="AssessedCourses" EntityType="Self.AssessedCourses" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AssessmentPlanforTheStudentLearningOutcomeTechnique" EntityType="Self.AssessmentPlanforTheStudentLearningOutcomeTechnique" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AssessmentSurveyAnswer" EntityType="Self.AssessmentSurveyAnswer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="byCompletingThisCourseStudentsAreAbleTo" EntityType="Self.byCompletingThisCourseStudentsAreAbleTo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CLO" EntityType="Self.CLO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CLO-PI" EntityType="Self.CLO-PI" Schema="dbo" store:Type="Tables" />
@@ -1249,6 +1378,9 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     <EntitySet Name="CourseAssessmentMapping" EntityType="Self.CourseAssessmentMapping" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseAssessmentSurvay" EntityType="Self.CourseAssessmentSurvay" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseCoordinator" EntityType="Self.CourseCoordinator" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourseExam" EntityType="Self.CourseExam" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourseExamEval" EntityType="Self.CourseExamEval" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourseExamQuestion" EntityType="Self.CourseExamQuestion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseFileCheckList" EntityType="Self.CourseFileCheckList" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseInformationForm" EntityType="Self.CourseInformationForm" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseReport" EntityType="Self.CourseReport" Schema="dbo" store:Type="Tables" />
@@ -1256,6 +1388,7 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     <EntitySet Name="CourseTeachingStrategies" EntityType="Self.CourseTeachingStrategies" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CourseTextBook" EntityType="Self.CourseTextBook" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EnroledStudents" EntityType="Self.EnroledStudents" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Faculty" EntityType="Self.Faculty" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ineffectiveAssessmentStrategis" EntityType="Self.ineffectiveAssessmentStrategis" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ineffectiveTeachingStrategis" EntityType="Self.ineffectiveTeachingStrategis" Schema="dbo" store:Type="Tables" />
@@ -1265,14 +1398,15 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     <EntitySet Name="OtherLecturers" EntityType="Self.OtherLecturers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PEO" EntityType="Self.PEO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PI" EntityType="Self.PI" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PIAssessment" EntityType="Self.PIAssessment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Question_IP" EntityType="Self.Question_IP" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ResultOfCourseDirectAssessment" EntityType="Self.ResultOfCourseDirectAssessment" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="schedule" EntityType="Self.schedule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Schedule_CLO" EntityType="Self.Schedule_CLO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SLO" EntityType="Self.SLO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SLO_Course" EntityType="Self.SLO_Course" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SLO_PEO" EntityType="Self.SLO_PEO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Student-Course-Grade" EntityType="Self.Student-Course-Grade" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Student-PI-Outcome" EntityType="Self.Student-PI-Outcome" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TeachingAndLearningStrategiesTechnique" EntityType="Self.TeachingAndLearningStrategiesTechnique" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="YearAndSemester" EntityType="Self.YearAndSemester" Schema="dbo" store:Type="Tables" />
@@ -1294,17 +1428,13 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
       <End Role="AssessmentPlanforTheStudentLearningOutcomeTechnique" EntitySet="AssessmentPlanforTheStudentLearningOutcomeTechnique" />
     </AssociationSet>
-    <AssociationSet Name="FK_AssessedCourses_ToCourse" Association="Self.FK_AssessedCourses_ToCourse">
-      <End Role="Course" EntitySet="Course" />
-      <End Role="AssessedCourses" EntitySet="AssessedCourses" />
+    <AssociationSet Name="FK_AssessmentSurveyAnswer_ToCourseAssessmentSurvey" Association="Self.FK_AssessmentSurveyAnswer_ToCourseAssessmentSurvey">
+      <End Role="CourseAssessmentSurvay" EntitySet="CourseAssessmentSurvay" />
+      <End Role="AssessmentSurveyAnswer" EntitySet="AssessmentSurveyAnswer" />
     </AssociationSet>
     <AssociationSet Name="FK_byCompletingThisCourseStudentsAreAbleTo_ToCourseCoordinator" Association="Self.FK_byCompletingThisCourseStudentsAreAbleTo_ToCourseCoordinator">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
       <End Role="byCompletingThisCourseStudentsAreAbleTo" EntitySet="byCompletingThisCourseStudentsAreAbleTo" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CAM_ToPI" Association="Self.FK_CAM_ToPI">
-      <End Role="PI" EntitySet="PI" />
-      <End Role="CourseAssessmentMapping" EntitySet="CourseAssessmentMapping" />
     </AssociationSet>
     <AssociationSet Name="FK_CLO_ToCourse" Association="Self.FK_CLO_ToCourse">
       <End Role="Course" EntitySet="Course" />
@@ -1358,6 +1488,22 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
       <End Role="YearAndSemester" EntitySet="YearAndSemester" />
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
     </AssociationSet>
+    <AssociationSet Name="FK_CourseExam" Association="Self.FK_CourseExam">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+      <End Role="CourseExam" EntitySet="CourseExam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseExamEV" Association="Self.FK_CourseExamEV">
+      <End Role="EnroledStudents" EntitySet="EnroledStudents" />
+      <End Role="CourseExamEval" EntitySet="CourseExamEval" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseExamEval_ToExamQ" Association="Self.FK_CourseExamEval_ToExamQ">
+      <End Role="CourseExamQuestion" EntitySet="CourseExamQuestion" />
+      <End Role="CourseExamEval" EntitySet="CourseExamEval" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseExamQ" Association="Self.FK_CourseExamQ">
+      <End Role="CourseExam" EntitySet="CourseExam" />
+      <End Role="CourseExamQuestion" EntitySet="CourseExamQuestion" />
+    </AssociationSet>
     <AssociationSet Name="FK_CourseFileCheckList_ToCourseCoordinator" Association="Self.FK_CourseFileCheckList_ToCourseCoordinator">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
       <End Role="CourseFileCheckList" EntitySet="CourseFileCheckList" />
@@ -1390,6 +1536,14 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
       <End Role="Lecturers" EntitySet="Lecturers" />
       <End Role="Department" EntitySet="Department" />
     </AssociationSet>
+    <AssociationSet Name="FK_EnroledStudents_CourseCoordinator" Association="Self.FK_EnroledStudents_CourseCoordinator">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+      <End Role="EnroledStudents" EntitySet="EnroledStudents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EnroledStudents_ToStudetn" Association="Self.FK_EnroledStudents_ToStudetn">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="EnroledStudents" EntitySet="EnroledStudents" />
+    </AssociationSet>
     <AssociationSet Name="FK_Fac_ViceDean_ToLecturer" Association="Self.FK_Fac_ViceDean_ToLecturer">
       <End Role="Lecturers" EntitySet="Lecturers" />
       <End Role="Faculty" EntitySet="Faculty" />
@@ -1411,7 +1565,7 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
       <End Role="Lecturers" EntitySet="Lecturers" />
     </AssociationSet>
     <AssociationSet Name="FK_ModerationChecklist_ToCourseCoordinator" Association="Self.FK_ModerationChecklist_ToCourseCoordinator">
-      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+      <End Role="CourseExam" EntitySet="CourseExam" />
       <End Role="ModerationChecklist" EntitySet="ModerationChecklist" />
     </AssociationSet>
     <AssociationSet Name="FK_OtherLecturers_ToCourseCoordinator" Association="Self.FK_OtherLecturers_ToCourseCoordinator">
@@ -1426,6 +1580,22 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
       <End Role="Department" EntitySet="Department" />
       <End Role="PEO" EntitySet="PEO" />
     </AssociationSet>
+    <AssociationSet Name="FK_PIAssessment_ToCC" Association="Self.FK_PIAssessment_ToCC">
+      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
+      <End Role="PIAssessment" EntitySet="PIAssessment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PIAssessment_ToQ" Association="Self.FK_PIAssessment_ToQ">
+      <End Role="CourseExamQuestion" EntitySet="CourseExamQuestion" />
+      <End Role="PIAssessment" EntitySet="PIAssessment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_IP_ToEQ" Association="Self.FK_Question_IP_ToEQ">
+      <End Role="CourseExamQuestion" EntitySet="CourseExamQuestion" />
+      <End Role="Question_IP" EntitySet="Question_IP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_IP_ToPI" Association="Self.FK_Question_IP_ToPI">
+      <End Role="PI" EntitySet="PI" />
+      <End Role="Question_IP" EntitySet="Question_IP" />
+    </AssociationSet>
     <AssociationSet Name="FK_ResultOfCourseDirectAssessment_ToCourseCoordinator" Association="Self.FK_ResultOfCourseDirectAssessment_ToCourseCoordinator">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
       <End Role="ResultOfCourseDirectAssessment" EntitySet="ResultOfCourseDirectAssessment" />
@@ -1434,13 +1604,13 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
       <End Role="CLO" EntitySet="CLO" />
       <End Role="Schedule_CLO" EntitySet="Schedule_CLO" />
     </AssociationSet>
-    <AssociationSet Name="FK_Schedule_CLO_ToSchedule" Association="Self.FK_Schedule_CLO_ToSchedule">
-      <End Role="schedule" EntitySet="schedule" />
-      <End Role="Schedule_CLO" EntitySet="Schedule_CLO" />
-    </AssociationSet>
-    <AssociationSet Name="FK_schedule_ToCourseCoordinator" Association="Self.FK_schedule_ToCourseCoordinator">
+    <AssociationSet Name="FK_SChedule_toCC" Association="Self.FK_SChedule_toCC">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
-      <End Role="schedule" EntitySet="schedule" />
+      <End Role="Schedule" EntitySet="Schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScheduleCLO_toSchedule" Association="Self.FK_ScheduleCLO_toSchedule">
+      <End Role="Schedule" EntitySet="Schedule" />
+      <End Role="Schedule_CLO" EntitySet="Schedule_CLO" />
     </AssociationSet>
     <AssociationSet Name="FK_SLO_Course_ToCourse" Association="Self.FK_SLO_Course_ToCourse">
       <End Role="Course" EntitySet="Course" />
@@ -1465,14 +1635,6 @@ warning 6002: The table/view 'LSS database.sys.database_firewall_rules' does not
     <AssociationSet Name="FK_Student_departement" Association="Self.FK_Student_departement">
       <End Role="Department" EntitySet="Department" />
       <End Role="Student" EntitySet="Student" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Student-Course-Grade_ToCourseCoordinator" Association="Self.FK_Student-Course-Grade_ToCourseCoordinator">
-      <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
-      <End Role="Student-Course-Grade" EntitySet="Student-Course-Grade" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Student-Course-Grade_ToStudents" Association="Self.FK_Student-Course-Grade_ToStudents">
-      <End Role="Student" EntitySet="Student" />
-      <End Role="Student-Course-Grade" EntitySet="Student-Course-Grade" />
     </AssociationSet>
     <AssociationSet Name="FK_Student-PI-Outcome_ToStudents" Association="Self.FK_Student-PI-Outcome_ToStudents">
       <End Role="Student" EntitySet="Student" />

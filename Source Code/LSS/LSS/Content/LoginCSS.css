@@ -1,61 +1,72 @@
-﻿﻿body {
+﻿body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
-.loginForm {
-    width: 50%;
-    margin-top: 10%;
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow: 0 15px 35px rgba(50,50,93,.1),0 5px 15px rgba(0,0,0,0.07);
-    padding: 2em;
-    background-color: #fff;
-    border: 5px;
-}
-
-.form {
-    width: 50%;
-    margin: auto;
+.user_card {
+    height: 400px;
+    width: 350px;
+    margin-top: 15rem;
+    margin-bottom: auto;
+    background: white;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
 }
 
-.form-groupe {
-    margin-bottom: 1em;
-    transition: all .3s;
+.brand_logo_container {
+    position: absolute;
+    height: 170px;
+    width: 170px;
+    top: -75px;
+    border-radius: 50%;
+    border: 5px solid #007bff;
+    background: white;
+    padding: 10px;
+    text-align: center;
 }
 
-.form-lable {
-    font-size: 1em;
-    color: #aaa;
-    display: block;
-    opacity: 1;
-    transform: translateY(-1.25em);
-    transform-origin: 0 0;
-    transition: all .3s;
+
+.form_container {
+    margin-top: 100px;
 }
 
-.form-control {
-    box-shadow: none;
-    background-color: rgba(0,0,0,.02);
-    border-radius: 0px;
-    border-color: #ccc;
-    border-style: none none solid none;
-    padding: 5px;
-}
-
-.form-control, button {
+.login_btn { 
     width: 100%;
+    background: #007bff !important;
+    color: white !important;
 }
 
-    .form-control::placeholder {
-        color: transparent;
+    .login_btn:focus {
+        box-shadow: none !important;
+        outline: 0px !important;
     }
 
-    .form-control:focus {
-        box-shadow: none;
-        outline: none;
-        border-color: orange;
-    }
+.login_container {
+    padding: 0 2rem;
+}
 
-        .form-control:focus + .form-lable, .form-control:not(:placeholder-shown) + .form-lable {
-            transform: translateY(-2.5em) scale(.8);
-        }
+.input-group-text {
+    background: #007bff !important;
+    color: white !important;
+    border: 0 !important;
+    border-radius: 0.25rem 0 0 0.25rem !important;
+}
+
+.input_user,
+.input_pass:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #007bff !important;
+}

@@ -10,24 +10,22 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Classes</h2>
 
 <div id="Coordinated_Courses" class="Course_ShowCase">
 
     @if (Model.CoordinatedCourses != null)
     {<ul>
-    @foreach (CourseCoordinator cc in Model.CoordinatedCourses)
-    {
-    <li> @Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator",   new { courseID = cc.Course.ID },null) </li>
+            @foreach (CourseCoordinator cc in Model.CoordinatedCourses)
+            {
+                <li> @Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator", new { Course = cc.CourseID ,Year = cc.Year, Semseter=cc.Semseter}) </li>
 
-    }
-
-
-</ul>
+            }
+        </ul>
     }
     else
     {
-        <h2> no courses has been added yet</h2>
+        <h2> Noo courses have been added yet.</h2>
     }
 
 </div>
@@ -39,10 +37,9 @@
         <ul>
             @foreach (CourseCoordinator cc in Model.DepartmentCCs)
             {
-                <li>@Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator",  new { courseID = cc.Course.ID },null)  </li>
+            <li> @Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator", new { Course = cc.CourseID, Year = cc.Year, Semseter = cc.Semseter })   </li>
             }
         </ul>
-
     </div>
 }
 
@@ -52,9 +49,8 @@
         <ul>
             @foreach (CourseCoordinator cc in Model.FacultyCCS)
             {
-            <li> @Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator",  new { courseID = cc.Course.ID }, null)  </li>
+            <li>  @Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator", new { Course = cc.CourseID, Year = cc.Year, Semseter = cc.Semseter })   </li>
             }
         </ul>
-
     </div>
 }

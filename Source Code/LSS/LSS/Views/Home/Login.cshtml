@@ -1,22 +1,55 @@
-﻿@{    ViewBag.Title = "Login";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-<link rel="stylesheet" type="text/css" href="~/Content/LoginCSS.css" />
+﻿﻿@model LSS.Models.Lecturer
 
-<h2>Login</h2>
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+<head>
+    @{ ViewBag.Title = "Login";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginCSS.css" />
+</head>
+
 <div class="loginForm">
-    <form action="" method="post" class="form">
-        <div class="form-groupe">
+    <div class="container h-100">
+        <div class="d-flex justify-content-center h-100">
+            <div class="user_card">
+                <div class="d-flex justify-content-center">
+                    <div class="brand_logo_container">
+                        <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo" alt="Logo" style="height:150px; width:120px;" />
+                    </div>
+                </div>
 
-            <input type="text" id="ID_loginForm" placeholder="ID Number" class="form-control" tabindex="1" required />
-            <label class="form-lable">ID Number</label>
+                <div class="d-flex justify-content-center form_container">
+                    @using (Html.BeginForm("Login", "Home", new { ReturnUrl = Request.QueryString["ReturnUrl"] }, FormMethod.Post))
+                    {
+                        <form action="" method="post" class="Login">
+                            <div>
+                                <h1 style="color:black; display:flex; justify-content:center; align-content:center; margin-top:-3rem; font-family:'Lucida Console'"> AAU </h1>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+
+                                @Html.TextBoxFor(u => u.ID, new { @class = "form-control input_user", @placeholder = "Username ", tabindex = "2" })
+                            </div>
+                            <div class="input-group mb-2">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                @Html.PasswordFor(u => u.Password, new { @class = "form-control input_pass", @placeholder = "Password ", tabindex = "2" })
+                            </div>
+                         
+                            <div class="d-flex justify-content-center mt-3 login_container" >
+                                <input type="submit" value="Login" class="btn login_btn">
+                            </div>
+                        </form>
+                    }
+                </div>
+            </div>
         </div>
-
-        <div class="form-groupe">
-            <input type="text" id="Password_loginForm" placeholder="Password" class="form-control" tabindex="2" required />
-            <label class="form-lable"> Password</label>
-        </div>
-
-        <button id="loginButtton_loginForm"> Login</button>
-    </form>
+    </div>
 </div>

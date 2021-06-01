@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=2.0">
-    <title>@ViewBag.Title -LSS</title>
+    <title>@ViewBag.Title - Muebles Pangal</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -20,27 +20,34 @@
                         <a class="nav-link" href="@Url.Action("Index","Home")">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("About", "Home")">About </a>
+                        <a class="nav-link" href="@Url.Action("Index", "LogedIn")">Classes </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("Contact", "Home")">Contact </a>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
+                <form class="form-inline my-2 my-lg-0 p-2">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Login","Home")"> Login</a>
-                        </li>
+
+                        @if (Request.IsAuthenticated) //@if(User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item pr-3 text-success">Logged in as '@User.Identity.Name'</li>
+                            <li class="nav-item">@Html.ActionLink("Logout", "Logout", "Home")</li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">@Html.ActionLink("Login", "Login")</li>
+                        }
+
                     </ul>
                 </form>
             </div>
         </nav>
     </div>
 
-    <div class="container body-content">
+    <div class="body-content">
         @RenderBody()
     </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

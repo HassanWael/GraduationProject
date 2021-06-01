@@ -11,40 +11,29 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
 
     public partial class AssessmentPlanforTheStudentLearningOutcomeTechnique
     {
-        [DisplayName("Course ID")]
         public string CourseID { get; set; }
-        [DisplayName("Year")]
+        
+        [Required]
+        [Display(Name = "Date")]
+        [DataType(DataType.Date)]
         public System.DateTime Year { get; set; }
-        [DisplayName("Semester")]
         public string Semester { get; set; }
-        [DisplayName("Midterm Test")]
         public bool Midterm_Test { get; set; }
-        [DisplayName("Final Exam")]
         public bool Final_Exam { get; set; }
-
         public bool Quiz { get; set; }
         public bool Assignment { get; set; }
         public bool project { get; set; }
-        [DisplayName("Written Report")]
         public bool Written_Report { get; set; }
-        [DisplayName("Oral Presentation.")]
         public bool Oral_Presenation { get; set; }
-        [DisplayName("Practice in the Lab.")]
-
         public bool Practice_In_The_Lab { get; set; }
-        [DisplayName("Case Study.")]
         public bool Case_Studdy { get; set; }
-        [DisplayName("Course Assessment Survey by students.")]
         public bool Coruse_Assessment_Survey_By_Students { get; set; }
-        [DisplayName("Group Discussions.")]
         public bool Gropu_Discussions { get; set; }
-        [DisplayName("Students’ Interviews.")]
         public bool Students_Interviews { get; set; }
-        [DisplayName("Others (identify):")]
         public string Other { get; set; }
     
         public virtual CourseCoordinator CourseCoordinator { get; set; }

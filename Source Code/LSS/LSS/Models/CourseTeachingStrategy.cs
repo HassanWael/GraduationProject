@@ -11,10 +11,14 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class CourseTeachingStrategy
     {
         public string StrategyID { get; set; }
+        [Required]
+        [Display(Name = "Date")]
+        [DataType(DataType.Date)]
         public string CourseID { get; set; }
         public System.DateTime Year { get; set; }
         public string Semseter { get; set; }

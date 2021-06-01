@@ -1,44 +1,72 @@
 ﻿@model LSS.Models.isAssessed
 
+
+
+
 <link href="~/Content/ULStyleForAssessmentPlan.css" rel="stylesheet" />
-@using (Html.BeginForm("IsAssessedPartialView", "CourseCoordinator",FormMethod.Post))
+@using (Html.BeginForm("IsAssessedPartialView", "CourseCoordinator", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>isAssessed</h4>
+
+    <div class="container">
+        <h4>Assessment Information</h4>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.CourseID)
-        @Html.HiddenFor(model => model.Year)
-        @Html.HiddenFor(model => model.Semseter)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.isAssessed1, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.CheckBoxFor(model => model.isAssessed1)
-                    @Html.ValidationMessageFor(model => model.isAssessed1, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
+        <table class="table table-borderless w-100">
+            <thread>
+                <tr>
+                    <th colspan="3"> Will this be Assessed? </th>
+                </tr>
+            </thread>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.WhyNot, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.WhyNot, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.WhyNot, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            <tbody class="text-left">
+                <tr>
+                    <td>
+                        <div class="form-check form-check-inline">
+                            <p>
+                                @Html.RadioButtonFor(model => model.isAssessed1, false, new { id = "radioNo" })
+                                <label class="form-check-label" for="radioNo">No it will not.</label>
+                                @Html.ValidationMessageFor(model => model.isAssessed1, "", new { @class = "text-danger" })
+                            </p>
+                        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
+                        <div class="form-check form-check-inline">
+                            <p>
+                                @Html.RadioButtonFor(model => model.isAssessed1, true, new { id = "radioYes" })
+                                <label class="form-check-label" for="radioYes">Yes it will.</label>
+                                @Html.ValidationMessageFor(model => model.isAssessed1, "", new { @class = "text-danger" })
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="form-group" id="whynot_div">
+                            <p>
+                                Reasons for not assessing (If any):
+
+                            </p>
+                            @Html.TextAreaFor(model => model.WhyNot, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.WhyNot, "", new { @class = "text-danger" })
+                        </div>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        <div class="justify-content-center align-items-center d-flex">
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "CoursePage","CourseCoordintor",new { courseID = Model.CourseID})
-</div>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.CourseID)
+    @Html.HiddenFor(model => model.Year)
+    @Html.HiddenFor(model => model.Semseter)
+}

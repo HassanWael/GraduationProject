@@ -10,15 +10,16 @@ using LSS.Models.DepartmentViewModel;
 
 namespace LSS.Controllers
 {
+    [Authorize]
     public class HeadOfDepartmentController : Controller
     {
-    
-        private readonly LSS_databaseEntities _databaseEntities = new LSS_databaseEntities();
+        private readonly  LSS_databaseEntities _databaseEntities = new LSS_databaseEntities();
         // GET: HeadOfDepartment
-        public ActionResult Index(int? dptID )
+        //todo remove = 2 
+        public ActionResult Index(int? dptID=2 )
         {
-            //ToDo when u finsh CSS add the deptID to find 
-            Department d = _databaseEntities.Departments.Find(2);
+
+            Department d = _databaseEntities.Departments.Find(dptID);
             return View(d);
         }
 
@@ -96,7 +97,6 @@ namespace LSS.Controllers
                 _databaseEntities.SaveChanges();
                 return RedirectToAction("index", new { d = md.SLO.DeptID });
             }
-
             return View(md);
         }
 
@@ -112,8 +112,5 @@ namespace LSS.Controllers
             }
             return View();
         }
-      
-
-
     }
 }
