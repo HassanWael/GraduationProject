@@ -5,112 +5,131 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ListStudents</h2>
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
-@if (ViewBag.updateMassege!=null && ViewBag.updateMassege!="" ) {
-<div class="card text-white bg-success mb-3" style="max-width: 20rem;">
-    <div class="card-header">Students Added</div>
-    <div class="card-body">
-        <p class="card-text">@ViewBag.updateMassege</p>
-    </div>
-</div>
-}
-
-<table>
-    <tr>
-        @using (Html.BeginForm("ListStudents", "Admin", FormMethod.Get))
-        {
-            <td style="padding-left:2%;">
-                @Html.DropDownList("Department", (IEnumerable<SelectListItem>)ViewBag.deprtments, "Select Department", htmlAttributes: new { @class = "custom-select", @name = "standard" })
-            </td>
-            <td style="padding-left:2%;">
-                @Html.TextBox("Search", null, new { @class = "form-control", placeholder = "Search" })
-            </td>
-            <td style="padding-left:2%;">
-                <input type="submit" value="search" class="btn btn-dark" />
-            </td>
-        }
-    </tr>
-</table>
-
-<div>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ElementAt(0).ID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ElementAt(0).Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ElementAt(0).Department.Name)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ID)
-
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Department.Name)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "UpdateStudent", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                </td>
-            </tr>
-        }
-
-    </table>
-    @Html.PagedListPager(Model, page => Url.Action("ListStudents", new { Search = ViewBag.Search, Department = ViewBag.DepartmentID, page, pageSize = Model.PageSize }), new PagedListRenderOptions
-{
-    ContainerDivClasses = new[] { "pagination pagination-sm" },
-    UlElementClasses = new[] { "pagination pagination-sm" },
-    LiElementClasses = new[] { "page-item", "btn-outline-primary" }
-})
-    Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Products
-
-
-    <div class="card border-primary mb-3" style="width:100%">
-        <div class="card-header">Add Students From Excel </div>
-        <div class="card-body">
-            @using (Html.BeginForm("AddStudentList", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
-
-
-                <table>
-                    <tr>
-                        <td>File:</td>
-                        <td>
-                            <input type="file" name="Select Excel file" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        </td>
-                        <td>
-                            <input type="submit" name="Upload" value="Submit" />
-                        </td>
-                    </tr>
-                </table>
-            }
-            <hr />
-            <h6><b> the header for the Excel File </b></h6>
-            <img src="~/Images/Excel Format/StudentListExcel.png" style="max-width: 100%;  max-height: 100%;  display: block;" />
+<div class="container shadow-lg p-3 mb-3 mt-5 bg-white">
+    <div class="d-flex justify-content-center align-items-center text-center mb-3">
+        <div>
+            <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo" alt="Logo" style="height:150px; width:120px;" />
+            <h4> Students List </h4>
         </div>
     </div>
 
+    <hr class="border-danger w-75 mb-4" />
+
+
+
+
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+    @if (ViewBag.updateMassege != null && ViewBag.updateMassege != "")
+    {
+        <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
+            <div class="card-header">Students Added</div>
+            <div class="card-body">
+                <p class="card-text">@ViewBag.updateMassege</p>
+            </div>
+        </div>
+    }
+
+    <table class="mb-2">
+        <tr>
+            @using (Html.BeginForm("ListStudents", "Admin", FormMethod.Get))
+            {
+                <td style="padding-left:2%;">
+                    @Html.DropDownList("Department", (IEnumerable<SelectListItem>)ViewBag.deprtments, "Select Department", htmlAttributes: new { @class = "custom-select", @name = "standard" })
+                </td>
+                <td style="padding-left:2%;">
+                    @Html.TextBox("Search", null, new { @class = "form-control", placeholder = "Search" })
+                </td>
+                <td style="padding-left:2%;">
+                    <input type="submit" value="search" class="btn btn-primary" />
+                </td>
+            }
+        </tr>
+    </table>
+
+    <div>
+        <div class="shadow">
+            <table class="table table-responsive-lg table-hover table-borderless">
+                <thread>
+                    <tr class="bg-white border-bottom border-primary">
+                        <th> @Html.DisplayNameFor(model => model.ElementAt(0).ID)</th>
+                        <th> @Html.DisplayNameFor(model => model.ElementAt(0).Name)</th>
+                        <th colspan="2">@Html.DisplayNameFor(model => model.ElementAt(0).Department.Name) </th>
+                    </tr>
+
+                </thread>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ID)
+
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Department.Name)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "UpdateStudent", new { id = item.ID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+
+        @Html.PagedListPager(Model, page => Url.Action("ListStudents", new { Search = ViewBag.Search, Department = ViewBag.DepartmentID, page, pageSize = Model.PageSize }), new PagedListRenderOptions
+    {
+        ContainerDivClasses = new[] { "pagination pagination-sm" },
+        UlElementClasses = new[] { "pagination pagination-sm" },
+        LiElementClasses = new[] { "page-item", "btn-outline-primary" }
+    })
+        Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Products
+
+
+        <div class="card border-primary mb-3 mt-2 shadow" style="width:100%">
+            <div class="card-header">Add Students From Excel </div>
+            <div class="card-body">
+                @using (Html.BeginForm("AddStudentList", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+
+
+                    <table>
+                        <tr>
+                            <div class="input-group mb-3">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="ExcelSheet">
+                                    <label class="custom-file-label" for="ExcelSheet">Choose file..</label>
+                                </div>
+                                <div class="input-group-append">
+                                    <input type="submit" name="Upload" value="Submit" class="btn btn-primary" />
+                                </div>
+                            </div>
+                            @*<td>File:</td>
+                                <td>
+                                    <input type="file" name="Select Excel file" />
+                                </td>*@
+                        </tr>
+                        @*<tr>
+                                <td>
+                                </td>
+                                <td>
+                                    <input type="submit" name="Upload" value="Submit" />
+                                </td>
+                            </tr>*@
+                    </table>
+                }
+                <hr />
+                <h6><b>Header for the Excel File should look as follows: </b></h6>
+                <img src="~/Images/Excel Format/StudentListExcel.png" style="max-width: 100%;  max-height: 100%;  display: block;" />
+            </div>
+        </div>
+    </div>
 </div>
-
-
-

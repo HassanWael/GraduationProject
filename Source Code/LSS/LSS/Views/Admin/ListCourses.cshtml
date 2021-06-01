@@ -5,52 +5,60 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ListCourses</h2>
 
-<table>
-    <tr>
-        @using (Html.BeginForm("ListCourses", "Admin", FormMethod.Get))
-        {
-            <td style="padding-left:2%;">
-                @Html.DropDownList("Department", (IEnumerable<SelectListItem>)ViewBag.deprtments, "Select Department", htmlAttributes: new { @class = "custom-select", @name = "standard" })
-            </td>
-            <td style="padding-left:2%;">
-                @Html.TextBox("Search", null, new { @class = "form-control", placeholder = "Search" })
-            </td>
-            <td style="padding-left:2%;">
-                <input type="submit" value="search" class="btn btn-dark" />
-            </td>
-        }
-    </tr>
-</table>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<div>
-    <table class="table">
+<div class="container shadow-lg p-3 mb-3 mt-5 bg-white">
+    <div class="d-flex justify-content-center align-items-center text-center mb-3">
+        <div>
+            <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo" alt="Logo" style="height:150px; width:120px;" />
+            <h4> Courses List </h4>
+        </div>
+    </div>
+
+    <hr class="border-danger w-75 mb-4" />
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+    <table class="mb-2">
         <tr>
-            <th>
-                @Html.DisplayName("ID")
-            </th>
-            <th>
-                @Html.DisplayName("Title")
-            </th>
-            <th>
-                @Html.DisplayName("Hours")
-            </th>
-
-            <th>
-                @Html.DisplayName("VclassURL")
-            </th>
-
-
-            <th>
-                @Html.DisplayName("Department.Name")
-            </th>
-
-            <th></th>
+            @using (Html.BeginForm("ListCourses", "Admin", FormMethod.Get))
+            {
+                <td style="padding-left:2%;">
+                    @Html.DropDownList("Department", (IEnumerable<SelectListItem>)ViewBag.deprtments, "Select Department", htmlAttributes: new { @class = "custom-select", @name = "standard" })
+                </td>
+                <td style="padding-left:2%;">
+                    @Html.TextBox("Search", null, new { @class = "form-control", placeholder = "Search" })
+                </td>
+                <td style="padding-left:2%;">
+                    <input type="submit" value="search" class="btn btn-primary" />
+                </td>
+            }
         </tr>
+    </table>
+
+    <table class="table table-hover table-responsive-lg table-borderless shadow-sm">
+        <thead class="bg-white border-bottom border-primary">
+            <tr>
+                <th>
+                    @Html.DisplayName("ID")
+                </th>
+
+                <th>
+                    @Html.DisplayName("Title")
+                </th>
+
+                <th>
+                    @Html.DisplayName("Hours")
+                </th>
+
+                <th colspan="2">
+                    Department
+                </th>
+            </tr>
+
+
+        </thead>
 
         @foreach (var item in Model)
         {
@@ -78,12 +86,12 @@
     </table>
     <br />
 
-    @Html.PagedListPager(Model, page => Url.Action("ListCourses", new { Search = ViewBag.Search, Department=ViewBag.DepartmentID, page, pageSize = Model.PageSize }), new PagedListRenderOptions
+    @Html.PagedListPager(Model, page => Url.Action("ListCourses", new { Search = ViewBag.Search, Department = ViewBag.DepartmentID, page, pageSize = Model.PageSize }), new PagedListRenderOptions
 {
 
     ContainerDivClasses = new[] { "pagination pagination-sm" },
     UlElementClasses = new[] { "pagination pagination-sm" },
-    LiElementClasses = new[] { "page-item","btn-outline-primary" }
+    LiElementClasses = new[] { "page-item", "btn-outline-primary" }
 
 })
     Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Products
