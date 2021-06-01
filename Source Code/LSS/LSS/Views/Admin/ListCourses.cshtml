@@ -69,9 +69,9 @@
                     @Html.DisplayFor(modelItem => item.Department.Name)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })|
-                    @Html.ActionLink("Add course to schedule", "AddCourseToSemster", new { id = item.ID })
+                    @Html.ActionLink("Edit", "Edit", new { CourseID = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { CourseID = item.ID })|
+                    @Html.ActionLink("Add course to schedule", "AddCourseToSemester", new { CourseID = item.ID })
                 </td>
             </tr>
         }
@@ -88,4 +88,3 @@
 })
     Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Products
 </div>
-<sp

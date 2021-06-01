@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace LSS.Controllers
 {
+    [Authorize]
     public class StudentsController : Controller
     {
         // GET: Student

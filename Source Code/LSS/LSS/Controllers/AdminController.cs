@@ -18,9 +18,15 @@ namespace LSS.Controllers
         // GET: Admin
         //ToDO :Create Index View for Admin.
       readonly  YearAndSemester YAS = SemesterSingelton.getCurrentYearAndSemester();
+        public ActionResult Index(string? message)
+        {
+            ViewBag.message = message;
+            return View();
+        }
 
         public ActionResult AddCourseToSemester(string CourseID)
         {
+
             CourseCoordinator cc;
             if (_DatabaseEntities.CourseCoordinators.Find(CourseID, YAS.Year, YAS.Semester) == null)
             {
@@ -35,24 +41,17 @@ namespace LSS.Controllers
             {
                 cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, YAS.Year, YAS.Semester);
             }
-            int deptID = _DatabaseEntities.Courses.Where(x => x.ID.Equals(CourseID)).Select(x => x.dptid).FirstOrDefault();
-            List<Lecturer> CC = _DatabaseEntities.Lecturers.Where(x => x.dptId.Equals(deptID)).ToList();
-            ViewBag.Lecturers = new SelectList(CC, "ID", "Name");
+            Course course = _DatabaseEntities.Courses.Find(CourseID);
+            int FacultyID = course.Department.FacultyId;
+            List<Lecturer> lec = _DatabaseEntities.Lecturers.Where(x => x.Department.FacultyId.Equals(FacultyID)).ToList();
+
+            ViewBag.Lecturers = lec;
             return View(cc);
 
         }
-        public ActionResult AddCourseToSemster(string CourseID)
-        {
-            CourseCoordinator cc = new CourseCoordinator
-            {
-                CourseID = CourseID
-            };
-            return View(cc);
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddCourseToSemster(CourseCoordinator cc)
+        public ActionResult AddCourseToSemester(CourseCoordinator cc)
         {
             try
             {
@@ -85,36 +84,31 @@ namespace LSS.Controllers
             }
             return RedirectToAction("Index");
         }
-        public ActionResult AddCourseToSemester()
-        {
-            List<Course> courses = _DatabaseEntities.Courses.ToList();
 
-            ViewBag.Courses = new SelectList(courses, "ID", "Title");
-            return View();
-        }
-
-        public ActionResult Index()
+        public ActionResult CreatCourse()
         {
-            return View();
-        }
-        public ActionResult CreateCourse()
-        {
+            List<Department> departments = _DatabaseEntities.Departments.ToList();
+            ViewBag.dept = departments;
             return View();
         }
         [HttpPost]
-        public ActionResult CreateCourse(Course course)
+        [ValidateAntiForgeryToken]
+        public ActionResult CreatCourse(Course course)
         {
+            List<Department> departments = _DatabaseEntities.Departments.ToList();
+            ViewBag.dept = departments;
             try
             {
-                if (_DatabaseEntities.Courses.Find(course.ID) != null)
+                if (_DatabaseEntities.Courses.Find(course.ID) == null)
                 {
                     _DatabaseEntities.Courses.Add(course);
                     _DatabaseEntities.SaveChanges();
-                    return RedirectToAction("Index");
+                    String message = "Course added successfully";
+                    return RedirectToAction("Index", "Admin", message);
                 }
                 else
                 {
-                    ModelState.AddModelError("Dublicate Value", "This Course is already in the database");
+                    ModelState.AddModelError("ID", "This Course is already in the database");
                     return View();
                 }
             }
@@ -128,9 +122,17 @@ namespace LSS.Controllers
 
         public ActionResult CreatUser()
         {
+            List<Department> departments = _DatabaseEntities.Departments.ToList();
+            ViewBag.dept = departments;
+            Dictionary<string, string> role = new Dictionary<string, string>();
+            role.Add("admin", "System Admin");
+            role.Add("Lecturer", "Lecturer");
+            ViewBag.role = role;
+
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CreatUser(Lecturer lecturer)
         {
             try
@@ -141,7 +143,8 @@ namespace LSS.Controllers
                     {
                         _DatabaseEntities.Lecturers.Add(lecturer);
                         _DatabaseEntities.SaveChanges();
-                        return RedirectToAction("Index");
+                        String message = "Lecturer added successfully";
+                        return RedirectToAction("Index", "Admin", message);
                     }
                     return View();
                 }
@@ -199,15 +202,30 @@ namespace LSS.Controllers
         }
         public ActionResult CreatFaculty()
         {
-            return View();
+            Faculty faculty = new Faculty()
+            {
+                PassingGradeForPI = 60,
+                PassingGradeForAssessmentSurvey = 3
+            };
+            return View(faculty);
         }
-        [HttpPost]
 
+        [HttpPost]
         public ActionResult CreatFaculty(Faculty faculty)
         {
-            _DatabaseEntities.Faculties.Add(faculty);
-            _DatabaseEntities.SaveChanges();
-            return View();
+            try
+            {
+                _DatabaseEntities.Faculties.Add(faculty);
+                _DatabaseEntities.SaveChanges();
+                String message = "Student added successfully";
+                return RedirectToAction("Index", "Admin", message);
+            }
+            catch (Exception e )
+            {
+                ModelState.AddModelError(e.Message, "an error has accoured please try again later ");
+                Console.WriteLine("Error at line 384 Admin" + e);
+                return View();
+            }
         }
 
         public ActionResult EditDpt(String id)
@@ -399,11 +417,13 @@ namespace LSS.Controllers
 
         }
 
-        public ActionResult CreateStudent()
+        public ActionResult CreatStudent()
         {
             ViewBag.Departments = _DatabaseEntities.Departments.ToList();
             return View();
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CreateStudent(Student student)
         {
             try
@@ -414,13 +434,16 @@ namespace LSS.Controllers
                     _DatabaseEntities.SaveChanges();
 
                 }
-                return View();
+                String message = "Student added successfully";
+                return RedirectToAction("Index","Admin",message);
 
             }
             catch (Exception e)
             {
                 ModelState.AddModelError(e.Message, "an error has accoured please try again later ");
                 Console.WriteLine("Error at line 384 Admin" + e);
+
+
                 return View();
             }
         }

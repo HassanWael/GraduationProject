@@ -9,6 +9,7 @@ using LSS.Models.Exams;
 
 namespace LSS.Controllers
 {
+
     public class ExamController : Controller
     {
         private readonly LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();

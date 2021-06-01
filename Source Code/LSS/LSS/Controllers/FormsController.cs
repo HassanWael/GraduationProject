@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace LSS.Controllers
 {
-
+    [Authorize]
     public class FormsController : Controller
     {
         private readonly YearAndSemester yearAndSemester = SemesterSingelton.getCurrentYearAndSemester();

@@ -559,7 +559,7 @@
     <Content Include="Views\CourseCoordinator\CouresPage.cshtml" />
     <Content Include="Views\LogedIn\Index.cshtml" />
     <Content Include="Views\Admin\CreatUser.cshtml" />
-    <Content Include="Views\Admin\CreateCourse.cshtml" />
+    <Content Include="Views\Admin\CreatCourse.cshtml" />
     <Content Include="Images\CreatDpt.cshtml" />
     <Content Include="Views\Admin\CreatFaculty.cshtml" />
     <Content Include="Views\Admin\EditDpt.cshtml" />
@@ -600,7 +600,7 @@
     <Content Include="Views\CourseCoordinator\AddSurveyQustion.cshtml" />
     <Content Include="Views\Admin\ListStudents.cshtml" />
     <Content Include="Views\Admin\UpdateStudent.cshtml" />
-    <Content Include="Views\Admin\CreateStudent.cshtml" />
+    <Content Include="Views\Admin\CreatStudent.cshtml" />
     <Content Include="Views\Students\CourseStudentList.cshtml" />
     <Content Include="Views\CourseCoordinator\AddBook.cshtml" />
     <Content Include="Views\CourseCoordinator\Book.cshtml" />
