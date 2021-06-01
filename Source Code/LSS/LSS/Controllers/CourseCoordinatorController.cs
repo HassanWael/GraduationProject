@@ -424,5 +424,49 @@ namespace LSS.Controllers
             return View(schedules);
         }
 
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditWeek(Schedule s,int[] CLO_ID)
+        {
+            Schedule schedule = _DatabaseEntities.Schedules.Find(s.CourseID, s.Year, s.Semseter,s.WeekNumber);
+            if(schedule == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            schedule.Assignments = s.Assignments;
+            schedule.Topic = s.Topic;
+            schedule.Reference = s.Reference;
+
+            List<CLO> allCLOes = _DatabaseEntities.CLOes.Where(x => x.courseId.Equals(s.CourseID)).ToList();
+
+            foreach (CLO cloid in allCLOes)
+            {
+                if (schedule.CLOes.Select(x => x.ID).Contains(cloid.ID))
+                {
+                    if (!CLO_ID.Contains(cloid.ID))
+                    {
+                        schedule.CLOes.Remove(cloid);
+                    }
+                }
+                else
+                {
+                    if (CLO_ID.Contains(cloid.ID))
+                    {
+                        schedule.CLOes.Add(cloid);
+
+                    }
+                }
+                
+            }
+
+            _DatabaseEntities.Entry(schedule).State = EntityState.Modified;
+            _DatabaseEntities.SaveChanges();
+
+
+            return RedirectToAction("CourseSchedule", new { s.CourseID, s.Year, Semester = s.Semseter });
+        }
+
+
     }
 }
