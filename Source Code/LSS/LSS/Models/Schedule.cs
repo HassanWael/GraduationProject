@@ -22,7 +22,7 @@ namespace LSS.Models
     
         public string CourseID { get; set; }
         public System.DateTime Year { get; set; }
-        public string Semseter { get; set; }
+        public string semester { get; set; }
         public int WeekNumber { get; set; }
         public string Topic { get; set; }
         public string Assignments { get; set; }

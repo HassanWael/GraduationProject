@@ -13,6 +13,7 @@ namespace LSS.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    
     public partial class CourseInformationForm
     {
         public string CourseID { get; set; }
@@ -20,7 +21,7 @@ namespace LSS.Models
         [Display(Name = "Date")]
         [DataType(DataType.Date)]
         public System.DateTime Year { get; set; }
-        public string Semseter { get; set; }
+        public string semester { get; set; }
         public Nullable<bool> CoordinatorSignature { get; set; }
         public Nullable<bool> HeadOFDeptSignature { get; set; }
         public Nullable<bool> ViceDeanSignature { get; set; }

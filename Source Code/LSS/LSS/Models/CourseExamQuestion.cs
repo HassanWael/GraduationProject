@@ -50,6 +50,7 @@ namespace LSS.Models
                 return 0;
             }
         }
+    
         public virtual CourseExam CourseExam { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseExamEval> CourseExamEvals { get; set; }

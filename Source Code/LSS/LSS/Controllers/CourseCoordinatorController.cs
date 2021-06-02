@@ -29,12 +29,13 @@ namespace LSS.Controllers
 
             //String userID = Session["ID"].ToString();
             CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semseter);
-            CouresModelView course = new CouresModelView(cc);
 
             if (cc == null)
             {
                 RedirectToAction("Index", "LogedIN");
             }
+            CouresModelView course = new CouresModelView(cc);
+
             ViewBag.Message = "Coures view Page";
 
             return View(course);

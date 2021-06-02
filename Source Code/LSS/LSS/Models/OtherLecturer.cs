@@ -13,20 +13,30 @@ namespace LSS.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    
     public partial class OtherLecturer
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public OtherLecturer()
+        {
+            this.EnroledStudents = new HashSet<EnroledStudent>();
+        }
+    
+        public int ID { get; set; }
         public string LecturerID { get; set; }
         public string CourseID { get; set; }
         [Required]
         [Display(Name = "Date")]
         [DataType(DataType.Date)]
         public System.DateTime Year { get; set; }
-        public string Semseter { get; set; }
+        public string semester { get; set; }
         public string DayTime { get; set; }
         public string ClassRoom { get; set; }
         public Nullable<int> noOFStudents { get; set; }
     
         public virtual CourseCoordinator CourseCoordinator { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EnroledStudent> EnroledStudents { get; set; }
         public virtual Lecturer Lecturer { get; set; }
     }
 }

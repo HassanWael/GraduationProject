@@ -13,6 +13,7 @@ namespace LSS.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    
     public partial class ModerationChecklist
     {
         public int ID { get; set; }
@@ -21,7 +22,7 @@ namespace LSS.Models
         [Display(Name = "Date")]
         [DataType(DataType.Date)]
         public System.DateTime Year { get; set; }
-        public string Semseter { get; set; }
+        public string semester { get; set; }
         public string Question { get; set; }
         public bool Answer { get; set; }
         public string commetns { get; set; }

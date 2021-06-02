@@ -29,12 +29,14 @@ namespace LSS.Models
         [Display(Name = "Date")]
         [DataType(DataType.Date)]
         public System.DateTime Year { get; set; }
-        public string Semseter { get; set; }
+        public string semester { get; set; }
         public Nullable<int> FinalGrade { get; set; }
+        public Nullable<int> OtherLecturer { get; set; }
     
         public virtual CourseCoordinator CourseCoordinator { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseExamEval> CourseExamEvals { get; set; }
+        public virtual OtherLecturer OtherLecturer1 { get; set; }
         public virtual Student Student { get; set; }
     }
 }

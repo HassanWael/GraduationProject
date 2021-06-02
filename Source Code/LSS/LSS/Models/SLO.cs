@@ -27,6 +27,7 @@ namespace LSS.Models
             this.DeptID = deptID;
         }
 
+    
         public string SLOID { get; set; }
         public string Desc { get; set; }
         public int DeptID { get; set; }

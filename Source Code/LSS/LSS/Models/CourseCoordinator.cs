@@ -33,7 +33,7 @@ namespace LSS.Models
         [Display(Name = "Date")]
         [DataType(DataType.Date)]
         public System.DateTime Year { get; set; }
-        public string Semseter { get; set; }
+        public string semester { get; set; }
         public int NoOFStudents { get; set; }
         public string ClassRoom { get; set; }
         public string courseNotAssessedReason_ { get; set; }

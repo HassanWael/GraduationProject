@@ -13,6 +13,7 @@ namespace LSS.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    
     public partial class CourseTextBook
     {
         public string Course { get; set; }

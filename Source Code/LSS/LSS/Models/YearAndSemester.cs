@@ -13,6 +13,7 @@ namespace LSS.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    
     public partial class YearAndSemester
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,6 +25,7 @@ namespace LSS.Models
         [Required]
         [Display(Name = "Date")]
         [DataType(DataType.Date)]
+    
         public System.DateTime Year { get; set; }
         public string Semester { get; set; }
     
