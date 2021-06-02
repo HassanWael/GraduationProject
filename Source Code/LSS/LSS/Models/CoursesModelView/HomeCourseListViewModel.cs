@@ -9,15 +9,15 @@ namespace LSS.Models.CoursesModelView
     public class HomeCourseListViewModel
     {
         LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
-        private YearAndSemester YearAndSemester;
+        private YearAndSemester YearAndSemester = SemesterSingelton.getCurrentYearAndSemester();
         private List<CourseCoordinator> CCS;
 
         public HomeCourseListViewModel(String LecturerID)
         {
-            YearAndSemester = SemesterSingelton.getCurrentYearAndSemester();
             Lecturer = _DatabaseEntities.Lecturers.Find(LecturerID);
 
-            CCS = _DatabaseEntities.CourseCoordinators.Where(x => x.YearAndSemester.Year.Equals(YearAndSemester.Year)&& x.YearAndSemester.Semester.Equals(YearAndSemester.Semester)).ToList();
+            CCS = _DatabaseEntities.CourseCoordinators.Where(x => x.YearAndSemester.Year.Equals(YearAndSemester.Year)
+                    && x.YearAndSemester.Semester.Equals(YearAndSemester.Semester)).ToList();
         }
         public  Lecturer Lecturer { get; set; }
         private Department department { get; set; }
@@ -33,9 +33,10 @@ namespace LSS.Models.CoursesModelView
             }
             set
             {
-                Department = department;
+                department = value;
             }
         }
+
         private Faculty faculty { get; set; }
         public Faculty Faculty
         {
@@ -43,10 +44,14 @@ namespace LSS.Models.CoursesModelView
             {
                 if (faculty == null)
                 {
-                    faculty = department.Faculty;
+                    faculty = Department.Faculty;
                 }
 
                 return faculty;
+            }
+            set
+            {
+                faculty = value;
             }
         }
         private List< CourseCoordinator> coordinatedCourses { get; set; }
@@ -57,7 +62,7 @@ namespace LSS.Models.CoursesModelView
             {
                 if (coordinatedCourses == null)
                 {
-                    coordinatedCourses = Lecturer.CourseCoordinators.Where(x => x.YearAndSemester.Equals(YearAndSemester)).ToList();
+                    coordinatedCourses = Lecturer.CourseCoordinators.Where(x => x.Year.Equals(YearAndSemester.Year)&&x.semester.Equals(YearAndSemester.Semester)).ToList();
                 }
                 return coordinatedCourses;
             }
@@ -66,6 +71,26 @@ namespace LSS.Models.CoursesModelView
                 coordinatedCourses = value;
             }
         }
+
+        private List<OtherLecturer> otherCourses { get; set; }
+
+        public List<OtherLecturer> OtherCourses
+        {
+            get
+            {
+                if (otherCourses == null)
+                {
+                    otherCourses = Lecturer.OtherLecturers.Where(x => x.Year.Equals(YearAndSemester.Year)
+                                    && x.semester.Equals(YearAndSemester.Semester)).ToList();
+                }
+                return otherCourses;
+            }
+            set
+            {
+                otherCourses = value;
+            }
+        }
+
         private List<CourseCoordinator> departmentCCs { get; set; }
         public List<CourseCoordinator> DepartmentCCs
         {
@@ -73,7 +98,8 @@ namespace LSS.Models.CoursesModelView
             {
                 if (departmentCCs == null)
                 {
-                    departmentCCs = CCS.Where(x => x.Course.dptid.Equals(Department.ID)).ToList();
+                    departmentCCs = _DatabaseEntities.CourseCoordinators.Where(x => x.Course.Department.ID.Equals(Lecturer.dptId)
+                                    && x.Year.Equals(YearAndSemester.Year)&& x.semester.Equals(YearAndSemester.Semester)).ToList();
                 }
                 return departmentCCs;
             }
@@ -86,7 +112,8 @@ namespace LSS.Models.CoursesModelView
             {
                 if (facultyCCS == null)
                 {
-                    facultyCCS = CCS.Where(x => x.Course.Department.FacultyId.Equals(Faculty.ID)).ToList();
+                    facultyCCS = _DatabaseEntities.CourseCoordinators.Where(x => x.Course.Department.Faculty.ID.Equals(Lecturer.Department.FacultyId) 
+                                && x.Year.Equals(YearAndSemester.Year) && x.semester.Equals(YearAndSemester.Semester)).ToList();
                 }
 
                 return facultyCCS;

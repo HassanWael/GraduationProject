@@ -5,7 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
+@if(ViewBag.message!=null){ 
+<div class="alert alert-dismissible alert-success">
+    <strong>@ViewBag.message</strong>
+</div>
+}
 <div class="container shadow-lg p-3 mb-3 mt-5 bg-white">
     <div class="d-flex justify-content-center align-items-center text-center mb-3">
         <div>

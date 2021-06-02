@@ -24,7 +24,7 @@ namespace LSS.Controllers
         {
             if (CourseID == null)
             {
-                RedirectToAction("Index", "LogedIN");
+                return RedirectToAction("Index", "LogedIN");
             }
 
             //String userID = Session["ID"].ToString();
@@ -306,27 +306,43 @@ namespace LSS.Controllers
             return View();
         }
         //todo: create a Model for CourseStudent List
-        [HttpPost]
-        public ActionResult AddBook(CourseTextBook courseTextBook)
+        public PartialViewResult AddBook()
         {
+            return PartialView();
+        }
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddBook(AddBookMV? addBookMV)
+        {
+            CourseTextBook courseTextBook = addBookMV.book;
+            YearAndSemester YAS = addBookMV.YAS;
+
             if (ModelState.IsValid)
             {
                 try
                 {
                     _DatabaseEntities.CourseTextBooks.Add(courseTextBook);
                     _DatabaseEntities.SaveChanges();
+                    if (courseTextBook.Course != null && !courseTextBook.Course.Equals(""))
+                        return RedirectToAction("CouresPage", "CourseCoordinator", (courseTextBook.Course, YAS.Year, YAS.Semester));
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine("Error at line 413 CourseCoordinator" + e.Message);
-
-                    return RedirectToAction("CoursePage", courseTextBook.Course);
+                    return PartialView();
+                    // return RedirectToAction("CouresPage", "CourseCoordinator", (courseTextBook.Course, YAS.Year, YAS.Semester));
                 }
 
             }
-            if (courseTextBook.Course != null && !courseTextBook.Course.Equals(""))
-                return RedirectToAction("CoursePage", courseTextBook.Course);
-            return RedirectToAction("Index", "LogedIn");
+            else
+            {
+                return PartialView();
+            }
+            return PartialView();
+            //return RedirectToAction("Index", "LogedIn");
         }
 
 
@@ -482,10 +498,7 @@ namespace LSS.Controllers
             _DatabaseEntities.Entry(schedule).State = EntityState.Modified;
             _DatabaseEntities.SaveChanges();
 
-
             return RedirectToAction("CourseSchedule", new { s.CourseID, s.Year, Semester = s.semester });
         }
-
-
     }
 }

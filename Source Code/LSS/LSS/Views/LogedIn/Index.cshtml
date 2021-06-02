@@ -14,6 +14,9 @@
 
 <div id="Coordinated_Courses" class="Course_ShowCase">
 
+    <h4>Courses I coordinate </h4>
+
+
     @if (Model.CoordinatedCourses != null)
     {<ul>
             @foreach (CourseCoordinator cc in Model.CoordinatedCourses)
@@ -29,26 +32,71 @@
 </div>
 
 
-@if (Model.DepartmentCCs != null)
-{
-    <div id="dptCdourses" class="Course_ShowCase">
-        <ul>
-            @foreach (CourseCoordinator cc in Model.DepartmentCCs)
+<div id="Coordinated_Courses" class="Course_ShowCase">
+    <h4>Other Courses I teach</h4>
+
+    @if (Model.OtherCourses.Count() != 0)
+    {<ul>
+            @foreach (OtherLecturer cc in Model.OtherCourses)
             {
-                <li> @Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator", new { CourseID = cc.CourseID, Year = cc.Year, semester = cc.semester }, new { @class = "link" }) </li>
+                <li> @Html.ActionLink(cc.CourseCoordinator.Course.Title, "CouresPage", "CourseCoordinator", new { CourseID = cc.CourseID, Year = cc.Year, semester = cc.semester }, new { @class = "link" }) </li>
             }
         </ul>
+    }
+    else
+    {
+        <h2> No courses have been added yet.</h2>
+    }
+</div>
+
+
+@if (Model.Lecturer.Department.HeadOFDepartment.Equals(Model.Lecturer.ID))
+{
+    <div id="dptCdourses" class="Course_ShowCase">
+        <h4>Department Courses</h4>
+        @if (Model.DepartmentCCs != null)
+        {
+
+            <ul>
+                @foreach (CourseCoordinator cc in Model.DepartmentCCs)
+                {
+                    <li> @Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator", new { CourseID = cc.CourseID, Year = cc.Year, semester = cc.semester }, new { @class = "link" }) </li>
+                }
+
+
+
+            </ul>
+
+        }
+        else
+        {
+            <h2> No courses have been added yet.</h2>
+        }
     </div>
 }
 
-@if (Model.FacultyCCS != null)
+
+
+@if (Model.Faculty.dean.Equals(Model.Lecturer.ID) || Model.Faculty.ViceDean.Equals(Model.Lecturer))
 {
+
+    <h4>Facullty Courses</h4>
     <div id="dptCdourses" class="Course_ShowCase">
-        <ul>
-            @foreach (CourseCoordinator cc in Model.FacultyCCS)
-            {
-                <li> @Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator", new { CourseID = cc.CourseID, Year = cc.Year, semester = cc.semester }, new { @class = "link" }) </li>
-            }
-        </ul>
+
+        @if (Model.FacultyCCS != null)
+        {
+
+            <ul>
+                @foreach (CourseCoordinator cc in Model.FacultyCCS)
+                {
+                    <li> @Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator", new { CourseID = cc.CourseID, Year = cc.Year, semester = cc.semester }, new { @class = "link" }) </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <h2> No courses have been added yet.</h2>
+
+        }
     </div>
 }

@@ -1,68 +1,67 @@
-﻿@model LSS.Models.CourseTextBook
+﻿@model LSS.Models.CoursesModelView.AddBookMV
+@using LSS.Models
 
 @using (Html.BeginForm("AddBook","CourseCoordinator",FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
-    <div class="container">
-        <h4 class="text-center mt-3">CourseTextBook</h4>
-        <hr style="border-color:red; width:70%" />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="container">
+    <h4 class="text-center mt-3">CourseTextBook</h4>
+    <hr style="border-color:red; width:70%" />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        @Html.HiddenFor(model => model.Course)
-        @Html.HiddenFor(model => model.Book_Title)
-        @Html.HiddenFor(model => model.Year)
-        @Html.HiddenFor(model => model.Semester)
-
-        <div class="container  w-75 justify-content-center align-items-center">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Book Title:</span>
-                </div>
-                @Html.EditorFor(model => model.Book_Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Book_Title, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.book.Course)
+    @Html.HiddenFor(model => model.YAS.Year)
+    @Html.HiddenFor(model => model.YAS.Semester)
+    <div class="container  w-75 justify-content-center align-items-center">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Book Title:</span>
             </div>
-
-
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Author:</span>
-                </div>
-                @Html.EditorFor(model => model.Author, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Author, "", new { @class = "text-danger" })
-            </div>
-
-
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Published in:</span>
-                </div>
-                @Html.EditorFor(model => model.YearOfpublish, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.YearOfpublish, "", new { @class = "text-danger" })
-            </div>
-
-
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">City:</span>
-                </div>
-                @Html.EditorFor(model => model.City_State, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.City_State, "", new { @class = "text-danger" })
-            </div>
-
-
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Publisher:</span>
-                </div>
-                @Html.EditorFor(model => model.Publisher, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Publisher, "", new { @class = "text-danger" })
-            </div>
+            @Html.EditorFor(model => model.book.Book_Title, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.book.Book_Title, "", new { @class = "text-danger" })
         </div>
-        <div class="input-group justify-content-center align-items-center d-flex">
-            <div>
-                <input type="submit" value="Create" class="btn btn-primary mb-3" />
+
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Author:</span>
             </div>
+            @Html.EditorFor(model => model.book.Author, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.book.Author, "", new { @class = "text-danger" })
+        </div>
+
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Published in:</span>
+            </div>
+            @Html.EditorFor(model => model.book.YearOfpublish, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.book.YearOfpublish, "", new { @class = "text-danger" })
+        </div>
+
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">City:</span>
+            </div>
+            @Html.EditorFor(model => model.book.City_State, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.book.City_State, "", new { @class = "text-danger" })
+        </div>
+
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Publisher:</span>
+            </div>
+            @Html.EditorFor(model => model.book.Publisher, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.book.Publisher, "", new { @class = "text-danger" })
         </div>
     </div>
+    <div class="input-group justify-content-center align-items-center d-flex">
+        <div>
+            <input type="submit" value="Create" class="btn btn-primary mb-3" />
+        </div>
+    </div>
+</div>
 }
