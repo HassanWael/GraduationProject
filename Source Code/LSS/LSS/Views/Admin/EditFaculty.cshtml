@@ -5,36 +5,68 @@
     ViewBag.Title = "EditFaculty";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-<h2>EditFaculty</h2>
 
-@using (Html.BeginForm("EditFaculty","Admin",FormMethod.Post))
+@using (Html.BeginForm("EditFaculty", "Admin", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Faculty</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ID)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    <div class="container shadow-lg p-3 mb-3 mt-5 bg-white">
+        <div class="d-flex justify-content-center align-items-center text-center mb-3">
+            <div>
+                <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo" alt="Logo" style="height:150px; width:120px;" />
+                <h4> Edit Faculty </h4>
             </div>
         </div>
 
-        add search for dean and vicedean here
+        <hr class="border-danger w-75 mb-4" />
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+
+
+
+        <div class="text-center align-content-center justify-content-center d-flex">
+            <div class="card border-primary mb-3 w-50 text-left">
+                <div class="card-header">Student: </div>
+                <div class="card-body text-primary">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Name:</span>
+                        </div>
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Dean:</span>
+                        </div>
+                        @Html.DropDownListFor(model => model.dean, new SelectList(ViewBag.Departments, "ID", "ID"), htmlAttributes: new { @class = "form-control col-md-10" })
+                        @Html.ValidationMessageFor(model => model.dean, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Vice Dean:</span>
+                        </div>
+                        @Html.DropDownListFor(model => model.ViceDean, new SelectList(ViewBag.Departments, "ID", "ID"), htmlAttributes: new { @class = "form-control col-md-10" })
+                        @Html.ValidationMessageFor(model => model.ViceDean, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group mt-4">
+            <div>
                 <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+
+
+            <div class="float-right">
+                @Html.ActionLink("Back to List", "Index")
             </div>
         </div>
     </div>
 }
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

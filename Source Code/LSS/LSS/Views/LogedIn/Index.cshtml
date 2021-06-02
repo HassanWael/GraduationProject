@@ -18,16 +18,14 @@
     {<ul>
             @foreach (CourseCoordinator cc in Model.CoordinatedCourses)
             {
-                <li> @Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator", new { Course = cc.CourseID ,Year = cc.Year, Semseter=cc.Semseter}) </li>
-
+                <li> @Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator", new { Course = cc.CourseID, Year = cc.Year, Semseter = cc.Semseter }, new { @class = "link" }) </li>
             }
         </ul>
     }
     else
     {
-        <h2> Noo courses have been added yet.</h2>
+        <h2> No courses have been added yet.</h2>
     }
-
 </div>
 
 
@@ -37,7 +35,7 @@
         <ul>
             @foreach (CourseCoordinator cc in Model.DepartmentCCs)
             {
-            <li> @Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator", new { Course = cc.CourseID, Year = cc.Year, Semseter = cc.Semseter })   </li>
+                <li> @Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator", new { Course = cc.CourseID, Year = cc.Year, Semseter = cc.Semseter }, new { @class = "link" }) </li>
             }
         </ul>
     </div>
@@ -49,7 +47,7 @@
         <ul>
             @foreach (CourseCoordinator cc in Model.FacultyCCS)
             {
-            <li>  @Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator", new { Course = cc.CourseID, Year = cc.Year, Semseter = cc.Semseter })   </li>
+                <li> @Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator", new { Course = cc.CourseID, Year = cc.Year, Semseter = cc.Semseter }, new { @class = "link" }) </li>
             }
         </ul>
     </div>

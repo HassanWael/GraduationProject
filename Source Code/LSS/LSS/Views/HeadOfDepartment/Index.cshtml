@@ -56,9 +56,9 @@
 </script>
 
 <body class="container">
-    <div class="shadow-lg p-3 mb-3 mt-3 align-content-center bg-white">
+    <div class="shadow-lg mb-3 mt-5 align-content-center bg-white">
         <div class="d-flex justify-content-center align-items-center text-center">
-            <div>
+            <div class="mt-2">
                 <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo" alt="Logo" style="height:150px; width:120px;" />
                 <h2>@Model.Name</h2>
             </div>
@@ -151,9 +151,9 @@
                                 </div>
                             </td>
 
-                            <td>
-                                <a class="btn btn-primary" style="margin:4%" id="open" data-toggle="modal" data-target="#@slo.SLOID">Edit</a>
-                                <a class="btn btn-primary" style="margin:4%" id="open" data-toggle="modal" data-target="#PI_@slo.SLOID">Add PI </a>
+                            <td class="text-white">
+                                <a class="btn btn-primary"  id="open" data-toggle="modal" data-target="#@slo.SLOID">Edit</a>
+                                <a class="btn btn-primary"  id="open" data-toggle="modal" data-target="#PI_@slo.SLOID">Add PI </a>
 
                                 <div id="PI_@slo.SLOID" class="modal fade" tabindex="-1" role="dialog">
                                     <div class="modal-dialog" role="document">

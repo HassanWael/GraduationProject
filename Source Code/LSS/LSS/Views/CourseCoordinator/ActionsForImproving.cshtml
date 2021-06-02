@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <body>
     <div class="row">
         <div class="col-2 mt-lg-5">
@@ -44,29 +45,29 @@
                 </div>
                 <div class="shadow block text-center">
                     <div class="block-item w-100">
-                        <table class="table table-hover table-borderless bg-white ">
-                           <thread>
-                               <tr class="bg-primary">
-                                   <th>
-                                       <h5> Name </h5>
-                                   </th>
-                                   <th>
-                                       <h5> Actions Taken </h5>
-                                   </th>
-                                   <th>
-                                       <h5> Action Results </h5>
-                                   </th>
-                                   <th>
-                                       <h5> Recommended Actions </h5>
-                                   </th>
-                                   <th>
-                                       <h5> Responsible Person </h5>
-                                   </th>
-                               </tr>
-                           </thread>
+                        <table class="table table-hover table-borderless">
+                            <thread>
+                                <tr class="bg-white">
+                                    <th>
+                                        <h5> Name </h5>
+                                    </th>
+                                    <th>
+                                        <h5> Actions Taken </h5>
+                                    </th>
+                                    <th>
+                                        <h5> Action Results </h5>
+                                    </th>
+                                    <th>
+                                        <h5> Recommended Actions </h5>
+                                    </th>
+                                    <th>
+                                        <h5> Responsible Person </h5>
+                                    </th>
+                                </tr>
+                            </thread>
                             @foreach (var item in Model)
                             {
-                                <tr class="bg-white">
+                                <tr>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.CourseCoordinator.Lecturer.Name)
                                     </td>

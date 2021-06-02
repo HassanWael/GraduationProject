@@ -5,11 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-
 @using (Html.BeginForm())
 {
-
 
     @Html.AntiForgeryToken()
 
@@ -23,28 +20,30 @@
 
         <hr class="border-danger w-75 mb-4" />
 
-        <div class="card border-primary mb-3 w-50 text-left">
-            <div class="card-header">Student: </div>
+        <div class="text-center align-content-center justify-content-center d-flex">
 
-            <div class="card-body text-primary">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-sizing-default">Name:</span>
+            <div class="card border-primary mb-3 w-50 text-left">
+                <div class="card-header">Student: </div>
+                <div class="card-body text-primary">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Name:</span>
+                        </div>
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control col-md-11" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                     </div>
-                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control col-md-11" } })
-                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                </div>
 
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-sizing-default">Department Id:</span>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Department Id:</span>
+                        </div>
+                        @Html.DropDownListFor(x => x.DptID, new SelectList(ViewBag.Departments, "ID", "ID"), htmlAttributes: new { @class = "form-control col-md-10" })
+                        @Html.ValidationMessageFor(model => model.DptID, "", new { @class = "text-danger" })
                     </div>
-                    @Html.DropDownListFor(x => x.DptID, new SelectList(ViewBag.Departments, "ID", "ID"), htmlAttributes: new { @class = "form-control col-md-10" })
-                    @Html.ValidationMessageFor(model => model.DptID, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
-       
+
 
         <div class="form-group ">
             <div class="col-md-offset-2 col-md-10">
