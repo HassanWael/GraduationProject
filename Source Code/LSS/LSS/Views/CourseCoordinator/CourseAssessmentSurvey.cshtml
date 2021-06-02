@@ -30,13 +30,13 @@
                 <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Content</b> </h4>
                 @Html.ActionLink("Recomandations for improving the course", "ActionsForImproving", "CourseCoordinator", new { ViewBag.courseID }, new { @class = "bg-transparent pb-3" })
 
-                @Html.ActionLink("Students List", "CourseStudentList", "Students", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semseter }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Students List", "CourseStudentList", "Students", new { ViewBag.courseID, ViewBag.Year, ViewBag.semester }, new { @class = "bg-transparent pb-3" })
 
-                @Html.ActionLink("PI Assessment", "PI Assessment", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semseter }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("PI Assessment", "PI Assessment", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.semester }, new { @class = "bg-transparent pb-3" })
 
-                @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semseter }, new { @class = "bg-transparent pb-3 text-success" })
+                @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.semester }, new { @class = "bg-transparent pb-3 text-success" })
 
-                @Html.ActionLink("Exams & Tasks", "ListCourseExamsAndTasks", "Exam", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semseter }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Exams & Tasks", "ListCourseExamsAndTasks", "Exam", new { ViewBag.courseID, ViewBag.Year, ViewBag.semester }, new { @class = "bg-transparent pb-3" })
                 <br />
                 <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Forms</b> </h4>
                 @Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { ViewBag.courseID }, new { @class = "bg-transparent pb-3" })
@@ -143,7 +143,7 @@
 
                             <input type="hidden" id="CourseID" name="CourseID" value='@Model.CC.CourseID' />
                             <input type="hidden" id="Year" name="Year" value='@Model.CC.Year' />
-                            <input type="hidden" id="Semseter" name="Semseter" value='@Model.CC.Semseter' />
+                            <input type="hidden" id="semester" name="semester" value='@Model.CC.semester' />
                         </div>
 
                         <div id="addQustion" class="modal fade" tabindex="-1" role="dialog">

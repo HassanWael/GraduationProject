@@ -12,16 +12,12 @@ namespace LSS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CourseInformationForm
+    public partial class AssessmentSurveyAnswer
     {
-        public string CourseID { get; set; }
-        public System.DateTime Year { get; set; }
-        public string semester { get; set; }
-        public Nullable<bool> CoordinatorSignature { get; set; }
-        public Nullable<bool> HeadOFDeptSignature { get; set; }
-        public Nullable<bool> ViceDeanSignature { get; set; }
-        public string ReasonOfDisaproval { get; set; }
+        public int Id { get; set; }
+        public int QID { get; set; }
+        public string Answer { get; set; }
     
-        public virtual CourseCoordinator CourseCoordinator { get; set; }
+        public virtual CourseAssessmentSurvay CourseAssessmentSurvay { get; set; }
     }
 }

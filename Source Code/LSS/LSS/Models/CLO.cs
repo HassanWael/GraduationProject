@@ -26,7 +26,7 @@ namespace LSS.Models
         {
             this.courseId = courseId;
         }
-    
+
         public string Description { get; set; }
         public int ID { get; set; }
         public string courseId { get; set; }

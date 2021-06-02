@@ -26,7 +26,7 @@ namespace LSS.Controllers
             {
                 CourseID=CC.CourseID,
                 Year=CC.Year,
-                Semseter=CC.Semseter,
+                semester=CC.semester,
                 ExamDate = DateTime.Now,
                 ModerationDate= DateTime.Now
             };
@@ -37,7 +37,7 @@ namespace LSS.Controllers
         public ActionResult CreateCourseExam(CourseExam courseExam)
         {
             int sum = 0;
-            List<int> weight = _DatabaseEntities.CourseExams.Where(x => x.CourseID.Equals(courseExam.CourseID) && x.Year.Equals(courseExam.Year) && x.Semseter.Equals(courseExam.Semseter)).Select(x => x.ExamWeight).ToList();
+            List<int> weight = _DatabaseEntities.CourseExams.Where(x => x.CourseID.Equals(courseExam.CourseID) && x.Year.Equals(courseExam.Year) && x.semester.Equals(courseExam.semester)).Select(x => x.ExamWeight).ToList();
             foreach (int num in weight) {
                 sum += num;
 

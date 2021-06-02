@@ -11,16 +11,11 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
     
     public partial class ModerationChecklist
     {
         public int ID { get; set; }
         public string CourseID { get; set; }
-        [Required]
-        [Display(Name = "Date")]
-        [DataType(DataType.Date)]
         public System.DateTime Year { get; set; }
         public string semester { get; set; }
         public string Question { get; set; }

@@ -19,7 +19,7 @@ namespace LSS.Models.CoursesModelView
                     {
                         CourseID = CC.CourseID,
                         Year = CC.Year,
-                        Semseter = CC.Semseter,
+                        semester = CC.semester,
                         DeptID = CC.Course.Department.ID
                     };
                 }

@@ -27,6 +27,7 @@ namespace LSS.Models
     
         public virtual DbSet<ActionsForImprovingTheCourse> ActionsForImprovingTheCourses { get; set; }
         public virtual DbSet<AssessmentPlanforTheStudentLearningOutcomeTechnique> AssessmentPlanforTheStudentLearningOutcomeTechniques { get; set; }
+        public virtual DbSet<AssessmentSurveyAnswer> AssessmentSurveyAnswers { get; set; }
         public virtual DbSet<byCompletingThisCourseStudentsAreAbleTo> byCompletingThisCourseStudentsAreAbleToes { get; set; }
         public virtual DbSet<CLO> CLOes { get; set; }
         public virtual DbSet<Course> Courses { get; set; }

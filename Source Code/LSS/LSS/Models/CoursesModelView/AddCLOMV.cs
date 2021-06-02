@@ -26,9 +26,9 @@ namespace LSS.Models.CoursesModelView
             }
         }
 
-        public AddCLOMV(String DeptID)
+        public AddCLOMV(String courseID)
         {
-            CLO = new CLO(DeptID);
+            CLO = new CLO(courseID);
         }
 
         public CLO CLO { get; set; }

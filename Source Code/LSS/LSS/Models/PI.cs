@@ -20,13 +20,6 @@ namespace LSS.Models
             this.CLOes = new HashSet<CLO>();
             this.CourseExamQuestions = new HashSet<CourseExamQuestion>();
         }
-        public PI(string SLOID, int deptID)
-            : this()
-        {
-            this.DeptID = deptID;
-            this.SLOID = SLOID;
-        }
-
     
         public string ID { get; set; }
         public string Desc { get; set; }

@@ -20,7 +20,7 @@ namespace LSS.Controllers
         private readonly YearAndSemester yas = SemesterSingelton.getCurrentYearAndSemester();
 
         // GET: Courses
-        public ActionResult CouresPage(string? CourseID, DateTime? Year, string? Semseter)
+        public ActionResult CouresPage(string? CourseID, DateTime? Year, string? semester)
         {
             if (CourseID == null)
             {
@@ -28,7 +28,7 @@ namespace LSS.Controllers
             }
 
             //String userID = Session["ID"].ToString();
-            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semseter);
+            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, semester);
 
             if (cc == null)
             {
@@ -99,9 +99,9 @@ namespace LSS.Controllers
             ViewBag.courseId = courseId;
             return View(AFITC);
         }
-        public ActionResult ActionsForImprovingDetails(string? CourseID, DateTime? Year, string? Semseter)
+        public ActionResult ActionsForImprovingDetails(string? CourseID, DateTime? Year, string? semester)
         {
-            ActionsForImprovingTheCourse AFITC = _DatabaseEntities.ActionsForImprovingTheCourses.Find(CourseID, Year, Semseter);
+            ActionsForImprovingTheCourse AFITC = _DatabaseEntities.ActionsForImprovingTheCourses.Find(CourseID, Year, semester);
             return View(AFITC);
         }
 
@@ -114,7 +114,7 @@ namespace LSS.Controllers
                 {
                     CourseID = courseId,
                     Year = yas.Year,
-                    Semseter = yas.Semester
+                    semester = yas.Semester
                 };
             }
             return View(ActionsForImprovingTheCourse);
@@ -154,7 +154,7 @@ namespace LSS.Controllers
         [HttpPost]
         public ActionResult IsAssessedPartialView(isAssessed isAssessed)
         {
-            isAssessed a = _DatabaseEntities.isAssesseds.Find(isAssessed.CourseID, isAssessed.Year, isAssessed.Semseter);
+            isAssessed a = _DatabaseEntities.isAssesseds.Find(isAssessed.CourseID, isAssessed.Year, isAssessed.semester);
             try
             {
                 if (a == null)
@@ -242,10 +242,10 @@ namespace LSS.Controllers
         }
 
         //todo: creat col itterator and configure the xlsx file that woul be uploaded
-        public ActionResult UploadSurveyAnswers(FormCollection formCollection, string CourseID, DateTime Year, string Semseter)
+        public ActionResult UploadSurveyAnswers(FormCollection formCollection, string CourseID, DateTime Year, string semester)
         {
-            List<int> QID = _DatabaseEntities.CourseAssessmentSurvays.Where(x => x.CourseID.Equals(CourseID) && x.Year.Equals(Year) && x.Semseter
-            .Equals(Semseter)).Select(x => x.ID).ToList();
+            List<int> QID = _DatabaseEntities.CourseAssessmentSurvays.Where(x => x.CourseID.Equals(CourseID) && x.Year.Equals(Year) && x.semester
+            .Equals(semester)).Select(x => x.ID).ToList();
 
             if (Request != null)
             {
@@ -391,7 +391,7 @@ namespace LSS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddRCDA(ResultOfCourseDirectAssessment RCDA)
         {
-            if(_DatabaseEntities.ResultOfCourseDirectAssessments.Find(RCDA.CourseID,RCDA.Year, RCDA.Semseter)!=null)
+            if(_DatabaseEntities.ResultOfCourseDirectAssessments.Find(RCDA.CourseID,RCDA.Year, RCDA.semester)!=null)
             {
                 _DatabaseEntities.Entry(RCDA).State = EntityState.Modified;
                 _DatabaseEntities.SaveChanges();
@@ -425,7 +425,7 @@ namespace LSS.Controllers
             }
 
             List<Schedule> schedules = _DatabaseEntities.Schedules.Where(x => x.CourseID.Equals(CourseID) &&
-              x.Year.Equals((DateTime)Year) && x.Semseter.Equals(Semester)).ToList();
+              x.Year.Equals((DateTime)Year) && x.semester.Equals(Semester)).ToList();
             if (!schedules.Any())
             {
                 for (int i = 0; i < 17; i++)
@@ -433,7 +433,7 @@ namespace LSS.Controllers
                     Schedule schedule = new Schedule();
                     schedule.CourseID = CourseID;
                     schedule.Year = (DateTime)Year;
-                    schedule.Semseter = Semester;
+                    schedule.semester = Semester;
                     schedule.WeekNumber = i+1;
                     _DatabaseEntities.Schedules.Add(schedule);
                     _DatabaseEntities.SaveChanges();
@@ -448,7 +448,7 @@ namespace LSS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditWeek(Schedule s,int[] CLO_ID)
         {
-            Schedule schedule = _DatabaseEntities.Schedules.Find(s.CourseID, s.Year, s.Semseter,s.WeekNumber);
+            Schedule schedule = _DatabaseEntities.Schedules.Find(s.CourseID, s.Year, s.semester,s.WeekNumber);
             if(schedule == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -483,7 +483,7 @@ namespace LSS.Controllers
             _DatabaseEntities.SaveChanges();
 
 
-            return RedirectToAction("CourseSchedule", new { s.CourseID, s.Year, Semester = s.Semseter });
+            return RedirectToAction("CourseSchedule", new { s.CourseID, s.Year, Semester = s.semester });
         }
 
 

@@ -34,7 +34,7 @@ namespace LSS.Controllers
                 {
                     CourseID = CourseID,
                     Year = YAS.Year,
-                    Semseter = YAS.Semester
+                    semester = YAS.Semester
                 };
             }
             else
@@ -62,7 +62,7 @@ namespace LSS.Controllers
             {
                 try
                 {
-                    if (_DatabaseEntities.CourseCoordinators.Find(cc.CourseID, cc.Year, cc.Semseter) == null)
+                    if (_DatabaseEntities.CourseCoordinators.Find(cc.CourseID, cc.Year, cc.semester) == null)
                     {
                         _DatabaseEntities.CourseCoordinators.Add(cc);
                         _DatabaseEntities.SaveChanges();

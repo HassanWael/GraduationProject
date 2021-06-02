@@ -20,13 +20,13 @@
                    new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
 
                     @Html.ActionLink("Students List", "CourseStudentList", "CourseCoordinator",
-                   new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "bg-transparent pb-3" })
+                   new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.semester }, new { @class = "bg-transparent pb-3" })
 
                     @Html.ActionLink("PI Assessment", "PI Assessment", "CourseCoordinator",
-                   new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "bg-transparent pb-3" })
+                   new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.semester }, new { @class = "bg-transparent pb-3" })
 
                     @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator",
-                   new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "bg-transparent pb-3" })
+                   new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.semester }, new { @class = "bg-transparent pb-3" })
                     <br />
                     <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Forms</b> </h4>
                     @Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
@@ -87,10 +87,10 @@
                         <td style=" border:1px solid black">@Html.DisplayFor(x => x.CourseCoordinator.Year)   </td>
                         <th bgcolor="silver" style=" border:1px solid black"> Semester  </th>
                         <td style=" border:1px solid black" colspan="@col">
-                            @if (Model.CourseCoordinator.Semseter == "") { }
-                            else if (Model.CourseCoordinator.Semseter == "1")
+                            @if (Model.CourseCoordinator.semester == "") { }
+                            else if (Model.CourseCoordinator.semester == "1")
                             {<p>First Semester</p> }
-                            else if (Model.CourseCoordinator.Semseter == "2")
+                            else if (Model.CourseCoordinator.semester == "2")
                             {<p>Second Semester</p> }
                             else
                             {<p>Summer Semester</p>}
