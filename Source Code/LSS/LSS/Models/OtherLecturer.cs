@@ -24,7 +24,7 @@ namespace LSS.Models
         public string LecturerID { get; set; }
         public string CourseID { get; set; }
         public System.DateTime Year { get; set; }
-        public string semester { get; set; }
+        public string Semester { get; set; }
         public string DayTime { get; set; }
         public string ClassRoom { get; set; }
         public Nullable<int> noOFStudents { get; set; }
