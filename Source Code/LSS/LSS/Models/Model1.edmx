@@ -9,11 +9,11 @@
           <Key>
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="semester" />
+            <PropertyRef Name="Semester" />
           </Key>
           <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Year" Type="date" Nullable="false" />
-          <Property Name="semester" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
           <Property Name="ActionsTaken" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="ActionsResults" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="RecomandedActions" Type="nvarchar" MaxLength="255" Nullable="false" />
@@ -54,11 +54,11 @@
           <Key>
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="semester" />
+            <PropertyRef Name="Semester" />
           </Key>
           <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Year" Type="date" Nullable="false" />
-          <Property Name="semester" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
           <Property Name="SLO" Type="nvarchar" MaxLength="20" />
           <Property Name="AggrementLVL" Type="nvarchar" MaxLength="255" />
         </EntityType>
@@ -98,7 +98,7 @@
           <Key>
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="semester" />
+            <PropertyRef Name="Semester" />
             <PropertyRef Name="AssessmentID" />
             <PropertyRef Name="CLO" />
             <PropertyRef Name="PI" />
@@ -107,7 +107,7 @@
           </Key>
           <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Year" Type="date" Nullable="false" />
-          <Property Name="semester" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
           <Property Name="AssessmentID" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="CLO" Type="int" Nullable="false" />
           <Property Name="PI" Type="nvarchar" MaxLength="20" Nullable="false" />
@@ -121,7 +121,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Year" Type="date" Nullable="false" />
-          <Property Name="semester" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
           <Property Name="Qustion" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="PI_ID" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="SLOID" Type="nvarchar" MaxLength="20" Nullable="false" />
@@ -131,11 +131,11 @@
           <Key>
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="semester" />
+            <PropertyRef Name="Semester" />
           </Key>
           <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Year" Type="date" Nullable="false" />
-          <Property Name="semester" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
           <Property Name="NoOFStudents" Type="int" Nullable="false" />
           <Property Name="ClassRoom" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="courseNotAssessedReason " Type="nvarchar" MaxLength="255" />
@@ -149,7 +149,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Year" Type="date" Nullable="false" />
-          <Property Name="semester" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
           <Property Name="Type" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Moderator" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="ExamWeight" Type="int" Nullable="false" />
@@ -181,11 +181,11 @@
           <Key>
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="semester" />
+            <PropertyRef Name="Semester" />
           </Key>
           <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Year" Type="date" Nullable="false" />
-          <Property Name="semester" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
           <Property Name="CoordinatorSignature" Type="bit" />
           <Property Name="HeadOFDeptSignature" Type="bit" />
           <Property Name="ViceDeanSignature" Type="bit" />
@@ -195,11 +195,11 @@
           <Key>
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="semester" />
+            <PropertyRef Name="Semester" />
           </Key>
           <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Year" Type="date" Nullable="false" />
-          <Property Name="semester" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
           <Property Name="CoordinatorSignature" Type="bit" />
           <Property Name="HeadOFDeptSignature" Type="bit" />
           <Property Name="ViceDeanSignature" Type="bit" />
@@ -209,11 +209,11 @@
           <Key>
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="semester" />
+            <PropertyRef Name="Semester" />
           </Key>
           <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Year" Type="date" Nullable="false" />
-          <Property Name="semester" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
           <Property Name="CoordinatorSignature" Type="bit" />
           <Property Name="HeadOFDeptSignature" Type="bit" />
           <Property Name="ViceDeanSignature" Type="bit" />
@@ -223,11 +223,11 @@
           <Key>
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="semester" />
+            <PropertyRef Name="Semester" />
           </Key>
           <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Year" Type="date" Nullable="false" />
-          <Property Name="semester" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
           <Property Name="CoordinatorSignature" Type="bit" />
           <Property Name="HeadOFDeptSignature" Type="bit" />
           <Property Name="ReasonOfDisaproval" Type="nvarchar" MaxLength="255" />
@@ -237,12 +237,12 @@
             <PropertyRef Name="StrategyID" />
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="semester" />
+            <PropertyRef Name="Semester" />
           </Key>
           <Property Name="StrategyID" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Year" Type="date" Nullable="false" />
-          <Property Name="semester" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
         </EntityType>
         <EntityType Name="CourseTextBook">
           <Key>
@@ -273,9 +273,9 @@
           <Property Name="StudentID" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Year" Type="date" Nullable="false" />
-          <Property Name="semester" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
           <Property Name="FinalGrade" Type="int" />
-          <Property Name="OtherLecturer" Type="int" />
+          <Property Name="otherLecturer" Type="int" />
         </EntityType>
         <EntityType Name="Faculty">
           <Key>
@@ -292,33 +292,33 @@
           <Key>
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="semester" />
+            <PropertyRef Name="Semester" />
           </Key>
           <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Year" Type="date" Nullable="false" />
-          <Property Name="semester" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
           <Property Name="Reason" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="ineffectiveTeachingStrategis">
           <Key>
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="semester" />
+            <PropertyRef Name="Semester" />
           </Key>
           <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Year" Type="date" Nullable="false" />
-          <Property Name="semester" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
           <Property Name="Reason" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="isAssessed">
           <Key>
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="semester" />
+            <PropertyRef Name="Semester" />
           </Key>
           <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Year" Type="date" Nullable="false" />
-          <Property Name="semester" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
           <Property Name="isAssessed" Type="bit" Nullable="false" />
           <Property Name="WhyNot" Type="nvarchar" MaxLength="255" />
         </EntityType>
@@ -341,7 +341,7 @@
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Year" Type="date" Nullable="false" />
-          <Property Name="semester" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
           <Property Name="Question" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Answer" Type="bit" Nullable="false" />
           <Property Name="commetns" Type="nvarchar" MaxLength="255" />
@@ -354,7 +354,7 @@
           <Property Name="LecturerID" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Year" Type="date" Nullable="false" />
-          <Property Name="semester" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
           <Property Name="DayTime" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ClassRoom" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="noOFStudents" Type="int" />
@@ -382,12 +382,12 @@
           <Key>
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="semester" />
+            <PropertyRef Name="Semester" />
             <PropertyRef Name="QustionID" />
           </Key>
           <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Year" Type="date" Nullable="false" />
-          <Property Name="semester" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
           <Property Name="QustionID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Question_PI">
@@ -402,11 +402,11 @@
           <Key>
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="semester" />
+            <PropertyRef Name="Semester" />
           </Key>
           <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Year" Type="date" Nullable="false" />
-          <Property Name="semester" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
           <Property Name="ActionsTaken" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Observation" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="AnalysisAndJustification" Type="nvarchar" MaxLength="255" Nullable="false" />
@@ -416,12 +416,12 @@
           <Key>
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="semester" />
+            <PropertyRef Name="Semester" />
             <PropertyRef Name="WeekNumber" />
           </Key>
           <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Year" Type="date" Nullable="false" />
-          <Property Name="semester" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
           <Property Name="WeekNumber" Type="int" Nullable="false" />
           <Property Name="Topic" Type="nvarchar" MaxLength="50" />
           <Property Name="Assignments" Type="nvarchar" MaxLength="50" />
@@ -431,13 +431,13 @@
           <Key>
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="semester" />
+            <PropertyRef Name="Semester" />
             <PropertyRef Name="WeekNumber" />
             <PropertyRef Name="CLOID" />
           </Key>
           <Property Name="CourseID" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Year" Type="date" Nullable="false" />
-          <Property Name="semester" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
           <Property Name="WeekNumber" Type="int" Nullable="false" />
           <Property Name="CLOID" Type="int" Nullable="false" />
         </EntityType>
@@ -503,6 +503,24 @@
           <Property Name="Year" Type="date" Nullable="false" />
           <Property Name="Semester" Type="nvarchar" MaxLength="3" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LSS.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="database_firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ip_address" />
+            <PropertyRef Name="end_ip_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="start_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="end_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="create_date" Type="datetime" Nullable="false" />
+          <Property Name="modify_date" Type="datetime" Nullable="false" />
+        </EntityType>
         <Association Name="FK_ActionsForImprovingTheCourse_ToCourseCoordinator">
           <End Role="CourseCoordinator" Type="Self.CourseCoordinator" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -512,12 +530,12 @@
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="ActionsForImprovingTheCourse">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -530,7 +548,7 @@
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="AssessmentPlanforTheStudentLearningOutcomeTechnique">
               <PropertyRef Name="CourseID" />
@@ -560,12 +578,12 @@
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="byCompletingThisCourseStudentsAreAbleTo">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -685,12 +703,12 @@ warning 6035: The relationship 'FK_CAM_ToPI' has columns that are not part of th
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="CourseAssessmentMapping">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -717,12 +735,12 @@ warning 6035: The relationship 'FK_CAM_ToPI' has columns that are not part of th
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="CourseAssessmentSurvay">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -751,7 +769,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             </Principal>
             <Dependent Role="CourseCoordinator">
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -764,12 +782,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="CourseExam">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -818,12 +836,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="CourseFileCheckList">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -834,12 +852,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="CourseInformationForm">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -852,12 +870,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="CourseReport">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -870,12 +888,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="CourseSyllabus">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -888,12 +906,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="CourseTeachingStrategies">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -926,9 +944,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DPT_ToLecturer">
-          <End Role="Lecturer" Type="Self.Lecturer" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Lecturer" Type="Self.Lecturer" Multiplicity="0..1" />
           <End Role="Department" Type="Self.Department" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Lecturer">
@@ -946,16 +962,16 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="EnroledStudents">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_EnroledStudents_ToOther">
+        <Association Name="FK_EnroledStudents_ToOtherLec">
           <End Role="OtherLecturer" Type="Self.OtherLecturer" Multiplicity="0..1" />
           <End Role="EnroledStudents" Type="Self.EnroledStudents" Multiplicity="*" />
           <ReferentialConstraint>
@@ -963,7 +979,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="EnroledStudents">
-              <PropertyRef Name="OtherLecturer" />
+              <PropertyRef Name="otherLecturer" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1010,12 +1026,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="ineffectiveAssessmentStrategis">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1026,12 +1042,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="ineffectiveTeachingStrategis">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1044,17 +1060,19 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="isAssessed">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Lecturers_ToDpt">
-          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Department" Type="Self.Department" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Lecturer" Type="Self.Lecturer" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Department">
@@ -1088,12 +1106,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="OtherLecturer">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1132,12 +1150,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="PIAssessment">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1190,12 +1208,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="ResultOfCourseDirectAssessment">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1218,12 +1236,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="Schedule">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1234,13 +1252,13 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="Schedule">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
               <PropertyRef Name="WeekNumber" />
             </Principal>
             <Dependent Role="Schedule_CLO">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
               <PropertyRef Name="WeekNumber" />
             </Dependent>
           </ReferentialConstraint>
@@ -1420,6 +1438,16 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <EntitySet Name="Student-PI-Outcome" EntityType="Self.Student-PI-Outcome" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TeachingAndLearningStrategiesTechnique" EntityType="Self.TeachingAndLearningStrategiesTechnique" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="YearAndSemester" EntityType="Self.YearAndSemester" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [database_firewall_rules].[id] AS [id], 
+    [database_firewall_rules].[name] AS [name], 
+    [database_firewall_rules].[start_ip_address] AS [start_ip_address], 
+    [database_firewall_rules].[end_ip_address] AS [end_ip_address], 
+    [database_firewall_rules].[create_date] AS [create_date], 
+    [database_firewall_rules].[modify_date] AS [modify_date]
+    FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_ActionsForImprovingTheCourse_ToCourseCoordinator" Association="Self.FK_ActionsForImprovingTheCourse_ToCourseCoordinator">
             <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
             <End Role="ActionsForImprovingTheCourse" EntitySet="ActionsForImprovingTheCourse" />
@@ -1540,7 +1568,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <End Role="CourseCoordinator" EntitySet="CourseCoordinator" />
             <End Role="EnroledStudents" EntitySet="EnroledStudents" />
           </AssociationSet>
-          <AssociationSet Name="FK_EnroledStudents_ToOther" Association="Self.FK_EnroledStudents_ToOther">
+          <AssociationSet Name="FK_EnroledStudents_ToOtherLec" Association="Self.FK_EnroledStudents_ToOtherLec">
             <End Role="OtherLecturer" EntitySet="OtherLecturer" />
             <End Role="EnroledStudents" EntitySet="EnroledStudents" />
           </AssociationSet>
@@ -1699,6 +1727,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <EntitySet Name="Student_PI_Outcome" EntityType="LSSModel.Student_PI_Outcome" />
           <EntitySet Name="TeachingAndLearningStrategiesTechniques" EntityType="LSSModel.TeachingAndLearningStrategiesTechnique" />
           <EntitySet Name="YearAndSemesters" EntityType="LSSModel.YearAndSemester" />
+          <EntitySet Name="database_firewall_rules" EntityType="LSSModel.database_firewall_rules" />
           <AssociationSet Name="FK_ActionsForImprovingTheCourse_ToCourseCoordinator" Association="LSSModel.FK_ActionsForImprovingTheCourse_ToCourseCoordinator">
             <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
             <End Role="ActionsForImprovingTheCourse" EntitySet="ActionsForImprovingTheCourses" />
@@ -1855,21 +1884,13 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <End Role="Department" EntitySet="Departments" />
             <End Role="Student" EntitySet="Students" />
           </AssociationSet>
-          <AssociationSet Name="FK_EnroledStudents_ToOther" Association="LSSModel.FK_EnroledStudents_ToOther">
+          <AssociationSet Name="FK_EnroledStudents_ToOtherLec" Association="LSSModel.FK_EnroledStudents_ToOtherLec">
             <End Role="OtherLecturer" EntitySet="OtherLecturers" />
             <End Role="EnroledStudent" EntitySet="EnroledStudents" />
           </AssociationSet>
           <AssociationSet Name="FK_EnroledStudents_ToStudetn" Association="LSSModel.FK_EnroledStudents_ToStudetn">
             <End Role="Student" EntitySet="Students" />
             <End Role="EnroledStudent" EntitySet="EnroledStudents" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Fac_Dean_ToLecturer" Association="LSSModel.FK_Fac_Dean_ToLecturer">
-            <End Role="Lecturer" EntitySet="Lecturers" />
-            <End Role="Faculty" EntitySet="Faculties" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Fac_ViceDean_ToLecturer" Association="LSSModel.FK_Fac_ViceDean_ToLecturer">
-            <End Role="Lecturer" EntitySet="Lecturers" />
-            <End Role="Faculty" EntitySet="Faculties" />
           </AssociationSet>
           <AssociationSet Name="FK_OtherLecturer_ToLecturer" Association="LSSModel.FK_OtherLecturer_ToLecturer">
             <End Role="Lecturer" EntitySet="Lecturers" />
@@ -1915,16 +1936,24 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <End Role="Course" EntitySet="Courses" />
             <End Role="SLO" EntitySet="SLOes" />
           </AssociationSet>
+          <AssociationSet Name="FK_Fac_Dean_ToLecturer" Association="LSSModel.FK_Fac_Dean_ToLecturer">
+            <End Role="Lecturer" EntitySet="Lecturers" />
+            <End Role="Faculty" EntitySet="Faculties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fac_ViceDean_ToLecturer" Association="LSSModel.FK_Fac_ViceDean_ToLecturer">
+            <End Role="Lecturer" EntitySet="Lecturers" />
+            <End Role="Faculty" EntitySet="Faculties" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ActionsForImprovingTheCourse">
           <Key>
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="semester" />
+            <PropertyRef Name="Semester" />
           </Key>
           <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="ActionsTaken" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="ActionsResults" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="RecomandedActions" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -1968,11 +1997,11 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <Key>
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="semester" />
+            <PropertyRef Name="Semester" />
           </Key>
           <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="SLO" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="AggrementLVL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CourseCoordinator" Relationship="LSSModel.FK_byCompletingThisCourseStudentsAreAbleTo_ToCourseCoordinator" FromRole="byCompletingThisCourseStudentsAreAbleTo" ToRole="CourseCoordinator" />
@@ -2018,7 +2047,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <Key>
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="semester" />
+            <PropertyRef Name="Semester" />
             <PropertyRef Name="AssessmentID" />
             <PropertyRef Name="CLO" />
             <PropertyRef Name="PI" />
@@ -2027,7 +2056,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           </Key>
           <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="AssessmentID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="CLO" Type="Int32" Nullable="false" />
           <Property Name="PI" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
@@ -2044,7 +2073,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="Qustion" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="PI_ID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="SLOID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
@@ -2056,11 +2085,11 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <Key>
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="semester" />
+            <PropertyRef Name="Semester" />
           </Key>
           <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="NoOFStudents" Type="Int32" Nullable="false" />
           <Property Name="ClassRoom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="courseNotAssessedReason_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -2096,7 +2125,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="Type" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Moderator" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="ExamWeight" Type="Int32" Nullable="false" />
@@ -2137,11 +2166,11 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <Key>
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="semester" />
+            <PropertyRef Name="Semester" />
           </Key>
           <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="CoordinatorSignature" Type="Boolean" />
           <Property Name="HeadOFDeptSignature" Type="Boolean" />
           <Property Name="ViceDeanSignature" Type="Boolean" />
@@ -2152,11 +2181,11 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <Key>
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="semester" />
+            <PropertyRef Name="Semester" />
           </Key>
           <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="CoordinatorSignature" Type="Boolean" />
           <Property Name="HeadOFDeptSignature" Type="Boolean" />
           <Property Name="ViceDeanSignature" Type="Boolean" />
@@ -2167,11 +2196,11 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <Key>
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="semester" />
+            <PropertyRef Name="Semester" />
           </Key>
           <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="CoordinatorSignature" Type="Boolean" />
           <Property Name="HeadOFDeptSignature" Type="Boolean" />
           <Property Name="ViceDeanSignature" Type="Boolean" />
@@ -2182,11 +2211,11 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <Key>
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="semester" />
+            <PropertyRef Name="Semester" />
           </Key>
           <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="CoordinatorSignature" Type="Boolean" />
           <Property Name="HeadOFDeptSignature" Type="Boolean" />
           <Property Name="ReasonOfDisaproval" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -2197,12 +2226,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <PropertyRef Name="StrategyID" />
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="semester" />
+            <PropertyRef Name="Semester" />
           </Key>
           <Property Name="StrategyID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CourseCoordinator" Relationship="LSSModel.FK_CourseTeachingStrategies_ToCourseCoordinator" FromRole="CourseTeachingStrategy" ToRole="CourseCoordinator" />
         </EntityType>
         <EntityType Name="CourseTextBook">
@@ -2243,12 +2272,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <Property Name="StudentID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="FinalGrade" Type="Int32" />
-          <Property Name="OtherLecturer" Type="Int32" />
+          <Property Name="otherLecturer" Type="Int32" />
           <NavigationProperty Name="CourseCoordinator" Relationship="LSSModel.FK_EnroledStudents_CourseCoordinator" FromRole="EnroledStudent" ToRole="CourseCoordinator" />
           <NavigationProperty Name="CourseExamEvals" Relationship="LSSModel.FK_CourseExamEV" FromRole="EnroledStudent" ToRole="CourseExamEval" />
-          <NavigationProperty Name="OtherLecturer1" Relationship="LSSModel.FK_EnroledStudents_ToOther" FromRole="EnroledStudent" ToRole="OtherLecturer" />
+          <NavigationProperty Name="OtherLecturer1" Relationship="LSSModel.FK_EnroledStudents_ToOtherLec" FromRole="EnroledStudent" ToRole="OtherLecturer" />
           <NavigationProperty Name="Student" Relationship="LSSModel.FK_EnroledStudents_ToStudetn" FromRole="EnroledStudent" ToRole="Student" />
         </EntityType>
         <EntityType Name="Faculty">
@@ -2269,11 +2298,11 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <Key>
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="semester" />
+            <PropertyRef Name="Semester" />
           </Key>
           <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="Reason" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CourseCoordinator" Relationship="LSSModel.FK_ineffectiveAssessmentStrategis_ToCourseCoordinator" FromRole="ineffectiveAssessmentStrategi" ToRole="CourseCoordinator" />
         </EntityType>
@@ -2281,11 +2310,11 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <Key>
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="semester" />
+            <PropertyRef Name="Semester" />
           </Key>
           <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="Reason" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CourseCoordinator" Relationship="LSSModel.FK_ineffectiveTeachingStrategis_ToCourseCoordinator" FromRole="ineffectiveTeachingStrategi" ToRole="CourseCoordinator" />
         </EntityType>
@@ -2293,11 +2322,11 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <Key>
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="semester" />
+            <PropertyRef Name="Semester" />
           </Key>
           <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="isAssessed1" Type="Boolean" Nullable="false" />
           <Property Name="WhyNot" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CourseCoordinator" Relationship="LSSModel.FK_isAssessed_ToCC" FromRole="isAssessed" ToRole="CourseCoordinator" />
@@ -2316,9 +2345,9 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <NavigationProperty Name="CourseCoordinators" Relationship="LSSModel.FK_Coordinator" FromRole="Lecturer" ToRole="CourseCoordinator" />
           <NavigationProperty Name="Departments" Relationship="LSSModel.FK_DPT_ToLecturer" FromRole="Lecturer" ToRole="Department" />
           <NavigationProperty Name="Department" Relationship="LSSModel.FK_Lecturers_ToDpt" FromRole="Lecturer" ToRole="Department" />
+          <NavigationProperty Name="OtherLecturers" Relationship="LSSModel.FK_OtherLecturer_ToLecturer" FromRole="Lecturer" ToRole="OtherLecturer" />
           <NavigationProperty Name="Faculties" Relationship="LSSModel.FK_Fac_Dean_ToLecturer" FromRole="Lecturer" ToRole="Faculty" />
           <NavigationProperty Name="Faculties1" Relationship="LSSModel.FK_Fac_ViceDean_ToLecturer" FromRole="Lecturer" ToRole="Faculty" />
-          <NavigationProperty Name="OtherLecturers" Relationship="LSSModel.FK_OtherLecturer_ToLecturer" FromRole="Lecturer" ToRole="OtherLecturer" />
         </EntityType>
         <EntityType Name="ModerationChecklist">
           <Key>
@@ -2327,7 +2356,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="Question" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Answer" Type="Boolean" Nullable="false" />
           <Property Name="commetns" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -2341,12 +2370,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <Property Name="LecturerID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="DayTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ClassRoom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="noOFStudents" Type="Int32" />
           <NavigationProperty Name="CourseCoordinator" Relationship="LSSModel.FK_OtherLecturer_ToCourseCoordinator" FromRole="OtherLecturer" ToRole="CourseCoordinator" />
-          <NavigationProperty Name="EnroledStudents" Relationship="LSSModel.FK_EnroledStudents_ToOther" FromRole="OtherLecturer" ToRole="EnroledStudent" />
+          <NavigationProperty Name="EnroledStudents" Relationship="LSSModel.FK_EnroledStudents_ToOtherLec" FromRole="OtherLecturer" ToRole="EnroledStudent" />
           <NavigationProperty Name="Lecturer" Relationship="LSSModel.FK_OtherLecturer_ToLecturer" FromRole="OtherLecturer" ToRole="Lecturer" />
         </EntityType>
         <EntityType Name="PEO">
@@ -2377,11 +2406,11 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <Key>
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="semester" />
+            <PropertyRef Name="Semester" />
           </Key>
           <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="ActionsTaken" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Observation" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="AnalysisAndJustification" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -2392,12 +2421,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <Key>
             <PropertyRef Name="CourseID" />
             <PropertyRef Name="Year" />
-            <PropertyRef Name="semester" />
+            <PropertyRef Name="Semester" />
             <PropertyRef Name="WeekNumber" />
           </Key>
           <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="WeekNumber" Type="Int32" Nullable="false" />
           <Property Name="Topic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Assignments" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -2470,6 +2499,22 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CourseCoordinators" Relationship="LSSModel.FK_CourseCoordinator_YearAndSemester" FromRole="YearAndSemester" ToRole="CourseCoordinator" />
         </EntityType>
+        <EntityType Name="database_firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ip_address" />
+            <PropertyRef Name="end_ip_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="start_ip_address" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="end_ip_address" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
         <Association Name="FK_ActionsForImprovingTheCourse_ToCourseCoordinator">
           <End Type="LSSModel.CourseCoordinator" Role="CourseCoordinator" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -2479,12 +2524,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="ActionsForImprovingTheCourse">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2497,7 +2542,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="AssessmentPlanforTheStudentLearningOutcomeTechnique">
               <PropertyRef Name="CourseID" />
@@ -2527,12 +2572,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="byCompletingThisCourseStudentsAreAbleTo">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2635,12 +2680,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="CourseAssessmentMapping">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2667,12 +2712,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="CourseAssessmentSurvay">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2698,7 +2743,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             </Principal>
             <Dependent Role="CourseCoordinator">
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2711,12 +2756,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="CourseExam">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2727,12 +2772,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="CourseFileCheckList">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2743,12 +2788,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="CourseInformationForm">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2761,12 +2806,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="CourseReport">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2779,12 +2824,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="CourseSyllabu">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2797,12 +2842,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="CourseTeachingStrategy">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2813,12 +2858,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="EnroledStudent">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2829,12 +2874,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="ineffectiveAssessmentStrategi">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2845,12 +2890,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="ineffectiveTeachingStrategi">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2863,12 +2908,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="isAssessed">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2881,12 +2926,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="OtherLecturer">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2899,12 +2944,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="ResultOfCourseDirectAssessment">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2915,12 +2960,12 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <Principal Role="CourseCoordinator">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Principal>
             <Dependent Role="Schedule">
               <PropertyRef Name="CourseID" />
               <PropertyRef Name="Year" />
-              <PropertyRef Name="semester" />
+              <PropertyRef Name="Semester" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2991,9 +3036,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DPT_ToLecturer">
-          <End Type="LSSModel.Lecturer" Role="Lecturer" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Type="LSSModel.Lecturer" Role="Lecturer" Multiplicity="0..1" />
           <End Type="LSSModel.Department" Role="Department" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Lecturer">
@@ -3005,7 +3048,9 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Lecturers_ToDpt">
-          <End Type="LSSModel.Department" Role="Department" Multiplicity="1" />
+          <End Type="LSSModel.Department" Role="Department" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="LSSModel.Lecturer" Role="Lecturer" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Department">
@@ -3056,7 +3101,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_EnroledStudents_ToOther">
+        <Association Name="FK_EnroledStudents_ToOtherLec">
           <End Type="LSSModel.OtherLecturer" Role="OtherLecturer" Multiplicity="0..1" />
           <End Type="LSSModel.EnroledStudent" Role="EnroledStudent" Multiplicity="*" />
           <ReferentialConstraint>
@@ -3064,7 +3109,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="EnroledStudent">
-              <PropertyRef Name="OtherLecturer" />
+              <PropertyRef Name="otherLecturer" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3077,30 +3122,6 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             </Principal>
             <Dependent Role="EnroledStudent">
               <PropertyRef Name="StudentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Fac_Dean_ToLecturer">
-          <End Type="LSSModel.Lecturer" Role="Lecturer" Multiplicity="0..1" />
-          <End Type="LSSModel.Faculty" Role="Faculty" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Lecturer">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Faculty">
-              <PropertyRef Name="dean" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Fac_ViceDean_ToLecturer">
-          <End Type="LSSModel.Lecturer" Role="Lecturer" Multiplicity="0..1" />
-          <End Type="LSSModel.Faculty" Role="Faculty" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Lecturer">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Faculty">
-              <PropertyRef Name="ViceDean" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3214,7 +3235,31 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <End Type="LSSModel.Course" Role="Course" Multiplicity="*" />
           <End Type="LSSModel.SLO" Role="SLO" Multiplicity="*" />
         </Association>
-      </Schema>
+        <Association Name="FK_Fac_Dean_ToLecturer">
+          <End Type="LSSModel.Lecturer" Role="Lecturer" Multiplicity="0..1" />
+          <End Type="LSSModel.Faculty" Role="Faculty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lecturer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Faculty">
+              <PropertyRef Name="dean" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fac_ViceDean_ToLecturer">
+          <End Type="LSSModel.Lecturer" Role="Lecturer" Multiplicity="0..1" />
+          <End Type="LSSModel.Faculty" Role="Faculty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lecturer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Faculty">
+              <PropertyRef Name="ViceDean" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -3227,7 +3272,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
                 <ScalarProperty Name="RecomandedActions" ColumnName="RecomandedActions" />
                 <ScalarProperty Name="ActionsResults" ColumnName="ActionsResults" />
                 <ScalarProperty Name="ActionsTaken" ColumnName="ActionsTaken" />
-                <ScalarProperty Name="semester" ColumnName="semester" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
               </MappingFragment>
@@ -3269,7 +3314,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
               <MappingFragment StoreEntitySet="byCompletingThisCourseStudentsAreAbleTo">
                 <ScalarProperty Name="AggrementLVL" ColumnName="AggrementLVL" />
                 <ScalarProperty Name="SLO" ColumnName="SLO" />
-                <ScalarProperty Name="semester" ColumnName="semester" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
               </MappingFragment>
@@ -3309,7 +3354,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
                 <ScalarProperty Name="PI" ColumnName="PI" />
                 <ScalarProperty Name="CLO" ColumnName="CLO" />
                 <ScalarProperty Name="AssessmentID" ColumnName="AssessmentID" />
-                <ScalarProperty Name="semester" ColumnName="semester" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
               </MappingFragment>
@@ -3322,7 +3367,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
                 <ScalarProperty Name="SLOID" ColumnName="SLOID" />
                 <ScalarProperty Name="PI_ID" ColumnName="PI_ID" />
                 <ScalarProperty Name="Qustion" ColumnName="Qustion" />
-                <ScalarProperty Name="semester" ColumnName="semester" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -3337,7 +3382,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
                 <ScalarProperty Name="courseNotAssessedReason_" ColumnName="courseNotAssessedReason " />
                 <ScalarProperty Name="ClassRoom" ColumnName="ClassRoom" />
                 <ScalarProperty Name="NoOFStudents" ColumnName="NoOFStudents" />
-                <ScalarProperty Name="semester" ColumnName="semester" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
               </MappingFragment>
@@ -3353,7 +3398,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
                 <ScalarProperty Name="ExamWeight" ColumnName="ExamWeight" />
                 <ScalarProperty Name="Moderator" ColumnName="Moderator" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="semester" ColumnName="semester" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -3387,7 +3432,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
                 <ScalarProperty Name="ViceDeanSignature" ColumnName="ViceDeanSignature" />
                 <ScalarProperty Name="HeadOFDeptSignature" ColumnName="HeadOFDeptSignature" />
                 <ScalarProperty Name="CoordinatorSignature" ColumnName="CoordinatorSignature" />
-                <ScalarProperty Name="semester" ColumnName="semester" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
               </MappingFragment>
@@ -3400,7 +3445,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
                 <ScalarProperty Name="ViceDeanSignature" ColumnName="ViceDeanSignature" />
                 <ScalarProperty Name="HeadOFDeptSignature" ColumnName="HeadOFDeptSignature" />
                 <ScalarProperty Name="CoordinatorSignature" ColumnName="CoordinatorSignature" />
-                <ScalarProperty Name="semester" ColumnName="semester" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
               </MappingFragment>
@@ -3413,7 +3458,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
                 <ScalarProperty Name="ViceDeanSignature" ColumnName="ViceDeanSignature" />
                 <ScalarProperty Name="HeadOFDeptSignature" ColumnName="HeadOFDeptSignature" />
                 <ScalarProperty Name="CoordinatorSignature" ColumnName="CoordinatorSignature" />
-                <ScalarProperty Name="semester" ColumnName="semester" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
               </MappingFragment>
@@ -3425,7 +3470,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
                 <ScalarProperty Name="ReasonOfDisaproval" ColumnName="ReasonOfDisaproval" />
                 <ScalarProperty Name="HeadOFDeptSignature" ColumnName="HeadOFDeptSignature" />
                 <ScalarProperty Name="CoordinatorSignature" ColumnName="CoordinatorSignature" />
-                <ScalarProperty Name="semester" ColumnName="semester" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
               </MappingFragment>
@@ -3434,7 +3479,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <EntitySetMapping Name="CourseTeachingStrategies">
             <EntityTypeMapping TypeName="LSSModel.CourseTeachingStrategy">
               <MappingFragment StoreEntitySet="CourseTeachingStrategies">
-                <ScalarProperty Name="semester" ColumnName="semester" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
                 <ScalarProperty Name="StrategyID" ColumnName="StrategyID" />
@@ -3466,9 +3511,9 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <EntitySetMapping Name="EnroledStudents">
             <EntityTypeMapping TypeName="LSSModel.EnroledStudent">
               <MappingFragment StoreEntitySet="EnroledStudents">
-                <ScalarProperty Name="OtherLecturer" ColumnName="OtherLecturer" />
+                <ScalarProperty Name="otherLecturer" ColumnName="otherLecturer" />
                 <ScalarProperty Name="FinalGrade" ColumnName="FinalGrade" />
-                <ScalarProperty Name="semester" ColumnName="semester" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
                 <ScalarProperty Name="StudentID" ColumnName="StudentID" />
@@ -3492,7 +3537,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <EntityTypeMapping TypeName="LSSModel.ineffectiveAssessmentStrategi">
               <MappingFragment StoreEntitySet="ineffectiveAssessmentStrategis">
                 <ScalarProperty Name="Reason" ColumnName="Reason" />
-                <ScalarProperty Name="semester" ColumnName="semester" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
               </MappingFragment>
@@ -3502,7 +3547,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
             <EntityTypeMapping TypeName="LSSModel.ineffectiveTeachingStrategi">
               <MappingFragment StoreEntitySet="ineffectiveTeachingStrategis">
                 <ScalarProperty Name="Reason" ColumnName="Reason" />
-                <ScalarProperty Name="semester" ColumnName="semester" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
               </MappingFragment>
@@ -3513,7 +3558,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
               <MappingFragment StoreEntitySet="isAssessed">
                 <ScalarProperty Name="WhyNot" ColumnName="WhyNot" />
                 <ScalarProperty Name="isAssessed1" ColumnName="isAssessed" />
-                <ScalarProperty Name="semester" ColumnName="semester" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
               </MappingFragment>
@@ -3538,7 +3583,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
                 <ScalarProperty Name="commetns" ColumnName="commetns" />
                 <ScalarProperty Name="Answer" ColumnName="Answer" />
                 <ScalarProperty Name="Question" ColumnName="Question" />
-                <ScalarProperty Name="semester" ColumnName="semester" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -3551,7 +3596,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
                 <ScalarProperty Name="noOFStudents" ColumnName="noOFStudents" />
                 <ScalarProperty Name="ClassRoom" ColumnName="ClassRoom" />
                 <ScalarProperty Name="DayTime" ColumnName="DayTime" />
-                <ScalarProperty Name="semester" ColumnName="semester" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
                 <ScalarProperty Name="LecturerID" ColumnName="LecturerID" />
@@ -3586,7 +3631,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
                 <ScalarProperty Name="AnalysisAndJustification" ColumnName="AnalysisAndJustification" />
                 <ScalarProperty Name="Observation" ColumnName="Observation" />
                 <ScalarProperty Name="ActionsTaken" ColumnName="ActionsTaken" />
-                <ScalarProperty Name="semester" ColumnName="semester" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
               </MappingFragment>
@@ -3599,7 +3644,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
                 <ScalarProperty Name="Assignments" ColumnName="Assignments" />
                 <ScalarProperty Name="Topic" ColumnName="Topic" />
                 <ScalarProperty Name="WeekNumber" ColumnName="WeekNumber" />
-                <ScalarProperty Name="semester" ColumnName="semester" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
               </MappingFragment>
@@ -3658,6 +3703,18 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="database_firewall_rules">
+            <EntityTypeMapping TypeName="LSSModel.database_firewall_rules">
+              <MappingFragment StoreEntitySet="database_firewall_rules">
+                <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
+                <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <AssociationSetMapping Name="CLO_PI" TypeName="LSSModel.CLO_PI" StoreEntitySet="CLO-PI">
             <EndProperty Name="PI">
               <ScalarProperty Name="PIUniqueID" ColumnName="PIUniqueID" />
@@ -3671,7 +3728,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
               <ScalarProperty Name="ID" ColumnName="QustionID" />
             </EndProperty>
             <EndProperty Name="CourseCoordinator">
-              <ScalarProperty Name="semester" ColumnName="semester" />
+              <ScalarProperty Name="Semester" ColumnName="Semester" />
               <ScalarProperty Name="Year" ColumnName="Year" />
               <ScalarProperty Name="CourseID" ColumnName="CourseID" />
             </EndProperty>
@@ -3687,7 +3744,7 @@ warning 6035: The relationship 'FK_CourseAssessmentSurvay_ToPI' has columns that
           <AssociationSetMapping Name="Schedule_CLO" TypeName="LSSModel.Schedule_CLO" StoreEntitySet="Schedule_CLO">
             <EndProperty Name="Schedule">
               <ScalarProperty Name="WeekNumber" ColumnName="WeekNumber" />
-              <ScalarProperty Name="semester" ColumnName="semester" />
+              <ScalarProperty Name="Semester" ColumnName="Semester" />
               <ScalarProperty Name="Year" ColumnName="Year" />
               <ScalarProperty Name="CourseID" ColumnName="CourseID" />
             </EndProperty>

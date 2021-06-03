@@ -37,7 +37,7 @@ namespace LSS.Controllers
                 {
                     CourseID = CourseID,
                     Year = YAS.Year,
-                    semester = YAS.Semester
+                    Semester = YAS.Semester
                 };
             }
             else
@@ -66,7 +66,7 @@ namespace LSS.Controllers
 
                 try
                 {
-                    CourseCoordinator courseC = _DatabaseEntities.CourseCoordinators.Find(cc.CourseID, cc.Year, cc.semester);
+                    CourseCoordinator courseC = _DatabaseEntities.CourseCoordinators.Find(cc.CourseID, cc.Year, cc.Semester);
 
                         if (courseC == null)
                         {
@@ -300,29 +300,29 @@ namespace LSS.Controllers
 
         public ActionResult CreatNewSemster()
         {
-            Dictionary<string, string> semester = new Dictionary<string, string>();
-            semester.Add("1", "First semester");
-            semester.Add("2", "Second semester");
-            semester.Add("3", "Third semester");
+            Dictionary<string, string> Semester = new Dictionary<string, string>();
+            Semester.Add("1", "First Semester");
+            Semester.Add("2", "Second Semester");
+            Semester.Add("3", "Third Semester");
 
-            ViewBag.semester = new SelectList(semester, "Key", "Value");
+            ViewBag.Semester = new SelectList(Semester, "Key", "Value");
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreatNewSemster(YearAndSemester YAS)
         {
-            Dictionary<string, string> semester = new Dictionary<string, string>();
-            semester.Add("1", "First semester");
-            semester.Add("2", "Second semester");
-            semester.Add("3", "Third semester");
+            Dictionary<string, string> Semester = new Dictionary<string, string>();
+            Semester.Add("1", "First Semester");
+            Semester.Add("2", "Second Semester");
+            Semester.Add("3", "Third Semester");
 
-            ViewBag.semester = new SelectList(semester, "Key", "Value");
+            ViewBag.Semester = new SelectList(Semester, "Key", "Value");
             if (ModelState.IsValid)
             {
                 _DatabaseEntities.YearAndSemesters.Add(YAS);
                 _DatabaseEntities.SaveChanges();
-                String message = "New semester added successfully";
+                String message = "New Semester added successfully";
                 return RedirectToAction("Index", "Admin", message);
             }
 

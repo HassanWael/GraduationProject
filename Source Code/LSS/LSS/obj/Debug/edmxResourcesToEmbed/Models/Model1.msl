@@ -8,7 +8,7 @@
           <ScalarProperty Name="RecomandedActions" ColumnName="RecomandedActions" />
           <ScalarProperty Name="ActionsResults" ColumnName="ActionsResults" />
           <ScalarProperty Name="ActionsTaken" ColumnName="ActionsTaken" />
-          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
         </MappingFragment>
@@ -50,7 +50,7 @@
         <MappingFragment StoreEntitySet="byCompletingThisCourseStudentsAreAbleTo">
           <ScalarProperty Name="AggrementLVL" ColumnName="AggrementLVL" />
           <ScalarProperty Name="SLO" ColumnName="SLO" />
-          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
         </MappingFragment>
@@ -90,7 +90,7 @@
           <ScalarProperty Name="PI" ColumnName="PI" />
           <ScalarProperty Name="CLO" ColumnName="CLO" />
           <ScalarProperty Name="AssessmentID" ColumnName="AssessmentID" />
-          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
         </MappingFragment>
@@ -103,7 +103,7 @@
           <ScalarProperty Name="SLOID" ColumnName="SLOID" />
           <ScalarProperty Name="PI_ID" ColumnName="PI_ID" />
           <ScalarProperty Name="Qustion" ColumnName="Qustion" />
-          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
@@ -118,7 +118,7 @@
           <ScalarProperty Name="courseNotAssessedReason_" ColumnName="courseNotAssessedReason " />
           <ScalarProperty Name="ClassRoom" ColumnName="ClassRoom" />
           <ScalarProperty Name="NoOFStudents" ColumnName="NoOFStudents" />
-          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
         </MappingFragment>
@@ -134,7 +134,7 @@
           <ScalarProperty Name="ExamWeight" ColumnName="ExamWeight" />
           <ScalarProperty Name="Moderator" ColumnName="Moderator" />
           <ScalarProperty Name="Type" ColumnName="Type" />
-          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
@@ -168,7 +168,7 @@
           <ScalarProperty Name="ViceDeanSignature" ColumnName="ViceDeanSignature" />
           <ScalarProperty Name="HeadOFDeptSignature" ColumnName="HeadOFDeptSignature" />
           <ScalarProperty Name="CoordinatorSignature" ColumnName="CoordinatorSignature" />
-          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
         </MappingFragment>
@@ -181,7 +181,7 @@
           <ScalarProperty Name="ViceDeanSignature" ColumnName="ViceDeanSignature" />
           <ScalarProperty Name="HeadOFDeptSignature" ColumnName="HeadOFDeptSignature" />
           <ScalarProperty Name="CoordinatorSignature" ColumnName="CoordinatorSignature" />
-          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
         </MappingFragment>
@@ -194,7 +194,7 @@
           <ScalarProperty Name="ViceDeanSignature" ColumnName="ViceDeanSignature" />
           <ScalarProperty Name="HeadOFDeptSignature" ColumnName="HeadOFDeptSignature" />
           <ScalarProperty Name="CoordinatorSignature" ColumnName="CoordinatorSignature" />
-          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
         </MappingFragment>
@@ -206,7 +206,7 @@
           <ScalarProperty Name="ReasonOfDisaproval" ColumnName="ReasonOfDisaproval" />
           <ScalarProperty Name="HeadOFDeptSignature" ColumnName="HeadOFDeptSignature" />
           <ScalarProperty Name="CoordinatorSignature" ColumnName="CoordinatorSignature" />
-          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
         </MappingFragment>
@@ -215,7 +215,7 @@
     <EntitySetMapping Name="CourseTeachingStrategies">
       <EntityTypeMapping TypeName="LSSModel.CourseTeachingStrategy">
         <MappingFragment StoreEntitySet="CourseTeachingStrategies">
-          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
           <ScalarProperty Name="StrategyID" ColumnName="StrategyID" />
@@ -247,9 +247,9 @@
     <EntitySetMapping Name="EnroledStudents">
       <EntityTypeMapping TypeName="LSSModel.EnroledStudent">
         <MappingFragment StoreEntitySet="EnroledStudents">
-          <ScalarProperty Name="OtherLecturer" ColumnName="OtherLecturer" />
+          <ScalarProperty Name="otherLecturer" ColumnName="otherLecturer" />
           <ScalarProperty Name="FinalGrade" ColumnName="FinalGrade" />
-          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
           <ScalarProperty Name="StudentID" ColumnName="StudentID" />
@@ -273,7 +273,7 @@
       <EntityTypeMapping TypeName="LSSModel.ineffectiveAssessmentStrategi">
         <MappingFragment StoreEntitySet="ineffectiveAssessmentStrategis">
           <ScalarProperty Name="Reason" ColumnName="Reason" />
-          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
         </MappingFragment>
@@ -283,7 +283,7 @@
       <EntityTypeMapping TypeName="LSSModel.ineffectiveTeachingStrategi">
         <MappingFragment StoreEntitySet="ineffectiveTeachingStrategis">
           <ScalarProperty Name="Reason" ColumnName="Reason" />
-          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
         </MappingFragment>
@@ -294,7 +294,7 @@
         <MappingFragment StoreEntitySet="isAssessed">
           <ScalarProperty Name="WhyNot" ColumnName="WhyNot" />
           <ScalarProperty Name="isAssessed1" ColumnName="isAssessed" />
-          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
         </MappingFragment>
@@ -319,7 +319,7 @@
           <ScalarProperty Name="commetns" ColumnName="commetns" />
           <ScalarProperty Name="Answer" ColumnName="Answer" />
           <ScalarProperty Name="Question" ColumnName="Question" />
-          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
@@ -332,7 +332,7 @@
           <ScalarProperty Name="noOFStudents" ColumnName="noOFStudents" />
           <ScalarProperty Name="ClassRoom" ColumnName="ClassRoom" />
           <ScalarProperty Name="DayTime" ColumnName="DayTime" />
-          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
           <ScalarProperty Name="LecturerID" ColumnName="LecturerID" />
@@ -367,7 +367,7 @@
           <ScalarProperty Name="AnalysisAndJustification" ColumnName="AnalysisAndJustification" />
           <ScalarProperty Name="Observation" ColumnName="Observation" />
           <ScalarProperty Name="ActionsTaken" ColumnName="ActionsTaken" />
-          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
         </MappingFragment>
@@ -380,7 +380,7 @@
           <ScalarProperty Name="Assignments" ColumnName="Assignments" />
           <ScalarProperty Name="Topic" ColumnName="Topic" />
           <ScalarProperty Name="WeekNumber" ColumnName="WeekNumber" />
-          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
         </MappingFragment>
@@ -439,6 +439,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="database_firewall_rules">
+      <EntityTypeMapping TypeName="LSSModel.database_firewall_rules">
+        <MappingFragment StoreEntitySet="database_firewall_rules">
+          <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
+          <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="CLO_PI" TypeName="LSSModel.CLO_PI" StoreEntitySet="CLO-PI">
       <EndProperty Name="PI">
         <ScalarProperty Name="PIUniqueID" ColumnName="PIUniqueID" />
@@ -452,7 +464,7 @@
         <ScalarProperty Name="ID" ColumnName="QustionID" />
       </EndProperty>
       <EndProperty Name="CourseCoordinator">
-        <ScalarProperty Name="semester" ColumnName="semester" />
+        <ScalarProperty Name="Semester" ColumnName="Semester" />
         <ScalarProperty Name="Year" ColumnName="Year" />
         <ScalarProperty Name="CourseID" ColumnName="CourseID" />
       </EndProperty>
@@ -468,7 +480,7 @@
     <AssociationSetMapping Name="Schedule_CLO" TypeName="LSSModel.Schedule_CLO" StoreEntitySet="Schedule_CLO">
       <EndProperty Name="Schedule">
         <ScalarProperty Name="WeekNumber" ColumnName="WeekNumber" />
-        <ScalarProperty Name="semester" ColumnName="semester" />
+        <ScalarProperty Name="Semester" ColumnName="Semester" />
         <ScalarProperty Name="Year" ColumnName="Year" />
         <ScalarProperty Name="CourseID" ColumnName="CourseID" />
       </EndProperty>

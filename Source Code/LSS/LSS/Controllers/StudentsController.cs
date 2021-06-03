@@ -20,11 +20,11 @@ namespace LSS.Controllers
         private readonly YearAndSemester yas = SemesterSingelton.getCurrentYearAndSemester();
 
         [HttpPost]
-        public ActionResult RemoveStudentFromCourse(string? StudetnID, string? CourseID, DateTime? Year, string semester)
+        public ActionResult RemoveStudentFromCourse(string? StudetnID, string? CourseID, DateTime? Year, string Semester)
         {
             try
             {
-                EnroledStudent s = _DatabaseEntities.EnroledStudents.Find(StudetnID, CourseID, Year, semester);
+                EnroledStudent s = _DatabaseEntities.EnroledStudents.Find(StudetnID, CourseID, Year, Semester);
                 if (s != null)
                 {
                     _DatabaseEntities.EnroledStudents.Remove(s);
@@ -37,13 +37,13 @@ namespace LSS.Controllers
             }
             catch
             {
-                return RedirectToAction("CourseStudentList", new { CourseID, Year, semester });
+                return RedirectToAction("CourseStudentList", new { CourseID, Year, Semester });
             }
 
-            return RedirectToAction("CourseStudentList", new { CourseID, Year, semester });
+            return RedirectToAction("CourseStudentList", new { CourseID, Year, Semester });
         }
 
-        public ActionResult AddStudentListToCourse(FormCollection formCollection, string CourseID, DateTime Year, string semester)
+        public ActionResult AddStudentListToCourse(FormCollection formCollection, string CourseID, DateTime Year, string Semester)
         {
             int added = 0;
             int dicarded = 0;
@@ -59,7 +59,7 @@ namespace LSS.Controllers
                         var workSheet = currentSheet.First();
                         var noOfCol = workSheet.Dimension.End.Column;
                         var noOfRow = workSheet.Dimension.End.Row;
-                        CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, semester);
+                        CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester);
                         if (cc != null)
                         {
                             int rowIterator = 2;
@@ -77,7 +77,7 @@ namespace LSS.Controllers
                                             StudentID = Student.ID,
                                             CourseID = cc.CourseID,
                                             Year = cc.Year,
-                                            semester = cc.semester
+                                            Semester = cc.Semester
                                         };
 
                                         _DatabaseEntities.EnroledStudents.Add(e);
@@ -106,10 +106,10 @@ namespace LSS.Controllers
                 }
             }
             string updateMassege = (added + " student has been added to the Course.");
-            return RedirectToAction("CourseStudentList","Students", new { CourseID, updateMassege, Year, semester });
+            return RedirectToAction("CourseStudentList","Students", new { CourseID, updateMassege, Year, Semester });
         }
 
-        public ActionResult UploadGrades(FormCollection formCollection, string CourseID, DateTime Year, string semester)
+        public ActionResult UploadGrades(FormCollection formCollection, string CourseID, DateTime Year, string Semester)
         {
             int failedToAddGraddeTo = 0; 
             EnroledStudent enroledStudent; 
@@ -128,7 +128,7 @@ namespace LSS.Controllers
                     var workSheet = currentSheet.First();
                     var noOfCol = workSheet.Dimension.End.Column;
                     var noOfRow = workSheet.Dimension.End.Row;
-                    CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, semester);
+                    CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester);
                     if (cc != null)
                     {
                         for (int rowIterator = 2; rowIterator < noOfRow; rowIterator++)
@@ -137,7 +137,7 @@ namespace LSS.Controllers
                                 try
                                 {
                                     enroledStudent = _DatabaseEntities.EnroledStudents.Where(x => x.StudentID.Equals(workSheet.Cells[rowIterator, 1].Value.ToString()) 
-                                                        && x.CourseID.Equals(CourseID) &&x.Year.Equals(Year)&& x.semester.Equals(semester)).FirstOrDefault();
+                                                        && x.CourseID.Equals(CourseID) &&x.Year.Equals(Year)&& x.Semester.Equals(Semester)).FirstOrDefault();
 
                                     if (enroledStudent != null)
                                     {
@@ -162,7 +162,7 @@ namespace LSS.Controllers
                     }
                 }
             }
-                return RedirectToAction("CourseStudentList","Student",new { CourseID, Year, semester });
+                return RedirectToAction("CourseStudentList","Student",new { CourseID, Year, Semester });
         }
 
         public ActionResult CourseStudentList(string? CourseID, string? updateMassege, DateTime? Year, string? Semester, int? Department, string? Search, int page = 1, int pageSize = 10)

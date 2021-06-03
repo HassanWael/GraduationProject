@@ -38,6 +38,7 @@
     <EntitySet Name="Student_PI_Outcome" EntityType="LSSModel.Student_PI_Outcome" />
     <EntitySet Name="TeachingAndLearningStrategiesTechniques" EntityType="LSSModel.TeachingAndLearningStrategiesTechnique" />
     <EntitySet Name="YearAndSemesters" EntityType="LSSModel.YearAndSemester" />
+    <EntitySet Name="database_firewall_rules" EntityType="LSSModel.database_firewall_rules" />
     <AssociationSet Name="FK_ActionsForImprovingTheCourse_ToCourseCoordinator" Association="LSSModel.FK_ActionsForImprovingTheCourse_ToCourseCoordinator">
       <End Role="CourseCoordinator" EntitySet="CourseCoordinators" />
       <End Role="ActionsForImprovingTheCourse" EntitySet="ActionsForImprovingTheCourses" />
@@ -194,21 +195,13 @@
       <End Role="Department" EntitySet="Departments" />
       <End Role="Student" EntitySet="Students" />
     </AssociationSet>
-    <AssociationSet Name="FK_EnroledStudents_ToOther" Association="LSSModel.FK_EnroledStudents_ToOther">
+    <AssociationSet Name="FK_EnroledStudents_ToOtherLec" Association="LSSModel.FK_EnroledStudents_ToOtherLec">
       <End Role="OtherLecturer" EntitySet="OtherLecturers" />
       <End Role="EnroledStudent" EntitySet="EnroledStudents" />
     </AssociationSet>
     <AssociationSet Name="FK_EnroledStudents_ToStudetn" Association="LSSModel.FK_EnroledStudents_ToStudetn">
       <End Role="Student" EntitySet="Students" />
       <End Role="EnroledStudent" EntitySet="EnroledStudents" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Fac_Dean_ToLecturer" Association="LSSModel.FK_Fac_Dean_ToLecturer">
-      <End Role="Lecturer" EntitySet="Lecturers" />
-      <End Role="Faculty" EntitySet="Faculties" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Fac_ViceDean_ToLecturer" Association="LSSModel.FK_Fac_ViceDean_ToLecturer">
-      <End Role="Lecturer" EntitySet="Lecturers" />
-      <End Role="Faculty" EntitySet="Faculties" />
     </AssociationSet>
     <AssociationSet Name="FK_OtherLecturer_ToLecturer" Association="LSSModel.FK_OtherLecturer_ToLecturer">
       <End Role="Lecturer" EntitySet="Lecturers" />
@@ -254,16 +247,24 @@
       <End Role="Course" EntitySet="Courses" />
       <End Role="SLO" EntitySet="SLOes" />
     </AssociationSet>
+    <AssociationSet Name="FK_Fac_Dean_ToLecturer" Association="LSSModel.FK_Fac_Dean_ToLecturer">
+      <End Role="Lecturer" EntitySet="Lecturers" />
+      <End Role="Faculty" EntitySet="Faculties" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Fac_ViceDean_ToLecturer" Association="LSSModel.FK_Fac_ViceDean_ToLecturer">
+      <End Role="Lecturer" EntitySet="Lecturers" />
+      <End Role="Faculty" EntitySet="Faculties" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="ActionsForImprovingTheCourse">
     <Key>
       <PropertyRef Name="CourseID" />
       <PropertyRef Name="Year" />
-      <PropertyRef Name="semester" />
+      <PropertyRef Name="Semester" />
     </Key>
     <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
     <Property Name="ActionsTaken" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="ActionsResults" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="RecomandedActions" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -307,11 +308,11 @@
     <Key>
       <PropertyRef Name="CourseID" />
       <PropertyRef Name="Year" />
-      <PropertyRef Name="semester" />
+      <PropertyRef Name="Semester" />
     </Key>
     <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
     <Property Name="SLO" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="AggrementLVL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="CourseCoordinator" Relationship="LSSModel.FK_byCompletingThisCourseStudentsAreAbleTo_ToCourseCoordinator" FromRole="byCompletingThisCourseStudentsAreAbleTo" ToRole="CourseCoordinator" />
@@ -357,7 +358,7 @@
     <Key>
       <PropertyRef Name="CourseID" />
       <PropertyRef Name="Year" />
-      <PropertyRef Name="semester" />
+      <PropertyRef Name="Semester" />
       <PropertyRef Name="AssessmentID" />
       <PropertyRef Name="CLO" />
       <PropertyRef Name="PI" />
@@ -366,7 +367,7 @@
     </Key>
     <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
     <Property Name="AssessmentID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="CLO" Type="Int32" Nullable="false" />
     <Property Name="PI" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
@@ -383,7 +384,7 @@
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
     <Property Name="Qustion" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="PI_ID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="SLOID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
@@ -395,11 +396,11 @@
     <Key>
       <PropertyRef Name="CourseID" />
       <PropertyRef Name="Year" />
-      <PropertyRef Name="semester" />
+      <PropertyRef Name="Semester" />
     </Key>
     <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
     <Property Name="NoOFStudents" Type="Int32" Nullable="false" />
     <Property Name="ClassRoom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="courseNotAssessedReason_" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -435,7 +436,7 @@
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
     <Property Name="Type" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="Moderator" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="ExamWeight" Type="Int32" Nullable="false" />
@@ -476,11 +477,11 @@
     <Key>
       <PropertyRef Name="CourseID" />
       <PropertyRef Name="Year" />
-      <PropertyRef Name="semester" />
+      <PropertyRef Name="Semester" />
     </Key>
     <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
     <Property Name="CoordinatorSignature" Type="Boolean" />
     <Property Name="HeadOFDeptSignature" Type="Boolean" />
     <Property Name="ViceDeanSignature" Type="Boolean" />
@@ -491,11 +492,11 @@
     <Key>
       <PropertyRef Name="CourseID" />
       <PropertyRef Name="Year" />
-      <PropertyRef Name="semester" />
+      <PropertyRef Name="Semester" />
     </Key>
     <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
     <Property Name="CoordinatorSignature" Type="Boolean" />
     <Property Name="HeadOFDeptSignature" Type="Boolean" />
     <Property Name="ViceDeanSignature" Type="Boolean" />
@@ -506,11 +507,11 @@
     <Key>
       <PropertyRef Name="CourseID" />
       <PropertyRef Name="Year" />
-      <PropertyRef Name="semester" />
+      <PropertyRef Name="Semester" />
     </Key>
     <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
     <Property Name="CoordinatorSignature" Type="Boolean" />
     <Property Name="HeadOFDeptSignature" Type="Boolean" />
     <Property Name="ViceDeanSignature" Type="Boolean" />
@@ -521,11 +522,11 @@
     <Key>
       <PropertyRef Name="CourseID" />
       <PropertyRef Name="Year" />
-      <PropertyRef Name="semester" />
+      <PropertyRef Name="Semester" />
     </Key>
     <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
     <Property Name="CoordinatorSignature" Type="Boolean" />
     <Property Name="HeadOFDeptSignature" Type="Boolean" />
     <Property Name="ReasonOfDisaproval" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -536,12 +537,12 @@
       <PropertyRef Name="StrategyID" />
       <PropertyRef Name="CourseID" />
       <PropertyRef Name="Year" />
-      <PropertyRef Name="semester" />
+      <PropertyRef Name="Semester" />
     </Key>
     <Property Name="StrategyID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="CourseCoordinator" Relationship="LSSModel.FK_CourseTeachingStrategies_ToCourseCoordinator" FromRole="CourseTeachingStrategy" ToRole="CourseCoordinator" />
   </EntityType>
   <EntityType Name="CourseTextBook">
@@ -582,12 +583,12 @@
     <Property Name="StudentID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
     <Property Name="FinalGrade" Type="Int32" />
-    <Property Name="OtherLecturer" Type="Int32" />
+    <Property Name="otherLecturer" Type="Int32" />
     <NavigationProperty Name="CourseCoordinator" Relationship="LSSModel.FK_EnroledStudents_CourseCoordinator" FromRole="EnroledStudent" ToRole="CourseCoordinator" />
     <NavigationProperty Name="CourseExamEvals" Relationship="LSSModel.FK_CourseExamEV" FromRole="EnroledStudent" ToRole="CourseExamEval" />
-    <NavigationProperty Name="OtherLecturer1" Relationship="LSSModel.FK_EnroledStudents_ToOther" FromRole="EnroledStudent" ToRole="OtherLecturer" />
+    <NavigationProperty Name="OtherLecturer1" Relationship="LSSModel.FK_EnroledStudents_ToOtherLec" FromRole="EnroledStudent" ToRole="OtherLecturer" />
     <NavigationProperty Name="Student" Relationship="LSSModel.FK_EnroledStudents_ToStudetn" FromRole="EnroledStudent" ToRole="Student" />
   </EntityType>
   <EntityType Name="Faculty">
@@ -608,11 +609,11 @@
     <Key>
       <PropertyRef Name="CourseID" />
       <PropertyRef Name="Year" />
-      <PropertyRef Name="semester" />
+      <PropertyRef Name="Semester" />
     </Key>
     <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
     <Property Name="Reason" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="CourseCoordinator" Relationship="LSSModel.FK_ineffectiveAssessmentStrategis_ToCourseCoordinator" FromRole="ineffectiveAssessmentStrategi" ToRole="CourseCoordinator" />
   </EntityType>
@@ -620,11 +621,11 @@
     <Key>
       <PropertyRef Name="CourseID" />
       <PropertyRef Name="Year" />
-      <PropertyRef Name="semester" />
+      <PropertyRef Name="Semester" />
     </Key>
     <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
     <Property Name="Reason" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="CourseCoordinator" Relationship="LSSModel.FK_ineffectiveTeachingStrategis_ToCourseCoordinator" FromRole="ineffectiveTeachingStrategi" ToRole="CourseCoordinator" />
   </EntityType>
@@ -632,11 +633,11 @@
     <Key>
       <PropertyRef Name="CourseID" />
       <PropertyRef Name="Year" />
-      <PropertyRef Name="semester" />
+      <PropertyRef Name="Semester" />
     </Key>
     <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
     <Property Name="isAssessed1" Type="Boolean" Nullable="false" />
     <Property Name="WhyNot" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="CourseCoordinator" Relationship="LSSModel.FK_isAssessed_ToCC" FromRole="isAssessed" ToRole="CourseCoordinator" />
@@ -655,9 +656,9 @@
     <NavigationProperty Name="CourseCoordinators" Relationship="LSSModel.FK_Coordinator" FromRole="Lecturer" ToRole="CourseCoordinator" />
     <NavigationProperty Name="Departments" Relationship="LSSModel.FK_DPT_ToLecturer" FromRole="Lecturer" ToRole="Department" />
     <NavigationProperty Name="Department" Relationship="LSSModel.FK_Lecturers_ToDpt" FromRole="Lecturer" ToRole="Department" />
+    <NavigationProperty Name="OtherLecturers" Relationship="LSSModel.FK_OtherLecturer_ToLecturer" FromRole="Lecturer" ToRole="OtherLecturer" />
     <NavigationProperty Name="Faculties" Relationship="LSSModel.FK_Fac_Dean_ToLecturer" FromRole="Lecturer" ToRole="Faculty" />
     <NavigationProperty Name="Faculties1" Relationship="LSSModel.FK_Fac_ViceDean_ToLecturer" FromRole="Lecturer" ToRole="Faculty" />
-    <NavigationProperty Name="OtherLecturers" Relationship="LSSModel.FK_OtherLecturer_ToLecturer" FromRole="Lecturer" ToRole="OtherLecturer" />
   </EntityType>
   <EntityType Name="ModerationChecklist">
     <Key>
@@ -666,7 +667,7 @@
     <Property Name="ID" Type="Int32" Nullable="false" />
     <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
     <Property Name="Question" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="Answer" Type="Boolean" Nullable="false" />
     <Property Name="commetns" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -680,12 +681,12 @@
     <Property Name="LecturerID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
     <Property Name="DayTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="ClassRoom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="noOFStudents" Type="Int32" />
     <NavigationProperty Name="CourseCoordinator" Relationship="LSSModel.FK_OtherLecturer_ToCourseCoordinator" FromRole="OtherLecturer" ToRole="CourseCoordinator" />
-    <NavigationProperty Name="EnroledStudents" Relationship="LSSModel.FK_EnroledStudents_ToOther" FromRole="OtherLecturer" ToRole="EnroledStudent" />
+    <NavigationProperty Name="EnroledStudents" Relationship="LSSModel.FK_EnroledStudents_ToOtherLec" FromRole="OtherLecturer" ToRole="EnroledStudent" />
     <NavigationProperty Name="Lecturer" Relationship="LSSModel.FK_OtherLecturer_ToLecturer" FromRole="OtherLecturer" ToRole="Lecturer" />
   </EntityType>
   <EntityType Name="PEO">
@@ -716,11 +717,11 @@
     <Key>
       <PropertyRef Name="CourseID" />
       <PropertyRef Name="Year" />
-      <PropertyRef Name="semester" />
+      <PropertyRef Name="Semester" />
     </Key>
     <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
     <Property Name="ActionsTaken" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="Observation" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="AnalysisAndJustification" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -731,12 +732,12 @@
     <Key>
       <PropertyRef Name="CourseID" />
       <PropertyRef Name="Year" />
-      <PropertyRef Name="semester" />
+      <PropertyRef Name="Semester" />
       <PropertyRef Name="WeekNumber" />
     </Key>
     <Property Name="CourseID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="Year" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
     <Property Name="WeekNumber" Type="Int32" Nullable="false" />
     <Property Name="Topic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Assignments" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -809,6 +810,22 @@
     <Property Name="Semester" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="CourseCoordinators" Relationship="LSSModel.FK_CourseCoordinator_YearAndSemester" FromRole="YearAndSemester" ToRole="CourseCoordinator" />
   </EntityType>
+  <EntityType Name="database_firewall_rules">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="start_ip_address" />
+      <PropertyRef Name="end_ip_address" />
+      <PropertyRef Name="create_date" />
+      <PropertyRef Name="modify_date" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="start_ip_address" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="end_ip_address" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
   <Association Name="FK_ActionsForImprovingTheCourse_ToCourseCoordinator">
     <End Type="LSSModel.CourseCoordinator" Role="CourseCoordinator" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -818,12 +835,12 @@
       <Principal Role="CourseCoordinator">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Principal>
       <Dependent Role="ActionsForImprovingTheCourse">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -836,7 +853,7 @@
       <Principal Role="CourseCoordinator">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Principal>
       <Dependent Role="AssessmentPlanforTheStudentLearningOutcomeTechnique">
         <PropertyRef Name="CourseID" />
@@ -866,12 +883,12 @@
       <Principal Role="CourseCoordinator">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Principal>
       <Dependent Role="byCompletingThisCourseStudentsAreAbleTo">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -974,12 +991,12 @@
       <Principal Role="CourseCoordinator">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Principal>
       <Dependent Role="CourseAssessmentMapping">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1006,12 +1023,12 @@
       <Principal Role="CourseCoordinator">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Principal>
       <Dependent Role="CourseAssessmentSurvay">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1037,7 +1054,7 @@
       </Principal>
       <Dependent Role="CourseCoordinator">
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1050,12 +1067,12 @@
       <Principal Role="CourseCoordinator">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Principal>
       <Dependent Role="CourseExam">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1066,12 +1083,12 @@
       <Principal Role="CourseCoordinator">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Principal>
       <Dependent Role="CourseFileCheckList">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1082,12 +1099,12 @@
       <Principal Role="CourseCoordinator">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Principal>
       <Dependent Role="CourseInformationForm">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1100,12 +1117,12 @@
       <Principal Role="CourseCoordinator">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Principal>
       <Dependent Role="CourseReport">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1118,12 +1135,12 @@
       <Principal Role="CourseCoordinator">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Principal>
       <Dependent Role="CourseSyllabu">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1136,12 +1153,12 @@
       <Principal Role="CourseCoordinator">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Principal>
       <Dependent Role="CourseTeachingStrategy">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1152,12 +1169,12 @@
       <Principal Role="CourseCoordinator">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Principal>
       <Dependent Role="EnroledStudent">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1168,12 +1185,12 @@
       <Principal Role="CourseCoordinator">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Principal>
       <Dependent Role="ineffectiveAssessmentStrategi">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1184,12 +1201,12 @@
       <Principal Role="CourseCoordinator">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Principal>
       <Dependent Role="ineffectiveTeachingStrategi">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1202,12 +1219,12 @@
       <Principal Role="CourseCoordinator">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Principal>
       <Dependent Role="isAssessed">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1220,12 +1237,12 @@
       <Principal Role="CourseCoordinator">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Principal>
       <Dependent Role="OtherLecturer">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1238,12 +1255,12 @@
       <Principal Role="CourseCoordinator">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Principal>
       <Dependent Role="ResultOfCourseDirectAssessment">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1254,12 +1271,12 @@
       <Principal Role="CourseCoordinator">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Principal>
       <Dependent Role="Schedule">
         <PropertyRef Name="CourseID" />
         <PropertyRef Name="Year" />
-        <PropertyRef Name="semester" />
+        <PropertyRef Name="Semester" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1330,9 +1347,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_DPT_ToLecturer">
-    <End Type="LSSModel.Lecturer" Role="Lecturer" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
+    <End Type="LSSModel.Lecturer" Role="Lecturer" Multiplicity="0..1" />
     <End Type="LSSModel.Department" Role="Department" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Lecturer">
@@ -1344,7 +1359,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Lecturers_ToDpt">
-    <End Type="LSSModel.Department" Role="Department" Multiplicity="1" />
+    <End Type="LSSModel.Department" Role="Department" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Type="LSSModel.Lecturer" Role="Lecturer" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Department">
@@ -1395,7 +1412,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_EnroledStudents_ToOther">
+  <Association Name="FK_EnroledStudents_ToOtherLec">
     <End Type="LSSModel.OtherLecturer" Role="OtherLecturer" Multiplicity="0..1" />
     <End Type="LSSModel.EnroledStudent" Role="EnroledStudent" Multiplicity="*" />
     <ReferentialConstraint>
@@ -1403,7 +1420,7 @@
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="EnroledStudent">
-        <PropertyRef Name="OtherLecturer" />
+        <PropertyRef Name="otherLecturer" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1416,30 +1433,6 @@
       </Principal>
       <Dependent Role="EnroledStudent">
         <PropertyRef Name="StudentID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Fac_Dean_ToLecturer">
-    <End Type="LSSModel.Lecturer" Role="Lecturer" Multiplicity="0..1" />
-    <End Type="LSSModel.Faculty" Role="Faculty" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Lecturer">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Faculty">
-        <PropertyRef Name="dean" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Fac_ViceDean_ToLecturer">
-    <End Type="LSSModel.Lecturer" Role="Lecturer" Multiplicity="0..1" />
-    <End Type="LSSModel.Faculty" Role="Faculty" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Lecturer">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Faculty">
-        <PropertyRef Name="ViceDean" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1552,5 +1545,29 @@
   <Association Name="SLO_Course">
     <End Type="LSSModel.Course" Role="Course" Multiplicity="*" />
     <End Type="LSSModel.SLO" Role="SLO" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_Fac_Dean_ToLecturer">
+    <End Type="LSSModel.Lecturer" Role="Lecturer" Multiplicity="0..1" />
+    <End Type="LSSModel.Faculty" Role="Faculty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lecturer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Faculty">
+        <PropertyRef Name="dean" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Fac_ViceDean_ToLecturer">
+    <End Type="LSSModel.Lecturer" Role="Lecturer" Multiplicity="0..1" />
+    <End Type="LSSModel.Faculty" Role="Faculty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lecturer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Faculty">
+        <PropertyRef Name="ViceDean" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
 </Schema>

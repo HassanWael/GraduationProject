@@ -38,7 +38,7 @@
                         <div class="input-group-prepend">
                             <label class="input-group-text" for="datePicker">Semester</label>
                         </div>
-                        @Html.DropDownListFor(m => m.Semester, (IEnumerable<SelectListItem>)ViewBag.semester, "Select Semester", htmlAttributes: new { @class = "custom-select", @id = "standard", @name = "standard" })
+                        @Html.DropDownListFor(m => m.Semester, (IEnumerable<SelectListItem>)ViewBag.Semester, "Select Semester", htmlAttributes: new { @class = "custom-select", @id = "standard", @name = "standard" })
                         @Html.ValidationMessageFor(model => model.Semester, "", new { @class = "text-danger" })
                     </div>
 

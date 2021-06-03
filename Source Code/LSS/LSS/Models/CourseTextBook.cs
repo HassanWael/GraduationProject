@@ -12,7 +12,7 @@ namespace LSS.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-
+    
     public partial class CourseTextBook
     {
         public CourseTextBook()
@@ -35,7 +35,7 @@ namespace LSS.Models
 
         public string City_State { get; set; }
         public string Publisher { get; set; }
-
+    
         public virtual Course Course1 { get; set; }
     }
 }

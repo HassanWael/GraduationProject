@@ -24,9 +24,9 @@ namespace LSS.Models
         public string StudentID { get; set; }
         public string CourseID { get; set; }
         public System.DateTime Year { get; set; }
-        public string semester { get; set; }
+        public string Semester { get; set; }
         public Nullable<int> FinalGrade { get; set; }
-        public Nullable<int> OtherLecturer { get; set; }
+        public Nullable<int> otherLecturer { get; set; }
     
         public virtual CourseCoordinator CourseCoordinator { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

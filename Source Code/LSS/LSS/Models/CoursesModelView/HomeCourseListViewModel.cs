@@ -62,7 +62,7 @@ namespace LSS.Models.CoursesModelView
             {
                 if (coordinatedCourses == null)
                 {
-                    coordinatedCourses = Lecturer.CourseCoordinators.Where(x => x.Year.Equals(YearAndSemester.Year)&&x.semester.Equals(YearAndSemester.Semester)).ToList();
+                    coordinatedCourses = Lecturer.CourseCoordinators.Where(x => x.Year.Equals(YearAndSemester.Year)&&x.Semester.Equals(YearAndSemester.Semester)).ToList();
                 }
                 return coordinatedCourses;
             }
@@ -81,7 +81,7 @@ namespace LSS.Models.CoursesModelView
                 if (otherCourses == null)
                 {
                     otherCourses = Lecturer.OtherLecturers.Where(x => x.Year.Equals(YearAndSemester.Year)
-                                    && x.semester.Equals(YearAndSemester.Semester)).ToList();
+                                    && x.Semester.Equals(YearAndSemester.Semester)).ToList();
                 }
                 return otherCourses;
             }
@@ -99,7 +99,7 @@ namespace LSS.Models.CoursesModelView
                 if (departmentCCs == null)
                 {
                     departmentCCs = _DatabaseEntities.CourseCoordinators.Where(x => x.Course.Department.ID.Equals(Lecturer.dptId)
-                                    && x.Year.Equals(YearAndSemester.Year)&& x.semester.Equals(YearAndSemester.Semester)).ToList();
+                                    && x.Year.Equals(YearAndSemester.Year)&& x.Semester.Equals(YearAndSemester.Semester)).ToList();
                 }
                 return departmentCCs;
             }
@@ -113,7 +113,7 @@ namespace LSS.Models.CoursesModelView
                 if (facultyCCS == null)
                 {
                     facultyCCS = _DatabaseEntities.CourseCoordinators.Where(x => x.Course.Department.Faculty.ID.Equals(Lecturer.Department.FacultyId) 
-                                && x.Year.Equals(YearAndSemester.Year) && x.semester.Equals(YearAndSemester.Semester)).ToList();
+                                && x.Year.Equals(YearAndSemester.Year) && x.Semester.Equals(YearAndSemester.Semester)).ToList();
                 }
 
                 return facultyCCS;

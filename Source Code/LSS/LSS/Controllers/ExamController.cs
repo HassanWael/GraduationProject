@@ -26,7 +26,7 @@ namespace LSS.Controllers
             {
                 CourseID= CourseID,
                 Year= (DateTime)Year,
-                semester= Semester,
+                Semester= Semester,
                 ExamDate = (DateTime)Year,
                 ModerationDate = (DateTime)Year,
             };
@@ -37,13 +37,13 @@ namespace LSS.Controllers
         public ActionResult CreateCourseExam(CourseExam courseExam)
         {
             int sum = 0;
-            List<int> weight = _DatabaseEntities.CourseExams.Where(x => x.CourseID.Equals(courseExam.CourseID) && x.Year.Equals(courseExam.Year) && x.semester.Equals(courseExam.semester)).Select(x => x.ExamWeight).ToList();
+            List<int> weight = _DatabaseEntities.CourseExams.Where(x => x.CourseID.Equals(courseExam.CourseID) && x.Year.Equals(courseExam.Year) && x.Semester.Equals(courseExam.Semester)).Select(x => x.ExamWeight).ToList();
             foreach (int num in weight) {
                 sum += num;
 
             }
 
-            CourseCoordinator CC = _DatabaseEntities.CourseCoordinators.Find(courseExam.CourseID, courseExam.Year, courseExam.semester);
+            CourseCoordinator CC = _DatabaseEntities.CourseCoordinators.Find(courseExam.CourseID, courseExam.Year, courseExam.Semester);
 
             if (courseExam.ExamWeight > (100 - sum)) {
 

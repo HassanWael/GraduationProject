@@ -16,7 +16,7 @@ namespace LSS.Models
     {
         public string CourseID { get; set; }
         public System.DateTime Year { get; set; }
-        public string semester { get; set; }
+        public string Semester { get; set; }
         public Nullable<bool> CoordinatorSignature { get; set; }
         public Nullable<bool> HeadOFDeptSignature { get; set; }
         public string ReasonOfDisaproval { get; set; }

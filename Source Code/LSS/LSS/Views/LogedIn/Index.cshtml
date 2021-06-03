@@ -21,7 +21,7 @@
     {<ul>
             @foreach (CourseCoordinator cc in Model.CoordinatedCourses)
             {
-                <li> @Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator", new { CourseID = cc.CourseID, Year = cc.Year, semester = cc.semester }, new { @class = "link" }) </li>
+                <li> @Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator", new { CourseID = cc.CourseID, Year = cc.Year, Semester = cc.Semester }, new { @class = "link" }) </li>
             }
         </ul>
     }
@@ -39,7 +39,7 @@
     {<ul>
             @foreach (OtherLecturer cc in Model.OtherCourses)
             {
-                <li> @Html.ActionLink(cc.CourseCoordinator.Course.Title, "CouresPage", "CourseCoordinator", new { CourseID = cc.CourseID, Year = cc.Year, semester = cc.semester }, new { @class = "link" }) </li>
+                <li> @Html.ActionLink(cc.CourseCoordinator.Course.Title, "CouresPage", "CourseCoordinator", new { CourseID = cc.CourseID, Year = cc.Year, Semester = cc.Semester }, new { @class = "link" }) </li>
             }
         </ul>
     }
@@ -60,7 +60,7 @@
             <ul>
                 @foreach (CourseCoordinator cc in Model.DepartmentCCs)
                 {
-                    <li> @Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator", new { CourseID = cc.CourseID, Year = cc.Year, semester = cc.semester }, new { @class = "link" }) </li>
+                    <li> @Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator", new { CourseID = cc.CourseID, Year = cc.Year, Semester = cc.Semester }, new { @class = "link" }) </li>
                 }
 
 
@@ -89,7 +89,7 @@
             <ul>
                 @foreach (CourseCoordinator cc in Model.FacultyCCS)
                 {
-                    <li> @Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator", new { CourseID = cc.CourseID, Year = cc.Year, semester = cc.semester }, new { @class = "link" }) </li>
+                    <li> @Html.ActionLink(cc.Course.Title, "CouresPage", "CourseCoordinator", new { CourseID = cc.CourseID, Year = cc.Year, Semester = cc.Semester }, new { @class = "link" }) </li>
                 }
             </ul>
         }

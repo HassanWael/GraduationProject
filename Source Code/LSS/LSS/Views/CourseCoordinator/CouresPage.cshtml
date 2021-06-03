@@ -21,24 +21,24 @@
                new { courseId = Model.CourseCoordinator.CourseID }, new { @class = "bg-transparent pb-3" })
 
                 @Html.ActionLink("Students List", "CourseStudentList", "Students",
-               new { CourseID = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.semester },
+               new { CourseID = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester },
                new { @class = "bg-transparent pb-3" })
 
                 @Html.ActionLink("PI Assessment", "PIAssessment", "CourseCoordinator",
-               new { CourseID = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.semester },
+               new { CourseID = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester },
                new { @class = "bg-transparent pb-3" })
 
                 @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator",
-               new { CourseID = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.semester },
+               new { CourseID = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester },
                new { @class = "bg-transparent pb-3" })
 
                 @Html.ActionLink("Exams & Tasks", "ListCourseExamsAndTasks", "Exam",
-               new { CourseID = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.semester },
+               new { CourseID = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester },
                new { @class = "bg-transparent pb-3" })
 
 
                 @Html.ActionLink("schedule", "CourseSchedule", "CourseCoordinator",
-               new { CourseID = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.semester },
+               new { CourseID = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester },
                new { @class = "bg-transparent pb-3" })
 
 
@@ -294,7 +294,7 @@
                                                 {
                                                     CourseID = Model.CourseCoordinator.CourseID,
                                                     Year = Model.CourseCoordinator.Year,
-                                                    semester = Model.CourseCoordinator.semester,
+                                                    Semester = Model.CourseCoordinator.Semester,
                                                     isAssessed1 = false
                                                 });
                                             }
@@ -417,7 +417,7 @@
                                                     </li>
                                                 }
                                             </ul>
-                                            <button id='open' class="btn btn-primary card-link mt-3" data-toggle="modal" data-target="#addAssmentPlan">Edit the  Assessment plan for this semester</button>
+                                            <button id='open' class="btn btn-primary card-link mt-3" data-toggle="modal" data-target="#addAssmentPlan">Edit the  Assessment plan for this Semester</button>
                                         </p>
                                     }
                                 </div>
@@ -436,7 +436,7 @@
                                                 {
                                                     CourseID = Model.CourseCoordinator.CourseID,
                                                     Year = Model.CourseCoordinator.Year,
-                                                    Semester = Model.CourseCoordinator.semester,
+                                                    Semester = Model.CourseCoordinator.Semester,
                                                     Midterm_Test = false,
                                                     Final_Exam = false,
                                                     Quiz = false,

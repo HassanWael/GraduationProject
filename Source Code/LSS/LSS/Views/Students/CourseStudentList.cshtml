@@ -22,13 +22,13 @@
                 <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Content</b> </h4>
                 @Html.ActionLink("Recomandations for improving the course", "ActionsForImproving", "CourseCoordinator", new { ViewBag.courseID }, new { @class = "bg-transparent pb-3" })
 
-                @Html.ActionLink("Students List", "CourseStudentList", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.semester }, new { @class = "bg-transparent pb-3 text-success" })
+                @Html.ActionLink("Students List", "CourseStudentList", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semester }, new { @class = "bg-transparent pb-3 text-success" })
 
-                @Html.ActionLink("PI Assessment", "PI Assessment", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.semester }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("PI Assessment", "PI Assessment", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semester }, new { @class = "bg-transparent pb-3" })
 
-                @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.semester }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semester }, new { @class = "bg-transparent pb-3" })
 
-                @Html.ActionLink("Exams & Tasks", "ListCourseExamsAndTasks", "Exam", new { ViewBag.courseID, ViewBag.Year, ViewBag.semester }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Exams & Tasks", "ListCourseExamsAndTasks", "Exam", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semester }, new { @class = "bg-transparent pb-3" })
                 <br />
                 <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Forms</b> </h4>
                 @Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { ViewBag.courseID }, new { @class = "bg-transparent pb-3" })
@@ -85,7 +85,7 @@
                                         @Html.DisplayFor(modelItem => item.Student.Department.Name)
                                     </td>
                                     <td>
-                                        @Html.ActionLink("Remove", "RemoveStudentFromCourse", new { StudetnID = item.Student.ID, CourseID = ViewBag.CourseID, Year = ViewBag.Year, semester = ViewBag.Semester })
+                                        @Html.ActionLink("Remove", "RemoveStudentFromCourse", new { StudetnID = item.Student.ID, CourseID = ViewBag.CourseID, Year = ViewBag.Year, Semester = ViewBag.Semester })
                                     </td>
                                 </tr>
                             }
@@ -116,7 +116,7 @@
                                 {
                                     <input type="hidden" id="CourseID" name="CourseID" value='@ViewBag.CourseID' />
                                     <input type="hidden" id="Year" name="Year" value='@ViewBag.Year' />
-                                    <input type="hidden" id="semester" name="semester" value='@ViewBag.Semester' />
+                                    <input type="hidden" id="Semester" name="Semester" value='@ViewBag.Semester' />
 
 
                                     <div class="input-group mb-3">
@@ -147,7 +147,7 @@
                                 {
                                     <input type="hidden" id="CourseID" name="CourseID" value='@ViewBag.CourseID' />
                                     <input type="hidden" id="Year" name="Year" value='@ViewBag.Year' />
-                                    <input type="hidden" id="semester" name="semester" value='@ViewBag.Semester' />
+                                    <input type="hidden" id="Semester" name="Semester" value='@ViewBag.Semester' />
                                     <table>
                                         <tr>
                                             <div class="input-group mb-3">

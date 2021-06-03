@@ -16,7 +16,7 @@ namespace LSS.Models
     {
         public string CourseID { get; set; }
         public System.DateTime Year { get; set; }
-        public string semester { get; set; }
+        public string Semester { get; set; }
         public string AssessmentID { get; set; }
         public int CLO { get; set; }
         public string PI { get; set; }
