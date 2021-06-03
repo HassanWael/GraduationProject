@@ -9,27 +9,50 @@
 
 namespace LSS.Models
 {
-    using System;
+    using System.ComponentModel;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class CourseExam
     {
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CourseExam()
         {
             this.CourseExamQuestions = new HashSet<CourseExamQuestion>();
         }
-    
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
+        [Required]
         public string CourseID { get; set; }
+        [Required]
+        [Display(Name = "Year")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MMM/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime Year { get; set; }
+        [Required]
         public string semester { get; set; }
+        [Required]
+        [Display(Name = "Exam or Task Name/Type")]
         public string Type { get; set; }
+        [Required]
         public string Moderator { get; set; }
+        [Required]
+        [Display(Name = "Exam weight")]
         public int ExamWeight { get; set; }
+        [Required]
+        [Display(Name = "Exam Dueration Time")]
         public string ExamDurationTime { get; set; }
+        [Display(Name = "Moderation date")]
+        [DataType(DataType.Date)]
         public System.DateTime ModerationDate { get; set; }
+        [Required]
+        [Display(Name = "Exam Date")]
+        [DataType(DataType.Date)]
         public System.DateTime ExamDate { get; set; }
+        [Display(Name = "Additional Comments")]
         public string AdditionalComments { get; set; }
     
         public virtual CourseCoordinator CourseCoordinator { get; set; }

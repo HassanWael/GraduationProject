@@ -11,7 +11,8 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class CourseCoordinator
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -28,11 +29,14 @@ namespace LSS.Models
         }
     
         public string CourseID { get; set; }
+        [Required]
+        [Display(Name = "Year")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm:ss.fff}", ApplyFormatInEditMode = true)]
         public System.DateTime Year { get; set; }
         public string semester { get; set; }
         public int NoOFStudents { get; set; }
         public string ClassRoom { get; set; }
-        public string courseNotAssessedReason_ { get; set; }
         public string DayTime { get; set; }
         public string Coordinator { get; set; }
     

@@ -23,7 +23,7 @@ namespace LSS.Models
         [Required]
         [Display(Name = "Year")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
 
         public System.DateTime Year { get; set; }
         [Required]

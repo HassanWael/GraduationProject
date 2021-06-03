@@ -1,0 +1,68 @@
+﻿@model PagedList.IPagedList<LSS.Models.Department>
+@using PagedList.Mvc;
+
+
+
+<table class="mb-2">
+    <tr>
+        @using (Html.BeginForm("ListDepartment", "Admin", FormMethod.Get))
+        {
+            <td style="padding-left:2%;">
+                @Html.TextBox("Search", null, new { @class = "form-control", placeholder = "Search" })
+            </td>
+            <td style="padding-left:2%;">
+                <input type="submit" value="search" class="btn btn-primary" />
+            </td>
+        }
+    </tr>
+</table>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Department ID")
+        </th>
+        <th>
+            @Html.DisplayName("Faculty Name")
+        </th>
+        <th>
+            @Html.DisplayName("Head Of Department")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Faculty.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lecturer.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditDpt", new { id = item.ID }) |
+                @Html.ActionLink("Details", "index", "HeadOfDepartment", new { id = item.ID }, new { @Class = "Link" }) |
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+@Html.PagedListPager(Model, page => Url.Action("ListCourses", new { Search = ViewBag.Search, page, pageSize = Model.PageSize }), new PagedListRenderOptions
+{
+
+ContainerDivClasses = new[] { "pagination pagination-sm" },
+UlElementClasses = new[] { "pagination pagination-sm" },
+LiElementClasses = new[] { "page-item", "btn-outline-primary" }
+
+})
+    Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Products

@@ -19,7 +19,7 @@ CREATE TABLE [dbo].[Department] (
     [HeadOFDepartment] NVARCHAR (30) NULL,
     [FacultyId]        INT           NOT NULL,
     PRIMARY KEY CLUSTERED ([ID] ASC),
-    CONSTRAINT [FK_Department_Faculty] FOREIGN KEY ([FacultyId]) REFERENCES [dbo].[Faculty] ([ID]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Department_Faculty] FOREIGN KEY ([FacultyId]) REFERENCES [dbo].[Faculty] ([ID])on delete cascade on update cascade ,
 );
 
 CREATE TABLE [dbo].[Lecturers] (
@@ -35,11 +35,11 @@ CREATE TABLE [dbo].[Lecturers] (
 );
 
 
-alter table [dbo].[Department] add constraint [FK_DPT_ToLecturer] FOREIGN KEY ([HeadOFDepartment]) REFERENCES [dbo].[Lecturers] ([ID]) ON DELETE CASCADE
+alter table [dbo].[Department] add constraint [FK_DPT_ToLecturer] FOREIGN KEY ([HeadOFDepartment]) REFERENCES [dbo].[Lecturers] ([ID]) 
 
-alter table Faculty add constraint[FK_Fac_ViceDean_ToLecturer] FOREIGN KEY ([ViceDean]) REFERENCES [dbo].[Lecturer] ([ID]) on
+alter table Faculty add constraint[FK_Fac_ViceDean_ToLecturer] FOREIGN KEY ([ViceDean]) REFERENCES [dbo].[Lecturer] ([ID]) 
 
-alter table Faculty add constraint[FK_Fac_Dean_ToLecturer] FOREIGN KEY ([dean]) REFERENCES [dbo].[Lecturer] ([ID])
+alter table Faculty add constraint[FK_Fac_Dean_ToLecturer] FOREIGN KEY ([dean]) REFERENCES [dbo].[Lecturer] ([ID]) 
 
 	CREATE TABLE [dbo].[Course] (
     [ID]                      NVARCHAR (30)  NOT NULL,
@@ -54,9 +54,9 @@ alter table Faculty add constraint[FK_Fac_Dean_ToLecturer] FOREIGN KEY ([dean]) 
     [co-requisite]            NVARCHAR (30)  NULL,
     [dptid]                   INT            NOT NULL,
     PRIMARY KEY CLUSTERED ([ID] ASC),
-    CONSTRAINT [FK_Course_Department] FOREIGN KEY ([dptid]) REFERENCES [dbo].[Department] ([ID]),
-    CONSTRAINT [FK_Course_co] FOREIGN KEY ([co-requisite]) REFERENCES [dbo].[Course] ([ID]),
-    CONSTRAINT [FK_Course_pre] FOREIGN KEY ([pre-requisite]) REFERENCES [dbo].[Course] ([ID])
+    CONSTRAINT [FK_Course_Department] FOREIGN KEY ([dptid]) REFERENCES [dbo].[Department] ([ID]) on delete cascade on update cascade  ,
+    CONSTRAINT [FK_Course_co] FOREIGN KEY ([co-requisite]) REFERENCES [dbo].[Course] ([ID]) on delete cascade on update cascade  ,
+    CONSTRAINT [FK_Course_pre] FOREIGN KEY ([pre-requisite]) REFERENCES [dbo].[Course] ([ID]) on delete cascade on update cascade 
 )
 
 CREATE TABLE [dbo].[CourseCoordinator] (
@@ -68,24 +68,24 @@ CREATE TABLE [dbo].[CourseCoordinator] (
     [courseNotAssessedReason ] NVARCHAR (255) NULL,
     [DayTime]                  NVARCHAR (50)  NOT NULL,
     [Coordinator]              NVARCHAR (30)  NOT NULL,
-    CONSTRAINT [PK_CourseCoordinator] PRIMARY KEY CLUSTERED ([CourseID] ASC, [Year] ASC, [semester] ASC),
-    CONSTRAINT [FK_CourseCoordinator_Coruse] FOREIGN KEY ([CourseID]) REFERENCES [dbo].[Course] ([ID]),
-    CONSTRAINT [FK_CourseCoordinator_YearAndSemester] FOREIGN KEY ([Year], [semester]) REFERENCES [dbo].[YearAndSemester] ([Year], [Semester]),
-    CONSTRAINT [FK_Coordinator] FOREIGN KEY ([Coordinator]) REFERENCES [dbo].[Lecturer] ([ID])
+    CONSTRAINT [PK_CourseCoordinator] PRIMARY KEY CLUSTERED ([CourseID] ASC, [Year] ASC, [semester] ASC) ,
+    CONSTRAINT [FK_CourseCoordinator_Coruse] FOREIGN KEY ([CourseID]) REFERENCES [dbo].[Course] ([ID]) on delete cascade on update cascade  ,
+    CONSTRAINT [FK_CourseCoordinator_YearAndSemester] FOREIGN KEY ([Year], [semester]) REFERENCES [dbo].[YearAndSemester] ([Year], [Semester]) on delete cascade on update cascade  ,
+    CONSTRAINT [FK_Coordinator] FOREIGN KEY ([Coordinator]) REFERENCES [dbo].[Lecturer] ([ID]) on delete cascade on update cascade 
 );
 CREATE TABLE [dbo].[PEO] (
     [ID]     NVARCHAR (20)  NOT NULL,
     [Desc]   NVARCHAR (255) NOT NULL,
     [DeptID] INT            NOT NULL,
-    PRIMARY KEY CLUSTERED ([ID] ASC, [DeptID] ASC),
-    CONSTRAINT [FK_PEO_Department] FOREIGN KEY ([DeptID]) REFERENCES [dbo].[Department] ([ID]) ON DELETE CASCADE
+    PRIMARY KEY CLUSTERED ([ID] ASC, [DeptID] ASC) on delete cascade on update cascade  ,
+    CONSTRAINT [FK_PEO_Department] FOREIGN KEY ([DeptID]) REFERENCES [dbo].[Department] ([ID]) on delete cascade on update cascade 
 );
 CREATE TABLE [dbo].[SLO] (
     [SLOID]  NVARCHAR (20)  NOT NULL,
     [Desc]   NVARCHAR (255) NOT NULL,
     [DeptID] INT            NOT NULL,
-    PRIMARY KEY CLUSTERED ([DeptID] ASC, [SLOID] ASC),
-    CONSTRAINT [FK_SLO_Dept] FOREIGN KEY ([DeptID]) REFERENCES [dbo].[Department] ([ID])
+    PRIMARY KEY CLUSTERED ([DeptID] ASC, [SLOID] ASC) on delete cascade on update cascade  ,
+    CONSTRAINT [FK_SLO_Dept] FOREIGN KEY ([DeptID]) REFERENCES [dbo].[Department] ([ID]) on delete cascade on update cascade 
 );
 
 CREATE TABLE [dbo].[PI] (
@@ -96,7 +96,7 @@ CREATE TABLE [dbo].[PI] (
     [PIUniqueID] INT            IDENTITY (1, 1) NOT NULL,
     PRIMARY KEY CLUSTERED ([PIUniqueID] ASC),
     CONSTRAINT [AK_PI_PIUniqueID] UNIQUE NONCLUSTERED ([SLOID] ASC, [ID] ASC, [DeptID] ASC),
-    CONSTRAINT [PI_ToSLO] FOREIGN KEY ([DeptID], [SLOID]) REFERENCES [dbo].[SLO] ([DeptID], [SLOID]) ON DELETE CASCADE
+    CONSTRAINT [PI_ToSLO] FOREIGN KEY ([DeptID], [SLOID]) REFERENCES [dbo].[SLO] ([DeptID], [SLOID]) on delete cascade on update cascade 
 );
 
 
@@ -109,7 +109,7 @@ CREATE TABLE [dbo].[ActionsForImprovingTheCourse] (
     [RecomandedActions] NVARCHAR (255) NOT NULL,
     [PersonResponsible] NVARCHAR (255) NOT NULL,
     CONSTRAINT [PK_AFIC] PRIMARY KEY CLUSTERED ([CourseID] ASC, [Year] ASC, [semester] ASC),
-    CONSTRAINT [FK_ActionsForImprovingTheCourse_ToCourseCoordinator] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]) ON DELETE CASCADE
+    CONSTRAINT [FK_ActionsForImprovingTheCourse_ToCourseCoordinator] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]) on delete cascade on update cascade 
 );
 
 CREATE TABLE [dbo].[AssessmentPlanforTheStudentLearningOutcomeTechnique] (
@@ -130,7 +130,7 @@ CREATE TABLE [dbo].[AssessmentPlanforTheStudentLearningOutcomeTechnique] (
     [Students_Interviews]                  BIT           NOT NULL,
     [Other]                                NCHAR (50)    NULL,
     PRIMARY KEY CLUSTERED ([CourseID] ASC, [Year] ASC, [Semester] ASC),
-    CONSTRAINT [FK_AP_toCC] FOREIGN KEY ([CourseID], [Year], [Semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]) ON DELETE CASCADE
+    CONSTRAINT [FK_AP_toCC] FOREIGN KEY ([CourseID], [Year], [Semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]) on delete cascade on update cascade 
 );
 
 CREATE TABLE [dbo].[byCompletingThisCourseStudentsAreAbleTo] (
@@ -140,7 +140,7 @@ CREATE TABLE [dbo].[byCompletingThisCourseStudentsAreAbleTo] (
     [SLO]          NVARCHAR (20)  NULL,
     [AggrementLVL] NVARCHAR (255) NULL,
     PRIMARY KEY CLUSTERED ([CourseID] ASC, [Year] ASC, [semester] ASC),
-    CONSTRAINT [FK_byCompletingThisCourseStudentsAreAbleTo_ToCourseCoordinator] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]) ON DELETE CASCADE
+    CONSTRAINT [FK_byCompletingThisCourseStudentsAreAbleTo_ToCourseCoordinator] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]) on delete cascade on update cascade 
 );
 
 CREATE TABLE [dbo].[CLO] (
@@ -148,15 +148,15 @@ CREATE TABLE [dbo].[CLO] (
     [ID]          INT            IDENTITY (1, 1) NOT NULL,
     [courseId]    NVARCHAR (30)  NOT NULL,
     CONSTRAINT [PK_CLO] PRIMARY KEY CLUSTERED ([ID] ASC),
-    CONSTRAINT [FK_CLO_ToCourse] FOREIGN KEY ([courseId]) REFERENCES [dbo].[Course] ([ID]) ON DELETE CASCADE
+    CONSTRAINT [FK_CLO_ToCourse] FOREIGN KEY ([courseId]) REFERENCES [dbo].[Course] ([ID]) on delete cascade on update cascade 
 );
 
 CREATE TABLE [dbo].[CLO-PI] (
     [CLOID]      INT NOT NULL,
     [PIUniqueID] INT NOT NULL,
     PRIMARY KEY CLUSTERED ([CLOID] ASC, [PIUniqueID] ASC),
-    CONSTRAINT [FK_CLO-PI_ToPI] FOREIGN KEY ([PIUniqueID]) REFERENCES [dbo].[PI] ([PIUniqueID]) ON DELETE CASCADE,
-    CONSTRAINT [FK_CLO-PI_ToCLO] FOREIGN KEY ([CLOID]) REFERENCES [dbo].[CLO] ([ID]) ON DELETE CASCADE
+    CONSTRAINT [FK_CLO-PI_ToPI] FOREIGN KEY ([PIUniqueID]) REFERENCES [dbo].[PI] ([PIUniqueID]) on delete cascade on update cascade ,
+    CONSTRAINT [FK_CLO-PI_ToCLO] FOREIGN KEY ([CLOID]) REFERENCES [dbo].[CLO] ([ID]) on delete cascade on update cascade 
 );
 
 CREATE TABLE [dbo].[CourseAssessmentMapping] (
@@ -169,10 +169,10 @@ CREATE TABLE [dbo].[CourseAssessmentMapping] (
     [SLOID]        NVARCHAR (20) NOT NULL,
     [DeptID]       INT           NOT NULL,
     CONSTRAINT [PK_CourseAssessmentMapping] PRIMARY KEY CLUSTERED ([CourseID] ASC, [Year] ASC, [semester] ASC, [AssessmentID] ASC, [CLO] ASC, [SLOID] ASC, [PI] ASC, [DeptID] ASC),
-    CONSTRAINT [FK_CourseAssessmentMapping_ToCLO] FOREIGN KEY ([CLO]) REFERENCES [dbo].[CLO] ([ID]) ON DELETE CASCADE,
-    CONSTRAINT [FK_CourseAssessmentMapping_ToCourseCoordinator] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]) ON DELETE CASCADE,
-    CONSTRAINT [FK_CourseAssessmentMapping_ToDep] FOREIGN KEY ([DeptID]) REFERENCES [dbo].[Department] ([ID]) ON DELETE CASCADE,
-    CONSTRAINT [FK_CAM_ToPI] FOREIGN KEY ([SLOID], [PI], [DeptID]) REFERENCES [dbo].[PI] ([SLOID], [ID], [DeptID]) ON DELETE CASCADE
+    CONSTRAINT [FK_CourseAssessmentMapping_ToCLO] FOREIGN KEY ([CLO]) REFERENCES [dbo].[CLO] ([ID]) on delete cascade on update cascade ,
+    CONSTRAINT [FK_CourseAssessmentMapping_ToCourseCoordinator] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester])on delete cascade on update cascade ,
+    CONSTRAINT [FK_CourseAssessmentMapping_ToDep] FOREIGN KEY ([DeptID]) REFERENCES [dbo].[Department] ([ID]) on delete cascade on update cascade ,
+    CONSTRAINT [FK_CAM_ToPI] FOREIGN KEY ([SLOID], [PI], [DeptID]) REFERENCES [dbo].[PI] ([SLOID], [ID], [DeptID]) on delete cascade on update cascade 
 );
 CREATE TABLE [dbo].[CourseAssessmentSurvay] (
     [ID]       INT            IDENTITY (1, 1) NOT NULL,
@@ -185,8 +185,8 @@ CREATE TABLE [dbo].[CourseAssessmentSurvay] (
     [DeptID]   INT            NOT NULL,
     PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [UC_Person] UNIQUE NONCLUSTERED ([CourseID] ASC, [Year] ASC, [semester] ASC),
-    CONSTRAINT [FK_CourseAssessmentSurvay_ToCourseCoordinator] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]) ON DELETE CASCADE,
-    CONSTRAINT [FK_CourseAssessmentSurvay_ToPI] FOREIGN KEY ([SLOID], [PI_ID], [DeptID]) REFERENCES [dbo].[PI] ([SLOID], [ID], [DeptID])
+    CONSTRAINT [FK_CourseAssessmentSurvay_ToCourseCoordinator] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]) on delete cascade on update cascade ,
+    CONSTRAINT [FK_CourseAssessmentSurvay_ToPI] FOREIGN KEY ([SLOID], [PI_ID], [DeptID]) REFERENCES [dbo].[PI] ([SLOID], [ID], [DeptID]) on delete cascade on update cascade 
 );
 
 
@@ -204,7 +204,7 @@ CREATE TABLE [dbo].[CourseExam] (
     [ExamDate]           DATE           NOT NULL,
     [AdditionalComments] NVARCHAR (255) NULL,
     PRIMARY KEY CLUSTERED ([ID] ASC),
-    CONSTRAINT [FK_CourseExam] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]) ON DELETE CASCADE
+    CONSTRAINT [FK_CourseExam] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]) on delete cascade on update cascade 
 );
 
 
@@ -216,7 +216,7 @@ CREATE TABLE [dbo].[CourseExamQuestion] (
     [Weight]         REAL           NOT NULL,
     PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [un_CourseEXAMQ] UNIQUE NONCLUSTERED ([ExamID] ASC, [QuestionNumber] ASC),
-    CONSTRAINT [FK_CourseExamQ] FOREIGN KEY ([ExamID]) REFERENCES [dbo].[CourseExam] ([ID]) ON DELETE CASCADE
+    CONSTRAINT [FK_CourseExamQ] FOREIGN KEY ([ExamID]) REFERENCES [dbo].[CourseExam] ([ID]) on delete cascade on update cascade 
 );
 
 CREATE TABLE [dbo].[CourseFileCheckList] (
@@ -228,7 +228,7 @@ CREATE TABLE [dbo].[CourseFileCheckList] (
     [ViceDeanSignature]    BIT            NULL,
     [ReasonOfDisaproval]   NVARCHAR (255) NULL,
     PRIMARY KEY CLUSTERED ([CourseID] ASC, [Year] ASC, [semester] ASC),
-    CONSTRAINT [FK_CourseFileCheckList_ToCourseCoordinator] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester])
+    CONSTRAINT [FK_CourseFileCheckList_ToCourseCoordinator] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]) on delete cascade on update cascade 
 );
 
 CREATE TABLE [dbo].[CourseInformationForm] (
@@ -240,7 +240,7 @@ CREATE TABLE [dbo].[CourseInformationForm] (
     [ViceDeanSignature]    BIT            NULL,
     [ReasonOfDisaproval]   NVARCHAR (255) NULL,
     PRIMARY KEY CLUSTERED ([CourseID] ASC, [Year] ASC, [semester] ASC),
-    CONSTRAINT [FK_CourseInformationForm_ToCourseCoordinator] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester])
+    CONSTRAINT [FK_CourseInformationForm_ToCourseCoordinator] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]) on delete cascade on update cascade 
 );
 
 CREATE TABLE [dbo].[CourseSyllabus] (
@@ -251,7 +251,7 @@ CREATE TABLE [dbo].[CourseSyllabus] (
     [HeadOFDeptSignature]  BIT            NULL,
     [ReasonOfDisaproval]   NVARCHAR (255) NULL,
     PRIMARY KEY CLUSTERED ([CourseID] ASC, [Year] ASC, [semester] ASC),
-    CONSTRAINT [FK_CourseSyllabus_ToCourseCoordinator] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]) ON DELETE CASCADE
+    CONSTRAINT [FK_CourseSyllabus_ToCourseCoordinator] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]) on delete cascade on update cascade 
 );
 
 
@@ -261,7 +261,7 @@ CREATE TABLE [dbo].[CourseTeachingStrategies] (
     [Year]       DATE          NOT NULL,
     [semester]   NVARCHAR (3)  NOT NULL,
     PRIMARY KEY CLUSTERED ([Year] ASC, [semester] ASC, [CourseID] ASC, [StrategyID] ASC),
-    CONSTRAINT [FK_CourseTeachingStrategies_ToCourseCoordinator] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]) ON DELETE CASCADE
+    CONSTRAINT [FK_CourseTeachingStrategies_ToCourseCoordinator] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]) on delete cascade on update cascade 
 );
 
 CREATE TABLE [dbo].[CourseTextBook] (
@@ -272,7 +272,7 @@ CREATE TABLE [dbo].[CourseTextBook] (
     [City/State]    NVARCHAR (50) NULL,
     [Publisher]     NVARCHAR (50) NULL,
     PRIMARY KEY CLUSTERED ([Course] ASC, [Book Title] ASC),
-    CONSTRAINT [FK_CourseTestBook_course] FOREIGN KEY ([Course]) REFERENCES [dbo].[Course] ([ID]) ON DELETE CASCADE
+    CONSTRAINT [FK_CourseTestBook_course] FOREIGN KEY ([Course]) REFERENCES [dbo].[Course] ([ID]) on delete cascade on update cascade 
 );
 
 
@@ -283,7 +283,7 @@ CREATE TABLE [dbo].[ineffectiveAssessmentStrategis] (
     [semester] NVARCHAR (3)   NOT NULL,
     [Reason]   NVARCHAR (255) NOT NULL,
     PRIMARY KEY CLUSTERED ([CourseID] ASC, [Year] ASC, [semester] ASC),
-    CONSTRAINT [FK_ineffectiveAssessmentStrategis_ToCourseCoordinator] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester])
+    CONSTRAINT [FK_ineffectiveAssessmentStrategis_ToCourseCoordinator] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]) on delete cascade on update cascade 
 );
 
 CREATE TABLE [dbo].[ineffectiveTeachingStrategis] (
@@ -292,7 +292,7 @@ CREATE TABLE [dbo].[ineffectiveTeachingStrategis] (
     [semester] NVARCHAR (3)   NOT NULL,
     [Reason]   NVARCHAR (255) NOT NULL,
     PRIMARY KEY CLUSTERED ([CourseID] ASC, [Year] ASC, [semester] ASC),
-    CONSTRAINT [FK_ineffectiveTeachingStrategis_ToCourseCoordinator] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester])
+    CONSTRAINT [FK_ineffectiveTeachingStrategis_ToCourseCoordinator] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]) on delete cascade on update cascade 
 );
 
 CREATE TABLE [dbo].[isAssessed] (
@@ -302,7 +302,7 @@ CREATE TABLE [dbo].[isAssessed] (
     [isAssessed] BIT            NOT NULL,
     [WhyNot]     NVARCHAR (255) NULL,
     CONSTRAINT [PK_isAssessed] PRIMARY KEY CLUSTERED ([CourseID] ASC, [Year] ASC, [semester] ASC),
-    CONSTRAINT [FK_isAssessed_ToCC] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]) ON DELETE CASCADE
+    CONSTRAINT [FK_isAssessed_ToCC] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]) on delete cascade on update cascade 
 );
 
 
@@ -316,7 +316,7 @@ CREATE TABLE [dbo].[ModerationChecklist] (
     [Answer]   BIT            NOT NULL,
     [commetns] NVARCHAR (255) NULL,
     PRIMARY KEY CLUSTERED ([ID] ASC),
-    CONSTRAINT [FK_ModerationChecklist_ToCourseCoordinator] FOREIGN KEY ([ID]) REFERENCES [dbo].[CourseExam] ([ID]) ON DELETE CASCADE
+    CONSTRAINT [FK_ModerationChecklist_ToCourseCoordinator] FOREIGN KEY ([ID]) REFERENCES [dbo].[CourseExam] ([ID]) on delete cascade on update cascade 
 );
 
 
@@ -329,16 +329,16 @@ CREATE TABLE [dbo].[PIAssessment] (
     [semester]  NVARCHAR (3)  NOT NULL,
     [QustionID] INT           NOT NULL,
     PRIMARY KEY CLUSTERED ([QustionID] ASC, [CourseID] ASC, [Year] ASC, [semester] ASC),
-    CONSTRAINT [FK_PIAssessment_ToQ] FOREIGN KEY ([QustionID]) REFERENCES [dbo].[CourseExamQuestion] ([ID]),
-    CONSTRAINT [FK_PIAssessment_ToCC] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester])
+    CONSTRAINT [FK_PIAssessment_ToQ] FOREIGN KEY ([QustionID]) REFERENCES [dbo].[CourseExamQuestion] ([ID]) on delete cascade on update cascade  ,
+    CONSTRAINT [FK_PIAssessment_ToCC] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]) on delete cascade on update cascade 
 );
 
 CREATE TABLE [dbo].[Question_PI] (
     [EQ_ID]      INT NOT NULL,
     [PIUniqueID] INT NOT NULL,
     PRIMARY KEY CLUSTERED ([EQ_ID] ASC, [PIUniqueID] ASC),
-    CONSTRAINT [FK_Question_IP_ToEQ] FOREIGN KEY ([EQ_ID]) REFERENCES [dbo].[CourseExamQuestion] ([ID]) ON DELETE CASCADE,
-    CONSTRAINT [FK_Question_IP_ToPI] FOREIGN KEY ([PIUniqueID]) REFERENCES [dbo].[PI] ([PIUniqueID]) ON DELETE CASCADE
+    CONSTRAINT [FK_Question_IP_ToEQ] FOREIGN KEY ([EQ_ID]) REFERENCES [dbo].[CourseExamQuestion] ([ID]) on delete cascade on update cascade ,
+    CONSTRAINT [FK_Question_IP_ToPI] FOREIGN KEY ([PIUniqueID]) REFERENCES [dbo].[PI] ([PIUniqueID]) on delete cascade on update cascade 
 );
 CREATE TABLE [dbo].[Schedule] (
     [CourseID]    NVARCHAR (30) NOT NULL,
@@ -349,8 +349,8 @@ CREATE TABLE [dbo].[Schedule] (
     [Assignments] NVARCHAR (50) NULL,
     [Reference]   NVARCHAR (50) NULL,
     PRIMARY KEY CLUSTERED ([CourseID] ASC, [Year] ASC, [semester] ASC, [WeekNumber] ASC),
-    CONSTRAINT [FK_SChedule_toCC] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]),
-    CONSTRAINT [WeekNummberCon] CHECK ([WeekNumber]>(0) AND [WeekNumber]<(18))
+    CONSTRAINT [FK_SChedule_toCC] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]) on delete cascade on update cascade ,
+    CONSTRAINT [WeekNummberCon] CHECK ([WeekNumber]>(0) AND [WeekNumber]<(17))
 );
 CREATE TABLE [dbo].[Schedule_CLO] (
     [CourseID]   NVARCHAR (30) NOT NULL,
@@ -359,8 +359,8 @@ CREATE TABLE [dbo].[Schedule_CLO] (
     [WeekNumber] INT           NOT NULL,
     [CLOID]      INT           NOT NULL,
     PRIMARY KEY CLUSTERED ([CourseID] ASC, [Year] ASC, [semester] ASC, [WeekNumber] ASC, [CLOID] ASC),
-    CONSTRAINT [FK_ScheduleCLO_toSchedule] FOREIGN KEY ([CourseID], [Year], [semester], [WeekNumber]) REFERENCES [dbo].[Schedule] ([CourseID], [Year], [semester], [WeekNumber]),
-    CONSTRAINT [FK_Schedule_CLO_ToCLO] FOREIGN KEY ([CLOID]) REFERENCES [dbo].[CLO] ([ID])
+    CONSTRAINT [FK_ScheduleCLO_toSchedule] FOREIGN KEY ([CourseID], [Year], [semester], [WeekNumber]) REFERENCES [dbo].[Schedule] ([CourseID], [Year], [semester], [WeekNumber]) on delete cascade on update cascade  ,
+    CONSTRAINT [FK_Schedule_CLO_ToCLO] FOREIGN KEY ([CLOID]) REFERENCES [dbo].[CLO] ([ID]) on delete cascade on update cascade 
 );
 CREATE TABLE [dbo].[ResultOfCourseDirectAssessment] (
     [CourseID]                 NVARCHAR (30)  NOT NULL,
@@ -371,7 +371,7 @@ CREATE TABLE [dbo].[ResultOfCourseDirectAssessment] (
     [AnalysisAndJustification] NVARCHAR (255) NOT NULL,
     [Recommendation]           NVARCHAR (255) NOT NULL,
     CONSTRAINT [PK_RCDA] PRIMARY KEY CLUSTERED ([CourseID] ASC, [Year] ASC, [semester] ASC),
-    CONSTRAINT [FK_ResultOfCourseDirectAssessment_ToCourseCoordinator] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]) ON DELETE CASCADE
+    CONSTRAINT [FK_ResultOfCourseDirectAssessment_ToCourseCoordinator] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]) on delete cascade on update cascade 
 );
 
 
@@ -380,16 +380,16 @@ CREATE TABLE [dbo].[SLO_Course] (
     [DeptID]   INT           NOT NULL,
     [CourseID] NVARCHAR (30) NOT NULL,
     CONSTRAINT [PK_SLO_Course] PRIMARY KEY CLUSTERED ([SLOID] ASC, [DeptID] ASC, [CourseID] ASC),
-    CONSTRAINT [FK_SLO_Course_ToCourse] FOREIGN KEY ([CourseID]) REFERENCES [dbo].[Course] ([ID]) ON DELETE CASCADE,
-    CONSTRAINT [FK_SLO_Course_ToSLO] FOREIGN KEY ([DeptID], [SLOID]) REFERENCES [dbo].[SLO] ([DeptID], [SLOID]) ON DELETE CASCADE
+    CONSTRAINT [FK_SLO_Course_ToCourse] FOREIGN KEY ([CourseID]) REFERENCES [dbo].[Course] ([ID]) on delete cascade on update cascade ,
+    CONSTRAINT [FK_SLO_Course_ToSLO] FOREIGN KEY ([DeptID], [SLOID]) REFERENCES [dbo].[SLO] ([DeptID], [SLOID]) on delete cascade on update cascade 
 );
 CREATE TABLE [dbo].[SLO_PEO] (
     [SLOID]  NVARCHAR (20) NOT NULL,
     [PEOID]  NVARCHAR (20) NOT NULL,
     [DeptID] INT           NOT NULL,
     PRIMARY KEY CLUSTERED ([SLOID] ASC, [PEOID] ASC, [DeptID] ASC),
-    CONSTRAINT [FK_SLO_PEO_ToPEO] FOREIGN KEY ([PEOID], [DeptID]) REFERENCES [dbo].[PEO] ([ID], [DeptID]) ON DELETE CASCADE,
-    CONSTRAINT [FK_SLO_PEO_ToSLO] FOREIGN KEY ([DeptID], [SLOID]) REFERENCES [dbo].[SLO] ([DeptID], [SLOID]) ON DELETE CASCADE
+    CONSTRAINT [FK_SLO_PEO_ToPEO] FOREIGN KEY ([PEOID], [DeptID]) REFERENCES [dbo].[PEO] ([ID], [DeptID]) on delete cascade on update cascade ,
+    CONSTRAINT [FK_SLO_PEO_ToSLO] FOREIGN KEY ([DeptID], [SLOID]) REFERENCES [dbo].[SLO] ([DeptID], [SLOID]) on delete cascade on update cascade 
 );
 
 CREATE TABLE [dbo].[Student] (
@@ -397,7 +397,7 @@ CREATE TABLE [dbo].[Student] (
     [Name]  NVARCHAR (50) NULL,
     [DptID] INT           NOT NULL,
     PRIMARY KEY CLUSTERED ([ID] ASC),
-    CONSTRAINT [FK_Student_departement] FOREIGN KEY ([DptID]) REFERENCES [dbo].[Department] ([ID]) ON DELETE CASCADE
+    CONSTRAINT [FK_Student_departement] FOREIGN KEY ([DptID]) REFERENCES [dbo].[Department] ([ID]) on delete cascade on update cascade 
 );
 
 
@@ -425,8 +425,8 @@ CREATE TABLE [dbo].[OtherLecturer] (
     [noOFStudents] INT           NULL,
     CONSTRAINT [PK_OtherLecturer] PRIMARY KEY CLUSTERED  ([ID]),
     CONSTRAINT [OtherLecturer_UN] UNIQUE ([LecturerID] ASC, [CourseID] ASC, [Year] ASC, [semester] ASC),
-    CONSTRAINT [FK_OtherLecturer_ToCourseCoordinator] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]) ON DELETE CASCADE,
-    CONSTRAINT [FK_OtherLecturer_ToLecturer] FOREIGN KEY ([LecturerID]) REFERENCES [dbo].[Lecturer] ([ID]) ON DELETE CASCADE
+    CONSTRAINT [FK_OtherLecturer_ToCourseCoordinator] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]) on delete cascade on update cascade ,
+    CONSTRAINT [FK_OtherLecturer_ToLecturer] FOREIGN KEY ([LecturerID]) REFERENCES [dbo].[Lecturer] ([ID]) on delete cascade on update cascade 
 );
 
 
@@ -449,7 +449,7 @@ CREATE TABLE [dbo].[AssessmentPlanforTheStudentLearningOutcomeTechnique] (
     [Students_Interviews]                  BIT           NOT NULL,
     [Other]                                NCHAR (50)    NULL,
     PRIMARY KEY CLUSTERED ([CourseID] ASC, [Year] ASC, [Semester] ASC),
-    CONSTRAINT [FK_AP_toCC] FOREIGN KEY ([CourseID], [Year], [Semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]) ON DELETE CASCADE
+    CONSTRAINT [FK_AP_toCC] FOREIGN KEY ([CourseID], [Year], [Semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]) on delete cascade on update cascade 
 );
 
 
@@ -465,9 +465,9 @@ CREATE TABLE [dbo].[EnroledStudents] (
 	[OtherLecturer] int id Null,
     PRIMARY KEY CLUSTERED ([ID] ASC),
     CONSTRAINT [Unique_Enroled] UNIQUE NONCLUSTERED ([StudentID] ASC, [CourseID] ASC, [Year] ASC, [semester] ASC),
-    CONSTRAINT [FK_EnroledStudents_CourseCoordinator] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]),
-    CONSTRAINT [FK_EnroledStudents_ToStudetn] FOREIGN KEY ([StudentID]) REFERENCES [dbo].[Student] ([ID]),
-	CONSTRAINT [FK_EnroledStudents_ToOther] FOREIGN KEY ([OtherLecturer]) REFERENCES [dbo].[OtherLecturer] ([ID])
+    CONSTRAINT [FK_EnroledStudents_CourseCoordinator] FOREIGN KEY ([CourseID], [Year], [semester]) REFERENCES [dbo].[CourseCoordinator] ([CourseID], [Year], [semester]) on delete cascade on update cascade ,
+    CONSTRAINT [FK_EnroledStudents_ToStudetn] FOREIGN KEY ([StudentID]) REFERENCES [dbo].[Student] ([ID]) on delete cascade on update cascade ,
+	CONSTRAINT [FK_EnroledStudents_ToOther] FOREIGN KEY ([OtherLecturer]) REFERENCES [dbo].[OtherLecturer] ([ID]) on delete cascade on update cascade 
 );
 
 CREATE TABLE [dbo].[AssessmentSurveyAnswer] (
@@ -475,6 +475,6 @@ CREATE TABLE [dbo].[AssessmentSurveyAnswer] (
     [QID]    INT            NOT NULL,
     [Answer] NVARCHAR (100) NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [FK_AssessmentSurveyAnswer_ToCourseAssessmentSurvey] FOREIGN KEY ([QID]) REFERENCES [dbo].[CourseAssessmentSurvay] ([ID])
+    CONSTRAINT [FK_AssessmentSurveyAnswer_ToCourseAssessmentSurvey] FOREIGN KEY ([QID]) REFERENCES [dbo].[CourseAssessmentSurvay] ([ID]) on delete cascade on update cascade 
 );
 

@@ -270,9 +270,10 @@ namespace LSS.Controllers
         {
             _DatabaseEntities.Entry(department).State = EntityState.Modified;
             _DatabaseEntities.SaveChanges();
-            return RedirectToAction("Index");
-
+            return RedirectToAction("ListDepartments");
         }
+
+ 
         public ActionResult EditFaculty(String id)
         {
             if (id == null)
@@ -423,6 +424,29 @@ namespace LSS.Controllers
                 return View(studentsPaged);
             }
         }
+
+
+        public ActionResult ListDepartments(string? Search, string? updateMassege, int page = 1, int pageSize = 10)
+        {
+            if (Search == null)
+            {
+                List<Department> departments = _DatabaseEntities.Departments.ToList();
+                PagedList<Department> departmentsPaged = new PagedList<Department>(departments, page, pageSize);
+                return View(departmentsPaged);
+            }
+            else
+            {
+                int s= 0 ; 
+               
+                  int.TryParse(Search, out s);
+             
+                List<Department> departments = _DatabaseEntities.Departments.Where(x => x.Name.Equals(Search)||x.ID.Equals(s)).ToList();
+                PagedList<Department> departmentsPaged = new PagedList<Department>(departments, page, pageSize);
+                return View(departmentsPaged);
+            }
+        }
+
+
         public ActionResult UpdateStudent()
         {
             ViewBag.Departments = _DatabaseEntities.Departments.ToList();
