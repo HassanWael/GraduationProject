@@ -11,8 +11,15 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>CourseExam</h4>
+    <div class="container shadow-lg p-3 mb-3 mt-5 align-content-center bg-white">
+        <div class="d-flex justify-content-center">
+            <div>
+                <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo" alt="Logo" style="height:150px; width:120px;" />
+                <h4>Course Coordinator</h4>
+            </div>
+        </div>
+
+        <hr class="w-75 border-danger" />
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -20,66 +27,81 @@
         @Html.HiddenFor(model => model.Year)
         @Html.HiddenFor(model => model.semester)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+
+
+        <div class="text-center align-content-center justify-content-center d-flex">
+            <div class="card border-primary w-50">
+                <div class="card-header">Lecturer Info</div>
+                <div class="card-body">
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Type:</span>
+                        </div>
+                        @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control col-md-10" } })
+                        @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+                    </div>
+
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Moderator:</span>
+                        </div>
+                        @Html.EditorFor(model => model.Moderator, new { htmlAttributes = new { @class = "form-control col-md-10" } })
+                        @Html.ValidationMessageFor(model => model.Moderator, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Weight:</span>
+                        </div>
+                        @Html.EditorFor(model => model.ExamWeight, new { htmlAttributes = new { @class = "form-control col-md-10" } })
+                        @Html.ValidationMessageFor(model => model.ExamWeight, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Duration:</span>
+                        </div>
+                        @Html.EditorFor(model => model.ExamDurationTime, new { htmlAttributes = new { @class = "form-control col-md-10" } })
+                        @Html.ValidationMessageFor(model => model.ExamDurationTime, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Moderation Date:</span>
+                        </div>
+                        @Html.EditorFor(model => model.ModerationDate, new { htmlAttributes = new { @class = "form-control col-md-10" } })
+                        @Html.ValidationMessageFor(model => model.ModerationDate, "", new { @class = "text-danger" })
+                    </div>
+
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Exam Date:</span>
+                        </div>
+                        @Html.EditorFor(model => model.ExamDate, new { htmlAttributes = new { @class = "form-control col-md-10" } })
+                        @Html.ValidationMessageFor(model => model.ExamDate, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Additional Comments:</span>
+                        </div>
+                        @Html.TextAreaFor(model => model.AdditionalComments, new { htmlAttributes = new { @class = "form-control col-md-10" } })
+                        @Html.ValidationMessageFor(model => model.AdditionalComments, "", new { @class = "text-danger" })
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Moderator, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Moderator, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Moderator, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <p> Exam Weight</p>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ExamWeight, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ExamWeight, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <p>Exam Duration</p>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ExamDurationTime, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ExamDurationTime, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <p>Moderation Date </p>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ModerationDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ModerationDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <p>Exam Date</p>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ExamDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ExamDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.AdditionalComments, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AdditionalComments, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AdditionalComments, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </div>
     </div>
 }

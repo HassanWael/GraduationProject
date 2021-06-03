@@ -41,30 +41,18 @@
                 <div class="d-flex justify-content-center align-items-center text-center">
                     <div>
                         <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo" alt="Logo" style="height:150px; width:120px;" />
-                        <h3>Faculty of Information Technology </h3>
+                        <h3>Exams and Tasks </h3>
                     </div>
                 </div>
 
-                <hr style="border: 2px solid black" />
-
-                <table id="FormName" class="text-center justify-content-center align-items-center w-100">
-                    <thread class="w-100">
-                        <tr>
-                            <td bgcolor="silver" style="border:1px solid black" class="pt-2 ">
-                                <h4> <b>Exams and Tasks List</b> </h4>
-                            </td>
-                        </tr>
-
-                    </thread>
-                </table>
-
+                <hr class="border-danger w-75" />
                 <br />
 
                 <p>
-                    @Html.ActionLink("Create Exam Or Task", "CreateCourseExam", new { ViewBag.CourseID, ViewBag.Year, ViewBag.Semester }, new { @class = "btn btn-primary"})
+                    @Html.ActionLink("Create Exam Or Task", "CreateCourseExam", new { ViewBag.CourseID, ViewBag.Year, ViewBag.Semester }, new { @class = "btn btn-primary" })
                 </p>
-                <table class="table">
-                    <tr>
+                <table class="table table-borderless table-hover shadow-sm">
+                    <tr class="bg-white">
                         <th>
                             @Html.DisplayName("Name")
                         </th>
@@ -108,21 +96,20 @@
                             </td>
                         </tr>
                     }
-
                 </table>
             </div>
+
+            @Html.PagedListPager(Model, page => Url.Action("ListCourses", new { Search = ViewBag.Search, Department = ViewBag.DepartmentID, page, pageSize = Model.PageSize }), new PagedListRenderOptions
+            {
+
+               ContainerDivClasses = new[] { "pagination pagination-sm" },
+               UlElementClasses = new[] { "pagination pagination-sm" },
+               LiElementClasses = new[] { "page-item", "btn-outline-primary" }
+
+            })
+            Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Products
         </div>
     </div>
 </body>
 
 
-
-@Html.PagedListPager(Model, page => Url.Action("ListCourses", new { Search = ViewBag.Search, Department = ViewBag.DepartmentID, page, pageSize = Model.PageSize }), new PagedListRenderOptions
-{
-
-   ContainerDivClasses = new[] { "pagination pagination-sm" },
-   UlElementClasses = new[] { "pagination pagination-sm" },
-   LiElementClasses = new[] { "page-item", "btn-outline-primary" }
-
-})
-    Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Products

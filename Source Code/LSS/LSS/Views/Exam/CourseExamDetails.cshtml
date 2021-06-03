@@ -7,10 +7,18 @@
 
 <h2>CourseExamDetails</h2>
 
-<div>
-    <h4>CourseExam</h4>
-    <hr />
-    <table class="dl-horizontal">
+<div class="container shadow-lg">
+    <div class="d-flex justify-content-center align-items-center text-center">
+        <div>
+            <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo" alt="Logo" style="height:150px; width:120px;" />
+            <h3>Course Exam </h3>
+        </div>
+    </div>
+
+    <hr class="border-danger w-75" />
+    <br />
+
+    <table class="table table-responsive-lg table-hover table-borderless shadow">
         <tr>
             <td>
                 @Html.DisplayNameFor(model => model.Type)
@@ -20,6 +28,7 @@
             </td>
 
         </tr>
+
         <tr>
             <td>
                 @Html.DisplayNameFor(model => model.Moderator)
@@ -29,6 +38,7 @@
                 @Html.DisplayFor(model => model.Moderator)
             </td>
         </tr>
+
         <tr>
             <td>
                 Exam Weight
@@ -38,6 +48,7 @@
                 @Html.DisplayFor(model => model.ExamWeight)
             </td>
         </tr>
+
         <tr>
             <td>
                 Exam Duration
@@ -47,6 +58,7 @@
                 @Html.DisplayFor(model => model.ExamDurationTime)
             </td>
         </tr>
+
         <tr>
             <td>
                 Moderation Date:
@@ -56,9 +68,10 @@
                 @Html.DisplayFor(model => model.ModerationDate)
             </td>
         </tr>
+
         <tr>
             <td>
-               Exam Date:
+                Exam Date:
 
             </td>
 
@@ -66,6 +79,7 @@
                 @Html.DisplayFor(model => model.ExamDate)
             </td>
         </tr>
+
         <tr>
             <td>
                 Additional Comments:
@@ -74,8 +88,6 @@
             <td>
                 @Html.DisplayFor(model => model.AdditionalComments)
             </td>
-        </tr>
-        <tr>
         </tr>
 
         <tr>
@@ -91,8 +103,8 @@
 </div>
 
 <p>
-    @Html.ActionLink("Add Qustions", "CreateQustion",new { ExamID=Model.ID })
+    @Html.ActionLink("Add Qustions", "CreateQustion", new { ExamID = Model.ID })
 </p>
 
- 
-   @Html.Partial("ListExamQustions", Model.CourseExamQuestions )
+
+@Html.Partial("ListExamQustions", Model.CourseExamQuestions)
