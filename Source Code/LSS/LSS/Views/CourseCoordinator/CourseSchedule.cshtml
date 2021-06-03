@@ -6,70 +6,72 @@
 }
 @Scripts.Render("~/bundles/bootstrap")
 
-<h2>CourseSchedule</h2>
 
 
-<table class="table table-responsive-lg table-hover">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.WeekNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Topic)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Assignments)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Reference)
-        </th>
-        <th>
+<div class="container bg-warning shadow-lg">
+    <h2 class="text-center">CourseSchedule</h2>
 
-            @Html.DisplayNameFor(model => model.CLOes)
-        </th>
-        <th></th>
-    </tr>
+    <table class="table table-responsive-lg table-hover table-borderless">
+        <tr class="border-bottom border-primary">
+            <th>
+                @Html.DisplayNameFor(model => model.WeekNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Topic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Assignments)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reference)
+            </th>
+            <th>
+
+                @Html.DisplayNameFor(model => model.CLOes)
+            </th>
+            <th></th>
+        </tr>
 
 
 
 
-    @foreach (Schedule item in Model)
-    {
-        string s = "Week_" + item.WeekNumber;
-        <tr>
-            <td>
-                Week:  @Html.DisplayFor(modelItem => item.WeekNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Topic)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Assignments)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Reference)
-            </td>
-            <td>
-                @foreach (CLO clo in item.CLOes)
-                {
-                    <span>@clo.Description <br /> </span>
-                }
-            </td>
-            <td>
-                <a class="btn btn-primary" style="margin:4%" id="open" data-toggle="modal" data-target="#@s">Edit</a>
-                <div id="@s" class="modal fade" tabindex="-1" role="dialog">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            @{
-                                Html.RenderPartial("EditWeek",item);
-                            }
+        @foreach (Schedule item in Model)
+        {
+            string s = "Week_" + item.WeekNumber;
+            <tr>
+                <td>
+                    Week:  @Html.DisplayFor(modelItem => item.WeekNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Topic)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Assignments)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reference)
+                </td>
+                <td>
+                    @foreach (CLO clo in item.CLOes)
+                    {
+                        <span>@clo.Description <br /> </span>
+                    }
+                </td>
+                <td>
+                    <a class="btn btn-primary" style="margin:4%" id="open" data-toggle="modal" data-target="#@s">Edit</a>
+                    <div id="@s" class="modal fade" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                @{
+                                    Html.RenderPartial("EditWeek", item);
+                                }
+                            </div>
                         </div>
                     </div>
-                </div>
 
-            </td>
-        </tr>
-     
-    }
-</table>
+                </td>
+            </tr>
 
+        }
+    </table>
+</div>

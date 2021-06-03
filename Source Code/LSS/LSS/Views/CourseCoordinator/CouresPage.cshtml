@@ -9,7 +9,8 @@
         ViewBag.Title = Model.Course.Title;
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
-    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -24,8 +25,8 @@
                new { CourseID = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester },
                new { @class = "bg-transparent pb-3" })
 
-                @Html.ActionLink("PI Assessment", "PIAssessment", "CourseCoordinator",
-               new { CourseID = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester },
+                @Html.ActionLink("PI Assessment", "DirectAssessmentPI", "CourseCoordinator",
+               new { CourseID = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.semester },
                new { @class = "bg-transparent pb-3" })
 
                 @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator",
@@ -202,7 +203,7 @@
                 @if (Model.SLO_PI != null)
                 {
                     <div class="block-item" style="width:auto; background:white; margin-bottom:2rem">
-                        <table class="table-hover" style="border: 1px solid black; width:100%;">
+                        <table class="table table-primary table-hover" style="border: 1px solid black; width:100%;">
                             <tr style="border: 1px solid black;">
                                 <td class="table-primary" style="border: .2px solid #5F5E61; text-align:center;">  Student Learning Outcomes</td>
                                 @for (int i = 0; i < Model.SLO_PI.Count(); i++)
@@ -321,7 +322,7 @@
                                     {
                                         <h4 class="card-text">
                                             The Assessment Plan has not been set up yet.
-                                          
+
                                         </h4>
                                         <p>
                                             <div>

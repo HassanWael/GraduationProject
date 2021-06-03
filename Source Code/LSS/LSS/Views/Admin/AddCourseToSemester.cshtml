@@ -8,27 +8,28 @@
 <script src="~/Scripts/Custom/jquery-customselect.js"></script>
 
 <link src="stylesheet" href="~/Content/jquery-customselect.css" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 
 <h2>AddCourseToSemester</h2>
 
 @using (Html.BeginForm("AddCourseToSemester", "Admin", FormMethod.Post))
 {
     Html.AntiForgeryToken();
-
-    <div class="form-horizontal">
-        <h4>CourseCoordinator</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-
-            @Html.HiddenFor(model => model.CourseID)
-
-            <div class="form-group">
-                <div class="col-md-10">
-                    @Html.HiddenFor(model => model.Year)
-                    @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
-                </div>
+    <div class="container shadow-lg p-3 mb-3 mt-5 align-content-center bg-white">
+        <div class="d-flex justify-content-center">
+            <div>
+                <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo" alt="Logo" style="height:150px; width:120px;" />
+                <h4>Course Coordinator</h4>
             </div>
+        </div>
+
+        <hr class="w-75 border-danger" />
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.CourseID)
+
+
 
             <div class="form-group">
                 <div class="col-md-10">
@@ -37,39 +38,64 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.ClassRoom, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ClassRoom, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ClassRoom, "", new { @class = "text-danger" })
-                </div>
-            </div>
+        <div class="text-center align-content-center justify-content-center d-flex">
+            <div class="card border-primary w-50">
+                <div class="card-header">Lecturer Info</div>
+                <div class="card-body">
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.DayTime, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.DayTime, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DayTime, "", new { @class = "text-danger" })
-                </div>
-            </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Class Room:</span>
+                        </div>
+                        @Html.EditorFor(model => model.ClassRoom, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ClassRoom, "", new { @class = "text-danger" })
+                    </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Coordinator, "Coordinator", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownListFor(x=>x.Coordinator, (IEnumerable<SelectListItem>)ViewBag.Lecturers,"Select Coordinator", htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Coordinator, "", new { @class = "text-danger" })
-                </div>
-            </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Day Time:</span>
+                        </div>
+                        @Html.EditorFor(model => model.DayTime, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DayTime, "", new { @class = "text-danger" })
+                    </div>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Coordinator:</span>
+                        </div>
+                        @Html.DropDownListFor(x => x.Coordinator, (IEnumerable<SelectListItem>)ViewBag.Lecturers, "Select Coordinator", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Coordinator, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.HiddenFor(model => model.Year)
+                                @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                @Html.HiddenFor(model => model.semester)
+                                @Html.ValidationMessageFor(model => model.semester, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
+
+        <div class="form-group mt-2">
+            <div>
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+
+            <div class="float-right">
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div>
+
     </div>
- }
-
-        <div>
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+}
