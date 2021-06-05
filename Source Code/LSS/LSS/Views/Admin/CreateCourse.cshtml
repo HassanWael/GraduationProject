@@ -14,7 +14,7 @@
 </header>
 
 
-@using (Html.BeginForm("CreatCourse", "Admin", FormMethod.Post))
+@using (Html.BeginForm("CreateCourse", "Admin", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -142,10 +142,7 @@
 
         <div class="form-group mt-2 ml-1">
             <div>
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-            <div class="float-right mb-2">
-                @Html.ActionLink("Back to List", "Index")
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </div>
     </div>

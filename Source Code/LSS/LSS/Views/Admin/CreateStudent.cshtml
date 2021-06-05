@@ -7,7 +7,7 @@
 
 
 
-@using (Html.BeginForm("CreatStudent", "Admin", FormMethod.Post))
+@using (Html.BeginForm("CreateStudent", "Admin", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -58,11 +58,8 @@
 
         <div class="form-group mt-5">
             <div>
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
 
-            </div>
-            <div class="float-right">
-                @Html.ActionLink("Back to List", "Index")
             </div>
         </div>
     </div>

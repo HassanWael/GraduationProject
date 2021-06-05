@@ -1,4 +1,4 @@
-﻿@model PagedList.IPagedList<LSS.Models.Department>
+﻿@model PagedList.IPagedList<LSS.Models.Faculty>
 @using PagedList.Mvc;
 
 
@@ -23,39 +23,39 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayName("Department ID")
+            @Html.DisplayName("Faculty ID")
         </th>
         <th>
-            @Html.DisplayName("Department Name")
+            @Html.DisplayName("Faculty Name")
         </th>
         <th>
-            @Html.DisplayName("Faculty")
+            @Html.DisplayName("Dean")
         </th>
         <th>
-            @Html.DisplayName("Head Of Department")
+            @Html.DisplayName("Vice Dean")
         </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Faculty.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Lecturer.Name)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "EditDpt", new { id = item.ID })
-            </td>
-        </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.ID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Lecturer.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Lecturer1.Name)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "EditFaculty", new { id = item.ID }) 
+    </td>
+</tr>
     }
 
 </table>

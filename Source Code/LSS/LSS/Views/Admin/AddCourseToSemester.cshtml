@@ -77,8 +77,8 @@
 
                         <div class="form-group">
                             <div class="col-md-10">
-                                @Html.HiddenFor(model => model.semester)
-                                @Html.ValidationMessageFor(model => model.semester, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(model => model.Semester)
+                                @Html.ValidationMessageFor(model => model.Semester, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
@@ -89,11 +89,7 @@
 
         <div class="form-group mt-2">
             <div>
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-
-            <div class="float-right">
-                @Html.ActionLink("Back to List", "Index")
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </div>
 
