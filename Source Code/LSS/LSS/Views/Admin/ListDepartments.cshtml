@@ -26,7 +26,10 @@
             @Html.DisplayName("Department ID")
         </th>
         <th>
-            @Html.DisplayName("Faculty Name")
+            @Html.DisplayName("Department Name")
+        </th>
+        <th>
+            @Html.DisplayName("Faculty")
         </th>
         <th>
             @Html.DisplayName("Head Of Department")
@@ -38,6 +41,9 @@
     {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
@@ -47,8 +53,7 @@
                 @Html.DisplayFor(modelItem => item.Lecturer.Name)
             </td>
             <td>
-                @Html.ActionLink("Edit", "EditDpt", new { id = item.ID }) |
-                @Html.ActionLink("Details", "index", "HeadOfDepartment", new { id = item.ID }, new { @Class = "Link" }) |
+                @Html.ActionLink("Edit", "EditDpt", new { id = item.ID })
             </td>
         </tr>
     }

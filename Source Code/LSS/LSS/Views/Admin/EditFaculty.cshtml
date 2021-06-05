@@ -42,7 +42,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Dean:</span>
                         </div>
-                        @Html.DropDownListFor(model => model.dean, new SelectList(ViewBag.Departments, "ID", "ID"), htmlAttributes: new { @class = "form-control col-md-10" })
+                        @Html.DropDownListFor(model => model.dean, new SelectList(ViewBag.Lecturer, "ID", "Name"), "Select Dean ", htmlAttributes: new { @class = "form-control col-md-10" })
                         @Html.ValidationMessageFor(model => model.dean, "", new { @class = "text-danger" })
                     </div>
 
@@ -50,7 +50,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Vice Dean:</span>
                         </div>
-                        @Html.DropDownListFor(model => model.ViceDean, new SelectList(ViewBag.Departments, "ID", "ID"), htmlAttributes: new { @class = "form-control col-md-10" })
+                        @Html.DropDownListFor(model => model.ViceDean, new SelectList(ViewBag.lecturer, "ID", "Name"), "Select ViceDean", htmlAttributes: new { @class = "form-control col-md-10" })
                         @Html.ValidationMessageFor(model => model.ViceDean, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -60,11 +60,6 @@
         <div class="form-group mt-4">
             <div>
                 <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-
-
-            <div class="float-right">
-                @Html.ActionLink("Back to List", "Index")
             </div>
         </div>
     </div>
