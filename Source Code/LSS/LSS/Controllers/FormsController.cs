@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace LSS.Controllers
 {
-
+    [Authorize]
     public class FormsController : Controller
     {
         private readonly YearAndSemester yearAndSemester = SemesterSingelton.getCurrentYearAndSemester();
@@ -85,9 +85,9 @@ namespace LSS.Controllers
         public ActionResult CouresSyllabusAddData() {
             return View();
         }
-        public ActionResult addCourseSyllabus(string id,DateTime year,string semester)
+        public ActionResult addCourseSyllabus(string id,DateTime year,string Semester)
         {
-            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(id, year, semester);
+            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(id, year, Semester);
             return View(cc);
         }
         [HttpPost]

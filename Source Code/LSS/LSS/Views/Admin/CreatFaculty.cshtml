@@ -6,33 +6,61 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>CreatFaculty</h2>
 
-@using (Html.BeginForm("CreateFaculty","Admin",FormMethod.Post))
+
+@using (Html.BeginForm("CreatFaculty", "Admin", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Faculty</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    <div class="container shadow-lg p-3 mb-3 mt-5 bg-white">
+        <div class="d-flex justify-content-center align-items-center text-center mb-3">
+            <div>
+                <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo" alt="Logo" style="height:150px; width:120px;" />
+                <h4> Update Students </h4>
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+        <hr class="border-danger w-75 mb-4" />
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+
+        <div class="text-center align-content-center justify-content-center d-flex">
+            <div class="card border-primary w-50">
+                <div class="card-header"> Faculty </div>
+                <div class="card-body">
+
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">ID:</span>
+                        </div>
+                        @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control col-12" } })
+                        @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+                    </div>
+
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Name:</span>
+                        </div>
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control col-12" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        @Html.HiddenFor(x => x.PassingGradeForAssessmentSurvey)
+        @Html.HiddenFor(x => x.PassingGradeForPI)
+
+        <div class="form-group mt-4">
+            <div>
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-

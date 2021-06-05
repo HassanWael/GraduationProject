@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="~/Content/FormsStyle.css" />
     <link href="~/Content/hideCSS.css" rel="stylesheet" />
+   
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </header>
@@ -22,13 +23,18 @@
                new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
 
                 @Html.ActionLink("Students List", "CourseStudentList", "CourseCoordinator",
-               new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "bg-transparent pb-3" })
+               new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
 
                 @Html.ActionLink("PI Assessment", "PI Assessment", "CourseCoordinator",
-               new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "bg-transparent pb-3" })
+               new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
 
                 @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator",
-               new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "bg-transparent pb-3" })
+               new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
+
+
+                @Html.ActionLink("Exams & Tasks", "ListCourseExamsAndTasks", "Exam",
+              new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester },
+              new { @class = "bg-transparent pb-3" })
                 <br />
                 <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Forms</b> </h4>
                 @Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
@@ -77,7 +83,7 @@
                             <th bgcolor="silver" style=" border:1px solid black"> Academic Year </th>
                             <td style=" border:1px solid black">@Html.DisplayFor(x => x.CourseCoordinator.Year.Year)  </td>
                             <th bgcolor="silver" style=" border:1px solid black"> Semester </th>
-                            <td style=" border:1px solid black">@Html.DisplayFor(x => x.CourseCoordinator.Semseter)  </td>
+                            <td style=" border:1px solid black">@Html.DisplayFor(x => x.CourseCoordinator.Semester)  </td>
                         </tr>
                         <tr>
                             <th bgcolor="silver" style=" border:1px solid black" colspan="4"> Course Information: </th>
@@ -594,7 +600,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td bgcolor="aliceblue" style=" border:1px solid black" colspan="2">Actions Recommended for next semester/year</td>
+                        <td bgcolor="aliceblue" style=" border:1px solid black" colspan="2">Actions Recommended for next Semester/year</td>
                         <td bgcolor="aliceblue" style=" border:1px solid black">Person Responsible</td>
                     </tr>
                     <tr>
@@ -948,7 +954,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td bgcolor="aliceblue" style=" border:1px solid black" colspan="2">Actions Recommended for next semester/year</td>
+                        <td bgcolor="aliceblue" style=" border:1px solid black" colspan="2">Actions Recommended for next Semester/year</td>
                         <td bgcolor="aliceblue" style=" border:1px solid black">Person Responsible</td>
                     </tr>
                     <tr>
@@ -1273,7 +1279,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td bgcolor="aliceblue" style=" border:1px solid black" colspan="2">Actions Recommended for next semester/year</td>
+                            <td bgcolor="aliceblue" style=" border:1px solid black" colspan="2">Actions Recommended for next Semester/year</td>
                             <td bgcolor="aliceblue" style=" border:1px solid black">Person Responsible</td>
                         </tr>
                         <tr>

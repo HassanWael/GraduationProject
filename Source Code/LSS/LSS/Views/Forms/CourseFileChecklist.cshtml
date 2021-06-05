@@ -16,13 +16,13 @@
                    new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
 
                     @Html.ActionLink("Students List", "CourseStudentList", "CourseCoordinator",
-                   new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "bg-transparent pb-3" })
+                   new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
 
                     @Html.ActionLink("PI Assessment", "PI Assessment", "CourseCoordinator",
-                   new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "bg-transparent pb-3" })
+                   new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
 
                     @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator",
-                   new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "bg-transparent pb-3" })
+                   new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
                     <br />
                     <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Forms</b> </h4>
                     @Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
@@ -58,21 +58,19 @@
 
                 <table class="table" style="border: 2px solid black">
                     <tr>
-                        <th bgcolor="silver" style=" border:1px solid black"> <p align="center"> Course Title </p> </th>
-                        <td style="border:1px solid black" colspan="2">   </td>
-                        <th bgcolor="silver" style=" border:1px solid black"> <p align="center">Course Code </p> </th>
-                        <td style=" border:1px solid black" colspan="2">  </td>
-
+                        <th bgcolor="silver" style=" border:1px solid black; width:15%"> <p> Course Code </p> </th>
+                        <td style="border:1px solid black" colspan="1">   </td>
+                        <th bgcolor="silver" style=" border:1px solid black; width:15%"> <p>Course Title </p> </th>
+                        <td style=" border:1px solid black" colspan="3">  </td>
                     </tr>
+
                     <tr>
-                        <th bgcolor="silver" style=" border:1px solid black"> <p align="center">Instructor/<br /> Coordinator Name </p> </th>
+                        <th bgcolor="silver" style=" border:1px solid black; width:15%"> <p>Instructor/<br /> Coordinator Name </p> </th>
+                        <td style=" border:1px solid black; width:20%">  </td>
+                        <th bgcolor="silver" style=" border:1px solid black">  <p> Academic<br />Year</p> </th>
                         <td style=" border:1px solid black">  </td>
-                        <th bgcolor="silver" style=" border:1px solid black">  <p align="center"> Academic<br />Year</p> </th>
-                        <td style=" border:1px solid black">  </td>
-                        <th bgcolor="silver" style=" border:1px solid black"><p align="center"> Semester </p> </th>
+                        <th bgcolor="silver" style=" border:1px solid black; width:15%"><p> Semester </p> </th>
                         <td style=" border:1px solid black">   </td>
-
-
                     </tr>
                 </table>
                 <br />
@@ -199,12 +197,12 @@
                         <th bgcolor="grey" style=" border:1px solid black" colspan="6"> Responsible Staff Signature: </th>
                     </tr>
                     <tr>
-                        <th bgcolor="silver" style=" border:1px solid black"> Course Instructor/ <br />Coordinator </th>
-                        <td style=" border:1px solid black">  </td>
+                        <th bgcolor="silver" style=" border:1px solid black; width:20%"> Course Instructor/ <br />Coordinator </th>
+                        <td style=" border:1px solid black; width:20%">  </td>
                         <th bgcolor="silver" style=" border:1px solid black"> Date </th>
-                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black; width:20%">  </td>
                         <th bgcolor="silver" style=" border:1px solid black"> Signature </th>
-                        <td style=" border:1px solid black">  </td>
+                        <td style=" border:1px solid black; width:20%">  </td>
                     </tr>
                     <tr>
                         <th bgcolor="silver" style=" border:1px solid black"> Head of Department </th>

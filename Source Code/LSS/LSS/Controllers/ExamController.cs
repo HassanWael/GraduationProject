@@ -9,6 +9,7 @@ using LSS.Models.Exams;
 
 namespace LSS.Controllers
 {
+
     public class ExamController : Controller
     {
         private readonly LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
@@ -23,11 +24,11 @@ namespace LSS.Controllers
             }
             CourseExam courseExam = new CourseExam()
             {
-                CourseID=CC.CourseID,
-                Year=CC.Year,
-                Semseter=CC.Semseter,
-                ExamDate = DateTime.Now,
-                ModerationDate= DateTime.Now
+                CourseID= CourseID,
+                Year= (DateTime)Year,
+                Semester= Semester,
+                ExamDate = (DateTime)Year,
+                ModerationDate = (DateTime)Year,
             };
             return View(courseExam);
         }
@@ -36,11 +37,14 @@ namespace LSS.Controllers
         public ActionResult CreateCourseExam(CourseExam courseExam)
         {
             int sum = 0;
-            List<int> weight = _DatabaseEntities.CourseExams.Where(x => x.CourseID.Equals(courseExam.CourseID) && x.Year.Equals(courseExam.Year) && x.Semseter.Equals(courseExam.Semseter)).Select(x => x.ExamWeight).ToList();
+            List<int> weight = _DatabaseEntities.CourseExams.Where(x => x.CourseID.Equals(courseExam.CourseID) && x.Year.Equals(courseExam.Year) && x.Semester.Equals(courseExam.Semester)).Select(x => x.ExamWeight).ToList();
             foreach (int num in weight) {
                 sum += num;
 
             }
+
+            CourseCoordinator CC = _DatabaseEntities.CourseCoordinators.Find(courseExam.CourseID, courseExam.Year, courseExam.Semester);
+
             if (courseExam.ExamWeight > (100 - sum)) {
 
                 ModelState.AddModelError("ExamWeight", "The Total of  Exam Weight can't be more than 100");
@@ -51,24 +55,19 @@ namespace LSS.Controllers
             }
             
 
-            if (ModelState.IsValid&& courseExam != null)
+            if (ModelState.IsValid&& _DatabaseEntities.CourseExams.Find(courseExam.ID)==null)
             {
-                try
-                {
+              
                     _DatabaseEntities.CourseExams.Add(courseExam);
                     _DatabaseEntities.SaveChanges();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Errorr e " + e.Message);
-                }
+            
             }
             else
             {
                 return View();
             }
 
-            return RedirectToAction("CourseExamDetails", new { ExamID = courseExam.ID });
+            return RedirectToAction("CourseExamDetails", new { ExamID = courseExam.CourseID });
 }
         public ActionResult ListCourseExamsAndTasks(string? CourseID, DateTime? Year, string? Semester, int page = 1, int pageSize = 10)
         {

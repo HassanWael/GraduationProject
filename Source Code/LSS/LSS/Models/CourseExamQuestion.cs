@@ -21,35 +21,13 @@ namespace LSS.Models
             this.CourseCoordinators = new HashSet<CourseCoordinator>();
             this.PIs = new HashSet<PI>();
         }
-        LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
     
         public int ID { get; set; }
         public int ExamID { get; set; }
         public string QuestionNumber { get; set; }
         public string Question { get; set; }
         public float Weight { get; set; }
-
-        public double getAVG()
-        {
-            if (CourseExamEvals == null)
-            {
-                CourseExamEvals = _DatabaseEntities.CourseExamQuestions.Find(ID).CourseExamEvals;
-            }
-
-            double sum = 0; 
-            
-            foreach(CourseExamEval eval in CourseExamEvals)
-            {
-                sum+= eval.Mark;
-            }
-            try
-            {
-                return sum/CourseExamEvals.Count;
-             }
-            catch {
-                return 0;
-            }
-        }
+    
         public virtual CourseExam CourseExam { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseExamEval> CourseExamEvals { get; set; }

@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="LSS_databaseEntities">
+  <EntityContainerMapping StorageEntityContainer="LSSModelStoreContainer" CdmEntityContainer="LSS_databaseEntities">
     <EntitySetMapping Name="ActionsForImprovingTheCourses">
-      <EntityTypeMapping TypeName="Model.ActionsForImprovingTheCourse">
+      <EntityTypeMapping TypeName="LSSModel.ActionsForImprovingTheCourse">
         <MappingFragment StoreEntitySet="ActionsForImprovingTheCourse">
           <ScalarProperty Name="PersonResponsible" ColumnName="PersonResponsible" />
           <ScalarProperty Name="RecomandedActions" ColumnName="RecomandedActions" />
           <ScalarProperty Name="ActionsResults" ColumnName="ActionsResults" />
           <ScalarProperty Name="ActionsTaken" ColumnName="ActionsTaken" />
-          <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="AssessmentPlanforTheStudentLearningOutcomeTechniques">
-      <EntityTypeMapping TypeName="Model.AssessmentPlanforTheStudentLearningOutcomeTechnique">
+      <EntityTypeMapping TypeName="LSSModel.AssessmentPlanforTheStudentLearningOutcomeTechnique">
         <MappingFragment StoreEntitySet="AssessmentPlanforTheStudentLearningOutcomeTechnique">
           <ScalarProperty Name="Other" ColumnName="Other" />
           <ScalarProperty Name="Students_Interviews" ColumnName="Students_Interviews" />
@@ -37,7 +37,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="AssessmentSurveyAnswers">
-      <EntityTypeMapping TypeName="Model.AssessmentSurveyAnswer">
+      <EntityTypeMapping TypeName="LSSModel.AssessmentSurveyAnswer">
         <MappingFragment StoreEntitySet="AssessmentSurveyAnswer">
           <ScalarProperty Name="Answer" ColumnName="Answer" />
           <ScalarProperty Name="QID" ColumnName="QID" />
@@ -46,18 +46,18 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="byCompletingThisCourseStudentsAreAbleToes">
-      <EntityTypeMapping TypeName="Model.byCompletingThisCourseStudentsAreAbleTo">
+      <EntityTypeMapping TypeName="LSSModel.byCompletingThisCourseStudentsAreAbleTo">
         <MappingFragment StoreEntitySet="byCompletingThisCourseStudentsAreAbleTo">
           <ScalarProperty Name="AggrementLVL" ColumnName="AggrementLVL" />
           <ScalarProperty Name="SLO" ColumnName="SLO" />
-          <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CLOes">
-      <EntityTypeMapping TypeName="Model.CLO">
+      <EntityTypeMapping TypeName="LSSModel.CLO">
         <MappingFragment StoreEntitySet="CLO">
           <ScalarProperty Name="courseId" ColumnName="courseId" />
           <ScalarProperty Name="ID" ColumnName="ID" />
@@ -66,7 +66,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Courses">
-      <EntityTypeMapping TypeName="Model.Course">
+      <EntityTypeMapping TypeName="LSSModel.Course">
         <MappingFragment StoreEntitySet="Course">
           <ScalarProperty Name="dptid" ColumnName="dptid" />
           <ScalarProperty Name="co_requisite" ColumnName="co-requisite" />
@@ -83,27 +83,27 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CourseAssessmentMappings">
-      <EntityTypeMapping TypeName="Model.CourseAssessmentMapping">
+      <EntityTypeMapping TypeName="LSSModel.CourseAssessmentMapping">
         <MappingFragment StoreEntitySet="CourseAssessmentMapping">
           <ScalarProperty Name="DeptID" ColumnName="DeptID" />
           <ScalarProperty Name="SLOID" ColumnName="SLOID" />
           <ScalarProperty Name="PI" ColumnName="PI" />
           <ScalarProperty Name="CLO" ColumnName="CLO" />
           <ScalarProperty Name="AssessmentID" ColumnName="AssessmentID" />
-          <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CourseAssessmentSurvays">
-      <EntityTypeMapping TypeName="Model.CourseAssessmentSurvay">
+      <EntityTypeMapping TypeName="LSSModel.CourseAssessmentSurvay">
         <MappingFragment StoreEntitySet="CourseAssessmentSurvay">
           <ScalarProperty Name="DeptID" ColumnName="DeptID" />
           <ScalarProperty Name="SLOID" ColumnName="SLOID" />
           <ScalarProperty Name="PI_ID" ColumnName="PI_ID" />
           <ScalarProperty Name="Qustion" ColumnName="Qustion" />
-          <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
@@ -111,21 +111,21 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CourseCoordinators">
-      <EntityTypeMapping TypeName="Model.CourseCoordinator">
+      <EntityTypeMapping TypeName="LSSModel.CourseCoordinator">
         <MappingFragment StoreEntitySet="CourseCoordinator">
           <ScalarProperty Name="Coordinator" ColumnName="Coordinator" />
           <ScalarProperty Name="DayTime" ColumnName="DayTime" />
           <ScalarProperty Name="courseNotAssessedReason_" ColumnName="courseNotAssessedReason " />
           <ScalarProperty Name="ClassRoom" ColumnName="ClassRoom" />
           <ScalarProperty Name="NoOFStudents" ColumnName="NoOFStudents" />
-          <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CourseExams">
-      <EntityTypeMapping TypeName="Model.CourseExam">
+      <EntityTypeMapping TypeName="LSSModel.CourseExam">
         <MappingFragment StoreEntitySet="CourseExam">
           <ScalarProperty Name="AdditionalComments" ColumnName="AdditionalComments" />
           <ScalarProperty Name="ExamDate" ColumnName="ExamDate" />
@@ -134,7 +134,7 @@
           <ScalarProperty Name="ExamWeight" ColumnName="ExamWeight" />
           <ScalarProperty Name="Moderator" ColumnName="Moderator" />
           <ScalarProperty Name="Type" ColumnName="Type" />
-          <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
@@ -142,7 +142,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CourseExamEvals">
-      <EntityTypeMapping TypeName="Model.CourseExamEval">
+      <EntityTypeMapping TypeName="LSSModel.CourseExamEval">
         <MappingFragment StoreEntitySet="CourseExamEval">
           <ScalarProperty Name="Mark" ColumnName="Mark" />
           <ScalarProperty Name="StudentID" ColumnName="StudentID" />
@@ -151,7 +151,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CourseExamQuestions">
-      <EntityTypeMapping TypeName="Model.CourseExamQuestion">
+      <EntityTypeMapping TypeName="LSSModel.CourseExamQuestion">
         <MappingFragment StoreEntitySet="CourseExamQuestion">
           <ScalarProperty Name="Weight" ColumnName="Weight" />
           <ScalarProperty Name="Question" ColumnName="Question" />
@@ -162,60 +162,60 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CourseFileCheckLists">
-      <EntityTypeMapping TypeName="Model.CourseFileCheckList">
+      <EntityTypeMapping TypeName="LSSModel.CourseFileCheckList">
         <MappingFragment StoreEntitySet="CourseFileCheckList">
           <ScalarProperty Name="ReasonOfDisaproval" ColumnName="ReasonOfDisaproval" />
           <ScalarProperty Name="ViceDeanSignature" ColumnName="ViceDeanSignature" />
           <ScalarProperty Name="HeadOFDeptSignature" ColumnName="HeadOFDeptSignature" />
           <ScalarProperty Name="CoordinatorSignature" ColumnName="CoordinatorSignature" />
-          <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CourseInformationForms">
-      <EntityTypeMapping TypeName="Model.CourseInformationForm">
+      <EntityTypeMapping TypeName="LSSModel.CourseInformationForm">
         <MappingFragment StoreEntitySet="CourseInformationForm">
           <ScalarProperty Name="ReasonOfDisaproval" ColumnName="ReasonOfDisaproval" />
           <ScalarProperty Name="ViceDeanSignature" ColumnName="ViceDeanSignature" />
           <ScalarProperty Name="HeadOFDeptSignature" ColumnName="HeadOFDeptSignature" />
           <ScalarProperty Name="CoordinatorSignature" ColumnName="CoordinatorSignature" />
-          <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CourseReports">
-      <EntityTypeMapping TypeName="Model.CourseReport">
+      <EntityTypeMapping TypeName="LSSModel.CourseReport">
         <MappingFragment StoreEntitySet="CourseReport">
           <ScalarProperty Name="ReasonOfDisaproval" ColumnName="ReasonOfDisaproval" />
           <ScalarProperty Name="ViceDeanSignature" ColumnName="ViceDeanSignature" />
           <ScalarProperty Name="HeadOFDeptSignature" ColumnName="HeadOFDeptSignature" />
           <ScalarProperty Name="CoordinatorSignature" ColumnName="CoordinatorSignature" />
-          <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CourseSyllabus">
-      <EntityTypeMapping TypeName="Model.CourseSyllabu">
+      <EntityTypeMapping TypeName="LSSModel.CourseSyllabu">
         <MappingFragment StoreEntitySet="CourseSyllabus">
           <ScalarProperty Name="ReasonOfDisaproval" ColumnName="ReasonOfDisaproval" />
           <ScalarProperty Name="HeadOFDeptSignature" ColumnName="HeadOFDeptSignature" />
           <ScalarProperty Name="CoordinatorSignature" ColumnName="CoordinatorSignature" />
-          <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CourseTeachingStrategies">
-      <EntityTypeMapping TypeName="Model.CourseTeachingStrategy">
+      <EntityTypeMapping TypeName="LSSModel.CourseTeachingStrategy">
         <MappingFragment StoreEntitySet="CourseTeachingStrategies">
-          <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
           <ScalarProperty Name="StrategyID" ColumnName="StrategyID" />
@@ -223,7 +223,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CourseTextBooks">
-      <EntityTypeMapping TypeName="Model.CourseTextBook">
+      <EntityTypeMapping TypeName="LSSModel.CourseTextBook">
         <MappingFragment StoreEntitySet="CourseTextBook">
           <ScalarProperty Name="Publisher" ColumnName="Publisher" />
           <ScalarProperty Name="City_State" ColumnName="City/State" />
@@ -235,7 +235,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Departments">
-      <EntityTypeMapping TypeName="Model.Department">
+      <EntityTypeMapping TypeName="LSSModel.Department">
         <MappingFragment StoreEntitySet="Department">
           <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
           <ScalarProperty Name="HeadOFDepartment" ColumnName="HeadOFDepartment" />
@@ -245,10 +245,11 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="EnroledStudents">
-      <EntityTypeMapping TypeName="Model.EnroledStudent">
+      <EntityTypeMapping TypeName="LSSModel.EnroledStudent">
         <MappingFragment StoreEntitySet="EnroledStudents">
+          <ScalarProperty Name="otherLecturer" ColumnName="otherLecturer" />
           <ScalarProperty Name="FinalGrade" ColumnName="FinalGrade" />
-          <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
           <ScalarProperty Name="StudentID" ColumnName="StudentID" />
@@ -257,7 +258,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Faculties">
-      <EntityTypeMapping TypeName="Model.Faculty">
+      <EntityTypeMapping TypeName="LSSModel.Faculty">
         <MappingFragment StoreEntitySet="Faculty">
           <ScalarProperty Name="PassingGradeForAssessmentSurvey" ColumnName="PassingGradeForAssessmentSurvey" />
           <ScalarProperty Name="PassingGradeForPI" ColumnName="PassingGradeForPI" />
@@ -269,39 +270,39 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ineffectiveAssessmentStrategis">
-      <EntityTypeMapping TypeName="Model.ineffectiveAssessmentStrategi">
+      <EntityTypeMapping TypeName="LSSModel.ineffectiveAssessmentStrategi">
         <MappingFragment StoreEntitySet="ineffectiveAssessmentStrategis">
           <ScalarProperty Name="Reason" ColumnName="Reason" />
-          <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ineffectiveTeachingStrategis">
-      <EntityTypeMapping TypeName="Model.ineffectiveTeachingStrategi">
+      <EntityTypeMapping TypeName="LSSModel.ineffectiveTeachingStrategi">
         <MappingFragment StoreEntitySet="ineffectiveTeachingStrategis">
           <ScalarProperty Name="Reason" ColumnName="Reason" />
-          <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="isAssesseds">
-      <EntityTypeMapping TypeName="Model.isAssessed">
+      <EntityTypeMapping TypeName="LSSModel.isAssessed">
         <MappingFragment StoreEntitySet="isAssessed">
           <ScalarProperty Name="WhyNot" ColumnName="WhyNot" />
           <ScalarProperty Name="isAssessed1" ColumnName="isAssessed" />
-          <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Lecturers">
-      <EntityTypeMapping TypeName="Model.Lecturer">
-        <MappingFragment StoreEntitySet="Lecturers">
+      <EntityTypeMapping TypeName="LSSModel.Lecturer">
+        <MappingFragment StoreEntitySet="Lecturer">
           <ScalarProperty Name="dptId" ColumnName="dptId" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Email" ColumnName="Email" />
@@ -313,12 +314,12 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ModerationChecklists">
-      <EntityTypeMapping TypeName="Model.ModerationChecklist">
+      <EntityTypeMapping TypeName="LSSModel.ModerationChecklist">
         <MappingFragment StoreEntitySet="ModerationChecklist">
           <ScalarProperty Name="commetns" ColumnName="commetns" />
           <ScalarProperty Name="Answer" ColumnName="Answer" />
           <ScalarProperty Name="Question" ColumnName="Question" />
-          <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
@@ -326,20 +327,21 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="OtherLecturers">
-      <EntityTypeMapping TypeName="Model.OtherLecturer">
-        <MappingFragment StoreEntitySet="OtherLecturers">
+      <EntityTypeMapping TypeName="LSSModel.OtherLecturer">
+        <MappingFragment StoreEntitySet="OtherLecturer">
           <ScalarProperty Name="noOFStudents" ColumnName="noOFStudents" />
           <ScalarProperty Name="ClassRoom" ColumnName="ClassRoom" />
           <ScalarProperty Name="DayTime" ColumnName="DayTime" />
-          <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
           <ScalarProperty Name="LecturerID" ColumnName="LecturerID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PEOs">
-      <EntityTypeMapping TypeName="Model.PEO">
+      <EntityTypeMapping TypeName="LSSModel.PEO">
         <MappingFragment StoreEntitySet="PEO">
           <ScalarProperty Name="DeptID" ColumnName="DeptID" />
           <ScalarProperty Name="Desc" ColumnName="Desc" />
@@ -348,7 +350,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PIs">
-      <EntityTypeMapping TypeName="Model.PI">
+      <EntityTypeMapping TypeName="LSSModel.PI">
         <MappingFragment StoreEntitySet="PI">
           <ScalarProperty Name="PIUniqueID" ColumnName="PIUniqueID" />
           <ScalarProperty Name="DeptID" ColumnName="DeptID" />
@@ -359,33 +361,33 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ResultOfCourseDirectAssessments">
-      <EntityTypeMapping TypeName="Model.ResultOfCourseDirectAssessment">
+      <EntityTypeMapping TypeName="LSSModel.ResultOfCourseDirectAssessment">
         <MappingFragment StoreEntitySet="ResultOfCourseDirectAssessment">
           <ScalarProperty Name="Recommendation" ColumnName="Recommendation" />
           <ScalarProperty Name="AnalysisAndJustification" ColumnName="AnalysisAndJustification" />
           <ScalarProperty Name="Observation" ColumnName="Observation" />
           <ScalarProperty Name="ActionsTaken" ColumnName="ActionsTaken" />
-          <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="schedules">
-      <EntityTypeMapping TypeName="Model.schedule">
-        <MappingFragment StoreEntitySet="schedule">
-          <ScalarProperty Name="Referance" ColumnName="Referance" />
-          <ScalarProperty Name="Assigments" ColumnName="Assigments" />
-          <ScalarProperty Name="Topics" ColumnName="Topics" />
-          <ScalarProperty Name="Week" ColumnName="Week" />
-          <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+    <EntitySetMapping Name="Schedules">
+      <EntityTypeMapping TypeName="LSSModel.Schedule">
+        <MappingFragment StoreEntitySet="Schedule">
+          <ScalarProperty Name="Reference" ColumnName="Reference" />
+          <ScalarProperty Name="Assignments" ColumnName="Assignments" />
+          <ScalarProperty Name="Topic" ColumnName="Topic" />
+          <ScalarProperty Name="WeekNumber" ColumnName="WeekNumber" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SLOes">
-      <EntityTypeMapping TypeName="Model.SLO">
+      <EntityTypeMapping TypeName="LSSModel.SLO">
         <MappingFragment StoreEntitySet="SLO">
           <ScalarProperty Name="DeptID" ColumnName="DeptID" />
           <ScalarProperty Name="Desc" ColumnName="Desc" />
@@ -394,7 +396,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SLO_PEO">
-      <EntityTypeMapping TypeName="Model.SLO_PEO">
+      <EntityTypeMapping TypeName="LSSModel.SLO_PEO">
         <MappingFragment StoreEntitySet="SLO_PEO">
           <ScalarProperty Name="DeptID" ColumnName="DeptID" />
           <ScalarProperty Name="PEOID" ColumnName="PEOID" />
@@ -403,7 +405,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Students">
-      <EntityTypeMapping TypeName="Model.Student">
+      <EntityTypeMapping TypeName="LSSModel.Student">
         <MappingFragment StoreEntitySet="Student">
           <ScalarProperty Name="DptID" ColumnName="DptID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -412,7 +414,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Student_PI_Outcome">
-      <EntityTypeMapping TypeName="Model.Student_PI_Outcome">
+      <EntityTypeMapping TypeName="LSSModel.Student_PI_Outcome">
         <MappingFragment StoreEntitySet="Student-PI-Outcome">
           <ScalarProperty Name="Mark" ColumnName="Mark" />
           <ScalarProperty Name="AssessmentMethod" ColumnName="AssessmentMethod" />
@@ -422,7 +424,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="TeachingAndLearningStrategiesTechniques">
-      <EntityTypeMapping TypeName="Model.TeachingAndLearningStrategiesTechnique">
+      <EntityTypeMapping TypeName="LSSModel.TeachingAndLearningStrategiesTechnique">
         <MappingFragment StoreEntitySet="TeachingAndLearningStrategiesTechnique">
           <ScalarProperty Name="strategy" ColumnName="strategy" />
           <ScalarProperty Name="ID" ColumnName="ID" />
@@ -430,7 +432,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="YearAndSemesters">
-      <EntityTypeMapping TypeName="Model.YearAndSemester">
+      <EntityTypeMapping TypeName="LSSModel.YearAndSemester">
         <MappingFragment StoreEntitySet="YearAndSemester">
           <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
@@ -438,7 +440,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="database_firewall_rules">
-      <EntityTypeMapping TypeName="Model.database_firewall_rules">
+      <EntityTypeMapping TypeName="LSSModel.database_firewall_rules">
         <MappingFragment StoreEntitySet="database_firewall_rules">
           <ScalarProperty Name="modify_date" ColumnName="modify_date" />
           <ScalarProperty Name="create_date" ColumnName="create_date" />
@@ -449,7 +451,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="CLO_PI" TypeName="Model.CLO_PI" StoreEntitySet="CLO-PI">
+    <AssociationSetMapping Name="CLO_PI" TypeName="LSSModel.CLO_PI" StoreEntitySet="CLO-PI">
       <EndProperty Name="PI">
         <ScalarProperty Name="PIUniqueID" ColumnName="PIUniqueID" />
       </EndProperty>
@@ -457,17 +459,17 @@
         <ScalarProperty Name="ID" ColumnName="CLOID" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="PIAssessment" TypeName="Model.PIAssessment" StoreEntitySet="PIAssessment">
+    <AssociationSetMapping Name="PIAssessment" TypeName="LSSModel.PIAssessment" StoreEntitySet="PIAssessment">
       <EndProperty Name="CourseExamQuestion">
         <ScalarProperty Name="ID" ColumnName="QustionID" />
       </EndProperty>
       <EndProperty Name="CourseCoordinator">
-        <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+        <ScalarProperty Name="Semester" ColumnName="Semester" />
         <ScalarProperty Name="Year" ColumnName="Year" />
         <ScalarProperty Name="CourseID" ColumnName="CourseID" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="Question_IP" TypeName="Model.Question_IP" StoreEntitySet="Question_IP">
+    <AssociationSetMapping Name="Question_PI" TypeName="LSSModel.Question_PI" StoreEntitySet="Question_PI">
       <EndProperty Name="PI">
         <ScalarProperty Name="PIUniqueID" ColumnName="PIUniqueID" />
       </EndProperty>
@@ -475,18 +477,18 @@
         <ScalarProperty Name="ID" ColumnName="EQ_ID" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="Schedule_CLO" TypeName="Model.Schedule_CLO" StoreEntitySet="Schedule_CLO">
-      <EndProperty Name="schedule">
-        <ScalarProperty Name="Week" ColumnName="Week" />
-        <ScalarProperty Name="Semseter" ColumnName="Semseter" />
+    <AssociationSetMapping Name="Schedule_CLO" TypeName="LSSModel.Schedule_CLO" StoreEntitySet="Schedule_CLO">
+      <EndProperty Name="Schedule">
+        <ScalarProperty Name="WeekNumber" ColumnName="WeekNumber" />
+        <ScalarProperty Name="Semester" ColumnName="Semester" />
         <ScalarProperty Name="Year" ColumnName="Year" />
         <ScalarProperty Name="CourseID" ColumnName="CourseID" />
       </EndProperty>
       <EndProperty Name="CLO">
-        <ScalarProperty Name="ID" ColumnName="CLO" />
+        <ScalarProperty Name="ID" ColumnName="CLOID" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="SLO_Course" TypeName="Model.SLO_Course" StoreEntitySet="SLO_Course">
+    <AssociationSetMapping Name="SLO_Course" TypeName="LSSModel.SLO_Course" StoreEntitySet="SLO_Course">
       <EndProperty Name="SLO">
         <ScalarProperty Name="DeptID" ColumnName="DeptID" />
         <ScalarProperty Name="SLOID" ColumnName="SLOID" />

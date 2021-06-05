@@ -9,12 +9,12 @@
         ViewBag.Title = "Enroled Students";
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -24,11 +24,13 @@
                 <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Content</b> </h4>
                 @Html.ActionLink("Recomandations for improving the course", "ActionsForImproving", "CourseCoordinator", new { ViewBag.courseID }, new { @class = "bg-transparent pb-3" })
 
-                @Html.ActionLink("Students List", "CourseStudentList", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semseter }, new { @class = "bg-transparent pb-3 text-success" })
+                @Html.ActionLink("Students List", "CourseStudentList", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semester }, new { @class = "bg-transparent pb-3 text-success" })
 
-                @Html.ActionLink("PI Assessment", "PI Assessment", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semseter }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("PI Assessment", "PI Assessment", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semester }, new { @class = "bg-transparent pb-3" })
 
-                @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semseter }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semester }, new { @class = "bg-transparent pb-3" })
+
+                @Html.ActionLink("Exams & Tasks", "ListCourseExamsAndTasks", "Exam", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semester }, new { @class = "bg-transparent pb-3" })
                 <br />
                 <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Forms</b> </h4>
                 @Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { ViewBag.courseID }, new { @class = "bg-transparent pb-3" })
@@ -85,7 +87,7 @@
                                         @Html.DisplayFor(modelItem => item.Student.Department.Name)
                                     </td>
                                     <td>
-                                        @Html.ActionLink("Remove", "RemoveStudentFromCourse", new { StudetnID = item.Student.ID, CourseID = ViewBag.CourseID, Year = ViewBag.Year, Semseter = ViewBag.Semester })
+                                        @Html.ActionLink("Remove", "RemoveStudentFromCourse", new { StudetnID = item.Student.ID, CourseID = ViewBag.CourseID, Year = ViewBag.Year, Semester = ViewBag.Semester })
                                     </td>
                                 </tr>
                             }
@@ -116,7 +118,7 @@
                                 {
                                     <input type="hidden" id="CourseID" name="CourseID" value='@ViewBag.CourseID' />
                                     <input type="hidden" id="Year" name="Year" value='@ViewBag.Year' />
-                                    <input type="hidden" id="Semseter" name="Semseter" value='@ViewBag.Semester' />
+                                    <input type="hidden" id="Semester" name="Semester" value='@ViewBag.Semester' />
 
 
                                     <div class="input-group mb-3">
@@ -147,7 +149,7 @@
                                 {
                                     <input type="hidden" id="CourseID" name="CourseID" value='@ViewBag.CourseID' />
                                     <input type="hidden" id="Year" name="Year" value='@ViewBag.Year' />
-                                    <input type="hidden" id="Semseter" name="Semseter" value='@ViewBag.Semester' />
+                                    <input type="hidden" id="Semester" name="Semester" value='@ViewBag.Semester' />
                                     <table>
                                         <tr>
                                             <div class="input-group mb-3">
@@ -171,21 +173,21 @@
                 </div>
             </div>
         </div>
+    </div>
 
+    <script>
+        $('#UploadFileExcel').on('change', function () {
+            //get the file name
+            var fileName = $(this).val();
+            //replace the "Choose a file" label
+            $(this).next('.custom-file-label').html(fileName);
+        })
 
-        <script>
-            $('#UploadFileExcel').on('change', function () {
-                //get the file name
-                var fileName = $(this).val();
-                //replace the "Choose a file" label
-                $(this).next('.custom-file-label').html(fileName);
-            })
-
-            $('#UploadGrades').on('change', function () {
-                //get the file name
-                var fileName = $(this).val();
-                //replace the "Choose a file" label
-                $(this).next('.custom-file-label').html(fileName);
-            })
-        </script>
+        $('#UploadGrades').on('change', function () {
+            //get the file name
+            var fileName = $(this).val();
+            //replace the "Choose a file" label
+            $(this).next('.custom-file-label').html(fileName);
+        })
+    </script>
 </body>

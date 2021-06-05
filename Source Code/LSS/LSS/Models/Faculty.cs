@@ -30,5 +30,6 @@ namespace LSS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Department> Departments { get; set; }
         public virtual Lecturer Lecturer { get; set; }
+        public virtual Lecturer Lecturer1 { get; set; }
     }
 }

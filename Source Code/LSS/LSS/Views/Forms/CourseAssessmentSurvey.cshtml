@@ -4,6 +4,7 @@
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
     <link rel="stylesheet" href="~/Content/FormsStyle.css" />
+   
 </header>
 
 <body>
@@ -15,13 +16,13 @@
                    new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
 
                     @Html.ActionLink("Students List", "CourseStudentList", "CourseCoordinator",
-                   new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "bg-transparent pb-3" })
+                   new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
 
                     @Html.ActionLink("PI Assessment", "PI Assessment", "CourseCoordinator",
-                   new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "bg-transparent pb-3" })
+                   new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
 
                     @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator",
-                   new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "bg-transparent pb-3" })
+                   new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
                     <br />
                     <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Forms</b> </h4>
                     @Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
@@ -99,7 +100,7 @@
 
                     <br />
                     For each of the abilities, attributes, and skills listed below, please check the appropriate box that
-                    <br />corresponds to the extent you feel the class has helped you to achieve during the semester.
+                    <br />corresponds to the extent you feel the class has helped you to achieve during the Semester.
                     <br />
                     <br />
 

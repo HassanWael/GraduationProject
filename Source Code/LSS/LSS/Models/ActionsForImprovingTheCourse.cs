@@ -11,16 +11,12 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class ActionsForImprovingTheCourse
     {
         public string CourseID { get; set; }
-        [Required]
-        [Display(Name = "Date")]
-        [DataType(DataType.Date)]
         public System.DateTime Year { get; set; }
-        public string Semseter { get; set; }
+        public string Semester { get; set; }
         public string ActionsTaken { get; set; }
         public string ActionsResults { get; set; }
         public string RecomandedActions { get; set; }

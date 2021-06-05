@@ -55,7 +55,7 @@ namespace LSS.Models
         public virtual DbSet<PEO> PEOs { get; set; }
         public virtual DbSet<PI> PIs { get; set; }
         public virtual DbSet<ResultOfCourseDirectAssessment> ResultOfCourseDirectAssessments { get; set; }
-        public virtual DbSet<schedule> schedules { get; set; }
+        public virtual DbSet<Schedule> Schedules { get; set; }
         public virtual DbSet<SLO> SLOes { get; set; }
         public virtual DbSet<SLO_PEO> SLO_PEO { get; set; }
         public virtual DbSet<Student> Students { get; set; }

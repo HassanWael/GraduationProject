@@ -11,8 +11,7 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class CourseAssessmentSurvay
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,11 +22,8 @@ namespace LSS.Models
     
         public int ID { get; set; }
         public string CourseID { get; set; }
-        [Required]
-        [Display(Name = "Date")]
-        [DataType(DataType.Date)]
         public System.DateTime Year { get; set; }
-        public string Semseter { get; set; }
+        public string Semester { get; set; }
         public string Qustion { get; set; }
         public string PI_ID { get; set; }
         public string SLOID { get; set; }

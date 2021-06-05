@@ -10,6 +10,7 @@ using LSS.Models.DepartmentViewModel;
 
 namespace LSS.Controllers
 {
+    [Authorize]
     public class HeadOfDepartmentController : Controller
     {
         private readonly  LSS_databaseEntities _databaseEntities = new LSS_databaseEntities();

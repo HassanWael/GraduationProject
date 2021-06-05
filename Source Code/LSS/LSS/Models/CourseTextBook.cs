@@ -12,15 +12,27 @@ namespace LSS.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-
+    
     public partial class CourseTextBook
     {
+        public CourseTextBook()
+        {
+
+        }
+
+
+        [Required]
         public string Course { get; set; }
+        [Required]
+        [Display(Name ="Book Title")]
         public string Book_Title { get; set; }
         public string Author { get; set; }
-        [Display(Name = "Date")]
+       
+        [Display(Name = "Year of publish")]
         [DataType(DataType.Date)]
         public Nullable<System.DateTime> YearOfpublish { get; set; }
+        [Display(Name = "City / State ")]
+
         public string City_State { get; set; }
         public string Publisher { get; set; }
     

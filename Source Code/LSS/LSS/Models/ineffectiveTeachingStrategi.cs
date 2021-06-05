@@ -11,16 +11,12 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class ineffectiveTeachingStrategi
     {
         public string CourseID { get; set; }
-        [Required]
-        [Display(Name = "Date")]
-        [DataType(DataType.Date)]
         public System.DateTime Year { get; set; }
-        public string Semseter { get; set; }
+        public string Semester { get; set; }
         public string Reason { get; set; }
     
         public virtual CourseCoordinator CourseCoordinator { get; set; }

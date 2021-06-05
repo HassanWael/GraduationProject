@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <body>
     <div class="row">
         <div class="col-2 mt-lg-5">
@@ -12,11 +13,13 @@
                 <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Content</b> </h4>
                 @Html.ActionLink("Recomandations for improving the course", "ActionsForImproving", "CourseCoordinator", new { ViewBag.courseID }, new { @class = "bg-transparent pb-3 text-success" })
 
-                @Html.ActionLink("Students List", "CourseStudentList", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semseter }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Students List", "CourseStudentList", "Students", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semester }, new { @class = "bg-transparent pb-3" })
 
-                @Html.ActionLink("PI Assessment", "PI Assessment", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semseter }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("PI Assessment", "PI Assessment", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semester }, new { @class = "bg-transparent pb-3" })
 
-                @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semseter }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semester }, new { @class = "bg-transparent pb-3" })
+
+                @Html.ActionLink("Exams & Tasks", "ListCourseExamsAndTasks", "Exam", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semester }, new { @class = "bg-transparent pb-3" })
                 <br />
                 <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Forms</b> </h4>
                 @Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { ViewBag.courseID }, new { @class = "bg-transparent pb-3" })
@@ -28,7 +31,6 @@
                 @Html.ActionLink("Question Answer Sheet", "QuestionsAnswersSheet", "Forms", new { ViewBag.courseID }, new { @class = "bg-transparent pb-3" })
             </div>
         </div>
-
         <div class="col-lg-8">
             <div class="container shadow-lg p-3 mb-3 mt-5 bg-white">
                 <div class="d-flex justify-content-center align-items-center text-center">
@@ -37,41 +39,35 @@
                         <h4> Actions For Improving  </h4>
                     </div>
                 </div>
-
                 <div class="mb-2">
                     @Html.ActionLink("Create New", "Create", new { courseId = ViewBag.courseId }, new { @class = "btn btn-primary" })
 
                 </div>
-
-
                 <div class="shadow block text-center">
                     <div class="block-item w-100">
-                        <table class="table table-hover table-borderless bg-white ">
-                           <thread>
-                               <tr class="bg-primary">
-                                   <th>
-                                       <h5> Name </h5>
-                                   </th>
-                                   <th>
-                                       <h5> Actions Taken </h5>
-                                   </th>
-                                   <th>
-                                       <h5> Action Results </h5>
-                                   </th>
-                                   <th>
-                                       <h5> Recommended Actions </h5>
-                                   </th>
-                                   <th>
-                                       <h5> Responsible Person </h5>
-                                   </th>
-                               </tr>
-                           </thread>
-                            
-                            
-
+                        <table class="table table-hover table-borderless">
+                            <thread>
+                                <tr class="bg-white">
+                                    <th>
+                                        <h5> Name </h5>
+                                    </th>
+                                    <th>
+                                        <h5> Actions Taken </h5>
+                                    </th>
+                                    <th>
+                                        <h5> Action Results </h5>
+                                    </th>
+                                    <th>
+                                        <h5> Recommended Actions </h5>
+                                    </th>
+                                    <th>
+                                        <h5> Responsible Person </h5>
+                                    </th>
+                                </tr>
+                            </thread>
                             @foreach (var item in Model)
                             {
-                                <tr class="bg-white">
+                                <tr>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.CourseCoordinator.Lecturer.Name)
                                     </td>
@@ -89,7 +85,7 @@
                                     </td>
 
                                     <td>
-                                        @Html.ActionLink("Details", "ActionsForImprovingDetails", new { CourseID = item.CourseID, Year = item.Year, Semester = item.Semseter }) |
+                                        @Html.ActionLink("Details", "ActionsForImprovingDetails", new { CourseID = item.CourseID, Year = item.Year, Semester = item.Semester }) |
                                     </td>
                                 </tr>
                             }
@@ -101,24 +97,3 @@
         </div>
     </div>
 </body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

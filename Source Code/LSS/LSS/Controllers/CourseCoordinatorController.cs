@@ -12,6 +12,7 @@ using System.Web.Mvc;
 
 namespace LSS.Controllers
 {
+    [Authorize]  
     public class CourseCoordinatorController : Controller
     {
         private readonly LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
@@ -19,30 +20,27 @@ namespace LSS.Controllers
         private readonly YearAndSemester yas = SemesterSingelton.getCurrentYearAndSemester();
 
         // GET: Courses
-        public ActionResult CouresPage(string? courseID = "A0334501")
+        public ActionResult CouresPage(string? CourseID, DateTime? Year, string? Semester)
         {
-            if (courseID == null)
+            if (CourseID == null)
             {
-                RedirectToAction("Index", "LogedIN");
+                return RedirectToAction("Index", "LogedIN");
             }
 
             //String userID = Session["ID"].ToString();
-            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(courseID, yas.Year, yas.Semester);
-            CouresModelView course = new CouresModelView(cc);
+            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester);
 
             if (cc == null)
             {
                 RedirectToAction("Index", "LogedIN");
             }
+            CouresModelView course = new CouresModelView(cc);
+
             ViewBag.Message = "Coures view Page";
 
             return View(course);
         }
 
-        public ActionResult EditCourse()
-        {
-            return View();
-        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -69,12 +67,6 @@ namespace LSS.Controllers
             return RedirectToAction("CouresPage", new { courseID = addCLO.CLO.courseId });
         }
 
-
-        public ActionResult CreateCourseInformationForm()
-        {
-
-            return View();
-        }
         public ActionResult DeleteCLO(int id)
         {
             try
@@ -107,9 +99,9 @@ namespace LSS.Controllers
             ViewBag.courseId = courseId;
             return View(AFITC);
         }
-        public ActionResult ActionsForImprovingDetails(string CourseID, System.DateTime Year, string Semseter)
+        public ActionResult ActionsForImprovingDetails(string? CourseID, DateTime? Year, string? Semester)
         {
-            ActionsForImprovingTheCourse AFITC = _DatabaseEntities.ActionsForImprovingTheCourses.Find(CourseID, Year, Semseter);
+            ActionsForImprovingTheCourse AFITC = _DatabaseEntities.ActionsForImprovingTheCourses.Find(CourseID, Year, Semester);
             return View(AFITC);
         }
 
@@ -122,7 +114,7 @@ namespace LSS.Controllers
                 {
                     CourseID = courseId,
                     Year = yas.Year,
-                    Semseter = yas.Semester
+                    Semester = yas.Semester
                 };
             }
             return View(ActionsForImprovingTheCourse);
@@ -162,7 +154,7 @@ namespace LSS.Controllers
         [HttpPost]
         public ActionResult IsAssessedPartialView(isAssessed isAssessed)
         {
-            isAssessed a = _DatabaseEntities.isAssesseds.Find(isAssessed.CourseID, isAssessed.Year, isAssessed.Semseter);
+            isAssessed a = _DatabaseEntities.isAssesseds.Find(isAssessed.CourseID, isAssessed.Year, isAssessed.Semester);
             try
             {
                 if (a == null)
@@ -231,10 +223,17 @@ namespace LSS.Controllers
         }
 
 
-        public ActionResult CourseAssessmentSurvey()
+        public ActionResult CourseAssessmentSurvey(string? CourseID, DateTime? Year , string? Semester)
         {
-            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find("A0334501", yas.Year, yas.Semester);
-
+            if (CourseID == null || Year == null || Semester == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester);
+            if (cc == null)
+            {
+                return HttpNotFound();
+            }
             CourseAssessmentID a = new CourseAssessmentID()
             {
                 CC = cc,
@@ -243,10 +242,10 @@ namespace LSS.Controllers
         }
 
         //todo: creat col itterator and configure the xlsx file that woul be uploaded
-        public ActionResult UploadSurveyAnswers(FormCollection formCollection, string CourseID, DateTime Year, string Semseter)
+        public ActionResult UploadSurveyAnswers(FormCollection formCollection, string CourseID, DateTime Year, string Semester)
         {
-            List<int> QID = _DatabaseEntities.CourseAssessmentSurvays.Where(x => x.CourseID.Equals(CourseID) && x.Year.Equals(Year) && x.Semseter
-            .Equals(Semseter)).Select(x => x.ID).ToList();
+            List<int> QID = _DatabaseEntities.CourseAssessmentSurvays.Where(x => x.CourseID.Equals(CourseID) && x.Year.Equals(Year) && x.Semester
+            .Equals(Semester)).Select(x => x.ID).ToList();
 
             if (Request != null)
             {
@@ -307,27 +306,43 @@ namespace LSS.Controllers
             return View();
         }
         //todo: create a Model for CourseStudent List
-        [HttpPost]
-        public ActionResult AddBook(CourseTextBook courseTextBook)
+        public PartialViewResult AddBook()
         {
+            return PartialView();
+        }
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddBook(AddBookMV? addBookMV)
+        {
+            CourseTextBook courseTextBook = addBookMV.book;
+            YearAndSemester YAS = addBookMV.YAS;
+
             if (ModelState.IsValid)
             {
                 try
                 {
                     _DatabaseEntities.CourseTextBooks.Add(courseTextBook);
                     _DatabaseEntities.SaveChanges();
+                    if (courseTextBook.Course != null && !courseTextBook.Course.Equals(""))
+                        return RedirectToAction("CouresPage", "CourseCoordinator", (courseTextBook.Course, YAS.Year, YAS.Semester));
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine("Error at line 413 CourseCoordinator" + e.Message);
-
-                    return RedirectToAction("CoursePage", courseTextBook.Course);
+                    return PartialView();
+                    // return RedirectToAction("CouresPage", "CourseCoordinator", (courseTextBook.Course, YAS.Year, YAS.Semester));
                 }
 
             }
-            if (courseTextBook.Course != null && !courseTextBook.Course.Equals(""))
-                return RedirectToAction("CoursePage", courseTextBook.Course);
-            return RedirectToAction("Index", "LogedIn");
+            else
+            {
+                return PartialView();
+            }
+            return PartialView();
+            //return RedirectToAction("Index", "LogedIn");
         }
 
 
@@ -351,7 +366,10 @@ namespace LSS.Controllers
         }
 
 
-        public ActionResult DirectAssessmentPI(PIAssessmentMV? pIAssessment, List<int> QID)
+        //todo:needs testing 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DirectAssessmentPI(PIAssessmentMV? pIAssessment, int[] QID)
         {
             CourseCoordinator cc = pIAssessment.CourseCoordinator;
             List<int> everyCourseQ = pIAssessment.AllQustions;
@@ -361,6 +379,23 @@ namespace LSS.Controllers
             {
                 if (QID != null)
                 {
+                    foreach (int id in everyCourseQ)
+                    {
+                        
+                        CourseExamQuestion q = new CourseExamQuestion();
+                        q = _DatabaseEntities.CourseExamQuestions.Find(QID);
+                        if (QID.Contains(id) || !cc.CourseExamQuestions.Select(x => x.ID).Contains(id))
+                        {
+                            cc.CourseExamQuestions.Add(q);
+                        }
+                        else if (!QID.Contains(id) || cc.CourseExamQuestions.Select(x => x.ID).Contains(id))
+                        {
+                            cc.CourseExamQuestions.Remove(q);
+                        }
+                    }
+                    _DatabaseEntities.Entry(cc).State = EntityState.Modified;
+                    _DatabaseEntities.SaveChanges();
+
 
                 }
             }
@@ -368,6 +403,23 @@ namespace LSS.Controllers
             return View();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddRCDA(ResultOfCourseDirectAssessment RCDA)
+        {
+            if(_DatabaseEntities.ResultOfCourseDirectAssessments.Find(RCDA.CourseID,RCDA.Year, RCDA.Semester)!=null)
+            {
+                _DatabaseEntities.Entry(RCDA).State = EntityState.Modified;
+                _DatabaseEntities.SaveChanges();
+            }
+            else
+            {
+                _DatabaseEntities.ResultOfCourseDirectAssessments.Add(RCDA);
+                _DatabaseEntities.SaveChanges();
+
+            }
+            return View();
+        }
 
 
 
@@ -381,28 +433,72 @@ namespace LSS.Controllers
         }
 
 
+        public ActionResult CourseSchedule(string? CourseID, DateTime? Year, string? Semester)
+        {
+            if (CourseID == null || Year == null || Semester == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            List<Schedule> schedules = _DatabaseEntities.Schedules.Where(x => x.CourseID.Equals(CourseID) &&
+              x.Year.Equals((DateTime)Year) && x.Semester.Equals(Semester)).ToList();
+            if (!schedules.Any())
+            {
+                for (int i = 0; i < 17; i++)
+                {
+                    Schedule schedule = new Schedule();
+                    schedule.CourseID = CourseID;
+                    schedule.Year = (DateTime)Year;
+                    schedule.Semester = Semester;
+                    schedule.WeekNumber = i+1;
+                    _DatabaseEntities.Schedules.Add(schedule);
+                    _DatabaseEntities.SaveChanges();
+                    schedules.Add(schedule);
+                }
+            }
+            return View(schedules);
+        }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CourseRecourse(Course courseRecourse)
+        public ActionResult EditWeek(Schedule s,int[] CLO_ID)
         {
-
-            Course c = _DatabaseEntities.Courses.Find(courseRecourse.ID);
-           
-            
-            if (c != null)
+            Schedule schedule = _DatabaseEntities.Schedules.Find(s.CourseID, s.Year, s.Semester,s.WeekNumber);
+            if(schedule == null)
             {
-                c.Other_Online_resources = courseRecourse.Other_Online_resources;
-                c.Other_Required_Material = courseRecourse.Other_Required_Material;
-                _DatabaseEntities.Entry(c).State = EntityState.Modified;
-                _DatabaseEntities.SaveChanges();
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            else
-            {
-                _DatabaseEntities.Courses.Add(courseRecourse);
-                _DatabaseEntities.SaveChanges();
+            schedule.Assignments = s.Assignments;
+            schedule.Topic = s.Topic;
+            schedule.Reference = s.Reference;
 
+            List<CLO> allCLOes = _DatabaseEntities.CLOes.Where(x => x.courseId.Equals(s.CourseID)).ToList();
+
+            foreach (CLO cloid in allCLOes)
+            {
+                if (schedule.CLOes.Select(x => x.ID).Contains(cloid.ID))
+                {
+                    if (!CLO_ID.Contains(cloid.ID))
+                    {
+                        schedule.CLOes.Remove(cloid);
+                    }
+                }
+                else
+                {
+                    if (CLO_ID.Contains(cloid.ID))
+                    {
+                        schedule.CLOes.Add(cloid);
+
+                    }
+                }
+                
             }
-            return View();
+
+            _DatabaseEntities.Entry(schedule).State = EntityState.Modified;
+            _DatabaseEntities.SaveChanges();
+
+            return RedirectToAction("CourseSchedule", new { s.CourseID, s.Year, Semester = s.Semester });
         }
     }
 }

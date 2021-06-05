@@ -7,6 +7,7 @@
         ViewBag.Title = "CourseSyllabus";
         Layout = "~/Views/Shared/_Layout.cshtml";
         <link rel="stylesheet" href="~/Content/FormsStyle.css" />
+       
     }
 </header>
 
@@ -20,13 +21,13 @@
                new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
 
                 @Html.ActionLink("Students List", "CourseStudentList", "CourseCoordinator",
-               new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "bg-transparent pb-3" })
+               new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
 
                 @Html.ActionLink("PI Assessment", "PI Assessment", "CourseCoordinator",
-               new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "bg-transparent pb-3" })
+               new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
 
                 @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator",
-               new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "bg-transparent pb-3" })
+               new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
                 <br />
                 <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Forms</b> </h4>
                 @Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3 text-success" })
@@ -49,8 +50,6 @@
                 </div>
 
                 <hr style="border: 2px solid black" />
-
-
 
                 <table id="FormName">
                     <tr class="text-center">
@@ -79,7 +78,7 @@
                         <th style=" border:1px solid black" bgcolor="grey"> Academic Year </th>
                         <td style=" border:1px solid black">@Html.DisplayFor(x => x.CourseCoordinator.Year.Year) </td>
                         <th style=" border:1px solid black" bgcolor="grey"> Semester </th>
-                        <td style=" border:1px solid black">@Html.DisplayFor(x => x.CourseCoordinator.Semseter) </td>
+                        <td style=" border:1px solid black">@Html.DisplayFor(x => x.CourseCoordinator.Semester) </td>
                     </tr>
                     <tr>
                         <th style=" border:1px solid black" bgcolor="silver" colspan="4"> Course Information:</th>

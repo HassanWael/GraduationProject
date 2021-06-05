@@ -11,16 +11,12 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class CourseInformationForm
     {
         public string CourseID { get; set; }
-        [Required]
-        [Display(Name = "Date")]
-        [DataType(DataType.Date)]
         public System.DateTime Year { get; set; }
-        public string Semseter { get; set; }
+        public string Semester { get; set; }
         public Nullable<bool> CoordinatorSignature { get; set; }
         public Nullable<bool> HeadOFDeptSignature { get; set; }
         public Nullable<bool> ViceDeanSignature { get; set; }

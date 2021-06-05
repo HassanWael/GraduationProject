@@ -4,12 +4,16 @@
 {
     @Html.AntiForgeryToken()
 }
-<div class="form-horizontal">
-    <h4>CourseAssessmentSurvay</h4>
+<div class="container shadow-lg p-3 mb-3 mt-5 bg-white">
+    <h4 class="text-center">Course Assessment Survay</h4>
+
+    <hr class="border-danger w-75" />
     @Html.HiddenFor(x => x.CAS.CourseID)
     @Html.HiddenFor(x => x.CAS.Year)
-    @Html.HiddenFor(x => x.CAS.Semseter)
+    @Html.HiddenFor(x => x.CAS.Semester)
     @Html.HiddenFor(x => x.CAS.DeptID)
+
+
 
     <div class="form-group">
         @Html.LabelFor(model => model.CAS.Qustion, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -27,14 +31,17 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+    <div class="form-group mt-2">
+        <div>
+            <input type="submit" value="Create" class="btn btn-primary" />
         </div>
+
+        <div class="float-right">
+            @Html.ActionLink("Back", "CourseAssessmentSurvey", new { CourseID = Model.CC.CourseID })
+        </div>
+
     </div>
 </div>
     
 
-    <div>
-        @Html.ActionLink("Back", "CourseAssessmentSurvey", new { CourseID = Model.CC.CourseID })
-    </div>
+    

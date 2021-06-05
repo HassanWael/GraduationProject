@@ -1,0 +1,66 @@
+﻿@model LSS.Models.ResultOfCourseDirectAssessment
+
+@using (Html.BeginForm("AddRCDA", "Exam", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container shadow-lg p-3 mb-3 mt-5 bg-white">
+        <h4 class="text-center">Result Of Course Direct Assessment</h4>
+        <hr class="border-primary w-75" />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.HiddenFor(model => model.CourseID)
+        @Html.HiddenFor(model => model.Year)
+        @Html.HiddenFor(model => model.semester)
+
+
+
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Actions taken:</span>
+            </div>
+            @Html.TextAreaFor(model => model.ActionsTaken, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ActionsTaken, "", new { @class = "text-danger" })
+        </div>
+
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Observation:</span>
+            </div>
+            @Html.TextAreaFor(model => model.Observation, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Observation, "", new { @class = "text-danger" })
+        </div>
+
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Analysis And Justification:</span>
+            </div>
+            @Html.TextAreaFor(model => model.AnalysisAndJustification, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.AnalysisAndJustification, "", new { @class = "text-danger" })
+        </div>
+
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Recommendation:</span>
+            </div>
+            @Html.TextAreaFor(model => model.Recommendation, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Recommendation, "", new { @class = "text-danger" })
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

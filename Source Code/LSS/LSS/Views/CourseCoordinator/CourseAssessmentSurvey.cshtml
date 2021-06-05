@@ -9,29 +9,32 @@
         ViewBag.Title = "Enroled Students";
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
-   
+
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 </head>
-
-
-<input type="button" value="Print Document" onclick="window.print()" class="btn btn-primary" />
-
 
 
 <body>
     <div class="row">
         <div class="col-2 mt-lg-5">
+            <input type="button" value="Print Document" onclick="window.print()" class="btn btn-primary mb-2" />
+
             <div class="list-group list-group-flush w-50">
+
                 <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Content</b> </h4>
                 @Html.ActionLink("Recomandations for improving the course", "ActionsForImproving", "CourseCoordinator", new { ViewBag.courseID }, new { @class = "bg-transparent pb-3" })
 
-                @Html.ActionLink("Students List", "CourseStudentList", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semseter }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Students List", "CourseStudentList", "Students", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semester }, new { @class = "bg-transparent pb-3" })
 
-                @Html.ActionLink("PI Assessment", "PI Assessment", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semseter }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("PI Assessment", "PI Assessment", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semester }, new { @class = "bg-transparent pb-3" })
 
-                @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semseter }, new { @class = "bg-transparent pb-3 text-success" })
+                @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semester }, new { @class = "bg-transparent pb-3 text-success" })
+
+                @Html.ActionLink("Exams & Tasks", "ListCourseExamsAndTasks", "Exam", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semester }, new { @class = "bg-transparent pb-3" })
                 <br />
                 <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Forms</b> </h4>
                 @Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { ViewBag.courseID }, new { @class = "bg-transparent pb-3" })
@@ -42,6 +45,8 @@
                 @Html.ActionLink("Exam Evaluation", "ExamEvaluation", "Forms", new { ViewBag.courseID }, new { @class = "bg-transparent pb-3" })
                 @Html.ActionLink("Question Answer Sheet", "QuestionsAnswersSheet", "Forms", new { ViewBag.courseID }, new { @class = "bg-transparent pb-3" })
             </div>
+
+
         </div>
 
         <div class="col-lg-8">
@@ -136,7 +141,7 @@
 
                             <input type="hidden" id="CourseID" name="CourseID" value='@Model.CC.CourseID' />
                             <input type="hidden" id="Year" name="Year" value='@Model.CC.Year' />
-                            <input type="hidden" id="Semseter" name="Semseter" value='@Model.CC.Semseter' />
+                            <input type="hidden" id="Semester" name="Semester" value='@Model.CC.Semester' />
                         </div>
 
                         <div id="addQustion" class="modal fade" tabindex="-1" role="dialog">
@@ -152,7 +157,7 @@
                             </div>
                         </div>
                     </div>
-                    <button id='open' class="btn btn-primary" data-toggle="modal" data-target="#addQustion">Add Course Learning outcome</button>
+                    <button id='open' class="btn btn-primary col-md-2" data-toggle="modal" data-target="#addQustion">Add CLO</button>
                 </div>
             </div>
         </div>

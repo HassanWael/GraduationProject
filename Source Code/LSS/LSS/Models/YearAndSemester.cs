@@ -20,11 +20,13 @@ namespace LSS.Models
         {
             this.CourseCoordinators = new HashSet<CourseCoordinator>();
         }
-
         [Required]
-        [Display(Name = "Date")]
+        [Display(Name = "Year")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+
         public System.DateTime Year { get; set; }
+        [Required]
         public string Semester { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

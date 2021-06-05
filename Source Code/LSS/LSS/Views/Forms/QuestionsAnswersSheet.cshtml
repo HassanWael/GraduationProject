@@ -5,6 +5,8 @@
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
     <link href="~/Content/FormsStyle.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 </head>
 
 
@@ -18,13 +20,13 @@
                    new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
 
                     @Html.ActionLink("Students List", "CourseStudentList", "CourseCoordinator",
-                   new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "bg-transparent pb-3" })
+                   new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
 
                     @Html.ActionLink("PI Assessment", "PI Assessment", "CourseCoordinator",
-                   new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "bg-transparent pb-3" })
+                   new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
 
                     @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator",
-                   new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semseter }, new { @class = "bg-transparent pb-3" })
+                   new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
                     <br />
                     <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Forms</b> </h4>
                     @Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })

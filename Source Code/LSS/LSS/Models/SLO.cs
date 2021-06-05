@@ -21,10 +21,10 @@ namespace LSS.Models
             this.SLO_PEO = new HashSet<SLO_PEO>();
             this.Courses = new HashSet<Course>();
         }
-        public SLO(int deptID)
-            : this()
+        public SLO(int DeptID)
+            :this()
         {
-            this.DeptID = deptID;
+            this.DeptID = DeptID;
         }
 
         public string SLOID { get; set; }

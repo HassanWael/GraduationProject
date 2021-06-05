@@ -9,10 +9,13 @@
 
 namespace LSS.Models
 {
+    using System.ComponentModel;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
+    
     public partial class CourseExam
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,26 +23,38 @@ namespace LSS.Models
         {
             this.CourseExamQuestions = new HashSet<CourseExamQuestion>();
         }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     
         public int ID { get; set; }
+        [Required]
         public string CourseID { get; set; }
         [Required]
-        [Display(Name = "Date")]
+        [Display(Name = "Year")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MMM/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime Year { get; set; }
-        public string Semseter { get; set; }
-        public string Type { get; set; }
-        public string Moderator { get; set; }
-        public int ExamWeight { get; set; }
-        public string ExamDurationTime { get; set; }
         [Required]
-        [Display(Name = "Date")]
+        public string Semester { get; set; }
+        [Required]
+        [Display(Name = "Exam or Task Name/Type")]
+        public string Type { get; set; }
+        [Required]
+        public string Moderator { get; set; }
+        [Required]
+        [Display(Name = "Exam weight")]
+        public int ExamWeight { get; set; }
+        [Required]
+        [Display(Name = "Exam Dueration Time")]
+        public string ExamDurationTime { get; set; }
+        [Display(Name = "Moderation date")]
         [DataType(DataType.Date)]
         public System.DateTime ModerationDate { get; set; }
         [Required]
-        [Display(Name = "Date")]
+        [Display(Name = "Exam Date")]
         [DataType(DataType.Date)]
         public System.DateTime ExamDate { get; set; }
+        [Display(Name = "Additional Comments")]
         public string AdditionalComments { get; set; }
     
         public virtual CourseCoordinator CourseCoordinator { get; set; }

@@ -21,7 +21,7 @@ namespace LSS.Controllers
         {
 
             String userID = User.Identity.Name;
-          
+            Lecturer Lecturer=  _databaseEntities.Lecturers.Find(userID);
             HomeCourseListViewModel CLVM= new HomeCourseListViewModel(userID);
 
             return View(CLVM);
