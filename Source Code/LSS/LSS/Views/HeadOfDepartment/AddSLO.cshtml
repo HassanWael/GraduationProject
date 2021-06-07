@@ -1,7 +1,7 @@
 ﻿
 @model LSS.Models.DepartmentViewModel.AddSLOMV
 @using LSS.Models
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 @using (Html.BeginForm("AddSLO", "HeadOfDepartment", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
@@ -17,7 +17,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text text-primary" id="deptId">Dept ID</span>
                 </div>
-                @Html.EditorFor(model => model.SLO.DeptID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.SLO.DeptID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly"} })
                 @Html.ValidationMessageFor(model => model.SLO.DeptID, "", new { @class = "text-danger" })
             </div>
 
@@ -25,7 +25,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text text-primary" id="sloId">SLO ID</span>
                 </div>
-                @Html.EditorFor(model => model.SLO.SLOID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.SLO.SLOID, new { htmlAttributes = new { @class = "form-control", id = "IDSLO" } })
                 @Html.ValidationMessageFor(model => model.SLO.SLOID, "", new { @class = "text-danger" })
             </div>
 
@@ -33,7 +33,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text text-primary" id="desc">Descreption</span>
                 </div>
-                @Html.EditorFor(model => model.SLO.Desc, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.SLO.Desc, new { htmlAttributes = new { @class = "form-control", id = "DescSLO" } })
                 @Html.ValidationMessageFor(model => model.SLO.Desc, "", new { @class = "text-danger" })
             </div>
 
@@ -53,10 +53,33 @@
 
 
         <div class="justify-content-center align-items-center text-center">
-            <input type="submit" value="Add SLO" class="btn btn-primary" />
+            <input type="submit" value="Add SLO" class="btn btn-primary" id="PartialSubmitSLO" disabled />
             <div class="text-right mb-2">
                 @Html.ActionLink("Cancel", "Index")
             </div>
         </div>
     </div>
+    <script>
+       
+        $("#IDSLO").change(function () {
+            
+            if ($("#IDSLO").val() && $("#DescSLO").val()) {
+                $("#PartialSubmitSLO").prop('disabled', false);
+            } else {
+                $("#PartialSubmitSLO").prop('disabled', true);
+                console.log($("#IDSLO").val());
+            }
+          
+        });
+        $("#DescSLO").change(function () {
+            console.log($("#Desc").val());
+            if ($("#IDSLO").val() && $("#DescSLO").val()) {
+                $("#PartialSubmitSLO").prop('disabled', false);
+            } else {
+                $("#PartialSubmitSLO").prop('disabled', true);
+                console.log($("#DescSLO").val());
+            }
+        });
+
+    </script>
 }

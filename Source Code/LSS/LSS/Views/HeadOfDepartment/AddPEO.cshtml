@@ -39,10 +39,28 @@
 
 
         <div class="justify-content-center align-items-center text-center mt-3">
-            <input type="submit" value="Add" asp-action="AddPEO" id="PartialSubmit" class="btn btn-primary" />
+            <input type="submit" value="Add" asp-action="AddPEO" id="PartialSubmit" class="btn btn-primary" disabled/>
             <div class="text-right mb-2">
                 @Html.ActionLink("Cancel", "Index")
             </div>
         </div>
     </div>
+    <script>
+      
+        $("#ID").change(function () {
+            console.log($("#ID").val());
+            if ($("#ID").val() && $("#Desc").val()) {
+                $("#PartialSubmit").prop('disabled', false);
+            } else
+                $("#PartialSubmit").prop('disabled', true);
+        });
+        $("#Desc").change(function () {
+            console.log($("#Desc").val());
+            if ($("#ID").val() && $("#Desc").val()) {
+                $("#PartialSubmit").prop('disabled', false);
+            } else
+                $("#PartialSubmit").prop('disabled', true);
+        });
+
+    </script>
 }
