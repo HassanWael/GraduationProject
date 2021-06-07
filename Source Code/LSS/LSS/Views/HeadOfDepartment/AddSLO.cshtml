@@ -55,7 +55,7 @@
         <div class="justify-content-center align-items-center text-center">
             <input type="submit" value="Add SLO" class="btn btn-primary" id="PartialSubmitSLO" disabled />
             <div class="text-right mb-2">
-                @Html.ActionLink("Cancel", "Index")
+                @Html.ActionLink("Cancel", "Index", "HeadOfDepartment", Model.SLO.DeptID)
             </div>
         </div>
     </div>
