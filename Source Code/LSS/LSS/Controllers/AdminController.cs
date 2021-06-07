@@ -286,7 +286,6 @@ namespace LSS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
         public ActionResult EditDpt(Department department)
         {
 
@@ -303,6 +302,7 @@ namespace LSS.Controllers
             d.Lecturer = department.Lecturer;
             d.Name = department.Name;
             d.FacultyId = department.FacultyId;
+            d.HeadOFDepartment = department.HeadOFDepartment;
             _DatabaseEntities.Entry(d).State = EntityState.Modified;
             _DatabaseEntities.SaveChanges();
             return RedirectToAction("ListDepartments");

@@ -31,8 +31,7 @@ namespace LSS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditSLO(AddSLOMV md,String[] PEOID)
         {
-            if (User.Identity.Name.Equals(md.SLO.Department.Lecturer))
-            {
+            
                 if (ModelState.IsValid)
                 {
                     List<PEO> PEOs = md.PEOs.ToList();
@@ -70,10 +69,6 @@ namespace LSS.Controllers
                 }
                 return View(md);
 
-            }
-            return RedirectToAction("index");
-
-
 
         }
 
@@ -83,16 +78,13 @@ namespace LSS.Controllers
 
         public ActionResult AddPI(PI pi)
         {
-            if (User.Identity.Name.Equals(pi.SLO.Department.Lecturer))
-            {
+            
 
                 _databaseEntities.PIs.Add(pi);
                 _databaseEntities.SaveChanges();
 
                 return RedirectToAction("index", pi.DeptID);
-            }
-            return RedirectToAction("index");
-
+     
         }
 
         [HttpPost]
@@ -100,8 +92,7 @@ namespace LSS.Controllers
 
         public ActionResult AddSLO(AddSLOMV md, String[] PEOID)
         {
-            if (User.Identity.Name.Equals(md.SLO.Department.Lecturer))
-            {
+           
                 if (ModelState.IsValid)
             {
                 _databaseEntities.SLOes.Add(md.SLO);
@@ -119,8 +110,6 @@ namespace LSS.Controllers
                 return RedirectToAction("index", new { d = md.SLO.DeptID });
             }
             return View(md);
-            }
-            return RedirectToAction("index");
         }
 
         [HttpPost]
