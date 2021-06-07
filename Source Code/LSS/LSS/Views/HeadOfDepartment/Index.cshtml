@@ -68,7 +68,7 @@
             <h2 class="pt-2">Department Informatin</h2>
             <hr style="border-color:red;" class="align-items-start" />
             <table class="dl-horizontal" style="width:100%">
-                <tr>        
+                <tr>
                     <td>
                         <h4>@Html.DisplayNameFor(model => model.Name)</h4>
                     </td>
@@ -81,14 +81,14 @@
                         <h4>@Html.DisplayName("Faculty")</h4>
                     </td>
                     <td>
-                       <h4>@Html.DisplayFor(model => model.Faculty.Name)</h4>
+                        <h4>@Html.DisplayFor(model => model.Faculty.Name)</h4>
                     </td>
                 </tr>
 
                 <tr>
                     <td>
-                       <h4> @Html.DisplayName("Head OF Department")</h4>
-                        </td>
+                        <h4> @Html.DisplayName("Head OF Department")</h4>
+                    </td>
 
                     <td>
                         <h4>@Html.DisplayFor(model => model.Lecturer.Name)</h4>
@@ -122,20 +122,20 @@
                 }
             </div>
 
-            <div id="addPEO" class="modal fade" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        @{
-                            Html.RenderPartial("AddPEO", new PEO(Model.ID));
-                        }
+            @if (User.Identity.Name.Equals(Model.HeadOFDepartment))
+            {
+                <div id="addPEO" class="modal fade" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            @{
+                                Html.RenderPartial("AddPEO", new PEO(Model.ID));
+                            }
+                        </div>
                     </div>
                 </div>
-            </div>
-            <button class="btn btn-outline-primary mb-3" id='open' data-toggle="modal" data-target="#addPEO">Add PEO</button>
+                <button class="btn btn-outline-primary mb-3" id='open' data-toggle="modal" data-target="#addPEO">Add PEO</button>
+            }
         </div>
-
-
-
         <hr style="border-color:red;" class="align-items-start mt-3" />
 
 
@@ -155,9 +155,11 @@
                             </td>
 
                             <td class="text-white">
-                                <a class="btn btn-primary"  id="open" data-toggle="modal" data-target="#@slo.SLOID">Edit</a>
-                                <a class="btn btn-primary"  id="open" data-toggle="modal" data-target="#PI_@slo.SLOID">Add PI </a>
-
+                                @if (User.Identity.Name.Equals(Model.HeadOFDepartment))
+                                {
+                                    <a class="btn btn-primary" id="open" data-toggle="modal" data-target="#@slo.SLOID">Edit</a>
+                                    <a class="btn btn-primary" id="open" data-toggle="modal" data-target="#PI_@slo.SLOID">Add PI </a>
+                                }
                                 <div id="PI_@slo.SLOID" class="modal fade" tabindex="-1" role="dialog">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -166,22 +168,25 @@
                                                 {
                                                     SLOID = slo.SLOID,
                                                     DeptID = Model.ID
-                                                }) ;
+                                                });
                                             }
                                         </div>
                                     </div>
                                 </div>
 
-
-                                <div id="@slo.SLOID" class="modal fade" tabindex="-1" role="dialog">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            @{
-                                                Html.RenderPartial("EditSLO", new AddSLOMV(slo));
-                                            }
+                                @if (User.Identity.Name.Equals(Model.HeadOFDepartment))
+                                {
+                                    <div id="@slo.SLOID" class="modal fade" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                @{
+                                                    Html.RenderPartial("EditSLO", new AddSLOMV(slo));
+                                                }
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                }
+
                             </td>
                         </tr>
 
@@ -198,17 +203,19 @@
                         </tr>
                     }
                 </table>
-
-                <div id="addSLO" class="modal fade" tabindex="-1" role="dialog">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            @{
-                                Html.RenderPartial("AddSLO", new AddSLOMV(Model.ID));
-                            }
+                @if (User.Identity.Name.Equals(Model.HeadOFDepartment))
+                {
+                    <div id="addSLO" class="modal fade" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                @{
+                                    Html.RenderPartial("AddSLO", new AddSLOMV(Model.ID));
+                                }
+                            </div>
                         </div>
                     </div>
-                </div>
-                <button class="btn btn-outline-primary mb-3" id='open' data-toggle="modal" data-target="#addSLO">Add SLO</button>
+                    <button class="btn btn-outline-primary mb-3" id='open' data-toggle="modal" data-target="#addSLO">Add SLO</button>
+                }
             </div>
         </div>
 
