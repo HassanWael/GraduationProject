@@ -31,6 +31,19 @@ namespace LSS.Models.CoursesModelView
             }
             set { course = value; }
         }
+        private List<OtherLecturer>otherLecturers{get;set;}
+        public List<OtherLecturer> OtherLecturers { get
+            {
+                if (otherLecturers == null)
+                {
+                    otherLecturers = new List<OtherLecturer>();
+                    otherLecturers = CourseCoordinator.OtherLecturers.ToList();
+                }
+
+                return otherLecturers;
+            }
+        }
+
         private Department department { get; set; }
         public Department Department
         {

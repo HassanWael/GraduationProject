@@ -1,168 +1,162 @@
-﻿<header>
-    @{
-        ViewBag.Title = "CourseAssessmentSurvey";
-        Layout = "~/Views/Shared/_Layout.cshtml";
-    }
-    <link rel="stylesheet" href="~/Content/FormsStyle.css" />
-   
+﻿@model LSS.Models.CourseCoordinator
+@using LSS.Models
+@{
+    ViewBag.Title = "CourseAssessmentSurvey";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/Content/FormsStyle.css" />
+<header style="background:none;">
+    <table align="center">
+        <tr>
+            <th>
+                Al-Ahliyya Amman University
+            </th>
+
+            <td>
+                <img src="~/Images/Al-Ahliya_Amman_University_Logo.png" />
+            </td>
+
+            <th>  جامعة عمان الأهلية </th>
+        </tr>
+    </table>
+    <P align="center"><b> Faculty of Information Technology</b> </P>
+    <hr style="border: 2px solid black" />
 </header>
 
-<body>
-    <div class="row">
-        <div class="col-2 mt-lg-5">
-            @*<div class="list-group list-group-flush w-50">
-                    <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Content</b> </h4>
-                    @Html.ActionLink("Recomandations for improving the course", "ActionsForImproving", "CourseCoordinator",
-                   new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
+<body style="background:none;">
+    <input type="button" id="printPageButton" value="Print Document" onclick="window.print()" class="btn btn-primary" />
 
-                    @Html.ActionLink("Students List", "CourseStudentList", "CourseCoordinator",
-                   new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
+    <table id="FormName">
+        <tr> <td bgcolor="silver" style="border:1px solid black">  <p align="center"> <b>Course Assessment Survey </b> </p></tr>
 
-                    @Html.ActionLink("PI Assessment", "PI Assessment", "CourseCoordinator",
-                   new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
+    </table>
 
-                    @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator",
-                   new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
-                    <br />
-                    <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Forms</b> </h4>
-                    @Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
-                    @Html.ActionLink("Course Assessment Survey", "CourseAssessmentSurvey", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3 text-success" })
-                    @Html.ActionLink("Course File Checklist", "CourseFileChecklist", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
-                    @Html.ActionLink("Course Information Form", "CourseInformationForm", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
-                    @Html.ActionLink("Coures Report", "CourseReport", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
-                    @Html.ActionLink("Exam Evaluation", "ExamEvaluation", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
-                    @Html.ActionLink("Question Answer Sheet", "QuestionsAnswersSheet", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
-                </div>*@
-        </div>
-
-        <div class="col-lg-8">
-            <div class="container shadow-lg p-3 mb-3 mt-5 align-content-center bg-white">
-                <div class="d-flex justify-content-center align-items-center text-center">
-                    <div>
-                        <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo" alt="Logo" style="height:150px; width:120px;" />
-                        <h3>Faculty of Information Technology </h3>
-                    </div>
-                </div>
-
-                <hr style="border: 2px solid black" />
-
-                <table id="FormName">
-                    <tr class="text-center">
-                        <td bgcolor="silver" style="border:1px solid black" class="pt-2">
-                            <h4 align="center"> <b>Course Assessment Survey</b> </h4>
-                        </td>
-                    </tr>
-                </table>
-
-                <p class="pt-2">
-                    <u><b>Note to Students:</b></u>
-                    <br />
-                    The Faculty of Information Technology continually strives to improve the
-                    <br />education its students receive. We consider input from our students as one of
-                    <br />  the key factors in this process. Accordingly, we would appreciate your taking a
-                    <br />  few minutes to complete the following survey concerning your experience with
-                    this course.
-                    <br />
-                    <br />
-                    <br />
-                    <strong>
-                        Please notice that the result of this survey is for the sole purpose of assessment and
-                        <br /> improvement of our IT programs. It has nothing to do with your evaluation of the
-                        <br />instructor.
-                    </strong>
-                </p>
+    <p>
+        <u><b>Note to Students:</b></u>
+        <br />
+        <br />
+        The Faculty of Information Technology continually strives to improve the
+        <br />education its students receive. We consider input from our students as one of
+        <br />  the key factors in this process. Accordingly, we would appreciate your taking a
+        <br />  few minutes to complete the following survey concerning your experience with
+        this course.
+        <br />
+        <br />
+        <br />
+        <strong>
+            Please notice that the result of this survey is for the sole purpose of assessment and
+            <br /> improvement of our IT programs. It has nothing to do with your evaluation of the
+            <br />instructor.
+        </strong>
+    </p>
 
 
-                <P id="Pagebreak" style="page-break-before: always">
+    <P id="Pagebreak" style="page-break-before: always">
 
-                    <table class="table" style="border: 2px solid black">
-                        <tr style="border: 1px solid black">
-                            <th bgcolor="silver" style="border: 1px solid black">Faculty</th>
-                            <td style="border: 1px solid black"> </td>
-                            <th bgcolor="silver" style="border: 1px solid black">Major</th>
-                            <td style="border: 1px solid black"> </td>
-                        </tr>
+        <table class="table" style="border: 2px solid black">
+            <tr style="border: 1px solid black">
+                <th bgcolor="silver" style="border: 1px solid black">Faculty</th>
+                <td style="border: 1px solid black"> @Html.DisplayFor(x => x.Course.Department.Faculty.Name)</td>
+                <th bgcolor="silver" style="border: 1px solid black">Major</th>
+                <td style="border: 1px solid black"> @Html.DisplayFor(x => x.Course.Department.Name) </td>
+            </tr>
 
-                        <tr style="border: 1px solid black">
-                            <th bgcolor="silver" style="border: 1px solid black">Course Title</th>
-                            <td style="border: 1px solid black"> </td>
-                            <th bgcolor="silver" style="border: 1px solid black">Course Code</th>
-                            <td style="border: 1px solid black"> </td>
-                        </tr>
+            <tr style="border: 1px solid black">
+                <th bgcolor="silver" style="border: 1px solid black">Course Title</th>
+                <td style="border: 1px solid black">@Html.DisplayFor(x => x.Course.Title) </td>
+                <th bgcolor="silver" style="border: 1px solid black">Course Code</th>
+                <td style="border: 1px solid black"> @Html.DisplayFor(x => x.CourseID) </td>
+            </tr>
 
-                        <tr>
-                            <th bgcolor="silver" style="border: 1px solid black">Section</th>
-                            <td> </td>
-                            <th bgcolor="silver" style="border: 1px solid black">Academic<br />Year/Semester</th>
-                            <td style="border: 1px solid black"> </td>
-                        </tr>
-                    </table>
+            <tr>
+                <th bgcolor="silver" style="border: 1px solid black">Section</th>
+                <td>  </td>
+                <th bgcolor="silver" style="border: 1px solid black">Academic<br />Year/Semester</th>
+                <td style="border: 1px solid black">
+                    @Html.DisplayFor(x => x.Year.Year)/ @if (Model.Semester.Equals("1"))
+                    {
+                        Html.Display("First Semester ");
+                    }
+                    else if (Model.Semester.Equals(2))
+                    {
+                        Html.Display(" Second Semester ");
+                    }
+                    else
+                    {
+                        Html.Display(" Thired Semester ");
+                    }
+                </td>
+            </tr>
+        </table>
 
-                    <br />
-                    For each of the abilities, attributes, and skills listed below, please check the appropriate box that
-                    <br />corresponds to the extent you feel the class has helped you to achieve during the Semester.
-                    <br />
-                    <br />
+        <br />
+        For each of the abilities, attributes, and skills listed below, please check the appropriate box that
+        <br />corresponds to the extent you feel the class has helped you to achieve during the semester.
+        <br />
+        <br />
 
-                    <table class="table" style="border: 2px solid black">
-                        <tr>
-                            <th style="border: 1px solid black" bgcolor="silver" rowspan="2">
-                                <h4>
-                                    <b>
-                                        Studentlearning outcomes
-                                        <br />(by completing this course, students are able to:)
-                                    </b>
-                                </h4>
-                            </th>
-                            <th style="border: 1px solid black" bgcolor="silver">Strongly<br /> Disagree</th>
-                            <td style="border: 1px solid black" bgcolor="silver" colspan="3"> </td>
-                            <th style="border: 1px solid black">Strongly <br />Agree</th>
-                        </tr>
-
-                        <tr>
-                            <th style="border: 1px solid black">1</th>
-                            <th style="border: 1px solid black">2</th>
-                            <th style="border: 1px solid black">3</th>
-                            <th style="border: 1px solid black">4</th>
-                            <th style="border: 1px solid black">5</th>
-                        </tr>
-                        <tr>
-                            <th>1. </th>
-                            <td style="border: 1px solid black"><input type="checkbox" /> </td>
-                            <td style="border: 1px solid black"> <input type="checkbox" /></td>
-                            <td style="border: 1px solid black"> <input type="checkbox" /></td>
-                            <td style="border: 1px solid black"><input type="checkbox" /> </td>
-                            <td style="border: 1px solid black"><input type="checkbox" /> </td>
-                        </tr>
-                    </table>
-
-                    <br />
-                    <b>
-                        Please feel free to provide any further comments on this course and make suggestions on ways
-                        <br /> that the contents and/or delivery of this course could be improved.
-                    </b>
-                    <br />
-                    <hr style="border: 1px solid black" />
-                    <hr style="border: 1px solid black" />
-                    <hr style="border: 1px solid black" />
-                    <hr style="border: 1px solid black" />
-                    <br />
-
-                    <div align="center">
+        <table class="table" style="border: 2px solid black">
+            <tr>
+                <th style="border: 1px solid black" bgcolor="silver" rowspan="2">
+                    <h4>
                         <b>
-                            End of the questionnaire
-                            <br />Thank you for taking the time to complete this survey
-                            <br />You contribution is highly valuable and appreciated
+                            Studentlearning outcomes
+                            <br />(by completing this course, students are able to:)
                         </b>
-                    </div>
-                </P>
-            </div>
-        </div>
-    </div>
-</body>
-<hr>
+                    </h4>
+                </th>
+                <th style="border: 1px solid black" bgcolor="silver">Strongly<br /> Disagree</th>
+                <td style="border: 1px solid black" bgcolor="silver" colspan="3"> </td>
+                <th style="border: 1px solid black">Strongly <br />Agree</th>
+            </tr>
 
-<footer class="justify-content-center align-items-center d-flex">
+            <tr>
+                <th style="border: 1px solid black;max-width:30px">1</th>
+                <th style="border: 1px solid black;max-width:30px">2</th>
+                <th style="border: 1px solid black;max-width:30px">3</th>
+                <th style="border: 1px solid black;max-width:30px">4</th>
+                <th style="border: 1px solid black;max-width:30px">5</th>
+            </tr>
+            @{ int i = 0;}
+            @foreach (CourseAssessmentSurvay cas in Model.CourseAssessmentSurvays)
+            {
+                <tr>
+                    <th>@i @cas.Qustion  </th>
+                    <td style="border: 1px solid black;max-width:30px"><input type="checkbox" /> </td>
+                    <td style="border: 1px solid black;max-width:30px "> <input type="checkbox" /></td>
+                    <td style="border: 1px solid black;max-width:30px "> <input type="checkbox" /></td>
+                    <td style="border: 1px solid black;max-width:30px "><input type="checkbox" /> </td>
+                    <td style="border: 1px solid black;max-width:30px "><input type="checkbox" /> </td>
+                </tr>
+                { i++; }
+            }
+        </table>
+
+        <br />
+        <b>
+            Please feel free to provide any further comments on this course and make suggestions on ways
+            <br /> that the contents and/or delivery of this course could be improved.
+        </b>
+        <br />
+        <hr style="border: 1px solid black;  margin-top:35px" />
+        <hr style="border: 1px solid black;  margin-top:35px " />
+        <hr style="border: 1px solid black;  margin-top:35px" />
+        <hr style="border: 1px solid black;  margin-top:35px" />
+        <br />
+
+        <div align="center">
+            <b>
+                End of the questionnaire
+                <br />Thank you for taking the time to complete this survey
+                <br />You contribution is highly valuable and appreciated
+            </b>
+        </div>
+    </P>
+
+</body>
+
+
+<footer>
     <table>
         <tr>
 

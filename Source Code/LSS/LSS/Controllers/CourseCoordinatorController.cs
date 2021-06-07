@@ -34,7 +34,10 @@ namespace LSS.Controllers
             {
                 RedirectToAction("Index", "LogedIN");
             }
-            CouresModelView course = new CouresModelView(cc);
+            CouresModelView course = new CouresModelView()
+            {
+                CourseCoordinator = cc
+            };
 
             ViewBag.Message = "Coures view Page";
 
@@ -91,8 +94,7 @@ namespace LSS.Controllers
                 return View();
             }
         }
-
-
+        
         public ActionResult ActionsForImproving(string? courseId)
         {
             List<ActionsForImprovingTheCourse> AFITC = _DatabaseEntities.ActionsForImprovingTheCourses.Where(x => x.CourseID.Equals(courseId)).ToList();
@@ -310,8 +312,6 @@ namespace LSS.Controllers
         {
             return PartialView();
         }
-
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]

@@ -10,102 +10,138 @@ using System.Web.Mvc;
 
 namespace LSS.Controllers
 {
-    [Authorize]
+   // [Authorize]
     public class FormsController : Controller
     {
-        private readonly YearAndSemester yearAndSemester = SemesterSingelton.getCurrentYearAndSemester();
         private readonly LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
         // GET: Forms
-        public ActionResult Index()
-        {
-            return View();
-        }
 
-        public ActionResult CourseAssessmentSurvey()
+        public ActionResult CourseAssessmentSurvey(string? CourseID, DateTime? Year, string? Semester)
         {
-            return View();
-        }
-
-        public ActionResult CourseFileChecklist(string? CourseID)
-        {
-            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, yearAndSemester.Year, yearAndSemester.Semester);
-            return View();
-        }
-
-        public ActionResult CourseInformationForm(string? CourseID)
-        {
-            if (CourseID is null)
+            if (CourseID == null || Year == null || Semester==null)
             {
-                    RedirectToAction("Index","Home");
+                return new HttpStatusCodeResult(404);
             }
-
-            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, yearAndSemester.Year, yearAndSemester.Semester);
-            CouresModelView cmv = new CouresModelView(cc);
-            return View(cmv);
-        }
-
-        public ActionResult CourseReport(string? CourseID)
-        {
-            if (CourseID is null)
+            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester);
+            if (cc == null)
             {
-                RedirectToAction("Index", "Home");
+                return new HttpStatusCodeResult(404);
+
             }
-
-            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, yearAndSemester.Year, yearAndSemester.Semester);
-            CouresReportModelView cmv = new CouresReportModelView(cc);
-            return View(cmv);
-        }
-
-        public ActionResult CourseSyllabus(string? CourseID)
-        {
-            if (CourseID is null)
-            {
-                RedirectToAction("Index", "Home");
-            }
-
-            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, yearAndSemester.Year, yearAndSemester.Semester);
-            CouresReportModelView cmv = new CouresReportModelView(cc);
-            return View(cmv);
-        }
-
-        public ActionResult ExamEvaluation()
-        {
-            return View();
-        }
-
-        public ActionResult ExamModerationChecklist()
-        {   
-            return View();
-        }
-
-        public ActionResult QuestionsAnswersSheet()
-        {
-            return View();
-        }
-        public ActionResult CouresSyllabusAddData() {
-            return View();
-        }
-        public ActionResult addCourseSyllabus(string id,DateTime year,string Semester)
-        {
-            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(id, year, Semester);
             return View(cc);
         }
-        [HttpPost]
-        public ActionResult addCourseSyllabus(CourseSyllabu cs)
 
+        public ActionResult CourseFileChecklist(string? CourseID, DateTime? Year, string? Semester)
         {
-            try
+            if (CourseID == null || Year == null || Semester == null)
             {
+                return new HttpStatusCodeResult(404);
+            }
+            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester);
+            if (cc == null)
+            {
+                return new HttpStatusCodeResult(404);
 
-                _DatabaseEntities.CourseSyllabus.Add(cs);
-                _DatabaseEntities.SaveChanges();
             }
-            catch {
-                _DatabaseEntities.Entry(cs).State = EntityState.Modified;
-                _DatabaseEntities.SaveChanges();
-            }
-                return RedirectToAction("CoursePage", "CourseCoordinator", new { couresId = cs.CourseID });
-            
+            return View(cc);
         }
+
+        public ActionResult CourseInformationForm(string? CourseID, DateTime? Year, string? Semester)
+        {
+            if (CourseID == null || Year == null || Semester == null)
+            {
+              return  new HttpStatusCodeResult(404);
+            }
+            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester);
+            if (cc == null)
+            {
+                return new HttpStatusCodeResult(404);
+
+            }
+            CouresModelView cmv = new CouresModelView()
+            {
+                CourseCoordinator = cc
+            };
+            return View(cmv);
+        }
+
+        public ActionResult CourseReport(string? CourseID, DateTime? Year, string? Semester)
+        {
+            if (CourseID == null || Year == null || Semester == null)
+            {
+                return new HttpStatusCodeResult(404);
+            }
+            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester);
+            if (cc == null)
+            {
+                return new HttpStatusCodeResult(404);
+
+            }
+            CouresReportModelView cmv = new CouresReportModelView(cc);
+            return View(cmv);
+        }
+
+        public ActionResult CourseSyllabus(string? CourseID, DateTime? Year, string? Semester)
+        {
+            if (CourseID == null || Year == null || Semester == null)
+            {
+                new HttpStatusCodeResult(404);
+            }
+            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester);
+            if (cc == null)
+            {
+                new HttpStatusCodeResult(404);
+
+            }
+            CouresReportModelView cmv = new CouresReportModelView(cc);
+            return View(cmv);
+        }
+
+        public ActionResult ExamEvaluation(string? CourseID, DateTime? Year, string? Semester)
+        {
+            if (CourseID == null || Year == null || Semester == null)
+            {
+                new HttpStatusCodeResult(404);
+            }
+            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester);
+            if (cc == null)
+            {
+                new HttpStatusCodeResult(404);
+
+            }
+            return View();
+        }
+
+        public ActionResult ExamModerationChecklist(string? CourseID, DateTime? Year, string? Semester)
+        {
+            if (CourseID == null || Year == null || Semester == null)
+            {
+                new HttpStatusCodeResult(404);
+            }
+            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester);
+            if (cc == null)
+            {
+                new HttpStatusCodeResult(404);
+
+            }
+
+            return View();
+        }
+
+        public ActionResult QuestionsAnswersSheet(string? CourseID, DateTime? Year, string? Semester)
+        {
+            if (CourseID == null || Year == null || Semester == null)
+            {
+                new HttpStatusCodeResult(404);
+            }
+            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester);
+            if (cc == null)
+            {
+                new HttpStatusCodeResult(404);
+
+            }
+            return View();
+        }
+
     }
 }
