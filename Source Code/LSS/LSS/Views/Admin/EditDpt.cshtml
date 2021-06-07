@@ -10,29 +10,49 @@
 
 @using (Html.BeginForm("EditDpt", "Admin", FormMethod.Post))
 {
-    @Html.AntiForgeryToken()
-
-    <div class="container shadow-lg p-3 mb-3 mt-5 bg-white">
+    @Html.AntiForgeryToken()<div class="container shadow-lg p-3 mb-3 mt-5 bg-white">
         <div class="d-flex justify-content-center align-items-center text-center mb-3">
             <div>
                 <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo" alt="Logo" style="height:150px; width:120px;" />
-                <h4> Edit Department </h4>
+
+                @if (Model != null)
+                {
+                    <h4> Edit Department </h4>
+                }
+                else
+                {
+                    <h4> Creat Department </h4>
+                }
             </div>
         </div>
 
         <hr class="border-danger w-75 mb-4" />
 
 
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ID)
-
+      
 
         <div class="text-center align-content-center justify-content-center d-flex">
             <div class="card border-primary">
                 <div class="card-header">Department</div>
                 <div class="card-body">
 
+                    @if (Model==null)
+                    {
 
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">ID</span>
+                            </div>
+                            @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+                        </div>
+                    }
+                    else
+                    {
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.ID)
+
+                    }
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
@@ -45,20 +65,22 @@
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-default">Faculty ID:</span>
+                            <span class="input-group-text" id="inputGroup-sizing-default">Faculty</span>
                         </div>
-                        @Html.EditorFor(model => model.FacultyId, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.DropDownListFor(model => model.FacultyId, new SelectList(ViewBag.faculty, "ID", "Name"),"Select Faculty", new { @class = "form-control col-10" })
                         @Html.ValidationMessageFor(model => model.FacultyId, "", new { @class = "text-danger" })
                     </div>
 
-
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-default">Head OF Department:</span>
+                    @if (ViewBag.Lecturer != null)
+                    {
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Head OF Department:</span>
+                            </div>
+                            @Html.DropDownListFor(model => model.HeadOFDepartment, new SelectList(ViewBag.Lecturer, "ID", "Name"), "Select Head OF Department ", new { @class = "form-control col-10" })
+                            @Html.ValidationMessageFor(model => model.HeadOFDepartment, "", new { @class = "text-danger" })
                         </div>
-                        @Html.DropDownListFor(model => model.HeadOFDepartment, new SelectList(ViewBag.Lecturer,"ID","Name"),"Select Head OF Department ")
-                        @Html.ValidationMessageFor(model => model.HeadOFDepartment, "", new { @class = "text-danger" })
-                    </div>
+                    }
                 </div>
             </div>
         </div>

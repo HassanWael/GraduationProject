@@ -19,7 +19,15 @@ namespace LSS.Controllers
         readonly YearAndSemester YAS = SemesterSingelton.getCurrentYearAndSemester();
         public ActionResult Index(string? message)
         {
-            ViewBag.message = message;
+            if (message == null)
+            {
+                ViewBag.message = message;
+            }
+            else
+            {
+                ViewBag.message = "";
+
+            }
             return View();
         }
 
@@ -100,8 +108,9 @@ namespace LSS.Controllers
 
         public ActionResult CreateCourse()
         {
-            List<Department> departments = _DatabaseEntities.Departments.ToList();
-            ViewBag.dept = departments;
+            ViewBag.dept  = _DatabaseEntities.Departments.ToList();
+            ViewBag.courses = _DatabaseEntities.Courses.ToList();
+           
             return View();
         }
         [HttpPost]
@@ -135,8 +144,8 @@ namespace LSS.Controllers
 
         public ActionResult CreateUser()
         {
-            List<Department> departments = _DatabaseEntities.Departments.ToList();
-            ViewBag.dept = departments;
+            ViewBag.dept = _DatabaseEntities.Departments.ToList();
+
             Dictionary<string, string> role = new Dictionary<string, string>
             {
                 { "admin", "System Admin" },
@@ -150,6 +159,16 @@ namespace LSS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateUser(Lecturer lecturer)
         {
+
+            ViewBag.dept = _DatabaseEntities.Departments.ToList();
+
+            Dictionary<string, string> role = new Dictionary<string, string>
+            {
+                { "admin", "System Admin" },
+                { "Lecturer", "Lecturer" }
+            };
+            ViewBag.role = role;
+
             try
             {
                 if (_DatabaseEntities.Lecturers.Find(lecturer.ID) == null)
@@ -247,22 +266,15 @@ namespace LSS.Controllers
 
         public ActionResult EditDpt(int? id)
         {
+            ViewBag.faculty = _DatabaseEntities.Faculties.ToList();
+
+
             try
             {
                 Department d = _DatabaseEntities.Departments.Find(id);
-                if (id == null)
-                {
-                    return new HttpStatusCodeResult(404);
-                }
-                else if (d == null)
-                {
-                    return new HttpStatusCodeResult(404);
-                }
-                else
-                {
+                if(d!=null)
                     ViewBag.Lecturer = _DatabaseEntities.Lecturers.Where(x => x.dptId == id).ToList();
-                    return View(d);
-                }
+                 return View(d);
             }
             catch (Exception e)
             {
@@ -277,7 +289,21 @@ namespace LSS.Controllers
 
         public ActionResult EditDpt(Department department)
         {
-            _DatabaseEntities.Entry(department).State = EntityState.Modified;
+
+            ViewBag.faculty = _DatabaseEntities.Faculties.ToList();
+            Department d = _DatabaseEntities.Departments.Find(department.ID);
+            if (d == null)
+            {
+                _DatabaseEntities.Departments.Add(department);
+                _DatabaseEntities.SaveChanges();
+                return RedirectToAction("ListDepartments");
+
+            }
+
+            d.Lecturer = department.Lecturer;
+            d.Name = department.Name;
+            d.FacultyId = department.FacultyId;
+            _DatabaseEntities.Entry(d).State = EntityState.Modified;
             _DatabaseEntities.SaveChanges();
             return RedirectToAction("ListDepartments");
         }
@@ -522,7 +548,7 @@ namespace LSS.Controllers
 
                 }
                 String message = "Student added successfully";
-                return RedirectToAction("Index", "Admin", message);
+                return RedirectToAction("ListSudents", "Admin", message);
 
             }
             catch (Exception e)
@@ -651,7 +677,6 @@ namespace LSS.Controllers
                 return View(LecturersPaged);
             }
         }
-
 
     }
 }

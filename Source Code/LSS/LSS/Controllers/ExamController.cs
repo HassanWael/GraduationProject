@@ -55,7 +55,7 @@ namespace LSS.Controllers
             }
             
 
-            if (ModelState.IsValid&& _DatabaseEntities.CourseExams.Find(courseExam.ID)==null)
+            if (ModelState.IsValid)
             {
               
                     _DatabaseEntities.CourseExams.Add(courseExam);
@@ -67,7 +67,7 @@ namespace LSS.Controllers
                 return View();
             }
 
-            return RedirectToAction("CourseExamDetails", new { ExamID = courseExam.CourseID });
+            return RedirectToAction("CourseExamDetails", new { ExamID = courseExam.CourseID , Year = courseExam.Year, Semester = courseExam.Semester });
 }
         public ActionResult ListCourseExamsAndTasks(string? CourseID, DateTime? Year, string? Semester, int page = 1, int pageSize = 10)
         {

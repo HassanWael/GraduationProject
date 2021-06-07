@@ -7,20 +7,17 @@
     <div class="d-flex justify-content-center align-items-center text-center mb-3">
         <div>
             <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo" alt="Logo" style="height:150px; width:120px;" />
-            <h4> Students List </h4>
+            <h4> Users List </h4>
         </div>
     </div>
 
     <hr class="border-danger w-75 mb-4" />
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
 
     @if (ViewBag.updateMassege != null && ViewBag.updateMassege != "")
     {
         <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
-            <div class="card-header">Students Added</div>
+            <div class="card-header">Sucssess</div>
             <div class="card-body">
                 <p class="card-text">@ViewBag.updateMassege</p>
             </div>
@@ -47,7 +44,7 @@
 
 
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Create New User", "CreateUser")
     </p>
     <table class="table">
         <tr>
@@ -95,9 +92,7 @@
                     @Html.DisplayFor(modelItem => item.Department.Name)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) 
                 </td>
             </tr>
         }

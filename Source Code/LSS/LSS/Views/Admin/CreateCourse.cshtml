@@ -54,7 +54,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">Department</span>
                         </div>
-                        @Html.DropDownListFor(model => model.dptid, new SelectList(ViewBag.dept, "ID", "Name"), new { @class = "form-control col-10" })
+                        @Html.DropDownListFor(model => model.dptid, new SelectList(ViewBag.dept, "ID", "Name"),"Select Department", new { @class = "form-control col-10" })
                         @Html.ValidationMessageFor(model => model.dptid, "", new { @class = "text-danger" })
                     </div>
 
@@ -62,7 +62,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">Pre-Requisite</span>
                         </div>
-                        @Html.EditorFor(model => model.pre_requisite, new { htmlAttributes = new { @class = "form-control col-10" } })
+                        @Html.DropDownListFor(model => model.pre_requisite, new SelectList(ViewBag.courses , "ID" , "Title"), "Select Course",new { @class = "form-control col-10" })
                         @Html.ValidationMessageFor(model => model.pre_requisite, "", new { @class = "text-danger" })
                     </div>
 
@@ -71,7 +71,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">Co-Requisite</span>
                         </div>
-                        @Html.EditorFor(model => model.co_requisite, new { htmlAttributes = new { @class = "form-control col-10" } })
+                        @Html.DropDownListFor(model => model.co_requisite, new SelectList(ViewBag.courses, "ID", "Title"),"Select Course", new { @class = "form-control col-10" })
                         @Html.ValidationMessageFor(model => model.co_requisite, "", new { @class = "text-danger" })
                     </div>
 

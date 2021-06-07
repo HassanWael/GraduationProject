@@ -128,8 +128,7 @@ namespace LSS.Controllers
 
         public ActionResult AddPEO(PEO peo)
         {
-            if (User.Identity.Name.Equals(peo.Department.Lecturer))
-            {
+        
                 if (ModelState.IsValid)
             {
                 _databaseEntities.PEOs.Add(peo);
@@ -138,7 +137,6 @@ namespace LSS.Controllers
             }
             return View();
             }
-            return RedirectToAction("index");
-        }
+       
     }
 }
