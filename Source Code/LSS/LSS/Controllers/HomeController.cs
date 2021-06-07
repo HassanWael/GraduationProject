@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -26,37 +27,33 @@ namespace LSS.Controllers
         [HttpPost]
         public ActionResult Login(Lecturer user, String ReturnUrl)
         {
-            if (ModelState.IsValid)
-            {
+           
                 Lecturer ValidUser = _databaseEntities.Lecturers.SingleOrDefault(lecturer => lecturer.ID.Equals(user.ID) && lecturer.Password.Equals(user.Password));
                 if (ValidUser != null)
-                {        
+                {
+         
+                    Session["Name"] = ValidUser.Name;
+                    Session["Role"] = ValidUser.Role;
+                    Session["Dpt"] = ValidUser.dptId;
+                    var identity = (ClaimsIdentity)User.Identity;
+                    IEnumerable<Claim> claims = identity.Claims;
+                    identity.AddClaim(new Claim("DeptID", ValidUser.dptId.ToString()));
                     FormsAuthentication.SetAuthCookie(ValidUser.ID, false);
                     if (Url.IsLocalUrl(ReturnUrl))
                     {
-                        Session["ID"] = ValidUser.ID;
-                        Session["Role"] = ValidUser.Role;
-                        Session["Dpt"] = ValidUser.dptId;
                         return Redirect(ReturnUrl);
                     }
                     else
                     {
-                        Session["ID"] = ValidUser.ID;
-                        Session["Role"] = ValidUser.Role;
-                        Session["Dpt"] = ValidUser.dptId;
                         return RedirectToAction("Index", "LogedIn");
                     }
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Invalid ID or Password, try Again ");
+                    ViewBag.Error = "You have entered an invalid username or password";
                     return View();
                 }
-            }
-            else
-            {
-                return View();
-            }
+            
 
         }
 
