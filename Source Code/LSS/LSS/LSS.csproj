@@ -283,6 +283,7 @@
     <Compile Include="Models\CourseTextBook.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CurrentUser.cs" />
     <Compile Include="Models\database_firewall_rules.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -383,6 +384,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Scripts\disableButton.js" />
     <Content Include="Content\FormsStyle.css" />
     <Content Include="Content\HomePage.css" />
     <Content Include="Content\jquery-customselect.css" />
@@ -559,10 +561,10 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\CourseCoordinator\CouresPage.cshtml" />
     <Content Include="Views\LogedIn\Index.cshtml" />
-    <Content Include="Views\Admin\CreatUser.cshtml" />
-    <Content Include="Views\Admin\CreatCourse.cshtml" />
+    <Content Include="Views\Admin\CreateUser.cshtml" />
+    <Content Include="Views\Admin\CreateCourse.cshtml" />
     <Content Include="Images\CreatDpt.cshtml" />
-    <Content Include="Views\Admin\CreatFaculty.cshtml" />
+    <Content Include="Views\Admin\CreateFaculty.cshtml" />
     <Content Include="Views\Admin\EditDpt.cshtml" />
     <Content Include="Views\Admin\EditFaculty.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
@@ -592,7 +594,7 @@
     <Content Include="Views\CourseCoordinator\AddCLO.cshtml" />
     <Content Include="Views\HeadOfDepartment\AddPI.cshtml" />
     <Content Include="Views\Admin\AddCourseToSemester.cshtml" />
-    <Content Include="Views\Admin\CreatNewSemster.cshtml" />
+    <Content Include="Views\Admin\CreateNewSemster.cshtml" />
     <Content Include="Views\Admin\ListCourses.cshtml" />
     <Content Include="Views\CourseCoordinator\ActionsForImproving.cshtml" />
     <Content Include="Views\CourseCoordinator\IsAssessed.cshtml" />
@@ -601,10 +603,9 @@
     <Content Include="Views\CourseCoordinator\AddSurveyQustion.cshtml" />
     <Content Include="Views\Admin\ListStudents.cshtml" />
     <Content Include="Views\Admin\UpdateStudent.cshtml" />
-    <Content Include="Views\Admin\CreatStudent.cshtml" />
+    <Content Include="Views\Admin\CreateStudent.cshtml" />
     <Content Include="Views\Students\CourseStudentList.cshtml" />
     <Content Include="Views\CourseCoordinator\AddBook.cshtml" />
-    <Content Include="Views\CourseCoordinator\Book.cshtml" />
     <Content Include="Views\Exam\CreateCourseExam.cshtml" />
     <Content Include="Views\Exam\ListCourseExamsAndTasks.cshtml" />
     <Content Include="Views\Exam\CourseExamDetails.cshtml" />
@@ -618,6 +619,7 @@
     <Content Include="Views\CourseCoordinator\EditWeek.cshtml" />
     <Content Include="Views\Admin\ListDepartments.cshtml" />
     <Content Include="Views\Admin\ListFaculty.cshtml" />
+    <Content Include="Views\Admin\ListUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

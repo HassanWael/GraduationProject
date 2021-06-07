@@ -25,28 +25,31 @@
                 <div class="d-flex justify-content-center form_container">
                     @using (Html.BeginForm("Login", "Home", new { ReturnUrl = Request.QueryString["ReturnUrl"] }, FormMethod.Post))
                     {
-                        <form action="" method="post" class="Login">
-                            <div>
-                                <h1 style="color:black; display:flex; justify-content:center; align-content:center; margin-top:-3rem; font-family:'Lucida Console'"> AAU </h1>
+                    <form action="" method="post" class="Login">
+                        <div>
+                            <h1 style="color:black; display:flex; justify-content:center; align-content:center; margin-top:-3rem; font-family:'Lucida Console'"> AAU </h1>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
-                            <div class="input-group mb-3">
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                </div>
 
-                                @Html.TextBoxFor(u => u.ID, new { @class = "form-control input_user", @placeholder = "Username ", tabindex = "2" })
+                            @Html.TextBoxFor(u => u.ID, new { @class = "form-control input_user", @placeholder = "Username ", tabindex = "2" })
+                        </div>
+                        <div class="input-group mb-2">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
-                            <div class="input-group mb-2">
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
-                                </div>
-                                @Html.PasswordFor(u => u.Password, new { @class = "form-control input_pass", @placeholder = "Password ", tabindex = "2" })
-                            </div>
-                         
-                            <div class="d-flex justify-content-center mt-3 login_container" >
-                                <input type="submit" value="Login" class="btn login_btn">
-                            </div>
-                        </form>
+                            @Html.PasswordFor(u => u.Password, new { @class = "form-control input_pass", @placeholder = "Password ", tabindex = "2" })
+                        </div>
+
+                        <h6 style="color:red">@ViewBag.Error</h6>
+                        <div class="d-flex justify-content-center mt-3 login_container">
+
+
+                            <input type="submit" value="Login" class="btn login_btn">
+                        </div>
+                    </form>
                     }
                 </div>
             </div>

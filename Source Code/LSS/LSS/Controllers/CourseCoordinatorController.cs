@@ -34,7 +34,10 @@ namespace LSS.Controllers
             {
                 RedirectToAction("Index", "LogedIN");
             }
-            CouresModelView course = new CouresModelView(cc);
+            CouresModelView course = new CouresModelView()
+            {
+                CourseCoordinator = cc
+            };
 
             ViewBag.Message = "Coures view Page";
 

@@ -11,12 +11,11 @@ using PagedList;
 
 namespace LSS.Controllers
 {
-    //[Authorize(Roles ="Admin")]
+    [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
         readonly LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
         // GET: Admin
-        //ToDO :Createe Index View for Admin.
         readonly YearAndSemester YAS = SemesterSingelton.getCurrentYearAndSemester();
         public ActionResult Index(string? message)
         {
@@ -53,6 +52,7 @@ namespace LSS.Controllers
 
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddCourseToSemester(CourseCoordinator cc)
         {
             Course course = _DatabaseEntities.Courses.Find(cc.CourseID);
@@ -184,7 +184,7 @@ namespace LSS.Controllers
             return View();
         }
         [HttpPost]
-
+        [ValidateAntiForgeryToken]
         public ActionResult CreateDpt(Department department)
         {
             try
@@ -226,6 +226,8 @@ namespace LSS.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
+
         public ActionResult CreateFaculty(Faculty faculty)
         {
             try
@@ -271,6 +273,8 @@ namespace LSS.Controllers
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
+
         public ActionResult EditDpt(Department department)
         {
             _DatabaseEntities.Entry(department).State = EntityState.Modified;
@@ -298,6 +302,8 @@ namespace LSS.Controllers
             }
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
+
         public ActionResult EditFaculty(Faculty faculty)
         {
             ViewBag.Lecturer = _DatabaseEntities.Lecturers.Where(x => x.Department.FacultyId == faculty.ID).ToList();
@@ -474,6 +480,7 @@ namespace LSS.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult UpdateStudent(Student student)
         {
             try
@@ -504,7 +511,7 @@ namespace LSS.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateeStudent(Student student)
+        public ActionResult CreateStudent(Student student)
         {
             try
             {
@@ -529,6 +536,7 @@ namespace LSS.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddStudentList(FormCollection formCollection)
         {
             int added = 0;
@@ -611,7 +619,8 @@ namespace LSS.Controllers
         public ActionResult  ListUsers(string? Search, int? DeptID, string? updateMassege, int page = 1, int pageSize = 10)
         {
 
-
+            List<Department> departments = _DatabaseEntities.Departments.ToList();
+            ViewBag.Department = new SelectList(departments, "ID", "Name");
             if (Search == null && DeptID == null)
             {
                 List<Lecturer> Lecturers = _DatabaseEntities.Lecturers.ToList();

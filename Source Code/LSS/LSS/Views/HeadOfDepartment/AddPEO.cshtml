@@ -1,8 +1,14 @@
 ﻿
 @model LSS.Models.PEO
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
 @using (Html.BeginForm("AddPEO", "HeadOfDepartment", FormMethod.Post))
 {
+
+
+
     @Html.AntiForgeryToken()
 
     <div class="container">
@@ -11,19 +17,13 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="container shadow-sm p-2">
-            <div class="input-group mb-3 w-75">
-                <div class="input-group-prepend">
-                    <span class="input-group-text text-primary" id="deptId">Dept ID</span>
-                </div>
-                @Html.EditorFor(model => model.DeptID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.DeptID, "", new { @class = "text-danger" })
-            </div>
 
+            @Html.HiddenFor(model => model.DeptID)
             <div class="input-group mb-3 w-75">
                 <div class="input-group-prepend">
                     <span class="input-group-text text-primary" id="sloId">ID</span>
                 </div>
-                @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control", style = "max-width:100%" } })
+                @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control", id = "ID", style = "max-width:100%" } })
                 @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
             </div>
 
@@ -31,7 +31,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text text-primary" id="desc">Descreption</span>
                 </div>
-                @Html.TextAreaFor(model => model.Desc, new { @class = "form-control" })
+                @Html.TextAreaFor(model => model.Desc, new { @class = "form-control", id = "Desc" })
                 @Html.ValidationMessageFor(model => model.Desc, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -39,7 +39,7 @@
 
 
         <div class="justify-content-center align-items-center text-center mt-3">
-            <input type="submit" value="Add" asp-action="AddPEO" class="btn btn-primary" />
+            <input type="submit" value="Add" asp-action="AddPEO" id="PartialSubmit" class="btn btn-primary" />
             <div class="text-right mb-2">
                 @Html.ActionLink("Cancel", "Index")
             </div>

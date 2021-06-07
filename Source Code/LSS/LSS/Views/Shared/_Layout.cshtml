@@ -21,16 +21,35 @@
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("Index","Home")">Home </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Index", "LogedIn")">Classes </a>
-                    </li>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index", "LogedIn")">Classes </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index", "headOfDepartment",new {dptID=int.Parse( Session["Dpt"].ToString()) })">Department</a>
+                        </li>
+                    }
+
+                    @*<li class="nav-item">
+            <a class="nav-link" href="@Url.Action("Index", "LogedIn")">Faculty</a>
+        </li>*@
+
+                    @if (User.IsInRole("admin"))
+                    {
+                        <li>
+                            <a class="nav-link" href="@Url.Action("Index", "Admin")">Admin control </a>
+                        </li>
+                    }
+
                 </ul>
                 <form class="form-inline my-2 my-lg-0 p-2">
                     <ul class="navbar-nav mr-auto">
 
-                        @if (Request.IsAuthenticated) //@if(User.Identity.IsAuthenticated)
+                        @if (Request.IsAuthenticated)
                         {
-                            <li class="nav-item pr-3 text-success font-weight-bold">Logged in as '@User.Identity.Name'</li>
+                            <li class="nav-item pr-3 text-success font-weight-bold">Logged in as '@Session["Name"]'</li>
                             <li class="nav-item">@Html.ActionLink("Logout", "Logout", "Home")</li>
                         }
                         else
