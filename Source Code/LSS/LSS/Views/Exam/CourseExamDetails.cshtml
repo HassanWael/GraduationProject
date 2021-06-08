@@ -6,7 +6,7 @@
 }
 
 
-<div class="container shadow-lg">
+<div class="container shadow-lg bg-white">
     <div class="d-flex justify-content-center align-items-center text-center">
         <div>
             <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo" alt="Logo" style="height:150px; width:120px;" />
@@ -99,11 +99,12 @@
             </td>
         </tr>
     </table>
+
+    <div class="shadow-sm mt-2">
+        <p>
+            @Html.ActionLink("Add Qustions", "CreateQustion", new { ExamID = Model.ID })
+        </p>
+
+        @Html.Partial("ListExamQustions", Model.CourseExamQuestions)
+    </div>
 </div>
-
-<p>
-    @Html.ActionLink("Add Qustions", "CreateQustion", new { ExamID = Model.ID })
-</p>
-
-
-@Html.Partial("ListExamQustions", Model.CourseExamQuestions)

@@ -19,7 +19,7 @@
     <hr class="border-danger w-75" />
     @if (Model.CourseExamQuestions == null)
     {
-        <div class="card border-danger mb-3 w-25" >
+        <div class="card border-danger mb-3 w-25">
             <div class="card-header">Header</div>
             <div class="card-body">
                 <h4 class="card-title">Danger card title</h4>
@@ -91,39 +91,40 @@
                         <td>
                             @Html.DisplayFor(x => x.Year)
 
-                        @if (Model.Semester.Equals("1"))
-                        {<span> First Semester </span> }
-                        else if (Model.Semester.Equals("2"))
-                        { <span> Second Semester </span>}
-                        else
-                        { <span> Summer Semester </span>}
-                    </td>
-                    <td>
-                        @AssessingPI.getBelowStander(q.ID, Model.Course.Department.ID)
-                    </td>
-                    <td>
-                        @AssessingPI.getApproachesStandard(q.ID, Model.Course.Department.ID)
-                    </td>
-                    <td>
-                        @AssessingPI.getMeetsStandard(q.ID, Model.Course.Department.ID)
-                    </td>
-                    <td>
-                        @AssessingPI.getExceedsStandard(q.ID, Model.Course.Department.ID)
-                    </td>
-                    <td>
-                        @AssessingPI.getPoorPercentage(q.ID, Model.Course.Department.ID)
-                    </td>
-                    <td>
-                        @AssessingPI.getGoodPercentage(q.ID, Model.Course.Department.ID)
-                    </td>
-                    <td>
-                        @AssessingPI.NoOfAssessedStudents(q.ID, Model.Course.Department.ID)
-                    </td>
-                    <td>
-                        @AssessingPI.NoOfDiscardedStudents(q.ID, Model.Course.Department.ID)
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+                            @if (Model.Semester.Equals("1"))
+                            {<span> First Semester </span> }
+                            else if (Model.Semester.Equals("2"))
+                            { <span> Second Semester </span>}
+                            else
+                            { <span> Summer Semester </span>}
+                        </td>
+                        <td>
+                            @AssessingPI.getBelowStander(q.ID, Model.Course.Department.ID)
+                        </td>
+                        <td>
+                            @AssessingPI.getApproachesStandard(q.ID, Model.Course.Department.ID)
+                        </td>
+                        <td>
+                            @AssessingPI.getMeetsStandard(q.ID, Model.Course.Department.ID)
+                        </td>
+                        <td>
+                            @AssessingPI.getExceedsStandard(q.ID, Model.Course.Department.ID)
+                        </td>
+                        <td>
+                            @AssessingPI.getPoorPercentage(q.ID, Model.Course.Department.ID)
+                        </td>
+                        <td>
+                            @AssessingPI.getGoodPercentage(q.ID, Model.Course.Department.ID)
+                        </td>
+                        <td>
+                            @AssessingPI.NoOfAssessedStudents(q.ID, Model.Course.Department.ID)
+                        </td>
+                        <td>
+                            @AssessingPI.NoOfDiscardedStudents(q.ID, Model.Course.Department.ID)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
