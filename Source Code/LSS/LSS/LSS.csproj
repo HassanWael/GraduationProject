@@ -385,6 +385,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Images\Excel Format\ExamQustions.png" />
     <Content Include="Scripts\disableButton.js" />
     <Content Include="Content\FormsStyle.css" />
     <Content Include="Content\HomePage.css" />
@@ -622,6 +623,7 @@
     <Content Include="Views\Admin\ListFaculty.cshtml" />
     <Content Include="Views\Admin\ListUsers.cshtml" />
     <Content Include="Views\CourseCoordinator\CreateActionsForImprovingCourses.cshtml" />
+    <Content Include="Views\Exam\EditQustions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

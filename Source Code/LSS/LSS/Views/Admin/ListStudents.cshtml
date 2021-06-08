@@ -4,7 +4,7 @@
     ViewBag.Title = "ListStudents";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js%22%3E"></script>
 <div class="container shadow-lg p-3 mb-3 mt-5 bg-white">
     <div class="d-flex justify-content-center align-items-center text-center mb-3">
         <div>
@@ -94,30 +94,17 @@
             <div class="card-body">
                 @using (Html.BeginForm("AddStudentList", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
-                    <table>
-                        <tr>
-                            <div class="input-group mb-3">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="ExcelSheet">
-                                    <label class="custom-file-label" for="ExcelSheet">Choose file..</label>
-                                </div>
-                                <div class="input-group-append">
-                                    <input type="submit" name="Upload" value="Submit" class="btn btn-primary" />
-                                </div>
-                            </div>
-                            @*<td>File:</td>
-                                <td>
-                                    <input type="file" name="Select Excel file" />
-                                </td>*@
-                        </tr>
-                        @*<tr>
-                                <td>
-                                </td>
-                                <td>
-                                    <input type="submit" name="Upload" value="Submit" />
-                                </td>
-                            </tr>*@
-                    </table>
+                    @Html.AntiForgeryToken()
+
+                    <div class="input-group mb-3">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="UploadGrades" name="Select Excel file" />
+                            <label class="custom-file-label" for="UploadGrades">Choose file..</label>
+                        </div>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit" id="UploadFile">Upload</button>
+                        </div>
+                    </div>
                 }
                 <hr />
                 <h6><b>Header for the Excel File should look as follows: </b></h6>
@@ -126,3 +113,11 @@
         </div>
     </div>
 </div>
+<script>
+    $('#UploadFileExcel').on('change', function () {
+        //get the file name
+        var fileName = $(this).val();
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
+    })
+</script>

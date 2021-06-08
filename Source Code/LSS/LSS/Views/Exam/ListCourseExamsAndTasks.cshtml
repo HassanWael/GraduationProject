@@ -97,17 +97,20 @@
                         </tr>
                     }
                 </table>
+
+                @Html.PagedListPager(Model, page => Url.Action("ListCourses", new { Search = ViewBag.Search, Department = ViewBag.DepartmentID, page, pageSize = Model.PageSize }), new PagedListRenderOptions
+                {
+
+         ContainerDivClasses = new[] { "pagination pagination-sm" },
+         UlElementClasses = new[] { "pagination pagination-sm" },
+         LiElementClasses = new[] { "page-item", "btn-outline-primary" }
+
+                })
+                Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Products
+
             </div>
 
-            @Html.PagedListPager(Model, page => Url.Action("ListCourses", new { Search = ViewBag.Search, Department = ViewBag.DepartmentID, page, pageSize = Model.PageSize }), new PagedListRenderOptions
-            {
-
-               ContainerDivClasses = new[] { "pagination pagination-sm" },
-               UlElementClasses = new[] { "pagination pagination-sm" },
-               LiElementClasses = new[] { "page-item", "btn-outline-primary" }
-
-            })
-            Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Products
+      
         </div>
     </div>
 </body>

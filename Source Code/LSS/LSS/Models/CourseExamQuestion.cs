@@ -14,6 +14,7 @@ namespace LSS.Models
     
     public partial class CourseExamQuestion
     {
+        LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CourseExamQuestion()
         {
@@ -27,7 +28,32 @@ namespace LSS.Models
         public string QuestionNumber { get; set; }
         public string Question { get; set; }
         public float Weight { get; set; }
-    
+
+        public double getAVG()
+        {
+            if (CourseExamEvals == null)
+            {
+                CourseExamEvals = _DatabaseEntities.CourseExamQuestions.Find(ID).CourseExamEvals;
+            }
+
+            double sum = 0;
+
+            foreach (CourseExamEval eval in CourseExamEvals)
+            {
+                sum += eval.Mark;
+            }
+            try
+            {
+                double avg = sum / CourseExamEvals.Count;
+                avg = System.Math.Round(avg, 2);
+                return avg;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
         public virtual CourseExam CourseExam { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseExamEval> CourseExamEvals { get; set; }

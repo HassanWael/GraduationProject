@@ -1,7 +1,7 @@
 ﻿@model PagedList.IPagedList<LSS.Models.Lecturer>
 @using PagedList.Mvc;
 @using LSS.Models; 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js%22%3E"></script>
 
 <div class="container shadow-lg p-3 mb-3 mt-5 bg-white">
     <div class="d-flex justify-content-center align-items-center text-center mb-3">
@@ -87,18 +87,15 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
-
                 <td>
                     @Html.DisplayFor(modelItem => item.Department.Name)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) 
+                    @Html.ActionLink("Edit", "CreateUser", new { ID = item.ID }) 
                 </td>
             </tr>
         }
-
     </table>
-
     @Html.PagedListPager(Model, page => Url.Action("ListUsers", new { Search = ViewBag.Search, Department = ViewBag.DepartmentID, page, pageSize = Model.PageSize }), new PagedListRenderOptions
 {
     ContainerDivClasses = new[] { "pagination pagination-sm" },

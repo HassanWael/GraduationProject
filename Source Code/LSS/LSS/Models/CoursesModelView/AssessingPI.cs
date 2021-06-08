@@ -30,7 +30,6 @@ namespace LSS.Models.CoursesModelView
             return count;
         }
 
-
         public static int NoOfAssessedStudents(int QID, int deptID)
         {
           return _DatabaseEntities.CourseExamEvals.Where(x => x.QID.Equals(QID) && x.EnroledStudent.Student.DptID.Equals(deptID)).Count();

@@ -92,6 +92,16 @@
                                 </tr>
                             }
                         </table>
+
+                        @Html.PagedListPager(Model, page => Url.Action("CourseStudentList",
+                      new {  CourseID=ViewBag.CourseID, Year= ViewBag.Year,Semester=ViewBag.Semester,  Search = ViewBag.Search, page, pageSize = Model.PageSize }),
+                      new PagedListRenderOptions
+                      {
+                          ContainerDivClasses = new[] { "pagination pagination-sm" },
+                          UlElementClasses = new[] { "pagination pagination-sm" },
+                          LiElementClasses = new[] { "page-item", "btn-outline-primary" }
+                      })
+                        
                     </div>
                 </div>
 
@@ -105,15 +115,7 @@
                             <div class="card-header">Add Students From Excel </div>
                             <div class="card-body">
 
-                                @Html.PagedListPager(Model, page => Url.Action("ListStudents",
-                               new { Search = ViewBag.Search, page, pageSize = Model.PageSize }),
-                               new PagedListRenderOptions
-                                    {
-                                     ContainerDivClasses = new[] { "pagination pagination-sm" },
-                                     UlElementClasses = new[] { "pagination pagination-sm" },
-                                     LiElementClasses = new[] { "page-item", "btn-outline-primary" }
-                                     })
-
+                       
                                 @using (Html.BeginForm("AddStudentListToCourse", "Students", FormMethod.Post, new { enctype = "multipart/form-data" }))
                                 {
                                     <input type="hidden" id="CourseID" name="CourseID" value='@ViewBag.CourseID' />
@@ -147,9 +149,12 @@
                             <div class="card-body">
                                 @using (Html.BeginForm("UploadGrades", "Students", FormMethod.Post, new { enctype = "multipart/form-data" }))
                                 {
+
                                     <input type="hidden" id="CourseID" name="CourseID" value='@ViewBag.CourseID' />
                                     <input type="hidden" id="Year" name="Year" value='@ViewBag.Year' />
                                     <input type="hidden" id="Semester" name="Semester" value='@ViewBag.Semester' />
+
+
                                     <table>
                                         <tr>
                                             <div class="input-group mb-3">

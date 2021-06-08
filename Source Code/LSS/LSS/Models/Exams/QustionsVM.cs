@@ -9,7 +9,7 @@ namespace LSS.Models.Exams
     {
         public QustionsVM(CourseExam CourseExam)
         {
-            this.CourseExam = CourseExam;
+            this.courseExam = CourseExam;
             Question = new CourseExamQuestion();
             Question.ExamID = CourseExam.ID;
 
@@ -21,8 +21,22 @@ namespace LSS.Models.Exams
       
         public CourseExamQuestion Question { get; set; }
         
-
-        public CourseExam CourseExam { get; set; }
+        private CourseExam courseExam
+        {
+            get;set; 
+        }
+        public CourseExam CourseExam {get
+            {
+                if (courseExam == null)
+                {courseExam=Question.CourseExam;
+                }
+                return courseExam;
+            }
+            set
+            {
+                courseExam = value;
+            }
+        }
 
         private HashSet<PI> pi { get; set; }
         public HashSet<PI> PIs
