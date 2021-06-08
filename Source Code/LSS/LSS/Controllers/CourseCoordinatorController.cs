@@ -26,6 +26,11 @@ namespace LSS.Controllers
             {
                 return RedirectToAction("Index", "LogedIN");
             }
+            if (Year == null || Semester == null)
+            {
+                Year = yas.Year;
+                Semester = yas.Semester;
+            } 
 
             //String userID = Session["ID"].ToString();
             CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester);
@@ -180,7 +185,7 @@ namespace LSS.Controllers
                 Console.WriteLine("Error at line 123 Course Coordinator");
                 return View("Index", "LogedIn");
             }
-            return RedirectToAction("CouresPage", "CourseCoordinator", isAssessed.CourseID);
+            return RedirectToAction("CouresPage", "CourseCoordinator",new { CourseID =isAssessed.CourseID , Year= isAssessed.Year ,Semester= isAssessed.Semester});
         }
 
         [HttpPost]
@@ -472,6 +477,8 @@ namespace LSS.Controllers
             schedule.Assignments = s.Assignments;
             schedule.Topic = s.Topic;
             schedule.Reference = s.Reference;
+            _DatabaseEntities.Entry(schedule).State = EntityState.Modified;
+            _DatabaseEntities.SaveChanges();
 
             List<CLO> allCLOes = _DatabaseEntities.CLOes.Where(x => x.courseId.Equals(s.CourseID)).ToList();
 
@@ -479,7 +486,7 @@ namespace LSS.Controllers
             {
                 if (schedule.CLOes.Select(x => x.ID).Contains(cloid.ID))
                 {
-                    if (!CLO_ID.Contains(cloid.ID))
+                    if (cloid != null&& !CLO_ID.Contains(cloid.ID))
                     {
                         schedule.CLOes.Remove(cloid);
                     }
@@ -492,7 +499,7 @@ namespace LSS.Controllers
 
                     }
                 }
-                
+            _DatabaseEntities.Entry(schedule).State = EntityState.Modified;
             }
 
             _DatabaseEntities.Entry(schedule).State = EntityState.Modified;
@@ -500,5 +507,51 @@ namespace LSS.Controllers
 
             return RedirectToAction("CourseSchedule", new { s.CourseID, s.Year, Semester = s.Semester });
         }
+
+        public ActionResult CreateActionsForImprovingCourses(string? CourseID ,DateTime? Year ,string? Semester)
+        {
+            if(_DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester) == null)
+            {
+
+            }
+            ActionsForImprovingTheCourse a = _DatabaseEntities.ActionsForImprovingTheCourses.Find(CourseID, Year, Semester);
+            if (a == null)
+            {
+                a.CourseID = CourseID;
+                a.Year = (DateTime)Year;
+                a.Semester = Semester;
+            }
+            return View(a);
+
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateActionsForImprovingCourses(ActionsForImprovingTheCourse afc )
+        {
+            if (ModelState.IsValid)
+            {
+                ActionsForImprovingTheCourse a = _DatabaseEntities.ActionsForImprovingTheCourses.Find(afc.CourseID, afc.Year, afc.Semester);
+                if (a == null)
+                {
+                    _DatabaseEntities.ActionsForImprovingTheCourses.Add(afc);
+                    _DatabaseEntities.SaveChanges();
+                }
+                else
+                {
+                    a.ActionsTaken = afc.ActionsTaken;
+                    a.ActionsResults = afc.ActionsResults;
+                    a.RecomandedActions = afc.RecomandedActions;
+                    a.PersonResponsible = afc.PersonResponsible;
+                    _DatabaseEntities.ActionsForImprovingTheCourses.Add(afc);
+                    _DatabaseEntities.SaveChanges();
+                }
+                return RedirectToAction("ActionsForImproving", "CourseCoordinator", new { CourseID = afc.CourseID, Year = afc.Year, Semester = afc.Semester });
+
+            }
+            return View();
+        }
+
+
+
     }
 }
