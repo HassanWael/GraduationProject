@@ -2,72 +2,84 @@
 @using PagedList.Mvc;
 
 
+<div class="container">
+    <div class="shadow-lg p-3 mb-3 mt-5 bg-white">
+        <div class="d-flex justify-content-center align-items-center text-center mb-3">
+            <div>
+                <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo" alt="Logo" style="height:150px; width:120px;" />
+                <h4> Students List </h4>
+            </div>
+        </div>
 
-<table class="mb-2">
-    <tr>
-        @using (Html.BeginForm("ListDepartment", "Admin", FormMethod.Get))
-        {
-            <td style="padding-left:2%;">
-                @Html.TextBox("Search", null, new { @class = "form-control", placeholder = "Search" })
-            </td>
-            <td style="padding-left:2%;">
-                <input type="submit" value="search" class="btn btn-primary" />
-            </td>
-        }
-    </tr>
-</table>
+        <hr class="border-danger w-75 mb-4" />
 
-<p>
-    @Html.ActionLink("Create New Department ", "EditDpt")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayName("Department ID")
-        </th>
-        <th>
-            @Html.DisplayName("Department Name")
-        </th>
-        <th>
-            @Html.DisplayName("Faculty")
-        </th>
-        <th>
-            @Html.DisplayName("Head Of Department")
-        </th>
-        <th></th>
-    </tr>
+        <table class="mb-2">
+            <tr>
+                @using (Html.BeginForm("ListDepartment", "Admin", FormMethod.Get))
+                {
+                    <td style="padding-left:2%;">
+                        @Html.TextBox("Search", null, new { @class = "form-control", placeholder = "Search" })
+                    </td>
+                    <td style="padding-left:2%;">
+                        <input type="submit" value="search" class="btn btn-primary" />
+                    </td>
+                }
+            </tr>
+        </table>
 
-    @foreach (var item in Model)
+        <p>
+            @Html.ActionLink("Create New Department ", "EditDpt")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayName("Department ID")
+                </th>
+                <th>
+                    @Html.DisplayName("Department Name")
+                </th>
+                <th>
+                    @Html.DisplayName("Faculty")
+                </th>
+                <th>
+                    @Html.DisplayName("Head Of Department")
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Faculty.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Lecturer.Name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditDpt", new { id = item.ID })
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+        <
+    </div>
+
+    @Html.PagedListPager(Model, page => Url.Action("ListCourses", new { Search = ViewBag.Search, page, pageSize = Model.PageSize }), new PagedListRenderOptions
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Faculty.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Lecturer.Name)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "EditDpt", new { id = item.ID })
-            </td>
-        </tr>
-    }
 
-</table>
+    ContainerDivClasses = new[] { "pagination pagination-sm" },
+    UlElementClasses = new[] { "pagination pagination-sm" },
+    LiElementClasses = new[] { "page-item", "btn-outline-primary" }
 
-
-
-@Html.PagedListPager(Model, page => Url.Action("ListCourses", new { Search = ViewBag.Search, page, pageSize = Model.PageSize }), new PagedListRenderOptions
-{
-
-ContainerDivClasses = new[] { "pagination pagination-sm" },
-UlElementClasses = new[] { "pagination pagination-sm" },
-LiElementClasses = new[] { "page-item", "btn-outline-primary" }
-
-})
+    })
     Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Products
+</div>
