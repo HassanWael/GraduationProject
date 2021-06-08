@@ -11,15 +11,32 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ResultOfCourseDirectAssessment
     {
+        [Required]
+        [Display(Name = "Course ID")]
         public string CourseID { get; set; }
+
+        [Required]
         public System.DateTime Year { get; set; }
+
+        [Required]
         public string Semester { get; set; }
+
+        [Required]
+        [Display(Name = "Actions Taken")]
         public string ActionsTaken { get; set; }
+
+        [Required]
         public string Observation { get; set; }
+
+        [Required]
+        [Display(Name = "Analysis And Justification")]
         public string AnalysisAndJustification { get; set; }
+
+        [Required]
         public string Recommendation { get; set; }
     
         public virtual CourseCoordinator CourseCoordinator { get; set; }

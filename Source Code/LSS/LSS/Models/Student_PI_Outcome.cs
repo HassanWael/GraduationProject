@@ -11,12 +11,22 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Student_PI_Outcome
     {
+        [Required]
+        [Display(Name = "Coordinator ID")]
         public string CoordinatorID { get; set; }
+
+        [Required]
+        [Display(Name = "Student ID")]
         public string StudentID { get; set; }
+
+        [Required]
+        [Display(Name = "Assessment Method")]
         public int AssessmentMethod { get; set; }
+
         public Nullable<int> Mark { get; set; }
     
         public virtual Student Student { get; set; }

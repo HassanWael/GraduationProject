@@ -25,35 +25,48 @@ namespace LSS.Models
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    
-        public int ID { get; set; }
+
         [Required]
+        public int ID { get; set; }
+
+        [Required]
+        [Display(Name = "Course ID")]
         public string CourseID { get; set; }
+
         [Required]
         [Display(Name = "Year")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MMM/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime Year { get; set; }
+
         [Required]
         public string Semester { get; set; }
+
         [Required]
         [Display(Name = "Exam or Task Name/Type")]
         public string Type { get; set; }
+
         [Required]
         public string Moderator { get; set; }
+
         [Required]
         [Display(Name = "Exam weight")]
         public int ExamWeight { get; set; }
+
         [Required]
         [Display(Name = "Exam Dueration Time")]
         public string ExamDurationTime { get; set; }
+
+        [Required]
         [Display(Name = "Moderation date")]
         [DataType(DataType.Date)]
         public System.DateTime ModerationDate { get; set; }
+
         [Required]
         [Display(Name = "Exam Date")]
         [DataType(DataType.Date)]
         public System.DateTime ExamDate { get; set; }
+
         [Display(Name = "Additional Comments")]
         public string AdditionalComments { get; set; }
     

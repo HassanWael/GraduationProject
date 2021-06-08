@@ -23,17 +23,20 @@ namespace LSS.Models
 
         [Required]
         public string Course { get; set; }
+
         [Required]
         [Display(Name ="Book Title")]
         public string Book_Title { get; set; }
+
         public string Author { get; set; }
        
         [Display(Name = "Year of publish")]
         [DataType(DataType.Date)]
         public Nullable<System.DateTime> YearOfpublish { get; set; }
-        [Display(Name = "City / State ")]
 
+        [Display(Name = "City / State ")]
         public string City_State { get; set; }
+
         public string Publisher { get; set; }
     
         public virtual Course Course1 { get; set; }

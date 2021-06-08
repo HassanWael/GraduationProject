@@ -11,7 +11,8 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Faculty
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,12 +20,24 @@ namespace LSS.Models
         {
             this.Departments = new HashSet<Department>();
         }
-    
+
+        [Required]
         public int ID { get; set; }
+
+        [Required]
         public string Name { get; set; }
+
+        [Display(Name = "Vice Dean")]
         public string ViceDean { get; set; }
+
         public string dean { get; set; }
+
+        [Required]
+        [Display(Name = "Passing Grade For PI")]
         public int PassingGradeForPI { get; set; }
+
+        [Required]
+        [Display(Name = "Passing Grade For Assessment Survey")]
         public float PassingGradeForAssessmentSurvey { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

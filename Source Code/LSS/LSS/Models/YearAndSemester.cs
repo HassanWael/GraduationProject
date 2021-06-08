@@ -24,8 +24,8 @@ namespace LSS.Models
         [Display(Name = "Year")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-
         public System.DateTime Year { get; set; }
+
         [Required]
         public string Semester { get; set; }
     

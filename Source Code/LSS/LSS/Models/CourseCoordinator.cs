@@ -35,11 +35,26 @@ namespace LSS.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm:ss.fff}", ApplyFormatInEditMode = true)]
         public System.DateTime Year { get; set; }
+
+        [Required]
         public string Semester { get; set; }
+
+        [Required]
+        [Display(Name = "No OF Students")]
         public int NoOFStudents { get; set; }
+
+        [Required]
+        [Display(Name = "Class Room")]
         public string ClassRoom { get; set; }
+
+        [Display(Name = "course Not Assessed Reason")]
         public string courseNotAssessedReason_ { get; set; }
+
+        [Required]
+        [Display(Name = "Day Time")]
         public string DayTime { get; set; }
+
+        [Required]
         public string Coordinator { get; set; }
     
         public virtual ActionsForImprovingTheCourse ActionsForImprovingTheCourse { get; set; }

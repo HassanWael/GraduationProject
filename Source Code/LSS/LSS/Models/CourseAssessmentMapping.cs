@@ -11,16 +11,36 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class CourseAssessmentMapping
     {
+        [Required]
+        [Display(Name = "Course ID")]
         public string CourseID { get; set; }
+
+        [Required]
         public System.DateTime Year { get; set; }
+
+        [Required]
         public string Semester { get; set; }
+
+        [Required]
+        [Display(Name = "Assessment ID")]
         public string AssessmentID { get; set; }
+
+        [Required]
         public int CLO { get; set; }
+
+        [Required]
         public string PI { get; set; }
+
+        [Required]
+        [Display(Name = "SLO ID")]
         public string SLOID { get; set; }
+
+        [Required]
+        [Display(Name = "Dept ID")]
         public int DeptID { get; set; }
     
         public virtual CLO CLO1 { get; set; }

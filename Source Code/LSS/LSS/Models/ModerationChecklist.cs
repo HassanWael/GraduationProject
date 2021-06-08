@@ -11,15 +11,29 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ModerationChecklist
     {
+        [Required]
         public int ID { get; set; }
+
+        [Required]
+        [Display(Name = "Course ID")]
         public string CourseID { get; set; }
+
+        [Required]
         public System.DateTime Year { get; set; }
+
+        [Required]
         public string Semester { get; set; }
+
+        [Required]
         public string Question { get; set; }
+
+        [Required]
         public bool Answer { get; set; }
+
         public string commetns { get; set; }
     
         public virtual CourseExam CourseExam { get; set; }

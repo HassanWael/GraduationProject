@@ -11,7 +11,8 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class EnroledStudent
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,13 +20,28 @@ namespace LSS.Models
         {
             this.CourseExamEvals = new HashSet<CourseExamEval>();
         }
-    
+
+        [Required]
         public int ID { get; set; }
+
+        [Required]
+        [Display(Name = "Student ID")]
         public string StudentID { get; set; }
+
+        [Required]
+        [Display(Name = "Course ID")]
         public string CourseID { get; set; }
+
+        [Required]
         public System.DateTime Year { get; set; }
+
+        [Required]
         public string Semester { get; set; }
+
+        [Display(Name = "Final Grade")]
         public Nullable<int> FinalGrade { get; set; }
+
+        [Display(Name = " other Lecturer")]
         public Nullable<int> otherLecturer { get; set; }
     
         public virtual CourseCoordinator CourseCoordinator { get; set; }

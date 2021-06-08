@@ -11,7 +11,8 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class PEO
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,9 +27,14 @@ namespace LSS.Models
         }
 
 
-
+        [Required]
         public string ID { get; set; }
+
+        [Required]
         public string Desc { get; set; }
+
+        [Required]
+        [Display(Name = "Dept ID")]
         public int DeptID { get; set; }
     
         public virtual Department Department { get; set; }

@@ -11,11 +11,19 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class CourseExamEval
     {
+        [Required]
+        [Display(Name = "Q ID")]
         public int QID { get; set; }
+
+        [Required]
+        [Display(Name = "Student ID")]
         public int StudentID { get; set; }
+
+        [Required]
         public float Mark { get; set; }
     
         public virtual EnroledStudent EnroledStudent { get; set; }

@@ -11,7 +11,8 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class CourseExamQuestion
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,11 +22,21 @@ namespace LSS.Models
             this.CourseCoordinators = new HashSet<CourseCoordinator>();
             this.PIs = new HashSet<PI>();
         }
-    
+        [Required]
         public int ID { get; set; }
+
+        [Required]
+        [Display(Name = "Exam ID")]
         public int ExamID { get; set; }
+
+        [Required]
+        [Display(Name = "Question Number")]
         public string QuestionNumber { get; set; }
+
+        [Required]
         public string Question { get; set; }
+
+        [Required]
         public float Weight { get; set; }
     
         public virtual CourseExam CourseExam { get; set; }

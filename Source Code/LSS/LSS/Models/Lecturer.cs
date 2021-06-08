@@ -34,11 +34,18 @@ namespace LSS.Models
         [Required]
         public string Role { get; set; }
 
+        [Required]
+        [Display(Name = "Office No")]
         public string OfficeNo { get; set; }
+
+        [Required]
         public string Email { get; set; }
+
         [Required]
         public string Password { get; set; }
+
         [Required]
+        [Display(Name = "dpt Id")]
         public int dptId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

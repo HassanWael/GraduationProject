@@ -11,7 +11,8 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class SLO
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,9 +27,15 @@ namespace LSS.Models
         {
             this.DeptID = DeptID;
         }
-
+        [Required]
+        [Display(Name = "SLO ID")]
         public string SLOID { get; set; }
+
+        [Required]
         public string Desc { get; set; }
+
+        [Required]
+        [Display(Name = "DeptID ")]
         public int DeptID { get; set; }
     
         public virtual Department Department { get; set; }

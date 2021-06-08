@@ -11,7 +11,8 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class OtherLecturer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,14 +20,32 @@ namespace LSS.Models
         {
             this.EnroledStudents = new HashSet<EnroledStudent>();
         }
-    
+        [Required]
         public int ID { get; set; }
+
+        [Required]
+        [Display(Name = "Lecturer ID")]
         public string LecturerID { get; set; }
+
+        [Required]
+        [Display(Name = "Course ID")]
         public string CourseID { get; set; }
+
+        [Required]
         public System.DateTime Year { get; set; }
+
+        [Required]
         public string Semester { get; set; }
+
+        [Required]
+        [Display(Name = "Day Time")]
         public string DayTime { get; set; }
+
+        [Required]
+        [Display(Name = "Class Room")]
         public string ClassRoom { get; set; }
+
+        [Display(Name = "no OF Students")]
         public Nullable<int> noOFStudents { get; set; }
     
         public virtual CourseCoordinator CourseCoordinator { get; set; }

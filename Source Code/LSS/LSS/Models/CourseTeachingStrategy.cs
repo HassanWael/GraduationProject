@@ -11,12 +11,22 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class CourseTeachingStrategy
     {
+        [Required]
+        [Display(Name = "Strategy ID")]
         public string StrategyID { get; set; }
+
+        [Required]
+        [Display(Name = "Course ID")]
         public string CourseID { get; set; }
+
+        [Required]
         public System.DateTime Year { get; set; }
+
+        [Required]
         public string Semester { get; set; }
     
         public virtual CourseCoordinator CourseCoordinator { get; set; }

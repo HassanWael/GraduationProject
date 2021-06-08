@@ -11,7 +11,8 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Schedule
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,13 +20,25 @@ namespace LSS.Models
         {
             this.CLOes = new HashSet<CLO>();
         }
-    
+
+        [Required]
+        [Display(Name = "Course ID")]
         public string CourseID { get; set; }
+
+        [Required]
         public System.DateTime Year { get; set; }
+
+        [Required]
         public string Semester { get; set; }
+
+        [Required]
+        [Display(Name = "Week Number")]
         public int WeekNumber { get; set; }
+
         public string Topic { get; set; }
+
         public string Assignments { get; set; }
+
         public string Reference { get; set; }
     
         public virtual CourseCoordinator CourseCoordinator { get; set; }

@@ -11,7 +11,8 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Course
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,17 +25,36 @@ namespace LSS.Models
             this.CourseTextBooks = new HashSet<CourseTextBook>();
             this.SLOes = new HashSet<SLO>();
         }
-    
+        [Required]
         public string ID { get; set; }
+
+        [Required]
         public string Title { get; set; }
+
+        [Required]
         public string Hours { get; set; }
+
         public string Designation { get; set; }
+
+        [Display(Name = "Vclass URL")]
         public string VclassURL { get; set; }
+
         public string Description { get; set; }
+
+        [Display(Name = "Other Online resources")]
         public string Other_Online_resources { get; set; }
+
+        [Display(Name = "Other Required Material")]
         public string Other_Required_Material { get; set; }
+
+        [Display(Name = "pre requisite")]
         public string pre_requisite { get; set; }
+
+        [Display(Name = "co requisite")]
         public string co_requisite { get; set; }
+
+        [Required]
+        [Display(Name = "dpt id")]
         public int dptid { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

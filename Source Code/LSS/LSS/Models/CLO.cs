@@ -11,7 +11,8 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class CLO
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -27,8 +28,14 @@ namespace LSS.Models
             this.courseId = courseId;
         }
 
+        [Required]
         public string Description { get; set; }
+
+        [Required]
         public int ID { get; set; }
+
+        [Required]
+        [Display(Name = "course Id")]
         public string courseId { get; set; }
     
         public virtual Course Course { get; set; }

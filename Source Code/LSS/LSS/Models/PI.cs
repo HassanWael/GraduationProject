@@ -11,7 +11,8 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class PI
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,11 +21,23 @@ namespace LSS.Models
             this.CLOes = new HashSet<CLO>();
             this.CourseExamQuestions = new HashSet<CourseExamQuestion>();
         }
-    
+
+        [Required]
         public string ID { get; set; }
+
+        [Required]
         public string Desc { get; set; }
+
+        [Required]
+        [Display(Name = "SLO ID ")]
         public string SLOID { get; set; }
+
+        [Required]
+        [Display(Name = "Dept ID ")]
         public int DeptID { get; set; }
+
+        [Required]
+        [Display(Name = "PI Unique ID")]
         public int PIUniqueID { get; set; }
     
         public virtual SLO SLO { get; set; }

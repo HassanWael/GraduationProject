@@ -11,11 +11,20 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class SLO_PEO
     {
+        [Required]
+        [Display(Name = "SLO ID")]
         public string SLOID { get; set; }
+
+        [Required]
+        [Display(Name = "PEO ID")]
         public string PEOID { get; set; }
+
+        [Required]
+        [Display(Name = "Dept ID")]
         public int DeptID { get; set; }
     
         public virtual PEO PEO { get; set; }

@@ -11,7 +11,8 @@ namespace LSS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Student
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,8 +22,13 @@ namespace LSS.Models
             this.Student_PI_Outcome = new HashSet<Student_PI_Outcome>();
         }
     
+        [Required]
         public string ID { get; set; }
+
         public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "Dept ID")]
         public int DptID { get; set; }
     
         public virtual Department Department { get; set; }
