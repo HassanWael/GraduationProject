@@ -16,7 +16,7 @@
     <hr class="border-danger w-75 mb-4" />
 
     <p>
-        @Html.ActionLink("add New Student", "CreateStudent")
+        @Html.ActionLink("Add New Student", "CreateStudent")
     </p>
 
     @if (ViewBag.updateMassege != null && ViewBag.updateMassege != "")
@@ -72,8 +72,7 @@
                             @Html.DisplayFor(modelItem => item.Department.Name)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "UpdateStudent", new { id = item.ID }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                            @Html.ActionLink("Edit", "UpdateStudent", new { id = item.ID }) 
                         </td>
                     </tr>
                 }
@@ -95,8 +94,6 @@
             <div class="card-body">
                 @using (Html.BeginForm("AddStudentList", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
-
-
                     <table>
                         <tr>
                             <div class="input-group mb-3">
