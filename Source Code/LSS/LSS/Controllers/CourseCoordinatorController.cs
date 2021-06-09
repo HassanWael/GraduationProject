@@ -399,12 +399,12 @@ namespace LSS.Controllers
                     foreach (int id in allQustions)
                     {
                         CourseExamQuestion q = new CourseExamQuestion();
-                        q = _DatabaseEntities.CourseExamQuestions.Find(QID);
-                        if (QID.Contains(id) || !CC.CourseExamQuestions.Select(x => x.ID).Contains(id))
+                        q = _DatabaseEntities.CourseExamQuestions.Find(id);
+                        if (QID.Contains(id) && !CC.CourseExamQuestions.Select(x => x.ID).Contains(id))
                         {
                             CC.CourseExamQuestions.Add(q);
                         }
-                        else if (!QID.Contains(id) || CC.CourseExamQuestions.Select(x => x.ID).Contains(id))
+                        else if (!QID.Contains(id) && CC.CourseExamQuestions.Select(x => x.ID).Contains(id))
                         {
                             CC.CourseExamQuestions.Remove(q);
                         }
@@ -414,7 +414,7 @@ namespace LSS.Controllers
                 }
             }
 
-            return View();
+            return RedirectToAction("DirectAssessment",new { CourseID ,Year,Semester});
         }
 
         //todo:needs testing 
