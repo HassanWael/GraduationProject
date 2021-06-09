@@ -7,7 +7,22 @@ namespace LSS.Models.CoursesModelView
 {
     public class AddSurveyQustionMV
     {
-        public CourseCoordinator CC { get; set; }
+
+        private CourseCoordinator cc { get; set; }
+        public CourseCoordinator CC { get
+            {
+                if (cc == null)
+                {
+                    cc = CAS.CourseCoordinator;
+                }
+                return cc;
+            }
+
+            set
+            {
+                cc = value;
+            }
+        }
         
         private CourseAssessmentSurvay _CAS { get; set; }
         public CourseAssessmentSurvay CAS {

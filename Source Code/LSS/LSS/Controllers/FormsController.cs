@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace LSS.Controllers
 {
-   // [Authorize]
+   [Authorize]
     public class FormsController : Controller
     {
         private readonly LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
@@ -97,19 +97,28 @@ namespace LSS.Controllers
             return View(cmv);
         }
 
-        public ActionResult ExamEvaluation(string? CourseID, DateTime? Year, string? Semester)
+        public ActionResult ExamEvaluation(int? ExamID)
         {
-            if (CourseID == null || Year == null || Semester == null)
+            if (ExamID == null )
             {
                 new HttpStatusCodeResult(404);
             }
-            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester);
-            if (cc == null)
+            CourseExam exam = _DatabaseEntities.CourseExams.Find(ExamID);
+
+
+            if (exam == null)
             {
                 new HttpStatusCodeResult(404);
 
             }
-            return View();
+
+            ExamEvalCal examEvalCal = new ExamEvalCal()
+            {
+                exam = exam
+            };
+
+
+           return View(examEvalCal);
         }
 
         public ActionResult ExamModerationChecklist(string? CourseID, DateTime? Year, string? Semester)

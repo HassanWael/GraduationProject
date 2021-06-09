@@ -15,7 +15,7 @@ namespace LSS.Controllers
     [Authorize]  
     public class CourseCoordinatorController : Controller
     {
-        private readonly LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
+        private  LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
 
         private readonly YearAndSemester yas = SemesterSingelton.getCurrentYearAndSemester();
 
@@ -298,19 +298,28 @@ namespace LSS.Controllers
         [HttpPost]
         public ActionResult AddSurveyQustion(CourseAssessmentSurvay CAS)
         {
+            _DatabaseEntities.Dispose();
+            _DatabaseEntities = new LSS_databaseEntities();
+            CourseAssessmentSurvay s = new CourseAssessmentSurvay();
+            s.CourseID = CAS.CourseID;
+            s.Year = CAS.Year;
+            s.Semester = CAS.Semester;
+            s.PI_ID = CAS.PI_ID;
+            s.Qustion = CAS.Qustion;
+            s.DeptID = CAS.DeptID;
             try
             {
                 String SLOID = _DatabaseEntities.PIs.Where(x => x.ID.Equals(CAS.PI_ID) && x.DeptID.Equals(CAS.DeptID)).Select(x => x.SLOID).FirstOrDefault();
-                CAS.SLOID = SLOID;
-                _DatabaseEntities.CourseAssessmentSurvays.Add(CAS);
+                s.SLOID = SLOID;
+                _DatabaseEntities.CourseAssessmentSurvays.Add(s);
                 _DatabaseEntities.SaveChanges();
-
+                return RedirectToAction("CourseAssessmentSurvey", new { CourseID = CAS.CourseID, Year = CAS.Year, Semester = CAS.Semester });
             }
             catch (Exception e)
             {
                 Console.WriteLine("Error at 255 CourseCoorddinatorController" + e);
             }
-            return View();
+            return RedirectToAction("CourseAssessmentSurvey", new { CourseID = CAS.CourseID, Year = CAS.Year, Semester = CAS.Semester });
         }
         //todo: create a Model for CourseStudent List
         public PartialViewResult AddBook()
@@ -354,59 +363,25 @@ namespace LSS.Controllers
 
         public ActionResult DirectAssessmentPI(string? CourseID, DateTime? Year, string? Semester)
         {
-            if (CourseID == null || Year == null || Semester == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //if (CourseID == null || Year == null || Semester == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            }
-            PIAssessmentMV assessment = new PIAssessmentMV
+            //}
+            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester);
+   
+            PIAssessmentMV assessment = new PIAssessmentMV()
             {
-                CourseCoordinator = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester)
+                CourseCoordinator = cc
             };
-            if (assessment == null)
-            {
-                return HttpNotFound();
-            }
             return View(assessment);
         }
 
 
+       
+
         //todo:needs testing 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult DirectAssessmentPI(PIAssessmentMV? pIAssessment, int[] QID)
-        {
-            CourseCoordinator cc = pIAssessment.CourseCoordinator;
-            List<int> everyCourseQ = pIAssessment.AllQustions;
 
-
-            if (ModelState.IsValid)
-            {
-                if (QID != null)
-                {
-                    foreach (int id in everyCourseQ)
-                    {
-                        
-                        CourseExamQuestion q = new CourseExamQuestion();
-                        q = _DatabaseEntities.CourseExamQuestions.Find(QID);
-                        if (QID.Contains(id) || !cc.CourseExamQuestions.Select(x => x.ID).Contains(id))
-                        {
-                            cc.CourseExamQuestions.Add(q);
-                        }
-                        else if (!QID.Contains(id) || cc.CourseExamQuestions.Select(x => x.ID).Contains(id))
-                        {
-                            cc.CourseExamQuestions.Remove(q);
-                        }
-                    }
-                    _DatabaseEntities.Entry(cc).State = EntityState.Modified;
-                    _DatabaseEntities.SaveChanges();
-
-
-                }
-            }
-
-            return View();
-        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]

@@ -273,6 +273,7 @@
     <Compile Include="Models\CoursesModelView\CouresModelView.cs" />
     <Compile Include="Models\CoursesModelView\CouresReportModelView.cs" />
     <Compile Include="Models\CoursesModelView\CourseAssessmentID.cs" />
+    <Compile Include="Models\CoursesModelView\ExamEvalCal.cs" />
     <Compile Include="Models\CoursesModelView\HomeCourseListViewModel.cs" />
     <Compile Include="Models\CoursesModelView\PIAssessmentMV.cs" />
     <Compile Include="Models\CourseSyllabu.cs">

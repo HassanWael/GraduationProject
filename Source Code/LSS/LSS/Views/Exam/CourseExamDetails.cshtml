@@ -100,7 +100,8 @@
         </tr>
     </table>
     <p>
-        @Html.ActionLink("Add Qustions", "CreateQustion", new { ExamID = Model.ID })
+        @Html.ActionLink("Add Qustions", "CreateQustion", new { ExamID = Model.ID }) 
+        @Html.ActionLink("ExamEvaluation", "ExamEvaluation","Forms", new{ExamID = Model.ID },new { @Class="btn btn-primary"})
     </p>
     @Html.Partial("ListExamQustions", Model.CourseExamQuestions)
 
