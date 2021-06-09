@@ -79,8 +79,7 @@
                     @Html.DisplayFor(modelItem => item.Department.Name)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { CourseID = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { CourseID = item.ID })|
+                
                     @Html.ActionLink("Add course to schedule", "AddCourseToSemester", new { CourseID = item.ID })
                 </td>
             </tr>
