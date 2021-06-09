@@ -232,6 +232,9 @@ namespace LSS.Controllers
 
         public ActionResult CourseAssessmentSurvey(string? CourseID, DateTime? Year , string? Semester)
         {
+            ViewBag.Year = Year;
+            ViewBag.CourseID = CourseID;
+            ViewBag.Semester = Semester;
             if (CourseID == null || Year == null || Semester == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -368,6 +371,10 @@ namespace LSS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             }
+            ViewBag.Year = Year;
+            ViewBag.CourseID = CourseID;
+            ViewBag.Semester = Semester;
+
 
             CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester);
    
@@ -383,6 +390,9 @@ namespace LSS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DirectAssessmentPI(string? CourseID,DateTime? Year,string? Semester, int[] QID)
         {
+            ViewBag.Year = Year;
+            ViewBag.CourseID = CourseID;
+            ViewBag.Semester = Semester;
             CourseCoordinator CC = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester);
             List<int> allQustions = new List<int>();
             foreach (CourseExam exam in CC.CourseExams)

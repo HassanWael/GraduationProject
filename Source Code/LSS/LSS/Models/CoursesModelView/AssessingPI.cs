@@ -57,5 +57,30 @@ namespace LSS.Models.CoursesModelView
             return goodPercentage;
         }
 
+        public static double getPoorPercentageAVG(List<int> QID  , int deptID)
+        {
+            double avg = 0; 
+            
+            foreach(int i in QID)
+            {
+               avg+= getPoorPercentage(i, deptID);
+            }
+
+
+            return avg/QID.Count();
+        }
+        public static double getGoodPercentageAVG(List<int> QID, int deptID)
+        {
+            double avg = 0;
+
+            foreach (int i in QID)
+            {
+                avg += getGoodPercentage(i, deptID);
+            }
+            return avg / QID.Count();
+        }
+
+
+
     }
 }
