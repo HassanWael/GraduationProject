@@ -175,14 +175,13 @@ namespace LSS.Controllers
             };
             ViewBag.role = role;
 
-            try
+            try 
             {
-                if (_DatabaseEntities.Lecturers.Find(lecturer.ID) == null)
-                {
+                Lecturer l = _DatabaseEntities.Lecturers.Find(lecturer.ID);
+             
                     if (ModelState.IsValid)
                     {
                         String message = ""; 
-                        Lecturer l = _DatabaseEntities.Lecturers.Find(lecturer.ID);
                         if (l != null)
                         {
                             l.Name = lecturer.Name;
@@ -204,13 +203,8 @@ namespace LSS.Controllers
                         return RedirectToAction("Index", "Admin", message);
                     }
                     return View();
-                }
-                else
-                {
-
-                    ModelState.AddModelError("Dublicate Value", " lecturer ID is already in the database");
-                    return View();
-                }
+                
+           
             }
             catch (Exception e)
             {
