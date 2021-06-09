@@ -12,6 +12,10 @@
     int Bad = 100 - Good;
 }
 
+@{
+    double good = AssessingPI.getGoodPercentageAVG(Model.CourseExamQuestions.Select(x => x.ID).ToList(), Model.Course.Department.ID);
+    double bad = AssessingPI.getPoorPercentageAVG(Model.CourseExamQuestions.Select(x => x.ID).ToList(), Model.Course.Department.ID);
+}
 
 
 <div class="container shadow-lg p-3 mb-3 mt-5 bg-white">
@@ -21,7 +25,7 @@
             <h4> Direct Assessment </h4>
         </div>
     </div>
-    @Html.ActionLink("Edite selected Qustions", "DirectAssessmentPI",new { Model.CourseID,Model.Year, Model.Semester})
+    @Html.ActionLink("Edite selected Qustions", "DirectAssessmentPI", new { Model.CourseID, Model.Year, Model.Semester })
 
     <hr class="border-danger w-75" />
 
@@ -135,10 +139,7 @@
                     }
                 </tbody>
             </table>
-            @{
-                double good = AssessingPI.getGoodPercentageAVG(Model.CourseExamQuestions.Select(x => x.ID).ToList(), Model.Course.Department.ID);
-                double bad  = AssessingPI.getPoorPercentageAVG(Model.CourseExamQuestions.Select(x => x.ID).ToList(), Model.Course.Department.ID);
-            }
+
             <table>
                 <tr>
                     <td>
