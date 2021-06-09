@@ -14,117 +14,128 @@
 
 
 
-<div class="container">
-    <h2>Direct Assessment</h2>
-    <hr class="border-danger w-75" />
-    @if (Model.CourseExamQuestions == null)
-    {
-        <div class="card border-danger mb-3 w-25">
-            <div class="card-header">Header</div>
-            <div class="card-body">
-                <h4 class="card-title">Danger card title</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
+<div class="container shadow-lg p-3 mb-3 mt-5 bg-white">
+    <div class="d-flex justify-content-center align-items-center text-center">
+        <div>
+            <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo" alt="Logo" style="height:150px; width:120px;" />
+            <h4> Direct Assessment </h4>
         </div>
-    }
-    else
-    {
-        <table class="table table-hover table-responsive-lg table-borderless">
-            <thead>
-                <tr class="bg-white border-bottom border-primary">
-                    <th>
-                        Performance Indicators
-                    </th>
-                    <th>
-                        Where data are collected
-                    </th>
-                    <th>
-                        Assessment method
-                    </th>
-                    <th>
-                        Semester and year of data collection
-                    </th>
-                    <th>
-                        Below Standard
-                    </th>
-                    <th>
-                        Approaches Standard
-                    </th>
-                    <th>
-                        Meets Standard
-                    </th>
-                    <th>
-                        Exceeds Standard
-                    </th>
-                    <th>
-                        Poor <= @Bad
-                    </th>
-                    <th>
-                        Good <=@Good
-                    </th>
-                    <th>
-                        No. of assessed students
-                    </th>
-                    <th>
-                        No. of discarded students
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
+    </div>
 
-                @foreach (CourseExamQuestion q in Model.CourseExamQuestions)
-                {
+    <hr class="border-danger w-75" />
 
-                    <tr>
-                        <td>
-                            @foreach (PI pi in q.PIs)
-                            {
-                                <b>@pi.ID :</b> @pi.Desc
-                            }
-                        </td>
-                        <td>
-                            @Model.CourseID
-                        </td>
-                        <td>
-                            @q.CourseExam.Type @q.QuestionNumber
-                        </td>
-                        <td>
-                            @Html.DisplayFor(x => x.Year)
-
-                            @if (Model.Semester.Equals("1"))
-                            {<span> First Semester </span> }
-                            else if (Model.Semester.Equals("2"))
-                            { <span> Second Semester </span>}
-                            else
-                            { <span> Summer Semester </span>}
-                        </td>
-                        <td>
-                            @AssessingPI.getBelowStander(q.ID, Model.Course.Department.ID)
-                        </td>
-                        <td>
-                            @AssessingPI.getApproachesStandard(q.ID, Model.Course.Department.ID)
-                        </td>
-                        <td>
-                            @AssessingPI.getMeetsStandard(q.ID, Model.Course.Department.ID)
-                        </td>
-                        <td>
-                            @AssessingPI.getExceedsStandard(q.ID, Model.Course.Department.ID)
-                        </td>
-                        <td>
-                            @AssessingPI.getPoorPercentage(q.ID, Model.Course.Department.ID)
-                        </td>
-                        <td>
-                            @AssessingPI.getGoodPercentage(q.ID, Model.Course.Department.ID)
-                        </td>
-                        <td>
-                            @AssessingPI.NoOfAssessedStudents(q.ID, Model.Course.Department.ID)
-                        </td>
-                        <td>
-                            @AssessingPI.NoOfDiscardedStudents(q.ID, Model.Course.Department.ID)
-                        </td>
+    <div class="shadow-sm">
+        @if (Model.CourseExamQuestions == null)
+        {
+            <div class="card border-danger mb-3 w-25">
+                <div class="card-header">Header</div>
+                <div class="card-body">
+                    <h4 class="card-title">Danger card title</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        }
+        else
+        {
+            <table class="table table-hover table-responsive-lg table-borderless">
+                <thead>
+                    <tr class="bg-white border-bottom border-primary">
+                        <th>
+                            Performance Indicators
+                        </th>
+                        <th>
+                            Where data are collected
+                        </th>
+                        <th>
+                            Assessment method
+                        </th>
+                        <th>
+                            Semester and year of data collection
+                        </th>
+                        <th>
+                            Below Standard
+                        </th>
+                        <th>
+                            Approaches Standard
+                        </th>
+                        <th>
+                            Meets Standard
+                        </th>
+                        <th>
+                            Exceeds Standard
+                        </th>
+                        <th>
+                            Poor <= @Bad
+                        </th>
+                        <th>
+                            Good <=@Good
+                        </th>
+                        <th>
+                            No. of assessed students
+                        </th>
+                        <th>
+                            No. of discarded students
+                        </th>
                     </tr>
-                }
-            </tbody>
-        </table>
-    }
+                </thead>
+                <tbody>
+
+                    @foreach (CourseExamQuestion q in Model.CourseExamQuestions)
+                    {
+
+                        <tr>
+                            <td>
+                                @foreach (PI pi in q.PIs)
+                                {
+                                    <b>@pi.ID :</b> @pi.Desc
+                                }
+                            </td>
+                            <td>
+                                @Model.CourseID
+                            </td>
+                            <td>
+                                @q.CourseExam.Type @q.QuestionNumber
+                            </td>
+                            <td>
+                                @Html.DisplayFor(x => x.Year)
+
+                                @if (Model.Semester.Equals("1"))
+                                {<span> First Semester </span> }
+                                else if (Model.Semester.Equals("2"))
+                                { <span> Second Semester </span>}
+                                else
+                                { <span> Summer Semester </span>}
+                            </td>
+                            <td>
+                                @AssessingPI.getBelowStander(q.ID, Model.Course.Department.ID)
+                            </td>
+                            <td>
+                                @AssessingPI.getApproachesStandard(q.ID, Model.Course.Department.ID)
+                            </td>
+                            <td>
+                                @AssessingPI.getMeetsStandard(q.ID, Model.Course.Department.ID)
+                            </td>
+                            <td>
+                                @AssessingPI.getExceedsStandard(q.ID, Model.Course.Department.ID)
+                            </td>
+                            <td>
+                                @AssessingPI.getPoorPercentage(q.ID, Model.Course.Department.ID)
+                            </td>
+                            <td>
+                                @AssessingPI.getGoodPercentage(q.ID, Model.Course.Department.ID)
+                            </td>
+                            <td>
+                                @AssessingPI.NoOfAssessedStudents(q.ID, Model.Course.Department.ID)
+                            </td>
+                            <td>
+                                @AssessingPI.NoOfDiscardedStudents(q.ID, Model.Course.Department.ID)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+
+    </div>
+   
 </div>
