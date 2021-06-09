@@ -361,13 +361,14 @@ namespace LSS.Controllers
 
 
 
-        public ActionResult DirectAssessmentPI(string? CourseID, DateTime? Year, string? Semester)
+        public ActionResult DirectAssessmentPI(string? CourseID,DateTime? Year ,string? Semester)
         {
-            //if (CourseID == null || Year == null || Semester == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            if (CourseID == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            //}
+            }
+
             CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester);
    
             PIAssessmentMV assessment = new PIAssessmentMV()
@@ -378,7 +379,43 @@ namespace LSS.Controllers
         }
 
 
-       
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DirectAssessmentPI(string? CourseID,DateTime? Year,string? Semester, int[] QID)
+        {
+            CourseCoordinator CC = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester);
+            List<int> allQustions = new List<int>();
+            foreach (CourseExam exam in CC.CourseExams)
+            {
+                foreach (CourseExamQuestion q in exam.CourseExamQuestions)
+                {
+                    allQustions.Add(q.ID);
+                }
+            }
+            if (ModelState.IsValid)
+            {
+                if (QID != null)
+                {
+                    foreach (int id in allQustions)
+                    {
+                        CourseExamQuestion q = new CourseExamQuestion();
+                        q = _DatabaseEntities.CourseExamQuestions.Find(id);
+                        if (QID.Contains(id) && !CC.CourseExamQuestions.Select(x => x.ID).Contains(id))
+                        {
+                            CC.CourseExamQuestions.Add(q);
+                        }
+                        else if (!QID.Contains(id) && CC.CourseExamQuestions.Select(x => x.ID).Contains(id))
+                        {
+                            CC.CourseExamQuestions.Remove(q);
+                        }
+                    }
+                    _DatabaseEntities.Entry(CC).State = EntityState.Modified;
+                    _DatabaseEntities.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("DirectAssessment",new { CourseID ,Year,Semester});
+        }
 
         //todo:needs testing 
 
@@ -407,8 +444,12 @@ namespace LSS.Controllers
 
         public ActionResult DirectAssessment(string? CourseID, DateTime? Year, string? Semester)
         {
+            
             CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester);
-
+            if (cc.CourseExamQuestions == null || cc.CourseExamQuestions.Count()==0)
+            {
+                return RedirectToAction("DirectAssessmentPI", new { CourseID, Year, Semester });
+            }
             return View(cc);
         }
 
