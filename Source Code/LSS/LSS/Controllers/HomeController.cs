@@ -20,6 +20,10 @@ namespace LSS.Controllers
 
         public ActionResult Login()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "LogedIn");
+            }
             return View();
         }
 

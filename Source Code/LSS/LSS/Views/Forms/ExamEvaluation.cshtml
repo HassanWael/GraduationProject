@@ -1,193 +1,117 @@
-﻿<head>
-    @{
-        ViewBag.Title = "ExamEvaluation";
-        Layout = "~/Views/Shared/_Layout.cshtml";
-    }
-    <link href="~/Content/FormsStyle.css" rel="stylesheet" />
-    
-</head>
+﻿@model LSS.Models.CoursesModelView.ExamEvalCal
+@using LSS.Models
+@using LSS.Models.CoursesModelView
+@{
+    ViewBag.Title = "ExamEvaluation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ int noOfStudetns = Model.getNoOfStudents();
+    double rate = 0;
+    int absent = Model.exam.CourseCoordinator.EnroledStudents.Count() - noOfStudetns;
+    double avg = Model.avgGrade();
+    double median = Model.getMedian();
+    int succ = Model.succsess;
+    int fail = Model.fail;
+    if (absent != 0) { rate = noOfStudetns / absent; }
+    double highest = Model.highest;
+    double lowest = Model.lowest;
+}
+<link href="~/Content/FormsStyle.css" rel="stylesheet" />
+<input type="button" id="printPageButton" value="Print Document" onclick="window.print()" class="btn btn-primary" />
+<header>
+    <table align="center">
+        <tr>
+            <th>
+                Al-Ahliyya Amman University
+            </th>
+
+            <td>
+                <img src="~/Images/Al-Ahliya_Amman_University_Logo.png" />
+            </td>
+
+            <th>  جامعة عمان الأهلية </th>
+        </tr>
+    </table>
+    <P align="center"><b> Faculty of Information Technology</b> </P>
+    <hr style="border: 2px solid black" />
+</header>
+<table style=" border:double, 2px solid black" id="FormName" align="center" width="30%" height="30%">
+    <tr> <td bgcolor="silver" style="border:1px solid black">  <p align="center"> <b>Exam Evaluation Form </b> </p></tr>
+</table>
+
+<table class="table" style="border: 2px solid black; ">
+    <tr>
+        <th bgcolor="silver" style=" border:1px solid black"> Faculty</th>
+        <td style=" border:1px solid black"> @Model.exam.CourseCoordinator.Course.Department.Faculty.Name </td>
+        <th bgcolor="silver" style=" border:1px solid black"> Department </th>
+        <td style=" border:1px solid black"> @Model.exam.CourseCoordinator.Course.Department.Name  </td>
+    </tr>
+    <tr>
+        <th bgcolor="silver" style=" border:1px solid black"> Course Title</th>
+        <td style=" border:1px solid black"> @Model.exam.CourseCoordinator.Course.Title  </td>
+        <th bgcolor="silver" style=" border:1px solid black"> Course Code  </th>
+        <td style=" border:1px solid black">   @Model.exam.CourseCoordinator.CourseID</td>
+    </tr>
+    <tr>
+        <th bgcolor="silver" style=" border:1px solid black"> Instructor/ <br /> Coordinator  Name</th>
+        <td style=" border:1px solid black">  @Model.exam.CourseCoordinator.Lecturer.Name </td>
+        <th bgcolor="silver" style=" border:1px solid black"> Academic Year /Semester  </th>
+        <td style=" border:1px solid black">
+            @Model.exam.CourseCoordinator.Year.Year  @if (Model.exam.CourseCoordinator.Semester == "") { }
+            else if (Model.exam.CourseCoordinator.Semester == "1")
+            {<p>First Semester</p> }
+            else if (Model.exam.CourseCoordinator.Semester == "2")
+            {<p>Second Semester</p> }
+            else
+            {<p>Summer Semester</p>}
+        </td>
+    </tr>
+    <tr>
+        <th bgcolor="silver" style=" border:1px solid black"> Type of Exam</th>
+        <td style=" border:1px solid black">  @Model.exam.Type </td>
+        <th bgcolor="silver" style=" border:1px solid black"> Exam Weight  </th>
+        <td style=" border:1px solid black"> @Model.exam.ExamWeight </td>
+    </tr>
+</table>
+
+<table class="table" style="border: 2px solid black; margin-right:auto; margin-left:auto; " id="evalTable">
+    <tr>
+        <th bgcolor="silver" style=" border:1px solid black"> Section</th>
+        <th bgcolor="silver" style=" border:1px solid black"> Instructor</th>
+        <th bgcolor="silver" style=" border:1px solid black"> No. Of <br /> Enrolled <br />Students</th>
+        <th bgcolor="silver" style=" border:1px solid black"> No. Of <br />Attendees</th>
+        <th bgcolor="silver" style=" border:1px solid black"> No. Of <br />Absentees</th>
+        <th bgcolor="silver" style=" border:1px solid black"> Average<br /> Grade</th>
+        <th bgcolor="silver" style=" border:1px solid black"> Median<br /> Grade</th>
+        <th bgcolor="silver" style=" border:1px solid black"> Success<br /> Rate</th>
+        <th bgcolor="silver" style=" border:1px solid black"> Failure <br />Rate</th>
+        <th bgcolor="silver" style=" border:1px solid black"> Highest <br />Grade</th>
+        <th bgcolor="silver" style=" border:1px solid black"> Lowest<br /> Grade</th>
+        <th bgcolor="silver" style=" border:1px solid black"> Exam <br />Absence<br /> Rate</th>
+    </tr>
+    <tr>
+
+        <th style=" border:1px solid black"> All </th>
+        <td style=" border:1px solid black"> @Model.exam.CourseCoordinator.Lecturer.Name </td>
+        <td style=" border:1px solid black"> @Model.exam.CourseCoordinator.EnroledStudents.Count()</td>
+        <td style=" border:1px solid black">@noOfStudetns  </td>
+        <td style=" border:1px solid black"> @absent</td>
+        <td style=" border:1px solid black"> @avg</td>
+        <td style=" border:1px solid black"> @median</td>
+        <td style=" border:1px solid black"> @succ</td>
+        <td style=" border:1px solid black"> @fail</td>
+        <td style=" border:1px solid black">  @highest</td>
+        <td style=" border:1px solid black"> @lowest</td>
+        <td style=" border:1px solid black">@rate </td>
+    </tr>
+
+</table>
+
+<pre><u><b>Date: @DateTime.Now.ToString("dd-MM-yyyy") </b></u>                     <u><b>Instructor/ CoordinatorSignature:</b></u></pre>
 
 
-<body>
-    <div class="row">
-        <div class="col-2 mt-lg-5">
-            @*<div class="list-group list-group-flush w-50">
-            <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Content</b> </h4>
-            @Html.ActionLink("Recomandations for improving the course", "ActionsForImproving", "CourseCoordinator",
-           new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
-
-            @Html.ActionLink("Students List", "CourseStudentList", "CourseCoordinator",
-           new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
-
-            @Html.ActionLink("PI Assessment", "PI Assessment", "CourseCoordinator",
-           new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
-
-            @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator",
-           new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
-            <br />
-            <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Forms</b> </h4>
-            @Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
-            @Html.ActionLink("Course Assessment Survey", "CourseAssessmentSurvey", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
-            @Html.ActionLink("Course File Checklist", "CourseFileChecklist", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3 text-success" })
-            @Html.ActionLink("Course Information Form", "CourseInformationForm", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
-            @Html.ActionLink("Coures Report", "CourseReport", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
-            @Html.ActionLink("Exam Evaluation", "ExamEvaluation", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
-            @Html.ActionLink("Question Answer Sheet", "QuestionsAnswersSheet", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
-        </div>*@
-            <input type="button" id="printPageButton" value="Print Document" onclick="window.print()" class="btn btn-primary" />
-        </div>
-
-        <div class="col-lg-8">
-            <div class="container shadow-lg p-3 mb-3 mt-5 align-items-center bg-white">
-                <div class="d-flex justify-content-center align-items-center text-center">
-                    <div>
-                        <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo" alt="Logo" style="height:150px; width:120px;" />
-                        <h3>Faculty of Information Technology </h3>
-                    </div>
-                </div>
-
-                <hr style="border: 2px solid black" />
-
-                <table id="FormName">
-                    <tr class="text-center">
-                        <td bgcolor="silver" style="border:1px solid black" class="pt-2">
-                            <h4 align="center"> <b>Exam Evaluation Form</b> </h4>
-                        </td>
-                    </tr>
-                </table>
-
-                <br />
-
-
-                <table class="table table-responsive-sm ">
-                    <tr class="w-75">
-                        <th bgcolor="silver" class="w-25" style=" border:1px solid black"> Faculty</th>
-                        <td class="w-25" style="border:1px solid black">  </td>
-                        <th bgcolor="silver" class="w-25" style=" border:1px solid black"> Department </th>
-                        <td class="w-25" style=" border:1px solid black">  </td>
-                    </tr>
-                    <tr class="w-75">
-                        <th class="w-25" bgcolor="silver" style=" border:1px solid black"> Course Title</th>
-                        <td class="w-25" style=" border:1px solid black">  </td>
-                        <th class="w-25" bgcolor="silver" style=" border:1px solid black"> Course Code  </th>
-                        <td class="w-25" style=" border:1px solid black">  </td>
-                    </tr>
-                    <tr class="w-75">
-                        <th class="w-25" bgcolor="silver" style=" border:1px solid black"> Instructor/ <br /> Coordinator  Name</th>
-                        <td class="w-25" style=" border:1px solid black">  </td>
-                        <th class="w-25" bgcolor="silver" style=" border:1px solid black"> Academic Year /Semester  </th>
-                        <td class="w-25" style=" border:1px solid black">  </td>
-                    </tr>
-                    <tr class="w-75">
-                        <th class="w-25" bgcolor="silver" style=" border:1px solid black"> Type of Exam</th>
-                        <td class="w-25" style=" border:1px solid black"> <input type="checkbox" /> Midterm <input type="checkbox" /> Final <input type="checkbox" /> Other: </td>
-                        <th class="w-25" bgcolor="silver" style=" border:1px solid black"> Exam Weight </th>
-                        <td class="w-25" style=" border:1px solid black">  </td>
-                    </tr>
-                </table>
-
-                <br />
-
-                <table class="table table-responsive-sm">
-                    <tr>
-                        <th bgcolor="silver" style=" border:1px solid black"> Section</th>
-                        <th bgcolor="silver" style=" border:1px solid black"> Instructor</th>
-                        <th bgcolor="silver" style=" border:1px solid black"> No. Of <br /> Enrolled <br />Students</th>
-                        <th bgcolor="silver" style=" border:1px solid black"> No. Of <br />Attendees</th>
-                        <th bgcolor="silver" style=" border:1px solid black"> No. Of <br />Absentees</th>
-                        <th bgcolor="silver" style=" border:1px solid black"> Average<br /> Grade</th>
-                        <th bgcolor="silver" style=" border:1px solid black"> Median<br /> Grade</th>
-                        <th bgcolor="silver" style=" border:1px solid black"> Success<br /> Rate</th>
-                        <th bgcolor="silver" style=" border:1px solid black"> Failure <br />Rate</th>
-                        <th bgcolor="silver" style=" border:1px solid black"> Highest <br />Grade</th>
-                        <th bgcolor="silver" style=" border:1px solid black"> Lowest<br /> Grade</th>
-                        <th bgcolor="silver" style=" border:1px solid black"> Exam <br />Absence<br /> Rate</th>
-                    </tr>
-                    <tr>
-                        <th style=" border:1px solid black"> 1</th>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                    </tr>
-                    <tr>
-                        <th style=" border:1px solid black"> 2</th>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                    </tr>
-                    <tr>
-                        <th style=" border:1px solid black"> 3</th>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                    </tr>
-                    <tr>
-                        <th style=" border:1px solid black"> ...</th>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                    </tr>
-                    <tr>
-                        <th style=" border:1px solid black"> All <br /> Sections</th>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                        <td style=" border:1px solid black"> </td>
-                    </tr>
-                </table>
-                <br />
-                <div>
-                    <b>Date:_________________ </b>
-                    <br />
-                    <br />
-                    <b>Instructor/CoordinatorSignature:_________________</b>
-                </div>
-                <br />
-            </div>
-        </div>
-    </div>
-</body>
-<hr />
-<footer class="justify-content-center align-items-center d-flex">
+<footer>
     <table>
         <tr>
 

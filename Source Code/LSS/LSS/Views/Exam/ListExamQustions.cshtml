@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<LSS.Models.CourseExamQuestion>
-
+@using LSS.Models.Exams;
 <div class="container">
     <table class="table">
         <tr>
@@ -33,12 +33,12 @@
                 </td>
                 <td>
                     @{ double AVG = item.getAVG(); }
-                    @Html.Display(AVG + "")
+       
+                    <label> @AVG</label>
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    @Html.ActionLink("Edit", "EditQustions", new QustionsVM() { Question=item}) |
+                    @Html.ActionLink("Delete", "DeleteQustions", new { id = item.ID })
                 </td>
             </tr>
         }

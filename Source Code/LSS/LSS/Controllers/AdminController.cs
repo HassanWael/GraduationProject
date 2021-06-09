@@ -142,7 +142,7 @@ namespace LSS.Controllers
             }
         }
 
-        public ActionResult CreateUser()
+        public ActionResult CreateUser(string? ID)
         {
             ViewBag.dept = _DatabaseEntities.Departments.ToList();
 
@@ -152,6 +152,12 @@ namespace LSS.Controllers
                 { "Lecturer", "Lecturer" }
             };
             ViewBag.role = role;
+            if (ID != null)
+            {
+                
+                return View(_DatabaseEntities.Lecturers.Find(ID));
+
+            }
 
             return View();
         }
@@ -175,9 +181,26 @@ namespace LSS.Controllers
                 {
                     if (ModelState.IsValid)
                     {
-                        _DatabaseEntities.Lecturers.Add(lecturer);
-                        _DatabaseEntities.SaveChanges();
-                        String message = "Lecturer added successfully";
+                        String message = ""; 
+                        Lecturer l = _DatabaseEntities.Lecturers.Find(lecturer.ID);
+                        if (l != null)
+                        {
+                            l.Name = lecturer.Name;
+                            l.OfficeNo = lecturer.OfficeNo;
+                            l.Password = lecturer.Password;
+                            l.Role = lecturer.Password;
+                            _DatabaseEntities.Entry(l).State = EntityState.Modified;
+                            _DatabaseEntities.SaveChanges();
+                             message = "Lecturer eddited successfully";
+
+                        }
+                        else {
+                            _DatabaseEntities.Lecturers.Add(lecturer);
+                            _DatabaseEntities.SaveChanges();
+                             message = "Lecturer added successfully";
+                        }
+
+                      
                         return RedirectToAction("Index", "Admin", message);
                     }
                     return View();
@@ -499,7 +522,7 @@ namespace LSS.Controllers
             }
         }
 
-
+         
         public ActionResult UpdateStudent()
         {
             ViewBag.Departments = _DatabaseEntities.Departments.ToList();
@@ -539,23 +562,24 @@ namespace LSS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateStudent(Student student)
         {
+            ViewBag.Departments = _DatabaseEntities.Departments.ToList();
+
             try
             {
                 if (ModelState.IsValid)
                 {
                     _DatabaseEntities.Students.Add(student);
                     _DatabaseEntities.SaveChanges();
-
                 }
                 String message = "Student added successfully";
-                return RedirectToAction("ListSudents", "Admin", message);
+                return RedirectToAction("ListStudents", "Admin", new { message });
 
             }
             catch (Exception e)
             {
-                ModelState.AddModelError(e.Message, "an error has accoured please try again later ");
+                ModelState.AddModelError("ID", "the ID exists in the DB");
                 Console.WriteLine("Error at line 384 Admin" + e);
-
+                
 
                 return View();
             }
@@ -613,7 +637,7 @@ namespace LSS.Controllers
                 }
 
             }
-            string updateMassege = (added + " new student added /n  " + edited + " student info changed");
+            string updateMassege = (added + " new student added \n  " + edited + " student info changed");
             return RedirectToAction("ListStudents", "Admin", new { updateMassege });
         }
 

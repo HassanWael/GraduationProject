@@ -17,29 +17,37 @@
         <div class="col-2 mt-lg-5">
             <div class="list-group list-group-flush w-50">
                 <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Content</b> </h4>
+
                 @Html.ActionLink("Recomandations for improving the course", "ActionsForImproving", "CourseCoordinator",
-               new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
+               new { courseId = Model.CourseCoordinator.CourseID }, new { @class = "bg-transparent pb-3" })
 
-                @Html.ActionLink("Students List", "CourseStudentList", "CourseCoordinator",
-               new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
-
-                @Html.ActionLink("PI Assessment", "PI Assessment", "CourseCoordinator",
-               new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Students List", "CourseStudentList", "Students",
+               new { CourseID = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester },
+               new { @class = "bg-transparent pb-3" })
 
                 @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator",
-               new { CourseID = Model.Course.ID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
+               new { CourseID = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester },
+               new { @class = "bg-transparent pb-3" })
+
+                @Html.ActionLink("Exams & Tasks", "ListCourseExamsAndTasks", "Exam",
+               new { CourseID = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester },
+               new { @class = "bg-transparent pb-3" })
+
+
+                @Html.ActionLink("schedule", "CourseSchedule", "CourseCoordinator",
+               new { CourseID = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester },
+               new { @class = "bg-transparent pb-3" })
+
+
                 <br />
                 <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Forms</b> </h4>
-                @Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3 text-success" })
-                @Html.ActionLink("Course Assessment Survey", "CourseAssessmentSurvey", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
-                @Html.ActionLink("Course File Checklist", "CourseFileChecklist", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
-                @Html.ActionLink("Course Information Form", "CourseInformationForm", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
-                @Html.ActionLink("Coures Report", "CourseReport", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
-                @Html.ActionLink("Exam Evaluation", "ExamEvaluation", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
-                @Html.ActionLink("Question Answer Sheet", "QuestionsAnswersSheet", "Forms", new { courseId = Model.Course.ID }, new { @class = "bg-transparent pb-3" })
-            </div>
-        </div>
+                @Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { courseId = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Course File Checklist", "CourseFileChecklist", "Forms", new { courseId = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Course Information Form", "CourseInformationForm", "Forms", new { courseId = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Coures Report", "CourseReport", "Forms", new { courseId = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
 
+            </div>
+            </div>
         <div class="col-lg-8">
             <div class="container shadow-lg p-3 mb-3 mt-5 align-content-center bg-white">
                 <div class="d-flex justify-content-center align-items-center text-center">
@@ -53,7 +61,7 @@
 
                 <table id="FormName">
                     <tr class="text-center">
-                        <td bgcolor="silver" style="border:1px solid black" class="pt-2"> 
+                        <td bgcolor="silver" style="border:1px solid black" class="pt-2">
                             <h4 align="center"> <b>Course Syllabus</b> </h4>
                         </td>
                     </tr>
@@ -61,7 +69,7 @@
 
                 <br />
                 <br />
-                @Html.ActionLink("Edit", "CouresSyllabusAddData")
+            
                 <table class="table" style="border:double">
                     <tr>
                         <th style=" border:1px solid black" bgcolor="silver" colspan="4"> General Information:</th>

@@ -7,6 +7,7 @@ namespace LSS.Models.CoursesModelView
 {
     public class PIAssessmentMV
     {
+        private CourseCoordinator cc { get; set; }
         public CourseCoordinator CourseCoordinator { get; set; }
         public IEnumerable<CourseExamQuestion> CourseExamQuestions { get; set; }
 

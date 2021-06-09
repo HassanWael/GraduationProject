@@ -99,12 +99,36 @@
             </td>
         </tr>
     </table>
+    <p>
+        @Html.ActionLink("Add Qustions", "CreateQustion", new { ExamID = Model.ID })
+        @Html.ActionLink("ExamEvaluation", "ExamEvaluation", "Forms", new { ExamID = Model.ID }, new { @Class = "btn btn-primary" })
+    </p>
+    @Html.Partial("ListExamQustions", Model.CourseExamQuestions)
 
-    <div class="shadow-sm mt-2">
-        <p>
-            @Html.ActionLink("Add Qustions", "CreateQustion", new { ExamID = Model.ID })
-        </p>
 
-        @Html.Partial("ListExamQustions", Model.CourseExamQuestions)
-    </div>
+
+
+    @using (Html.BeginForm("UploadMarks", "Exam", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="container">
+            <input type="hidden" id="CourseID" name="ExamID" value='@Model.ID' />
+            <table>
+                <tr>
+                    <td class="col-2">
+                        <div class="input-group mb-3">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="Select Grades File" id="ExcelSheet">
+                                <label class="custom-file-label" for="ExcelSheet">Choose file..</label>
+                            </div>
+                            <div class="input-group-append">
+                                <input type="submit" name="Upload" value="Submit" class="btn btn-primary" />
+                            </div>
+                            <hr />
+                        </div>
+                        <img src="~/Images/Excel Format/ExamQustions.png" class="w-100" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    }
 </div>

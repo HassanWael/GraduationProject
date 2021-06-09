@@ -15,7 +15,7 @@ namespace LSS.Controllers
     [Authorize]  
     public class CourseCoordinatorController : Controller
     {
-        private readonly LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
+        private  LSS_databaseEntities _DatabaseEntities = new LSS_databaseEntities();
 
         private readonly YearAndSemester yas = SemesterSingelton.getCurrentYearAndSemester();
 
@@ -26,6 +26,11 @@ namespace LSS.Controllers
             {
                 return RedirectToAction("Index", "LogedIN");
             }
+            if (Year == null || Semester == null)
+            {
+                Year = yas.Year;
+                Semester = yas.Semester;
+            } 
 
             //String userID = Session["ID"].ToString();
             CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester);
@@ -180,7 +185,7 @@ namespace LSS.Controllers
                 Console.WriteLine("Error at line 123 Course Coordinator");
                 return View("Index", "LogedIn");
             }
-            return RedirectToAction("CouresPage", "CourseCoordinator", isAssessed.CourseID);
+            return RedirectToAction("CouresPage", "CourseCoordinator",new { CourseID =isAssessed.CourseID , Year= isAssessed.Year ,Semester= isAssessed.Semester});
         }
 
         [HttpPost]
@@ -293,19 +298,28 @@ namespace LSS.Controllers
         [HttpPost]
         public ActionResult AddSurveyQustion(CourseAssessmentSurvay CAS)
         {
+            _DatabaseEntities.Dispose();
+            _DatabaseEntities = new LSS_databaseEntities();
+            CourseAssessmentSurvay s = new CourseAssessmentSurvay();
+            s.CourseID = CAS.CourseID;
+            s.Year = CAS.Year;
+            s.Semester = CAS.Semester;
+            s.PI_ID = CAS.PI_ID;
+            s.Qustion = CAS.Qustion;
+            s.DeptID = CAS.DeptID;
             try
             {
                 String SLOID = _DatabaseEntities.PIs.Where(x => x.ID.Equals(CAS.PI_ID) && x.DeptID.Equals(CAS.DeptID)).Select(x => x.SLOID).FirstOrDefault();
-                CAS.SLOID = SLOID;
-                _DatabaseEntities.CourseAssessmentSurvays.Add(CAS);
+                s.SLOID = SLOID;
+                _DatabaseEntities.CourseAssessmentSurvays.Add(s);
                 _DatabaseEntities.SaveChanges();
-
+                return RedirectToAction("CourseAssessmentSurvey", new { CourseID = CAS.CourseID, Year = CAS.Year, Semester = CAS.Semester });
             }
             catch (Exception e)
             {
                 Console.WriteLine("Error at 255 CourseCoorddinatorController" + e);
             }
-            return View();
+            return RedirectToAction("CourseAssessmentSurvey", new { CourseID = CAS.CourseID, Year = CAS.Year, Semester = CAS.Semester });
         }
         //todo: create a Model for CourseStudent List
         public PartialViewResult AddBook()
@@ -347,61 +361,64 @@ namespace LSS.Controllers
 
 
 
-        public ActionResult DirectAssessmentPI(string? CourseID, DateTime? Year, string? Semester)
+        public ActionResult DirectAssessmentPI(string? CourseID,DateTime? Year ,string? Semester)
         {
-            if (CourseID == null || Year == null || Semester == null)
+            if (CourseID == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             }
-            PIAssessmentMV assessment = new PIAssessmentMV
+
+            CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester);
+   
+            PIAssessmentMV assessment = new PIAssessmentMV()
             {
-                CourseCoordinator = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester)
+                CourseCoordinator = cc
             };
-            if (assessment == null)
-            {
-                return HttpNotFound();
-            }
             return View(assessment);
         }
 
 
-        //todo:needs testing 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DirectAssessmentPI(PIAssessmentMV? pIAssessment, int[] QID)
+        public ActionResult DirectAssessmentPI(string? CourseID,DateTime? Year,string? Semester, int[] QID)
         {
-            CourseCoordinator cc = pIAssessment.CourseCoordinator;
-            List<int> everyCourseQ = pIAssessment.AllQustions;
-
-
+            CourseCoordinator CC = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester);
+            List<int> allQustions = new List<int>();
+            foreach (CourseExam exam in CC.CourseExams)
+            {
+                foreach (CourseExamQuestion q in exam.CourseExamQuestions)
+                {
+                    allQustions.Add(q.ID);
+                }
+            }
             if (ModelState.IsValid)
             {
                 if (QID != null)
                 {
-                    foreach (int id in everyCourseQ)
+                    foreach (int id in allQustions)
                     {
-                        
                         CourseExamQuestion q = new CourseExamQuestion();
-                        q = _DatabaseEntities.CourseExamQuestions.Find(QID);
-                        if (QID.Contains(id) || !cc.CourseExamQuestions.Select(x => x.ID).Contains(id))
+                        q = _DatabaseEntities.CourseExamQuestions.Find(id);
+                        if (QID.Contains(id) && !CC.CourseExamQuestions.Select(x => x.ID).Contains(id))
                         {
-                            cc.CourseExamQuestions.Add(q);
+                            CC.CourseExamQuestions.Add(q);
                         }
-                        else if (!QID.Contains(id) || cc.CourseExamQuestions.Select(x => x.ID).Contains(id))
+                        else if (!QID.Contains(id) && CC.CourseExamQuestions.Select(x => x.ID).Contains(id))
                         {
-                            cc.CourseExamQuestions.Remove(q);
+                            CC.CourseExamQuestions.Remove(q);
                         }
                     }
-                    _DatabaseEntities.Entry(cc).State = EntityState.Modified;
+                    _DatabaseEntities.Entry(CC).State = EntityState.Modified;
                     _DatabaseEntities.SaveChanges();
-
-
                 }
             }
 
-            return View();
+            return RedirectToAction("DirectAssessment",new { CourseID ,Year,Semester});
         }
+
+        //todo:needs testing 
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -427,8 +444,12 @@ namespace LSS.Controllers
 
         public ActionResult DirectAssessment(string? CourseID, DateTime? Year, string? Semester)
         {
+            
             CourseCoordinator cc = _DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester);
-
+            if (cc.CourseExamQuestions == null || cc.CourseExamQuestions.Count()==0)
+            {
+                return RedirectToAction("DirectAssessmentPI", new { CourseID, Year, Semester });
+            }
             return View(cc);
         }
 
@@ -472,6 +493,8 @@ namespace LSS.Controllers
             schedule.Assignments = s.Assignments;
             schedule.Topic = s.Topic;
             schedule.Reference = s.Reference;
+            _DatabaseEntities.Entry(schedule).State = EntityState.Modified;
+            _DatabaseEntities.SaveChanges();
 
             List<CLO> allCLOes = _DatabaseEntities.CLOes.Where(x => x.courseId.Equals(s.CourseID)).ToList();
 
@@ -479,7 +502,7 @@ namespace LSS.Controllers
             {
                 if (schedule.CLOes.Select(x => x.ID).Contains(cloid.ID))
                 {
-                    if (!CLO_ID.Contains(cloid.ID))
+                    if (cloid != null&& !CLO_ID.Contains(cloid.ID))
                     {
                         schedule.CLOes.Remove(cloid);
                     }
@@ -492,7 +515,7 @@ namespace LSS.Controllers
 
                     }
                 }
-                
+            _DatabaseEntities.Entry(schedule).State = EntityState.Modified;
             }
 
             _DatabaseEntities.Entry(schedule).State = EntityState.Modified;
@@ -500,5 +523,51 @@ namespace LSS.Controllers
 
             return RedirectToAction("CourseSchedule", new { s.CourseID, s.Year, Semester = s.Semester });
         }
+
+        public ActionResult CreateActionsForImprovingCourses(string? CourseID ,DateTime? Year ,string? Semester)
+        {
+            if(_DatabaseEntities.CourseCoordinators.Find(CourseID, Year, Semester) == null)
+            {
+
+            }
+            ActionsForImprovingTheCourse a = _DatabaseEntities.ActionsForImprovingTheCourses.Find(CourseID, Year, Semester);
+            if (a == null)
+            {
+                a.CourseID = CourseID;
+                a.Year = (DateTime)Year;
+                a.Semester = Semester;
+            }
+            return View(a);
+
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateActionsForImprovingCourses(ActionsForImprovingTheCourse afc )
+        {
+            if (ModelState.IsValid)
+            {
+                ActionsForImprovingTheCourse a = _DatabaseEntities.ActionsForImprovingTheCourses.Find(afc.CourseID, afc.Year, afc.Semester);
+                if (a == null)
+                {
+                    _DatabaseEntities.ActionsForImprovingTheCourses.Add(afc);
+                    _DatabaseEntities.SaveChanges();
+                }
+                else
+                {
+                    a.ActionsTaken = afc.ActionsTaken;
+                    a.ActionsResults = afc.ActionsResults;
+                    a.RecomandedActions = afc.RecomandedActions;
+                    a.PersonResponsible = afc.PersonResponsible;
+                    _DatabaseEntities.ActionsForImprovingTheCourses.Add(afc);
+                    _DatabaseEntities.SaveChanges();
+                }
+                return RedirectToAction("ActionsForImproving", "CourseCoordinator", new { CourseID = afc.CourseID, Year = afc.Year, Semester = afc.Semester });
+
+            }
+            return View();
+        }
+
+
+
     }
 }

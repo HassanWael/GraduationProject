@@ -100,7 +100,7 @@ namespace LSS.Controllers
                         }
                         else
                         {
-                            return RedirectToAction("Index", "LogedIn");
+                            return RedirectToAction("CourseStudentList", "Students", new { CourseID = CourseID, Year = Year, Semester = Semester });
                         }
                     }
                 }
@@ -109,13 +109,13 @@ namespace LSS.Controllers
             return RedirectToAction("CourseStudentList","Students", new { CourseID, updateMassege, Year, Semester });
         }
 
-        public ActionResult UploadGrades(FormCollection formCollection, string CourseID, DateTime Year, string Semester)
+        public ActionResult UploadGrades(FormCollection formCollection, string? CourseID, DateTime? Year, string? Semester)
         {
             int failedToAddGraddeTo = 0; 
             EnroledStudent enroledStudent; 
             if (Request != null)
             {
-                HttpPostedFileBase file = Request.Files["Select Excel file"];
+                HttpPostedFileBase file = Request.Files["Select Grades File"];
 
                 if ((file != null) && (file.ContentLength != 0) && !string.IsNullOrEmpty(file.FileName))
                 {
@@ -153,7 +153,6 @@ namespace LSS.Controllers
                                 {
                                     Console.WriteLine("Error at 340 CourseCoorddinatorController" + e);
                                 }
-                            rowIterator++;
                         }
                     }
                     else

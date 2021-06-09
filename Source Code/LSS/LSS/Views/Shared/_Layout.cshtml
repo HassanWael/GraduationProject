@@ -31,11 +31,6 @@
                             <a class="nav-link" href="@Url.Action("Index", "headOfDepartment",new {dptID=int.Parse( Session["Dpt"].ToString()) })">Department</a>
                         </li>
                     }
-
-                    @*<li class="nav-item">
-            <a class="nav-link" href="@Url.Action("Index", "LogedIn")">Faculty</a>
-        </li>*@
-
                     @if (User.IsInRole("admin"))
                     {
                         <li>
@@ -46,7 +41,6 @@
                 </ul>
                 <form class="form-inline my-2 my-lg-0 p-2">
                     <ul class="navbar-nav mr-auto">
-
                         @if (Request.IsAuthenticated)
                         {
                             <li class="nav-item pr-3 text-success font-weight-bold">Logged in as '@Session["Name"]'</li>
@@ -56,7 +50,6 @@
                         {
                             <li class="nav-item">@Html.ActionLink("Login", "Login")</li>
                         }
-
                     </ul>
                 </form>
             </div>

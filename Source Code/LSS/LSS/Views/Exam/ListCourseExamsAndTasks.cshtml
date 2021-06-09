@@ -12,15 +12,11 @@
             <div class="list-group list-group-flush w-50">
                 <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Content</b> </h4>
                 @Html.ActionLink("Recomandations for improving the course", "ActionsForImproving", "CourseCoordinator",
-              new { ViewBag.courseID }, new { @class = "bg-transparent pb-3" })
+               new { ViewBag.courseID }, new { @class = "bg-transparent pb-3" })
 
                 @Html.ActionLink("Students List", "CourseStudentList", "Students",
                new { ViewBag.courseID, ViewBag.Year, ViewBag.Semester },
                new { @class = "bg-transparent pb-3" })
-
-                @*@Html.ActionLink("PI Assessment", "DirectAssessmentPI", "CourseCoordinator",
-                    new { CourseID = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.semester },
-                    new { @class = "bg-transparent pb-3" })*@
 
                 @Html.ActionLink("Survey", "CourseAssessmentSurvey", "CourseCoordinator",
                new { ViewBag.courseID, ViewBag.Year, ViewBag.Semester },
@@ -28,21 +24,21 @@
 
                 @Html.ActionLink("Exams & Tasks", "ListCourseExamsAndTasks", "Exam",
                new { ViewBag.courseID, ViewBag.Year, ViewBag.Semester },
-               new { @class = "bg-transparent pb-3" })
+               new { @class = "bg-transparent pb-3 text-success" })
 
 
                 @Html.ActionLink("schedule", "CourseSchedule", "CourseCoordinator",
                new { ViewBag.courseID, ViewBag.Year, ViewBag.Semester },
                new { @class = "bg-transparent pb-3" })
+
+
+
                 <br />
                 <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Forms</b> </h4>
-                @Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { ViewBag.courseID }, new { @class = "bg-transparent pb-3" })
-                @Html.ActionLink("Course Assessment Survey", "CourseAssessmentSurvey", "Forms", new { ViewBag.courseID }, new { @class = "bg-transparent pb-3" })
-                @Html.ActionLink("Course File Checklist", "CourseFileChecklist", "Forms", new { ViewBag.courseID }, new { @class = "bg-transparent pb-3 " })
-                @Html.ActionLink("Course Information Form", "CourseInformationForm", "Forms", new { ViewBag.courseID }, new { @class = "bg-transparent pb-3" })
-                @Html.ActionLink("Coures Report", "CourseReport", "Forms", new { ViewBag.courseID }, new { @class = "bg-transparent pb-3" })
-                @Html.ActionLink("Exam Evaluation", "ExamEvaluation", "Forms", new { ViewBag.courseID }, new { @class = "bg-transparent pb-3" })
-                @Html.ActionLink("Question Answer Sheet", "QuestionsAnswersSheet", "Forms", new { ViewBag.courseID }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semester }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Course File Checklist", "CourseFileChecklist", "Forms", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semester }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Course Information Form", "CourseInformationForm", "Forms", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semester }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Coures Report", "CourseReport", "Forms", new { ViewBag.courseID, ViewBag.Year, ViewBag.Semester }, new { @class = "bg-transparent pb-3" })
             </div>
         </div>
 
@@ -60,6 +56,10 @@
 
                 <p>
                     @Html.ActionLink("Create Exam Or Task", "CreateCourseExam", new { ViewBag.CourseID, ViewBag.Year, ViewBag.Semester }, new { @class = "btn btn-primary" })
+                </p>
+                <p>
+                    @Html.ActionLink("Create Dicret Assessment Form", "DirectAssessment", "CourseCoordinator", new { ViewBag.CourseID, ViewBag.Year, ViewBag.Semester }, new { @class = "btn btn-primary" })
+
                 </p>
                 <table class="table table-borderless table-hover shadow-sm">
                     <tr class="bg-white">
@@ -107,17 +107,20 @@
                         </tr>
                     }
                 </table>
+
+                @Html.PagedListPager(Model, page => Url.Action("ListCourses", new { Search = ViewBag.Search, Department = ViewBag.DepartmentID, page, pageSize = Model.PageSize }), new PagedListRenderOptions
+                {
+
+         ContainerDivClasses = new[] { "pagination pagination-sm" },
+         UlElementClasses = new[] { "pagination pagination-sm" },
+         LiElementClasses = new[] { "page-item", "btn-outline-primary" }
+
+                })
+                Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Products
+
             </div>
 
-            @Html.PagedListPager(Model, page => Url.Action("ListCourses", new { Search = ViewBag.Search, Department = ViewBag.DepartmentID, page, pageSize = Model.PageSize }), new PagedListRenderOptions
-            {
-
-               ContainerDivClasses = new[] { "pagination pagination-sm" },
-               UlElementClasses = new[] { "pagination pagination-sm" },
-               LiElementClasses = new[] { "page-item", "btn-outline-primary" }
-
-            })
-            Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Products
+      
         </div>
     </div>
 </body>

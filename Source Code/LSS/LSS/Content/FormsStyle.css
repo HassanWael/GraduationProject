@@ -19,6 +19,12 @@
     text-align:center;
 }
 
+#evalTable{
+    margin:10px;
+}
+#evalTable .td {
+    max-width: 40px;
+}
     #FormName {
         margin-left: auto;
         margin-right: auto;
@@ -32,7 +38,7 @@
 
     @page {
         size: A4;
-        margin: 11mm 17mm 17mm 17mm;
+        margin: 11mm 10mm 17mm 10mm;
     }
 
     @media print {
@@ -40,7 +46,9 @@
             position: fixed;
             bottom: 0;
         }
-        
+        #evalTable .td{
+            max-width:40px;
+        }
 
         header {
             position: fixed;
@@ -52,7 +60,10 @@
         header, table {
             width: 100%;
         }
-
+        table {
+            max-width: 90%;
+           border: 2px solid black;
+        }
         #FormName {
             margin-left: auto;
             margin-right: auto;
