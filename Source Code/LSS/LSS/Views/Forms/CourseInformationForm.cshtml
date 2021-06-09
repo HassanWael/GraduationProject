@@ -8,20 +8,11 @@
 
 <link rel="stylesheet" href="~/Content/FormsStyle.css" />
 <header>
-    <table align="center">
-        <tr>
-            <th>
-                Al-Ahliyya Amman University
-            </th>
-
-            <td>
-                <img src="~/Images/Al-Ahliya_Amman_University_Logo.png" />
-            </td>
-
-            <th>  جامعة عمان الأهلية </th>
-        </tr>
-    </table>
-    <P align="center"><b> Faculty of Information Technology</b> </P>
+    <div class="d-flex justify-content-center align-items-center text-center">
+        <div>
+            <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo" alt="Logo" style="height:150px; width:120px;" />
+        </div>
+    </div>
     <hr style="border: 2px solid black" />
 </header>
 
@@ -32,10 +23,11 @@
 
 @{int col = 0;
     int j = 1;}
-@try { 
-        col = (Model.OtherLecturers.Count() + 1) * 2;
-      }
-     catch (Exception e ) { Console.WriteLine("ther are no other sections"+e.Message); }
+@try
+{
+    col = (Model.OtherLecturers.Count() + 1) * 2;
+}
+catch (Exception e) { Console.WriteLine("ther are no other sections" + e.Message); }
 
 
 <table class="table" style="border: 2px solid black">

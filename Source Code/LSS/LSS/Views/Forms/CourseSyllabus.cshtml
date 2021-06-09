@@ -41,13 +41,10 @@
 
                 <br />
                 <h4 class="text-primary text-decoration-none" style="color:black !important"> <b>Forms</b> </h4>
-                @Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { courseId = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
-                @Html.ActionLink("Course Assessment Survey", "CourseAssessmentSurvey", "Forms", new { courseId = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
+                @Html.ActionLink("Coures Syllabus", "CourseSyllabus", "Forms", new { courseId = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3 text-success" })
                 @Html.ActionLink("Course File Checklist", "CourseFileChecklist", "Forms", new { courseId = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
                 @Html.ActionLink("Course Information Form", "CourseInformationForm", "Forms", new { courseId = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
                 @Html.ActionLink("Coures Report", "CourseReport", "Forms", new { courseId = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
-                @Html.ActionLink("Exam Evaluation", "ExamEvaluation", "Forms", new { courseId = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
-                @Html.ActionLink("Question Answer Sheet", "QuestionsAnswersSheet", "Forms", new { courseId = Model.CourseCoordinator.CourseID, Year = Model.CourseCoordinator.Year, Semester = Model.CourseCoordinator.Semester }, new { @class = "bg-transparent pb-3" })
             </div>
         </div>
 

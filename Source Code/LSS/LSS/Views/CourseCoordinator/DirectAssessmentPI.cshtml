@@ -9,7 +9,7 @@
 
 <style>
     .collapsible {
-        background-color: #777; 
+        background-color: #777;
         color: white;
         cursor: pointer;
         padding: 18px;
@@ -37,22 +37,36 @@
 
 @using (Html.BeginForm("DirectAssessmentPI", "CourseCoordinator", FormMethod.Post))
 {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-
-    @Html.HiddenFor(x => x.CourseCoordinator)
-    @Html.HiddenFor(x => x.CourseExamQuestions)
-
-    foreach (CourseExam exam in Model.CourseCoordinator.CourseExams)
-    {
-        <button type="button" class="collapsible">@exam.Type</button>
-        <div class="content">
-            @foreach (CourseExamQuestion question in exam.CourseExamQuestions)
-            {
-                <input type="checkbox" id="QID" name="QID" value="@question.ID" checked="@Model.CourseCoordinator.CourseExamQuestions.Select(x=>x.ID).Contains(question.ID)" /> <b style="padding-bottom:2%; margin-bottom:2%">@question.QuestionNumber</b>
-            }
+    <div class="container shadow-lg p-3 mb-3 mt-5 bg-white">
+        <div class="d-flex justify-content-center align-items-center text-center">
+            <div>
+                <img src="~/Images/LOGO-removebg-preview.png" class="brand_logo" alt="Logo" style="height:150px; width:120px;" />
+                <h4> Actions For Improving  </h4>
+            </div>
         </div>
-    }
-    <input type="submit" value="Save Selected" class="btn btn-primary mb-1" />
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        @Html.HiddenFor(x => x.CourseCoordinator)
+        @Html.HiddenFor(x => x.CourseExamQuestions)
+        <ul>
+            @foreach (CourseExam exam in Model.CourseCoordinator.CourseExams)
+            {
+                <li>
+                    <span>@exam.Type</span>
+                    <ul>
+                        @foreach (CourseExamQuestion question in exam.CourseExamQuestions)
+                        {
+                            <li>
+                                <input type="checkbox" id="QID" name="QID" value="@question.ID" checked="@Model.CourseCoordinator.CourseExamQuestions.Select(x=>x.ID).Contains(question.ID)" />
+                                <b style="padding-bottom:2%; margin-bottom:2%">@question.QuestionNumber</b>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+        </ul>
+        <input type="submit" value="Save Selected" class="btn btn-primary mb-1" />
+    </div>
 }
