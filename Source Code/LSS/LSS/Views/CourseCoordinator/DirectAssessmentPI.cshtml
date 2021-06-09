@@ -9,7 +9,7 @@
 
 <style>
     .collapsible {
-        background-color: #777; 
+        background-color: #777;
         color: white;
         cursor: pointer;
         padding: 18px;
@@ -40,19 +40,27 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+    <input type="hidden" id="CourseID" name="CourseID" value='@Model.CourseCoordinator.CourseID' />
+    <input type="hidden" id="Year" name="Year" value='@Model.CourseCoordinator.Year' />
+    <input type="hidden" id="Semester" name="Semester" value='@Model.CourseCoordinator.Semester' /
 
-    @Html.HiddenFor(x => x.CourseCoordinator)
-    @Html.HiddenFor(x => x.CourseExamQuestions)
+    <ul>
+        @foreach (CourseExam exam in Model.CourseCoordinator.CourseExams)
+        {
+            <li>
+                <span>@exam.Type</span>
+                <ul>
+                    @foreach (CourseExamQuestion question in exam.CourseExamQuestions)
+                    {
+                        <li>
+                            <input type="checkbox" id="QID" name="QID" value="@question.ID" checked="@Model.CourseCoordinator.CourseExamQuestions.Select(x=>x.ID).Contains(question.ID)" />
+                            <b style="padding-bottom:2%; margin-bottom:2%">@question.QuestionNumber</b>
+                        </li>
+                    }
+                </ul>
+            </li>
 
-    foreach (CourseExam exam in Model.CourseCoordinator.CourseExams)
-    {
-        <button type="button" class="collapsible">@exam.Type</button>
-        <div class="content">
-            @foreach (CourseExamQuestion question in exam.CourseExamQuestions)
-            {
-                <input type="checkbox" id="QID" name="QID" value="@question.ID" checked="@Model.CourseCoordinator.CourseExamQuestions.Select(x=>x.ID).Contains(question.ID)" /> <b style="padding-bottom:2%; margin-bottom:2%">@question.QuestionNumber</b>
-            }
-        </div>
-    }
+        }
+    </ul>
     <input type="submit" value="Save Selected" class="btn btn-primary mb-1" />
 }

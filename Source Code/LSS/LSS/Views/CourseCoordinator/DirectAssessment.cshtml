@@ -30,7 +30,7 @@
     else
     {
         <table class="table table-hover table-responsive-lg table-borderless">
-            <thead>
+     
                 <tr class="bg-white border-bottom border-primary">
                     <th>
                         Performance Indicators
@@ -69,12 +69,10 @@
                         No. of discarded students
                     </th>
                 </tr>
-            </thead>
-            <tbody>
+       
 
                 @foreach (CourseExamQuestion q in Model.CourseExamQuestions)
                 {
-
                     <tr>
                         <td>
                             @foreach (PI pi in q.PIs)
@@ -117,14 +115,14 @@
                             @AssessingPI.getGoodPercentage(q.ID, Model.Course.Department.ID)
                         </td>
                         <td>
-                            @AssessingPI.NoOfAssessedStudents(q.ID, Model.Course.Department.ID)
+                            <span>@AssessingPI.NoOfAssessedStudents(q.ID, Model.Course.Department.ID)</span>
                         </td>
                         <td>
-                            @AssessingPI.NoOfDiscardedStudents(q.ID, Model.Course.Department.ID)
+                            <span>@AssessingPI.NoOfDiscardedStudents(q.ID, Model.Course.Department.ID)</span>
                         </td>
                     </tr>
                 }
-            </tbody>
+
         </table>
     }
 </div>
